@@ -998,10 +998,10 @@ Alias of FALSE
   # is.double(x1)
   $r->is->double($x1)
 
-=head2 is->integer
+=head2 is->double
 
   # is.integer(x1)
-  $r->is->integer($x1)
+  $r->is->double($x1)
 
 =head2 is->logical
 

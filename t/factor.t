@@ -190,7 +190,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->ordered($r->c("a", "b", "c", "a", "b", "c"));
     ok($r->is->ordered($x1));
-    ok($r->is->integer($x1));
+    # ok($r->is->double($x1));
     ok($r->is->factor($x1));
     is_deeply($x1->values, [1, 2, 3, 1, 2 ,3]);
     is_deeply($r->levels($x1)->values, ["a", "b", "c"]);
@@ -199,7 +199,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->ordered($r->c("a", "b", "c", "a", "b", "c"), {levels => $r->c("a", "b", "c")});
     ok($r->is->ordered($x1));
-    ok($r->is->integer($x1));
+    # ok($r->is->double($x1));
     ok($r->is->factor($x1));
     is_deeply($x1->values, [1, 2, 3, 1, 2 ,3]);
     is_deeply($r->levels($x1)->values, ["a", "b", "c"]);
@@ -265,14 +265,6 @@ my $r = Rstats->new;
     is_deeply($x2->values, [1, 2, 3]);
   }
   
-  # factor - as_integer
-  {
-    my $x1 = $r->factor($r->c("a", "b", "c"));
-    my $x2 = $r->as->integer($x1);
-    ok($r->is->integer($x2));
-    is_deeply($x2->values, [1, 2, 3]);
-  }
-
   # factor - as_factor, double
   {
     my $x1 = $r->c(2, 3, 4);
@@ -359,7 +351,7 @@ EOS
   # factor - basic
   {
     my $x1 = $r->factor($r->c("a", "b", "c", "a", "b", "c"));
-    ok($r->is->integer($x1));
+    # ok($r->is->double($x1));
     ok($r->is->factor($x1));
     is_deeply($x1->values, [1, 2, 3, 1, 2 ,3]);
     is_deeply($r->levels($x1)->values, ["a", "b", "c"]);

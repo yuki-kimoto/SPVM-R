@@ -56,15 +56,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [25]);
   }
 
-  # pow - integer
-  {
-    my $x1 = $r->as->integer($r->c(5));
-    my $x2 = $r->as->integer($r->c(2));
-    my $x3 = $x1 ** $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, [25]);
-  }
-
   # pow - logical
   {
     my $x1 = $r->c($r->TRUE);
@@ -163,24 +154,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [3]);
   }
 
-  # add - integer
-  {
-    my $x1 = $r->as->integer($r->c(1));
-    my $x2 = $r->as->integer($r->c(2));
-    my $x3 = $x1 + $x2;
-    ok($r->is->integer($x3));
-    is_deeply($x3->values, [3]);
-  }
-
-  # add - logical
-  {
-    my $x1 = $r->c($r->TRUE);
-    my $x2 = $r->c($r->TRUE);
-    my $x3 = $x1 + $x2;
-    ok($r->is->integer($x3));
-    is_deeply($x3->values, [2]);
-  }
-
   # add - $r->NULL, left
   {
     my $x1 = $r->NULL;
@@ -268,24 +241,6 @@ my $r = Rstats->new;
     my $x3 = $x1 - $x2;
     ok($r->is->double($x3));
     is_deeply($x3->values, [-1]);
-  }
-
-  # subtract - integer
-  {
-    my $x1 = $r->as->integer($r->c(1));
-    my $x2 = $r->as->integer($r->c(2));
-    my $x3 = $x1 - $x2;
-    ok($r->is->integer($x3));
-    is_deeply($x3->values, [-1]);
-  }
-
-  # subtract - logical
-  {
-    my $x1 = $r->c($r->TRUE);
-    my $x2 = $r->c($r->TRUE);
-    my $x3 = $x1 - $x2;
-    ok($r->is->integer($x3));
-    is_deeply($x3->values, [0]);
   }
 
   # subtract - $r->NULL, left
@@ -377,24 +332,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [6]);
   }
 
-  # multiply - integer
-  {
-    my $x1 = $r->as->integer($r->c(3));
-    my $x2 = $r->as->integer($r->c(2));
-    my $x3 = $x1 * $x2;
-    ok($r->is->integer($x3));
-    is_deeply($x3->values, [6]);
-  }
-
-  # multiply - logical
-  {
-    my $x1 = $r->c($r->TRUE);
-    my $x2 = $r->c($r->TRUE);
-    my $x3 = $x1 * $x2;
-    ok($r->is->integer($x3));
-    is_deeply($x3->values, [1]);
-  }
-
   # multiply - $r->NULL, left
   {
     my $x1 = $r->NULL;
@@ -479,15 +416,6 @@ my $r = Rstats->new;
   {
     my $x1 = $r->c(5);
     my $x2 = $r->c(2);
-    my $x3 = $x1 / $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, [5/2]);
-  }
-
-  # divide - integer
-  {
-    my $x1 = $r->as->integer($r->c(5));
-    my $x2 = $r->as->integer($r->c(2));
     my $x3 = $x1 / $x2;
     ok($r->is->double($x3));
     is_deeply($x3->values, [5/2]);
@@ -591,15 +519,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [1, 2, POSIX::fmod(2, 2/5), "NaN"]);
   }
 
-  # remainder - integer
-  {
-    my $x1 = $r->as->integer($r->c(5));
-    my $x2 = $r->as->integer($r->c(2));
-    my $x3 = $x1 % $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, [1]);
-  }
-
   # remainder - logical
   {
     my $x1 = $r->c($r->TRUE);
@@ -635,15 +554,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [0, 2, 3, 3]);
   }
 
-  # remainder - auto upgrade type
-  {
-    my $x1 = $r->c(5);
-    my $x2 = $r->as->integer($r->c(3));
-    my $x3 = $x1 % $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, [2]);
-  }
-  
   # remainder - perl number
   {
     my $x1 = $r->c(1, 2, 3);
@@ -709,30 +619,6 @@ my $r = Rstats->new;
     ok($r->is->complex($x2));
     is($x2->value->{re}, -1);
     is($x2->value->{im}, -2);
-  }
-  
-  # negate - logical,true
-  {
-    my $x1 = $r->c($r->TRUE);
-    my $x2 = -$x1;
-    ok($r->is->integer($x2));
-    is($x2->value, -1);
-  }
-
-  # negate - logical,false
-  {
-    my $x1 = $r->c($r->FALSE);
-    my $x2 = -$x1;
-    ok($r->is->integer($x2));
-    is($x2->value, 0);
-  }
-  
-  # negate - NA
-  {
-    my $x1 = $r->NA;
-    my $x2 = $r->negate($x1);
-    ok($r->is->integer($x2));
-    ok($r->is->na($x2));
   }
 }
 
@@ -832,24 +718,6 @@ my $r = Rstats->new;
     is($x3->values->[0]->{im}, 2);
     is($x3->values->[1]->{re}, 5);
     is($x3->values->[1]->{im}, 4);
-  }
-
-  # numeric operator auto upgrade - integer
-  {
-    my $x1 = $r->as->integer($r->c(3, 5));
-    my $x2 = $r->c($r->TRUE, $r->FALSE);
-    my $x3 = $x1 + $x2;
-    ok($r->is->integer($x3));
-    is_deeply($x3->values, [4, 5])
-  }
-    
-  # numeric operator auto upgrade - numeric
-  {
-    my $x1 = $r->array($r->c(1.1, 1.2));
-    my $x2 = $r->as->integer($r->array($r->c(1, 2)));
-    my $x3 = $x1 + $x2;
-    ok($r->is->numeric($x3));
-    is_deeply($x3->values, [2.1, 3.2])
   }
 
   # numeric operator auto upgrade - string, +

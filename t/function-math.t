@@ -366,19 +366,6 @@ my $r = Rstats->new;
     ok($r->is->double($x2));
   }
 
-  # atanh - integer
-  {
-    my $x1 = $r->array($r->c(0, 1, 2, -1, -2));
-    my $x2 = $r->atanh($x1);
-    is($x2->values->[0], 0);
-    is($x2->values->[1], 'Inf');
-    is($x2->values->[2], 'NaN');
-    is($x2->values->[3], '-Inf');
-    is($x2->values->[4], 'NaN');
-    is_deeply($r->dim($x2)->values, [5]);
-    ok($r->is->double($x2));
-  }
-
   # atanh - Inf
   {
     my $x1 = $r->c($r->Inf);
@@ -467,17 +454,6 @@ my $r = Rstats->new;
     ok($r->is->double($x2));
   }
 
-  # acosh - integer
-  {
-    my $x1 = $r->as->integer($r->array($r->c(0, 1, 2)));
-    my $x2 = $r->acosh($x1);
-    is($x2->values->[0], 'NaN');
-    is($x2->values->[1], 0);
-    is(sprintf("%.6f", $x2->values->[2]), '1.316958');
-    is_deeply($r->dim($x2)->values, [3]);
-    ok($r->is->double($x2));
-  }
-
   # acosh - Inf
   {
     my $x1 = $r->c($r->Inf);
@@ -521,16 +497,6 @@ my $r = Rstats->new;
   # asinh - double
   {
     my $x1 = $r->array($r->c(0, 1));
-    my $x2 = $r->asinh($x1);
-    is($x2->values->[0], '0');
-    is(sprintf("%.6f", $x2->values->[1]), '0.881374');
-    is_deeply($r->dim($x2)->values, [2]);
-    ok($r->is->double($x2));
-  }
-
-  # asinh - integer
-  {
-    my $x1 = $r->as->integer($r->array($r->c(0, 1)));
     my $x2 = $r->asinh($x1);
     is($x2->values->[0], '0');
     is(sprintf("%.6f", $x2->values->[1]), '0.881374');

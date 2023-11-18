@@ -138,16 +138,6 @@ my $r = Rstats->new;
   }
 }
 
-# looks_like_integer
-{
-  # looks_like_double - 5
-  {
-    my $num_str = "5";
-    my $ret = Rstats::Util::looks_like_integer($num_str);
-    cmp_ok($ret, "==", 5);
-  }
-}
-
 # cross_product
 {
   my $values = [

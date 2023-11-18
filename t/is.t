@@ -56,14 +56,6 @@ my $r = Rstats->new;
     is_deeply($x2->values, [1]);
   }
 
-  # is->nan - integer
-  {
-    my $x1 = $r->as->integer($r->c(1));
-    my $x2 = $r->is->nan($x1);
-    ok($r->is->logical($x2));
-    is_deeply($x2->values, [0]);
-  }
-
   # is->nan - logical
   {
     my $x1 = $r->TRUE;
@@ -145,14 +137,6 @@ my $r = Rstats->new;
     is_deeply($x2->values, [0]);
   }
 
-  # is->infinite - integer
-  {
-    my $x1 = $r->as->integer($r->c(1));
-    my $x2 = $r->is->infinite($x1);
-    ok($r->is->logical($x2));
-    is_deeply($x2->values, [0]);
-  }
-
   # is->infinite - logical
   {
     my $x1 = $r->TRUE;
@@ -210,14 +194,6 @@ my $r = Rstats->new;
     is_deeply($x2->values, [0, 1]);
   }
   
-  # is->na - integer
-  {
-    my $x1 = $r->as->integer($r->c(1, $r->NA));
-    my $x2 = $r->is->na($r->as->integer($x1));
-    ok($r->is->logical($x2));
-    is_deeply($x2->values, [0, 1]);
-  }
-  
   # is->na - logical
   {
     my $x1 = $r->c($r->TRUE, $r->NA);
@@ -232,17 +208,6 @@ my $r = Rstats->new;
     my $x2 = $r->is->na($x1);
     ok($r->is->logical($x2));
     is_deeply($x2->values, [0]);
-  }
-}
-
-# is->integer
-{
-  # is->integer, as_integer, typeof - integer
-  {
-    my $c = $r->c(0, 1, 2);
-    ok($r->is->integer($r->as->integer($c)));
-    is($r->mode($r->as->integer($c))->value, 'numeric');
-    is($r->typeof($r->as->integer($c))->value, 'integer');
   }
 }
 

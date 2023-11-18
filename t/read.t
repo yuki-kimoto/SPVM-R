@@ -10,7 +10,7 @@ my $r = Rstats->new;
 
 # read_table
 {
-  # read_table - string, complex, double, integer, logical, sep default(\s+)
+  # read_table - string, complex, double, logical, sep default(\s+)
   {
     my $d1 = $r->read->table("$FindBin::Bin/data/read.t/basic.txt");
     ok($r->is->factor($d1->getin(1)));
@@ -20,8 +20,6 @@ my $r = Rstats->new;
     is_deeply($d1->getin(2)->values, [{re => 1, im => 1}, {re => 1, im => 2}, {re => 1, im => 3}, {re => 1, im => 4}, undef]);
     ok($r->is->double($d1->getin(3)));
     is_deeply($d1->getin(3)->values, [qw/1.1 1.2 1.3 1.4/, undef]);
-    ok($r->is->integer($d1->getin(4)));
-    is_deeply($d1->getin(4)->values, [qw/1 2 3 4/, undef]);
     ok($r->is->logical($d1->getin(5)));
     is_deeply($d1->getin(5)->values, [qw/1 0 1 0/, undef]);
     is_deeply($r->names($d1)->values, [qw/V1 V2 V3 V4 V5/]);
