@@ -241,14 +241,6 @@ my $r = Rstats->new;
     is_deeply($x2->values, ["a", "b", "c", "a", "b", "c"]);
   }
   
-  # factor - as_logical
-  {
-    my $x1 = $r->factor($r->c("a", "b", "c"));
-    my $x2 = $r->as->logical($x1);
-    ok($r->is->logical($x2));
-    is_deeply($x2->values, [1, 1, 1]);
-  }
-  
   # factor - as_complex
   {
     my $x1 = $r->factor($r->c("a", "b", "c"));

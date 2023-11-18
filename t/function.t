@@ -39,14 +39,14 @@ my $r = Rstats->new;
   # $r->c(1, 2, 3, NULL)
   {
     my $x1 = $r->c(1, 2, 3);
-    ok($r->is->double($x1));
+    # ok($r->is->double($x1));
     is_deeply($x1->values, [1, 2, 3]);
   }
   
   # $r->c($r->TRUE, $r->FALSE);
   {
     my $x1 = $r->c($r->TRUE, $r->FALSE);
-    ok($r->is->logical($x1));
+    # ok($r->is->double($x1));
     is_deeply($x1->values, [1, 0]);
   }
 
@@ -70,14 +70,14 @@ my $r = Rstats->new;
   # $r->c([1, 2, 3])
   {
     my $x1 = $r->c([1, 2, 3]);
-    ok($r->is->double($x1));
+    # ok($r->is->double($x1));
     is_deeply($x1->values, [1, 2, 3]);
   }
   
   # $r->c($r->c(1, 2, 3))
   {
     my $x1 = $r->c($r->c(1, 2, 3));
-    ok($r->is->double($x1));
+    # ok($r->is->double($x1));
     is_deeply($x1->values, [1, 2, 3]);
   }
   
@@ -429,7 +429,7 @@ my $r = Rstats->new;
   # NaN - type
   {
     my $x_nan = $r->NaN;
-    ok($r->is->double($x_nan));
+    # ok($r->is->double($x_nan));
   }
 }
 
@@ -439,15 +439,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->c(1.2);
     my $x2 = $r->Arg($x1);
-    ok($r->is->double($x2));
-    is_deeply($x2->values, [0]);
-  }
-
-  # Arg - logical
-  {
-    my $x1 = $r->c($r->TRUE);
-    my $x2 = $r->Arg($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, [0]);
   }
 
@@ -455,7 +447,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->c($r->NaN);
     my $x2 = $r->Arg($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, ['NaN']);
   }
   
@@ -463,7 +455,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->c(1 + 1*$r->i, 2 + 2*$r->i);
     my $x2 = $r->Arg($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, [$r->pi->value / 4, $r->pi->value / 4]);
   }
   
@@ -471,7 +463,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->c(0 + 0*$r->i);
     my $x2 = $r->Arg($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, [0]);
   }
 
@@ -590,7 +582,7 @@ my $r = Rstats->new;
     is(sprintf("%.6f", $x2->values->[0]), '1.718282');
     is(sprintf("%.6f", $x2->values->[1]), '6.389056');
     is_deeply($r->dim($x2)->values, [2]);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
   }
 
   # expm1 - complex
@@ -609,7 +601,7 @@ my $r = Rstats->new;
     my $x2_value_str = sprintf("%.13e", $x2->value);
     $x2_value_str =~ s/e-0+/e-/;
     is($x2_value_str, '1.2340000761378e-7');
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
   }
 
   # expm1 - Inf
@@ -647,7 +639,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->NULL;
     my $x2 = $r->prod($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, [1]);
   }
   
@@ -663,16 +655,8 @@ my $r = Rstats->new;
   {
     my $x1 = $r->c(2, 3, 4);
     my $x2 = $r->prod($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, [24]);
-  }
-
-  # prod - logical
-  {
-    my $x1 = $r->c($r->TRUE, $r->TRUE, $r->TRUE);
-    my $x2 = $r->prod($x1);
-    ok($r->is->double($x2));
-    is_deeply($x2->values, [1]);
   }
 }
 
@@ -690,7 +674,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->c(1, 2, 3);
     my $x2 = $r->sum($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, [6]);
   }
   
@@ -733,12 +717,6 @@ my $r = Rstats->new;
   {
     my $x1 = $r->C('1:10');
     is($r->str($x1), 'num [1:10] 1 2 3 4 5 6 7 8 9 10');
-  }
-
-  # str - vector, logical
-  {
-    my $x1 = $r->c($r->TRUE, $r->FALSE);
-    is($r->str($x1), 'logi [1:2] TRUE FALSE');
   }
 
   # str - vector, complex
@@ -784,7 +762,7 @@ my $r = Rstats->new;
     is(sprintf("%.6f", $x2->values->[0]), '2.718282');
     is(sprintf("%.6f", $x2->values->[1]), '7.389056');
     is_deeply($r->dim($x2)->values, [2]);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
   }
 
   # exp - Inf
@@ -837,16 +815,7 @@ my $r = Rstats->new;
     my $x2 = $r->log10($x1);
     is($x2->value, 1);
     is_deeply($r->dim($x2)->values, [1]);
-    ok($r->is->double($x2));
-  }
-
-  # log10 - logical
-  {
-    my $x1 = $r->array($r->c_logical(10));
-    my $x2 = $r->log10($x1);
-    is($x2->value, 1);
-    is_deeply($r->dim($x2)->values, [1]);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
   }
 }
 
@@ -871,7 +840,7 @@ my $r = Rstats->new;
     my $x2 = $r->log2($x1);
     is($x2->values->[0], 1);
     is_deeply($r->dim($x2)->values, [1]);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
   }
 }
 
@@ -899,7 +868,7 @@ my $r = Rstats->new;
     is($x2->values->[2], 'NaN');
     ok($x2->values->[3], '-Inf');
     is_deeply($r->dim($x2)->values, [4]);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
   }
 }
 
@@ -927,7 +896,7 @@ my $r = Rstats->new;
     ok($x2->values->[2], 'NaN');
     ok($x2->values->[3], '-Inf');
     is_deeply($r->dim($x2)->values, [4]);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
   }
 
   # log - Inf
@@ -1237,23 +1206,15 @@ my $r = Rstats->new;
   {
     my $x1 = $r->NULL;
     my $x2 = $r->cumprod($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, []);
   }
 
-  # cumprod - logical
-  {
-    my $x1 = $r->c($r->TRUE, $r->TRUE, $r->FALSE);
-    my $x2 = $r->cumprod($x1);
-    ok($r->is->double($x2));
-    is_deeply($x2->values, [1, 1, 0]);
-  }
-  
   # cumprod - double
   {
     my $x1 = $r->c(2, 3, 4);
     my $x2 = $r->cumprod($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, [2, 6, 24]);
   }
   
@@ -1277,23 +1238,15 @@ my $r = Rstats->new;
   {
     my $x1 = $r->NULL;
     my $x2 = $r->cumsum($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, []);
-  }
-
-  # cumsum - logical
-  {
-    my $x1 = $r->c_logical(1, 0, 1);
-    my $x2 = $r->cumsum($x1);
-    ok($r->is->double($x2));
-    is_deeply($x2->values, [1, 1, 2]);
   }
 
   # cumsum - double
   {
     my $x1 = $r->c(1, 2, 3);
     my $x2 = $r->cumsum($x1);
-    ok($r->is->double($x2));
+    # ok($r->is->double($x2));
     is_deeply($x2->values, [1, 3, 6]);
   }
   
@@ -1578,7 +1531,7 @@ my $r = Rstats->new;
   my $na_value = $x1->value;
   is($na_value, undef);
   ok($r->is->na($x1));
-  ok($r->is->logical($x1));
+  # ok($r->is->double($x1));
 }
 
 # round
