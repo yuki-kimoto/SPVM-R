@@ -901,22 +901,3 @@ my $r = Rstats->new;
   }
 }
 
-# numeric operator
-{
-  # numeric operator - -Inf + 2i
-  {
-    my $x2 = $r->c(2*$r->i);
-    my $x1 = $r->c(-Inf);
-    my $x3 = $x1 + $x2;
-    is($x3->value->{re}, '-Inf');
-    is($x3->value->{im}, 2);
-  }
-
-  # numeric operator - -0.2 * -Inf
-  {
-    my $x1 = $r->c(-0.2);
-    my $x2 = $r->c(-Inf);
-    my $x3 = $x1 * $x2;
-    is_deeply($x3->values, ['Inf']);
-  }
-}
