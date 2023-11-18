@@ -43,9 +43,9 @@ my $r = Rstats->new;
     is_deeply($x1->values, [1, 2, 3]);
   }
   
-  # $r->c($r->TRUE, $r->FALSE);
+  # $r->c(1, 0);
   {
-    my $x1 = $r->c($r->TRUE, $r->FALSE);
+    my $x1 = $r->c(1, 0);
     # ok($r->is->double($x1));
     is_deeply($x1->values, [1, 0]);
   }
@@ -419,7 +419,7 @@ my $r = Rstats->new;
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");
     my $x3 = $r->c("Ad1ad1", $r->NA, "ad2ad2");
-    my $x4 = $r->sub($x1, $x2, $x3, {'ignore.case' => $r->TRUE});
+    my $x4 = $r->sub($x1, $x2, $x3, {'ignore.case' => 1});
     is_deeply($x4->values, ["bd1ad1", undef, "bd2ad2"]);
   }
 }
@@ -469,7 +469,7 @@ my $r = Rstats->new;
 
   # Arg - dim
   {
-    my $x1 = $r->array($r->c($r->TRUE, $r->TRUE));
+    my $x1 = $r->array($r->c(1, 1));
     my $x2 = $r->Arg($x1);
     is_deeply($x2->dim->values, [2]);
   }
@@ -944,7 +944,7 @@ my $r = Rstats->new;
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");
     my $x3 = $r->c("Ad1Ad1", $r->NA, "Ad2Ad2");
-    my $x4 = $r->gsub($x1, $x2, $x3, {'ignore.case' => $r->TRUE});
+    my $x4 = $r->gsub($x1, $x2, $x3, {'ignore.case' => 1});
     is_deeply($x4->values, ["bd1bd1", undef, "bd2bd2"]);
   }
 }
@@ -963,7 +963,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->c("abc");
     my $x2 = $r->c("abc", $r->NA, "ABC");
-    my $x3 = $r->grep($x1, $x2, {'ignore.case' => $r->TRUE});
+    my $x3 = $r->grep($x1, $x2, {'ignore.case' => 1});
     is_deeply($x3->values, [1, 3]);
   }
 }
@@ -1268,11 +1268,11 @@ my $r = Rstats->new;
 
 # order
 {
-  # order - 2 condition,decreasing TRUE
+  # order - 2 condition,decreasing 1
   {
     my $x1 = $r->c(4, 3, 3, 3, 1, 5);
     my $x2 = $r->c(1, 2, 3, 1, 1, 1);
-    my $x3 = $r->order($x1, $x2, {decreasing => $r->TRUE});
+    my $x3 = $r->order($x1, $x2, {decreasing => 1});
     is_deeply($x3->values, [6, 1, 3, 2, 4, 5]);
   }
   
@@ -1287,14 +1287,14 @@ my $r = Rstats->new;
   # order - decreasing FALSE
   {
     my $x1 = $r->c(2, 4, 3, 1);
-    my $x2 = $r->order($x1, {decreasing => $r->FALSE});
+    my $x2 = $r->order($x1, {decreasing => 0});
     is_deeply($x2->values, [4, 1, 3, 2]);
   }
   
-  # order - decreasing TRUE
+  # order - decreasing 1
   {
     my $x1 = $r->c(2, 4, 3, 1);
-    my $x2 = $r->order($x1, {decreasing => $r->TRUE});
+    my $x2 = $r->order($x1, {decreasing => 1});
     is_deeply($x2->values, [2, 3, 1, 4]);
   }
 
@@ -1398,7 +1398,7 @@ my $r = Rstats->new;
 
 # T, F
 {
-  my $x1 = $r->c($r->TRUE, $r->FALSE);
+  my $x1 = $r->c(1, 0);
   is_deeply($x1->values, [1, 0]);
 }
 

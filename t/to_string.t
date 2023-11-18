@@ -30,18 +30,6 @@ my $r = Rstats->new;
 
 # to_string
 {
-  # to_string - TRUE
-  {
-    my $x1 = $r->TRUE;
-    is("$x1", "[1] TRUE\n");
-  }
-
-  # to_string - FALSE
-  {
-    my $x1 = $r->FALSE;
-    is("$x1", "[1] FALSE\n");
-  }
-
   # to_string - NA
   {
     my $x1 = $r->NA;
@@ -199,20 +187,6 @@ EOS
     is($x2_str, $expected);
   }
   
-
-  # to_string - 1-dimention, TRUE, FALSE
-  {
-    my $x1 = $r->array($r->c($r->TRUE, $r->FALSE));
-    my $x1_str = "$x1";
-    $x1_str =~ s/[ \t]+/ /;
-
-  my $expected = <<'EOS';
-[1] TRUE FALSE
-EOS
-    $expected =~ s/[ \t]+/ /;
-    
-    is($x1_str, $expected);
-  }
 
   # to_string - 2-dimention
   {

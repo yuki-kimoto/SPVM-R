@@ -8,7 +8,7 @@ use Rstats;
 my $r = Rstats->new;
 
 # TODO
-# arr.ind=TRUE
+# arr.ind=1
 
 # cbind
 {
@@ -157,10 +157,10 @@ EOS
     is_deeply($r->dim($x2)->values, [3, 4]);
   }
 
-  # upper_tri - diag = TRUE
+  # upper_tri - diag = 1
   {
     my $x1 = $r->matrix($r->C('1:12'), 3, 4);
-    my $x2 = $r->lower_tri($x1, {diag => $r->TRUE});
+    my $x2 = $r->lower_tri($x1, {diag => 1});
     is_deeply($x2->values, [
       1,
       1,
@@ -202,10 +202,10 @@ EOS
     is_deeply($r->dim($x2)->values, [3, 4]);
   }
 
-  # upper_tri - diag = TRUE
+  # upper_tri - diag
   {
     my $x1 = $r->matrix($r->C('1:12'), 3, 4);
-    my $x2 = $r->upper_tri($x1, {diag => $r->TRUE});
+    my $x2 = $r->upper_tri($x1, {diag => 1});
     is_deeply($x2->values, [
       1,
       0,

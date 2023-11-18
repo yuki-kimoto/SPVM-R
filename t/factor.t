@@ -12,7 +12,7 @@ my $r = Rstats->new;
   # get - drop
   {
     my $x1 = $r->factor($r->c("a1", "a2", "a3", "a1", "a2", "a3"));
-    my $x2 = $x1->get($r->c(4, 6), {drop => $r->TRUE});
+    my $x2 = $x1->get($r->c(4, 6), {drop => 1});
     ok($r->is->factor($x2));
     is_deeply($x2->values, [1, 2]);
     is_deeply($r->levels($x2)->values, ["a1", "a3"]);
@@ -87,7 +87,7 @@ my $r = Rstats->new;
   {
     my $x1 = $r->factor($r->c("a1", "a2", "a1", "a2"));
     my $x2 = $r->factor($r->c("b1", "b2"));
-    my $x3 = $r->interaction($x1, $x2, {drop => $r->TRUE});
+    my $x3 = $r->interaction($x1, $x2, {drop => 1});
     ok($r->is->factor($x3));
     is_deeply($x3->values, [1, 2, 1, 2]);
     is_deeply($r->levels($x3)->values, ["a1.b1", "a2.b2"]);
@@ -176,7 +176,7 @@ my $r = Rstats->new;
 
   # gl - ordered
   {
-    my $x1 = $r->gl(3, 3, {ordered => $r->TRUE});
+    my $x1 = $r->gl(3, 3, {ordered => 1});
     ok($r->is->factor($x1));
     ok($r->is->ordered($x1));
     is_deeply($x1->values, [1, 1, 1, 2, 2, 2, 3, 3, 3]);
@@ -277,11 +277,11 @@ my $r = Rstats->new;
 
   # factor - ordered
   {
-    my $x1 = $r->factor($r->c("a", "b", "c", "a", "b", "c"), {ordered => $r->TRUE});
+    my $x1 = $r->factor($r->c("a", "b", "c", "a", "b", "c"), {ordered => 1});
     ok($r->is->ordered($x1));
   }
 
-  # factor - ordered, default, FALSE
+  # factor - ordered, default, 0
   {
     my $x1 = $r->factor($r->c("a", "b", "c", "a", "b", "c"));
     ok(!$r->is->ordered($x1));
@@ -325,7 +325,7 @@ EOS
 
   # factor - to_string, ordered
   {
-    my $x1 = $r->factor($r->c("a", "b", "c", "a", "b", "c"), {ordered => $r->TRUE});
+    my $x1 = $r->factor($r->c("a", "b", "c", "a", "b", "c"), {ordered => 1});
     my $expected = <<'EOS';
 [1] a b c a b c
 Levels: a < b < c

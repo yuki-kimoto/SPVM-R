@@ -56,15 +56,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [25]);
   }
 
-  # pow - logical
-  {
-    my $x1 = $r->c($r->TRUE);
-    my $x2 = $r->c($r->TRUE);
-    my $x3 = $x1 ** $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, [1]);
-  }
-
   # pow - $r->NULL, left
   {
     my $x1 = $r->NULL;
@@ -421,15 +412,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [5/2]);
   }
 
-  # divide - logical
-  {
-    my $x1 = $r->c($r->TRUE);
-    my $x2 = $r->c($r->TRUE);
-    my $x3 = $x1 / $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, [1]);
-  }
-
   # divide - $r->NULL, left
   {
     my $x1 = $r->NULL;
@@ -517,15 +499,6 @@ my $r = Rstats->new;
     my $x3 = $x1 % $x2;
     ok($r->is->double($x3));
     is_deeply($x3->values, [1, 2, POSIX::fmod(2, 2/5), "NaN"]);
-  }
-
-  # remainder - logical
-  {
-    my $x1 = $r->c($r->TRUE);
-    my $x2 = $r->c($r->TRUE);
-    my $x3 = $x1 % $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, [0]);
   }
 
   # remainder - $r->NULL, left
@@ -626,8 +599,8 @@ my $r = Rstats->new;
 {
   # logical operator - &
   {
-    my $x1 = $r->c($r->TRUE, $r->FALSE, $r->TRUE, $r->FALSE);
-    my $x2 = $r->c($r->TRUE, $r->TRUE, $r->FALSE, $r->FALSE);
+    my $x1 = $r->c(1, 0, 1, 0);
+    my $x2 = $r->c(1, 1, 0, 0);
     my $x3 = $x1 & $x2;
     my $proxy = $r->is;
     ok($r->is->logical($x3));
@@ -640,8 +613,8 @@ my $r = Rstats->new;
   
   # logical operator - |
   {
-    my $x1 = $r->c($r->TRUE, $r->FALSE, $r->TRUE, $r->FALSE);
-    my $x2 = $r->c($r->TRUE, $r->TRUE, $r->FALSE, $r->FALSE);
+    my $x1 = $r->c(1, 0, 1, 0);
+    my $x2 = $r->c(1, 1, 0, 0);
     my $x3 = $x1 | $x2;
     ok($r->is->logical($x3));
     is_deeply($x3->values, [qw/1 1 1 0/]);
@@ -691,18 +664,6 @@ my $r = Rstats->new;
       }
     };
     like($@, qr/zero/);
-  }
-
-  # bool - logical,$r->TRUE
-  {
-    my $x1 = $r->TRUE;
-    ok($x1);
-  }
-  
-  # bool - logical,$r->FALSE
-  {
-    my $x1 = $r->FALSE;
-    ok(!$x1);
   }
 }
 
