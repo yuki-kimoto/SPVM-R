@@ -229,15 +229,15 @@ my $r = Rstats->new;
   {
     my $x1 = $r->factor($r->c("a", "b", "c", "a", "b", "c"));
     my $x2 = $r->labels($x1);
-    ok($r->is->character($x2));
+    ok($r->is->string($x2));
     is_deeply($x2->values, ["a", "b", "c", "a", "b", "c"]);
   }
   
-  # factor - as_character
+  # factor - as_string
   {
     my $x1 = $r->factor($r->c("a", "b", "c", "a", "b", "c"));
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is_deeply($x2->values, ["a", "b", "c", "a", "b", "c"]);
   }
   
@@ -282,7 +282,7 @@ my $r = Rstats->new;
     is_deeply($r->levels($x2)->values, ["2", "3", "4"]);
   }
   
-  # factor - as_factor, character
+  # factor - as_factor, string
   {
     my $x1 = $r->c("a", "b", "c");
     my $x2 = $r->factor($x1);

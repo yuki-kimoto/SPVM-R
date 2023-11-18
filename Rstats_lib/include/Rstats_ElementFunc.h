@@ -240,11 +240,11 @@ namespace Rstats {
     Rstats::Logical is_nan(Rstats::Integer);
     Rstats::Logical is_nan(Rstats::Logical);
 
-    Rstats::Character as_character(Rstats::Character);
-    Rstats::Character as_character(Rstats::Complex);
-    Rstats::Character as_character(Rstats::Double);
-    Rstats::Character as_character(Rstats::Integer);
-    Rstats::Character as_character(Rstats::Logical);
+    Rstats::Character as_string(Rstats::Character);
+    Rstats::Character as_string(Rstats::Complex);
+    Rstats::Character as_string(Rstats::Double);
+    Rstats::Character as_string(Rstats::Integer);
+    Rstats::Character as_string(Rstats::Logical);
 
     Rstats::Double as_double(Rstats::Character);
     Rstats::Double as_double(Rstats::Complex);

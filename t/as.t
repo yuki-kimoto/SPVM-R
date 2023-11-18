@@ -63,7 +63,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, [undef]);
   }
   
-  # as->integer - character, only real number, no sign
+  # as->integer - string, only real number, no sign
   {
     my $x1 = $r->c("1.23");
     my $x2 = $r->as->integer($x1);
@@ -71,7 +71,7 @@ my $r = Rstats->new;
     is($x2->values->[0], 1);
   }
 
-  # as->integer - character, only real number, plus
+  # as->integer - string, only real number, plus
   {
     my $x1 = $r->c("+1");
     my $x2 = $r->as->integer($x1);
@@ -79,7 +79,7 @@ my $r = Rstats->new;
     is($x2->values->[0], 1);
   }
   
-  # as->integer - character, only real number, minus
+  # as->integer - string, only real number, minus
   {
     my $x1 = $r->c("-1.23");
     my $x2 = $r->as->integer($x1);
@@ -87,7 +87,7 @@ my $r = Rstats->new;
     is($x2->values->[0], -1);
   }
 
-  # as->integer - character, pre and trailing space
+  # as->integer - string, pre and trailing space
   {
     my $x1 = $r->c("  1  ");
     my $x2 = $r->as->integer($x1);
@@ -218,7 +218,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, ['NaN']);
   }
 
-  # as->double - character, only real number, no sign
+  # as->double - string, only real number, no sign
   {
     my $x1 = $r->array("1.23");
     my $x2 = $r->as->double($x1);
@@ -226,7 +226,7 @@ my $r = Rstats->new;
     is($x2->values->[0], 1.23);
   }
 
-  # as->double - character, only real number, plus
+  # as->double - string, only real number, plus
   {
     my $x1 = $r->array("+1.23");
     my $x2 = $r->as->double($x1);
@@ -234,7 +234,7 @@ my $r = Rstats->new;
     is($x2->values->[0], 1.23);
   }
   
-  # as->double - character, only real number, minus
+  # as->double - string, only real number, minus
   {
     my $x1 = $r->array("-1.23");
     my $x2 = $r->as->double($x1);
@@ -242,7 +242,7 @@ my $r = Rstats->new;
     is($x2->values->[0], -1.23);
   }
 
-  # as->double - character, pre and trailing space
+  # as->double - string, pre and trailing space
   {
     my $x1 = $r->array("  1  ");
     my $x2 = $r->as->double($x1);
@@ -322,7 +322,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, [1, 0]);
   }
 
-  # as->numeric - from character
+  # as->numeric - from string
   {
     my $x1 = $r->as->integer($r->c(0, 1, 2));
     my $x2 = $r->as->numeric($x1);
@@ -375,7 +375,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, [undef]);
   }
   
-  # as->logical - character, double
+  # as->logical - string, double
   {
     my $x1 = $r->c("1.23");
     my $x2 = $r->as->logical($x1);
@@ -383,7 +383,7 @@ my $r = Rstats->new;
     is($x2->values->[0], undef);
   }
 
-  # as->logical - character, pre and trailing space
+  # as->logical - string, pre and trailing space
   {
     my $x1 = $r->c("  1  ");
     my $x2 = $r->as->logical($x1);
@@ -391,7 +391,7 @@ my $r = Rstats->new;
     is($x2->values->[0], undef);
   }
 
-  # as->logical - character
+  # as->logical - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->as->logical($x1);
@@ -507,79 +507,79 @@ my $r = Rstats->new;
   }
 }
 
-# as->character
+# as->string
 {
   # as->double - NULL
   {
     my $x1 = $r->NULL;
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is_deeply($x2->values, []);
   }
   
-  # as->character - complex
+  # as->string - complex
   {
     my $x0 = $r->complex(1, 2);
     my $x1 = $r->array($r->complex(1, 2));
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is($x2->values->[0], "1+2i");
   }
 
-  # as->character - NA
+  # as->string - NA
   {
     my $x1 = $r->array($r->NA);
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is_deeply($x2->values, [undef]);
   }
 
-  # as->character - $r->Inf
+  # as->string - $r->Inf
   {
     my $x1 = $r->Inf;
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is_deeply($x2->values, ["Inf"]);
   }
 
-  # as->character - NaN
+  # as->string - NaN
   {
     my $x1 = $r->NaN;
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is_deeply($x2->values, ["NaN"]);
   }
   
-  # as->character - character
+  # as->string - string
   {
     my $x1 = $r->array($r->c("a"));
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is($x2->values->[0], "a");
   }
   
-  # as->character - complex, 0 + 0i
+  # as->string - complex, 0 + 0i
   {
     my $x1 = $r->array($r->complex(0, 0));
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is($x2->values->[0], "0+0i");
   }
   
-  # as->character - numeric
+  # as->string - numeric
   {
     my $x1 = $r->array($r->c(1.1, 0));
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is($x2->values->[0], 1.1);
     is($x2->values->[1], "0");
   }
   
-  # as->character - logical
+  # as->string - logical
   {
     my $x1 = $r->array($r->c($r->TRUE, $r->FALSE));
-    my $x2 = $r->as->character($x1);
-    ok($r->is->character($x2));
+    my $x2 = $r->as->string($x1);
+    ok($r->is->string($x2));
     is($x2->values->[0], "TRUE");
     is($x2->values->[1], "FALSE");
   }
@@ -587,7 +587,7 @@ my $r = Rstats->new;
 
 # as->numeric
 {
-  # as->numeric - character, pre and trailing space
+  # as->numeric - string, pre and trailing space
   {
     my $x1 = $r->array("  1  ");
     my $x2 = $r->as->numeric($x1);
@@ -631,7 +631,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, [{re => 'NaN', im => 0}]);
   }
 
-  # as->complex - character, only real number, no sign
+  # as->complex - string, only real number, no sign
   {
     my $x1 = $r->array("1.23");
     my $x2 = $r->as->complex($x1);
@@ -640,7 +640,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, 0);
   }
 
-  # as->complex - character, only real number, pre and trailing space
+  # as->complex - string, only real number, pre and trailing space
   {
     my $x1 = $r->array("  1.23  ");
     my $x2 = $r->as->complex($x1);
@@ -649,7 +649,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, 0);
   }
   
-  # as->complex - character, only real number, plus
+  # as->complex - string, only real number, plus
   {
     my $x1 = $r->array("+1.23");
     my $x2 = $r->as->complex($x1);
@@ -658,7 +658,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, 0);
   }
   
-  # as->complex - character, only real number, minus
+  # as->complex - string, only real number, minus
   {
     my $x1 = $r->array("-1.23");
     my $x2 = $r->as->complex($x1);
@@ -667,7 +667,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, 0);
   }
 
-  # as->complex - character, only image number, no sign
+  # as->complex - string, only image number, no sign
   {
     my $x1 = $r->array("1.23i");
     my $x2 = $r->as->complex($x1);
@@ -676,7 +676,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, 1.23);
   }
 
-  # as->complex - character, only image number, plus
+  # as->complex - string, only image number, plus
   {
     my $x1 = $r->array("+1.23i");
     my $x2 = $r->as->complex($x1);
@@ -685,7 +685,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, 1.23);
   }
 
-  # as->complex - character, only image number, minus
+  # as->complex - string, only image number, minus
   {
     my $x1 = $r->array("-1.23i");
     my $x2 = $r->as->complex($x1);
@@ -694,7 +694,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, -1.23);
   }
 
-  # as->complex - character, real number and image number, no sign
+  # as->complex - string, real number and image number, no sign
   {
     my $x1 = $r->array("2.5+1.23i");
     my $x2 = $r->as->complex($x1);
@@ -703,7 +703,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, 1.23);
   }
 
-  # as->complex - character, real number and image number, plus
+  # as->complex - string, real number and image number, plus
   {
     my $x1 = $r->array("+2.5+1.23i");
     my $x2 = $r->as->complex($x1);
@@ -712,7 +712,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, 1.23);
   }
   
-  # as->complex - character, real number and image number, minus
+  # as->complex - string, real number and image number, minus
   {
     my $x1 = $r->array("-2.5-1.23i");
     my $x2 = $r->as->complex($x1);
@@ -721,7 +721,7 @@ my $r = Rstats->new;
     is($x2->values->[0]->{im}, -1.23);
   }
 
-  # as->complex - character, pre and trailing space
+  # as->complex - string, pre and trailing space
   {
     my $x1 = $r->array("  2.5+1.23i  ");
     my $x2 = $r->as->complex($x1);
@@ -811,18 +811,18 @@ my $r = Rstats->new;
     ok($r->is->logical($x1));
   }
 
-  # array decide type - character
+  # array decide type - string
   {
     my $x1 = $r->array($r->c("c1", "c2"));
     is_deeply($x1->values, ["c1", "c2"]);
-    ok($r->is->character($x1));
+    ok($r->is->string($x1));
   }
 
-  # array decide type - character, look like number
+  # array decide type - string, look like number
   {
     my $x1 = $r->array($r->c("1", "2"));
     is_deeply($x1->values, ["1", "2"]);
-    ok($r->is->character($x1));
+    ok($r->is->string($x1));
   }
 
   # array decide type - $r->Inf

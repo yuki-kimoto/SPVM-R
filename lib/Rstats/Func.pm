@@ -22,7 +22,7 @@ sub factor {
     = args_array($r, [qw/x levels labels exclude ordered/], @_);
 
   # default - x
-  $x1 = Rstats::Func::as_character($r, $x1) unless Rstats::Func::is_character($r, $x1);
+  $x1 = Rstats::Func::as_string($r, $x1) unless Rstats::Func::is_string($r, $x1);
   
   # default - levels
   unless (defined $x_levels) {
@@ -94,10 +94,10 @@ sub factor {
   
   my $f1 = Rstats::Func::c_integer($r, @$f1_values);
   if ($x_ordered) {
-    $f1->{class} = Rstats::Func::c_character($r, 'factor', 'ordered');
+    $f1->{class} = Rstats::Func::c_string($r, 'factor', 'ordered');
   }
   else {
-    $f1->{class} = Rstats::Func::c_character($r, 'factor');
+    $f1->{class} = Rstats::Func::c_string($r, 'factor');
   }
   $f1->{levels} = Rstats::Func::as_vector($r, $x_labels);
   
@@ -148,7 +148,7 @@ sub data_frame {
   my $row_names = [];
   my $row_count = 1;
   while (my ($name, $v) = splice(@data, 0, 2)) {
-    if (Rstats::Func::is_character($r, $v) && !grep {$_ eq 'AsIs'} @{$v->class->values}) {
+    if (Rstats::Func::is_string($r, $v) && !grep {$_ eq 'AsIs'} @{$v->class->values}) {
       $v = Rstats::Func::as_factor($r, $v);
     }
 
@@ -271,8 +271,8 @@ sub matrix {
   my $matrix;
   my $x_matrix;
 
-  if (Rstats::Func::get_type($r, $x1) eq "character") {
-    $x_matrix = c_character($r, $x1_values);
+  if (Rstats::Func::get_type($r, $x1) eq "string") {
+    $x_matrix = c_string($r, $x1_values);
   }
   elsif (Rstats::Func::get_type($r, $x1)  eq "complex") {
     $x_matrix = c_complex($r, $x1_values);
@@ -321,12 +321,12 @@ sub dimnames {
       my $dimnames = [];
       for (my $i = 0; $i < $length; $i++) {
         my $x_dimname = $dimnames_list->getin($i + 1);
-        if (is_character($r, $x_dimname)) {
+        if (is_string($r, $x_dimname)) {
           my $dimname = Rstats::Func::as_vector($r, $x_dimname);
           push @$dimnames, $dimname;
         }
         else {
-          croak "dimnames must be character list";
+          croak "dimnames must be string list";
         }
       }
       $x1->{dimnames} = $dimnames;
@@ -399,7 +399,7 @@ sub colnames {
 
 sub labels {
   my $r = shift;
-  return $r->as->character(@_);
+  return $r->as->string(@_);
 }
 
 sub as_list {
@@ -428,7 +428,7 @@ sub as_factor {
     return $x1;
   }
   else {
-    my $a = is_character($r, $x1) ? $x1 :  Rstats::Func::as_character($r, $x1);
+    my $a = is_string($r, $x1) ? $x1 :  Rstats::Func::as_string($r, $x1);
     my $f = Rstats::Func::factor($r, $a);
     
     return $f;
@@ -518,7 +518,7 @@ sub transform {
   my $names = Rstats::Func::names($r, $x1)->values;
   
   while (my ($new_name, $new_v) = splice(@args, 0, 2)) {
-    if (Rstats::Func::is_character($r, $new_v)) {
+    if (Rstats::Func::is_string($r, $new_v)) {
       $new_v = Rstats::Func::I($r, $new_v);
     }
 
@@ -607,7 +607,7 @@ sub merge {
 }
 
 my $type_level = {
-  character => 6,
+  string => 6,
   complex => 5,
   double => 4,
   integer => 3,
@@ -703,7 +703,7 @@ sub read_table {
         $type = 'complex';
       }
       else {
-        $type = 'character';
+        $type = 'string';
       }
       $type_columns->[$i] = Rstats::Func::higher_type($r, $type_columns->[$i], $type);
     }
@@ -718,7 +718,7 @@ sub read_table {
       push @$data_frame_args, "V" . ($i + 1);
     }
     my $type = $type_columns->[$i];
-    if ($type eq 'character') {
+    if ($type eq 'string') {
       my $x1 = Rstats::Func::c($r, @{$columns->[$i]});
       push @$data_frame_args, Rstats::Func::as_factor($r, $x1);
     }
@@ -771,7 +771,7 @@ sub interaction {
   for (my $i = 0; $i < $max_length; $i++) {
     my $chars = [];
     for my $x (@xs) {
-      my $fix_x = Rstats::Func::as_character($r, $x);
+      my $fix_x = Rstats::Func::as_string($r, $x);
       my $length = Rstats::Func::get_length($r, $fix_x);
       push @$chars, $fix_x->value(($i % $length) + 1)
     }
@@ -815,7 +815,7 @@ sub gl {
   my $length = $x_length->value;
   
   my $x_levels = Rstats::Func::c($r, 1 .. $n);
-  $x_levels = Rstats::Func::as_character($r, $x_levels);
+  $x_levels = Rstats::Func::as_string($r, $x_levels);
   my $levels = $x_levels->values;
   
   my $x1_elements = [];
@@ -1074,7 +1074,7 @@ sub sub {
     }
   }
   
-  my $x2 = Rstats::Func::c_character($r, @$x2_values);
+  my $x2 = Rstats::Func::c_string($r, @$x2_values);
   Rstats::Func::copy_attrs_to($r, $x1_x, $x2);
   
   return $x2;
@@ -1106,7 +1106,7 @@ sub gsub {
     }
   }
   
-  my $x2 = Rstats::Func::c_character($r, @$x2_values);
+  my $x2 = Rstats::Func::c_string($r, @$x2_values);
   Rstats::Func::copy_attrs_to($r, $x1_x, $x2);
   
   return $x2;
@@ -1202,7 +1202,7 @@ sub chartr {
     }
   }
   
-  my $x2 = Rstats::Func::c_character($r, @$x2_values);
+  my $x2 = Rstats::Func::c_string($r, @$x2_values);
   Rstats::Func::copy_attrs_to($r, $x1_x, $x2);
   
   return $x2;
@@ -1214,7 +1214,7 @@ sub charmatch {
   my ($x1_x, $x1_table) = args_array($r, ['x', 'table'], @_);
   
   die "Error in charmatch() : Not implemented"
-    unless $x1_x->get_type eq 'character' && $x1_table->get_type eq 'character';
+    unless $x1_x->get_type eq 'string' && $x1_table->get_type eq 'string';
   
   my $x2_values = [];
   for my $x1_x_value (@{$x1_x->values}) {
@@ -1276,7 +1276,7 @@ sub is_element {
   for my $x1_value (@$x1_values) {
     my $match;
     for my $x2_value (@$x2_values) {
-      if ($type eq 'character') {
+      if ($type eq 'string') {
         if ($x1_value eq $x2_value) {
           $match = 1;
           last;
@@ -1407,7 +1407,7 @@ sub nchar {
   my $r = shift;
   my $x1 = to_object($r, shift);
   
-  if ($x1->get_type eq 'character') {
+  if ($x1->get_type eq 'string') {
     my $x2_elements = [];
     for my $x1_element (@{Rstats::Func::decompose($r, $x1)}) {
       if (Rstats::Func::is_na($r, $x1_element)) {
@@ -1433,14 +1433,14 @@ sub tolower {
   
   my $x1 = to_object($r, shift);
   
-  if ($x1->get_type eq 'character') {
+  if ($x1->get_type eq 'string') {
     my $x2_elements = [];
     for my $x1_element (@{Rstats::Func::decompose($r, $x1)}) {
       if (Rstats::Func::is_na($r, $x1_element)) {
         push @$x2_elements, $x1_element;
       }
       else {
-        my $x2_element = Rstats::Func::c_character($r, lc Rstats::Func::value($r, $x1_element));
+        my $x2_element = Rstats::Func::c_string($r, lc Rstats::Func::value($r, $x1_element));
         push @$x2_elements, $x2_element;
       }
     }
@@ -1459,14 +1459,14 @@ sub toupper {
   
   my $x1 = to_object($r, shift);
   
-  if ($x1->get_type eq 'character') {
+  if ($x1->get_type eq 'string') {
     my $x2_elements = [];
     for my $x1_element (@{Rstats::Func::decompose($r, $x1)}) {
       if (Rstats::Func::is_na($r, $x1_element)) {
         push @$x2_elements, $x1_element;
       }
       else {
-        my $x2_element = Rstats::Func::c_character($r, uc Rstats::Func::value($r, $x1_element));
+        my $x2_element = Rstats::Func::c_string($r, uc Rstats::Func::value($r, $x1_element));
         push @$x2_elements, $x2_element;
       }
     }
@@ -2134,7 +2134,7 @@ sub rbind {
       for my $x (@xs) {
         my $v = $x->getin($name);
         if (Rstats::Func::is_factor($r, $v)) {
-          push @vectors, Rstats::Func::as_character($r, $v);
+          push @vectors, Rstats::Func::as_string($r, $v);
         }
         else {
           push @vectors, $v;
@@ -2761,7 +2761,7 @@ sub bool {
   my $value = $x1->value;
 
   my $is;
-  if ($type eq 'character' || $type eq 'complex') {
+  if ($type eq 'string' || $type eq 'complex') {
     Carp::croak 'Error in -a : invalid argument to unary operator ';
   }
   elsif ($type eq 'double') {
@@ -2845,8 +2845,8 @@ sub get_array {
   
   # array
   my $x_matrix;
-  if ($x1->get_type eq "character") {
-    $x_matrix = c_character($r, \@x2_values);
+  if ($x1->get_type eq "string") {
+    $x_matrix = c_string($r, \@x2_values);
   }
   elsif ($x1->get_type eq "complex") {
     $x_matrix = c_complex($r, \@x2_values);
@@ -2875,8 +2875,8 @@ sub get_array {
 
   # level drop
   if ($level_drop) {
-    my $p = Rstats::Func::as_character($r, $x2);
-    $x2 = Rstats::Func::factor($r, Rstats::Func::as_character($r, $x2));
+    my $p = Rstats::Func::as_string($r, $x2);
+    $x2 = Rstats::Func::factor($r, Rstats::Func::as_string($r, $x2));
   }
   
   return $x2;
@@ -2896,9 +2896,9 @@ sub to_string_array {
     $levels = Rstats::Func::levels($r, $x1)->values;
   }
   
-  $x1 = Rstats::Func::as_character($r, $x1) if Rstats::Func::is_factor($r, $x1);
+  $x1 = Rstats::Func::as_string($r, $x1) if Rstats::Func::is_factor($r, $x1);
   
-  my $is_character = Rstats::Func::is_character($r, $x1);
+  my $is_string = Rstats::Func::is_string($r, $x1);
 
   my $values = $x1->values;
   my $type = $x1->get_type;
@@ -3047,7 +3047,7 @@ sub _value_to_string {
       $string .= $im >= 0 ? "+$im" : $im;
       $string .= 'i';
     }
-    elsif ($type eq 'character') {
+    elsif ($type eq 'string') {
       $string = '"' . $value . '"';
     }
     elsif ($type eq 'logical') {
@@ -3075,7 +3075,7 @@ sub str {
     # Short type
     my $type = $x1->get_type;
     my $short_type;
-    if ($type eq 'character') {
+    if ($type eq 'string') {
       $short_type = 'chr';
     }
     elsif ($type eq 'complex') {
@@ -3129,7 +3129,7 @@ sub str {
     # Vector
     my @element_str;
     my $max_count = $length > 10 ? 10 : $length;
-    my $is_character = is_character($r, $x1);
+    my $is_string = is_string($r, $x1);
     my $values = $x1->values;
     for (my $i = 0; $i < $max_count; $i++) {
       push @element_str, Rstats::Func::_value_to_string($r, $x1, $values->[$i], $type);
@@ -3200,7 +3200,7 @@ sub getin_list {
   
   my $x1_index = Rstats::Func::to_object($r, $_index);
   my $index;
-  if (Rstats::Func::is_character($r, $x1_index)) {
+  if (Rstats::Func::is_string($r, $x1_index)) {
     $index = Rstats::Func::_name_to_index($r, $x1, $x1_index);
   }
   else {
@@ -3224,7 +3224,7 @@ sub get_list {
   my $list_elements = $list->list;
   
   my $index_values;
-  if (Rstats::Func::is_character($r, $x_index)) {
+  if (Rstats::Func::is_string($r, $x_index)) {
     $index_values = [];
     for my $value (@{$x_index->values}) {
       push @$index_values, Rstats::Func::_name_to_index($r, $x1, $value);
@@ -3251,7 +3251,7 @@ sub set_list {
   my $_index = $x1->at;
   my $x1_index = Rstats::Func::to_object($r, @$_index);
   my $index;
-  if (Rstats::Func::is_character($r, $x1_index)) {
+  if (Rstats::Func::is_string($r, $x1_index)) {
     $index = Rstats::Func::_name_to_index($r, $x1, $x1_index);
   }
   else {
@@ -3264,13 +3264,13 @@ sub set_list {
     if (exists $x1->{names}) {
       my $new_names_values = $x1->{names}->values;
       splice @$new_names_values, $index - 1, 1;
-      $x1->{names} = Rstats::Func::c_character($r, @$new_names_values);
+      $x1->{names} = Rstats::Func::c_string($r, @$new_names_values);
     }
     
     if (exists $x1->{dimnames}) {
       my $new_dimname_values = $x1->{dimnames}[1]->values;
       splice @$new_dimname_values, $index - 1, 1;
-      $x1->{dimnames}[1] = Rstats::Func::c_character($r, @$new_dimname_values);
+      $x1->{dimnames}[1] = Rstats::Func::c_string($r, @$new_dimname_values);
     }
   }
   else {
@@ -3342,7 +3342,7 @@ sub get_dataframe {
   if (Rstats::Func::is_null($r, $col_index)) {
     $col_index_values = [1 .. Rstats::Func::names($r, $x1)->get_length];
   }
-  elsif (Rstats::Func::is_character($r, $col_index)) {
+  elsif (Rstats::Func::is_string($r, $col_index)) {
     $col_index_values = [];
     for my $col_index_value (@{$col_index->values}) {
       push @$col_index_values, Rstats::Func::_name_to_index($r, $x1, $col_index_value);
@@ -3396,7 +3396,7 @@ sub get_dataframe {
     $data_frame,
     {new_indexes => [$row_index, Rstats::Func::c($r, @$col_index_values)]}
   );
-  $data_frame->{dimnames}[0] = Rstats::Func::c_character($r,
+  $data_frame->{dimnames}[0] = Rstats::Func::c_string($r,
     1 .. Rstats::Func::getin_dataframe($r, $data_frame, 1)->get_length
   );
   
@@ -3418,7 +3418,7 @@ sub to_string_dataframe {
   my $columns = [];
   for (my $i = 1; $i <= @$column_names; $i++) {
     my $x = $x1->getin($i);
-    $x = Rstats::Func::as_character($r, $x) if Rstats::Func::is_factor($r, $x);
+    $x = Rstats::Func::as_string($r, $x) if Rstats::Func::is_factor($r, $x);
     push @$columns, $x->values;
   }
   my $col_count = @{$columns};
@@ -3750,7 +3750,7 @@ sub set_array {
   my $x1_elements;
   if (Rstats::Func::is_factor($r, $x1)) {
     $x1_elements = Rstats::Func::decompose($r, $x1);
-    $x2 = Rstats::Func::as_character($r, $x2) unless Rstats::Func::is_character($r, $x2);
+    $x2 = Rstats::Func::as_string($r, $x2) unless Rstats::Func::is_string($r, $x2);
     my $x2_elements = Rstats::Func::decompose($r, $x2);
     my $levels_h = Rstats::Func::_levels_h($r, $x1);
     for (my $i = 0; $i < @$poss; $i++) {

@@ -70,7 +70,7 @@ my $r = Rstats->new;
 
 # to_string
 {
-  # to_string - character, 1 dimention
+  # to_string - string, 1 dimention
   {
     my $x1 = $r->array($r->c("a", "b"));
     my $x1_str = "$x1";
@@ -79,10 +79,10 @@ my $r = Rstats->new;
     is($x1_str, $expected);
   }
 
-  # to_string - character, 2 dimention
+  # to_string - string, 2 dimention
   {
     my $x1 = $r->array($r->C('1:4'), $r->c(4, 1));
-    my $x2 = $r->as->character($x1);
+    my $x2 = $r->as->string($x1);
     my $x2_str = "$x2";
     $x2_str =~ s/[ \t]+/ /;
 
@@ -98,10 +98,10 @@ EOS
     is($x2_str, $expected);
   }
 
-  # to_string - character,3 dimention
+  # to_string - string,3 dimention
   {
     my $x1 = $r->array($r->C('1:24'), $r->c(4, 3, 2));
-    $x1 = $r->as->character($x1);
+    $x1 = $r->as->string($x1);
     my $x1_str = "$x1";
     $x1_str =~ s/[ \t]+/ /;
 

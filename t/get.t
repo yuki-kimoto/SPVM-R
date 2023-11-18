@@ -78,7 +78,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, [5, 7]);
   }
   
-  # get - character
+  # get - string
   {
     my $x1 = $r->c(1, 2, 3, 4);
     $r->names($x1 => $r->c('a', 'b', 'c', 'd'));

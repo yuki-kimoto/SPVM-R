@@ -53,7 +53,7 @@ namespace Rstats {
     template <class T_IN, class T_OUT>
     Rstats::Vector<T_OUT>* remainder(Rstats::Vector<T_IN>*, Rstats::Vector<T_IN>*);
     template <class T_IN, class T_OUT>
-    Rstats::Vector<T_OUT>* as_character(Rstats::Vector<T_IN>*);
+    Rstats::Vector<T_OUT>* as_string(Rstats::Vector<T_IN>*);
     template <class T_IN, class T_OUT>
     Rstats::Vector<T_OUT>* as_double(Rstats::Vector<T_IN>*);
     template <class T_IN, class T_OUT>

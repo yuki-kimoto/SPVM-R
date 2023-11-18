@@ -666,11 +666,11 @@ namespace Rstats {
     Rstats::Logical is_nan(Rstats::Integer e1) { return 0; }
     Rstats::Logical is_nan(Rstats::Logical e1) { return Rstats::ElementFunc::is_nan((Rstats::Integer)e1); }
 
-    // as_character
-    Rstats::Character as_character(Rstats::Character e1) {
+    // as_string
+    Rstats::Character as_string(Rstats::Character e1) {
       return Rstats::pl_new_sv_sv(e1);
     }
-    Rstats::Character as_character(Rstats::Complex e1) {
+    Rstats::Character as_string(Rstats::Complex e1) {
       Rstats::Double re = e1.real();
       Rstats::Double im = e1.imag();
       
@@ -687,7 +687,7 @@ namespace Rstats {
       
       return sv_str;
     }
-    Rstats::Character as_character(Rstats::Double e1) {
+    Rstats::Character as_string(Rstats::Double e1) {
       SV* sv_str = Rstats::pl_new_sv_pv("");
       if (Rstats::Util::is_Inf(e1) && e1 > 0) {
         sv_catpv(sv_str, "Inf");
@@ -704,10 +704,10 @@ namespace Rstats {
       
       return sv_str;
     }
-    Rstats::Character as_character(Rstats::Integer e1) {
+    Rstats::Character as_string(Rstats::Integer e1) {
       return Rstats::pl_new_sv_iv(e1);
     }
-    Rstats::Character as_character(Rstats::Logical e1) {
+    Rstats::Character as_string(Rstats::Logical e1) {
       if (e1) {
         return Rstats::pl_new_sv_pv("TRUE");
       }

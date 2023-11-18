@@ -47,7 +47,7 @@ sub parse_index {
 
       my $index = defined $_index ? Rstats::Func::to_object($r, $_index) : Rstats::Func::NULL($r);
       my $index_values = $index->values;
-      if (@$index_values && !Rstats::Func::is_character($r, $index) && !Rstats::Func::is_logical($r, $index)) {
+      if (@$index_values && !Rstats::Func::is_string($r, $index) && !Rstats::Func::is_logical($r, $index)) {
         my $minus_count = 0;
         for my $index_value (@$index_values) {
           if ($index_value == 0) {
@@ -66,7 +66,7 @@ sub parse_index {
         my $index_values_new = [1 .. $x1_dim->[$i]];
         $index = Rstats::Func::c_integer($r, @$index_values_new);
       }
-      elsif (Rstats::Func::is_character($r, $index)) {
+      elsif (Rstats::Func::is_string($r, $index)) {
         if (Rstats::Func::is_vector($r, $x1)) {
           my $index_new_values = [];
           for my $name (@{$index->values}) {

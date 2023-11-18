@@ -29,7 +29,7 @@ my $r = Rstats->new;
     is_deeply($x3->values, [25, 25]);
   }
   
-  # pow - character
+  # pow - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");
@@ -136,7 +136,7 @@ my $r = Rstats->new;
     is_deeply($x3->values, [{re => 4, im => 6}, {re => 4, im => 6}]);
   }
   
-  # add - character
+  # add - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");
@@ -243,7 +243,7 @@ my $r = Rstats->new;
     is_deeply($x3->values, [-1, -1]);
   }
   
-  # subtract - character
+  # subtract - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");
@@ -350,7 +350,7 @@ my $r = Rstats->new;
     is_deeply($x3->values, [6, 6]);
   }
 
-  # multiply - character
+  # multiply - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");
@@ -457,7 +457,7 @@ my $r = Rstats->new;
     is_deeply($x3->values, [5/2, 5/2]);
   }
   
-  # divide - character
+  # divide - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");
@@ -564,7 +564,7 @@ my $r = Rstats->new;
     is_deeply($x3->values, [1, 1]);
   }
 
-  # remainder - character
+  # remainder - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");
@@ -852,7 +852,7 @@ my $r = Rstats->new;
     is_deeply($x3->values, [2.1, 3.2])
   }
 
-  # numeric operator auto upgrade - character, +
+  # numeric operator auto upgrade - string, +
   {
     my $x1 = $r->array($r->c("1", "2", "3"));
     my $x2 = $r->array($r->c(1, 2, 3));
@@ -860,7 +860,7 @@ my $r = Rstats->new;
     like($@, qr/non-numeric argument/);
   }
 
-  # numeric operator auto upgrade - character, -
+  # numeric operator auto upgrade - string, -
   {
     my $x1 = $r->array($r->c("1", "2", "3"));
     my $x2 = $r->array($r->c(1, 2, 3));
@@ -868,7 +868,7 @@ my $r = Rstats->new;
     like($@, qr/non-numeric argument/);
   }
 
-  # numeric operator auto upgrade - character, *
+  # numeric operator auto upgrade - string, *
   {
     my $x1 = $r->array($r->c("1", "2", "3"));
     my $x2 = $r->array($r->c(1, 2, 3));
@@ -876,7 +876,7 @@ my $r = Rstats->new;
     like($@, qr/non-numeric argument/);
   }
 
-  # numeric operator auto upgrade - character, /
+  # numeric operator auto upgrade - string, /
   {
     my $x1 = $r->array($r->c("1", "2", "3"));
     my $x2 = $r->array($r->c(1, 2, 3));
@@ -884,7 +884,7 @@ my $r = Rstats->new;
     like($@, qr/non-numeric argument/);
   }
 
-  # numeric operator auto upgrade - character, ^
+  # numeric operator auto upgrade - string, ^
   {
     my $x1 = $r->array($r->c("1", "2", "3"));
     my $x2 = $r->array($r->c(1, 2, 3));
@@ -892,7 +892,7 @@ my $r = Rstats->new;
     like($@, qr/non-numeric argument/);
   }
 
-  # numeric operator auto upgrade - character, %
+  # numeric operator auto upgrade - string, %
   {
     my $x1 = $r->array($r->c("1", "2", "3"));
     my $x2 = $r->array($r->c(1, 2, 3));

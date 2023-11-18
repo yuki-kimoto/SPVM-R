@@ -77,7 +77,7 @@ my $r = Rstats->new;
   # $r->c("a", "b")
   {
     my $x1 = $r->c("a", "b");
-    ok($r->is->character($x1));
+    ok($r->is->string($x1));
     is_deeply($x1->values, ["a", "b"]);
   }
 
@@ -814,7 +814,7 @@ my $r = Rstats->new;
     is($r->str($x1), 'cplx [1:2] 1+1i 1+2i');
   }
 
-  # str - vector, character
+  # str - vector, string
   {
     my $x1 = $r->c("a", "b", "c");
     is($r->str($x1), 'chr [1:3] "a" "b" "c"');
@@ -1887,19 +1887,19 @@ my $r = Rstats->new;
   }
 }
 
-# c_character
+# c_string
 {
-  # c_character - arguments is list
+  # c_string - arguments is list
   {
-    my $x1 = $r->c_character("a", "b", "c");
-    ok($x1->is->character);
+    my $x1 = $r->c_string("a", "b", "c");
+    ok($x1->is->string);
     is_deeply($x1->values, [qw/a b c/]);
   }
 
-  # c_character - arguments is $r->array reference
+  # c_string - arguments is $r->array reference
   {
-    my $x1 = $r->c_character(["a", "b", "c"]);
-    ok($x1->is->character);
+    my $x1 = $r->c_string(["a", "b", "c"]);
+    ok($x1->is->string);
     is_deeply($x1->values, [qw/a b c/]);
   }
 }
@@ -1978,7 +1978,7 @@ my $r = Rstats->new;
     my $x1 = $r->c(1, 2, 3);
   }
   
-  # create element - character
+  # create element - string
   {
     my $x1 = $r->c("a", "b", "c");
   }

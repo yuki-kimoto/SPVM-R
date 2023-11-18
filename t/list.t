@@ -11,7 +11,7 @@ my $r = Rstats->new;
 {
   my $x1 = $r->list(1, 2);
   my $x2 = $r->typeof($x1);
-  ok($r->is->character($x2));
+  ok($r->is->string($x2));
   is_deeply($x2->values, ['list']);
 }
 

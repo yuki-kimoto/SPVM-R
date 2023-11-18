@@ -16,7 +16,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, [0]);
   }
 
-  # is->nan - character
+  # is->nan - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->is->nan($x1);
@@ -97,7 +97,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, [0]);
   }
 
-  # is->infinite - character
+  # is->infinite - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->is->infinite($x1);
@@ -186,7 +186,7 @@ my $r = Rstats->new;
     is_deeply($x2->values, []);
   }
   
-  # is->na - character
+  # is->na - string
   {
     my $x1 = $r->c("aaa", $r->NA);
     my $x2 = $r->is->na($x1);
@@ -246,14 +246,14 @@ my $r = Rstats->new;
   }
 }
 
-# is->character
+# is->string
 {
-  # is->character, as_character, typeof - character
+  # is->string, as_string, typeof - string
   {
     my $c = $r->c(0, 1, 2);
-    ok($r->is->character($r->as->character($c)));
-    is($r->mode($r->as->character($c))->value, 'character');
-    is($r->typeof($r->as->character($c))->value, 'character');
+    ok($r->is->string($r->as->string($c)));
+    is($r->mode($r->as->string($c))->value, 'string');
+    is($r->typeof($r->as->string($c))->value, 'string');
   }
 }
 

@@ -87,7 +87,7 @@ my @func_names = qw/
   atan2
   c
   c_double
-  c_character
+  c_string
   c_complex
   c_integer
   c_logical
@@ -250,7 +250,7 @@ sub new {
 
   no strict 'refs';
   $self->helper('is.array' => \&Rstats::Func::is_array);
-  $self->helper('is.character' => \&Rstats::Func::is_character);
+  $self->helper('is.string' => \&Rstats::Func::is_string);
   $self->helper('is.complex' => \&Rstats::Func::is_complex);
   $self->helper('is.finite' => \&Rstats::Func::is_finite);
   $self->helper('is.infinite' => \&Rstats::Func::is_infinite);
@@ -270,7 +270,7 @@ sub new {
   $self->helper('is.element' => \&Rstats::Func::is_element);
 
   $self->helper('as.array' => \&Rstats::Func::as_array);
-  $self->helper('as.character' => \&Rstats::Func::as_character);
+  $self->helper('as.string' => \&Rstats::Func::as_string);
   $self->helper('as.complex' => \&Rstats::Func::as_complex);
   $self->helper('as.integer' => \&Rstats::Func::as_integer);
   $self->helper('as.double' => \&Rstats::Func::as_double);
@@ -898,10 +898,10 @@ Alias of FALSE
   # as.array(x1)
   $r->as->array($x1)
 
-=head2 as->character
+=head2 as->string
 
-  # as.character(x1)
-  $r->as->character($x1)
+  # as.string(x1)
+  $r->as->string($x1)
 
 =head2 as->complex
 
@@ -943,10 +943,10 @@ Alias of FALSE
   # is.array(x1)
   $r->is->array($x1)
 
-=head2 is->character
+=head2 is->string
 
-  # is.character(x1)
-  $r->is->character($x1)
+  # is.string(x1)
+  $r->is->string($x1)
 
 =head2 is->complex
 

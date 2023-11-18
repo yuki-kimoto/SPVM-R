@@ -231,8 +231,8 @@ namespace Rstats {
     }
 
     template <class T_IN, class T_OUT>
-    Rstats::Vector<T_OUT>* as_character(Rstats::Vector<T_IN>* v1) {
-      T_OUT (*func)(T_IN) = &Rstats::ElementFunc::as_character;
+    Rstats::Vector<T_OUT>* as_string(Rstats::Vector<T_IN>* v1) {
+      T_OUT (*func)(T_IN) = &Rstats::ElementFunc::as_string;
       
       Rstats::Vector<T_OUT>* v_out = Rstats::VectorFunc::operate_unary_as(func, v1);
       

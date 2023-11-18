@@ -787,7 +787,7 @@ SV* c(...)
   XSRETURN(1);
 }
 
-SV* c_character(...)
+SV* c_string(...)
   PPCODE:
 {
   SV* sv_r = ST(0);
@@ -802,7 +802,7 @@ SV* c_character(...)
     }
   }
 
-  SV* sv_x_out = Rstats::Func::c_character(sv_r, sv_values);
+  SV* sv_x_out = Rstats::Func::c_string(sv_r, sv_values);
   
   XPUSHs(sv_x_out);
   XSRETURN(1);
@@ -925,12 +925,12 @@ SV* is_complex(...)
   XSRETURN(1);
 }
 
-SV* is_character(...)
+SV* is_string(...)
   PPCODE:
 {
   SV* sv_r = ST(0);
 
-  SV* sv_x_out = Rstats::Func::is_character(sv_r, ST(1));
+  SV* sv_x_out = Rstats::Func::is_string(sv_r, ST(1));
   
   XPUSHs(sv_x_out);
   XSRETURN(1);
@@ -1250,13 +1250,13 @@ SV* levels(...)
   }
 }
 
-SV* as_character(...)
+SV* as_string(...)
   PPCODE:
 {
   SV* sv_r = ST(0);
   SV* sv_x1 = ST(1);
   
-  SV* sv_x_out = Rstats::Func::as_character(sv_r, sv_x1);
+  SV* sv_x_out = Rstats::Func::as_string(sv_r, sv_x1);
   XPUSHs(sv_x_out);
   XSRETURN(1);
 }

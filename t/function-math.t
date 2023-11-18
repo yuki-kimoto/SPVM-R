@@ -206,7 +206,7 @@ my $r = Rstats->new;
     is($x1->value, 'NaN');
   }
 
-  # atan2 - character
+  # atan2 - string
   {
     my $x1 = $r->c("a");
     my $x2 = $r->c("b");

@@ -10,7 +10,7 @@ my $r = Rstats->new;
 
 # read_table
 {
-  # read_table - character, complex, double, integer, logical, sep default(\s+)
+  # read_table - string, complex, double, integer, logical, sep default(\s+)
   {
     my $d1 = $r->read->table("$FindBin::Bin/data/read.t/basic.txt");
     ok($r->is->factor($d1->getin(1)));

@@ -21,7 +21,7 @@ namespace Rstats {
     SV* new_list(SV*);
 
     SV* c(SV*, SV*);
-    SV* c_character(SV*, SV*);
+    SV* c_string(SV*, SV*);
     SV* c_double(SV*, SV*);
     SV* c_integer(SV*, SV*);
     SV* c_logical(SV*, SV*);
@@ -40,7 +40,7 @@ namespace Rstats {
     SV* is_double(SV*, SV*);
     SV* is_integer(SV*, SV*);
     SV* is_complex(SV*, SV*);
-    SV* is_character(SV*, SV*);
+    SV* is_string(SV*, SV*);
     SV* is_logical(SV*, SV*);
     SV* is_data_frame(SV*, SV*);
     SV* is_list(SV*, SV*);
@@ -60,7 +60,7 @@ namespace Rstats {
     SV* as_complex(SV*, SV*);
     SV* as_double(SV*, SV*);
     SV* as_numeric(SV*, SV*);
-    SV* as_character(SV*, SV*);
+    SV* as_string(SV*, SV*);
     SV* as(SV*, SV*, SV*);
 
     SV* clone(SV*, SV*);
