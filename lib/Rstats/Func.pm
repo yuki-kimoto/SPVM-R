@@ -26,7 +26,7 @@ sub factor {
   
   # default - levels
   unless (defined $x_levels) {
-    $x_levels = Rstats::Func::sort($r, unique($r, $x1), {'na.last' => Rstats::Func::TRUE($r)});
+    $x_levels = Rstats::Func::sort($r, unique($r, $x1), {'na.last' => Rstats::Func::c_double($r, 1)});
   }
   
   # default - exclude
@@ -111,7 +111,7 @@ sub ordered {
   my $r = shift;
   
   my $opt = ref $_[-1] eq 'HASH' ? pop : {};
-  $opt->{ordered} = Rstats::Func::TRUE($r);
+  $opt->{ordered} = Rstats::Func::c_double($r, 1);
   
   factor($r, @_, $opt);
 }
@@ -578,9 +578,9 @@ sub merge {
     = args_array($r, [qw/x1 x2 all all.x all.y by by.x by.y sort/], @_);
   
   # Join way
-  $x_all = Rstats::Func::FALSE($r) unless defined $x_all;
-  $x_all_x = Rstats::Func::FALSE($r) unless defined $x_all_x;
-  $x_all_y = Rstats::Func::FALSE($r) unless defined $x_all_y;
+  $x_all = Rstats::Func::c_double($r, 0) unless defined $x_all;
+  $x_all_x = Rstats::Func::c_double($r, 0) unless defined $x_all_x;
+  $x_all_y = Rstats::Func::c_double($r, 0) unless defined $x_all_y;
   my $all;
   if ($x_all) {
     $all = 'both';
@@ -633,8 +633,8 @@ sub higher_type {
 #           dec = ".", row.names, col.names,
 #           as.is = !stringsAsFactors,
 #           na.strings = "NA", colClasses = NA, nrows = -1,
-#           skip = 0, check.names = TRUE, fill = !blank.lines.skip,
-#           strip.white = FALSE, blank.lines.skip = TRUE,
+#           skip = 0, check.names = 1, fill = !blank.lines.skip,
+#           strip.white = FALSE, blank.lines.skip = 1,
 #           comment.char = "#",
 #           allowEscapes = FALSE, flush = FALSE,
 #           stringsAsFactors = default.stringsAsFactors(),
@@ -757,7 +757,7 @@ sub interaction {
   $x_sep = Rstats::Func::c($r, ".") unless defined $x_sep;
   my $sep = $x_sep->value;
   
-  $x_drop = Rstats::Func::FALSE($r) unless defined $x_drop;
+  $x_drop = Rstats::Func::c_double($r, 0) unless defined $x_drop;
   
   my $max_length;
   my $values_list = [];
@@ -836,7 +836,7 @@ sub gl {
   my $x1 = Rstats::Func::c($r, @$x1_elements);
   
   $x_labels = $x_levels unless defined $x_labels;
-  $x_ordered = Rstats::Func::FALSE($r) unless defined $x_ordered;
+  $x_ordered = Rstats::Func::c_double($r, 0) unless defined $x_ordered;
   
   return factor($r, $x1, {levels => $x_levels, labels => $x_labels, ordered => $x_ordered});
 }
@@ -1311,7 +1311,7 @@ sub setequal {
   my $x3 = Rstats::Func::sort($r, $x1);
   my $x4 = Rstats::Func::sort($r, $x2);
   
-  return Rstats::Func::FALSE($r) if Rstats::Func::get_length($r, $x3) ne Rstats::Func::get_length($r, $x4);
+  return Rstats::Func::c_double($r, 0) if Rstats::Func::get_length($r, $x3) ne Rstats::Func::get_length($r, $x4);
   
   my $not_equal;
   my $x3_elements = Rstats::Func::decompose($r, $x3);
@@ -1323,7 +1323,7 @@ sub setequal {
     }
   }
   
-  return $not_equal ? Rstats::Func::FALSE($r) : TRUE($r);
+  return $not_equal ? Rstats::Func::c_double($r, 0) : Rstats::Func::c_double($r, 1);
 }
 
 sub setdiff {
@@ -1964,7 +1964,7 @@ sub order {
     push @xs_values, $x->values;
   }
 
-  my $decreasing = $opt->{decreasing} || Rstats::Func::FALSE($r);
+  my $decreasing = $opt->{decreasing} || Rstats::Func::c_double($r, 0);
   
   my @pos_vals;
   for my $i (0 .. @{$xs_values[0]} - 1) {
@@ -2783,7 +2783,7 @@ sub bool {
   }
   
   if (!defined $value) {
-    Carp::croak "Error in bool context (a) { : missing value where TRUE/FALSE needed"
+    Carp::croak "Error in bool context (a) { : missing value where 1/0E needed"
   }
 
   return $is;
@@ -3051,7 +3051,7 @@ sub _value_to_string {
       $string = '"' . $value . '"';
     }
     elsif ($type eq 'logical') {
-      $string = $value ? 'TRUE' : 'FALSE';
+      $string = $value ? '1' : '0';
     }
     else {
       $string = "$value";

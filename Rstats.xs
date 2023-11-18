@@ -700,46 +700,6 @@ SV* Inf(...)
   XSRETURN(1);
 }
 
-SV* FALSE(...)
-  PPCODE:
-{
-  SV* sv_r = ST(0);
-  SV* sv_x_out = Rstats::Func::new_FALSE(sv_r);
-  
-  XPUSHs(sv_x_out);
-  XSRETURN(1);
-}
-
-SV* F_(...)
-  PPCODE:
-{
-  SV* sv_r = ST(0);
-  SV* sv_x_out = Rstats::Func::new_FALSE(sv_r);
-  
-  XPUSHs(sv_x_out);
-  XSRETURN(1);
-}
-
-SV* TRUE(...)
-  PPCODE:
-{
-  SV* sv_r = ST(0);
-  SV* sv_x_out = Rstats::Func::new_TRUE(sv_r);
-  
-  XPUSHs(sv_x_out);
-  XSRETURN(1);
-}
-
-SV* T_(...)
-  PPCODE:
-{
-  SV* sv_r = ST(0);
-  SV* sv_x_out = Rstats::Func::new_TRUE(sv_r);
-  
-  XPUSHs(sv_x_out);
-  XSRETURN(1);
-}
-
 SV* args_h(...)
   PPCODE:
 {

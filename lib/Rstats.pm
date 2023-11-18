@@ -112,7 +112,6 @@ my @func_names = qw/
   exp
   expm1
   factor
-  FALSE
   floor
   gl
   grep
@@ -186,7 +185,6 @@ my @func_names = qw/
   tanh
   tolower
   toupper
-  TRUE
   transform
   trunc
   unique
@@ -355,8 +353,6 @@ B<Rstats is yet experimental release. Incompatible change will occur without war
   my $z3 = $z1 * $z2;
   
   # Special value
-  my $true = TRUE;
-  my $false = FALSE;
   my $na = NA;
   my $nan = NaN;
   my $inf = Inf;
@@ -399,30 +395,6 @@ C_ function is equal to C<m:n> of R.
   # array(1:24, c(4, 3, 2))
   array(C_("1:24"), c(4, 3, 2))
 
-=head2 TRUE
-
-  # TRUE
-  TRUE
-
-=head2 T_
-
-  # T
-  T_
-
-Alias of TRUE
-
-=head2 FALSE
-  
-  # FALSE
-  FALSE
-
-=head2 F_
-  
-  # F
-  F_
-
-Alias of FALSE
-
 =head2 NA
 
   # NA
@@ -451,8 +423,8 @@ Alias of FALSE
   # matrix(1:12, nrow=4, ncol=3)
   matrix(C_("1:12"), {nrow => 4, ncol => 3});
   
-  # matrix(1:12, 4, 3, byrow=TRUE)
-  matrix(C_("1:12"), 4, 3, {byrow => TRUE});
+  # matrix(1:12, 4, 3, byrow=1)
+  matrix(C_("1:12"), 4, 3, {byrow => 1});
 
 =head1 VECTOR ACCESS
 
@@ -473,8 +445,8 @@ Alias of FALSE
   # x1[-1]
   $x1->get(-1)
   
-  # x1[TRUE, FALSE]
-  $x1->get(TRUE, FALSE)
+  # x1[1, 0]
+  $x1->get(1, 0)
   
   # x1[c("id", "title")]
   $x1->get(c("id", "title"))
@@ -496,8 +468,8 @@ Alias of FALSE
   # x1[-1] <- x2
   $x1->at(-1)->set($x2)
   
-  # x1[TRUE, FALSE] <- x2
-  $x1->at(TRUE, FALSE)->set($x2);
+  # x1[1, 0] <- x2
+  $x1->at(1, 0)->set($x2);
   
   # x1[c("id", "title")] <- x2
   $x1->at(c("id", "title"))->set($x2);
@@ -645,10 +617,6 @@ Alias of FALSE
 
 =head2 factor
 
-=head2 F
-
-=head2 FALSE
-
 =head2 floor
 
   # floor(x1)
@@ -795,7 +763,7 @@ Alias of FALSE
   $r->round($x1, $digits)
   
   # round(x1, digits=1)
-  $r->round($x1, {digits => TRUE});
+  $r->round($x1, {digits => 1});
 
 =head2 row
 
@@ -871,10 +839,6 @@ Alias of FALSE
 =head2 tolower
 
 =head2 toupper
-
-=head2 T
-
-=head2 TRUE
 
 =head2 transform
 
