@@ -76,7 +76,7 @@ namespace Rstats {
     SV* mode(SV*, SV*);
     SV* mode(SV*, SV*, SV*);
     
-    Rstats::Integer get_length(SV*, SV*);
+    int32_t get_length(SV*, SV*);
     SV* get_length_sv(SV*, SV*);
     
     // dim
@@ -120,9 +120,9 @@ namespace Rstats {
     SV* negate(SV*, SV*);
     
     SV* upgrade_type_avrv(SV*, SV*);
-    void upgrade_type(SV*, Rstats::Integer, ...);
+    void upgrade_type(SV*, int32_t, ...);
     SV* upgrade_length_avrv(SV*, SV*);
-    void upgrade_length(SV*, Rstats::Integer, ...);
+    void upgrade_length(SV*, int32_t, ...);
 
     char* get_type(SV*, SV*);
     SV* get_type_sv(SV*, SV*);
@@ -145,7 +145,7 @@ namespace Rstats {
     SV* And(SV*, SV*, SV*);
     SV* Or(SV*, SV*, SV*);
 
-    SV* create_sv_value(SV*, SV*, Rstats::Integer);
+    SV* create_sv_value(SV*, SV*, int32_t);
     SV* create_sv_values(SV*, SV*);
     
     template <class T>
@@ -157,7 +157,7 @@ namespace Rstats {
     template <>
     void set_vector<Rstats::Double>(SV*, SV*, Rstats::Vector<Rstats::Double>*);
     template <>
-    void set_vector<Rstats::Integer>(SV*, SV*, Rstats::Vector<Rstats::Integer>*);
+    void set_vector<int32_t>(SV*, SV*, Rstats::Vector<int32_t>*);
     template <>
     void set_vector<Rstats::Double>(SV*, SV*, Rstats::Vector<Rstats::Double>* v1);
     
@@ -170,7 +170,7 @@ namespace Rstats {
     template <>
     Rstats::Vector<Rstats::Double>* get_vector<Rstats::Double>(SV*, SV*);
     template <>
-    Rstats::Vector<Rstats::Integer>* get_vector<Rstats::Integer>(SV*, SV*);
+    Rstats::Vector<int32_t>* get_vector<int32_t>(SV*, SV*);
     template <>
     Rstats::Vector<Rstats::Double>* get_vector<Rstats::Double>(SV*, SV*);
 
@@ -183,7 +183,7 @@ namespace Rstats {
     template <>
     SV* new_vector<Rstats::Double>(SV*);
     template <>
-    SV* new_vector<Rstats::Integer>(SV*);
+    SV* new_vector<int32_t>(SV*);
     template <>
     SV* new_vector<Rstats::Double>(SV*);
     

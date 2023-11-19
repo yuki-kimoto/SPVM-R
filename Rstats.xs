@@ -1317,8 +1317,8 @@ SV* DESTROY(...)
   PPCODE:
 {
   SV* sv_v = ST(0);
-  Rstats::Vector<Rstats::Integer>* v
-    = Rstats::pl_object_unwrap<Rstats::Vector<Rstats::Integer>*>(sv_v, "Rstats::Vector::Integer");
+  Rstats::Vector<int32_t>* v
+    = Rstats::pl_object_unwrap<Rstats::Vector<int32_t>*>(sv_v, "Rstats::Vector::Integer");
   delete v;
 }
 

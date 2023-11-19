@@ -3,23 +3,23 @@
 namespace Rstats {
 
   template <>
-  void Vector<Rstats::Character>::initialize(Rstats::Integer length) {
+  void Vector<Rstats::Character>::initialize(int32_t length) {
     this->values = new Rstats::Character[length];
     this->length = length;
     this->na_positions = NULL;
-    for (Rstats::Integer i = 0; i < length; i++) {
+    for (int32_t i = 0; i < length; i++) {
       SV** value_ptr = (SV**)this->values;
       *(value_ptr + i) = &PL_sv_undef;
     }
   }
 
   template <>
-  Vector<Rstats::Character>::Vector(Rstats::Integer length) {
+  Vector<Rstats::Character>::Vector(int32_t length) {
     this->initialize(length);
   }
 
   template <>
-  void Vector<Rstats::Character>::set_value(Rstats::Integer pos, Rstats::Character value) {
+  void Vector<Rstats::Character>::set_value(int32_t pos, Rstats::Character value) {
     SV* current_value = *(this->get_values() + pos);
     
     if (SvOK(current_value)) {
@@ -33,8 +33,8 @@ namespace Rstats {
   Vector<Rstats::Character>::~Vector() {
 
     Rstats::Character* values = this->get_values();
-    Rstats::Integer length = this->get_length();
-    for (Rstats::Integer i = 0; i < length; i++) {
+    int32_t length = this->get_length();
+    for (int32_t i = 0; i < length; i++) {
       if (*(values + i) != NULL) {
         SvREFCNT_dec(*(values + i));
       }

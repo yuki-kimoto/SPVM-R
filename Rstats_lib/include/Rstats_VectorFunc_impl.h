@@ -3,12 +3,12 @@ namespace Rstats {
     template <class T_IN, class T_OUT>
     Rstats::Vector<T_OUT>* operate_unary_math(T_OUT (*func)(T_IN), Rstats::Vector<T_IN>* v1) {
       
-      Rstats::Integer length = v1->get_length();
+      int32_t length = v1->get_length();
       
       Rstats::Vector<T_OUT>* v_out = new Rstats::Vector<T_OUT>(length);
       
       Rstats::clear_warn();
-      for (Rstats::Integer i = 0; i < length; i++) {
+      for (int32_t i = 0; i < length; i++) {
         v_out->set_value(i, (*func)(v1->get_value(i)));
       }
       if (Rstats::get_warn()) {
@@ -23,12 +23,12 @@ namespace Rstats {
     template <class T_IN>
     Rstats::Vector<Rstats::Double>* operate_unary_is(Rstats::Double (*func)(T_IN), Rstats::Vector<T_IN>* v1) {
       
-      Rstats::Integer length = v1->get_length();
+      int32_t length = v1->get_length();
       
       Rstats::Vector<Rstats::Double>* v_out = new Rstats::Vector<Rstats::Double>(length);
 
       Rstats::clear_warn();
-      for (Rstats::Integer i = 0; i < length; i++) {
+      for (int32_t i = 0; i < length; i++) {
         if (v1->exists_na_position(i)) {
           v_out->set_value(i, 0);
         }
@@ -46,12 +46,12 @@ namespace Rstats {
     template <class T_IN, class T_OUT>
     Rstats::Vector<T_OUT>* operate_unary_as(T_OUT (*func)(T_IN), Rstats::Vector<T_IN>* v1) {
       
-      Rstats::Integer length = v1->get_length();
+      int32_t length = v1->get_length();
       
       Rstats::Vector<T_OUT>* v_out = new Rstats::Vector<T_OUT>(length);
       
       Rstats::clear_warn();
-      for (Rstats::Integer i = 0; i < length; i++) {
+      for (int32_t i = 0; i < length; i++) {
         try {
           v_out->set_value(i, (*func)(v1->get_value(i)));
         }
@@ -71,11 +71,11 @@ namespace Rstats {
     template <class T_IN, class T_OUT>
     Rstats::Vector<T_OUT>* operate_binary_math(T_OUT (*func)(T_IN, T_IN), Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
 
-      Rstats::Integer length = v1->get_length();
+      int32_t length = v1->get_length();
       Rstats::Vector<T_OUT>* v_out = new Rstats::Vector<T_OUT>(length);
 
       Rstats::clear_warn();
-      for (Rstats::Integer i = 0; i < length; i++) {
+      for (int32_t i = 0; i < length; i++) {
         v_out->set_value(
           i,
           (*func)(
@@ -97,11 +97,11 @@ namespace Rstats {
     template <class T_IN>
     Rstats::Vector<Rstats::Double>* operate_binary_compare(Rstats::Double (*func)(T_IN, T_IN), Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
 
-      Rstats::Integer length = v1->get_length();
+      int32_t length = v1->get_length();
       Rstats::Vector<Rstats::Double>* v_out = new Rstats::Vector<Rstats::Double>(length);
 
       Rstats::clear_warn();
-      for (Rstats::Integer i = 0; i < length; i++) {
+      for (int32_t i = 0; i < length; i++) {
         try {
           v_out->set_value(
             i,
@@ -260,11 +260,11 @@ namespace Rstats {
     template <class T_IN>
     Rstats::Vector<Rstats::Double>* is_na(Rstats::Vector<T_IN>* v1) {
       
-      Rstats::Integer length = v1->get_length();
+      int32_t length = v1->get_length();
       
       Rstats::Vector<Rstats::Double>* v_out = new Rstats::Vector<Rstats::Double>(length);
       
-      for (Rstats::Integer i = 0; i < length; i++) {
+      for (int32_t i = 0; i < length; i++) {
         if (v1->exists_na_position(i)) {
           v_out->set_value(i, 1);
         }
