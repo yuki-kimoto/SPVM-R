@@ -100,7 +100,7 @@ namespace Rstats {
   const int32_t WARN_IMAGINARY_PART_DISCARDED = 4;
 
   const int32_t NaException = 1;
-  const int32_t NA_POSITION_BIT_LENGTH = 8 * sizeof(Rstats::NaPosition);
+  const int32_t NA_POSITION_BIT_LENGTH = 8 * sizeof(uint32_t);
 
   char* get_warn_message();
   void print_warn_message();

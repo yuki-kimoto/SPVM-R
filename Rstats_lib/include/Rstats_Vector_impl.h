@@ -7,7 +7,7 @@ namespace Rstats {
     }
     if (this->get_length()) {
       int32_t length = this->get_na_positions_length();
-      this->na_positions = new Rstats::NaPosition[length];
+      this->na_positions = new uint32_t[length];
       std::fill_n(this->na_positions, length, 0);
     }
   }
@@ -44,7 +44,7 @@ namespace Rstats {
   }
 
   template <class T>
-  void Vector<T>::merge_na_positions(Rstats::NaPosition* na_positions) {
+  void Vector<T>::merge_na_positions(uint32_t* na_positions) {
     
     if (na_positions == NULL) {
       return;
@@ -62,7 +62,7 @@ namespace Rstats {
   }
 
   template <class T>
-  Rstats::NaPosition* Vector<T>::get_na_positions() {
+  uint32_t* Vector<T>::get_na_positions() {
     return this->na_positions;
   }
 
