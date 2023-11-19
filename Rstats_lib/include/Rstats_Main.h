@@ -89,10 +89,6 @@ namespace Rstats {
 
   // Rstats type
   typedef SV* Character;
-  typedef std::complex<double> Complex;
-  typedef double Double;
-  typedef int32_t Integer;
-  typedef uint32_t NaPosition;
   
   // Error constant value
   const int32_t WARN_NA_INTRODUCED = 1;
@@ -100,7 +96,7 @@ namespace Rstats {
   const int32_t WARN_IMAGINARY_PART_DISCARDED = 4;
 
   const int32_t NaException = 1;
-  const int32_t NA_POSITION_BIT_LENGTH = 8 * sizeof(uint32_t);
+  const int32_t NA_POSITION_BIT_LENGTH = 8 * sizeof(uint);
 
   char* get_warn_message();
   void print_warn_message();
