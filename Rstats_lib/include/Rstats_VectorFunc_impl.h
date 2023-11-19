@@ -15,8 +15,6 @@ namespace Rstats {
         Rstats::print_warn_message();
       }
       
-      v_out->merge_na_positions(v1->get_na_positions());
-      
       return v_out;
     }
 
@@ -29,12 +27,7 @@ namespace Rstats {
 
       Rstats::clear_warn();
       for (int32_t i = 0; i < length; i++) {
-        if (v1->exists_na_position(i)) {
-          v_out->set_value(i, 0);
-        }
-        else {
-          v_out->set_value(i, (*func)(v1->get_value(i)));
-        }
+        v_out->set_value(i, (*func)(v1->get_value(i)));
       }
       if (Rstats::get_warn()) {
         Rstats::print_warn_message();
@@ -56,14 +49,11 @@ namespace Rstats {
           v_out->set_value(i, (*func)(v1->get_value(i)));
         }
         catch (...) {
-          v_out->add_na_position(i);
         }
       }
       if (Rstats::get_warn()) {
         Rstats::print_warn_message();
       }
-      
-      v_out->merge_na_positions(v1->get_na_positions());
       
       return v_out;
     }
@@ -88,9 +78,6 @@ namespace Rstats {
         Rstats::print_warn_message();
       }
       
-      v_out->merge_na_positions(v1->get_na_positions());
-      v_out->merge_na_positions(v2->get_na_positions());
-      
       return v_out;
     }
 
@@ -112,15 +99,11 @@ namespace Rstats {
           );
         }
         catch (...) {
-          v_out->add_na_position(i);
         }
       }
       if (Rstats::get_warn()) {
         Rstats::print_warn_message();
       }
-      
-      v_out->merge_na_positions(v1->get_na_positions());
-      v_out->merge_na_positions(v2->get_na_positions());
       
       return v_out;
     }
@@ -265,12 +248,7 @@ namespace Rstats {
       Rstats::Vector<double>* v_out = new Rstats::Vector<double>(length);
       
       for (int32_t i = 0; i < length; i++) {
-        if (v1->exists_na_position(i)) {
-          v_out->set_value(i, 1);
-        }
-        else {
-          v_out->set_value(i, 0);
-        }
+        v_out->set_value(i, 0);
       }
       
       return v_out;

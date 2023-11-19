@@ -145,12 +145,7 @@ namespace Rstats {
           Rstats::Vector<Rstats::Character>* v1 =  Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_element);
           int32_t v1_length = v1->get_length();
           for (int32_t k = 0; k < v1_length; k++) {
-            if (v1->exists_na_position(k)) {
-              v_out->add_na_position(pos);
-            }
-            else {
-              v_out->set_value(pos, v1->get_value(k));
-            }
+            v_out->set_value(pos, v1->get_value(k));
             pos++;
           }
         }
@@ -168,12 +163,7 @@ namespace Rstats {
           Rstats::Vector<std::complex<double>>* v1 =  Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_element);
           int32_t v1_length = v1->get_length();
           for (int32_t k = 0; k < v1_length; k++) {
-            if (v1->exists_na_position(k)) {
-              v_out->add_na_position(pos);
-            }
-            else {
-              v_out->set_value(pos, v1->get_value(k));
-            }
+            v_out->set_value(pos, v1->get_value(k));
             pos++;
           }
         }
@@ -191,12 +181,7 @@ namespace Rstats {
           Rstats::Vector<double>* v1 =  Rstats::Func::get_vector<double>(sv_r, sv_element);
           int32_t v1_length = v1->get_length();
           for (int32_t k = 0; k < v1_length; k++) {
-            if (v1->exists_na_position(k)) {
-              v_out->add_na_position(pos);
-            }
-            else {
-              v_out->set_value(pos, v1->get_value(k));
-            }
+            v_out->set_value(pos, v1->get_value(k));
             pos++;
           }
         }
@@ -214,12 +199,7 @@ namespace Rstats {
           Rstats::Vector<int32_t>* v1 =  Rstats::Func::get_vector<int32_t>(sv_r, sv_element);
           int32_t v1_length = v1->get_length();
           for (int32_t k = 0; k < v1_length; k++) {
-            if (v1->exists_na_position(k)) {
-              v_out->add_na_position(pos);
-            }
-            else {
-              v_out->set_value(pos, v1->get_value(k));
-            }
+            v_out->set_value(pos, v1->get_value(k));
             pos++;
           }
         }
@@ -235,12 +215,7 @@ namespace Rstats {
           Rstats::Vector<double>* v1 =  Rstats::Func::get_vector<double>(sv_r, sv_element);
           int32_t v1_length = v1->get_length();
           for (int32_t k = 0; k < v1_length; k++) {
-            if (v1->exists_na_position(k)) {
-              v_out->add_na_position(pos);
-            }
-            else {
-              v_out->set_value(pos, v1->get_value(k));
-            }
+            v_out->set_value(pos, v1->get_value(k));
             pos++;
           }
         }
@@ -325,7 +300,6 @@ namespace Rstats {
           }
           v_out->set_value(i, sv_str);
         }
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<Rstats::Character>(sv_r, v_out);
       }
       else if (strEQ(type, "integer")) {
@@ -356,7 +330,6 @@ namespace Rstats {
               v_out->set_value(i, Rstats::pl_new_sv_sv(sv_string));
             }
             else {
-              v_out->add_na_position(i);
             }
           }
           sv_x_out = Rstats::Func::new_vector<Rstats::Character>(sv_r, v_out);
@@ -487,86 +460,66 @@ namespace Rstats {
       SV* sv_value;
       if (strEQ(type, "string")) {
         Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-        if (v1->exists_na_position(pos)) {
-          sv_value = &PL_sv_undef;
-        }
-        else {
-          sv_value = v1->get_value(pos);
-        }
+        sv_value = v1->get_value(pos);
       }
       else if (strEQ(type, "complex")) {
         Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-        if (v1->exists_na_position(pos)) {
-          sv_value = &PL_sv_undef;
+        std::complex<double> z = v1->get_value(pos);
+        
+        double re = z.real();
+        SV* sv_re;
+        if (std::isnan(re)) {
+          sv_re = Rstats::pl_new_sv_pv("NaN");
+        }
+        else if (std::isinf(re) && re > 0) {
+          sv_re = Rstats::pl_new_sv_pv("Inf");
+        }
+        else if (std::isinf(re) && re < 0) {
+          sv_re = Rstats::pl_new_sv_pv("-Inf");
         }
         else {
-          std::complex<double> z = v1->get_value(pos);
-          
-          double re = z.real();
-          SV* sv_re;
-          if (std::isnan(re)) {
-            sv_re = Rstats::pl_new_sv_pv("NaN");
-          }
-          else if (std::isinf(re) && re > 0) {
-            sv_re = Rstats::pl_new_sv_pv("Inf");
-          }
-          else if (std::isinf(re) && re < 0) {
-            sv_re = Rstats::pl_new_sv_pv("-Inf");
-          }
-          else {
-            sv_re = Rstats::pl_new_sv_nv(re);
-          }
-          
-          double im = z.imag();
-          SV* sv_im;
-          if (std::isnan(im)) {
-            sv_im = Rstats::pl_new_sv_pv("NaN");
-          }
-          else if (std::isinf(im) && im > 0) {
-            sv_im = Rstats::pl_new_sv_pv("Inf");
-          }
-          else if (std::isinf(im) && im < 0) {
-            sv_im = Rstats::pl_new_sv_pv("-Inf");
-          }
-          else {
-            sv_im = Rstats::pl_new_sv_nv(im);
-          }
-
-          sv_value = Rstats::pl_new_hvrv();
-          Rstats::pl_hv_store(sv_value, "re", sv_re);
-          Rstats::pl_hv_store(sv_value, "im", sv_im);
+          sv_re = Rstats::pl_new_sv_nv(re);
         }
+        
+        double im = z.imag();
+        SV* sv_im;
+        if (std::isnan(im)) {
+          sv_im = Rstats::pl_new_sv_pv("NaN");
+        }
+        else if (std::isinf(im) && im > 0) {
+          sv_im = Rstats::pl_new_sv_pv("Inf");
+        }
+        else if (std::isinf(im) && im < 0) {
+          sv_im = Rstats::pl_new_sv_pv("-Inf");
+        }
+        else {
+          sv_im = Rstats::pl_new_sv_nv(im);
+        }
+
+        sv_value = Rstats::pl_new_hvrv();
+        Rstats::pl_hv_store(sv_value, "re", sv_re);
+        Rstats::pl_hv_store(sv_value, "im", sv_im);
       }
       else if (strEQ(type, "double")) {
         Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-        if (v1->exists_na_position(pos)) {
-          sv_value = &PL_sv_undef;
+        double value = v1->get_value(pos);
+        if (std::isnan(value)) {
+          sv_value = Rstats::pl_new_sv_pv("NaN");
+        }
+        else if (std::isinf(value) && value > 0) {
+          sv_value = Rstats::pl_new_sv_pv("Inf");
+        }
+        else if (std::isinf(value) && value < 0) {
+          sv_value = Rstats::pl_new_sv_pv("-Inf");
         }
         else {
-          double value = v1->get_value(pos);
-          if (std::isnan(value)) {
-            sv_value = Rstats::pl_new_sv_pv("NaN");
-          }
-          else if (std::isinf(value) && value > 0) {
-            sv_value = Rstats::pl_new_sv_pv("Inf");
-          }
-          else if (std::isinf(value) && value < 0) {
-            sv_value = Rstats::pl_new_sv_pv("-Inf");
-          }
-          else {
-            sv_value = Rstats::pl_new_sv_nv(value);
-          }
+          sv_value = Rstats::pl_new_sv_nv(value);
         }
       }
       else if (strEQ(type, "integer")) {
         Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-        if (v1->exists_na_position(pos)) {
-          sv_value = &PL_sv_undef;
-        }
-        else {
-          int32_t value = v1->get_value(pos);
-          sv_value = Rstats::pl_new_sv_iv(value);
-        }
+        int32_t value = v1->get_value(pos);
+        sv_value = Rstats::pl_new_sv_iv(value);
       }
       else {
         croak("Error in create_sv_value : default method not implemented for type '%s'", type);
@@ -591,7 +544,6 @@ namespace Rstats {
           v_out->set_value(i, v_out_total);
         }
         
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
       }
       else if (strEQ(type, "double")) {
@@ -603,7 +555,6 @@ namespace Rstats {
           v_out->set_value(i, v_out_total);
         }
           
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else if (strEQ(type, "integer")) {
@@ -615,7 +566,6 @@ namespace Rstats {
           v_out->set_value(i, v_out_total);
         }
         
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else if (strEQ(type, "NULL")) {
@@ -645,7 +595,6 @@ namespace Rstats {
           v_out->set_value(i, v_out_total);
         }
         
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
       }
       else if (strEQ(type, "double")) {
@@ -657,7 +606,6 @@ namespace Rstats {
           v_out->set_value(i, v_out_total);
         }
           
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else if (strEQ(type, "integer")) {
@@ -669,7 +617,6 @@ namespace Rstats {
           v_out->set_value(i, v_out_total);
         }
         
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else if (strEQ(type, "NULL")) {
@@ -698,12 +645,6 @@ namespace Rstats {
           v_out_total += v1->get_value(i);
         }
         v_out->set_value(0, v_out_total);
-        for (int32_t i = 0; i < v1->get_length(); i++) {
-          if (v1->exists_na_position(i)) {
-            v_out->add_na_position(0);
-            break;
-          }
-        }
         sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
       }
       else if (strEQ(type, "double")) {
@@ -714,12 +655,6 @@ namespace Rstats {
           v_out_total += v1->get_value(i);
         }
         v_out->set_value(0, v_out_total);
-        for (int32_t i = 0; i < v1->get_length(); i++) {
-          if (v1->exists_na_position(i)) {
-            v_out->add_na_position(0);
-            break;
-          }
-        }
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else if (strEQ(type, "integer")) {
@@ -730,12 +665,6 @@ namespace Rstats {
           v_out_total += v1->get_value(i);
         }
         v_out->set_value(0, v_out_total);
-        for (int32_t i = 0; i < v1->get_length(); i++) {
-          if (v1->exists_na_position(i)) {
-            v_out->add_na_position(0);
-            break;
-          }
-        }
         sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
       }
       else if (strEQ(type, "NULL")) {
@@ -766,12 +695,6 @@ namespace Rstats {
         }
         v_out->set_value(0, v_out_total);
         
-        for (int32_t i = 0; i < v1->get_length(); i++) {
-          if (v1->exists_na_position(i)) {
-            v_out->add_na_position(0);
-            break;
-          }
-        }
         sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
       }
       else if (strEQ(type, "double")) {
@@ -782,12 +705,6 @@ namespace Rstats {
           v_out_total *= v1->get_value(i);
         }
         v_out->set_value(0, v_out_total);
-        for (int32_t i = 0; i < v1->get_length(); i++) {
-          if (v1->exists_na_position(i)) {
-            v_out->add_na_position(0);
-            break;
-          }
-        }
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else if (strEQ(type, "integer")) {
@@ -798,12 +715,6 @@ namespace Rstats {
           v_out_total *= v1->get_value(i);
         }
         v_out->set_value(0, v_out_total);
-        for (int32_t i = 0; i < v1->get_length(); i++) {
-          if (v1->exists_na_position(i)) {
-            v_out->add_na_position(0);
-            break;
-          }
-        }
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else if (strEQ(type, "NULL")) {
@@ -2754,7 +2665,6 @@ namespace Rstats {
         for (int32_t i = 0; i < v1->get_length(); i++) {
           v_out->set_value(i, v1->get_value(i));
         }
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<Rstats::Character>(sv_r, v_out);
       }
       else if (strEQ(type, "complex")) {
@@ -2763,7 +2673,6 @@ namespace Rstats {
         for (int32_t i = 0; i < v1->get_length(); i++) {
           v_out->set_value(i, v1->get_value(i));
         }
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
       }
       else if (strEQ(type, "double")) {
@@ -2772,7 +2681,6 @@ namespace Rstats {
         for (int32_t i = 0; i < v1->get_length(); i++) {
           v_out->set_value(i, v1->get_value(i));
         }
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else if (strEQ(type, "integer")) {
@@ -2781,7 +2689,6 @@ namespace Rstats {
         for (int32_t i = 0; i < v1->get_length(); i++) {
           v_out->set_value(i, v1->get_value(i));
         }
-        v_out->merge_na_positions(v1->get_na_positions());
         sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
       }
       
@@ -3025,7 +2932,6 @@ namespace Rstats {
           v1->set_value(i, Rstats::pl_new_sv_sv(sv_value));
         }
         else {
-          v1->add_na_position(i);
         }
       }
       
@@ -3111,7 +3017,6 @@ namespace Rstats {
           }
         }
         else {
-          v1->add_na_position(i);
         }
       }
       
@@ -3182,7 +3087,6 @@ namespace Rstats {
           );
         }
         else {
-          v1->add_na_position(i);
         }
       }
       
@@ -3209,7 +3113,6 @@ namespace Rstats {
           );
         }
         else {
-          v1->add_na_position(i);
         }
       }
       
@@ -3231,7 +3134,6 @@ namespace Rstats {
     
     SV* new_NA(SV* sv_r) {
       Rstats::Vector<double>* v1 = new Rstats::Vector<double>(1, 0);
-      v1->add_na_position(0);
 
       SV* sv_x1 = Rstats::Func::new_vector<double>(sv_r, v1);
       
@@ -3657,9 +3559,6 @@ namespace Rstats {
           for (int32_t i = 0; i < length; i++) {
             Rstats::Vector<Rstats::Character>* v_out
               = new Rstats::Vector<Rstats::Character>(1, v1->get_value(i));
-            if (v1->exists_na_position(i)) {
-              v_out->add_na_position(0);
-            }
             SV* sv_x_out = Rstats::Func::new_vector<Rstats::Character>(sv_r, v_out);
             Rstats::pl_av_push(sv_elements, sv_x_out);
           }
@@ -3669,9 +3568,6 @@ namespace Rstats {
           for (int32_t i = 0; i < length; i++) {
             Rstats::Vector<std::complex<double>>* v_out
               = new Rstats::Vector<std::complex<double>>(1, v1->get_value(i));
-            if (v1->exists_na_position(i)) {
-              v_out->add_na_position(0);
-            }
             SV* sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
             Rstats::pl_av_push(sv_elements, sv_x_out);
           }
@@ -3681,9 +3577,6 @@ namespace Rstats {
           for (int32_t i = 0; i < length; i++) {
             Rstats::Vector<double>* v_out
               = new Rstats::Vector<double>(1, v1->get_value(i));
-            if (v1->exists_na_position(i)) {
-              v_out->add_na_position(0);
-            }
             SV* sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
             Rstats::pl_av_push(sv_elements, sv_x_out);
           }
@@ -3693,9 +3586,6 @@ namespace Rstats {
           for (int32_t i = 0; i < length; i++) {
             Rstats::Vector<int32_t>* v_out
               = new Rstats::Vector<int32_t>(1, v1->get_value(i));
-            if (v1->exists_na_position(i)) {
-              v_out->add_na_position(0);
-            }
             SV* sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
             Rstats::pl_av_push(sv_elements, sv_x_out);
           }
@@ -3709,7 +3599,6 @@ namespace Rstats {
     {
       int32_t len = Rstats::pl_av_len(sv_elements);
       
-      std::vector<int32_t> na_positions;
       char* type = SvPV_nolen(sv_type);
       SV* sv_x_out;
       if (strEQ(type, "string")) {
@@ -3717,21 +3606,12 @@ namespace Rstats {
         for (int32_t i = 0; i < len; i++) {
           SV* sv_x1 = Rstats::pl_av_fetch(sv_elements, i);
           if (!SvOK(sv_x1)) {
-            na_positions.push_back(i);
           }
           else {
             Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
             
-            if (v1->exists_na_position(0)) {
-              na_positions.push_back(i);
-            }
-            else {
-              v_out->set_value(i, v1->get_value(0));
-            }
+            v_out->set_value(i, v1->get_value(0));
           }
-        }
-        for (int32_t i = 0; i < na_positions.size(); i++) {
-          v_out->add_na_position(na_positions[i]);
         }
         sv_x_out = Rstats::Func::new_vector<Rstats::Character>(sv_r, v_out);
       }
@@ -3740,21 +3620,12 @@ namespace Rstats {
         for (int32_t i = 0; i < len; i++) {
           SV* sv_x1 = Rstats::pl_av_fetch(sv_elements, i);
           if (!SvOK(sv_x1)) {
-            na_positions.push_back(i);
           }
           else {
             Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
 
-            if (v1->exists_na_position(0)) {
-              na_positions.push_back(i);
-            }
-            else {
-              v_out->set_value(i, v1->get_value(0));
-            }
+            v_out->set_value(i, v1->get_value(0));
           }
-        }
-        for (int32_t i = 0; i < na_positions.size(); i++) {
-          v_out->add_na_position(na_positions[i]);
         }
         sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
       }
@@ -3764,21 +3635,12 @@ namespace Rstats {
         for (int32_t i = 0; i < len; i++) {
           SV* sv_x1 = Rstats::pl_av_fetch(sv_elements, i);
           if (!SvOK(sv_x1)) {
-            na_positions.push_back(i);
           }
           else {
             Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
 
-            if (v1->exists_na_position(0)) {
-              na_positions.push_back(i);
-            }
-            else {
-              v_out->set_value(i, v1->get_value(0));
-            }
+            v_out->set_value(i, v1->get_value(0));
           }
-        }
-        for (int32_t i = 0; i < na_positions.size(); i++) {
-          v_out->add_na_position(na_positions[i]);
         }
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
@@ -3788,21 +3650,12 @@ namespace Rstats {
         for (int32_t i = 0; i < len; i++) {
           SV* sv_x1 = Rstats::pl_av_fetch(sv_elements, i);
           if (!SvOK(sv_x1)) {
-            na_positions.push_back(i);
           }
           else {
             Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
 
-            if (v1->exists_na_position(0)) {
-              na_positions.push_back(i);
-            }
-            else {
-              v_out->set_value(i, v1->get_value(0));
-            }
+            v_out->set_value(i, v1->get_value(0));
           }
-        }
-        for (int32_t i = 0; i < na_positions.size(); i++) {
-          v_out->add_na_position(na_positions[i]);
         }
         sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
       }

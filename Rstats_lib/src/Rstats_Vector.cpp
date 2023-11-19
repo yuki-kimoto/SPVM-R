@@ -6,7 +6,6 @@ namespace Rstats {
   void Vector<Rstats::Character>::initialize(int32_t length) {
     this->values = new Rstats::Character[length];
     this->length = length;
-    this->na_positions = NULL;
     for (int32_t i = 0; i < length; i++) {
       SV** value_ptr = (SV**)this->values;
       *(value_ptr + i) = &PL_sv_undef;
@@ -40,6 +39,5 @@ namespace Rstats {
       }
     }
     delete[] values;
-    delete[] this->na_positions;
   }
 }
