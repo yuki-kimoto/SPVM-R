@@ -985,17 +985,6 @@ SV* as_integer(...)
   XSRETURN(1);
 }
 
-SV* as_logical(...)
-  PPCODE:
-{
-  SV* sv_r = ST(0);
-  SV* sv_x1 = ST(1);
-  SV* sv_x_out = Rstats::Func::as_logical(sv_r, sv_x1);
-  
-  XPUSHs(sv_x_out);
-  XSRETURN(1);
-}
-
 SV* as_complex(...)
   PPCODE:
 {

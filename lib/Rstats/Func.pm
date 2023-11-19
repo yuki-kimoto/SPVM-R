@@ -690,9 +690,6 @@ sub read_table {
       if (defined Rstats::Util::looks_like_na($row[$i])) {
         $type = 'logical';
       }
-      elsif (defined Rstats::Util::looks_like_logical($row[$i])) {
-        $type = 'logical';
-      }
       elsif (defined Rstats::Util::looks_like_integer($row[$i])) {
         $type = 'integer';
       }
@@ -736,7 +733,7 @@ sub read_table {
     }
     else {
       my $x1 = Rstats::Func::c($r, @{$columns->[$i]});
-      push @$data_frame_args, Rstats::Func::as_logical($r, $x1);
+      push @$data_frame_args, Rstats::Func::as_double($r, $x1);
     }
   }
   
