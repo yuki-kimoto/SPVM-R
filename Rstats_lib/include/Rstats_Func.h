@@ -56,7 +56,6 @@ namespace Rstats {
 
     SV* as_vector(SV*, SV*);
     SV* as_integer(SV*, SV*);
-    SV* as_logical(SV*, SV*);
     SV* as_complex(SV*, SV*);
     SV* as_double(SV*, SV*);
     SV* as_numeric(SV*, SV*);

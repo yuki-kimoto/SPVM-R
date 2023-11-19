@@ -273,7 +273,6 @@ sub new {
   $self->helper('as.integer' => \&Rstats::Func::as_integer);
   $self->helper('as.double' => \&Rstats::Func::as_double);
   $self->helper('as.list' => \&Rstats::Func::as_list);
-  $self->helper('as.logical' => \&Rstats::Func::as_logical);
   $self->helper('as.matrix' => \&Rstats::Func::as_matrix);
   $self->helper('as.numeric' => \&Rstats::Func::as_numeric);
   $self->helper('as.vector' => \&Rstats::Func::as_vector);

@@ -266,15 +266,6 @@ namespace Rstats {
       return v_out;
     }
 
-    template <class T_IN, class T_OUT>
-    Rstats::Vector<T_OUT>* as_logical(Rstats::Vector<T_IN>* v1) {
-      T_OUT (*func)(T_IN) = &Rstats::ElementFunc::as_logical;
-      
-      Rstats::Vector<T_OUT>* v_out = Rstats::VectorFunc::operate_unary_as(func, v1);
-      
-      return v_out;
-    }
-
     template <class T_IN>
     Rstats::Vector<Rstats::Logical>* is_na(Rstats::Vector<T_IN>* v1) {
       
