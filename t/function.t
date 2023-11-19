@@ -10,17 +10,6 @@ use Rstats;
 
 my $r = Rstats->new;
 
-# NULL
-{
-  my $x1 = $r->NULL;
-  is_deeply($x1->values, []);
-  is("$x1", 'NULL');
-  $x1->at(3);
-  $x1->set(5);
-  is_deeply($x1->values, [undef, undef, 5]);
-}
-
-
 # c_
 {
   # $r->c()
@@ -28,19 +17,6 @@ my $r = Rstats->new;
     my $x1 = $r->c();
     my $x_tmp = $r->is->null($x1);
     ok($x_tmp);
-  }
-  
-  # $r->c(NULL)
-  {
-    my $x1 = $r->c($r->NULL);
-    ok($r->is->null($x1));
-  }
-  
-  # $r->c(1, 2, 3, NULL)
-  {
-    my $x1 = $r->c(1, 2, 3);
-    # ok($r->is->double($x1));
-    is_deeply($x1->values, [1, 2, 3]);
   }
   
   # $r->c(1, 0);
@@ -545,11 +521,6 @@ my $r = Rstats->new;
     is_deeply($x1->values, [undef]);
   }
   
-  # min - no argument
-  {
-    my $x1 = $r->min($r->NULL);
-    is_deeply($x1->values, ['Inf']);
-  }
   # min
   {
     my $x1 = $r->c(1, 2, 3);
@@ -635,14 +606,6 @@ my $r = Rstats->new;
 
 # prod
 {
-  # prod - NULL
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->prod($x1);
-    # ok($r->is->double($x2));
-    is_deeply($x2->values, [1]);
-  }
-  
   # prod - complex
   {
     my $x1 = $r->c(1+1*$r->i, 2+3*$r->i);
@@ -1202,14 +1165,6 @@ my $r = Rstats->new;
 
 # cumprod
 {
-  # cumprod - NULL
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->cumprod($x1);
-    # ok($r->is->double($x2));
-    is_deeply($x2->values, []);
-  }
-
   # cumprod - double
   {
     my $x1 = $r->c(2, 3, 4);
@@ -1234,14 +1189,6 @@ my $r = Rstats->new;
 
 # cumsum
 {
-  # cumprod - NULL
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->cumsum($x1);
-    # ok($r->is->double($x2));
-    is_deeply($x2->values, []);
-  }
-
   # cumsum - double
   {
     my $x1 = $r->c(1, 2, 3);
@@ -1455,12 +1402,6 @@ my $r = Rstats->new;
     my $x2 = $r->c(4, 5, 6);
     my $x3 = $r->max($x1, $x2);
     is_deeply($x3->values, [6]);
-  }
-  
-  # max - no argument
-  {
-    my $x1 = $r->max($r->NULL);
-    is_deeply($x1->values, ['-Inf']);
   }
   
   # max - contain NA

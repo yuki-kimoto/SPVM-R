@@ -56,24 +56,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [25]);
   }
 
-  # pow - $r->NULL, left
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->c(1);
-    my $x3 = $x1 ** $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-
-  # pow - $r->NULL, right
-  {
-    my $x1 = $r->c(1);
-    my $x2 = $r->NULL;
-    my $x3 = $x1 ** $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-  
   # pow - different number elements
   {
     my $x1 = $r->c(5, 3);
@@ -145,24 +127,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [3]);
   }
 
-  # add - $r->NULL, left
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->c(1);
-    my $x3 = $x1 + $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-
-  # add - $r->NULL, right
-  {
-    my $x1 = $r->c(1);
-    my $x2 = $r->NULL;
-    my $x3 = $x1 + $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-      
   # add - different number elements
   {
     my $x1 = $r->c(1, 2);
@@ -234,24 +198,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [-1]);
   }
 
-  # subtract - $r->NULL, left
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->c(1);
-    my $x3 = $x1 - $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-
-  # subtract - $r->NULL, right
-  {
-    my $x1 = $r->c(1);
-    my $x2 = $r->NULL;
-    my $x3 = $x1 - $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-      
   # subtract - different number elements
   {
     my $x1 = $r->c(1, 2);
@@ -323,24 +269,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [6]);
   }
 
-  # multiply - $r->NULL, left
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->c(1);
-    my $x3 = $x1 * $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-
-  # multiply - $r->NULL, right
-  {
-    my $x1 = $r->c(1);
-    my $x2 = $r->NULL;
-    my $x3 = $x1 * $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-  
   # multiply - different number elements
   {
     my $x1 = $r->c(1, 2);
@@ -412,24 +340,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [5/2]);
   }
 
-  # divide - $r->NULL, left
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->c(1);
-    my $x3 = $x1 / $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-
-  # divide - $r->NULL, right
-  {
-    my $x1 = $r->c(1);
-    my $x2 = $r->NULL;
-    my $x3 = $x1 / $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-  
   # divide - different number elements
   {
     my $x1 = $r->c(24, 12);
@@ -501,24 +411,6 @@ my $r = Rstats->new;
     is_deeply($x3->values, [1, 2, POSIX::fmod(2, 2/5), "NaN"]);
   }
 
-  # remainder - $r->NULL, left
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->c(1);
-    my $x3 = $x1 % $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-
-  # remainder - $r->NULL, right
-  {
-    my $x1 = $r->c(1);
-    my $x2 = $r->NULL;
-    my $x3 = $x1 % $x2;
-    ok($r->is->double($x3));
-    is_deeply($x3->values, []);
-  }
-  
   # remainder - different number elements
   {
     my $x1 = $r->c(24, 12);
@@ -653,17 +545,6 @@ my $r = Rstats->new;
     else {
       fail;
     }
-  }
-
-  # bool - two argument, true
-  {
-    my $x1 = $r->NULL;
-    eval {
-      if ($x1) {
-      
-      }
-    };
-    like($@, qr/zero/);
   }
 }
 

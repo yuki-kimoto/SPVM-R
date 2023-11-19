@@ -1285,14 +1285,6 @@ my $r = Rstats->new;
       is_deeply($x2->dim->values, [2]);
     }
     
-    # is->na - NULL
-    {
-      my $x1 = $r->NULL;
-      my $x2 = $r->is->na($x1);
-      # ok($r->is->double($x2));
-      is_deeply($x2->values, []);
-    }
-    
     # is->na - string
     {
       my $x1 = $r->c("aaa", $r->NA);

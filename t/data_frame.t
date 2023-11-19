@@ -59,7 +59,7 @@ my $r = Rstats->new;
     my $height = $r->c(172, 168, 155);
     my $weight = $r->c(5, 6, 7);
     my $x1 = $r->data_frame(sex => $sex, height => $height, weight => $weight);
-    my $x2 = $x1->get($r->c(-1, -3), $r->NULL);
+    my $x2 = $x1->get($r->c(-1, -3), undef);
     ok($r->is->data_frame($x2));
     is_deeply($x2->getin(1)->values, [qw/2/]);
     is_deeply($x2->getin(2)->values, [qw/168/]);
@@ -73,7 +73,7 @@ my $r = Rstats->new;
     my $weight = $r->c(5, 6, 7);
     
     my $x1 = $r->data_frame(sex => $sex, height => $height, weight => $weight);
-    my $x2 = $x1->get($r->NULL, $r->c(-1, -3));
+    my $x2 = $x1->get(undef, $r->c(-1, -3));
     ok($r->is->data_frame($x2));
     is_deeply($r->names($x2)->values, ['height']);
     is_deeply($x2->getin(1)->values, [qw/172 168 155/]);
@@ -86,7 +86,7 @@ my $r = Rstats->new;
     my $weight = $r->c(5, 6, 7);
     
     my $x1 = $r->data_frame(sex => $sex, height => $height, weight => $weight);
-    my $x2 = $x1->get($r->c(3, 2), $r->NULL);
+    my $x2 = $x1->get($r->c(3, 2), undef);
     ok($r->is->data_frame($x2));
     is_deeply($x2->class->values, ['data.frame']);
     is_deeply($r->names($x2)->values, ['sex', 'height', 'weight']);
@@ -103,7 +103,7 @@ my $r = Rstats->new;
     my $weight = $r->c(5, 6, 7);
     
     my $x1 = $r->data_frame(sex => $sex, height => $height, weight => $weight);
-    my $x2 = $x1->get($r->c(3, 2), $r->NULL);
+    my $x2 = $x1->get($r->c(3, 2), undef);
     ok($r->is->data_frame($x2));
     is_deeply($x2->class->values, ['data.frame']);
     is_deeply($r->names($x2)->values, ['sex', 'height', 'weight']);
@@ -154,7 +154,7 @@ my $r = Rstats->new;
     my $weight = $r->c(5, 6, 7);
     
     my $x1 = $r->data_frame(sex => $sex, height => $height, weight => $weight);
-    my $x2 = $x1->get($r->NULL, $r->c(1, 3));
+    my $x2 = $x1->get(undef, $r->c(1, 3));
     ok($r->is->data_frame($x2));
     is_deeply($x2->class->values, ['data.frame']);
     is_deeply($r->names($x2)->values, ['sex', 'weight']);
@@ -180,14 +180,14 @@ my $r = Rstats->new;
 
 # set
 {
-  # set - NULL
+  # set - undef
   {
     my $sex = $r->c('F', 'M', 'F');
     my $height = $r->c(172, 168, 155);
     my $weight = $r->c(5, 6, 7);
     my $x1 = $r->data_frame(sex => $sex, height => $height, weight => $weight);
     $x1->at(2);
-    $x1->set($r->NULL);
+    $x1->set(undef);
     is_deeply($r->as->string($x1->getin(1))->values, ['F', 'M', 'F']);
     is_deeply($x1->getin(2)->values, [5, 6, 7]);
     is_deeply($r->names($x1)->values, ['sex', 'weight']);
