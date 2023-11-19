@@ -119,11 +119,9 @@ namespace Rstats {
         
         char* type = Rstats::Func::get_type(sv_r, sv_new_element);
         
-        if (!strEQ(type, "NULL")) {
-          total_length += Rstats::Func::get_length(sv_r, sv_new_element);
-          Rstats::pl_hv_store(sv_type_h, type, Rstats::pl_new_sv_iv(1));
-          Rstats::pl_av_push(sv_new_elements, sv_new_element);
-        }
+        total_length += Rstats::Func::get_length(sv_r, sv_new_element);
+        Rstats::pl_hv_store(sv_type_h, type, Rstats::pl_new_sv_iv(1));
+        Rstats::pl_av_push(sv_new_elements, sv_new_element);
       }
       
       SV* sv_x_out;
@@ -251,9 +249,6 @@ namespace Rstats {
         int32_t length = Rstats::pl_av_len(sv_list);
         return length;
       }
-      else if (strEQ(type, "NULL")) {
-        return 0;
-      }
       else {
         croak("Error in get_length() : default method not implemented for type '%s'", type);
       }
@@ -348,10 +343,6 @@ namespace Rstats {
           sv_x_out = Rstats::Func::new_vector<Rstats::Character>(sv_r, v_out);
         }
       }
-      else if (strEQ(type, "NULL")) {
-        Rstats::Vector<Rstats::Character>* v_out = new Rstats::Vector<Rstats::Character>(0);
-        sv_x_out = Rstats::Func::new_vector<Rstats::Character>(sv_r, v_out);
-      }
       else {
         croak("Error in as->string() : default method not implemented for type '%s'", type);
       }
@@ -387,10 +378,6 @@ namespace Rstats {
         Rstats::Vector<double>* v_out = Rstats::VectorFunc::as_double<int32_t, double>(v1);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
-      else if (strEQ(type, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
-        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-      }
       else {
         croak("Error in as->double() : default method not implemented for type '%s'", type);
       }
@@ -422,10 +409,6 @@ namespace Rstats {
         Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::as_complex<int32_t, std::complex<double>>(v1);
         sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
       }
-      else if (strEQ(type, "NULL")) {
-        Rstats::Vector<std::complex<double>>* v_out = new Rstats::Vector<std::complex<double>>(0);
-        sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
-      }
       else {
         croak("Error in as->complex() : default method not implemented for type '%s'", type);
       }
@@ -441,11 +424,9 @@ namespace Rstats {
 
       char* type = Rstats::Func::get_type(sv_r, sv_x1);
       SV* sv_values = Rstats::pl_new_avrv();
-      if (!strEQ(type, "NULL")) {
-        int32_t length = Rstats::Func::get_length(sv_r, sv_x1);
-        for (int32_t i = 0; i < length; i++) {
-          Rstats::pl_av_push(sv_values, Rstats::Func::create_sv_value(sv_r, sv_x1, i));
-        }
+      int32_t length = Rstats::Func::get_length(sv_r, sv_x1);
+      for (int32_t i = 0; i < length; i++) {
+        Rstats::pl_av_push(sv_values, Rstats::Func::create_sv_value(sv_r, sv_x1, i));
       }
       
       return sv_values;
@@ -568,10 +549,6 @@ namespace Rstats {
         
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
-      else if (strEQ(type, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
-        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-      }
       else {
         croak("Error in cumprod() : non-numeric argument to cumprod()");
       }
@@ -619,10 +596,6 @@ namespace Rstats {
         
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
-      else if (strEQ(type, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
-        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-      }
       else {
         croak("Error in cumsum() : non-numeric argument to cumsum()");
       }
@@ -665,10 +638,6 @@ namespace Rstats {
           v_out_total += v1->get_value(i);
         }
         v_out->set_value(0, v_out_total);
-        sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
-      }
-      else if (strEQ(type, "NULL")) {
-        Rstats::Vector<int32_t>* v_out = new Rstats::Vector<int32_t>(1, 0);
         sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
       }
       else {
@@ -717,10 +686,6 @@ namespace Rstats {
         v_out->set_value(0, v_out_total);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
-      else if (strEQ(type, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(1, 1);
-        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-      }
       else {
         croak("Error in prod() : non-numeric argument to prod()");
       }
@@ -737,46 +702,39 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "string")) {
+        Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
+        Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::equal<Rstats::Character>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "complex")) {
+        Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
+        Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::equal<std::complex<double>>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::equal<double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::equal<int32_t>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "string")) {
-          Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-          Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::equal<Rstats::Character>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "complex")) {
-          Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-          Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::equal<std::complex<double>>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::equal<double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::equal<int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in == : default method not implemented for type '%s'", type);
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in == : default method not implemented for type '%s'", type);
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -790,46 +748,39 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "string")) {
+        Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
+        Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::not_equal<Rstats::Character>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "complex")) {
+        Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
+        Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::not_equal<std::complex<double>>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::not_equal<double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::not_equal<int32_t>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "string")) {
-          Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-          Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::not_equal<Rstats::Character>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "complex")) {
-          Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-          Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::not_equal<std::complex<double>>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::not_equal<double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::not_equal<int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in != : default method not implemented for type '%s'", type);
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in != : default method not implemented for type '%s'", type);
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -843,43 +794,36 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "string")) {
+        Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
+        Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than<Rstats::Character>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "complex")) {
+        croak("Error in > operator : invalid comparison with complex values");
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than<double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than<int32_t>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "string")) {
-          Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-          Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than<Rstats::Character>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "complex")) {
-          croak("Error in > operator : invalid comparison with complex values");
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than<double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than<int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in > : default method not implemented for type '%s'", type);
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in > : default method not implemented for type '%s'", type);
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -893,43 +837,36 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "string")) {
+        Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
+        Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than_or_equal<Rstats::Character>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "complex")) {
+        croak("Error in <= operator : invalid comparison with complex values");
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than_or_equal<double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than_or_equal<int32_t>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "string")) {
-          Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-          Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than_or_equal<Rstats::Character>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "complex")) {
-          croak("Error in <= operator : invalid comparison with complex values");
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than_or_equal<double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::more_than_or_equal<int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in >= : default method not implemented for type '%s'", type);
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in >= : default method not implemented for type '%s'", type);
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -943,43 +880,36 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "string")) {
+        Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
+        Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than<Rstats::Character>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "complex")) {
+        croak("Error in < operator : invalid comparison with complex values");
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than<double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than<int32_t>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "string")) {
-          Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-          Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than<Rstats::Character>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "complex")) {
-          croak("Error in < operator : invalid comparison with complex values");
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than<double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than<int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in < : default method not implemented for type '%s'", type);
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in < : default method not implemented for type '%s'", type);
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -993,43 +923,36 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "string")) {
+        Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
+        Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than_or_equal<Rstats::Character>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "complex")) {
+        croak("Error in <= operator : invalid comparison with complex values");
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than_or_equal<double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than_or_equal<int32_t>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "string")) {
-          Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-          Rstats::Vector<Rstats::Character>* v2 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than_or_equal<Rstats::Character>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "complex")) {
-          croak("Error in <= operator : invalid comparison with complex values");
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than_or_equal<double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::less_than_or_equal<int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in <= : default method not implemented for type '%s'", type);
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in <= : default method not implemented for type '%s'", type);
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1043,40 +966,33 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "string")) {
+        croak("Error in & : operations are possible only for numeric or complex types");
+      }
+      else if (strEQ(type1, "complex")) {
+        croak("Error in & : invalid comparison with complex values");
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::And<double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::And<int32_t>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "string")) {
-          croak("Error in & : operations are possible only for numeric or complex types");
-        }
-        else if (strEQ(type1, "complex")) {
-          croak("Error in & : invalid comparison with complex values");
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::And<double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::And<int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in & : default method not implemented for type '%s'", type);
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in & : default method not implemented for type '%s'", type);
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1090,40 +1006,33 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "string")) {
+        croak("Error in | : operations are possible only for numeric or complex types");
+      }
+      else if (strEQ(type1, "complex")) {
+        croak("Error in | : invalid comparison with complex values");
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::Or<double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::Or<int32_t>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "string")) {
-          croak("Error in | : operations are possible only for numeric or complex types");
-        }
-        else if (strEQ(type1, "complex")) {
-          croak("Error in | : invalid comparison with complex values");
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::Or<double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::Or<int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in | : default method not implemented for type '%s'", type);
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in | : default method not implemented for type '%s'", type);
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1137,40 +1046,33 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "complex")) {
+        Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
+        Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
+        Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::add<std::complex<double>, std::complex<double>>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::add<double, double>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
-      else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "complex")) {
-          Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-          Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
-          Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::add<std::complex<double>, std::complex<double>>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::add<double, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<int32_t>* v_out = Rstats::VectorFunc::add<int32_t, int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
-        }
-        else {
-          croak("Error in + : non-numeric argument to binary operator");
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<int32_t>* v_out = Rstats::VectorFunc::add<int32_t, int32_t>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
       }
+      else {
+        croak("Error in + : non-numeric argument to binary operator");
+      }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1184,40 +1086,33 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "complex")) {
+        Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
+        Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
+        Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::subtract<std::complex<double>, std::complex<double>>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::subtract<double, double>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
-      else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "complex")) {
-          Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-          Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
-          Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::subtract<std::complex<double>, std::complex<double>>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::subtract<double, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<int32_t>* v_out = Rstats::VectorFunc::subtract<int32_t, int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
-        }
-        else {
-          croak("Error in - : non-numeric argument to binary operator");
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<int32_t>* v_out = Rstats::VectorFunc::subtract<int32_t, int32_t>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
       }
+      else {
+        croak("Error in - : non-numeric argument to binary operator");
+      }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1231,37 +1126,30 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "complex")) {
+        croak("Error in % : unimplemented complex operation");
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::remainder<double, double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::remainder<int32_t, double>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "complex")) {
-          croak("Error in % : unimplemented complex operation");
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::remainder<double, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::remainder<int32_t, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in % : non-numeric argument to binary operator");
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in % : non-numeric argument to binary operator");
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1275,39 +1163,33 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "complex")) {
+        Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
+        Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
+        Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::divide<std::complex<double>, std::complex<double>>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::divide<double, double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::divide<int32_t, double>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "complex")) {
-          Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-          Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
-          Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::divide<std::complex<double>, std::complex<double>>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::divide<double, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::divide<int32_t, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in / : non-numeric argument to binary operator");
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in / : non-numeric argument to binary operator");
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1321,38 +1203,33 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        croak("Error in atan2() : non-numeric argument to mathematical function");
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "complex")) {
+        Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
+        Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
+        Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::atan2<std::complex<double>, std::complex<double>>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::atan2<double, double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::atan2<int32_t, double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "complex")) {
-          Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-          Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
-          Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::atan2<std::complex<double>, std::complex<double>>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::atan2<double, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::atan2<int32_t, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in atan2() : non-numeric argument to mathematical function");
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in atan2() : non-numeric argument to mathematical function");
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1366,39 +1243,33 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "complex")) {
+        Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
+        Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
+        Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::pow<std::complex<double>, std::complex<double>>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::pow<double, double>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::pow<int32_t, double>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
       else {
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "complex")) {
-          Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-          Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
-          Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::pow<std::complex<double>, std::complex<double>>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::pow<double, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::pow<int32_t, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else {
-          croak("Error in ** : non-numeric argument to binary operator");
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+        croak("Error in ** : non-numeric argument to binary operator");
       }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -1412,40 +1283,33 @@ namespace Rstats {
       // NULL check
       char* original_type1 = Rstats::Func::get_type(sv_r, sv_x1);
       char* original_type2 = Rstats::Func::get_type(sv_r, sv_x2);
-      if (strEQ(original_type1, "NULL") || strEQ(original_type2, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0);
+      // Upgrade type and length
+      upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
+      upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
+      
+      char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
+      if (strEQ(type1, "complex")) {
+        Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
+        Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
+        Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::multiply<std::complex<double>, std::complex<double>>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
+      }
+      else if (strEQ(type1, "double")) {
+        Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
+        Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
+        Rstats::Vector<double>* v_out = Rstats::VectorFunc::multiply<double, double>(v1, v2);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
-      else {
-      
-        // Upgrade type and length
-        upgrade_type(sv_r, 2, &sv_x1, &sv_x2);
-        upgrade_length(sv_r, 2, &sv_x1, &sv_x2);
-        
-        char* type1 = Rstats::Func::get_type(sv_r, sv_x1);
-        if (strEQ(type1, "complex")) {
-          Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
-          Rstats::Vector<std::complex<double>>* v2 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x2);
-          Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::multiply<std::complex<double>, std::complex<double>>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "double")) {
-          Rstats::Vector<double>* v1 = Rstats::Func::get_vector<double>(sv_r, sv_x1);
-          Rstats::Vector<double>* v2 = Rstats::Func::get_vector<double>(sv_r, sv_x2);
-          Rstats::Vector<double>* v_out = Rstats::VectorFunc::multiply<double, double>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        }
-        else if (strEQ(type1, "integer")) {
-          Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
-          Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
-          Rstats::Vector<int32_t>* v_out = Rstats::VectorFunc::multiply<int32_t, int32_t>(v1, v2);
-          sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
-        }
-        else {
-          croak("Error in * : non-numeric argument to binary operator");
-        }
-        Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
+      else if (strEQ(type1, "integer")) {
+        Rstats::Vector<int32_t>* v1 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x1);
+        Rstats::Vector<int32_t>* v2 = Rstats::Func::get_vector<int32_t>(sv_r, sv_x2);
+        Rstats::Vector<int32_t>* v_out = Rstats::VectorFunc::multiply<int32_t, int32_t>(v1, v2);
+        sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
       }
+      else {
+        croak("Error in * : non-numeric argument to binary operator");
+      }
+      Rstats::Func::copy_attrs_to(sv_r, sv_x1, sv_x_out);
       
       return sv_x_out;
     }
@@ -2867,15 +2731,6 @@ namespace Rstats {
       return Rstats::pl_new_sv_pv(Rstats::Func::get_type(sv_r, sv_x1));
     }
 
-    SV* is_null (SV* sv_r, SV* sv_x1) {
-      
-      bool is = strEQ(Rstats::Func::get_type(sv_r, sv_x1), "NULL");
-      
-      SV* sv_is = is ? Rstats::Func::new_TRUE(sv_r) : Rstats::Func::new_FALSE(sv_r);
-      
-      return sv_is;
-    }
-    
     SV* is_vector (SV* sv_r, SV* sv_x1) {
       
       bool is = strEQ(Rstats::Func::get_object_type(sv_r, sv_x1), "array")
@@ -3121,17 +2976,6 @@ namespace Rstats {
       return sv_x1;
     }
 
-    SV* new_NULL(SV* sv_r) {
-      
-      SV* sv_x1 = Rstats::pl_new_hvrv();
-      sv_bless(sv_x1, gv_stashpv("Rstats::Object", 1));
-      Rstats::pl_hv_store(sv_x1, "r", sv_r);
-      Rstats::pl_hv_store(sv_x1, "object_type", Rstats::pl_new_sv_pv("NULL"));
-      Rstats::pl_hv_store(sv_x1, "type", Rstats::pl_new_sv_pv("NULL"));
-      
-      return sv_x1;
-    }
-    
     SV* new_NA(SV* sv_r) {
       Rstats::Vector<double>* v1 = new Rstats::Vector<double>(1, 0);
 
@@ -3415,11 +3259,6 @@ namespace Rstats {
         Rstats::Vector<double>* v_out = Rstats::VectorFunc::is_na<int32_t>(v1);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
       }
-      else if (strEQ(type, "NULL")) {
-        Rstats::Vector<double>* v_out = new Rstats::Vector<double>(0, 0);
-        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-        warn("Warning message:\nIn is->na(NULL) : is->na() applied to non-(list or vector) of type 'NULL'\n");
-      }
       else if (strEQ(type, "list")) {
         sv_x_out = Rstats::Func::new_FALSE(sv_r);
       }
@@ -3452,10 +3291,7 @@ namespace Rstats {
       }
       else {
         char* class_name;
-        if (strEQ(type, "NULL")) {
-          class_name = "NULL";
-        }
-        else if (Rstats::Func::to_bool(sv_r, Rstats::Func::is_vector(sv_r, sv_x1))) {
+        if (Rstats::Func::to_bool(sv_r, Rstats::Func::is_vector(sv_r, sv_x1))) {
           if (strEQ(type, "double") || strEQ(type, "integer")) {
             class_name = "numeric";
           }
@@ -3659,9 +3495,6 @@ namespace Rstats {
         }
         sv_x_out = Rstats::Func::new_vector<int32_t>(sv_r, v_out);
       }
-      else if (strEQ(type, "NULL")) {
-        // Nothing to do
-      }
       else {
         croak("Unknown type(Rstats::Func::compose())");
       }
@@ -3768,10 +3601,7 @@ namespace Rstats {
       char* type = Rstats::Func::get_type(sv_r, sv_x1);
       
       char* mode;
-      if (strEQ(type, "NULL")) {
-        mode = "NULL";
-      }
-      else if (strEQ(type, "integer") || strEQ(type, "double")) {
+      if (strEQ(type, "integer") || strEQ(type, "double")) {
         mode = "numeric";
       }
       else {

@@ -342,7 +342,7 @@ sub dimnames {
       $x_dimnames->list($x1->{dimnames});
     }
     else {
-      return Rstats::Func::NULL($r);
+      return undef;
     }
   }
 }
@@ -362,7 +362,7 @@ sub rownames {
     $x1->{dimnames}[0] = Rstats::Func::as_vector($r, $x_rownames);
   }
   else {
-    my $x_rownames = Rstats::Func::NULL($r);
+    my $x_rownames = undef;
     if (defined $x1->{dimnames}[0]) {
       $x_rownames = Rstats::Func::as_vector($r, $x1->{dimnames}[0]);
     }
@@ -386,7 +386,7 @@ sub colnames {
     $x1->{dimnames}[1] = Rstats::Func::as_vector($r, $x_colnames);
   }
   else {
-    my $x_colnames = Rstats::Func::NULL($r);
+    my $x_colnames = undef;
     if (defined $x1->{dimnames}[1]) {
       $x_colnames = Rstats::Func::as_vector($r, $x1->{dimnames}[1]);
     }
@@ -475,7 +475,7 @@ sub subset {
   my ($x1, $x_condition, $x_names)
     = args_array($r, ['x1', 'condition', 'names'], @_);
   
-  $x_names = Rstats::Func::NULL($r) unless defined $x_names;
+  $x_names = undef unless defined $x_names;
   
   my $x2 = $x1->get($x_condition, $x_names);
   
@@ -560,7 +560,7 @@ sub na_omit {
     }
   }
   
-  my $x2 = $x1->get(-$r->c(@poss), NULL($r));
+  my $x2 = $x1->get(-$r->c(@poss), undef);
   
   return $x2;
 }
@@ -1134,7 +1134,7 @@ sub nrow {
     return Rstats::Func::c($r, $x1->{row_length});
   }
   elsif (Rstats::Func::is_list($r, $x1)) {
-    return Rstats::Func::NULL($r);
+    return undef;
   }
   else {
     return Rstats::Func::c($r, Rstats::Func::dim($r, $x1)->values->[0]);
@@ -1396,7 +1396,7 @@ sub append {
   my ($x1, $x2, $x_after) = args_array($r, ['x1', 'x2', 'after'], @_);
   
   # Default
-  $x_after = NULL($r) unless defined $x_after;
+  $x_after = undef unless defined $x_after;
   
   my $x1_length = Rstats::Func::get_length($r, $x1);
   $x_after = Rstats::Func::c($r, $x1_length) if Rstats::Func::is_null($r, $x_after);
@@ -1419,7 +1419,7 @@ sub cbind {
   
   my @xs = @_;
 
-  return Rstats::Func::NULL($r) unless @xs;
+  return undef unless @xs;
   
   if (Rstats::Func::is_data_frame($r, $xs[0])) {
     # Check row count
@@ -1631,8 +1631,8 @@ sub complex {
 
   my ($x1_re, $x1_im, $x1_mod, $x1_arg) = args_array($r, ['re', 'im', 'mod', 'arg'], @_);
   
-  $x1_mod = Rstats::Func::NULL($r) unless defined $x1_mod;
-  $x1_arg = Rstats::Func::NULL($r) unless defined $x1_arg;
+  $x1_mod = undef unless defined $x1_mod;
+  $x1_arg = undef unless defined $x1_arg;
 
   my $x2_elements = [];
   # Create complex from mod and arg
@@ -1713,7 +1713,7 @@ sub head {
     my $max = $x1->{row_length} < $n ? $x1->{row_length} : $n;
     
     my $x_range = Rstats::Func::C($r, "1:$max");
-    my $x2 = $x1->get($x_range, Rstats::Func::NULL($r));
+    my $x2 = $x1->get($x_range, undef);
     
     return $x2;
   }
@@ -1984,7 +1984,7 @@ sub rbind {
   my $r = shift;
   my (@xs) = @_;
   
-  return Rstats::Func::NULL($r) unless @xs;
+  return undef unless @xs;
   
   if (Rstats::Func::is_data_frame($r, $xs[0])) {
     
@@ -2463,7 +2463,7 @@ sub inner_product {
     for (my $col = 1; $col <= $col_max; $col++) {
       for (my $row = 1; $row <= $row_max; $row++) {
         my $x1_part = Rstats::Func::get($r, $x1, $row);
-        my $x2_part = Rstats::Func::get($r, $x2, Rstats::Func::NULL($r), $col);
+        my $x2_part = Rstats::Func::get($r, $x2, undef, $col);
         my $x3_part = sum($r, $x1 * $x2);
         push @$x3_elements, $x3_part;
       }
@@ -2502,7 +2502,7 @@ sub ncol {
     return Rstats::Func::c($r, Rstats::Func::get_length($r, $x1));
   }
   elsif (Rstats::Func::is_list($r, $x1)) {
-    return Rstats::Func::NULL($r);
+    return undef;
   }
   else {
     return Rstats::Func::c($r, Rstats::Func::dim($r, $x1)->values->[1]);
@@ -2671,7 +2671,7 @@ sub bool {
 sub set {
   my ($r, $x1) = @_;
   
-  if ($x1->{object_type} eq 'NULL' || $x1->{object_type} eq 'array' || $x1->{object_type} eq 'factor') {
+  if ($x1->{object_type} eq 'array' || $x1->{object_type} eq 'factor') {
     return Rstats::Func::set_array(@_);
   }
   elsif ($x1->{object_type} eq 'list') {
@@ -2895,7 +2895,7 @@ sub to_string_array {
     }
   }
   else {
-    $str = 'NULL';
+    $str = 'undef';
   }
   
   return $str;
@@ -2948,7 +2948,7 @@ sub str {
   my @str;
   
   if (Rstats::Func::is_null($r, $x1)) {
-    push @str, "NULL";
+    push @str, "undef";
   }
   elsif (Rstats::Func::is_vector($r, $x1) || is_array($r, $x1)) {
     # Short type
@@ -3211,7 +3211,7 @@ sub get_dataframe {
   # Fix column index and row index
   unless (defined $_col_index) {
     $_col_index = $_row_index;
-    $_row_index = Rstats::Func::NULL($r);
+    $_row_index = undef;
   }
   my $row_index = Rstats::Func::to_object($r, $_row_index);
   my $col_index = Rstats::Func::to_object($r, $_col_index);
@@ -3543,14 +3543,8 @@ sub sapply {
 sub to_string {
   my ($r, $x1) = @_;
   
-  if ($x1->{object_type} eq 'NULL') {
-    return "NULL";
-  }
-  elsif ($x1->{object_type} eq 'array' || $x1->{object_type} eq 'factor') {
+  if ($x1->{object_type} eq 'array' || $x1->{object_type} eq 'factor') {
     return Rstats::Func::to_string_array(@_);
-  }
-  elsif ($x1->{object_type} eq 'list') {
-    return Rstats::Func::to_string_list(@_);
   }
   elsif ($x1->{object_type} eq 'data.frame') {
     return Rstats::Func::to_string_dataframe(@_);
