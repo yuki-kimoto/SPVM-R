@@ -8,6 +8,8 @@
 
 #include <complex>
 
+#include <complex.h>
+
 /* Perl headers */
 #include "EXTERN.h"
 #include "perl.h"
