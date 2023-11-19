@@ -270,7 +270,6 @@ sub new {
   $self->helper('as.array' => \&Rstats::Func::as_array);
   $self->helper('as.string' => \&Rstats::Func::as_string);
   $self->helper('as.complex' => \&Rstats::Func::as_complex);
-  $self->helper('as.integer' => \&Rstats::Func::as_integer);
   $self->helper('as.double' => \&Rstats::Func::as_double);
   $self->helper('as.list' => \&Rstats::Func::as_list);
   $self->helper('as.matrix' => \&Rstats::Func::as_matrix);

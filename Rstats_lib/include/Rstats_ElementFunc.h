@@ -257,12 +257,6 @@ namespace Rstats {
     Rstats::Complex as_complex(Rstats::Double);
     Rstats::Complex as_complex(Rstats::Integer);
     Rstats::Complex as_complex(Rstats::Logical);
-
-    Rstats::Integer as_integer(Rstats::Character);
-    Rstats::Integer as_integer(Rstats::Complex);
-    Rstats::Integer as_integer(Rstats::Double);
-    Rstats::Integer as_integer(Rstats::Integer);
-    Rstats::Integer as_integer(Rstats::Logical);
   }
 }
 
