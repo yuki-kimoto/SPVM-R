@@ -399,12 +399,7 @@ namespace Rstats {
       char* type = Rstats::Func::get_type(sv_r, sv_x1);
 
       SV* sv_x_out;
-      if (strEQ(type, "string")) {
-        Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-        Rstats::Vector<double>* v_out = Rstats::VectorFunc::as_double<Rstats::Character, double>(v1);
-        sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
-      }
-      else if (strEQ(type, "complex")) {
+      if (strEQ(type, "complex")) {
         Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
         Rstats::Vector<double>* v_out = Rstats::VectorFunc::as_double<std::complex<double>, double>(v1);
         sv_x_out = Rstats::Func::new_vector<double>(sv_r, v_out);
@@ -439,12 +434,7 @@ namespace Rstats {
       char* type = Rstats::Func::get_type(sv_r, sv_x1);
       
       SV* sv_x_out;
-      if (strEQ(type, "string")) {
-        Rstats::Vector<Rstats::Character>* v1 = Rstats::Func::get_vector<Rstats::Character>(sv_r, sv_x1);
-        Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::as_complex<Rstats::Character, std::complex<double>>(v1);
-        sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);
-      }
-      else if (strEQ(type, "complex")) {
+      if (strEQ(type, "complex")) {
         Rstats::Vector<std::complex<double>>* v1 = Rstats::Func::get_vector<std::complex<double>>(sv_r, sv_x1);
         Rstats::Vector<std::complex<double>>* v_out = Rstats::VectorFunc::as_complex<std::complex<double>, std::complex<double>>(v1);
         sv_x_out = Rstats::Func::new_vector<std::complex<double>>(sv_r, v_out);

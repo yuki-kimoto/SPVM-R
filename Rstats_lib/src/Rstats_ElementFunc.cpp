@@ -644,34 +644,11 @@ namespace Rstats {
     }
 
     // as_complex
-    std::complex<double> as_complex(Rstats::Character e1) {
-      SV* sv_z = Rstats::Util::looks_like_complex(e1);
-      
-      if (SvOK(sv_z)) {
-        SV* sv_re = Rstats::pl_hv_fetch(sv_z, "re");
-        SV* sv_im = Rstats::pl_hv_fetch(sv_z, "im");
-        double re = SvNV(sv_re);
-        double im = SvNV(sv_im);
-        return std::complex<double>(re, im);
-      }
-      else {
-        throw Rstats::NaException;
-      }
-    }
     std::complex<double> as_complex(std::complex<double> e1) { return e1; }
     std::complex<double> as_complex(double e1) { return std::complex<double>(e1, 0); }
     std::complex<double> as_complex(int32_t e1) { return Rstats::ElementFunc::as_complex((double)e1); }
 
     // as_double
-    double as_double(Rstats::Character e1) {
-      SV* sv_value_fix = Rstats::Util::looks_like_double(e1);
-      if (SvOK(sv_value_fix)) {
-        return SvNV(sv_value_fix);
-      }
-      else {
-        throw Rstats::NaException;
-      }
-    }
     double as_double(std::complex<double> e1) {
       if (e1.imag() != 0) {
         Rstats::add_warn(Rstats::WARN_IMAGINARY_PART_DISCARDED);

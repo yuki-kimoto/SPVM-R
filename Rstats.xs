@@ -1334,42 +1334,6 @@ SV* is_perl_number(...)
   XSRETURN(1);
 }
 
-SV* looks_like_integer(...)
-  PPCODE:
-{
-  SV* sv_str = ST(0);
-  SV* sv_ret = Rstats::Util::looks_like_integer(sv_str);
-  XPUSHs(sv_ret);
-  XSRETURN(1);
-}
-
-SV* looks_like_double(...)
-  PPCODE:
-{
-  SV* sv_str = ST(0);
-  SV* sv_ret = Rstats::Util::looks_like_double(sv_str);
-  XPUSHs(sv_ret);
-  XSRETURN(1);
-}
-
-SV* looks_like_na(...)
-  PPCODE:
-{
-  SV* sv_str = ST(0);
-  SV* sv_ret = Rstats::Util::looks_like_na(sv_str);
-  XPUSHs(sv_ret);
-  XSRETURN(1);
-}
-
-SV* looks_like_complex(...)
-  PPCODE:
-{
-  SV* sv_str = ST(0);
-  SV* sv_ret = Rstats::Util::looks_like_complex(sv_str);
-  XPUSHs(sv_ret);
-  XSRETURN(1);
-}
-
 SV* cross_product(...)
   PPCODE:
 {

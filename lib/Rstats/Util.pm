@@ -106,14 +106,6 @@ Rstats::Util - Utility class
 
 =head1 FUNCTION
 
-=head2 looks_like_na (xs)
-
-=head2 looks_like_double (xs)
-
-=head2 looks_like_integer (xs)
-
-=head2 looks_like_complex (xs)
-
 =head2 index_to_pos (xs)
 
 =head2 pos_to_index (xs)

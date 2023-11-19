@@ -205,13 +205,11 @@ namespace Rstats {
     Rstats::Character as_string(int32_t);
     Rstats::Character as_string(double);
 
-    double as_double(Rstats::Character);
     double as_double(std::complex<double>);
     double as_double(double);
     double as_double(int32_t);
     double as_double(double);
 
-    std::complex<double> as_complex(Rstats::Character);
     std::complex<double> as_complex(std::complex<double>);
     std::complex<double> as_complex(double);
     std::complex<double> as_complex(int32_t);
