@@ -215,24 +215,6 @@ my $r = Rstats->new;
     like($@, qr#\QError in atan2() : non-numeric argument#);
   }
 
-  # atan2 - NULL, left
-  {
-    my $x1 = $r->NULL;
-    my $x2 = $r->c(1);
-    my $x3;
-    eval { $x3 = $r->atan2($x1, $x2) };
-    like($@, qr#\QError in atan2() : non-numeric argument#);
-  }
-
-  # atan2 - NULL, right
-  {
-    my $x1 = $r->c(1);
-    my $x2 = $r->NULL;
-    my $x3;
-    eval { $x3 = $r->atan2($x1, $x2) };
-    like($@, qr#\QError in atan2() : non-numeric argument#);
-  }
-  
   # atan2 - different number elements
   {
     my $x1 = $r->c(1, 2);
@@ -1163,4 +1145,185 @@ my $r = Rstats->new;
     my $x2 = $r->sin($x1);
     is($x2->value, 'NaN');
   }
+  
+  # is->nan
+  {
+    # is->nan - NA
+    {
+      my $x1 = $r->NA;
+      my $x2 = $r->is->nan($x1);
+      is_deeply($x2->values, [0]);
+    }
+
+    # is->nan - string
+    {
+      my $x1 = $r->c("a");
+      my $x2 = $r->is->nan($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0]);
+    }
+
+    # is->nan - double
+    {
+      my $x1 = $r->c(1, 2);
+      my $x2 = $r->is->nan($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0, 0]);
+    }
+
+    # is->nan - double,Inf
+    {
+      my $x1 = $r->Inf;
+      my $x2 = $r->is->nan($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0]);
+    }
+    
+    # is->nan - double,-Inf
+    {
+      my $x1 = -$r->Inf;
+      my $x2 = $r->is->nan($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0]);
+    }
+
+    # is->nan - double,NaN
+    {
+      my $x1 = $r->NaN;
+      my $x2 = $r->is->nan($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [1]);
+    }
+
+    # is->nan - dimention
+    {
+      my $x1 = $r->array($r->c(1, 2));
+      my $x2 = $r->is->nan($x1);
+      is_deeply($x2->dim->values, [2]);
+    }
+    
+    # is->nan - complex
+    {
+      my $x1 = $r->c(1+2*$r->i, $r->complex($r->NaN, 1), $r->complex(1, $r->NaN));
+      my $x2 = $r->is->nan($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0, 1, 1]);
+    }
+  }
+
+  # is->infinite
+  {
+    # is->infinite - NA
+    {
+      my $x1 = $r->NA;
+      my $x2 = $r->is->infinite($x1);
+      is_deeply($x2->values, [0]);
+    }
+
+    # is->infinite - string
+    {
+      my $x1 = $r->c("a");
+      my $x2 = $r->is->infinite($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0]);
+    }
+
+    # is->infinite - complex
+    {
+      my $x1 = $r->c(1+2*$r->i, $r->complex($r->NaN, 1), $r->Inf + 1*$r->i, $r->complex(1, $r->Inf));
+      my $x2 = $r->is->infinite($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0, 0, 1, 1]);
+    }
+      
+    # is->infinite - double
+    {
+      my $x1 = $r->c(1, 2);
+      my $x2 = $r->is->infinite($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0, 0]);
+    }
+
+    # is->infinite - double,Inf
+    {
+      my $x1 = $r->Inf;
+      my $x2 = $r->is->infinite($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [1]);
+    }
+    
+    # is->infinite - double,-Inf
+    {
+      my $x1 = -$r->Inf;
+      my $x2 = $r->is->infinite($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [1]);
+    }
+
+    # is->infinite - double,NaN
+    {
+      my $x1 = $r->NaN;
+      my $x2 = $r->is->infinite($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0]);
+    }
+
+    # is->infinite - dimention
+    {
+      my $x1 = $r->array($r->c(1, 2));
+      my $x2 = $r->is->infinite($x1);
+      is_deeply($x2->dim->values, [2]);
+    }
+  }
+
+  # is->na
+  {
+    # is->na - dim
+    {
+      my $x1 = $r->array($r->c(1.1, 1.2));
+      my $x2 = $r->is->na($x1);
+      is_deeply($x2->dim->values, [2]);
+    }
+    
+    # is->na - NULL
+    {
+      my $x1 = $r->NULL;
+      my $x2 = $r->is->na($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, []);
+    }
+    
+    # is->na - string
+    {
+      my $x1 = $r->c("aaa", $r->NA);
+      my $x2 = $r->is->na($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0, 1]);
+    }
+    
+    # is->na - complex
+    {
+      my $x1 = $r->c(1 + 2*$r->i, $r->NA);
+      my $x2 = $r->is->na($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0, 1]);
+    }
+    
+    # is->na - double
+    {
+      my $x1 = $r->c(1.1, $r->NA);
+      my $x2 = $r->is->na($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0, 1]);
+    }
+    
+    # is->na - $r->list
+    {
+      my $x1 = $r->list(1, 2);
+      my $x2 = $r->is->na($x1);
+      # ok($r->is->double($x2));
+      is_deeply($x2->values, [0]);
+    }
+  }
+
 }
