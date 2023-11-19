@@ -21,11 +21,11 @@ namespace Rstats {
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* operate_unary_is(Rstats::Double (*func)(T_IN), Rstats::Vector<T_IN>* v1) {
+    Rstats::Vector<double>* operate_unary_is(double (*func)(T_IN), Rstats::Vector<T_IN>* v1) {
       
       int32_t length = v1->get_length();
       
-      Rstats::Vector<Rstats::Double>* v_out = new Rstats::Vector<Rstats::Double>(length);
+      Rstats::Vector<double>* v_out = new Rstats::Vector<double>(length);
 
       Rstats::clear_warn();
       for (int32_t i = 0; i < length; i++) {
@@ -95,10 +95,10 @@ namespace Rstats {
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* operate_binary_compare(Rstats::Double (*func)(T_IN, T_IN), Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+    Rstats::Vector<double>* operate_binary_compare(double (*func)(T_IN, T_IN), Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
 
       int32_t length = v1->get_length();
-      Rstats::Vector<Rstats::Double>* v_out = new Rstats::Vector<Rstats::Double>(length);
+      Rstats::Vector<double>* v_out = new Rstats::Vector<double>(length);
 
       Rstats::clear_warn();
       for (int32_t i = 0; i < length; i++) {
@@ -126,58 +126,58 @@ namespace Rstats {
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* equal(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
-      Rstats::Double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::equal;
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
+    Rstats::Vector<double>* equal(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+      double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::equal;
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
       return v_out;
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* not_equal(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
-      Rstats::Double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::not_equal;
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
+    Rstats::Vector<double>* not_equal(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+      double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::not_equal;
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
       return v_out;
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* more_than(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
-      Rstats::Double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::more_than;
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
+    Rstats::Vector<double>* more_than(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+      double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::more_than;
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
       return v_out;
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* more_than_or_equal(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
-      Rstats::Double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::more_than_or_equal;
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
+    Rstats::Vector<double>* more_than_or_equal(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+      double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::more_than_or_equal;
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
       return v_out;
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* less_than(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
-      Rstats::Double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::less_than;
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
+    Rstats::Vector<double>* less_than(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+      double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::less_than;
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
       return v_out;
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* less_than_or_equal(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
-      Rstats::Double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::less_than_or_equal;
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
+    Rstats::Vector<double>* less_than_or_equal(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+      double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::less_than_or_equal;
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
       return v_out;
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* And(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
-      Rstats::Double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::And;
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
+    Rstats::Vector<double>* And(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+      double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::And;
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
       return v_out;
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* Or(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
-      Rstats::Double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::Or;
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
+    Rstats::Vector<double>* Or(Rstats::Vector<T_IN>* v1, Rstats::Vector<T_IN>* v2) {
+      double (*func)(T_IN, T_IN) = &Rstats::ElementFunc::Or;
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_binary_compare(func, v1, v2);
       return v_out;
     }
 
@@ -258,11 +258,11 @@ namespace Rstats {
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* is_na(Rstats::Vector<T_IN>* v1) {
+    Rstats::Vector<double>* is_na(Rstats::Vector<T_IN>* v1) {
       
       int32_t length = v1->get_length();
       
-      Rstats::Vector<Rstats::Double>* v_out = new Rstats::Vector<Rstats::Double>(length);
+      Rstats::Vector<double>* v_out = new Rstats::Vector<double>(length);
       
       for (int32_t i = 0; i < length; i++) {
         if (v1->exists_na_position(i)) {
@@ -511,28 +511,28 @@ namespace Rstats {
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* is_infinite(Rstats::Vector<T_IN>* v1) {
-      Rstats::Double (*func)(T_IN) = &Rstats::ElementFunc::is_infinite;
+    Rstats::Vector<double>* is_infinite(Rstats::Vector<T_IN>* v1) {
+      double (*func)(T_IN) = &Rstats::ElementFunc::is_infinite;
       
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_unary_is(func, v1);
-      
-      return v_out;
-    }
-
-    template <class T_IN>
-    Rstats::Vector<Rstats::Double>* is_nan(Rstats::Vector<T_IN>* v1) {
-      Rstats::Double (*func)(T_IN) = &Rstats::ElementFunc::is_nan;
-      
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_unary_is(func, v1);
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_unary_is(func, v1);
       
       return v_out;
     }
 
     template <class T_IN>
-    Rstats::Vector<Rstats::Double>* is_finite(Rstats::Vector<T_IN>* v1) {
-      Rstats::Double (*func)(T_IN) = &Rstats::ElementFunc::is_finite;
+    Rstats::Vector<double>* is_nan(Rstats::Vector<T_IN>* v1) {
+      double (*func)(T_IN) = &Rstats::ElementFunc::is_nan;
       
-      Rstats::Vector<Rstats::Double>* v_out = Rstats::VectorFunc::operate_unary_is(func, v1);
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_unary_is(func, v1);
+      
+      return v_out;
+    }
+
+    template <class T_IN>
+    Rstats::Vector<double>* is_finite(Rstats::Vector<T_IN>* v1) {
+      double (*func)(T_IN) = &Rstats::ElementFunc::is_finite;
+      
+      Rstats::Vector<double>* v_out = Rstats::VectorFunc::operate_unary_is(func, v1);
       
       return v_out;
     }

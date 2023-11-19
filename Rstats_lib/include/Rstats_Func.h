@@ -35,7 +35,7 @@ namespace Rstats {
     SV* is_numeric(SV*, SV*);
     SV* type(SV*, SV*);
     SV* Typeof(SV*, SV*); // $r->typeof
-    Rstats::Double to_bool(SV*, SV*);
+    double to_bool(SV*, SV*);
     SV* is_double(SV*, SV*);
     SV* is_integer(SV*, SV*);
     SV* is_complex(SV*, SV*);
@@ -155,11 +155,11 @@ namespace Rstats {
     template <>
     void set_vector<Rstats::Complex>(SV*, SV*, Rstats::Vector<Rstats::Complex>*);
     template <>
-    void set_vector<Rstats::Double>(SV*, SV*, Rstats::Vector<Rstats::Double>*);
+    void set_vector<double>(SV*, SV*, Rstats::Vector<double>*);
     template <>
     void set_vector<int32_t>(SV*, SV*, Rstats::Vector<int32_t>*);
     template <>
-    void set_vector<Rstats::Double>(SV*, SV*, Rstats::Vector<Rstats::Double>* v1);
+    void set_vector<double>(SV*, SV*, Rstats::Vector<double>* v1);
     
     template <class T>
     Rstats::Vector<T>* get_vector(SV*, SV*);
@@ -168,11 +168,11 @@ namespace Rstats {
     template <>
     Rstats::Vector<Rstats::Complex>* get_vector<Rstats::Complex>(SV*, SV*);
     template <>
-    Rstats::Vector<Rstats::Double>* get_vector<Rstats::Double>(SV*, SV*);
+    Rstats::Vector<double>* get_vector<double>(SV*, SV*);
     template <>
     Rstats::Vector<int32_t>* get_vector<int32_t>(SV*, SV*);
     template <>
-    Rstats::Vector<Rstats::Double>* get_vector<Rstats::Double>(SV*, SV*);
+    Rstats::Vector<double>* get_vector<double>(SV*, SV*);
 
     template <class T>
     SV* new_vector(SV*);
@@ -181,11 +181,11 @@ namespace Rstats {
     template <>
     SV* new_vector<Rstats::Complex>(SV*);
     template <>
-    SV* new_vector<Rstats::Double>(SV*);
+    SV* new_vector<double>(SV*);
     template <>
     SV* new_vector<int32_t>(SV*);
     template <>
-    SV* new_vector<Rstats::Double>(SV*);
+    SV* new_vector<double>(SV*);
     
     template <class T>
     SV* new_vector(SV*, Rstats::Vector<T>* v1);

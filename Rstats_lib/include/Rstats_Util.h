@@ -6,7 +6,7 @@
 
 namespace Rstats {
   namespace Util {
-    Rstats::Double is_perl_number(SV*);
+    double is_perl_number(SV*);
     SV* cross_product(SV*);
     SV* pos_to_index(SV*, SV*);
     SV* index_to_pos(SV*, SV*);
@@ -14,11 +14,11 @@ namespace Rstats {
     SV* looks_like_na(SV*);
     SV* looks_like_integer(SV*);
     SV* looks_like_double(SV*);
-    Rstats::Double pi();
-    Rstats::Double Inf();
-    Rstats::Double NaN();
-    Rstats::Double is_Inf(Rstats::Double);
-    Rstats::Double is_NaN(Rstats::Double);
+    double pi();
+    double Inf();
+    double NaN();
+    double is_Inf(double);
+    double is_NaN(double);
   }
 }
 
