@@ -4,8 +4,6 @@
 namespace Rstats {
   namespace Util {
 
-    static REGEXP* LOGICAL_RE = pregcomp(newSVpv("^ *(T|TRUE|F|FALSE) *$", 0), 0);
-    static REGEXP* LOGICAL_TRUE_RE = pregcomp(newSVpv("T", 0), 0);
     static REGEXP* INTEGER_RE = pregcomp(newSVpv("^ *([\\-\\+]?[0-9]+) *$", 0), 0);
     static REGEXP* DOUBLE_RE = pregcomp(newSVpv("^ *([\\-\\+]?[0-9]+(?:\\.[0-9]+)?) *$", 0), 0);
     static REGEXP* COMPLEX_IMAGE_ONLY_RE = pregcomp(newSVpv("^ *([\\+\\-]?[0-9]+(?:\\.[0-9]+)?)i *$", 0), 0);
@@ -14,10 +12,10 @@ namespace Rstats {
     Rstats::Double pi() { return M_PI; }
     Rstats::Double Inf() { return INFINITY; }
     Rstats::Double NaN() { return std::numeric_limits<Rstats::Double>::signaling_NaN(); }
-    Rstats::Logical is_Inf(Rstats::Double e1) { return std::isinf(e1); }
-    Rstats::Logical is_NaN(Rstats::Double e1) { return std::isnan(e1); }
+    Rstats::Double is_Inf(Rstats::Double e1) { return std::isinf(e1); }
+    Rstats::Double is_NaN(Rstats::Double e1) { return std::isnan(e1); }
     
-    Rstats::Logical is_perl_number(SV* sv_str) {
+    Rstats::Double is_perl_number(SV* sv_str) {
       if (!SvOK(sv_str)) {
         return 0;
       }
@@ -51,7 +49,7 @@ namespace Rstats {
 
       SV* sv_result = Rstats::pl_new_avrv();
       Rstats::pl_av_push(sv_result, Rstats::pl_av_copy(sv_x1));
-      Rstats::Logical end_loop = 0;
+      Rstats::Double end_loop = 0;
       while (1) {
         for (Rstats::Integer i = 0; i < values_length; i++) {
           
@@ -172,29 +170,7 @@ namespace Rstats {
       
       return sv_ret;
     }
-
-    SV* looks_like_logical (SV* sv_value) {
-      
-      SV* sv_ret;
-      if (!SvOK(sv_value) || sv_len(sv_value) == 0) {
-        sv_ret = &PL_sv_undef;
-      }
-      else {
-        if (Rstats::pl_pregexec(sv_value, LOGICAL_RE)) {
-          if (Rstats::pl_pregexec(sv_value, LOGICAL_TRUE_RE)) {
-            sv_ret = Rstats::pl_new_sv_iv(1);
-          }
-          else {
-            sv_ret = Rstats::pl_new_sv_iv(0);
-          }
-        }
-        else {
-          sv_ret = &PL_sv_undef;
-        }
-      }
-      return sv_ret;
-    }
-
+    
     SV* looks_like_na (SV* sv_value) {
       
       SV* sv_ret;
@@ -221,7 +197,7 @@ namespace Rstats {
         sv_ret = &PL_sv_undef;
       }
       else {
-        Rstats::Logical ret = Rstats::pl_pregexec(sv_str, INTEGER_RE);
+        Rstats::Double ret = Rstats::pl_pregexec(sv_str, INTEGER_RE);
         if (ret) {
           SV* match1 = Rstats::pl_new_sv_pv("");
           Perl_reg_numbered_buff_fetch(aTHX_ INTEGER_RE, 1, match1);
@@ -242,7 +218,7 @@ namespace Rstats {
         sv_ret =  &PL_sv_undef;
       }
       else {
-        Rstats::Logical ret = Rstats::pl_pregexec(sv_value, DOUBLE_RE);
+        Rstats::Double ret = Rstats::pl_pregexec(sv_value, DOUBLE_RE);
         if (ret) {
           SV* match1 = Rstats::pl_new_sv_pv("");
           Perl_reg_numbered_buff_fetch(aTHX_ DOUBLE_RE, 1, match1);

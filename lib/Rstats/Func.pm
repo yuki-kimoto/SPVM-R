@@ -283,9 +283,6 @@ sub matrix {
   elsif (Rstats::Func::get_type($r, $x1)  eq "integer") {
     $x_matrix = c_integer($r, $x1_values);
   }
-  elsif (Rstats::Func::get_type($r, $x1)  eq "logical") {
-    $x_matrix = c_logical($r, $x1_values);
-  }
   else {
     croak("Invalid type " . Rstats::Func::get_type($r, $x1) . " is passed");
   }
@@ -611,7 +608,6 @@ my $type_level = {
   complex => 5,
   double => 4,
   integer => 3,
-  logical => 2,
   na => 1
 };
 
@@ -680,17 +676,14 @@ sub read_table {
     Carp::croak "line $. did not have $row_size elements"
       if $current_row_size != $row_size;
     
-    $type_columns ||= [('logical') x $row_size];
+    $type_columns ||= [('double') x $row_size];
     
     for (my $i = 0; $i < @row; $i++) {
       
       $columns->[$i] ||= [];
       push @{$columns->[$i]}, $row[$i];
       my $type;
-      if (defined Rstats::Util::looks_like_na($row[$i])) {
-        $type = 'logical';
-      }
-      elsif (defined Rstats::Util::looks_like_double($row[$i])) {
+      if (defined Rstats::Util::looks_like_double($row[$i])) {
         $type = 'double';
       }
       elsif (defined Rstats::Util::looks_like_complex($row[$i])) {
@@ -857,7 +850,7 @@ sub upper_tri {
       }
     }
     
-    my $x2 = matrix($r, Rstats::Func::c_logical($r, @$x2_values), $rows_count, $cols_count);
+    my $x2 = matrix($r, Rstats::Func::c_double($r, @$x2_values), $rows_count, $cols_count);
     
     return $x2;
   }
@@ -892,7 +885,7 @@ sub lower_tri {
       }
     }
     
-    my $x2 = matrix($r, Rstats::Func::c_logical($r, @$x2_values), $rows_count, $cols_count);
+    my $x2 = matrix($r, Rstats::Func::c_double($r, @$x2_values), $rows_count, $cols_count);
     
     return $x2;
   }
@@ -1288,7 +1281,7 @@ sub is_element {
     push @$x3_values, $match ? 1 : 0;
   }
   
-  return Rstats::Func::c_logical($r, @$x3_values);
+  return Rstats::Func::c_double($r, @$x3_values);
 }
 
 sub setequal {
@@ -2848,7 +2841,7 @@ sub get_array {
     $x_matrix = c_integer($r, \@x2_values);
   }
   elsif ($x1->get_type eq "logical") {
-    $x_matrix = c_logical($r, \@x2_values);
+    $x_matrix = c_double($r, \@x2_values);
   }
   else {
     croak("Invalid type " . $x1->get_type . " is passed");
@@ -3338,12 +3331,6 @@ sub get_dataframe {
       push @$col_index_values, Rstats::Func::_name_to_index($r, $x1, $col_index_value);
     }
   }
-  elsif (Rstats::Func::is_logical($r, $col_index)) {
-    my $tmp_col_index_values = $col_index->values;
-    for (my $i = 0; $i < @$tmp_col_index_values; $i++) {
-      push @$col_index_values, $i + 1 if $tmp_col_index_values->[$i];
-    }
-  }
   else {
     my $col_index_values_tmp = $col_index->values;
     
@@ -3747,7 +3734,7 @@ sub set_array {
       my $pos = $poss->[$i];
       my $element = $x2_elements->[(($i + 1) % @$poss) - 1];
       if (Rstats::Func::is_na($r, $element)) {
-        $x1_elements->[$pos] = Rstats::Func::c_logical($r, undef);
+        $x1_elements->[$pos] = Rstats::Func::c_double($r, undef);
       }
       else {
         my $value = Rstats::Func::value($r, $element);
@@ -3756,7 +3743,7 @@ sub set_array {
         }
         else {
           Carp::carp "invalid factor level, NA generated";
-          $x1_elements->[$pos] = Rstats::Func::c_logical($r, undef);
+          $x1_elements->[$pos] = Rstats::Func::c_double($r, undef);
         }
       }
     }

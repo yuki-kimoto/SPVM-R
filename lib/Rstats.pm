@@ -90,7 +90,6 @@ my @func_names = qw/
   c_string
   c_complex
   c_integer
-  c_logical
   C
   charmatch
   chartr
@@ -264,7 +263,6 @@ sub new {
   $self->helper('is.factor' => \&Rstats::Func::is_factor);
   $self->helper('is.ordered' => \&Rstats::Func::is_ordered);
   $self->helper('is.data_frame' => \&Rstats::Func::is_data_frame);
-  $self->helper('is.logical' => \&Rstats::Func::is_logical);
   $self->helper('is.element' => \&Rstats::Func::is_element);
 
   $self->helper('as.array' => \&Rstats::Func::as_array);

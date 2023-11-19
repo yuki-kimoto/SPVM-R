@@ -33,7 +33,7 @@ namespace Rstats {
   }
 
   template <class T>
-  Rstats::Logical Vector<T>::exists_na_position(Rstats::Integer position) {
+  Rstats::Double Vector<T>::exists_na_position(Rstats::Integer position) {
     if (this->get_na_positions() == NULL) {
       return 0;
     }

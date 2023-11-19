@@ -90,7 +90,6 @@ namespace Rstats {
   typedef std::complex<NV> Complex;
   typedef NV Double;
   typedef IV Integer;
-  typedef UV Logical;// 0 or 1
   typedef UV NaPosition;
   
   // Error constant value
