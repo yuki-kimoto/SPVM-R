@@ -153,7 +153,7 @@ namespace Rstats {
     template <>
     void set_vector<Rstats::Character>(SV*, SV*, Rstats::Vector<Rstats::Character>*);
     template <>
-    void set_vector<Rstats::Complex>(SV*, SV*, Rstats::Vector<Rstats::Complex>*);
+    void set_vector<std::complex<double>>(SV*, SV*, Rstats::Vector<std::complex<double>>*);
     template <>
     void set_vector<double>(SV*, SV*, Rstats::Vector<double>*);
     template <>
@@ -166,7 +166,7 @@ namespace Rstats {
     template <>
     Rstats::Vector<Rstats::Character>* get_vector<Rstats::Character>(SV*, SV*);
     template <>
-    Rstats::Vector<Rstats::Complex>* get_vector<Rstats::Complex>(SV*, SV*);
+    Rstats::Vector<std::complex<double>>* get_vector<std::complex<double>>(SV*, SV*);
     template <>
     Rstats::Vector<double>* get_vector<double>(SV*, SV*);
     template <>
@@ -179,7 +179,7 @@ namespace Rstats {
     template <>
     SV* new_vector<Rstats::Character>(SV*);
     template <>
-    SV* new_vector<Rstats::Complex>(SV*);
+    SV* new_vector<std::complex<double>>(SV*);
     template <>
     SV* new_vector<double>(SV*);
     template <>

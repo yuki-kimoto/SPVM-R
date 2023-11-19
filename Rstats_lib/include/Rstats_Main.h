@@ -89,7 +89,7 @@ namespace Rstats {
 
   // Rstats type
   typedef SV* Character;
-  typedef std::complex<NV> Complex;
+  typedef std::complex<double> Complex;
   typedef double Double;
   typedef int32_t Integer;
   typedef uint32_t NaPosition;
