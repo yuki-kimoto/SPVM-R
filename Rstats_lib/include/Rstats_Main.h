@@ -88,9 +88,9 @@ namespace Rstats {
   // Rstats type
   typedef SV* Character;
   typedef std::complex<NV> Complex;
-  typedef NV Double;
-  typedef IV Integer;
-  typedef UV NaPosition;
+  typedef double Double;
+  typedef int32_t Integer;
+  typedef uint32_t NaPosition;
   
   // Error constant value
   const Rstats::Integer WARN_NA_INTRODUCED = 1;
