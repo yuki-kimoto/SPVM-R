@@ -1,0 +1,7 @@
+class TestCase::R {
+  use R;
+  static method test : int () {
+    
+    return 1;
+  }
+}

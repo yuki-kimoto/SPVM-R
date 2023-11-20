@@ -1,4 +1,2 @@
-0.0149
-  - remove Rstats functions, and rename Rstats::Class to Rstats
-0.01
-  - first developer release
+0.001
+  - First release.

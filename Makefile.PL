@@ -1,59 +1,71 @@
-use 5.010001;
-
+use 5.008_007;
+use ExtUtils::MakeMaker;
 use strict;
 use warnings;
-use ExtUtils::MakeMaker;
-
 use Config;
+use Getopt::Long 'GetOptions';
 
-# Decide cpp compiler
-my @cpp_compilers = ('c++', 'g++', 'CC');
-my $found_cpp_compiler;
-for my $cpp_compiler (@cpp_compilers) {
-  # Check if command exists
-  if (system($cpp_compiler) != -1) {
-    $found_cpp_compiler = $cpp_compiler;
-    last;
-  }
-}
-unless ($found_cpp_compiler) {
-  die "Can't find c++ compiler";
-}
-my $cc = $found_cpp_compiler;
-my $ld = $found_cpp_compiler;
-
-WriteMakefile(
-    NAME                => 'Rstats',
-    AUTHOR              => 'Yuki Kimoto <kimoto.yuki@gmail.com>',
-    VERSION_FROM        => 'lib/Rstats.pm',
-    ABSTRACT_FROM       => 'lib/Rstats.pm',
-    ($ExtUtils::MakeMaker::VERSION >= 6.3002
-      ? ('LICENSE'=> 'perl')
-      : ()),
-    PL_FILES            => {},
-    META_MERGE   => {
-      requires  => {perl => '5.010001'},
-      resources => {
-        license    => 'http://www.opensource.org/licenses/artistic-license-2.0',
-        bugtracker => 'https://github.com/yuki-kimoto/Rstats/issues',
-        repository => 'https://github.com/yuki-kimoto/Rstats.git'
-      }
-    },
-    PREREQ_PM => {
-        'Object::Simple' => '3.10',
-        'Math::Round' => '0.06',
-        'Text::UnicodeTable::Simple' => '0.09'
-    },
-    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'Rstats-*' },
-    CC => $cc,
-    OPTIMIZE => '-O3',
-    LD => $ld,
-    LIBS              => [],
-    DEFINE            => '',
-    INC               => '-I. -I./Rstats_lib/include',
-    H => ['ppport.h', glob('Rstats_lib/include/*.h')],
-    C => ['Rstats.c', glob('Rstats_lib/src/*.cpp')],
-    OBJECT            => '$(O_FILES)',
-    DEFINE => '-o $@'
+GetOptions(
+  'meta' => \my $meta,
+  'no-build-spvm-modules' => \my $no_build_spvm_modules,
 );
+
+if ($meta) {
+  $no_build_spvm_modules = 1;
+}
+
+unless ($meta) {
+  # Do something such as environment check.
+}
+
+my %configure_and_runtime_requires = ('SPVM' => '0.989061');
+WriteMakefile(
+  NAME => 'SPVM::R',
+  VERSION_FROM => 'lib/SPVM/R.pm',
+  LICENSE => 'mit',
+  ($] >= 5.005 ?
+    (ABSTRACT_FROM => 'lib/SPVM/R.pm',
+     AUTHOR => 'Yuki Kimoto<kimoto.yuki@gmail.com>') : ()),
+  test => {TESTS => 't/*.t t/*/*.t t/*/*/*.t'},
+  clean => {FILES => ['.spvm_build', 't/.spvm_build']},
+  META_MERGE => {
+    'meta-spec' => { version => 2 },
+    resources => {
+      repository => {
+        type => 'git',
+        url  => 'https://github.com/yuki-kimoto/SPVM-R.git',
+        web  => 'https://github.com/yuki-kimoto/SPVM-R',
+      },
+    },
+    no_index => {
+      directory => [],
+    }
+  },
+  NORECURS => 1,
+  CONFIGURE_REQUIRES => {
+    %configure_and_runtime_requires,
+  },
+  PREREQ_PM         => {
+    %configure_and_runtime_requires,
+    'SPVM::Math' => '1.001',
+  },
+  TEST_REQUIRES => {
+    
+  },
+);
+
+sub MY::postamble {
+
+  my $make_rule = '';
+  
+  unless ($no_build_spvm_modules) {
+    require SPVM::Builder::Util::API;
+    
+    
+    
+  }
+  
+  return $make_rule;
+}
+
+1;
