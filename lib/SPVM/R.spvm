@@ -30,9 +30,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Short->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -52,9 +52,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Int->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -74,9 +74,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Long->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -96,9 +96,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Float->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -118,9 +118,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Double->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -140,9 +140,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Int->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -162,9 +162,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Long->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -184,9 +184,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Float->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -206,9 +206,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Double->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -228,9 +228,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Long->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -250,9 +250,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Float->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -272,9 +272,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Double->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -294,9 +294,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Float->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -316,9 +316,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Double->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -338,9 +338,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Double->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -385,9 +385,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Byte->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -407,9 +407,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Byte->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -429,9 +429,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Byte->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -451,9 +451,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Byte->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -473,9 +473,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Byte->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -495,9 +495,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Short->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -517,9 +517,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Short->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -539,9 +539,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Short->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -561,9 +561,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Short->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -583,9 +583,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Int->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -605,9 +605,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Int->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -627,9 +627,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Int->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -649,9 +649,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Long->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -671,9 +671,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Long->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
@@ -693,9 +693,9 @@ class R {
     
     my $ndarray_ret = R::NDArray::Float->new($dim);
     
-    my $array = $ndarray->get_array_unsafe;
+    my $array = $ndarray->get_array;
     
-    my $array_ret = $ndarray_ret->get_array_unsafe;
+    my $array_ret = $ndarray_ret->get_array;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {

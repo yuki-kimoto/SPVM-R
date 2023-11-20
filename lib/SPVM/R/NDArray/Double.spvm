@@ -50,10 +50,6 @@ class R::NDArray::Double {
     return (int[])copy $self->{dim};
   }
   
-  method get_dim_unsafe : int[] () {
-    return $self->{dim};
-  }
-  
   method set_dim : void ($dim : int[]) {
     return $self->R::NDArray::set_dim($dim);
   }

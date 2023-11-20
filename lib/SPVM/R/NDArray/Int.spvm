@@ -42,16 +42,12 @@ class R::NDArray::Int {
     return (int[])copy $self->{array};
   }
   
-  method get_array_unsafe : int[] () {
+  method get_array : int[] () {
     return $self->{array};
   }
   
   method dim : int[] () {
     return (int[])copy $self->{dim};
-  }
-  
-  method get_dim_unsafe : int[] () {
-    return $self->{dim};
   }
   
   method set_dim : void ($dim : int[]) {

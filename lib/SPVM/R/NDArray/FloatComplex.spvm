@@ -48,16 +48,12 @@ class R::NDArray::FloatComplexComplex {
     return (Complex_2f[])copy $self->{array};
   }
   
-  method get_array_unsafe : Complex_2f[] () {
+  method get_array : Complex_2f[] () {
     return $self->{array};
   }
   
   method dim : int[] () {
     return (int[])copy $self->{dim};
-  }
-  
-  method get_dim_unsafe : int[] () {
-    return $self->{dim};
   }
   
   method set_dim : void ($dim : int[]) {

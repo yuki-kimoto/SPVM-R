@@ -33,7 +33,7 @@ class R::NDArray : interface_t {
   
   method length : int () {
     
-    my $length = &calc_length($self->get_dim_unsafe);
+    my $length = &calc_length($self->dim);
     
     return $length;
   }

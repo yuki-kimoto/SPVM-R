@@ -42,16 +42,12 @@ class R::NDArray::Long {
     return (long[])copy $self->{array};
   }
   
-  method get_array_unsafe : long[] () {
+  method get_array : long[] () {
     return $self->{array};
   }
   
   method dim : int[] () {
     return (int[])copy $self->{dim};
-  }
-  
-  method get_dim_unsafe : int[] () {
-    return $self->{dim};
   }
   
   method set_dim : void ($dim : int[]) {
