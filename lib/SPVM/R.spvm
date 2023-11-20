@@ -3,6 +3,39 @@
 
 class R {
   version "0.001";
+  
+  use R::NDArray::Byte;
+  use R::NDArray::Short;
+  use R::NDArray::Int;
+  use R::NDArray::Long;
+  use R::NDArray::Float;
+  use R::NDArray::Double;
+  
+  # Class Methods
+  static method new : R () {
+    
+    my $self = new R;
+    
+    return $self;
+  }
+  
+  # Instance Methods
+  method byte_to_short : R::NDArray::Short ($ndarray : R::NDArray::Byte) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $ndarray_ret = R::NDArray::Short->new(
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      
+    }
+    
+    return 
+  }
+  
 =pod
 
   sub parse_index {

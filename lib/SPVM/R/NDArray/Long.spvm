@@ -9,7 +9,29 @@ class R::NDArray::Long {
   # Fields
   has array : long[];
   
-  has dim : ro int[];
+  has dim : int[];
+  
+  # Class Methods
+  static method new : R::NDArray::Long : ($dim : int[], $array : long[] = undef) {
+    
+    my $array_length = -1;
+    if ($array) {
+      $array_length = @$array;
+    }
+    
+    R::NDArray->init_partially($dim, $array_length);
+    
+    my $self = new R::NDArray::Long;
+    
+    if ($array) {
+      $self->{array} = (long[])copy $array;
+    }
+    else {
+      $self->{array} = new long[$array_length];
+    }
+    
+    return $self;
+  }
   
   # Instance Methods
   method length : int {

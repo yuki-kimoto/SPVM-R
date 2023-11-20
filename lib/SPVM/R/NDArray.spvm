@@ -3,11 +3,25 @@
 
 class R::NDArray : interface_t {
   
-  static method calc_length : int ($dim : int[]) {
+  static method check_dim : int ($dim : int[]) {
     
     unless ($dim) {
       die "\$dim must be defined.";
     }
+    
+    my $length = 1;
+    for (my $i = 0; $i < @$dim; $i++) {
+      unless ($dim->[$i] > 0) {
+        die "The element of \$dim must be greater than 0.";
+      }
+    }
+    
+    return $length;
+  }
+  
+  static method calc_length : int ($dim : int[]) {
+    
+    &check_dim($dim);
     
     my $length = 1;
     for (my $i = 0; $i < @$dim; $i++) {
@@ -22,6 +36,21 @@ class R::NDArray : interface_t {
     my $length = &calc_length($self->get_dim_unsafe);
     
     return $length;
+  }
+  
+  method init_partially : void ($dim : int[], $array_length : int) {
+  
+    R::NDArray->check_dim($dim);
+    
+    $self->set_dim($dim);
+    
+    if ($array_length > -1) {
+      my $length = R::NDArray->calc_length($dim);
+      
+      unless ($length == $array_length) {
+        die "The length of \$dim must be equal to the length of \$array.";
+      }
+    }
   }
   
   method set_dim : void ($dim : int[]) {

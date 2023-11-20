@@ -11,6 +11,28 @@ class R::NDArray::Float {
   
   has dim : int[];
   
+  # Class Methods
+  static method new : R::NDArray::Float : ($dim : int[], $array : float[] = undef) {
+    
+    my $array_length = -1;
+    if ($array) {
+      $array_length = @$array;
+    }
+    
+    R::NDArray->init_partially($dim, $array_length);
+    
+    my $self = new R::NDArray::Float;
+    
+    if ($array) {
+      $self->{array} = (float[])copy $array;
+    }
+    else {
+      $self->{array} = new float[$array_length];
+    }
+    
+    return $self;
+  }
+  
   # Instance Methods
   
   method dim : int[] {

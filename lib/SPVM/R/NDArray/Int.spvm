@@ -9,7 +9,29 @@ class R::NDArray::Int {
   # Fields
   has array : int[];
   
-  has dim : ro int[];
+  has dim : int[];
+  
+  # Class Methods
+  static method new : R::NDArray::Int : ($dim : int[], $array : int[] = undef) {
+    
+    my $array_length = -1;
+    if ($array) {
+      $array_length = @$array;
+    }
+    
+    R::NDArray->init_partially($dim, $array_length);
+    
+    my $self = new R::NDArray::Int;
+    
+    if ($array) {
+      $self->{array} = (int[])copy $array;
+    }
+    else {
+      $self->{array} = new int[$array_length];
+    }
+    
+    return $self;
+  }
   
   # Instance Methods
   method length : int {

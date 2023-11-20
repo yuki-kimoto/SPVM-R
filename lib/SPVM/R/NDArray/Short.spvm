@@ -9,7 +9,29 @@ class R::NDArray::Short {
   # Fields
   has array : short[];
   
-  has dim : ro int[];
+  has dim : int[];
+  
+  # Class Methods
+  static method new : R::NDArray::Short : ($dim : int[], $array : short[] = undef) {
+    
+    my $array_length = -1;
+    if ($array) {
+      $array_length = @$array;
+    }
+    
+    R::NDArray->init_partially($dim, $array_length);
+    
+    my $self = new R::NDArray::Short;
+    
+    if ($array) {
+      $self->{array} = (short[])copy $array;
+    }
+    else {
+      $self->{array} = new short[$array_length];
+    }
+    
+    return $self;
+  }
   
   # Instance Methods
   method length : int {

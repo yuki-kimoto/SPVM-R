@@ -11,6 +11,28 @@ class R::NDArray::Byte {
   
   has dim : int[];
   
+  # Class Methods
+  static method new : R::NDArray::Byte : ($dim : int[], $array : byte[] = undef) {
+    
+    my $array_length = -1;
+    if ($array) {
+      $array_length = @$array;
+    }
+    
+    R::NDArray->init_partially($dim, $array_length);
+    
+    my $self = new R::NDArray::Byte;
+    
+    if ($array) {
+      $self->{array} = (byte[])copy $array;
+    }
+    else {
+      $self->{array} = new byte[$array_length];
+    }
+    
+    return $self;
+  }
+  
   # Instance Methods
   method length : int {
     return $self->R::NDArray::length;
