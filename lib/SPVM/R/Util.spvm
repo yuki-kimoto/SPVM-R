@@ -1,12 +1,12 @@
-package Rstats::Util;
+package R::Util;
 use strict;
 use warnings;
 
-require Rstats;
+require R;
 use Scalar::Util ();
 use B ();
 use Carp 'croak';
-use Rstats::Func;
+use R::Func;
 
 my $NAME
   = eval { require Sub::Util; Sub::Util->can('set_subname') } || sub { $_[1] };
@@ -31,9 +31,9 @@ sub parse_index {
   for (my $i = 0; $i < @$x1_dim; $i++) {
     my $_index = $_indexs[$i];
 
-    my $index = defined $_index ? Rstats::Func::to_object($r, $_index) : Rstats::Func::NULL($r);
+    my $index = defined $_index ? R::Func::to_object($r, $_index) : R::Func::NULL($r);
     my $index_values = $index->values;
-    if (@$index_values && !Rstats::Func::is_string($r, $index)) {
+    if (@$index_values && !R::Func::is_string($r, $index)) {
       my $minus_count = 0;
       for my $index_value (@$index_values) {
         if ($index_value == 0) {
@@ -50,15 +50,15 @@ sub parse_index {
     
     if (!@{$index->values}) {
       my $index_values_new = [1 .. $x1_dim->[$i]];
-      $index = Rstats::Func::c_integer($r, @$index_values_new);
+      $index = R::Func::c_integer($r, @$index_values_new);
     }
-    elsif (Rstats::Func::is_string($r, $index)) {
-      if (Rstats::Func::is_vector($r, $x1)) {
+    elsif (R::Func::is_string($r, $index)) {
+      if (R::Func::is_vector($r, $x1)) {
         my $index_new_values = [];
         for my $name (@{$index->values}) {
           my $i = 0;
           my $value;
-          for my $x1_name (@{Rstats::Func::names($r, $x1)->values}) {
+          for my $x1_name (@{R::Func::names($r, $x1)->values}) {
             if ($name eq $x1_name) {
               $value = $x1->values->[$i];
               last;
@@ -68,9 +68,9 @@ sub parse_index {
           croak "Can't find name" unless defined $value;
           push @$index_new_values, $value;
         }
-        $indexs[$i] = Rstats::Func::c_integer($r, @$index_new_values);
+        $indexs[$i] = R::Func::c_integer($r, @$index_new_values);
       }
-      elsif (Rstats::Func::is_matrix($r, $x1)) {
+      elsif (R::Func::is_matrix($r, $x1)) {
         
       }
       else {
@@ -83,26 +83,26 @@ sub parse_index {
       for my $k (1 .. $x1_dim->[$i]) {
         push @$index_value_new, $k unless grep { $_ == -$k } @{$index->values};
       }
-      $index = Rstats::Func::c_integer($r, @$index_value_new);
+      $index = R::Func::c_integer($r, @$index_value_new);
     }
 
     push @indexs, $index;
 
-    my $count = Rstats::Func::get_length($r, $index);
+    my $count = R::Func::get_length($r, $index);
     push @x2_dim, $count unless $count == 1 && $drop;
   }
   @x2_dim = (1) unless @x2_dim;
   
   my $index_values = [map { $_->values } @indexs];
   my $ords = cross_product($index_values);
-  my @poss = map { Rstats::Util::index_to_pos($_, $x1_dim) } @$ords;
+  my @poss = map { R::Util::index_to_pos($_, $x1_dim) } @$ords;
 
   return [\@poss, \@x2_dim, \@indexs];
 }
 
 =head1 NAME
 
-Rstats::Util - Utility class
+R::Util - Utility class
 
 =head1 FUNCTION
 

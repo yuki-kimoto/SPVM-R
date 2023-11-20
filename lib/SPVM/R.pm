@@ -1,4 +1,4 @@
-package Rstats;
+package R;
 use strict;
 use warnings;
 
@@ -8,9 +8,9 @@ our $VERSION = '0.001';
 
 =head1 NAME
 
-Rstats - R language build on Perl
+R - R language build on Perl
 
-B<Rstats is yet experimental release. Incompatible change will occur without warning.>
+B<R is yet experimental release. Incompatible change will occur without warning.>
 
 =head1 Usage
   

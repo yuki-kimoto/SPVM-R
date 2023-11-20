@@ -2,11 +2,11 @@ use Test::More 'no_plan';
 use strict;
 use warnings;
 
-use Rstats;
+use R;
 use POSIX();
-use Rstats;
+use R;
 
-my $r = Rstats->new;
+my $r = R->new;
 
 # operation - pow
 {

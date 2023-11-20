@@ -2,13 +2,13 @@ use Test::More 'no_plan';
 use strict;
 use warnings;
 
-use Rstats;
+use R;
 use Math::Trig ();
 use Math::Complex ();
 
-use Rstats;
+use R;
 
-my $r = Rstats->new;
+my $r = R->new;
 
 
 

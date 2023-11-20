@@ -2,10 +2,10 @@ use Test::More;
 use strict;
 use warnings;
 
-use Rstats;
-use Rstats;
+use R;
+use R;
 
-my $r = Rstats->new;
+my $r = R->new;
 
 # skip test on openbsd because openbsd srand and rand can't ensure reproducibility
 if($^O eq 'openbsd') {

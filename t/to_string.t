@@ -2,10 +2,10 @@ use Test::More 'no_plan';
 use strict;
 use warnings;
 
-use Rstats;
-use Rstats;
+use R;
+use R;
 
-my $r = Rstats->new;
+my $r = R->new;
 
 # complex
 {
