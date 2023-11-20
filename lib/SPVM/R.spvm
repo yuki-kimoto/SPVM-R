@@ -705,6 +705,30 @@ class R {
     return $ndarray_ret;
   }
   
+  method add_int : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+    unless ($ndarray1) {
+      die "\$ndarray1 must be defined";
+    }
+    
+    unless ($ndarray2) {
+      die "\$ndarray2 must be defined";
+    }
+    
+    my $length1 = $ndarray1->length;
+    
+    my $length2 = $ndarray2->length;
+    
+    unless ($length1 == $length2) {
+      die "The length of \$ndarray1 must be equal to the length of \$ndarray2.";
+    }
+    
+    my $
+    
+    for (my $i = 0; $i < $length1; $i++) {
+      $array_ret->[$i] = $array->[$i]
+    }
+  }
+  
 =pod
 
   sub parse_index {
