@@ -26,14 +26,683 @@ class R {
       die "\$ndarray must be defined";
     }
     
-    my $ndarray_ret = R::NDArray::Short->new(
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Short->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
     
     my $length = $ndarray->length;
     for (my $i = 0; $i < $length; $i++) {
-      
+      $array_ret->[$i] = (short)$array->[$i]
     }
     
-    return 
+    return $ndarray_ret;
+  }
+  
+  method byte_to_int : R::NDArray::Int ($ndarray : R::NDArray::Byte) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Int->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (int)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method byte_to_long : R::NDArray::Long ($ndarray : R::NDArray::Byte) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Long->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (long)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method byte_to_float : R::NDArray::Float ($ndarray : R::NDArray::Byte) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Float->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (float)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method byte_to_double : R::NDArray::Double ($ndarray : R::NDArray::Byte) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Double->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (double)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method short_to_int : R::NDArray::Int ($ndarray : R::NDArray::Short) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Int->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (int)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method short_to_long : R::NDArray::Long ($ndarray : R::NDArray::Short) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Long->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (long)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method short_to_float : R::NDArray::Float ($ndarray : R::NDArray::Short) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Float->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (float)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method short_to_double : R::NDArray::Double ($ndarray : R::NDArray::Short) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Double->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (double)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method int_to_long : R::NDArray::Long ($ndarray : R::NDArray::Int) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Long->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (long)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method int_to_float : R::NDArray::Float ($ndarray : R::NDArray::Int) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Float->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (float)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method int_to_double : R::NDArray::Double ($ndarray : R::NDArray::Int) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Double->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (double)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method long_to_float : R::NDArray::Float ($ndarray : R::NDArray::Long) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Float->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (float)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method long_to_double : R::NDArray::Double ($ndarray : R::NDArray::Long) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Double->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (double)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method float_to_double : R::NDArray::Double ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Double->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (double)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  method short_to_byte : R::NDArray::Byte ($ndarray : R::NDArray::Short) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Byte->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (byte)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method int_to_byte : R::NDArray::Byte ($ndarray : R::NDArray::Int) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Byte->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (byte)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method long_to_byte : R::NDArray::Byte ($ndarray : R::NDArray::Long) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Byte->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (byte)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method float_to_byte : R::NDArray::Byte ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Byte->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (byte)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method double_to_byte : R::NDArray::Byte ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Byte->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (byte)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method int_to_short : R::NDArray::Short ($ndarray : R::NDArray::Int) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Short->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (short)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method long_to_short : R::NDArray::Short ($ndarray : R::NDArray::Long) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Short->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (short)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method float_to_short : R::NDArray::Short ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Short->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (short)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method double_to_short : R::NDArray::Short ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Short->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (short)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method long_to_int : R::NDArray::Int ($ndarray : R::NDArray::Long) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Int->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (int)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method float_to_int : R::NDArray::Int ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Int->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (int)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method double_to_int : R::NDArray::Int ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Int->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (int)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method float_to_long : R::NDArray::Long ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Long->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (long)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method double_to_long : R::NDArray::Long ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Long->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (long)$array->[$i]
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method double_to_float : R::NDArray::Float ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "\$ndarray must be defined";
+    }
+    
+    my $dim = $ndarray->get_dim_unsafe;
+    
+    my $ndarray_ret = R::NDArray::Float->new($dim);
+    
+    my $array = $ndarray->get_array_unsafe;
+    
+    my $array_ret = $ndarray_ret->get_array_unsafe;
+    
+    my $length = $ndarray->length;
+    for (my $i = 0; $i < $length; $i++) {
+      $array_ret->[$i] = (float)$array->[$i]
+    }
+    
+    return $ndarray_ret;
   }
   
 =pod
