@@ -1,6 +1,39 @@
 # Copyright (c) 2023 Yuki Kimoto
 # MIT License
 
-class R::NDArray {
+class R::NDArray : interface_t {
   
+  static method calc_length : int ($dim : int[]) {
+    
+    unless ($dim) {
+      die "\$dim must be defined.";
+    }
+    
+    my $length = 1;
+    for (my $i = 0; $i < @$dim; $i++) {
+      $length *= $dim->[$i];
+    }
+    
+    return $length;
+  }
+  
+  method length : int () {
+    
+    my $length = &calc_length($self->get_dim_unsafe);
+    
+    return $length;
+  }
+  
+  method set_dim : void ($dim : int[]) {
+    
+    my $length = R::NDArray->calc_length($dim);
+    
+    my $self_length = $self->length;
+    
+    unless ($length == $self_length) {
+      die "The length of \$dim must be the length of the dim field.";
+    }
+    
+    $self->{dim} = (int[])copy $dim;
+  }
 }

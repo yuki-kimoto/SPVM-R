@@ -3,4 +3,41 @@
 
 class R::NDArray::Float {
   
+  # Interface
+  interface R::NDArray;
+  
+  # Fields
+  has array : float[];
+  
+  has dim : int[];
+  
+  # Instance Methods
+  
+  method dim : int[] {
+    return (int)
+  }
+  
+  method length : int {
+    return $self->R::NDArray::length;
+  }
+  
+  method to_array : float[] () {
+    return (float[])copy $self->{array};
+  }
+  
+  method get_array_unsafe : float[] () {
+    return $self->{array};
+  }
+  
+  method dim : int[] () {
+    return (int[])copy $self->{dim};
+  }
+  
+  method get_dim_unsafe : int[] () {
+    return $self->dim};
+  }
+  
+  method set_dim : void ($dim : int[]) {
+    return $self->R::NDArray::set_dim($dim);
+  }
 }

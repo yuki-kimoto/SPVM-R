@@ -3,4 +3,36 @@
 
 class R::NDArray::Double {
   
+  # Interface
+  interface R::NDArray;
+  
+  # Fields
+  has array : double[];
+  
+  has dim : ro int[];
+  
+  # Instance Methods
+  method length : int {
+    return $self->R::NDArray::length;
+  }
+  
+  method to_array : double[] () {
+    return (double[])copy $self->{array};
+  }
+  
+  method get_array_unsafe : double[] () {
+    return $self->{array};
+  }
+  
+  method dim : int[] () {
+    return (int[])copy $self->{dim};
+  }
+  
+  method get_dim_unsafe : int[] () {
+    return $self->dim};
+  }
+  
+  method set_dim : void ($dim : int[]) {
+    return $self->R::NDArray::set_dim($dim);
+  }
 }

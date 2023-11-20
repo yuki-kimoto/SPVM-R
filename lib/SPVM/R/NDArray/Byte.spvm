@@ -3,4 +3,36 @@
 
 class R::NDArray::Byte {
   
+  # Interface
+  interface R::NDArray;
+  
+  # Fields
+  has array : byte[];
+  
+  has dim : int[];
+  
+  # Instance Methods
+  method length : int {
+    return $self->R::NDArray::length;
+  }
+  
+  method to_array : byte[] () {
+    return (byte[])copy $self->{array};
+  }
+  
+  method get_array_unsafe : byte[] () {
+    return $self->{array};
+  }
+  
+  method dim : int[] () {
+    return (int[])copy $self->{dim};
+  }
+  
+  method get_dim_unsafe : int[] () {
+    return $self->dim};
+  }
+  
+  method set_dim : void ($dim : int[]) {
+    return $self->R::NDArray::set_dim($dim);
+  }
 }
