@@ -1,0 +1,92 @@
+# Copyright (c) 2023 Yuki Kimoto
+# MIT License
+
+class R {
+
+=pod
+
+  sub parse_index {
+    my $r = shift;
+    
+    my ($x1, $drop, $_indexs) = @_;
+    my @_indexs = @$_indexs;
+    
+    my $x1_dim = $x1->dim_as_array->values;
+    my @indexs;
+    my @x2_dim;
+    
+    for (my $i = 0; $i < @$x1_dim; $i++) {
+      my $_index = $_indexs[$i];
+
+      my $index = defined $_index ? R::Func::to_object($r, $_index) : R::Func::NULL($r);
+      my $index_values = $index->values;
+      if (@$index_values && !R::Func::is_string($r, $index)) {
+        my $minus_count = 0;
+        for my $index_value (@$index_values) {
+          if ($index_value == 0) {
+            croak "0 is invalid index";
+          }
+          else {
+            $minus_count++ if $index_value < 0;
+          }
+        }
+        croak "Can't min minus sign and plus sign"
+          if $minus_count > 0 && $minus_count != @$index_values;
+        $index->{_minus} = 1 if $minus_count > 0;
+      }
+      
+      if (!@{$index->values}) {
+        my $index_values_new = [1 .. $x1_dim->[$i]];
+        $index = R::Func::c_integer($r, @$index_values_new);
+      }
+      elsif (R::Func::is_string($r, $index)) {
+        if (R::Func::is_vector($r, $x1)) {
+          my $index_new_values = [];
+          for my $name (@{$index->values}) {
+            my $i = 0;
+            my $value;
+            for my $x1_name (@{R::Func::names($r, $x1)->values}) {
+              if ($name eq $x1_name) {
+                $value = $x1->values->[$i];
+                last;
+              }
+              $i++;
+            }
+            croak "Can't find name" unless defined $value;
+            push @$index_new_values, $value;
+          }
+          $indexs[$i] = R::Func::c_integer($r, @$index_new_values);
+        }
+        elsif (R::Func::is_matrix($r, $x1)) {
+          
+        }
+        else {
+          croak "Can't support name except vector and matrix";
+        }
+      }
+      elsif ($index->{_minus}) {
+        my $index_value_new = [];
+        
+        for my $k (1 .. $x1_dim->[$i]) {
+          push @$index_value_new, $k unless grep { $_ == -$k } @{$index->values};
+        }
+        $index = R::Func::c_integer($r, @$index_value_new);
+      }
+
+      push @indexs, $index;
+
+      my $count = R::Func::get_length($r, $index);
+      push @x2_dim, $count unless $count == 1 && $drop;
+    }
+    @x2_dim = (1) unless @x2_dim;
+    
+    my $index_values = [map { $_->values } @indexs];
+    my $ords = cross_product($index_values);
+    my @poss = map { R::Util::index_to_pos($_, $x1_dim) } @$ords;
+
+    return [\@poss, \@x2_dim, \@indexs];
+  }
+
+=cut
+  
+}
