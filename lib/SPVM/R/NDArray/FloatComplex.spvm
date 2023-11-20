@@ -1,18 +1,19 @@
 # Copyright (c) 2023 Yuki Kimoto
 # MIT License
 
-class R::NDArray::Int {
+class R::NDArray::FloatComplexComplex {
+  use Complex_2f;
   
   # Interface
   interface R::NDArray;
   
   # Fields
-  has array : int[];
+  has array : Complex_2f[];
   
   has dim : int[];
   
   # Class Methods
-  static method new : R::NDArray::Int : ($dim : int[], $array : int[] = undef) {
+  static method new : R::NDArray::FloatComplex : ($dim : int[], $array : Complex_2f[] = undef) {
     
     my $array_length = -1;
     if ($array) {
@@ -21,28 +22,33 @@ class R::NDArray::Int {
     
     R::NDArray->init_partially($dim, $array_length);
     
-    my $self = new R::NDArray::Int;
+    my $self = new R::NDArray::FloatComplex;
     
     if ($array) {
-      $self->{array} = (int[])copy $array;
+      $self->{array} = (Complex_2f[])copy $array;
     }
     else {
-      $self->{array} = new int[$array_length];
+      $self->{array} = new Complex_2f[$array_length];
     }
     
     return $self;
   }
   
   # Instance Methods
+  
+  method dim : int[] {
+    return (int)
+  }
+  
   method length : int {
     return $self->R::NDArray::length;
   }
   
-  method to_array : int[] () {
-    return (int[])copy $self->{array};
+  method to_array : Complex_2f[] () {
+    return (Complex_2f[])copy $self->{array};
   }
   
-  method get_array_unsafe : int[] () {
+  method get_array_unsafe : Complex_2f[] () {
     return $self->{array};
   }
   

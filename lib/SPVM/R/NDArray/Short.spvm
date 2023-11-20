@@ -51,7 +51,7 @@ class R::NDArray::Short {
   }
   
   method get_dim_unsafe : int[] () {
-    return $self->dim};
+    return $self->{dim};
   }
   
   method set_dim : void ($dim : int[]) {
