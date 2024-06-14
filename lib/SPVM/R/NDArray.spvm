@@ -6,15 +6,48 @@ class R::NDArray {
   use Hash;
   
   # Fields
-  has data : byte[];
+  has data : ro byte[];
   
-  has item_size : int;
+  has item_size : ro int;
   
-  has length : int;
+  has length : ro int;
   
-  has type : string;
+  has type : ro string;
   
-  has shape : int[];
+  has dim : int[];
+  
+  method dim : int[] () {
+    my $dim = $self->{dim};
+    
+    my $dim_clone = copy $dim;
+    
+    return $dim_clone;
+  }
+  
+  method set_dim : void ($dim : int[]) {
+    
+    unless ($dim) {
+      die "The dimension \$dim must be defined.";
+    }
+    
+    my $length_calcurated_by_dim = 1;
+    for my $dim_element (@$dim) {
+      
+      unless ($dim_element > 0) {
+        die "The element of the dimension \$dim must be greater than 0.";
+      }
+      
+      $length_calcurated_by_dim *= $dim_element;
+    }
+    
+    my $length = $self->{length};
+    
+    if ($length_calcurated_by_dim != $length) {
+      die "\"length\" field must be the same as the length calcurated by the dimension \$dim.";
+    }
+    
+    $self->{dim} = copy $dim;
+  }
   
   # Class Mehtods
   static method new : R::NDArray ($options : object[] = undef) {
@@ -48,47 +81,53 @@ class R::NDArray {
     
     my $length = $options_h->get_or_default_int("length", -1);
     
-    my $shape_object = $options_h->get_or_default("shape", undef);
-    unless ($shape_object) {
+    my $dim_object = $options_h->get_or_default("dim", undef);
+    unless ($dim_object) {
       if ($length == 0) {
-        $shape_object = (object)new int[0];
+        $dim_object = (object)new int[0];
       }
       elsif ($length > 0) {
-        $shape_object = (object)[$length];
+        $dim_object = (object)[$length];
       }
       else {
-        die "\"shape\" option must be defined if \"length\" option is not greater than or equal to 0.";
+        die "\"dim\" option must be defined if \"length\" option is not greater than or equal to 0.";
       }
     }
-    unless ($shape_object isa int[]) {
-      die "\"shape\" option must be int[] type.";
+    unless ($dim_object isa int[]) {
+      die "\"dim\" option must be int[] type.";
     }
-    my $shape = (int[])$shape_object;
+    my $dim = (int[])$dim_object;
     
-    if (@$shape >= 0) {
-      die "The element length of \"shape\" option must be greater than 0.";
+    if (@$dim >= 0) {
+      die "The element length of \"dim\" option must be greater than 0.";
     }
     
-    my $length_calcurated_by_shape = 1;
-    for my $shape_element (@$shape) {
+    my $length_calcurated_by_dim = 1;
+    for my $dim_element (@$dim) {
       
-      unless ($shape_element > 0) {
-        die "The element of \"shape\" option must be greater than 0.";
+      unless ($dim_element > 0) {
+        die "The element of \"dim\" option must be greater than 0.";
       }
       
-      $length_calcurated_by_shape *= $shape_element;
+      $length_calcurated_by_dim *= $dim_element;
     }
-    $self->{shape} = $shape;
+    $self->{dim} = $dim;
     
     unless ($length >= 0) {
-      $length = $length_calcurated_by_shape;
+      $length = $length_calcurated_by_dim;
     }
     
-    if ($length_calcurated_by_shape != $length) {
-      die "\"length\" option must be the same as the length calcurated by \"shape\" option.";
+    if ($length_calcurated_by_dim != $length) {
+      die "\"length\" option must be the same as the length calcurated by \"dim\" option.";
     }
     
     $self->{length} = $length;
+    
+    my $data_bytes_length = $item_size * $length;
+    
+    my $data = new byte[$data_bytes_length];
+    
+    $self->{data} = $data;
   }
   
 }
