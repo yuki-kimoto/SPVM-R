@@ -3,4 +3,92 @@
 
 class R::NDArray {
   
+  use Hash;
+  
+  # Fields
+  has data : byte[];
+  
+  has item_size : int;
+  
+  has length : int;
+  
+  has type : string;
+  
+  has shape : int[];
+  
+  # Class Mehtods
+  static method new : R::NDArray ($options : object[] = undef) {
+    
+    my $self = new R::NDArray;
+    
+    $self->init($options);
+    
+    return $self;
+  }
+  
+  # Instance Methods
+  protected method init : void ($options : object[] = undef) {
+    
+    my $options_h = Hash->new($options);
+    
+    my $item_size = $options_h->get_or_default_int("item_size", -1);
+    unless ($item_size > 0) {
+      die "\"item_size\" option must be greter than 0.";
+    }
+    $self->{item_size} = $item_size;
+    
+    my $type = $options_h->get_or_default_string("type", undef);
+    unless ($type) {
+      die "\"type\" option must be defined.";
+    }
+    unless (length $type) {
+      die "The length of \"type\" option must greater than 0.";
+    }
+    $self->{type} = $type;
+    
+    my $length = $options_h->get_or_default_int("length", -1);
+    
+    my $shape_object = $options_h->get_or_default("shape", undef);
+    unless ($shape_object) {
+      if ($length == 0) {
+        $shape_object = (object)new int[0];
+      }
+      elsif ($length > 0) {
+        $shape_object = (object)[$length];
+      }
+      else {
+        die "\"shape\" option must be defined if \"length\" option is not greater than or equal to 0.";
+      }
+    }
+    unless ($shape_object isa int[]) {
+      die "\"shape\" option must be int[] type.";
+    }
+    my $shape = (int[])$shape_object;
+    
+    if (@$shape >= 0) {
+      die "The element length of \"shape\" option must be greater than 0.";
+    }
+    
+    my $length_calcurated_by_shape = 1;
+    for my $shape_element (@$shape) {
+      
+      unless ($shape_element > 0) {
+        die "The element of \"shape\" option must be greater than 0.";
+      }
+      
+      $length_calcurated_by_shape *= $shape_element;
+    }
+    $self->{shape} = $shape;
+    
+    unless ($length >= 0) {
+      $length = $length_calcurated_by_shape;
+    }
+    
+    if ($length_calcurated_by_shape != $length) {
+      die "\"length\" option must be the same as the length calcurated by \"shape\" option.";
+    }
+    
+    $self->{length} = $length;
+  }
+  
 }
