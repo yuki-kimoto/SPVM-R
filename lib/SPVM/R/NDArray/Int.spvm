@@ -1,6 +1,22 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::NDArray::Int {
+class R::NDArray::Int extends R::NDArray {
   
+  # Class Mehtods
+  static method new : R::NDArray ($options : object[] = undef) {
+    
+    my $self = new R::NDArray::Int;
+    
+    $self->init($options);
+    
+    return $self;
+  }
+  
+  protected method init : void ($options : object[] = undef) {
+    
+    $options = Fn->merge_options({item_size => 4, type => "int"}, $options);
+    
+    $self->SUPER::init($options);
+  }
 }

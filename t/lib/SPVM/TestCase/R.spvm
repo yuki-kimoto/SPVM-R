@@ -1,6 +1,7 @@
 class TestCase::R {
   use R;
   use R::NDArray;
+  use R::NDArray::Int;
   
   static method test : int () {
     
