@@ -1,4 +1,4 @@
-package SPVM::R::Object::Int;
+package SPVM::R::NDArray::Double;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Object::Int;
 
 =head1 Name
 
-SPVM::R::Object::Int - Short Description
+SPVM::R::NDArray::Double - Short Description
 
 =head1 Description
 
-The R::Object::Int class in L<SPVM> has methods to do someting.
+The R::NDArray::Double class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Object::Int;
+  use R::NDArray::Double;
 
 =head1 Details
 

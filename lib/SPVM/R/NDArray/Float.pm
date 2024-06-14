@@ -1,4 +1,4 @@
-package SPVM::R::Object::Double;
+package SPVM::R::NDArray::Float;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Object::Double;
 
 =head1 Name
 
-SPVM::R::Object::Double - Short Description
+SPVM::R::NDArray::Float - Short Description
 
 =head1 Description
 
-The R::Object::Double class in L<SPVM> has methods to do someting.
+The R::NDArray::Float class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Object::Double;
+  use R::NDArray::Float;
 
 =head1 Details
 

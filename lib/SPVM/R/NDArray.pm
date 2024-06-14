@@ -1,4 +1,4 @@
-package SPVM::R::Object::Float;
+package SPVM::R::NDArray;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Object::Float;
 
 =head1 Name
 
-SPVM::R::Object::Float - Short Description
+SPVM::R::NDArray - Short Description
 
 =head1 Description
 
-The R::Object::Float class in L<SPVM> has methods to do someting.
+The R::NDArray class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Object::Float;
+  use R::NDArray;
 
 =head1 Details
 

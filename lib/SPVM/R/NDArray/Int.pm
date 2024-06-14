@@ -1,4 +1,4 @@
-package SPVM::R::Object::String;
+package SPVM::R::NDArray::Int;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Object::String;
 
 =head1 Name
 
-SPVM::R::Object::String - Short Description
+SPVM::R::NDArray::Int - Short Description
 
 =head1 Description
 
-The R::Object::String class in L<SPVM> has methods to do someting.
+The R::NDArray::Int class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Object::String;
+  use R::NDArray::Int;
 
 =head1 Details
 

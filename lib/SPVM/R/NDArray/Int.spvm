@@ -1,6 +1,6 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Object::Int {
+class R::NDArray::Int {
   
 }

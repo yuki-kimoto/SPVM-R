@@ -1,4 +1,4 @@
-package SPVM::R::Object::Long;
+package SPVM::R::NDArray::DoubleComplex;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Object::Long;
 
 =head1 Name
 
-SPVM::R::Object::Long - Short Description
+SPVM::R::NDArray::DoubleComplex - Short Description
 
 =head1 Description
 
-The R::Object::Long class in L<SPVM> has methods to do someting.
+The R::NDArray::DoubleComplex class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Object::Long;
+  use R::NDArray::DoubleComplex;
 
 =head1 Details
 

@@ -1,4 +1,4 @@
-package SPVM::R::Object::DoubleComplex;
+package SPVM::R::NDArray::String;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Object::DoubleComplex;
 
 =head1 Name
 
-SPVM::R::Object::DoubleComplex - Short Description
+SPVM::R::NDArray::String - Short Description
 
 =head1 Description
 
-The R::Object::DoubleComplex class in L<SPVM> has methods to do someting.
+The R::NDArray::String class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Object::DoubleComplex;
+  use R::NDArray::String;
 
 =head1 Details
 
