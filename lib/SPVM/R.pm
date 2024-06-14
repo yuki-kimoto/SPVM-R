@@ -6,11 +6,11 @@ our $VERSION = "0.001";
 
 =head1 Name
 
-SPVM::R - Short Description
+SPVM::R - Porting R language Features
 
 =head1 Description
 
-The R class in L<SPVM> has methods to do someting.
+R class is a port of the R language Features.
 
 =head1 Usage
 
@@ -43,7 +43,13 @@ The R class in L<SPVM> has methods to do someting.
 =head1 Instance Methods
 
 
+=head1 Modules
 
+=over 2
+
+=item * L<R::NDArray|SPVM::R::NDArray>
+
+=back
 
 =head1 Repository
 
