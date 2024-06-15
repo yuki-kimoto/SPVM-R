@@ -4,7 +4,7 @@
 class R::NDArray::String extends R::NDArray {
   
   # Class Mehtods
-  static method new : R::NDArray ($options : object[] = undef) {
+  static method new : R::NDArray::String ($options : object[] = undef) {
     
     my $self = new R::NDArray::String;
     

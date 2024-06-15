@@ -3,4 +3,12 @@
 
 class R::Operation {
   
+  # Class Methods
+  static method new : R::Operation () {
+    
+    my $self = new R::Operation;
+    
+    return $self;
+  }
+  
 }

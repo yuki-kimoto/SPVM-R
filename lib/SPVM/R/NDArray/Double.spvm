@@ -4,7 +4,7 @@
 class R::NDArray::Double extends R::NDArray {
   
   # Class Mehtods
-  static method new : R::NDArray ($options : object[] = undef) {
+  static method new : R::NDArray::Double ($options : object[] = undef) {
     
     my $self = new R::NDArray::Double;
     

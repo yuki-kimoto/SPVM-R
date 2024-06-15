@@ -8,6 +8,9 @@ class TestCase::R {
   use R::NDArray::DoubleComplex;
   use R::NDArray::String;
   
+  use R::Operation;
+  use R::Operation::Int;
+  
   static method test : int () {
     
     return 1;
