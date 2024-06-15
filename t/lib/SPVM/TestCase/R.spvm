@@ -10,6 +10,10 @@ class TestCase::R {
   
   use R::Operation;
   use R::Operation::Int;
+  use R::Operation::Long;
+  use R::Operation::Float;
+  use R::Operation::Double;
+  use R::Operation::DoubleComplex;
   
   static method test : int () {
     

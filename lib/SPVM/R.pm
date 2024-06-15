@@ -15,7 +15,9 @@ R class is a port of the R language Features.
 =head1 Usage
 
   use R;
-
+  
+  my $r = R->new;
+  
 =head1 Details
 
 
@@ -60,6 +62,24 @@ R class is a port of the R language Features.
 =item * L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>
 
 =item * L<R::NDArray::String|SPVM::R::NDArray::String>
+
+=item * L<R::Operation::Int|SPVM::R::Operation::Int>
+
+=item * L<R::Operation::Long|SPVM::R::Operation::Long>
+
+=item * L<R::Operation::Float|SPVM::R::Operation::Float>
+
+=item * L<R::Operation::Double|SPVM::R::Operation::Double>
+
+=item * L<R::Operation::DoubleComplex|SPVM::R::Operation::DoubleComplex>
+
+=item * L<R::Operation::String|SPVM::R::Operation::String>
+
+=item * L<R::Operation::Normal|SPVM::R::Operation::Normal>
+
+=item * L<R::Operation::Type|SPVM::R::Operation::Type>
+
+=item * L<R::DataFrame|SPVM::R::DataFrame>
 
 =back
 

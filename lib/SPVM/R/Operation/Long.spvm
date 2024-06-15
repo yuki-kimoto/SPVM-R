@@ -1,6 +1,37 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Operation::Long {
+class R::Operation::Long extends R::Operation {
+  
+  use R::NDArray::Long;
+  use Fn;
+  
+  # Class Methods
+  static method new : R::Operation::Long () {
+    
+    my $self = new R::Operation::Long;
+    
+    return $self;
+  }
+  
+  # Instance Methods
+  method c : R::NDArray::Long ($values : long[]) {
+    
+    unless ($values) {
+      die "\"\$values\" must be defined.";
+    }
+    
+    my $length = @$values;
+    
+    my $ndarray = R::NDArray::Long->new({length => $length});
+    
+    my $data = $ndarray->data;
+    
+    my $item_size = $ndarray->item_size;
+    
+    Fn->memcpy($data, 0, $values, 0, $length * $item_size);
+    
+    return $ndarray;
+  }
   
 }
