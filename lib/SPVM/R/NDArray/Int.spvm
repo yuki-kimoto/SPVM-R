@@ -15,7 +15,7 @@ class R::NDArray::Int extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options({item_size => 4, type => "int"}, $options);
+    $options = Fn->merge_options($options, {item_size => 4, type => "int"});
     
     $self->SUPER::init($options);
   }
