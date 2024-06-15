@@ -49,6 +49,18 @@ R class is a port of the R language Features.
 
 =item * L<R::NDArray|SPVM::R::NDArray>
 
+=item * L<R::NDArray::Int|SPVM::R::NDArray::Int>
+
+=item * L<R::NDArray::Long|SPVM::R::NDArray::Long>
+
+=item * L<R::NDArray::Float|SPVM::R::NDArray::Float>
+
+=item * L<R::NDArray::Double|SPVM::R::NDArray::Double>
+
+=item * L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>
+
+=item * L<R::NDArray::String|SPVM::R::NDArray::String>
+
 =back
 
 =head1 Repository

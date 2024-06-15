@@ -2,6 +2,11 @@ class TestCase::R {
   use R;
   use R::NDArray;
   use R::NDArray::Int;
+  use R::NDArray::Long;
+  use R::NDArray::Float;
+  use R::NDArray::Double;
+  use R::NDArray::DoubleComplex;
+  use R::NDArray::String;
   
   static method test : int () {
     
