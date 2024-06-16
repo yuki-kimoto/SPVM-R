@@ -19,4 +19,11 @@ class R::NDArray::Int extends R::NDArray {
     
     $self->SUPER::init($options);
   }
+  
+  method data : int[] () {
+    
+    return (int[])$self->{data};
+  }
+  
+  
 }

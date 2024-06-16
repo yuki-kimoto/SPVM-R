@@ -6,14 +6,14 @@ class R::NDArray {
   use Hash;
   
   # Fields
-  has data : object;
+  has data : protected object;
   method data : object () { die "Not Implemented."; }
   
-  has item_size : ro int;
+  has item_size : ro protected int;
   
-  has length : ro int;
+  has length : ro protected int;
   
-  has type : ro string;
+  has type : ro protected string;
   
   has dim : int[];
   
