@@ -22,6 +22,19 @@ class R::NDArray::Int extends R::NDArray {
   
   method c : R::NDArray::Int ($data : int[]) {
     
+    unless ($data) {
+      die "The data \$data must be defined.";
+    }
+    
+    my $length = @$data;
+    
+    my $shape = [$length];
+    
+    my $ndarray = &new({shpae => $shape});
+    
+    $ndarray->{data} = $data;
+    
+    return $ndarray;
   }
   
   method data : int[] () {
