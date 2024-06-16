@@ -7,7 +7,7 @@ class R::NDArray {
   
   # Fields
   has data : protected object;
-  method data : object () { die "Not Implemented."; }
+  method data : object () { die "Not implemented."; }
   
   has item_size : ro protected int;
   
@@ -123,6 +123,12 @@ class R::NDArray {
     }
     
     $self->{length} = $length;
+    
+    my $data = $options_h->get_or_default("data", undef);
+    $self->{data} = $data;
+    
+    $self->check_data;
   }
   
+  protected method check_data : void () { die "Not implemented."; }
 }

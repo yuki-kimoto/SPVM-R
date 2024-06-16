@@ -30,9 +30,7 @@ class R::NDArray::Int extends R::NDArray {
     
     my $shape = [$length];
     
-    my $ndarray = &new({shpae => $shape});
-    
-    $ndarray->{data} = $data;
+    my $ndarray = &new({shpae => $shape, data => $data});
     
     return $ndarray;
   }
@@ -42,4 +40,14 @@ class R::NDArray::Int extends R::NDArray {
     return (int[])$self->{data};
   }
   
+  protected method check_data : void () {
+    
+    my $data = (int[])$self->{data};
+    
+    my $length = $self->{length};
+    
+    unless (@$data == $length) {
+      die "the length of data field must be the same as length field.";
+    }
+  }
 }
