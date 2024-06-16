@@ -25,10 +25,4 @@ class R::NDArray::Float extends R::NDArray {
     return (float[])$self->{data};
   }
   
-  method to_array : float[] () {
-    
-    my $data_clone = copy (float[])$self->{data};
-    
-    return $data_clone;
-  }
 }

@@ -42,11 +42,4 @@ class R::NDArray::Int extends R::NDArray {
     return (int[])$self->{data};
   }
   
-  method to_array : int[] () {
-    
-    my $data_clone = copy (int[])$self->{data};
-    
-    return $data_clone;
-  }
-  
 }

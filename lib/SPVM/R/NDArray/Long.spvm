@@ -25,10 +25,4 @@ class R::NDArray::Long extends R::NDArray {
     return (long[])$self->{data};
   }
   
-  method to_array : long[] () {
-    
-    my $data_clone = copy (long[])$self->{data};
-    
-    return $data_clone;
-  }
 }

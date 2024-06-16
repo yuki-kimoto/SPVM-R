@@ -27,10 +27,4 @@ class R::NDArray::FloatComplex extends R::NDArray {
     return (Complex_2f[])$self->{data};
   }
   
-  method to_array : Complex_2f[] () {
-    
-    my $data_clone = copy (Complex_2f[])$self->{data};
-    
-    return $data_clone;
-  }
 }

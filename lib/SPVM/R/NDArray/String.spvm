@@ -30,11 +30,4 @@ class R::NDArray::String extends R::NDArray {
     return (string[])$self->{data};
   }
   
-  method to_array : string[] () {
-    
-    my $data_clone = Array->copy_string((string[])$self->{data});
-    
-    return $data_clone;
-  }
-  
 }

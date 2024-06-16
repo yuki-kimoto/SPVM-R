@@ -27,10 +27,4 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return (Complex_2d[])$self->{data};
   }
   
-  method to_array : Complex_2d[] () {
-    
-    my $data_clone = copy (Complex_2d[])$self->{data};
-    
-    return $data_clone;
-  }
 }
