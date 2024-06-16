@@ -123,12 +123,6 @@ class R::NDArray {
     }
     
     $self->{length} = $length;
-    
-    my $data_bytes_length = $item_size * $length;
-    
-    my $data = new byte[$data_bytes_length];
-    
-    $self->{data} = $data;
   }
   
 }
