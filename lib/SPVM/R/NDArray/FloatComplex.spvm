@@ -3,6 +3,8 @@
 
 class R::NDArray::FloatComplex extends R::NDArray {
   
+  use Complex_2f;
+  
   # Class Mehtods
   static method new : R::NDArray::FloatComplex ($options : object[] = undef) {
     
@@ -18,5 +20,17 @@ class R::NDArray::FloatComplex extends R::NDArray {
     $options = Fn->merge_options($options, {item_size => 8, type => "float_complex"});
     
     $self->SUPER::init($options);
+  }
+  
+  method data : Complex_2f[] () {
+    
+    return (Complex_2f[])$self->{data};
+  }
+  
+  method to_array : Complex_2f[] () {
+    
+    my $data_clone = copy (Complex_2f[])$self->{data};
+    
+    return $data_clone;
   }
 }

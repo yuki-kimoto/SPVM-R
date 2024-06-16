@@ -3,6 +3,8 @@
 
 class R::NDArray::DoubleComplex extends R::NDArray {
   
+  use Complex_2d;
+  
   # Class Mehtods
   static method new : R::NDArray::DoubleComplex ($options : object[] = undef) {
     
@@ -18,5 +20,17 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     $options = Fn->merge_options($options, {item_size => 16, type => "double_complex"});
     
     $self->SUPER::init($options);
+  }
+  
+  method data : Complex_2d[] () {
+    
+    return (Complex_2d[])$self->{data};
+  }
+  
+  method to_array : Complex_2d[] () {
+    
+    my $data_clone = copy (Complex_2d[])$self->{data};
+    
+    return $data_clone;
   }
 }

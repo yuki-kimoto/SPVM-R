@@ -19,4 +19,16 @@ class R::NDArray::Double extends R::NDArray {
     
     $self->SUPER::init($options);
   }
+  
+  method data : double[] () {
+    
+    return (double[])$self->{data};
+  }
+  
+  method to_array : double[] () {
+    
+    my $data_clone = copy (double[])$self->{data};
+    
+    return $data_clone;
+  }
 }
