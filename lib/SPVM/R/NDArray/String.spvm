@@ -3,6 +3,9 @@
 
 class R::NDArray::String extends R::NDArray {
   
+  use Fn;
+  use Array;
+  
   # Class Mehtods
   static method new : R::NDArray::String ($options : object[] = undef) {
     
@@ -15,8 +18,23 @@ class R::NDArray::String extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options($options, {item_size => 1, type => "string"});
+    my $item_size = Fn->sizeof_native_pointer;
+    
+    $options = Fn->merge_options($options, {item_size => $item_size, type => "string"});
     
     $self->SUPER::init($options);
   }
+  
+  method data : string[] () {
+    
+    return (string[])$self->{data};
+  }
+  
+  method to_array : string[] () {
+    
+    my $data_clone = Array->copy_string((string[])$self->{data});
+    
+    return $data_clone;
+  }
+  
 }
