@@ -6,7 +6,8 @@ class R::NDArray {
   use Hash;
   
   # Fields
-  has data : ro byte[];
+  has data : object;
+  method data : object () { die "Not Implemented."; }
   
   has item_size : ro int;
   
