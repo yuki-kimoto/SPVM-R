@@ -20,21 +20,6 @@ class R::NDArray::Int extends R::NDArray {
     $self->SUPER::init($options);
   }
   
-  method c : R::NDArray::Int ($data : int[]) {
-    
-    unless ($data) {
-      die "The data \$data must be defined.";
-    }
-    
-    my $length = @$data;
-    
-    my $shape = [$length];
-    
-    my $ndarray = &new({shpae => $shape, data => $data});
-    
-    return $ndarray;
-  }
-  
   method data : int[] () {
     
     return (int[])$self->{data};
@@ -50,4 +35,20 @@ class R::NDArray::Int extends R::NDArray {
       die "the length of data field must be the same as length field.";
     }
   }
+  
+  method c : R::NDArray::Int ($data : int[]) {
+    
+    unless ($data) {
+      die "The data \$data must be defined.";
+    }
+    
+    my $length = @$data;
+    
+    my $shape = [$length];
+    
+    my $ndarray = &new({shpae => $shape, data => $data});
+    
+    return $ndarray;
+  }
+  
 }
