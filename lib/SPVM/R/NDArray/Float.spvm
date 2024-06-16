@@ -25,4 +25,15 @@ class R::NDArray::Float extends R::NDArray {
     return (float[])$self->{data};
   }
   
+  protected method check_data : void () {
+    
+    my $data = (float[])$self->{data};
+    
+    my $length = $self->{length};
+    
+    unless (@$data == $length) {
+      die "The length of data field must be the same as length field.";
+    }
+  }
+  
 }

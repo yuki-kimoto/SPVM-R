@@ -27,4 +27,15 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return (Complex_2d[])$self->{data};
   }
   
+  protected method check_data : void () {
+    
+    my $data = (Complex_2d[])$self->{data};
+    
+    my $length = $self->{length};
+    
+    unless (@$data == $length) {
+      die "The length of data field must be the same as length field.";
+    }
+  }
+  
 }

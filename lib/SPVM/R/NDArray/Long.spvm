@@ -25,4 +25,15 @@ class R::NDArray::Long extends R::NDArray {
     return (long[])$self->{data};
   }
   
+  protected method check_data : void () {
+    
+    my $data = (long[])$self->{data};
+    
+    my $length = $self->{length};
+    
+    unless (@$data == $length) {
+      die "Tthe length of data field must be the same as length field.";
+    }
+  }
+  
 }
