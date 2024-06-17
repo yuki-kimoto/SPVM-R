@@ -69,7 +69,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method subtract : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method sub : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -94,7 +94,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method multiply : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method mul : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -119,7 +119,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method divide : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method div : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -144,7 +144,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method divide_unsinged : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method div_unsinged : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -169,7 +169,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method modulo : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method mod : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -194,7 +194,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method modulo_unsinged : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method mod_unsinged : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -351,9 +351,9 @@ namespace Rstats {
     char* get_object_type(SV*, SV*);
 
     SV* add(SV*, SV*, SV*);
-    SV* subtract(SV*, SV*, SV*);
-    SV* multiply(SV*, SV*, SV*);
-    SV* divide(SV*, SV*, SV*);
+    SV* sub(SV*, SV*, SV*);
+    SV* mul(SV*, SV*, SV*);
+    SV* div(SV*, SV*, SV*);
     SV* remainder(SV*, SV*, SV*);
     SV* pow(SV*, SV*, SV*);
     SV* atan2(SV*, SV*, SV*);
