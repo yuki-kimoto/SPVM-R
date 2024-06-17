@@ -67,13 +67,13 @@ class R::NDArray {
     
     my $item_size = $options_h->get_or_default_int("item_size", -1);
     unless ($item_size > 0) {
-      die "\"item_size\" option must be greter than 0.";
+      die "item_size option must be greter than 0.";
     }
     $self->{item_size} = $item_size;
     
     my $type = $options_h->get_or_default_string("type", undef);
     unless ($type) {
-      die "\"type\" option must be defined.";
+      die "type option must be defined.";
     }
     unless (length $type) {
       die "The length of \"type\" option must greater than 0.";
@@ -85,41 +85,48 @@ class R::NDArray {
     my $dim_object = $options_h->get_or_default("dim", undef);
     unless ($dim_object) {
       if ($length == 0) {
-        $dim_object = (object)new int[0];
+        $dim_object = undef;
       }
       elsif ($length > 0) {
         $dim_object = (object)[$length];
       }
       else {
-        die "\"dim\" option must be defined if \"length\" option is not greater than or equal to 0.";
+        die "dim option must be defined if length option is not greater than or equal to 0.";
       }
     }
-    unless ($dim_object isa int[]) {
-      die "\"dim\" option must be int[] type.";
+    unless (!$dim_object || $dim_object isa int[]) {
+      die "dim option must be undef or int[] type.";
     }
     my $dim = (int[])$dim_object;
     
-    if (@$dim >= 0) {
-      die "The element length of \"dim\" option must be greater than 0.";
-    }
-    
-    my $length_calcurated_by_dim = 1;
-    for my $dim_element (@$dim) {
-      
-      unless ($dim_element > 0) {
-        die "The element of \"dim\" option must be greater than 0.";
+    if ($dim) {
+      if (@$dim >= 0) {
+        die "The element length of dim option must be greater than 0.";
       }
       
-      $length_calcurated_by_dim *= $dim_element;
+      my $length_calcurated_by_dim = 1;
+      for my $dim_element (@$dim) {
+        
+        unless ($dim_element > 0) {
+          die "The element of dim option must be greater than 0.";
+        }
+        
+        $length_calcurated_by_dim *= $dim_element;
+      }
+      $self->{dim} = $dim;
+      
+      unless ($length >= 0) {
+        $length = $length_calcurated_by_dim;
+      }
+      
+      if ($length_calcurated_by_dim != $length) {
+        die "length option must be the same as the length calcurated by dim option.";
+      }
     }
-    $self->{dim} = $dim;
-    
-    unless ($length >= 0) {
-      $length = $length_calcurated_by_dim;
-    }
-    
-    if ($length_calcurated_by_dim != $length) {
-      die "\"length\" option must be the same as the length calcurated by \"dim\" option.";
+    else {
+      unless ($length == 0) {
+        die "length option must be 0 if dim option is undef.";
+      }
     }
     
     $self->{length} = $length;
