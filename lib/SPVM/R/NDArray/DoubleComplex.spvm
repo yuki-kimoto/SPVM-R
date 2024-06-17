@@ -38,4 +38,12 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     }
   }
   
+  protected method create_default_data : Complex_2d[] () {
+    
+    my $length = $self->{length};
+    
+    my $data = new Complex_2d[$length];
+    
+    return $data;
+  }
 }

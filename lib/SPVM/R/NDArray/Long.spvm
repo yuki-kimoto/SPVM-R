@@ -36,4 +36,12 @@ class R::NDArray::Long extends R::NDArray {
     }
   }
   
+  protected method create_default_data : long[] () {
+    
+    my $length = $self->{length};
+    
+    my $data = new long[$length];
+    
+    return $data;
+  }
 }

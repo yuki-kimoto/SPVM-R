@@ -36,4 +36,12 @@ class R::NDArray::Double extends R::NDArray {
     }
   }
   
+  protected method create_default_data : double[] () {
+    
+    my $length = $self->{length};
+    
+    my $data = new double[$length];
+    
+    return $data;
+  }
 }

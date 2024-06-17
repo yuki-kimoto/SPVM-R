@@ -38,4 +38,12 @@ class R::NDArray::FloatComplex extends R::NDArray {
     }
   }
   
+  protected method create_default_data : Complex_2f[] () {
+    
+    my $length = $self->{length};
+    
+    my $data = new Complex_2f[$length];
+    
+    return $data;
+  }
 }

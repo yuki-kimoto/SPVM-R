@@ -132,10 +132,17 @@ class R::NDArray {
     $self->{length} = $length;
     
     my $data = $options_h->get_or_default("data", undef);
+    
+    unless ($data) {
+      $data = $self->create_default_data;
+    }
+    
     $self->{data} = $data;
     
     $self->check_data;
   }
   
   protected method check_data : void () { die "Not implemented."; }
+  
+  protected method create_default_data : object () { die "Not implemented."; }
 }

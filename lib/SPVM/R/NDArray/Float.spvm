@@ -36,4 +36,12 @@ class R::NDArray::Float extends R::NDArray {
     }
   }
   
+  protected method create_default_data : float[] () {
+    
+    my $length = $self->{length};
+    
+    my $data = new float[$length];
+    
+    return $data;
+  }
 }

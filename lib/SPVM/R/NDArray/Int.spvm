@@ -36,4 +36,12 @@ class R::NDArray::Int extends R::NDArray {
     }
   }
   
+  protected method create_default_data : int[] () {
+    
+    my $length = $self->{length};
+    
+    my $data = new int[$length];
+    
+    return $data;
+  }
 }
