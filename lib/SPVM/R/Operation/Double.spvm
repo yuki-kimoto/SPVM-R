@@ -339,4 +339,458 @@ class R::Operation::Double extends R::Operation {
     
     return $ndarray_ret;
   }
+  
+  method sin : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->sin($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+
+  method cos : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->cos($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method tan : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->tan($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method sinh : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->sinh($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method cosh : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->cosh($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method tanh : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->tanh($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method acos : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->acos($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method asin : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->asin($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method atan : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->atan($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method asinh : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->asinh($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method acosh : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->acosh($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method atanh : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->atanh($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method exp : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->exp($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method expm1 : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->expm1($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method log : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->log($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method logb : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->logb($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method log2 : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->log2($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method log10 : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->log10($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method sqrt : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->sqrt($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }
+
+=pod TODO
+
+namespace Rstats {
+  namespace Func {
+    
+    SV* Mod(SV*, SV*);
+    SV* Arg(SV*, SV*);
+    SV* Conj(SV*, SV*);
+    SV* Re(SV*, SV*);
+    SV* Im(SV*, SV*);
+    
+    SV* is_finite(SV*, SV*);
+    SV* is_infinite(SV*, SV*);
+    SV* is_nan(SV*, SV*);
+    
+    SV* pow(SV*, SV*, SV*);
+    SV* And(SV*, SV*, SV*);
+    SV* Or(SV*, SV*, SV*);
+    SV* atan2(SV*, SV*, SV*);
+    SV* less_than(SV*, SV*, SV*);
+    SV* less_than_or_equal(SV*, SV*, SV*);
+    SV* more_than(SV*, SV*, SV*);
+    SV* more_than_or_equal(SV*, SV*, SV*);
+    SV* equals(SV*, SV*, SV*);
+    SV* not_equals(SV*, SV*, SV*);
+    
+    SV* sum(SV*, SV*);
+    SV* cumsum(SV*, SV*);
+    SV* cumprod(SV*, SV*);
+    SV* prod(SV*, SV*);
+  }
+}
+
+=cut

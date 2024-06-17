@@ -421,58 +421,32 @@ class R::Operation::Int extends R::Operation {
 namespace Rstats {
   namespace Func {
     
-    SV* is_finite(SV*, SV*);
-    SV* is_infinite(SV*, SV*);
-    SV* is_nan(SV*, SV*);
-    
-    SV* sin(SV*, SV*);
-    SV* cos(SV*, SV*);
-    SV* tan(SV*, SV*);
-    
-    SV* sinh(SV*, SV*);
-    SV* cosh(SV*, SV*);
-    SV* tanh(SV*, SV*);
-    
-    SV* acos(SV*, SV*);
-    SV* asin(SV*, SV*);
-    SV* atan(SV*, SV*);
-    SV* atan2(SV*, SV*, SV*);
-    
-    SV* acosh(SV*, SV*);
-    SV* asinh(SV*, SV*);
-    SV* atanh(SV*, SV*);
-    
-    SV* cumsum(SV*, SV*);
-    SV* cumprod(SV*, SV*);
-    SV* exp(SV*, SV*);
-    SV* expm1(SV*, SV*);
-    SV* log(SV*, SV*);
-    SV* logb(SV*, SV*);
-    SV* log2(SV*, SV*);
-    SV* log10(SV*, SV*);
-    SV* prod(SV*, SV*);
-    SV* sqrt(SV*, SV*);
-    
-    SV* sum(SV*, SV*);
-    SV* pow(SV*, SV*, SV*);
-    
-    SV* less_than(SV*, SV*, SV*);
-    SV* less_than_or_equal(SV*, SV*, SV*);
-    SV* more_than(SV*, SV*, SV*);
-    SV* more_than_or_equal(SV*, SV*, SV*);
-    SV* equal(SV*, SV*, SV*);
-    SV* not_equal(SV*, SV*, SV*);
-    
-    SV* And(SV*, SV*, SV*);
-    SV* Or(SV*, SV*, SV*);
-    
     SV* Mod(SV*, SV*);
     SV* Arg(SV*, SV*);
     SV* Conj(SV*, SV*);
     SV* Re(SV*, SV*);
     SV* Im(SV*, SV*);
+    
+    SV* is_finite(SV*, SV*);
+    SV* is_infinite(SV*, SV*);
+    SV* is_nan(SV*, SV*);
+    
+    SV* pow(SV*, SV*, SV*);
+    SV* And(SV*, SV*, SV*);
+    SV* Or(SV*, SV*, SV*);
+    SV* atan2(SV*, SV*, SV*);
+    SV* less_than(SV*, SV*, SV*);
+    SV* less_than_or_equal(SV*, SV*, SV*);
+    SV* more_than(SV*, SV*, SV*);
+    SV* more_than_or_equal(SV*, SV*, SV*);
+    SV* equals(SV*, SV*, SV*);
+    SV* not_equals(SV*, SV*, SV*);
+    
+    SV* sum(SV*, SV*);
+    SV* cumsum(SV*, SV*);
+    SV* cumprod(SV*, SV*);
+    SV* prod(SV*, SV*);
   }
 }
-#include "Rstats_Func_impl.h"
 
 =cut

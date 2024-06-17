@@ -430,3 +430,4 @@ class R::Operation::Long extends R::Operation {
     return $ndarray_ret;
   }
 }
+
