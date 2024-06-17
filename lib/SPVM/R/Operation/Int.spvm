@@ -343,7 +343,7 @@ class R::Operation::Int extends R::Operation {
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i]{re} = (double)$data->[$i];
-      $data_ret->[$i]{im} = 0f;
+      $data_ret->[$i]{im} = 0;
     }
     
     return $ndarray_ret;

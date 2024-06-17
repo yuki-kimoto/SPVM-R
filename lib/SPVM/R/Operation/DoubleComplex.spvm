@@ -140,95 +140,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ndarray_ret;
   }
   
-  method to_int : R::NDArray::Int ($ndarray : R::NDArray::Double) {
-    
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
-    }
-    
-    my $length = $ndarray->length;
-    
-    my $dim = $ndarray->dim;
-    
-    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
-    
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $data_ret->[$i] = (int)$data->[$i];
-    }
-    
-    return $ndarray_ret;
-  }
-  
-  method to_long : R::NDArray::Long ($ndarray : R::NDArray::Double) {
-    
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
-    }
-    
-    my $length = $ndarray->length;
-    
-    my $dim = $ndarray->dim;
-    
-    my $ndarray_ret = R::Operation::Long->new->array(undef, $dim);
-    
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $data_ret->[$i] = (long)$data->[$i];
-    }
-    
-    return $ndarray_ret;
-  }
-  
-  method to_float : R::NDArray::Float ($ndarray : R::NDArray::Double) {
-    
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
-    }
-    
-    my $length = $ndarray->length;
-    
-    my $dim = $ndarray->dim;
-    
-    my $ndarray_ret = R::Operation::Float->new->array(undef, $dim);
-    
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $data_ret->[$i] = (float)$data->[$i];
-    }
-    
-    return $ndarray_ret;
-  }
-  
-  method to_double : R::NDArray::Double ($ndarray : R::NDArray::Double) {
-    
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
-    }
-    
-    my $length = $ndarray->length;
-    
-    my $dim = $ndarray->dim;
-    
-    my $ndarray_ret = R::Operation::Double->new->array(undef, $dim);
-    
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $data_ret->[$i] = (double)$data->[$i];
-    }
-    
-    return $ndarray_ret;
-  }
-  
-  method to_float_complex : R::NDArray::FloatComplex ($ndarray : R::NDArray::Double) {
+  method to_float_complex : R::NDArray::FloatComplex ($ndarray : R::NDArray::DoubleComplex) {
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";
@@ -244,14 +156,14 @@ class R::Operation::DoubleComplex extends R::Operation {
     my $data_ret = $ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $data_ret->[$i]{re} = (float)$data->[$i];
-      $data_ret->[$i]{im} = 0f;
+      $data_ret->[$i]{re} = (float)$data->[$i]{re};
+      $data_ret->[$i]{im} = (float)$data->[$i]{im};
     }
     
     return $ndarray_ret;
   }
   
-  method to_double_complex : R::NDArray::DoubleComplex ($ndarray : R::NDArray::Double) {
+  method to_double_complex : R::NDArray::DoubleComplex ($ndarray : R::NDArray::DoubleComplex) {
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";
@@ -267,14 +179,14 @@ class R::Operation::DoubleComplex extends R::Operation {
     my $data_ret = $ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $data_ret->[$i]{re} = (double)$data->[$i];
-      $data_ret->[$i]{im} = 0f;
+      $data_ret->[$i]{re} = (double)$data->[$i]{re};
+      $data_ret->[$i]{im} = (double)$data->[$i]{im};
     }
     
     return $ndarray_ret;
   }
   
-  method to_string : R::NDArray::String ($ndarray : R::NDArray::Double) {
+  method to_string : R::NDArray::String ($ndarray : R::NDArray::DoubleComplex) {
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";
@@ -290,7 +202,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     my $data_ret = $ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $data_ret->[$i] = (string)$data->[$i];
+      $data_ret->[$i] = (string)$data->[$i]{re} . " + " . (string)$data->[$i]{im};
     }
     
     return $ndarray_ret;
