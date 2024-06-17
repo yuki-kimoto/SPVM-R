@@ -35,10 +35,6 @@ class R::Operation::Float extends R::Operation {
   
   method array : R::NDArray::Float ($data : float[], $dim : int[]) {
     
-    unless ($data) {
-      die "The data \$data must be defined.";
-    }
-    
     my $ndarray = R::NDArray::Float->new({dim => $dim, data => $data});
     
     return $ndarray;

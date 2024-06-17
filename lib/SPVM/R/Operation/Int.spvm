@@ -35,10 +35,6 @@ class R::Operation::Int extends R::Operation {
   
   method array : R::NDArray::Int ($data : int[], $dim : int[]) {
     
-    unless ($data) {
-      die "The data \$data must be defined.";
-    }
-    
     my $ndarray = R::NDArray::Int->new({dim => $dim, data => $data});
     
     return $ndarray;
