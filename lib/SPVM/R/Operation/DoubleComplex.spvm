@@ -5,7 +5,6 @@ class R::Operation::DoubleComplex extends R::Operation {
   
   use R::NDArray::DoubleComplex;
   use Fn;
-  use Complex_2d;
   
   # Class Methods
   static method new : R::Operation::DoubleComplex () {
@@ -16,21 +15,20 @@ class R::Operation::DoubleComplex extends R::Operation {
   }
   
   # Instance Methods
-  method c : R::NDArray::DoubleComplex ($values : Complex_2d[]) {
+  method c : R::NDArray::DoubleComplex ($data : Complex_2d[]) {
     
-    unless ($values) {
-      die "\"\$values\" must be defined.";
+    unless ($data) {
+      die "The data \$data must be defined.";
     }
     
-    my $length = @$values;
+    my $length = @$data;
     
-    my $ndarray = R::NDArray::DoubleComplex->new({length => $length});
+    my $dim = (int[])undef;
+    if ($length > 0) {
+      $dim = [$length];
+    }
     
-    my $data = $ndarray->data;
-    
-    my $item_size = $ndarray->item_size;
-    
-    Fn->memcpy($data, 0, $values, 0, $length * $item_size);
+    my $ndarray = R::NDArray::DoubleComplex->new({dim => $dim, data => $data});
     
     return $ndarray;
   }
