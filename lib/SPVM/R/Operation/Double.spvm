@@ -15,21 +15,20 @@ class R::Operation::Double extends R::Operation {
   }
   
   # Instance Methods
-  method c : R::NDArray::Double ($values : double[]) {
+  method c : R::NDArray::Double ($data : double[]) {
     
-    unless ($values) {
-      die "\"\$values\" must be defined.";
+    unless ($data) {
+      die "The data \$data must be defined.";
     }
     
-    my $length = @$values;
+    my $length = @$data;
     
-    my $ndarray = R::NDArray::Double->new({length => $length});
+    my $dim = (int[])undef;
+    if ($length > 0) {
+      $dim = [$length];
+    }
     
-    my $data = $ndarray->data;
-    
-    my $item_size = $ndarray->item_size;
-    
-    Fn->memcpy($data, 0, $values, 0, $length * $item_size);
+    my $ndarray = R::NDArray::Double->new({dim => $dim, data => $data});
     
     return $ndarray;
   }
