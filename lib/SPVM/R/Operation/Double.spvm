@@ -206,7 +206,7 @@ class R::Operation::Double extends R::Operation {
     return $ndarray_ret;
   }
   
-  method to_double : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+  method clone : R::NDArray::Double ($ndarray : R::NDArray::Double) {
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";

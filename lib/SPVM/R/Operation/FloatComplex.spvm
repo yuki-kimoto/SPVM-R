@@ -142,7 +142,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ndarray_ret;
   }
   
-  method to_float_complex : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method clone : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";

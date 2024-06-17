@@ -215,7 +215,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method to_int : R::NDArray::Int ($ndarray : R::NDArray::Int) {
+  method clone : R::NDArray::Int ($ndarray : R::NDArray::Int) {
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";

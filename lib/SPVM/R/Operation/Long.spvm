@@ -252,7 +252,7 @@ class R::Operation::Long extends R::Operation {
     return $ndarray_ret;
   }
   
-  method to_long : R::NDArray::Long ($ndarray : R::NDArray::Long) {
+  method clone : R::NDArray::Long ($ndarray : R::NDArray::Long) {
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";
