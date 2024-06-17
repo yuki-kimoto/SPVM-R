@@ -225,68 +225,23 @@ class R::Operation::Int extends R::Operation {
 
 namespace Rstats {
   namespace Func {
-    SV* new_NULL(SV*); /* r->NULL */
-    SV* new_NA(SV*); /* r->NA */
-    SV* new_NaN(SV*); /* r->NaN */
-    SV* new_Inf(SV*); /* r->Inf */
-    SV* new_FALSE(SV*); /* r->FALSE */
-    SV* new_TRUE(SV*); /* r->TRUE */
-
     SV* new_data_frame(SV*);
-    SV* new_list(SV*);
-
-    SV* c_(SV*, SV*);
-    SV* c_character(SV*, SV*);
-    SV* c_double(SV*, SV*);
-    SV* c_integer(SV*, SV*);
-    SV* c_logical(SV*, SV*);
-    SV* c_complex(SV*, SV*);
-
-    SV* pi(SV*);
-    SV* is_null (SV*, SV*);
-    SV* is_vector(SV*, SV*);
-    SV* values(SV*, SV*);
-    SV* is_matrix(SV*, SV*);
-    SV* is_array(SV*, SV*);
-    SV* is_numeric(SV*, SV*);
-    SV* type(SV*, SV*);
-    SV* Typeof(SV*, SV*); // r->typeof
-    Rstats::Logical to_bool(SV*, SV*);
-    SV* is_double(SV*, SV*);
-    SV* is_integer(SV*, SV*);
-    SV* is_complex(SV*, SV*);
-    SV* is_character(SV*, SV*);
-    SV* is_logical(SV*, SV*);
-    SV* is_data_frame(SV*, SV*);
-    SV* is_list(SV*, SV*);
+    
     SV* is_finite(SV*, SV*);
     SV* is_infinite(SV*, SV*);
     SV* is_nan(SV*, SV*);
-    SV* is_na(SV*, SV*);
-    SV* is_factor(SV*, SV*);
-    SV* is_ordered(SV*, SV*);
 
     SV* copy_attrs_to(SV*, SV*, SV*);
     SV* copy_attrs_to(SV*, SV*, SV*, SV*);
 
     SV* as_vector(SV*, SV*);
     SV* as_integer(SV*, SV*);
-    SV* as_logical(SV*, SV*);
     SV* as_complex(SV*, SV*);
     SV* as_double(SV*, SV*);
-    SV* as_numeric(SV*, SV*);
     SV* as_character(SV*, SV*);
-    SV* as(SV*, SV*, SV*);
 
     SV* clone(SV*, SV*);
-    SV* dim_as_array(SV*, SV*);
-    SV* decompose(SV*, SV*);
-    SV* compose(SV*, SV*, SV*);
-    SV* array(SV*, SV*);
-    SV* array(SV*, SV*, SV*);
-    SV* array_with_opt(SV*, SV*);
     SV* args_h(SV*, SV*, SV*);
-    SV* as_array(SV*, SV*);
     // class
     SV* Class(SV*, SV*);
     SV* Class(SV*, SV*, SV*);
@@ -294,9 +249,6 @@ namespace Rstats {
     SV* levels(SV*, SV*, SV*);
     SV* mode(SV*, SV*);
     SV* mode(SV*, SV*, SV*);
-    
-    SV* names(SV*, SV*, SV*);
-    SV* names(SV*, SV*);
     
     SV* tanh(SV*, SV*);
     SV* Mod(SV*, SV*);
@@ -329,19 +281,8 @@ namespace Rstats {
     SV* sin(SV*, SV*);
     SV* sum(SV*, SV*);
     SV* negate(SV*, SV*);
-    
-    SV* upgrade_type_avrv(SV*, SV*);
-    void upgrade_type(SV*, Rstats::Integer, ...);
-    SV* upgrade_length_avrv(SV*, SV*);
-    void upgrade_length(SV*, Rstats::Integer, ...);
-
-    char* get_type(SV*, SV*);
-    SV* get_type_sv(SV*, SV*);
-    char* get_object_type(SV*, SV*);
-
     SV* pow(SV*, SV*, SV*);
     SV* atan2(SV*, SV*, SV*);
-    
     SV* less_than(SV*, SV*, SV*);
     SV* less_than_or_equal(SV*, SV*, SV*);
     SV* more_than(SV*, SV*, SV*);
