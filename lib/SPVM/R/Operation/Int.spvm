@@ -377,38 +377,9 @@ class R::Operation::Int extends R::Operation {
 
 namespace Rstats {
   namespace Func {
-    SV* new_data_frame(SV*);
     
-    SV* is_finite(SV*, SV*);
-    SV* is_infinite(SV*, SV*);
-    SV* is_nan(SV*, SV*);
-
-    SV* copy_attrs_to(SV*, SV*, SV*);
-    SV* copy_attrs_to(SV*, SV*, SV*, SV*);
-
-    SV* as_vector(SV*, SV*);
-    SV* as_integer(SV*, SV*);
-    SV* as_complex(SV*, SV*);
-    SV* as_double(SV*, SV*);
-    SV* as_character(SV*, SV*);
-
-    SV* clone(SV*, SV*);
-    SV* args_h(SV*, SV*, SV*);
-    // class
-    SV* Class(SV*, SV*);
-    SV* Class(SV*, SV*, SV*);
-    SV* levels(SV*, SV*);
-    SV* levels(SV*, SV*, SV*);
-    SV* mode(SV*, SV*);
-    SV* mode(SV*, SV*, SV*);
-    
-    SV* tanh(SV*, SV*);
-    SV* Mod(SV*, SV*);
-    SV* Arg(SV*, SV*);
-    SV* Conj(SV*, SV*);
-    SV* Re(SV*, SV*);
-    SV* Im(SV*, SV*);
     SV* abs(SV*, SV*);
+    SV* tanh(SV*, SV*);
     SV* acos(SV*, SV*);
     SV* acosh(SV*, SV*);
     SV* asin(SV*, SV*);
@@ -443,6 +414,14 @@ namespace Rstats {
     SV* not_equal(SV*, SV*, SV*);
     SV* And(SV*, SV*, SV*);
     SV* Or(SV*, SV*, SV*);
+    SV* is_finite(SV*, SV*);
+    SV* is_infinite(SV*, SV*);
+    SV* is_nan(SV*, SV*);
+    SV* Mod(SV*, SV*);
+    SV* Arg(SV*, SV*);
+    SV* Conj(SV*, SV*);
+    SV* Re(SV*, SV*);
+    SV* Im(SV*, SV*);
   }
 }
 #include "Rstats_Func_impl.h"
