@@ -407,4 +407,26 @@ class R::Operation::Long extends R::Operation {
     
     return $ndarray_ret;
   }
+  
+  method neg : R::NDArray::Long ($ndarray : R::NDArray::Long) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = R::Operation::Long->new->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = -$data->[$i];
+    }
+    
+    return $ndarray_ret;
+  }
 }
