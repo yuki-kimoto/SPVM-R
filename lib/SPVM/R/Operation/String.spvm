@@ -3,4 +3,40 @@
 
 class R::Operation::String {
   
+  use R::NDArray::String;
+  use Fn;
+  
+  # Class Methods
+  static method new : R::Operation::String () {
+    
+    my $self = new R::Operation::String;
+    
+    return $self;
+  }
+  
+  # Instance Methods
+  method c : R::NDArray::String ($data : string[]) {
+    
+    unless ($data) {
+      die "The data \$data must be defined.";
+    }
+    
+    my $length = @$data;
+    
+    my $dim = (int[])undef;
+    if ($length > 0) {
+      $dim = [$length];
+    }
+    
+    my $ndarray = R::NDArray::String->new({dim => $dim, data => $data});
+    
+    return $ndarray;
+  }
+  
+  method array : R::NDArray::String ($data : string[], $dim : int[]) {
+    
+    my $ndarray = R::NDArray::String->new({dim => $dim, data => $data});
+    
+    return $ndarray;
+  }
 }

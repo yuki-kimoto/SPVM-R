@@ -9,12 +9,14 @@ class R::Operation::Long extends R::Operation {
   use R::NDArray::Double;
   use R::NDArray::FloatComplex;
   use R::NDArray::DoubleComplex;
+  use R::NDArray::String;
   use R::Operation::Int;
   use R::Operation::Long;
   use R::Operation::Float;
   use R::Operation::Double;
   use R::Operation::FloatComplex;
   use R::Operation::DoubleComplex;
+  use R::Operation::String;
   use Fn;
   use Complex_2f;
   use Complex_2d;
@@ -357,6 +359,28 @@ class R::Operation::Long extends R::Operation {
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i]{re} = (double)$data->[$i];
       $data_ret->[$i]{im} = 0f;
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method to_string : R::NDArray::String ($ndarray : R::NDArray::Long) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = R::Operation::String->new->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = (string)$data->[$i];
     }
     
     return $ndarray_ret;
