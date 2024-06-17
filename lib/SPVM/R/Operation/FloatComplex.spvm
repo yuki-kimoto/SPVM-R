@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Operation::FloatComplexComplex extends R::Operation {
+class R::Operation::FloatComplex extends R::Operation {
   
   use R::NDArray::FloatComplex;
   use Complex_2f;

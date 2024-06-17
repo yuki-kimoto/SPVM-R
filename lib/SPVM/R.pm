@@ -59,6 +59,8 @@ R class is a port of the R language Features.
 
 =item * L<R::NDArray::Double|SPVM::R::NDArray::Double>
 
+=item * L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex>
+
 =item * L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>
 
 =item * L<R::NDArray::String|SPVM::R::NDArray::String>
@@ -70,6 +72,8 @@ R class is a port of the R language Features.
 =item * L<R::Operation::Float|SPVM::R::Operation::Float>
 
 =item * L<R::Operation::Double|SPVM::R::Operation::Double>
+
+=item * L<R::Operation::FloatComplex|SPVM::R::Operation::FloatComplex>
 
 =item * L<R::Operation::DoubleComplex|SPVM::R::Operation::DoubleComplex>
 
@@ -85,7 +89,7 @@ R class is a port of the R language Features.
 
 =head1 Repository
 
-
+L<SPVM::R - Github|https://github.com/yuki-kimoto/SPVM-R>
 
 =head1 Author
 

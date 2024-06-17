@@ -5,6 +5,7 @@ class TestCase::R {
   use R::NDArray::Long;
   use R::NDArray::Float;
   use R::NDArray::Double;
+  use R::NDArray::FloatComplex;
   use R::NDArray::DoubleComplex;
   use R::NDArray::String;
   
@@ -13,6 +14,7 @@ class TestCase::R {
   use R::Operation::Long;
   use R::Operation::Float;
   use R::Operation::Double;
+  use R::Operation::FloatComplex;
   use R::Operation::DoubleComplex;
   
   static method test : int () {
