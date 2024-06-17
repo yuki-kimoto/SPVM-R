@@ -44,10 +44,6 @@ class R::Operation::Int extends R::Operation {
     return $ndarray;
   }
   
-  method add : R::NDArray::Int($ndarray_left : R::Operation::Int, $ndarray_right : R::Operation::Int) {
-    
-  }
-  
 }
 
 =pod TODO
