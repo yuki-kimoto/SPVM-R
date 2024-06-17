@@ -194,7 +194,7 @@ class R::Operation::Float extends R::Operation {
     
     my $dim = $ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
     
     my $data = $ndarray->data;
     my $data_ret = $ndarray_ret->data;
@@ -306,7 +306,7 @@ class R::Operation::Float extends R::Operation {
     
     my $dim = $ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
     
     my $data = $ndarray->data;
     my $data_ret = $ndarray_ret->data;
@@ -328,7 +328,7 @@ class R::Operation::Float extends R::Operation {
     
     my $dim = $ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
     
     my $data = $ndarray->data;
     my $data_ret = $ndarray_ret->data;

@@ -225,7 +225,7 @@ class R::Operation::Int extends R::Operation {
     
     my $dim = $ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
     
     my $data = $ndarray->data;
     my $data_ret = $ndarray_ret->data;
@@ -381,7 +381,7 @@ class R::Operation::Int extends R::Operation {
     
     my $dim = $ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
     
     my $data = $ndarray->data;
     my $data_ret = $ndarray_ret->data;
@@ -403,7 +403,7 @@ class R::Operation::Int extends R::Operation {
     
     my $dim = $ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
     
     my $data = $ndarray->data;
     my $data_ret = $ndarray_ret->data;
