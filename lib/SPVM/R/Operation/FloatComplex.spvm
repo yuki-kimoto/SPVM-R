@@ -253,4 +253,5 @@ class R::Operation::FloatComplex extends R::Operation {
     
     return $ndarray_ret;
   }
+  
 }
