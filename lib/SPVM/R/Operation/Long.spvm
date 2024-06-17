@@ -268,7 +268,7 @@ class R::Operation::Long extends R::Operation {
     my $data_ret = $ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $data_ret->[$i] = $data->[$i];
+      $data_ret->[$i] = (long)$data->[$i];
     }
     
     return $ndarray_ret;
