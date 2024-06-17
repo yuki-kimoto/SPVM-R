@@ -43,4 +43,105 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     return $ndarray;
   }
+  
+  method add : R::NDArray::DoubleComplex ($ndarray1 : R::NDArray::DoubleComplex, $ndarray2 : R::NDArray::DoubleComplex) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $data_ret = new Complex_2d[$length];
+    my $ndarray_ret = $self->array($data_ret, $dim);
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->cadd($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method sub : R::NDArray::DoubleComplex ($ndarray1 : R::NDArray::DoubleComplex, $ndarray2 : R::NDArray::DoubleComplex) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $data_ret = new Complex_2d[$length];
+    my $ndarray_ret = $self->array($data_ret, $dim);
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->csub($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method mul : R::NDArray::DoubleComplex ($ndarray1 : R::NDArray::DoubleComplex, $ndarray2 : R::NDArray::DoubleComplex) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $data_ret = new Complex_2d[$length];
+    my $ndarray_ret = $self->array($data_ret, $dim);
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->cmul($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method div : R::NDArray::DoubleComplex ($ndarray1 : R::NDArray::DoubleComplex, $ndarray2 : R::NDArray::DoubleComplex) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $data_ret = new Complex_2d[$length];
+    my $ndarray_ret = $self->array($data_ret, $dim);
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->cdiv($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }

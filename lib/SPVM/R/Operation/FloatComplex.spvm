@@ -6,6 +6,7 @@ class R::Operation::FloatComplex extends R::Operation {
   use R::NDArray::FloatComplex;
   use Complex_2f;
   use Fn;
+  use Math;
   
   # Class Methods
   static method new : R::Operation::FloatComplex () {
@@ -43,6 +44,106 @@ class R::Operation::FloatComplex extends R::Operation {
     my $ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
     
     return $ndarray;
+  }
+  
+  method add : R::NDArray::FloatComplex ($ndarray1 : R::NDArray::FloatComplex, $ndarray2 : R::NDArray::FloatComplex) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $data_ret = new Complex_2f[$length];
+    my $ndarray_ret = $self->array($data_ret, $dim);
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->caddf($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method sub : R::NDArray::FloatComplex ($ndarray1 : R::NDArray::FloatComplex, $ndarray2 : R::NDArray::FloatComplex) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $data_ret = new Complex_2f[$length];
+    my $ndarray_ret = $self->array($data_ret, $dim);
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->csubf($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method mul : R::NDArray::FloatComplex ($ndarray1 : R::NDArray::FloatComplex, $ndarray2 : R::NDArray::FloatComplex) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $data_ret = new Complex_2f[$length];
+    my $ndarray_ret = $self->array($data_ret, $dim);
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->cmulf($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method div : R::NDArray::FloatComplex ($ndarray1 : R::NDArray::FloatComplex, $ndarray2 : R::NDArray::FloatComplex) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $data_ret = new Complex_2f[$length];
+    my $ndarray_ret = $self->array($data_ret, $dim);
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->cdivf($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
   }
   
 }
