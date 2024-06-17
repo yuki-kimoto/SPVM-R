@@ -3,6 +3,8 @@
 
 class R::Operation {
   
+  use R::NDArray;
+  
   # Class Methods
   static method new : R::Operation () {
     
@@ -11,4 +13,44 @@ class R::Operation {
     return $self;
   }
   
+  method equals_dim : int ($ndarray1 : R::NDArray, $ndarray2 : R::NDArray) {
+    
+    unless ($ndarray1) {
+      die "The n-dimention array \$ndarray1 must be defined.";
+    }
+    
+    unless ($ndarray2) {
+      die "The n-dimention array \$ndarray2 must be defined.";
+    }
+    
+    my $dim1 = $ndarray1->dim;
+    
+    my $dim2 = $ndarray2->dim;
+    
+    my $equals_dim = 0;
+    if ($dim1 && $dim2) {
+      my $dim1_length = @$dim1;
+      
+      my $dim2_length = @$dim2;
+      
+      if ($dim1_length == $dim2_length) {
+        my $equals_dim_elements = 1;
+        for (my $i = 0; $i < $dim1_length; $i++) {
+          my $dim1_element = $dim1->[$i];
+          my $dim2_element = $dim2->[$i];
+          
+          unless ($dim1_element == $dim2_element) {
+            $equals_dim_elements = 0;
+            last;
+          }
+        }
+        $equals_dim = $equals_dim_elements;
+      }
+    }
+    elsif (!$dim1 && !$dim2) {
+      $equals_dim = 1;
+    }
+    
+    return $equals_dim;
+  }
 }
