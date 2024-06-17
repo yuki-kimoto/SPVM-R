@@ -23,9 +23,12 @@ class R::Operation::Int extends R::Operation {
     
     my $length = @$data;
     
-    my $shape = [$length];
+    my $dim = (int[])undef;
+    if ($length > 0) {
+      $dim = [$length];
+    }
     
-    my $ndarray = R::NDArray::Int->new({shpae => $shape, data => $data});
+    my $ndarray = R::NDArray::Int->new({dim => $dim, data => $data});
     
     return $ndarray;
   }
