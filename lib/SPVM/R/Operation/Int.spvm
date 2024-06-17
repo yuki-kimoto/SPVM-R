@@ -421,7 +421,6 @@ class R::Operation::Int extends R::Operation {
 namespace Rstats {
   namespace Func {
     
-    SV* negate(SV*, SV*);
     SV* is_finite(SV*, SV*);
     SV* is_infinite(SV*, SV*);
     SV* is_nan(SV*, SV*);
