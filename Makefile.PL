@@ -47,6 +47,7 @@ WriteMakefile(
   },
   PREREQ_PM         => {
     %configure_and_runtime_requires,
+    'SPVM::Math' => '1.001',
   },
   TEST_REQUIRES => {
     
