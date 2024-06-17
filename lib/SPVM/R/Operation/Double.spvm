@@ -33,4 +33,15 @@ class R::Operation::Double extends R::Operation {
     return $ndarray;
   }
   
+  method array : R::NDArray::Double ($data : double[], $dim : int[]) {
+    
+    unless ($data) {
+      die "The data \$data must be defined.";
+    }
+    
+    my $ndarray = R::NDArray::Double->new({dim => $dim, data => $data});
+    
+    return $ndarray;
+  }
+  
 }

@@ -33,4 +33,14 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ndarray;
   }
   
+  method array : R::NDArray::DoubleComplex ($data : Complex_2d[], $dim : int[]) {
+    
+    unless ($data) {
+      die "The data \$data must be defined.";
+    }
+    
+    my $ndarray = R::NDArray::DoubleComplex->new({dim => $dim, data => $data});
+    
+    return $ndarray;
+  }
 }

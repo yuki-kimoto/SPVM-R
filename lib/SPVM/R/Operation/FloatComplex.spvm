@@ -4,6 +4,7 @@
 class R::Operation::FloatComplexComplex extends R::Operation {
   
   use R::NDArray::FloatComplex;
+  use Complex_2f;
   use Fn;
   
   # Class Methods
@@ -26,6 +27,17 @@ class R::Operation::FloatComplexComplex extends R::Operation {
     my $dim = (int[])undef;
     if ($length > 0) {
       $dim = [$length];
+    }
+    
+    my $ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
+    
+    return $ndarray;
+  }
+  
+  method array : R::NDArray::FloatComplex ($data : Complex_2f[], $dim : int[]) {
+    
+    unless ($data) {
+      die "The data \$data must be defined.";
     }
     
     my $ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
