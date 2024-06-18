@@ -5,6 +5,7 @@ class R::NDArray {
   
   use Hash;
   use IntList;
+  use Native::MethodCall;
   
   # Fields
   has data : protected object;
@@ -146,4 +147,33 @@ class R::NDArray {
   
   protected method create_default_data : object ($length : int) { die "Not implemented."; }
   
+  method clone : object () {
+    
+    my $element_size = $self->{element_size};
+    
+    my $is_numeric = $self->{is_numeric};
+    
+    my $length = $self->length;
+    
+    my $clone_data = $self->create_default_data($length);
+    
+    my $data = $self->{data};
+    
+    if ($is_numeric) {
+      Fn->memcpy($clone_data, 0, $data, 0, $element_size * $length);
+    }
+    else {
+      for (my $i = 0; $i < $length; $i++) {
+        $clone_data->(object[])->[$i] = $data->(object[])->[$i];
+      }
+    }
+    
+    my $clone_dim = $self->dim;
+    
+    my $class_name = type_name $self;
+    
+    my $clone = Native::MethodCall->call_class_method($class_name, "new", [{data => $clone_data, dim => $clone_dim}]);
+    
+    return $clone;
+  }
 }
