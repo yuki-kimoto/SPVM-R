@@ -18,36 +18,36 @@ class R::NDArray {
   has dim : int[];
   
   method dim : int[] () {
-    my $x_dim = $self->{dim};
+    my $dim = $self->{dim};
     
-    my $x_dim_clone = copy $x_dim;
+    my $dim_clone = copy $dim;
     
-    return $x_dim_clone;
+    return $dim_clone;
   }
   
-  method set_dim : void ($x_dim : int[]) {
+  method set_dim : void ($dim : int[]) {
     
-    unless ($x_dim) {
-      die "The dimension \$x_dim must be defined.";
+    unless ($dim) {
+      die "The dimension \$dim must be defined.";
     }
     
     my $length_calcurated_by_dim = 1;
-    for my $x_dim_element (@$x_dim) {
+    for my $dim_element (@$dim) {
       
-      unless ($x_dim_element > 0) {
-        die "The element of the dimension \$x_dim must be greater than 0.";
+      unless ($dim_element > 0) {
+        die "The element of the dimension \$dim must be greater than 0.";
       }
       
-      $length_calcurated_by_dim *= $x_dim_element;
+      $length_calcurated_by_dim *= $dim_element;
     }
     
     my $length = $self->{length};
     
     if ($length_calcurated_by_dim != $length) {
-      die "\"length\" field must be the same as the length calcurated by the dimension \$x_dim.";
+      die "\"length\" field must be the same as the length calcurated by the dimension \$dim.";
     }
     
-    $self->{dim} = copy $x_dim;
+    $self->{dim} = copy $dim;
   }
   
   # Class Mehtods
@@ -82,38 +82,38 @@ class R::NDArray {
     
     my $length = $options_h->get_or_default_int("length", 0);
     
-    my $x_dim_object = $options_h->get_or_default("dim", undef);
-    unless ($x_dim_object) {
+    my $dim_object = $options_h->get_or_default("dim", undef);
+    unless ($dim_object) {
       if ($length == 0) {
-        $x_dim_object = undef;
+        $dim_object = undef;
       }
       elsif ($length > 0) {
-        $x_dim_object = (object)[$length];
+        $dim_object = (object)[$length];
       }
       else {
         die "dim option must be defined if length option is not greater than or equal to 0.";
       }
     }
-    unless (!$x_dim_object || $x_dim_object isa int[]) {
+    unless (!$dim_object || $dim_object isa int[]) {
       die "dim option must be undef or int[] type.";
     }
-    my $x_dim = (int[])$x_dim_object;
+    my $dim = (int[])$dim_object;
     
-    if ($x_dim) {
-      if (@$x_dim >= 0) {
+    if ($dim) {
+      if (@$dim >= 0) {
         die "The element length of dim option must be greater than 0.";
       }
       
       my $length_calcurated_by_dim = 1;
-      for my $x_dim_element (@$x_dim) {
+      for my $dim_element (@$dim) {
         
-        unless ($x_dim_element > 0) {
+        unless ($dim_element > 0) {
           die "The element of dim option must be greater than 0.";
         }
         
-        $length_calcurated_by_dim *= $x_dim_element;
+        $length_calcurated_by_dim *= $dim_element;
       }
-      $self->{dim} = $x_dim;
+      $self->{dim} = $dim;
       
       unless ($length >= 0) {
         $length = $length_calcurated_by_dim;
@@ -131,13 +131,13 @@ class R::NDArray {
     
     $self->{length} = $length;
     
-    my $x_data = $options_h->get_or_default("data", undef);
+    my $data = $options_h->get_or_default("data", undef);
     
-    unless ($x_data) {
-      $x_data = $self->create_default_data;
+    unless ($data) {
+      $data = $self->create_default_data;
     }
     
-    $self->{data} = $x_data;
+    $self->{data} = $data;
     
     $self->check_data;
   }
