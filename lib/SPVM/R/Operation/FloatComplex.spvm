@@ -857,4 +857,29 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
+  method complex : R::NDArray::FloatComplex ($pairs : float[]) {
+    
+    unless ($pairs) {
+      die "The pairs \$pairs must be defined.";
+    }
+    
+    my $pairs_length = @$pairs;
+    
+    unless ($pairs_length % 2 == 0) {
+      die "The length of the pairs \$pairs must be even number.";
+    }
+    
+    my $length = $pairs_length / 2;
+    
+    my $ret_ndarray = $self->array(undef, [$length]);
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $pairs_length; $i += 2) {
+      $ret_data->[$i]{re} = $pairs->[$i];
+      $ret_data->[$i]{im} = $pairs->[$i + 1];
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
