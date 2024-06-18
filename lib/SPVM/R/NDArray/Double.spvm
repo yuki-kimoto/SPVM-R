@@ -25,7 +25,7 @@ class R::NDArray::Double extends R::NDArray {
     return (double[])$self->{data};
   }
   
-  protected method check_data : void () {
+  protected method check : void () {
     
     my $data = (double[])$self->{data};
     

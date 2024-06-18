@@ -25,7 +25,7 @@ class R::NDArray::Int extends R::NDArray {
     return (int[])$self->{data};
   }
   
-  protected method check_data : void () {
+  protected method check : void () {
     
     my $data = (int[])$self->{data};
     

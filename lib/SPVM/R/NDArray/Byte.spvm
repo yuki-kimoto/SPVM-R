@@ -28,7 +28,7 @@ class R::NDArray::Byte extends R::NDArray {
     return (byte[])$self->{data};
   }
   
-  protected method check_data : void () {
+  protected method check : void () {
     
     my $data = (byte[])$self->{data};
     

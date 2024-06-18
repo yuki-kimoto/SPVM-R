@@ -31,7 +31,7 @@ class R::NDArray::StringBuffer extends R::NDArray {
     return (StringBuffer[])$self->{data};
   }
   
-  protected method check_data : void () {
+  protected method check : void () {
     
     my $data = (StringBuffer[])$self->{data};
     

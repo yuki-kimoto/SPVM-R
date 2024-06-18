@@ -25,7 +25,7 @@ class R::NDArray::Float extends R::NDArray {
     return (float[])$self->{data};
   }
   
-  protected method check_data : void () {
+  protected method check : void () {
     
     my $x_data = (float[])$self->{data};
     

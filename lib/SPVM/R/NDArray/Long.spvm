@@ -25,7 +25,7 @@ class R::NDArray::Long extends R::NDArray {
     return (long[])$self->{data};
   }
   
-  protected method check_data : void () {
+  protected method check : void () {
     
     my $data = (long[])$self->{data};
     

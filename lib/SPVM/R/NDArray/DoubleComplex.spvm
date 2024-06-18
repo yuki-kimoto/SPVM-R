@@ -27,7 +27,7 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return (Complex_2d[])$self->{data};
   }
   
-  protected method check_data : void () {
+  protected method check : void () {
     
     my $data = (Complex_2d[])$self->{data};
     

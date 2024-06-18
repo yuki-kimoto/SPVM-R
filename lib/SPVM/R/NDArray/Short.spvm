@@ -25,7 +25,7 @@ class R::NDArray::Short extends R::NDArray {
     return (short[])$self->{data};
   }
   
-  protected method check_data : void () {
+  protected method check : void () {
     
     my $data = (short[])$self->{data};
     

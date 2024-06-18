@@ -33,7 +33,7 @@ class R::NDArray {
     
     $self->{dim} = $nomalized_dim;
     
-    $self->check_data;
+    $self->check;
   }
   
   # Class Mehtods
@@ -86,7 +86,7 @@ class R::NDArray {
     
     $self->{data} = $data;
     
-    $self->check_data;
+    $self->check;
   }
   
   method length : int () {
@@ -140,11 +140,8 @@ class R::NDArray {
     return $normalized_dim;
   }
   
-  protected method check_data : void () { die "Not implemented."; }
+  protected method check : void () { die "Not implemented."; }
   
   protected method create_default_data : object () { die "Not implemented."; }
   
-  method clone {
-    
-  }
 }
