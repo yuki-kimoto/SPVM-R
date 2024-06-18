@@ -13,7 +13,7 @@ class R::NDArray {
   
   has element_size : ro protected int;
   
-  has is_numeric : byte;
+  has is_numeric : ro byte;
   
   has type : ro protected string;
   
