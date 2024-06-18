@@ -808,6 +808,50 @@ class R::Operation::Double extends R::Operation {
     return $ndarray_ret;
   }
   
+  method isinf : R::NDArray::Int ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->isinf($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method isnan : R::NDArray::Int ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->isnan($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }
 
 =pod TODO
@@ -820,10 +864,6 @@ namespace Rstats {
     SV* Conj(SV*, SV*);
     SV* Re(SV*, SV*);
     SV* Im(SV*, SV*);
-    
-    SV* is_finite(SV*, SV*);
-    SV* is_infinite(SV*, SV*);
-    SV* is_nan(SV*, SV*);
     
     SV* pow(SV*, SV*, SV*);
     SV* And(SV*, SV*, SV*);

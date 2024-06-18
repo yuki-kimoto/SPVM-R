@@ -427,10 +427,6 @@ namespace Rstats {
     SV* Re(SV*, SV*);
     SV* Im(SV*, SV*);
     
-    SV* is_finite(SV*, SV*);
-    SV* is_infinite(SV*, SV*);
-    SV* is_nan(SV*, SV*);
-    
     SV* pow(SV*, SV*, SV*);
     SV* And(SV*, SV*, SV*);
     SV* Or(SV*, SV*, SV*);

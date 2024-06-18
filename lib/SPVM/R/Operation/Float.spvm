@@ -808,4 +808,48 @@ class R::Operation::Float extends R::Operation {
     return $ndarray_ret;
   }
   
+  method isinf : R::NDArray::Int ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->isinff($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
+  method isnan : R::NDArray::Int ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->isnanf($data->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }
