@@ -46,4 +46,9 @@ class R::NDArray::Short extends R::NDArray {
     
     return $data;
   }
+  
+  method clone : R::NDArray::Short () {
+    return (R::NDArray::Short)$self->SUPER::clone;
+  }
+  
 }

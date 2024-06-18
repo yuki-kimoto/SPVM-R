@@ -53,4 +53,8 @@ class R::NDArray::StringBuffer extends R::NDArray {
     return $data;
   }
   
+  method clone : R::NDArray::StringBuffer () {
+    return (R::NDArray::StringBuffer)$self->SUPER::clone;
+  }
+  
 }

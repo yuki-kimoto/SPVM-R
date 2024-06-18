@@ -46,4 +46,9 @@ class R::NDArray::HalfFloat extends R::NDArray {
     
     return $data;
   }
+  
+  method clone : R::NDArray::HalfFloat () {
+    return (R::NDArray::HalfFloat)$self->SUPER::clone;
+  }
+  
 }

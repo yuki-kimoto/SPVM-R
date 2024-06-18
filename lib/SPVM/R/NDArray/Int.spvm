@@ -46,4 +46,9 @@ class R::NDArray::Int extends R::NDArray {
     
     return $data;
   }
+  
+  method clone : R::NDArray::Int () {
+    return (R::NDArray::Int)$self->SUPER::clone;
+  }
+  
 }

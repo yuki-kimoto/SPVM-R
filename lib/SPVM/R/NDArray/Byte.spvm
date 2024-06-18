@@ -49,4 +49,9 @@ class R::NDArray::Byte extends R::NDArray {
     
     return $data;
   }
+  
+  method clone : R::NDArray::Byte () {
+    return (R::NDArray::Byte)$self->SUPER::clone;
+  }
+  
 }

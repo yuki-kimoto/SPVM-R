@@ -42,13 +42,19 @@ class R::NDArray::Time::Piece extends R::NDArray {
     }
   }
   
-  protected method create_default_data : Time::Piece[] () {
+  protected method create_default_data : Time::Piece[] ($length : int) {
     
-    my $length = $self->length;
+    unless ($length >= 0) {
+      die "The length \$length must be more than or equal to 0.";
+    }
     
     my $data = new Time::Piece[$length];
     
     return $data;
+  }
+  
+  method clone : R::NDArray::Time::Piece () {
+    return (R::NDArray::Time::Piece)$self->SUPER::clone;
   }
   
 }

@@ -46,4 +46,9 @@ class R::NDArray::Float extends R::NDArray {
     
     return $x_data;
   }
+  
+  method clone : R::NDArray::Float () {
+    return (R::NDArray::Float)$self->SUPER::clone;
+  }
+  
 }

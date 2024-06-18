@@ -51,4 +51,9 @@ class R::NDArray::String extends R::NDArray {
     
     return $data;
   }
+  
+  method clone : R::NDArray::String () {
+    return (R::NDArray::String)$self->SUPER::clone;
+  }
+  
 }

@@ -48,4 +48,9 @@ class R::NDArray::FloatComplex extends R::NDArray {
     
     return $data;
   }
+  
+  method clone : R::NDArray::FloatComplex () {
+    return (R::NDArray::FloatComplex)$self->SUPER::clone;
+  }
+  
 }

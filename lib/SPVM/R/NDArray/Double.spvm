@@ -46,4 +46,9 @@ class R::NDArray::Double extends R::NDArray {
     
     return $data;
   }
+  
+  method clone : R::NDArray::Double () {
+    return (R::NDArray::Double)$self->SUPER::clone;
+  }
+  
 }
