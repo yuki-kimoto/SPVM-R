@@ -127,6 +127,8 @@ class R::NDArray {
       unless ($length == 0) {
         die "length option must be 0 if dim option is undef.";
       }
+      
+      $self->{dim} = new int[0];
     }
     
     $self->{length} = $length;
