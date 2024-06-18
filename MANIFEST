@@ -55,6 +55,14 @@ lib/SPVM/R/NDArray/String.c
 lib/SPVM/R/NDArray/String.config
 lib/SPVM/R/NDArray/String.pm
 lib/SPVM/R/NDArray/String.spvm
+lib/SPVM/R/NDArray/StringBuffer.c
+lib/SPVM/R/NDArray/StringBuffer.config
+lib/SPVM/R/NDArray/StringBuffer.pm
+lib/SPVM/R/NDArray/StringBuffer.spvm
+lib/SPVM/R/NDArray/Time/Piece.c
+lib/SPVM/R/NDArray/Time/Piece.config
+lib/SPVM/R/NDArray/Time/Piece.pm
+lib/SPVM/R/NDArray/Time/Piece.spvm
 lib/SPVM/R/Operation.c
 lib/SPVM/R/Operation.config
 lib/SPVM/R/Operation.pm

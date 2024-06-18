@@ -1,16 +1,16 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::NDArray::StringBuffer extends R::NDArray {
+class R::NDArray::Time::Piece extends R::NDArray {
   
   use Fn;
   use Array;
-  use StringBuffer;
+  use Time::Piece;
   
   # Class Mehtods
-  static method new : R::NDArray::StringBuffer ($options : object[] = undef) {
+  static method new : R::NDArray::Time::Piece ($options : object[] = undef) {
     
-    my $self = new R::NDArray::StringBuffer;
+    my $self = new R::NDArray::Time::Piece;
     
     $self->init($options);
     
@@ -21,19 +21,19 @@ class R::NDArray::StringBuffer extends R::NDArray {
     
     my $item_size = Fn->sizeof_native_pointer;
     
-    $options = Fn->merge_options($options, {item_size => $item_size, type => "StringBuffer"});
+    $options = Fn->merge_options($options, {item_size => $item_size, type => "Time::Piece"});
     
     $self->SUPER::init($options);
   }
   
-  method data : StringBuffer[] () {
+  method data : Time::Piece[] () {
     
-    return (StringBuffer[])$self->{data};
+    return (Time::Piece[])$self->{data};
   }
   
   protected method check_data : void () {
     
-    my $x_data = (StringBuffer[])$self->{data};
+    my $x_data = (Time::Piece[])$self->{data};
     
     my $length = $self->{length};
     
