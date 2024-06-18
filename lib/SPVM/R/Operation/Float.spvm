@@ -52,17 +52,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] + $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] + $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sub : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -77,17 +77,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] - $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] - $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method mul : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -102,17 +102,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] * $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] * $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method div : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -127,17 +127,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] / $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] / $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method remainder : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -152,17 +152,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->remainderf($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->remainderf($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method fmod : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -177,17 +177,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->fmodf($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->fmodf($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_int : R::NDArray::Int ($x_ndarray : R::NDArray::Float) {
@@ -200,16 +200,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (int)$x_data->[$i];
+      $ret_data->[$i] = (int)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_long : R::NDArray::Long ($x_ndarray : R::NDArray::Float) {
@@ -222,16 +222,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Long->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Long->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (long)$x_data->[$i];
+      $ret_data->[$i] = (long)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method clone : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -244,16 +244,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (float)$x_data->[$i];
+      $ret_data->[$i] = (float)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_double : R::NDArray::Double ($x_ndarray : R::NDArray::Float) {
@@ -266,16 +266,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Double->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Double->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (double)$x_data->[$i];
+      $ret_data->[$i] = (double)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_float_complex : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::Float) {
@@ -288,17 +288,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::FloatComplex->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::FloatComplex->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i]{re} = (float)$x_data->[$i];
-      $x_data_ret->[$i]{im} = 0f;
+      $ret_data->[$i]{re} = (float)$x_data->[$i];
+      $ret_data->[$i]{im} = 0f;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::Float) {
@@ -311,17 +311,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::DoubleComplex->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::DoubleComplex->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i]{re} = (double)$x_data->[$i];
-      $x_data_ret->[$i]{im} = 0;
+      $ret_data->[$i]{re} = (double)$x_data->[$i];
+      $ret_data->[$i]{im} = 0;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_string : R::NDArray::String ($x_ndarray : R::NDArray::Float) {
@@ -334,16 +334,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::String->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::String->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (string)$x_data->[$i];
+      $ret_data->[$i] = (string)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method abs : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -356,16 +356,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->fabsf($x_data->[$i]);
+      $ret_data->[$i] = Math->fabsf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method neg : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -378,16 +378,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = -$x_data->[$i];
+      $ret_data->[$i] = -$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sin : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -400,16 +400,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->sinf($x_data->[$i]);
+      $ret_data->[$i] = Math->sinf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
 
   method cos : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -422,16 +422,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cosf($x_data->[$i]);
+      $ret_data->[$i] = Math->cosf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method tan : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -444,16 +444,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->tanf($x_data->[$i]);
+      $ret_data->[$i] = Math->tanf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sinh : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -466,16 +466,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->sinhf($x_data->[$i]);
+      $ret_data->[$i] = Math->sinhf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method cosh : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -488,16 +488,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->coshf($x_data->[$i]);
+      $ret_data->[$i] = Math->coshf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method tanh : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -510,16 +510,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->tanhf($x_data->[$i]);
+      $ret_data->[$i] = Math->tanhf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method acos : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -532,16 +532,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->acosf($x_data->[$i]);
+      $ret_data->[$i] = Math->acosf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method asin : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -554,16 +554,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->asinf($x_data->[$i]);
+      $ret_data->[$i] = Math->asinf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method atan : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -576,16 +576,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->atanf($x_data->[$i]);
+      $ret_data->[$i] = Math->atanf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method asinh : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -598,16 +598,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->asinhf($x_data->[$i]);
+      $ret_data->[$i] = Math->asinhf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method acosh : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -620,16 +620,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->acoshf($x_data->[$i]);
+      $ret_data->[$i] = Math->acoshf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method atanh : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -642,16 +642,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->atanhf($x_data->[$i]);
+      $ret_data->[$i] = Math->atanhf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method exp : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -664,16 +664,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->expf($x_data->[$i]);
+      $ret_data->[$i] = Math->expf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method expm1 : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -686,16 +686,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->expm1f($x_data->[$i]);
+      $ret_data->[$i] = Math->expm1f($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method log : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -708,16 +708,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->logf($x_data->[$i]);
+      $ret_data->[$i] = Math->logf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method logb : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -730,16 +730,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->logbf($x_data->[$i]);
+      $ret_data->[$i] = Math->logbf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method log2 : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -752,16 +752,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->log2f($x_data->[$i]);
+      $ret_data->[$i] = Math->log2f($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method log10 : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -774,16 +774,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->log10f($x_data->[$i]);
+      $ret_data->[$i] = Math->log10f($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sqrt : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -796,16 +796,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->sqrtf($x_data->[$i]);
+      $ret_data->[$i] = Math->sqrtf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method isinf : R::NDArray::Int ($x_ndarray : R::NDArray::Float) {
@@ -818,16 +818,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->isinff($x_data->[$i]);
+      $ret_data->[$i] = Math->isinff($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method isnan : R::NDArray::Int ($x_ndarray : R::NDArray::Float) {
@@ -840,16 +840,16 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->isnanf($x_data->[$i]);
+      $ret_data->[$i] = Math->isnanf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method pow : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -864,17 +864,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->powf($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->powf($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method atan2 : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -889,17 +889,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->atan2f($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->atan2f($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -914,17 +914,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] == $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] == $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method ne : R::NDArray::Int ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -939,17 +939,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = !($x_data->[$i] == $y_data->[$i]);
+      $ret_data->[$i] = !($x_data->[$i] == $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method gt : R::NDArray::Int ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -964,17 +964,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] > $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] > $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method ge : R::NDArray::Int ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -989,17 +989,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] >= $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] >= $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method lt : R::NDArray::Int ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -1014,17 +1014,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] < $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] < $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method le : R::NDArray::Int ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -1039,17 +1039,17 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] <= $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] <= $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sum : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -1062,18 +1062,18 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, [1]);
+    my $ret_ndarray = $self->array(undef, [1]);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $sum = 0f;
     for (my $i = 0; $i < $length; $i++) {
       $sum += $x_data->[$i];
     }
-    $x_data_ret->[0] = $sum;
+    $ret_data->[0] = $sum;
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method cumsum : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -1086,18 +1086,18 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $sum = 0f;
     for (my $i = 0; $i < $length; $i++) {
       $sum += $x_data->[$i];
-      $x_data_ret->[$i] = $sum;
+      $ret_data->[$i] = $sum;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method prod : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -1110,18 +1110,18 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, [1]);
+    my $ret_ndarray = $self->array(undef, [1]);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $prod = 1f;
     for (my $i = 0; $i < $length; $i++) {
       $prod *= $x_data->[$i];
     }
-    $x_data_ret->[0] = $prod;
+    $ret_data->[0] = $prod;
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method cumprod : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
@@ -1134,18 +1134,18 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $prod = 1f;
     for (my $i = 0; $i < $length; $i++) {
       $prod *= $x_data->[$i];
-      $x_data_ret->[$i] = $prod;
+      $ret_data->[$i] = $prod;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method modf : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $intpart_ndarray_ref : R::NDArray::Float[]) {
@@ -1166,21 +1166,21 @@ class R::Operation::Float extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $intpart_ndarray = $self->array(undef, $x_dim);
     my $x_data_intpart = $intpart_ndarray->data;
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       my $intpart = 0.0f;
-      $x_data_ret->[$i] = Math->modff($x_data->[$i], \$intpart);
+      $ret_data->[$i] = Math->modff($x_data->[$i], \$intpart);
       $x_data_intpart->[$i] = $intpart;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
 }

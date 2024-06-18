@@ -52,17 +52,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] + $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] + $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sub : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -77,17 +77,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] - $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] - $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method mul : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -102,17 +102,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] * $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] * $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method div : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -127,17 +127,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] / $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] / $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method div_unsinged : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -152,17 +152,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] div_uint $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] div_uint $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method mod : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -177,17 +177,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] % $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] % $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method mod_unsinged : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -202,17 +202,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] mod_uint $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] mod_uint $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method clone : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
@@ -225,16 +225,16 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (int)$x_data->[$i];
+      $ret_data->[$i] = (int)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_long : R::NDArray::Long ($x_ndarray : R::NDArray::Int) {
@@ -247,16 +247,16 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Long->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Long->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (long)$x_data->[$i];
+      $ret_data->[$i] = (long)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_float : R::NDArray::Float ($x_ndarray : R::NDArray::Int) {
@@ -269,16 +269,16 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (float)$x_data->[$i];
+      $ret_data->[$i] = (float)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_double : R::NDArray::Double ($x_ndarray : R::NDArray::Int) {
@@ -291,16 +291,16 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Double->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Double->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (double)$x_data->[$i];
+      $ret_data->[$i] = (double)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_float_complex : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::Int) {
@@ -313,17 +313,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::FloatComplex->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::FloatComplex->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i]{re} = (float)$x_data->[$i];
-      $x_data_ret->[$i]{im} = 0f;
+      $ret_data->[$i]{re} = (float)$x_data->[$i];
+      $ret_data->[$i]{im} = 0f;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::Int) {
@@ -336,17 +336,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::DoubleComplex->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::DoubleComplex->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i]{re} = (double)$x_data->[$i];
-      $x_data_ret->[$i]{im} = 0;
+      $ret_data->[$i]{re} = (double)$x_data->[$i];
+      $ret_data->[$i]{im} = 0;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_string : R::NDArray::String ($x_ndarray : R::NDArray::Int) {
@@ -359,16 +359,16 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::String->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::String->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (string)$x_data->[$i];
+      $ret_data->[$i] = (string)$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method abs : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
@@ -381,16 +381,16 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Fn->abs($x_data->[$i]);
+      $ret_data->[$i] = Fn->abs($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method neg : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
@@ -403,16 +403,16 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = -$x_data->[$i];
+      $ret_data->[$i] = -$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method and : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -427,17 +427,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] && $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] && $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method or : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -452,17 +452,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new int[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new int[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] || $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] || $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method not : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
@@ -475,16 +475,16 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = !$x_data->[$i];
+      $ret_data->[$i] = !$x_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -499,17 +499,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] == $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] == $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method ne : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -524,17 +524,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = !($x_data->[$i] == $y_data->[$i]);
+      $ret_data->[$i] = !($x_data->[$i] == $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method gt : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -549,17 +549,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] > $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] > $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method ge : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -574,17 +574,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] >= $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] >= $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method lt : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -599,17 +599,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] < $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] < $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method le : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
@@ -624,17 +624,17 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i] <= $y_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] <= $y_data->[$i];
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sum : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
@@ -647,18 +647,18 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, [1]);
+    my $ret_ndarray = $self->array(undef, [1]);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $sum = 0;
     for (my $i = 0; $i < $length; $i++) {
       $sum += $x_data->[$i];
     }
-    $x_data_ret->[0] = $sum;
+    $ret_data->[0] = $sum;
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method cumsum : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
@@ -671,18 +671,18 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $sum = 0;
     for (my $i = 0; $i < $length; $i++) {
       $sum += $x_data->[$i];
-      $x_data_ret->[$i] = $sum;
+      $ret_data->[$i] = $sum;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method prod : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
@@ -695,18 +695,18 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, [1]);
+    my $ret_ndarray = $self->array(undef, [1]);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $prod = 1;
     for (my $i = 0; $i < $length; $i++) {
       $prod *= $x_data->[$i];
     }
-    $x_data_ret->[0] = $prod;
+    $ret_data->[0] = $prod;
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method cumprod : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
@@ -719,18 +719,18 @@ class R::Operation::Int extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $prod = 1;
     for (my $i = 0; $i < $length; $i++) {
       $prod *= $x_data->[$i];
-      $x_data_ret->[$i] = $prod;
+      $ret_data->[$i] = $prod;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
 }

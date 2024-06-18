@@ -54,17 +54,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new Complex_2f[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new Complex_2f[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->caddf($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->caddf($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sub : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -79,17 +79,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new Complex_2f[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new Complex_2f[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->csubf($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->csubf($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method mul : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -104,17 +104,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new Complex_2f[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new Complex_2f[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cmulf($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->cmulf($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method div : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -129,17 +129,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_data_ret = new Complex_2f[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
+    my $ret_data = new Complex_2f[$length];
+    my $ret_ndarray = $self->array($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cdivf($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->cdivf($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method clone : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -152,17 +152,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::FloatComplex->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::FloatComplex->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i]{re} = (float)$x_data->[$i]{re};
-      $x_data_ret->[$i]{im} = (float)$x_data->[$i]{im};
+      $ret_data->[$i]{re} = (float)$x_data->[$i]{re};
+      $ret_data->[$i]{im} = (float)$x_data->[$i]{im};
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -175,17 +175,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::DoubleComplex->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::DoubleComplex->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i]{re} = (double)$x_data->[$i]{re};
-      $x_data_ret->[$i]{im} = (double)$x_data->[$i]{im};
+      $ret_data->[$i]{re} = (double)$x_data->[$i]{re};
+      $ret_data->[$i]{im} = (double)$x_data->[$i]{im};
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method to_string : R::NDArray::String ($x_ndarray : R::NDArray::FloatComplex) {
@@ -198,16 +198,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::String->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::String->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = (string)$x_data->[$i]{re} . " + " . (string)$x_data->[$i]{im};
+      $ret_data->[$i] = (string)$x_data->[$i]{re} . " + " . (string)$x_data->[$i]{im};
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method abs : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
@@ -220,16 +220,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cabsf($x_data->[$i]);
+      $ret_data->[$i] = Math->cabsf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method neg : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -242,16 +242,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cnegf($x_data->[$i]);
+      $ret_data->[$i] = Math->cnegf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -264,16 +264,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->csinf($x_data->[$i]);
+      $ret_data->[$i] = Math->csinf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
 
   method cos : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -286,16 +286,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->ccosf($x_data->[$i]);
+      $ret_data->[$i] = Math->ccosf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method tan : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -308,16 +308,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->ctanf($x_data->[$i]);
+      $ret_data->[$i] = Math->ctanf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sinh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -330,16 +330,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->csinhf($x_data->[$i]);
+      $ret_data->[$i] = Math->csinhf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method cosh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -352,16 +352,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->ccoshf($x_data->[$i]);
+      $ret_data->[$i] = Math->ccoshf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method tanh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -374,16 +374,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->ctanhf($x_data->[$i]);
+      $ret_data->[$i] = Math->ctanhf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method acos : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -396,16 +396,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cacosf($x_data->[$i]);
+      $ret_data->[$i] = Math->cacosf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method asin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -418,16 +418,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->casinf($x_data->[$i]);
+      $ret_data->[$i] = Math->casinf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method atan : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -440,16 +440,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->catanf($x_data->[$i]);
+      $ret_data->[$i] = Math->catanf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method asinh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -462,16 +462,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->casinhf($x_data->[$i]);
+      $ret_data->[$i] = Math->casinhf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method acosh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -484,16 +484,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cacoshf($x_data->[$i]);
+      $ret_data->[$i] = Math->cacoshf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method atanh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -506,16 +506,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->catanhf($x_data->[$i]);
+      $ret_data->[$i] = Math->catanhf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method exp : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -528,16 +528,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cexpf($x_data->[$i]);
+      $ret_data->[$i] = Math->cexpf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method log : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -550,16 +550,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->clogf($x_data->[$i]);
+      $ret_data->[$i] = Math->clogf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sqrt : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -572,16 +572,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->csqrtf($x_data->[$i]);
+      $ret_data->[$i] = Math->csqrtf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method conj : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -594,16 +594,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->conjf($x_data->[$i]);
+      $ret_data->[$i] = Math->conjf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method arg : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
@@ -616,16 +616,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cargf($x_data->[$i]);
+      $ret_data->[$i] = Math->cargf($x_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method re : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
@@ -638,16 +638,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i]{re};
+      $ret_data->[$i] = $x_data->[$i]{re};
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method im : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
@@ -660,16 +660,16 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
+    my $ret_ndarray = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i]{im};
+      $ret_data->[$i] = $x_data->[$i]{im};
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method pow : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -684,17 +684,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = Math->cpowf($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->cpowf($x_data->[$i], $y_data->[$i]);
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method eq : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -709,17 +709,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = $x_data->[$i]{re} == $y_data->[$i]{re} && $x_data->[$i]{im} == $y_data->[$i]{im};
+      $ret_data->[$i] = $x_data->[$i]{re} == $y_data->[$i]{re} && $x_data->[$i]{im} == $y_data->[$i]{im};
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method ne : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -734,17 +734,17 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_ndarray = R::Operation::Int->new->array(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $x_data_ret->[$i] = !($x_data->[$i]{re} == $y_data->[$i]{re} && $x_data->[$i]{im} == $y_data->[$i]{im});
+      $ret_data->[$i] = !($x_data->[$i]{re} == $y_data->[$i]{re} && $x_data->[$i]{im} == $y_data->[$i]{im});
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method sum : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -757,18 +757,18 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, [1]);
+    my $ret_ndarray = $self->array(undef, [1]);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $sum : Complex_2f;
     for (my $i = 0; $i < $length; $i++) {
       $sum = Math->caddf($sum, $x_data->[$i]);
     }
-    $x_data_ret->[0] = $sum;
+    $ret_data->[0] = $sum;
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method cumsum : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -781,18 +781,18 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $sum : Complex_2f;
     for (my $i = 0; $i < $length; $i++) {
       $sum = Math->caddf($sum, $x_data->[$i]);
-      $x_data_ret->[$i] = $sum;
+      $ret_data->[$i] = $sum;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method prod : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -805,18 +805,18 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, [1]);
+    my $ret_ndarray = $self->array(undef, [1]);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $prod = Math->complexf(1, 0);
     for (my $i = 0; $i < $length; $i++) {
       $prod = Math->cmulf($prod, $x_data->[$i]);
     }
-    $x_data_ret->[0] = $prod;
+    $ret_data->[0] = $prod;
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
   method cumprod : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
@@ -829,18 +829,18 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
-    my $x_data_ret = $x_ndarray_ret->data;
+    my $ret_data = $ret_ndarray->data;
     
     my $prod = Math->complexf(1, 0);
     for (my $i = 0; $i < $length; $i++) {
       $prod = Math->cmulf($prod, $x_data->[$i]);
-      $x_data_ret->[$i] = $prod;
+      $ret_data->[$i] = $prod;
     }
     
-    return $x_ndarray_ret;
+    return $ret_ndarray;
   }
   
 }
