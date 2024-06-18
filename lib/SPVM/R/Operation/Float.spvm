@@ -38,13 +38,6 @@ class R::Operation::Float extends R::Operation {
     return $x_ndarray;
   }
   
-  method array : R::NDArray::Float ($x_data : float[], $x_dim : int[]) {
-    
-    my $x_ndarray = R::NDArray::Float->new({dim => $x_dim, data => $x_data});
-    
-    return $x_ndarray;
-  }
-  
   method add : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
     
     unless ($x_ndarray) {

@@ -22,10 +22,4 @@ class R::Operation::String {
     return $x_ndarray;
   }
   
-  method array : R::NDArray::String ($x_data : string[], $x_dim : int[]) {
-    
-    my $x_ndarray = R::NDArray::String->new({dim => $x_dim, data => $x_data});
-    
-    return $x_ndarray;
-  }
 }

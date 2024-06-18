@@ -38,13 +38,6 @@ class R::Operation::Double extends R::Operation {
     return $x_ndarray;
   }
   
-  method array : R::NDArray::Double ($x_data : double[], $x_dim : int[]) {
-    
-    my $x_ndarray = R::NDArray::Double->new({dim => $x_dim, data => $x_data});
-    
-    return $x_ndarray;
-  }
-  
   method add : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {

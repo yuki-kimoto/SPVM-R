@@ -39,13 +39,6 @@ class R::Operation::FloatComplex extends R::Operation {
   }
   
   
-  method array : R::NDArray::FloatComplex ($x_data : Complex_2f[], $x_dim : int[]) {
-    
-    my $x_ndarray = R::NDArray::FloatComplex->new({dim => $x_dim, data => $x_data});
-    
-    return $x_ndarray;
-  }
-  
   method add : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {

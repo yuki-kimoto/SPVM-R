@@ -37,13 +37,6 @@ class R::Operation::Long extends R::Operation {
     return $x_ndarray;
   }
   
-  method array : R::NDArray::Long ($x_data : long[], $x_dim : int[]) {
-    
-    my $x_ndarray = R::NDArray::Long->new({dim => $x_dim, data => $x_data});
-    
-    return $x_ndarray;
-  }
-  
   method add : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {

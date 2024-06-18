@@ -37,13 +37,6 @@ class R::Operation::Int extends R::Operation {
     return $x_ndarray;
   }
   
-  method array : R::NDArray::Int ($x_data : int[], $x_dim : int[]) {
-    
-    my $x_ndarray = R::NDArray::Int->new({dim => $x_dim, data => $x_data});
-    
-    return $x_ndarray;
-  }
-  
   precompile method add : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
     unless ($x_ndarray) {
