@@ -1067,11 +1067,35 @@ class R::Operation::Double extends R::Operation {
     my $data = $ndarray->data;
     my $data_ret = $ndarray_ret->data;
     
-    my $sum = 0;
+    my $sum = 0.0;
     for (my $i = 0; $i < $length; $i++) {
       $sum += $data->[$i];
     }
     $data_ret->[0] = $sum;
+    
+    return $ndarray_ret;
+  }
+  
+  method cumsum : R::NDArray::Double ($ndarray : R::NDArray::Double) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    my $sum = 0;
+    for (my $i = 0; $i < $length; $i++) {
+      $sum += $data->[$i];
+      $data_ret->[$i] = $sum;
+    }
     
     return $ndarray_ret;
   }
@@ -1085,8 +1109,6 @@ namespace Rstats {
     
     modf
     
-    SV* sum(SV*, SV*);
-    SV* cumsum(SV*, SV*);
     SV* cumprod(SV*, SV*);
     SV* prod(SV*, SV*);
   }
