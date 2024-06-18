@@ -1100,4 +1100,52 @@ class R::Operation::Float extends R::Operation {
     return $ndarray_ret;
   }
   
+  method prod : R::NDArray::Float ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, [1]);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    my $prod = 1f;
+    for (my $i = 0; $i < $length; $i++) {
+      $prod *= $data->[$i];
+    }
+    $data_ret->[0] = $prod;
+    
+    return $ndarray_ret;
+  }
+  
+  method cumprod : R::NDArray::Float ($ndarray : R::NDArray::Float) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    my $prod = 1f;
+    for (my $i = 0; $i < $length; $i++) {
+      $prod *= $data->[$i];
+      $data_ret->[$i] = $prod;
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }
