@@ -877,7 +877,7 @@ class R::Operation::Double extends R::Operation {
     return $ret_ndarray;
   }
   
-  method atan2 : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+  method atan2 : R::NDArray::Double ($y_ndarray : R::NDArray::Double, $x_ndarray : R::NDArray::Double) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -896,7 +896,7 @@ class R::Operation::Double extends R::Operation {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = Math->atan2($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->atan2($y_data->[$i], $x_data->[$i]);
     }
     
     return $ret_ndarray;

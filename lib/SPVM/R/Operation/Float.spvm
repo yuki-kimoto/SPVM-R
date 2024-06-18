@@ -877,7 +877,7 @@ class R::Operation::Float extends R::Operation {
     return $ret_ndarray;
   }
   
-  method atan2 : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
+  method atan2 : R::NDArray::Float ($y_ndarray : R::NDArray::Float, $x_ndarray : R::NDArray::Float) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -896,7 +896,7 @@ class R::Operation::Float extends R::Operation {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = Math->atan2f($x_data->[$i], $y_data->[$i]);
+      $ret_data->[$i] = Math->atan2f($y_data->[$i], $x_data->[$i]);
     }
     
     return $ret_ndarray;
