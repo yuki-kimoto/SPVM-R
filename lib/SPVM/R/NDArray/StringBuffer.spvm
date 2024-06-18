@@ -42,4 +42,13 @@ class R::NDArray::StringBuffer extends R::NDArray {
     }
   }
   
+  protected method create_default_data : StringBuffer[] () {
+    
+    my $length = $self->{length};
+    
+    my $data = new StringBuffer[$length];
+    
+    return $data;
+  }
+  
 }

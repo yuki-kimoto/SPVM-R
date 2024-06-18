@@ -42,4 +42,13 @@ class R::NDArray::Time::Piece extends R::NDArray {
     }
   }
   
+  protected method create_default_data : Time::Piece[] () {
+    
+    my $length = $self->{length};
+    
+    my $data = new Time::Piece[$length];
+    
+    return $data;
+  }
+  
 }
