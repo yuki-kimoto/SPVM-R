@@ -32,11 +32,11 @@ class R::NDArray::String extends R::NDArray {
   
   protected method check_data : void () {
     
-    my $x_data = (string[])$self->{data};
+    my $data = (string[])$self->{data};
     
     my $length = $self->{length};
     
-    unless (@$x_data == $length) {
+    unless (@$data == $length) {
       die "The length of data field must be the same as length field.";
     }
   }

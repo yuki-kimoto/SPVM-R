@@ -33,11 +33,11 @@ class R::NDArray::Time::Piece extends R::NDArray {
   
   protected method check_data : void () {
     
-    my $x_data = (Time::Piece[])$self->{data};
+    my $data = (Time::Piece[])$self->{data};
     
     my $length = $self->{length};
     
-    unless (@$x_data == $length) {
+    unless (@$data == $length) {
       die "The length of data field must be the same as length field.";
     }
   }

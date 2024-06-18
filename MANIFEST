@@ -3,8 +3,6 @@
 Changes
 lib/SPVM/R.c
 lib/SPVM/R.config
-lib/SPVM/R.native/include/.gitkeep
-lib/SPVM/R.native/src/.gitkeep
 lib/SPVM/R.pm
 lib/SPVM/R.spvm
 lib/SPVM/R/DataFrame.c

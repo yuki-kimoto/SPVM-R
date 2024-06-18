@@ -30,11 +30,11 @@ class R::NDArray::Byte extends R::NDArray {
   
   protected method check_data : void () {
     
-    my $x_data = (byte[])$self->{data};
+    my $data = (byte[])$self->{data};
     
     my $length = $self->{length};
     
-    unless (@$x_data == $length) {
+    unless (@$data == $length) {
       die "The length of data field must be the same as length field.";
     }
   }
@@ -43,8 +43,8 @@ class R::NDArray::Byte extends R::NDArray {
     
     my $length = $self->{length};
     
-    my $x_data = new byte[$length];
+    my $data = new byte[$length];
     
-    return $x_data;
+    return $data;
   }
 }

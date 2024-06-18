@@ -33,11 +33,11 @@ class R::NDArray::StringBuffer extends R::NDArray {
   
   protected method check_data : void () {
     
-    my $x_data = (StringBuffer[])$self->{data};
+    my $data = (StringBuffer[])$self->{data};
     
     my $length = $self->{length};
     
-    unless (@$x_data == $length) {
+    unless (@$data == $length) {
       die "The length of data field must be the same as length field.";
     }
   }
