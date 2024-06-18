@@ -5,12 +5,8 @@ lib/SPVM/R.c
 lib/SPVM/R.config
 lib/SPVM/R.pm
 lib/SPVM/R.spvm
-lib/SPVM/R/DataFrame.c
-lib/SPVM/R/DataFrame.config
 lib/SPVM/R/DataFrame.pm
 lib/SPVM/R/DataFrame.spvm
-lib/SPVM/R/NDArray.c
-lib/SPVM/R/NDArray.config
 lib/SPVM/R/NDArray.pm
 lib/SPVM/R/NDArray.spvm
 lib/SPVM/R/NDArray/Byte.pm
@@ -37,8 +33,6 @@ lib/SPVM/R/NDArray/StringBuffer.pm
 lib/SPVM/R/NDArray/StringBuffer.spvm
 lib/SPVM/R/NDArray/Time/Piece.pm
 lib/SPVM/R/NDArray/Time/Piece.spvm
-lib/SPVM/R/Operation.c
-lib/SPVM/R/Operation.config
 lib/SPVM/R/Operation.pm
 lib/SPVM/R/Operation.spvm
 lib/SPVM/R/Operation/Double.c
