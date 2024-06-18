@@ -66,6 +66,12 @@ sub MY::postamble {
     
     $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R');
     
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Int');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Long');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Float');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Double');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::FloatComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::DoubleComplex');
   }
   
   return $make_rule;
