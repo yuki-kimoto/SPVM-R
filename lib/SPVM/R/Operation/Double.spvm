@@ -877,6 +877,31 @@ class R::Operation::Double extends R::Operation {
     return $ndarray_ret;
   }
   
+  method atan2 : R::NDArray::Double ($ndarray1 : R::NDArray::Double, $ndarray2 : R::NDArray::Double) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = Math->atan2($data1->[$i], $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }
 
 =pod TODO
@@ -884,16 +909,12 @@ class R::Operation::Double extends R::Operation {
 namespace Rstats {
   namespace Func {
     
-    SV* atan2(SV*, SV*, SV*);
     SV* less_than(SV*, SV*, SV*);
     SV* less_than_or_equal(SV*, SV*, SV*);
     SV* more_than(SV*, SV*, SV*);
     SV* more_than_or_equal(SV*, SV*, SV*);
     SV* equals(SV*, SV*, SV*);
     SV* not_equals(SV*, SV*, SV*);
-    
-    SV* And(SV*, SV*, SV*);
-    SV* Or(SV*, SV*, SV*);
     
     modf
     

@@ -494,9 +494,6 @@ class R::Operation::Int extends R::Operation {
 namespace Rstats {
   namespace Func {
     
-    SV* And(SV*, SV*, SV*);
-    SV* Or(SV*, SV*, SV*);
-    SV* atan2(SV*, SV*, SV*);
     SV* less_than(SV*, SV*, SV*);
     SV* less_than_or_equal(SV*, SV*, SV*);
     SV* more_than(SV*, SV*, SV*);
