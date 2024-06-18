@@ -455,5 +455,30 @@ class R::Operation::Long extends R::Operation {
     return $ndarray_ret;
   }
   
+  method not_equals : R::NDArray::Int ($ndarray1 : R::NDArray::Long, $ndarray2 : R::NDArray::Long) {
+    
+    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+    }
+    
+    my $length = $ndarray1->length;
+    
+    my $dim = $ndarray1->dim;
+    
+    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
+    
+    my $data1 = $ndarray1->data;
+    my $data2 = $ndarray2->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = !($data1->[$i] == $data2->[$i]);
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }
 
