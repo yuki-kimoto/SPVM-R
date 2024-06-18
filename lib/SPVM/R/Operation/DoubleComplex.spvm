@@ -746,4 +746,28 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ndarray_ret;
   }
   
+  method sum : R::NDArray::DoubleComplex ($ndarray : R::NDArray::DoubleComplex) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, [1]);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    my $sum : Complex_2d;
+    for (my $i = 0; $i < $length; $i++) {
+      $sum = Math->cadd($sum, $data->[$i]);
+    }
+    $data_ret->[0] = $sum;
+    
+    return $ndarray_ret;
+  }
+  
 }
