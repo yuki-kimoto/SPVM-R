@@ -57,6 +57,14 @@ class R::Operation::Int extends R::Operation {
   
   precompile method add : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
