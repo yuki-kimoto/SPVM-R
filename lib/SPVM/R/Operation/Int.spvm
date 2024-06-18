@@ -735,14 +735,3 @@ class R::Operation::Int extends R::Operation {
   
 }
 
-=pod TODO
-
-namespace Rstats {
-  namespace Func {
-    
-    SV* cumprod(SV*, SV*);
-    SV* prod(SV*, SV*);
-  }
-}
-
-=cut

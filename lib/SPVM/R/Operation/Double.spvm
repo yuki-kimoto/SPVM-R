@@ -1148,6 +1148,41 @@ class R::Operation::Double extends R::Operation {
     return $ndarray_ret;
   }
   
+  method modf : R::NDArray::Double ($ndarray : R::NDArray::Double, $intpart_ndarray_ref : R::NDArray::Double[]) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    unless ($intpart_ndarray_ref) {
+      die "The integer part n-dimension array \$intpart_ndarray_ref must be defined.";
+    }
+    
+    unless (@$intpart_ndarray_ref == 1) {
+      die "The length of integer part n-dimension array \$intpart_ndarray_ref must be 1.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = $self->array(undef, $dim);
+    
+    my $intpart_ndarray = $self->array(undef, $dim);
+    my $data_intpart = $intpart_ndarray->data;
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      my $intpart = 0.0;
+      $data_ret->[$i] = Math->modf($data->[$i], \$intpart);
+      $data_intpart->[$i] = $intpart;
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }
 
 =pod TODO
@@ -1156,9 +1191,6 @@ namespace Rstats {
   namespace Func {
     
     modf
-    
-    SV* cumprod(SV*, SV*);
-    SV* prod(SV*, SV*);
   }
 }
 
