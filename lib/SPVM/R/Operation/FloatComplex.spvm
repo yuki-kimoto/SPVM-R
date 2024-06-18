@@ -938,4 +938,11 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
+  method i : R::NDArray::FloatComplex () {
+    
+    my $i = $self->complex([0f,1f]);
+    
+    return $i;
+  }
+  
 }

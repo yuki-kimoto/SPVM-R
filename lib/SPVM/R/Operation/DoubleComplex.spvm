@@ -939,4 +939,11 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
+  method i : R::NDArray::DoubleComplex () {
+    
+    my $i = $self->complex([0.0,1.0]);
+    
+    return $i;
+  }
+  
 }
