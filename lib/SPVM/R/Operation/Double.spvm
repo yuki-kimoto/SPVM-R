@@ -884,8 +884,6 @@ class R::Operation::Double extends R::Operation {
 namespace Rstats {
   namespace Func {
     
-    SV* And(SV*, SV*, SV*);
-    SV* Or(SV*, SV*, SV*);
     SV* atan2(SV*, SV*, SV*);
     SV* less_than(SV*, SV*, SV*);
     SV* less_than_or_equal(SV*, SV*, SV*);
@@ -893,6 +891,9 @@ namespace Rstats {
     SV* more_than_or_equal(SV*, SV*, SV*);
     SV* equals(SV*, SV*, SV*);
     SV* not_equals(SV*, SV*, SV*);
+    
+    SV* And(SV*, SV*, SV*);
+    SV* Or(SV*, SV*, SV*);
     
     modf
     
@@ -904,3 +905,4 @@ namespace Rstats {
 }
 
 =cut
+
