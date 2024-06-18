@@ -17,7 +17,7 @@ class R::NDArray::DoubleComplex extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options($options, {item_size => 16, type => "double_complex"});
+    $options = Fn->merge_options($options, {item_size => 16, type => "Complex_2d"});
     
     $self->SUPER::init($options);
   }
