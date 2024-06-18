@@ -58,6 +58,14 @@ class R::Operation::Double extends R::Operation {
   
   method add : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
@@ -82,6 +90,14 @@ class R::Operation::Double extends R::Operation {
   }
   
   precompile method sub : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -108,6 +124,14 @@ class R::Operation::Double extends R::Operation {
   
   precompile method mul : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
@@ -132,6 +156,14 @@ class R::Operation::Double extends R::Operation {
   }
   
   precompile method div : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -158,6 +190,14 @@ class R::Operation::Double extends R::Operation {
   
   precompile method remainder : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
@@ -182,6 +222,14 @@ class R::Operation::Double extends R::Operation {
   }
   
   precompile method fmod : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -870,6 +918,14 @@ class R::Operation::Double extends R::Operation {
   
   precompile method pow : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
@@ -894,6 +950,14 @@ class R::Operation::Double extends R::Operation {
   }
   
   precompile method atan2 : R::NDArray::Double ($y_ndarray : R::NDArray::Double, $x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -920,6 +984,14 @@ class R::Operation::Double extends R::Operation {
   
   precompile method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
@@ -944,6 +1016,14 @@ class R::Operation::Double extends R::Operation {
   }
   
   precompile method ne : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -970,6 +1050,14 @@ class R::Operation::Double extends R::Operation {
   
   precompile method gt : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
@@ -994,6 +1082,14 @@ class R::Operation::Double extends R::Operation {
   }
   
   precompile method ge : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -1020,6 +1116,14 @@ class R::Operation::Double extends R::Operation {
   
   precompile method lt : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
@@ -1044,6 +1148,14 @@ class R::Operation::Double extends R::Operation {
   }
   
   precompile method le : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
