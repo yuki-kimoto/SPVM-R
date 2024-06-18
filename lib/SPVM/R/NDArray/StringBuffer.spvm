@@ -19,9 +19,9 @@ class R::NDArray::StringBuffer extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    my $item_size = Fn->sizeof_native_pointer;
+    my $element_size = Fn->sizeof_native_pointer;
     
-    $options = Fn->merge_options($options, {item_size => $item_size, type => "StringBuffer"});
+    $options = Fn->merge_options($options, {element_size => $element_size, type => "StringBuffer"});
     
     $self->SUPER::init($options);
   }

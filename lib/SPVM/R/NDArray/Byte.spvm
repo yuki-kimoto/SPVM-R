@@ -18,7 +18,7 @@ class R::NDArray::Byte extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options($options, {item_size => 1, type => "byte", is_numeric => 1});
+    $options = Fn->merge_options($options, {element_size => 1, type => "byte", is_numeric => 1});
     
     $self->SUPER::init($options);
   }

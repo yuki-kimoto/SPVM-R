@@ -10,7 +10,7 @@ class R::NDArray {
   has data : protected object;
   method data : object () { die "Not implemented."; }
   
-  has item_size : ro protected int;
+  has element_size : ro protected int;
   
   has is_numeric : byte;
   
@@ -51,11 +51,11 @@ class R::NDArray {
     
     my $options_h = Hash->new($options);
     
-    my $item_size = $options_h->get_or_default_int("item_size", -1);
-    unless ($item_size > 0) {
-      die "item_size option must be greter than 0.";
+    my $element_size = $options_h->get_or_default_int("element_size", -1);
+    unless ($element_size > 0) {
+      die "element_size option must be greter than 0.";
     }
-    $self->{item_size} = $item_size;
+    $self->{element_size} = $element_size;
     
     my $is_numeric = $options_h->get_or_default_int("is_numeric", 0);
     unless ($is_numeric > 0) {
@@ -143,4 +143,8 @@ class R::NDArray {
   protected method check_data : void () { die "Not implemented."; }
   
   protected method create_default_data : object () { die "Not implemented."; }
+  
+  method clone {
+    
+  }
 }
