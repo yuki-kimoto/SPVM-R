@@ -64,24 +64,11 @@ class R::NDArray {
     }
     $self->{type} = $type;
     
-    my $length = $options_h->get_or_default_int("length", 0);
+    my $dim = (int[])$options_h->get_or_default("dim", undef);
     
-    my $dim_object = $options_h->get_or_default("dim", undef);
-    unless ($dim_object) {
-      if ($length == 0) {
-        $dim_object = undef;
-      }
-      elsif ($length > 0) {
-        $dim_object = (object)[$length];
-      }
-      else {
-        die "dim option must be defined if length option is not greater than or equal to 0.";
-      }
-    }
-    unless (!$dim_object || $dim_object isa int[]) {
-      die "dim option must be undef or int[] type.";
-    }
-    my $dim = $self->normalize_dim((int[])$dim_object);
+    my $normalized_dim = $self->normalize_dim($dim);
+    
+    $self->{dim} = $normalized_dim;
     
     my $data = $options_h->get_or_default("data", undef);
     
