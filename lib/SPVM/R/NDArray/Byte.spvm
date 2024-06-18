@@ -32,7 +32,7 @@ class R::NDArray::Byte extends R::NDArray {
     
     my $data = (byte[])$self->{data};
     
-    my $length = $self->{length};
+    my $length = $self->length;
     
     unless (@$data == $length) {
       die "The length of data field must be the same as length field.";
@@ -41,7 +41,7 @@ class R::NDArray::Byte extends R::NDArray {
   
   protected method create_default_data : byte[] () {
     
-    my $length = $self->{length};
+    my $length = $self->length;
     
     my $data = new byte[$length];
     

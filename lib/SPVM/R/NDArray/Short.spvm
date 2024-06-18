@@ -29,7 +29,7 @@ class R::NDArray::Short extends R::NDArray {
     
     my $data = (short[])$self->{data};
     
-    my $length = $self->{length};
+    my $length = $self->length;
     
     unless (@$data == $length) {
       die "The length of data field must be the same as length field.";
@@ -38,7 +38,7 @@ class R::NDArray::Short extends R::NDArray {
   
   protected method create_default_data : short[] () {
     
-    my $length = $self->{length};
+    my $length = $self->length;
     
     my $data = new short[$length];
     
