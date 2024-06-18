@@ -34,7 +34,7 @@ class R::NDArray::String extends R::NDArray {
     
     my $data = (string[])$self->{data};
     
-    my $length = $self->{length};
+    my $length = $self->length;
     
     unless (@$data == $length) {
       die "The length of data field must be the same as length field.";
@@ -43,7 +43,7 @@ class R::NDArray::String extends R::NDArray {
   
   protected method create_default_data : string[] () {
     
-    my $length = $self->{length};
+    my $length = $self->length;
     
     my $data = new string[$length];
     

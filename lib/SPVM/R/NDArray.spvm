@@ -12,8 +12,6 @@ class R::NDArray {
   
   has item_size : ro protected int;
   
-  has length : protected int;
-  
   has type : ro protected string;
   
   has dim : int[];
@@ -84,8 +82,6 @@ class R::NDArray {
       die "dim option must be undef or int[] type.";
     }
     my $dim = $self->normalize_dim((int[])$dim_object);
-    
-    $self->{length} = $length;
     
     my $data = $options_h->get_or_default("data", undef);
     
