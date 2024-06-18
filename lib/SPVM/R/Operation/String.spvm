@@ -23,19 +23,19 @@ class R::Operation::String {
     
     my $length = @$x_data;
     
-    my $dim = (int[])undef;
+    my $x_dim = (int[])undef;
     if ($length > 0) {
-      $dim = [$length];
+      $x_dim = [$length];
     }
     
-    my $x_ndarray = R::NDArray::String->new({dim => $dim, data => $x_data});
+    my $x_ndarray = R::NDArray::String->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
   }
   
-  method array : R::NDArray::String ($x_data : string[], $dim : int[]) {
+  method array : R::NDArray::String ($x_data : string[], $x_dim : int[]) {
     
-    my $x_ndarray = R::NDArray::String->new({dim => $dim, data => $x_data});
+    my $x_ndarray = R::NDArray::String->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
   }

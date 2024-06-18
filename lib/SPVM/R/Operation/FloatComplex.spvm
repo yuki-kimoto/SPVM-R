@@ -25,19 +25,19 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = @$x_data;
     
-    my $dim = (int[])undef;
+    my $x_dim = (int[])undef;
     if ($length > 0) {
-      $dim = [$length];
+      $x_dim = [$length];
     }
     
-    my $x_ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $x_data});
+    my $x_ndarray = R::NDArray::FloatComplex->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
   }
   
-  method array : R::NDArray::FloatComplex ($x_data : Complex_2f[], $dim : int[]) {
+  method array : R::NDArray::FloatComplex ($x_data : Complex_2f[], $x_dim : int[]) {
     
-    my $x_ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $x_data});
+    my $x_ndarray = R::NDArray::FloatComplex->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
   }
@@ -52,10 +52,10 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
     my $x_data_ret = new Complex_2f[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $dim);
+    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
@@ -77,10 +77,10 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
     my $x_data_ret = new Complex_2f[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $dim);
+    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
@@ -102,10 +102,10 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
     my $x_data_ret = new Complex_2f[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $dim);
+    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
@@ -127,10 +127,10 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
     my $x_data_ret = new Complex_2f[$length];
-    my $x_ndarray_ret = $self->array($x_data_ret, $dim);
+    my $x_ndarray_ret = $self->array($x_data_ret, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
@@ -150,9 +150,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::FloatComplex->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::FloatComplex->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -173,9 +173,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::DoubleComplex->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::DoubleComplex->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -196,9 +196,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::String->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::String->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -218,9 +218,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -240,9 +240,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -262,9 +262,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -284,9 +284,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -306,9 +306,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -328,9 +328,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -350,9 +350,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -372,9 +372,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -394,9 +394,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -416,9 +416,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -438,9 +438,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -460,9 +460,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -482,9 +482,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -504,9 +504,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -526,9 +526,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -548,9 +548,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -570,9 +570,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -592,9 +592,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -614,9 +614,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -636,9 +636,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -658,9 +658,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -682,9 +682,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     my $x_data_ret = $x_ndarray_ret->data;
     
     my $x_data = $x_ndarray->data;
@@ -707,9 +707,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
     my $x_data_ret = $x_ndarray_ret->data;
     
     my $x_data = $x_ndarray->data;
@@ -732,9 +732,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $x_dim);
     my $x_data_ret = $x_ndarray_ret->data;
     
     my $x_data = $x_ndarray->data;
@@ -755,7 +755,7 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
     my $x_ndarray_ret = $self->array(undef, [1]);
     
@@ -779,9 +779,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;
@@ -803,7 +803,7 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
     my $x_ndarray_ret = $self->array(undef, [1]);
     
@@ -827,9 +827,9 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $length = $x_ndarray->length;
     
-    my $dim = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $x_data_ret = $x_ndarray_ret->data;

@@ -23,23 +23,23 @@ class R::Operation {
       die "The n-dimention array \$y_ndarray must be defined.";
     }
     
-    my $dim1 = $x_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
-    my $dim2 = $y_ndarray->dim;
+    my $y_dim = $y_ndarray->dim;
     
     my $equals_dim = 0;
-    if ($dim1 && $dim2) {
-      my $dim1_length = @$dim1;
+    if ($x_dim && $y_dim) {
+      my $x_dim_length = @$x_dim;
       
-      my $dim2_length = @$dim2;
+      my $y_dim_length = @$y_dim;
       
-      if ($dim1_length == $dim2_length) {
+      if ($x_dim_length == $y_dim_length) {
         my $equals_dim_elements = 1;
-        for (my $i = 0; $i < $dim1_length; $i++) {
-          my $dim1_element = $dim1->[$i];
-          my $dim2_element = $dim2->[$i];
+        for (my $i = 0; $i < $x_dim_length; $i++) {
+          my $x_dim_element = $x_dim->[$i];
+          my $y_dim_element = $y_dim->[$i];
           
-          unless ($dim1_element == $dim2_element) {
+          unless ($x_dim_element == $y_dim_element) {
             $equals_dim_elements = 0;
             last;
           }
@@ -47,7 +47,7 @@ class R::Operation {
         $equals_dim = $equals_dim_elements;
       }
     }
-    elsif (!$dim1 && !$dim2) {
+    elsif (!$x_dim && !$y_dim) {
       $equals_dim = 1;
     }
     
