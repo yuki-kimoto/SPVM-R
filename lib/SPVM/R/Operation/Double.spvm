@@ -859,8 +859,6 @@ class R::Operation::Double extends R::Operation {
 namespace Rstats {
   namespace Func {
     
-    SV* Mod(SV*, SV*);
-    SV* Arg(SV*, SV*);
     SV* Re(SV*, SV*);
     SV* Im(SV*, SV*);
     
