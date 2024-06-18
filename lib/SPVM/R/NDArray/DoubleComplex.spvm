@@ -29,11 +29,11 @@ class R::NDArray::DoubleComplex extends R::NDArray {
   
   protected method check_data : void () {
     
-    my $data = (Complex_2d[])$self->{data};
+    my $x_data = (Complex_2d[])$self->{data};
     
     my $length = $self->{length};
     
-    unless (@$data == $length) {
+    unless (@$x_data == $length) {
       die "The length of data field must be the same as length field.";
     }
   }
@@ -42,8 +42,8 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     
     my $length = $self->{length};
     
-    my $data = new Complex_2d[$length];
+    my $x_data = new Complex_2d[$length];
     
-    return $data;
+    return $x_data;
   }
 }

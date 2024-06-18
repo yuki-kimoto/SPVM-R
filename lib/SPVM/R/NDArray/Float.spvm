@@ -27,11 +27,11 @@ class R::NDArray::Float extends R::NDArray {
   
   protected method check_data : void () {
     
-    my $data = (float[])$self->{data};
+    my $x_data = (float[])$self->{data};
     
     my $length = $self->{length};
     
-    unless (@$data == $length) {
+    unless (@$x_data == $length) {
       die "The length of data field must be the same as length field.";
     }
   }
@@ -40,8 +40,8 @@ class R::NDArray::Float extends R::NDArray {
     
     my $length = $self->{length};
     
-    my $data = new float[$length];
+    my $x_data = new float[$length];
     
-    return $data;
+    return $x_data;
   }
 }

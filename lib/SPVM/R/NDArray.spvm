@@ -131,13 +131,13 @@ class R::NDArray {
     
     $self->{length} = $length;
     
-    my $data = $options_h->get_or_default("data", undef);
+    my $x_data = $options_h->get_or_default("data", undef);
     
-    unless ($data) {
-      $data = $self->create_default_data;
+    unless ($x_data) {
+      $x_data = $self->create_default_data;
     }
     
-    $self->{data} = $data;
+    $self->{data} = $x_data;
     
     $self->check_data;
   }

@@ -15,27 +15,27 @@ class R::Operation::String {
   }
   
   # Instance Methods
-  method c : R::NDArray::String ($data : string[]) {
+  method c : R::NDArray::String ($x_data : string[]) {
     
-    unless ($data) {
-      die "The data \$data must be defined.";
+    unless ($x_data) {
+      die "The data \$x_data must be defined.";
     }
     
-    my $length = @$data;
+    my $length = @$x_data;
     
     my $dim = (int[])undef;
     if ($length > 0) {
       $dim = [$length];
     }
     
-    my $x_ndarray = R::NDArray::String->new({dim => $dim, data => $data});
+    my $x_ndarray = R::NDArray::String->new({dim => $dim, data => $x_data});
     
     return $x_ndarray;
   }
   
-  method array : R::NDArray::String ($data : string[], $dim : int[]) {
+  method array : R::NDArray::String ($x_data : string[], $dim : int[]) {
     
-    my $x_ndarray = R::NDArray::String->new({dim => $dim, data => $data});
+    my $x_ndarray = R::NDArray::String->new({dim => $dim, data => $x_data});
     
     return $x_ndarray;
   }
