@@ -38,9 +38,11 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     }
   }
   
-  protected method create_default_data : Complex_2d[] () {
+  protected method create_default_data : Complex_2d[] ($length : int) {
     
-    my $length = $self->length;
+    unless ($length >= 0) {
+      die "The length \$length must be more than or equal to 0.";
+    }
     
     my $data = new Complex_2d[$length];
     

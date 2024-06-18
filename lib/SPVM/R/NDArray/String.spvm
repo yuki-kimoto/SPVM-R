@@ -41,9 +41,11 @@ class R::NDArray::String extends R::NDArray {
     }
   }
   
-  protected method create_default_data : string[] () {
+  protected method create_default_data : string[] ($length : int) {
     
-    my $length = $self->length;
+    unless ($length >= 0) {
+      die "The length \$length must be more than or equal to 0.";
+    }
     
     my $data = new string[$length];
     

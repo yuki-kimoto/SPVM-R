@@ -42,9 +42,11 @@ class R::NDArray::StringBuffer extends R::NDArray {
     }
   }
   
-  protected method create_default_data : StringBuffer[] () {
+  protected method create_default_data : StringBuffer[] ($length : int) {
     
-    my $length = $self->length;
+    unless ($length >= 0) {
+      die "The length \$length must be more than or equal to 0.";
+    }
     
     my $data = new StringBuffer[$length];
     
