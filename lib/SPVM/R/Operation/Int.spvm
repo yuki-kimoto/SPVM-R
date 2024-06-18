@@ -30,18 +30,7 @@ class R::Operation::Int extends R::Operation {
   }
   
   # Instance Methods
-  method c : R::NDArray::Int ($x_data : int[]) {
-    
-    unless ($x_data) {
-      die "The data \$x_data must be defined.";
-    }
-    
-    my $length = @$x_data;
-    
-    my $x_dim = (int[])undef;
-    if ($length > 0) {
-      $x_dim = [$length];
-    }
+  method c : R::NDArray::Int ($x_data : int[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::Int->new({dim => $x_dim, data => $x_data});
     

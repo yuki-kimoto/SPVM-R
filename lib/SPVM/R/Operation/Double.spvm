@@ -31,18 +31,7 @@ class R::Operation::Double extends R::Operation {
   }
   
   # Instance Methods
-  method c : R::NDArray::Double ($x_data : double[]) {
-    
-    unless ($x_data) {
-      die "The data \$x_data must be defined.";
-    }
-    
-    my $length = @$x_data;
-    
-    my $x_dim = (int[])undef;
-    if ($length > 0) {
-      $x_dim = [$length];
-    }
+  method c : R::NDArray::Double ($x_data : double[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::Double->new({dim => $x_dim, data => $x_data});
     

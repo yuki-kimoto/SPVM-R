@@ -31,23 +31,13 @@ class R::Operation::FloatComplex extends R::Operation {
   }
   
   # Instance Methods
-  method c : R::NDArray::FloatComplex ($x_data : Complex_2f[]) {
-    
-    unless ($x_data) {
-      die "The data \$x_data must be defined.";
-    }
-    
-    my $length = @$x_data;
-    
-    my $x_dim = (int[])undef;
-    if ($length > 0) {
-      $x_dim = [$length];
-    }
+  method c : R::NDArray::FloatComplex ($x_data : Complex_2f[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::FloatComplex->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
   }
+  
   
   method array : R::NDArray::FloatComplex ($x_data : Complex_2f[], $x_dim : int[]) {
     
