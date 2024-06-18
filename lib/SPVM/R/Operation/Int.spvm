@@ -421,7 +421,6 @@ class R::Operation::Int extends R::Operation {
 namespace Rstats {
   namespace Func {
     
-    SV* pow(SV*, SV*, SV*);
     SV* And(SV*, SV*, SV*);
     SV* Or(SV*, SV*, SV*);
     SV* atan2(SV*, SV*, SV*);
