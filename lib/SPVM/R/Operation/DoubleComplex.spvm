@@ -626,5 +626,49 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ndarray_ret;
   }
   
+  method re : R::NDArray::Double ($ndarray : R::NDArray::DoubleComplex) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = R::Operation::Double->new->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = $data->[$i]{re};
+    }
+    
+    return $ndarray_ret;
+  }
+  
 
+  method im : R::NDArray::Double ($ndarray : R::NDArray::DoubleComplex) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $length = $ndarray->length;
+    
+    my $dim = $ndarray->dim;
+    
+    my $ndarray_ret = R::Operation::Double->new->array(undef, $dim);
+    
+    my $data = $ndarray->data;
+    my $data_ret = $ndarray_ret->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $data_ret->[$i] = $data->[$i]{im};
+    }
+    
+    return $ndarray_ret;
+  }
+  
 }
