@@ -902,7 +902,7 @@ class R::Operation::Float extends R::Operation {
     return $ndarray_ret;
   }
   
-  method equals : R::NDArray::Int ($ndarray1 : R::NDArray::Float, $ndarray2 : R::NDArray::Float) {
+  method eq : R::NDArray::Int ($ndarray1 : R::NDArray::Float, $ndarray2 : R::NDArray::Float) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -927,7 +927,7 @@ class R::Operation::Float extends R::Operation {
     return $ndarray_ret;
   }
   
-  method not_equals : R::NDArray::Int ($ndarray1 : R::NDArray::Float, $ndarray2 : R::NDArray::Float) {
+  method ne : R::NDArray::Int ($ndarray1 : R::NDArray::Float, $ndarray2 : R::NDArray::Float) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     

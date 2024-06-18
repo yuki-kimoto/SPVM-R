@@ -487,7 +487,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method equals : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method eq : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -512,7 +512,7 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method not_equals : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method ne : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -548,8 +548,6 @@ namespace Rstats {
     SV* less_than_or_equal(SV*, SV*, SV*);
     SV* more_than(SV*, SV*, SV*);
     SV* more_than_or_equal(SV*, SV*, SV*);
-    SV* equals(SV*, SV*, SV*);
-    SV* not_equals(SV*, SV*, SV*);
     
     SV* sum(SV*, SV*);
     SV* cumsum(SV*, SV*);

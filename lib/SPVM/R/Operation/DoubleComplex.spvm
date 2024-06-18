@@ -696,7 +696,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ndarray_ret;
   }
   
-  method equals : R::NDArray::Int ($ndarray1 : R::NDArray::DoubleComplex, $ndarray2 : R::NDArray::DoubleComplex) {
+  method eq : R::NDArray::Int ($ndarray1 : R::NDArray::DoubleComplex, $ndarray2 : R::NDArray::DoubleComplex) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
@@ -721,7 +721,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ndarray_ret;
   }
   
-  method not_equals : R::NDArray::Int ($ndarray1 : R::NDArray::DoubleComplex, $ndarray2 : R::NDArray::DoubleComplex) {
+  method ne : R::NDArray::Int ($ndarray1 : R::NDArray::DoubleComplex, $ndarray2 : R::NDArray::DoubleComplex) {
     
     my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
     
