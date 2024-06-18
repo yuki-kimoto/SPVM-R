@@ -66,7 +66,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     my $x_dim = $x_ndarray->dim;
     
     my $ret_data = new Complex_2d[$length];
-    my $ret_ndarray = $self->array($ret_data, $x_dim);
+    my $ret_ndarray = $self->c($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
@@ -99,7 +99,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     my $x_dim = $x_ndarray->dim;
     
     my $ret_data = new Complex_2d[$length];
-    my $ret_ndarray = $self->array($ret_data, $x_dim);
+    my $ret_ndarray = $self->c($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
@@ -132,7 +132,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     my $x_dim = $x_ndarray->dim;
     
     my $ret_data = new Complex_2d[$length];
-    my $ret_ndarray = $self->array($ret_data, $x_dim);
+    my $ret_ndarray = $self->c($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
@@ -165,7 +165,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     my $x_dim = $x_ndarray->dim;
     
     my $ret_data = new Complex_2d[$length];
-    my $ret_ndarray = $self->array($ret_data, $x_dim);
+    my $ret_ndarray = $self->c($ret_data, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
@@ -277,7 +277,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -299,7 +299,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -321,7 +321,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -343,7 +343,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -365,7 +365,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -387,7 +387,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -409,7 +409,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -431,7 +431,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -453,7 +453,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -475,7 +475,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -497,7 +497,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -519,7 +519,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -541,7 +541,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -563,7 +563,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -585,7 +585,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -607,7 +607,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -629,7 +629,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -728,7 +728,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -817,7 +817,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, [1]);
+    my $ret_ndarray = $self->c(undef, [1]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -841,7 +841,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -865,7 +865,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, [1]);
+    my $ret_ndarray = $self->c(undef, [1]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -889,7 +889,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->array(undef, $x_dim);
+    my $ret_ndarray = $self->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -917,7 +917,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     
     my $length = $pairs_length / 2;
     
-    my $ret_ndarray = $self->array(undef, [$length]);
+    my $ret_ndarray = $self->c(undef, [$length]);
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $pairs_length; $i += 2) {
