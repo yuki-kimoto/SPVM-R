@@ -32,6 +32,8 @@ class R::NDArray {
     my $nomalized_dim = $self->normalize_dim($dim);
     
     $self->{dim} = $nomalized_dim;
+    
+    $self->check_data;
   }
   
   # Class Mehtods
