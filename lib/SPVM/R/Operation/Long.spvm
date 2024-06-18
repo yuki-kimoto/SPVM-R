@@ -67,8 +67,8 @@ class R::Operation::Long extends R::Operation {
     
     my $dim = $ndarray1->dim;
     
-    my $data_ret = new long[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
     
     my $data1 = $ndarray1->data;
     my $data2 = $ndarray2->data;
@@ -92,8 +92,8 @@ class R::Operation::Long extends R::Operation {
     
     my $dim = $ndarray1->dim;
     
-    my $data_ret = new long[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
     
     my $data1 = $ndarray1->data;
     my $data2 = $ndarray2->data;
@@ -117,8 +117,8 @@ class R::Operation::Long extends R::Operation {
     
     my $dim = $ndarray1->dim;
     
-    my $data_ret = new long[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
     
     my $data1 = $ndarray1->data;
     my $data2 = $ndarray2->data;
@@ -142,8 +142,8 @@ class R::Operation::Long extends R::Operation {
     
     my $dim = $ndarray1->dim;
     
-    my $data_ret = new long[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
     
     my $data1 = $ndarray1->data;
     my $data2 = $ndarray2->data;
@@ -167,8 +167,8 @@ class R::Operation::Long extends R::Operation {
     
     my $dim = $ndarray1->dim;
     
-    my $data_ret = new long[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
     
     my $data1 = $ndarray1->data;
     my $data2 = $ndarray2->data;
@@ -192,8 +192,8 @@ class R::Operation::Long extends R::Operation {
     
     my $dim = $ndarray1->dim;
     
-    my $data_ret = new long[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
     
     my $data1 = $ndarray1->data;
     my $data2 = $ndarray2->data;
@@ -217,8 +217,8 @@ class R::Operation::Long extends R::Operation {
     
     my $dim = $ndarray1->dim;
     
-    my $data_ret = new long[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $ndarray_ret->data;
     
     my $data1 = $ndarray1->data;
     my $data2 = $ndarray2->data;
@@ -429,5 +429,6 @@ class R::Operation::Long extends R::Operation {
     
     return $ndarray_ret;
   }
+  
 }
 
