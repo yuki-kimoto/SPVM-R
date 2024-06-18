@@ -30,16 +30,16 @@ class R::Operation::FloatComplex extends R::Operation {
       $dim = [$length];
     }
     
-    my $ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
+    my $x_ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
     
-    return $ndarray;
+    return $x_ndarray;
   }
   
   method array : R::NDArray::FloatComplex ($data : Complex_2f[], $dim : int[]) {
     
-    my $ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
+    my $x_ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
     
-    return $ndarray;
+    return $x_ndarray;
   }
   
   method add : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -55,7 +55,7 @@ class R::Operation::FloatComplex extends R::Operation {
     my $dim = $x_ndarray->dim;
     
     my $data_ret = new Complex_2f[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $x_ndarray_ret = $self->array($data_ret, $dim);
     
     my $data1 = $x_ndarray->data;
     my $data2 = $y_ndarray->data;
@@ -64,7 +64,7 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = Math->caddf($data1->[$i], $data2->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
   method sub : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -80,7 +80,7 @@ class R::Operation::FloatComplex extends R::Operation {
     my $dim = $x_ndarray->dim;
     
     my $data_ret = new Complex_2f[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $x_ndarray_ret = $self->array($data_ret, $dim);
     
     my $data1 = $x_ndarray->data;
     my $data2 = $y_ndarray->data;
@@ -89,7 +89,7 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = Math->csubf($data1->[$i], $data2->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
   method mul : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -105,7 +105,7 @@ class R::Operation::FloatComplex extends R::Operation {
     my $dim = $x_ndarray->dim;
     
     my $data_ret = new Complex_2f[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $x_ndarray_ret = $self->array($data_ret, $dim);
     
     my $data1 = $x_ndarray->data;
     my $data2 = $y_ndarray->data;
@@ -114,7 +114,7 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = Math->cmulf($data1->[$i], $data2->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
   method div : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -130,7 +130,7 @@ class R::Operation::FloatComplex extends R::Operation {
     my $dim = $x_ndarray->dim;
     
     my $data_ret = new Complex_2f[$length];
-    my $ndarray_ret = $self->array($data_ret, $dim);
+    my $x_ndarray_ret = $self->array($data_ret, $dim);
     
     my $data1 = $x_ndarray->data;
     my $data2 = $y_ndarray->data;
@@ -139,537 +139,537 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = Math->cdivf($data1->[$i], $data2->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method clone : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method clone : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::FloatComplex->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::FloatComplex->new->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i]{re} = (float)$data->[$i]{re};
       $data_ret->[$i]{im} = (float)$data->[$i]{im};
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method to_double_complex : R::NDArray::DoubleComplex ($ndarray : R::NDArray::FloatComplex) {
+  method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::DoubleComplex->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::DoubleComplex->new->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i]{re} = (double)$data->[$i]{re};
       $data_ret->[$i]{im} = (double)$data->[$i]{im};
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method to_string : R::NDArray::String ($ndarray : R::NDArray::FloatComplex) {
+  method to_string : R::NDArray::String ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::String->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::String->new->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = (string)$data->[$i]{re} . " + " . (string)$data->[$i]{im};
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method abs : R::NDArray::Float ($ndarray : R::NDArray::FloatComplex) {
+  method abs : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->cabsf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method neg : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method neg : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->cnegf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method sin : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method sin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->csinf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
 
-  method cos : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method cos : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->ccosf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method tan : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method tan : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->ctanf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method sinh : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method sinh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->csinhf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method cosh : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method cosh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->ccoshf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method tanh : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method tanh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->ctanhf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method acos : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method acos : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->cacosf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method asin : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method asin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->casinf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method atan : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method atan : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->catanf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method asinh : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method asinh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->casinhf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method acosh : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method acosh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->cacoshf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method atanh : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method atanh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->catanhf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method exp : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method exp : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->cexpf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method log : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method log : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->clogf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method sqrt : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method sqrt : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->csqrtf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method conj : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method conj : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->conjf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method arg : R::NDArray::Float ($ndarray : R::NDArray::FloatComplex) {
+  method arg : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = Math->cargf($data->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method re : R::NDArray::Float ($ndarray : R::NDArray::FloatComplex) {
+  method re : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data->[$i]{re};
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method im : R::NDArray::Float ($ndarray : R::NDArray::FloatComplex) {
+  method im : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Float->new->array(undef, $dim);
+    my $x_ndarray_ret = R::Operation::Float->new->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data->[$i]{im};
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
   method pow : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -684,8 +684,8 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
-    my $data_ret = $ndarray_ret->data;
+    my $x_ndarray_ret = $self->array(undef, $dim);
+    my $data_ret = $x_ndarray_ret->data;
     
     my $data1 = $x_ndarray->data;
     my $data2 = $y_ndarray->data;
@@ -694,7 +694,7 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = Math->cpowf($data1->[$i], $data2->[$i]);
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
   method eq : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -709,8 +709,8 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
-    my $data_ret = $ndarray_ret->data;
+    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    my $data_ret = $x_ndarray_ret->data;
     
     my $data1 = $x_ndarray->data;
     my $data2 = $y_ndarray->data;
@@ -719,7 +719,7 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = $data1->[$i]{re} == $data2->[$i]{re} && $data1->[$i]{im} == $data2->[$i]{im};
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
   method ne : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
@@ -734,8 +734,8 @@ class R::Operation::FloatComplex extends R::Operation {
     
     my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
-    my $data_ret = $ndarray_ret->data;
+    my $x_ndarray_ret = R::Operation::Int->new->array(undef, $dim);
+    my $data_ret = $x_ndarray_ret->data;
     
     my $data1 = $x_ndarray->data;
     my $data2 = $y_ndarray->data;
@@ -744,23 +744,23 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = !($data1->[$i]{re} == $data2->[$i]{re} && $data1->[$i]{im} == $data2->[$i]{im});
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method sum : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method sum : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, [1]);
+    my $x_ndarray_ret = $self->array(undef, [1]);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     my $sum : Complex_2f;
     for (my $i = 0; $i < $length; $i++) {
@@ -768,23 +768,23 @@ class R::Operation::FloatComplex extends R::Operation {
     }
     $data_ret->[0] = $sum;
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method cumsum : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method cumsum : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     my $sum : Complex_2f;
     for (my $i = 0; $i < $length; $i++) {
@@ -792,23 +792,23 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = $sum;
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method prod : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method prod : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, [1]);
+    my $x_ndarray_ret = $self->array(undef, [1]);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     my $prod = Math->complexf(1, 0);
     for (my $i = 0; $i < $length; $i++) {
@@ -816,23 +816,23 @@ class R::Operation::FloatComplex extends R::Operation {
     }
     $data_ret->[0] = $prod;
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
-  method cumprod : R::NDArray::FloatComplex ($ndarray : R::NDArray::FloatComplex) {
+  method cumprod : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    my $length = $ndarray->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray->dim;
+    my $dim = $x_ndarray->dim;
     
-    my $ndarray_ret = $self->array(undef, $dim);
+    my $x_ndarray_ret = $self->array(undef, $dim);
     
-    my $data = $ndarray->data;
-    my $data_ret = $ndarray_ret->data;
+    my $data = $x_ndarray->data;
+    my $data_ret = $x_ndarray_ret->data;
     
     my $prod = Math->complexf(1, 0);
     for (my $i = 0; $i < $length; $i++) {
@@ -840,7 +840,7 @@ class R::Operation::FloatComplex extends R::Operation {
       $data_ret->[$i] = $prod;
     }
     
-    return $ndarray_ret;
+    return $x_ndarray_ret;
   }
   
 }

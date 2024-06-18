@@ -28,15 +28,15 @@ class R::Operation::String {
       $dim = [$length];
     }
     
-    my $ndarray = R::NDArray::String->new({dim => $dim, data => $data});
+    my $x_ndarray = R::NDArray::String->new({dim => $dim, data => $data});
     
-    return $ndarray;
+    return $x_ndarray;
   }
   
   method array : R::NDArray::String ($data : string[], $dim : int[]) {
     
-    my $ndarray = R::NDArray::String->new({dim => $dim, data => $data});
+    my $x_ndarray = R::NDArray::String->new({dim => $dim, data => $data});
     
-    return $ndarray;
+    return $x_ndarray;
   }
 }
