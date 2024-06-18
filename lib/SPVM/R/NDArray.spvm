@@ -11,7 +11,7 @@ class R::NDArray {
   
   has item_size : ro protected int;
   
-  has length : ro protected int;
+  has length : protected int;
   
   has type : ro protected string;
   
@@ -142,6 +142,23 @@ class R::NDArray {
     $self->{data} = $data;
     
     $self->check_data;
+  }
+  
+  method length : int () {
+    
+    my $dim = $self->{dim};
+    
+    my $length = 1;
+    for my $dim_element (@$dim) {
+      
+      unless ($dim_element > 0) {
+        die "[Unexpected Error]The element of dim field must be greater than 0.";
+      }
+      
+      $length *= $dim_element;
+    }
+    
+    return $length;
   }
   
   protected method check_data : void () { die "Not implemented."; }
