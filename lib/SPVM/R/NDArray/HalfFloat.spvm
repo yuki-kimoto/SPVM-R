@@ -15,7 +15,7 @@ class R::NDArray::HalfFloat extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options($options, {item_size => 2, type => "half_float"});
+    $options = Fn->merge_options($options, {item_size => 2, type => "half_float", is_numeric => 1});
     
     $self->SUPER::init($options);
   }

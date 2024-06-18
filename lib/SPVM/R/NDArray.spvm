@@ -12,6 +12,8 @@ class R::NDArray {
   
   has item_size : ro protected int;
   
+  has is_numeric : byte;
+  
   has type : ro protected string;
   
   has dim : int[];
@@ -54,6 +56,12 @@ class R::NDArray {
       die "item_size option must be greter than 0.";
     }
     $self->{item_size} = $item_size;
+    
+    my $is_numeric = $options_h->get_or_default_int("is_numeric", 0);
+    unless ($is_numeric > 0) {
+      die "is_numeric option must be greter than 0.";
+    }
+    $self->{is_numeric} = (byte)$is_numeric;
     
     my $type = $options_h->get_or_default_string("type", undef);
     unless ($type) {
