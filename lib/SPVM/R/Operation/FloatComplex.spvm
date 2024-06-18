@@ -81,7 +81,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sub : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
+  precompile method sub : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -106,7 +106,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method mul : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
+  precompile method mul : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -131,7 +131,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method div : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
+  precompile method div : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -156,7 +156,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method clone : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method clone : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -179,7 +179,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -202,7 +202,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method to_string : R::NDArray::String ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method to_string : R::NDArray::String ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -224,7 +224,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method abs : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method abs : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -246,7 +246,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method neg : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method neg : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -268,7 +268,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method sin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -290,7 +290,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
 
-  method cos : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method cos : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -312,7 +312,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method tan : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method tan : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -334,7 +334,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sinh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method sinh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -356,7 +356,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method cosh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method cosh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -378,7 +378,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method tanh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method tanh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -400,7 +400,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method acos : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method acos : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -422,7 +422,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method asin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method asin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -444,7 +444,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method atan : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method atan : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -466,7 +466,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method asinh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method asinh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -488,7 +488,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method acosh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method acosh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -510,7 +510,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method atanh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method atanh : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -532,7 +532,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method exp : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method exp : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -554,7 +554,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method log : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method log : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -576,7 +576,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sqrt : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method sqrt : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -598,7 +598,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method conj : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method conj : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -620,7 +620,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method arg : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method arg : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -642,7 +642,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method re : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method re : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -664,7 +664,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method im : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method im : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -686,7 +686,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method pow : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
+  precompile method pow : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -711,7 +711,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method eq : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
+  precompile method eq : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -736,7 +736,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method ne : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
+  precompile method ne : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -761,7 +761,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sum : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method sum : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -785,7 +785,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method cumsum : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method cumsum : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -809,7 +809,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method prod : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method prod : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -833,7 +833,7 @@ class R::Operation::FloatComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method cumprod : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+  precompile method cumprod : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";

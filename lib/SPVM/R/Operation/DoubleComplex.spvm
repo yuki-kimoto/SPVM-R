@@ -81,7 +81,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sub : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
+  precompile method sub : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -106,7 +106,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method mul : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
+  precompile method mul : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -131,7 +131,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method div : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
+  precompile method div : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -156,7 +156,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method to_float_complex : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method to_float_complex : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -179,7 +179,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method clone : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method clone : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -202,7 +202,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method to_string : R::NDArray::String ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method to_string : R::NDArray::String ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -224,7 +224,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method abs : R::NDArray::Double ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method abs : R::NDArray::Double ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -246,7 +246,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method neg : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method neg : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -268,7 +268,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sin : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method sin : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -290,7 +290,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
 
-  method cos : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method cos : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -312,7 +312,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method tan : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method tan : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -334,7 +334,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sinh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method sinh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -356,7 +356,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method cosh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method cosh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -378,7 +378,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method tanh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method tanh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -400,7 +400,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method acos : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method acos : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -422,7 +422,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method asin : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method asin : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -444,7 +444,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method atan : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method atan : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -466,7 +466,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method asinh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method asinh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -488,7 +488,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method acosh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method acosh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -510,7 +510,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method atanh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method atanh : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -532,7 +532,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method exp : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method exp : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -554,7 +554,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method log : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method log : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -576,7 +576,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sqrt : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method sqrt : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -598,7 +598,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method conj : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method conj : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -620,7 +620,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method arg : R::NDArray::Double ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method arg : R::NDArray::Double ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -642,7 +642,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method re : R::NDArray::Double ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method re : R::NDArray::Double ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -665,7 +665,7 @@ class R::Operation::DoubleComplex extends R::Operation {
   }
   
 
-  method im : R::NDArray::Double ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method im : R::NDArray::Double ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -687,7 +687,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method pow : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
+  precompile method pow : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -712,7 +712,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method eq : R::NDArray::Int ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
+  precompile method eq : R::NDArray::Int ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -737,7 +737,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method ne : R::NDArray::Int ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
+  precompile method ne : R::NDArray::Int ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
     
     my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
@@ -762,7 +762,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method sum : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method sum : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -786,7 +786,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method cumsum : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method cumsum : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -810,7 +810,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method prod : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method prod : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -834,7 +834,7 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
-  method cumprod : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+  precompile method cumprod : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
