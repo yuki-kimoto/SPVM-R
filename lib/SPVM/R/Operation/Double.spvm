@@ -861,7 +861,6 @@ namespace Rstats {
     
     SV* Mod(SV*, SV*);
     SV* Arg(SV*, SV*);
-    SV* Conj(SV*, SV*);
     SV* Re(SV*, SV*);
     SV* Im(SV*, SV*);
     
@@ -875,6 +874,8 @@ namespace Rstats {
     SV* more_than_or_equal(SV*, SV*, SV*);
     SV* equals(SV*, SV*, SV*);
     SV* not_equals(SV*, SV*, SV*);
+    
+    modf
     
     SV* sum(SV*, SV*);
     SV* cumsum(SV*, SV*);
