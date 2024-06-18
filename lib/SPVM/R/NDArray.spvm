@@ -4,6 +4,7 @@
 class R::NDArray {
   
   use Hash;
+  use IntList;
   
   # Fields
   has data : protected object;
@@ -18,6 +19,7 @@ class R::NDArray {
   has dim : int[];
   
   method dim : int[] () {
+    
     my $dim = $self->{dim};
     
     my $dim_clone = copy $dim;
@@ -27,27 +29,9 @@ class R::NDArray {
   
   method set_dim : void ($dim : int[]) {
     
-    unless ($dim) {
-      die "The dimension \$dim must be defined.";
-    }
+    my $nomalized_dim = $self->normalize_dim($dim);
     
-    my $length_calcurated_by_dim = 1;
-    for my $dim_element (@$dim) {
-      
-      unless ($dim_element > 0) {
-        die "The element of the dimension \$dim must be greater than 0.";
-      }
-      
-      $length_calcurated_by_dim *= $dim_element;
-    }
-    
-    my $length = $self->{length};
-    
-    if ($length_calcurated_by_dim != $length) {
-      die "\"length\" field must be the same as the length calcurated by the dimension \$dim.";
-    }
-    
-    $self->{dim} = copy $dim;
+    $self->{dim} = $nomalized_dim;
   }
   
   # Class Mehtods
@@ -97,39 +81,7 @@ class R::NDArray {
     unless (!$dim_object || $dim_object isa int[]) {
       die "dim option must be undef or int[] type.";
     }
-    my $dim = (int[])$dim_object;
-    
-    if ($dim) {
-      if (@$dim >= 0) {
-        die "The element length of dim option must be greater than 0.";
-      }
-      
-      my $length_calcurated_by_dim = 1;
-      for my $dim_element (@$dim) {
-        
-        unless ($dim_element > 0) {
-          die "The element of dim option must be greater than 0.";
-        }
-        
-        $length_calcurated_by_dim *= $dim_element;
-      }
-      $self->{dim} = $dim;
-      
-      unless ($length >= 0) {
-        $length = $length_calcurated_by_dim;
-      }
-      
-      if ($length_calcurated_by_dim != $length) {
-        die "length option must be the same as the length calcurated by dim option.";
-      }
-    }
-    else {
-      unless ($length == 0) {
-        die "length option must be 0 if dim option is undef.";
-      }
-      
-      $self->{dim} = new int[0];
-    }
+    my $dim = $self->normalize_dim((int[])$dim_object);
     
     $self->{length} = $length;
     
@@ -159,6 +111,40 @@ class R::NDArray {
     }
     
     return $length;
+  }
+  
+  private method normalize_dim : int[] ($dim : int[]) {
+    
+    my $normalized_dim_list = IntList->new;
+    
+    my $normalized_dim = (int[])undef;
+    if ($dim) {
+      my $dim_length = @$dim;
+      my $check_tail_zero = 1;
+      for (my $i = $dim_length - 1; $i >= 0; $i--) {
+        my $dim_element = $dim->[$i];
+        if ($check_tail_zero && $dim_element == 0) {
+          next;
+        }
+        
+        if ($dim_element != 0) {
+          $check_tail_zero = 0;
+        }
+        
+        unless ($dim_element > 0) {
+          die "The element of dim option or \$dim argument except for tail must be greater than 0.";
+        }
+        
+        $normalized_dim_list->unshift($dim_element);
+      }
+      
+      $normalized_dim = $normalized_dim_list->to_array;
+    }
+    else {
+      $normalized_dim = new int[0];
+    }
+    
+    return $normalized_dim;
   }
   
   protected method check_data : void () { die "Not implemented."; }
