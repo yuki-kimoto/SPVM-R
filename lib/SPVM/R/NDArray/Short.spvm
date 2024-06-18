@@ -1,0 +1,47 @@
+# Copyright (c) 2024 Yuki Kimoto
+# MIT License
+
+class R::NDArray::Short extends R::NDArray {
+  
+  # Class Mehtods
+  static method new : R::NDArray::Short ($options : object[] = undef) {
+    
+    my $self = new R::NDArray::Short;
+    
+    $self->init($options);
+    
+    return $self;
+  }
+  
+  protected method init : void ($options : object[] = undef) {
+    
+    $options = Fn->merge_options($options, {item_size => 2, type => "short"});
+    
+    $self->SUPER::init($options);
+  }
+  
+  method data : short[] () {
+    
+    return (short[])$self->{data};
+  }
+  
+  protected method check_data : void () {
+    
+    my $x_data = (short[])$self->{data};
+    
+    my $length = $self->{length};
+    
+    unless (@$x_data == $length) {
+      die "The length of data field must be the same as length field.";
+    }
+  }
+  
+  protected method create_default_data : short[] () {
+    
+    my $length = $self->{length};
+    
+    my $x_data = new short[$length];
+    
+    return $x_data;
+  }
+}

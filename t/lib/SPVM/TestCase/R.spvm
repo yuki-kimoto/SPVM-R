@@ -9,6 +9,10 @@ class TestCase::R {
   use R::NDArray::DoubleComplex;
   use R::NDArray::String;
   
+  use R::NDArray::Byte;
+  use R::NDArray::Short;
+  use R::NDArray::HalfFloat;
+  
   use R::Operation;
   use R::Operation::Int;
   use R::Operation::Long;
