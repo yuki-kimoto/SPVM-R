@@ -13,19 +13,19 @@ class R::Operation {
     return $self;
   }
   
-  method equals_dim : int ($ndarray1 : R::NDArray, $ndarray2 : R::NDArray) {
+  method equals_dim : int ($x_ndarray : R::NDArray, $y_ndarray : R::NDArray) {
     
-    unless ($ndarray1) {
-      die "The n-dimention array \$ndarray1 must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimention array \$x_ndarray must be defined.";
     }
     
-    unless ($ndarray2) {
-      die "The n-dimention array \$ndarray2 must be defined.";
+    unless ($y_ndarray) {
+      die "The n-dimention array \$y_ndarray must be defined.";
     }
     
-    my $dim1 = $ndarray1->dim;
+    my $dim1 = $x_ndarray->dim;
     
-    my $dim2 = $ndarray2->dim;
+    my $dim2 = $y_ndarray->dim;
     
     my $equals_dim = 0;
     if ($dim1 && $dim2) {

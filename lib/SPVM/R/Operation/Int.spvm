@@ -40,23 +40,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray;
   }
   
-  method add : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method add : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] + $data2->[$i];
@@ -65,23 +65,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method sub : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method sub : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] - $data2->[$i];
@@ -90,23 +90,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method mul : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method mul : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] * $data2->[$i];
@@ -115,23 +115,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method div : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method div : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] / $data2->[$i];
@@ -140,23 +140,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method div_unsinged : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method div_unsinged : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] div_uint $data2->[$i];
@@ -165,23 +165,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method mod : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method mod : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] % $data2->[$i];
@@ -190,23 +190,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method mod_unsinged : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method mod_unsinged : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] mod_uint $data2->[$i];
@@ -415,23 +415,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method and : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method and : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] && $data2->[$i];
@@ -440,23 +440,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method or : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method or : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $data_ret = new int[$length];
     my $ndarray_ret = $self->array($data_ret, $dim);
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] || $data2->[$i];
@@ -487,23 +487,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method eq : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
     my $data_ret = $ndarray_ret->data;
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] == $data2->[$i];
@@ -512,23 +512,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method ne : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method ne : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
     my $data_ret = $ndarray_ret->data;
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = !($data1->[$i] == $data2->[$i]);
@@ -537,23 +537,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method gt : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method gt : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
     my $data_ret = $ndarray_ret->data;
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] > $data2->[$i];
@@ -562,23 +562,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method ge : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method ge : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
     my $data_ret = $ndarray_ret->data;
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] >= $data2->[$i];
@@ -587,23 +587,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method lt : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method lt : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
     my $data_ret = $ndarray_ret->data;
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] < $data2->[$i];
@@ -612,23 +612,23 @@ class R::Operation::Int extends R::Operation {
     return $ndarray_ret;
   }
   
-  method le : R::NDArray::Int ($ndarray1 : R::NDArray::Int, $ndarray2 : R::NDArray::Int) {
+  method le : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
-    my $equals_dim = $self->equals_dim($ndarray1, $ndarray2);
+    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
-      die "The dim field of \$ndarray1 must be the same as the dim field of \$ndarray2.";
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
     }
     
-    my $length = $ndarray1->length;
+    my $length = $x_ndarray->length;
     
-    my $dim = $ndarray1->dim;
+    my $dim = $x_ndarray->dim;
     
     my $ndarray_ret = R::Operation::Int->new->array(undef, $dim);
     my $data_ret = $ndarray_ret->data;
     
-    my $data1 = $ndarray1->data;
-    my $data2 = $ndarray2->data;
+    my $data1 = $x_ndarray->data;
+    my $data2 = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
       $data_ret->[$i] = $data1->[$i] <= $data2->[$i];
