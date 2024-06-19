@@ -1315,4 +1315,26 @@ class R::Operation::Float extends R::Operation {
     return $ret_ndarray;
   }
   
+  precompile method floor : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = $self->c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = Math->floorf($x_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
