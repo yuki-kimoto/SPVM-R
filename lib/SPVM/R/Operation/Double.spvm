@@ -1577,40 +1577,9 @@ class R::Operation::Double extends R::Operation {
     return $ret_ndarray;
   }
   
-  precompile method rep : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $times : int) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimension array \$x_ndarray must be defined.";
-    }
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    unless (@$x_dim == 1) {
-      die "The length of dim field of \$x_ndarray must be 1.";
-    }
-    
-    unless ($times > 0) {
-      die "The repeat count \$times must be greater than 0.";
-    }
-    
-    my $x_length = $x_ndarray->length;
-    
-    my $ret_length = $x_length * $times;
-    
-    my $ret_ndarray = $self->c(undef, [$ret_length]);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $ret_length; $i++) {
-      my $x_index = $ret_length % $x_length;
-      
-      $ret_data->[$i] = $x_data->[$x_index];
-    }
-    
-    return $ret_ndarray;
+  method rep : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $times : int) {
+    return (R::NDArray::Double)$self->SUPER::rep($x_ndarray, $times);
   }
-  
 }
 
 =pod TODO
