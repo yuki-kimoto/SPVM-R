@@ -980,5 +980,85 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
+  precompile method scamul : R::NDArray::DoubleComplex ($scalar_ndarray : R::NDArray::DoubleComplex, $x_ndarray : R::NDArray::DoubleComplex) {
+    
+    unless ($scalar_ndarray) {
+      die "The n-dimension array \$scalar_ndarray must be defined.";
+    }
+    
+    my $scalar_dim = $scalar_ndarray->dim;
+    
+    unless (@$scalar_dim == 1) {
+      die "The length of dim field of \$scalar_ndarray must be 1.";
+    }
+    
+    my $scalar_length = $scalar_ndarray->length;
+    
+    unless ($scalar_length == 1) {
+      die "The length of \$scalar_ndarray must be 1.";
+    }
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $scalar_data = $scalar_ndarray->data;
+    my $x_data = $x_ndarray->data;
+    
+    my $scalar = $scalar_data->[0];
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = Math->cmul($scalar, $x_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method scadiv : R::NDArray::DoubleComplex ($scalar_ndarray : R::NDArray::DoubleComplex, $x_ndarray : R::NDArray::DoubleComplex) {
+    
+    unless ($scalar_ndarray) {
+      die "The n-dimension array \$scalar_ndarray must be defined.";
+    }
+    
+    my $scalar_dim = $scalar_ndarray->dim;
+    
+    unless (@$scalar_dim == 1) {
+      die "The length of dim field of \$scalar_ndarray must be 1.";
+    }
+    
+    my $scalar_length = $scalar_ndarray->length;
+    
+    unless ($scalar_length == 1) {
+      die "The length of \$scalar_ndarray must be 1.";
+    }
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $scalar_data = $scalar_ndarray->data;
+    my $x_data = $x_ndarray->data;
+    
+    my $scalar = $scalar_data->[0];
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = Math->cdiv($scalar, $x_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
 
