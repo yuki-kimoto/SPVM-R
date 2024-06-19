@@ -347,4 +347,216 @@ class R::NDArray {
       va_end(args);
     }
 
+sub get_array {
+  my $r = shift;
+  
+  my $x1 = shift;
+  
+  my $opt = ref $_[-1] eq 'HASH' ? pop @_ : {};
+  my $dim_drop;
+  my $level_drop;
+  if (Rstats::Func::is_factor($r, $x1)) {
+    $level_drop = $opt->{drop};
+  }
+  else {
+    $dim_drop = $opt->{drop};
+  }
+  
+  $dim_drop = 1 unless defined $dim_drop;
+  $level_drop = 0 unless defined $level_drop;
+  
+  my @_indexs = @_;
+
+  my $_indexs;
+  if (@_indexs) {
+    $_indexs = \@_indexs;
+  }
+  else {
+    my $at = $x1->at;
+    $_indexs = ref $at eq 'ARRAY' ? $at : [$at];
+  }
+  $x1->at($_indexs);
+  
+  my ($poss, $x2_dim, $new_indexes) = @{Rstats::Util::parse_index($r, $x1, $dim_drop, $_indexs)};
+  
+  my $x1_values = $x1->values;
+  my @x2_values = map { $x1_values->[$_] } @$poss;
+  
+  # array
+  my $x_matrix;
+  if ($x1->get_type eq "character") {
+    $x_matrix = c_character($r, \@x2_values);
+  }
+  elsif ($x1->get_type eq "complex") {
+    $x_matrix = c_complex($r, \@x2_values);
+  }
+  elsif ($x1->get_type eq "double") {
+    $x_matrix = c_double($r, \@x2_values);
+  }
+  elsif ($x1->get_type eq "integer") {
+    $x_matrix = c_integer($r, \@x2_values);
+  }
+  elsif ($x1->get_type eq "logical") {
+    $x_matrix = c_logical($r, \@x2_values);
+  }
+  else {
+    croak("Invalid type " . $x1->get_type . " is passed");
+  }
+  
+  my $x2 = Rstats::Func::array(
+    $r,
+    $x_matrix,
+    Rstats::Func::c_($r, @$x2_dim)
+  );
+  
+  # Copy attributes
+  Rstats::Func::copy_attrs_to($r, $x1, $x2, {new_indexes => $new_indexes, exclude => ['dim']});
+
+  # level drop
+  if ($level_drop) {
+    my $p = Rstats::Func::as_character($r, $x2);
+    $x2 = Rstats::Func::factor($r, Rstats::Func::as_character($r, $x2));
+  }
+  
+  return $x2;
+}
+
+sub to_string_array {
+  my $r = shift;
+  
+  my $x1 = shift;
+  
+  my $is_factor = Rstats::Func::is_factor($r, $x1);
+  my $is_ordered = Rstats::Func::is_ordered($r, $x1);
+  my $levels;
+  if ($is_factor) {
+    $levels = Rstats::Func::levels($r, $x1)->values;
+  }
+  
+  $x1 = Rstats::Func::as_character($r, $x1) if Rstats::Func::is_factor($r, $x1);
+  
+  my $is_character = Rstats::Func::is_character($r, $x1);
+
+  my $values = $x1->values;
+  my $type = $x1->get_type;
+  
+  my $dim_values = $x1->dim_as_array->values;
+  
+  my $dim_length = @$dim_values;
+  my $dim_num = $dim_length - 1;
+  my $poss = [];
+  
+  my $str;
+  if (@$values) {
+    if ($dim_length == 1) {
+      my $names = Rstats::Func::names($r, $x1)->values;
+      if (@$names) {
+        $str .= join(' ', @$names) . "\n";
+      }
+      my @parts = map { Rstats::Func::_value_to_string($r, $x1, $_, $type, $is_factor) } @$values;
+      $str .= '[1] ' . join(' ', @parts) . "\n";
+    }
+    elsif ($dim_length == 2) {
+      $str .= '     ';
+      
+      my $colnames = Rstats::Func::colnames($r, $x1)->values;
+      if (@$colnames) {
+        $str .= join(' ', @$colnames) . "\n";
+      }
+      else {
+        for my $d2 (1 .. $dim_values->[1]) {
+          $str .= $d2 == $dim_values->[1] ? "[,$d2]\n" : "[,$d2] ";
+        }
+      }
+      
+      my $rownames = Rstats::Func::rownames($r, $x1)->values;
+      my $use_rownames = @$rownames ? 1 : 0;
+      for my $d1 (1 .. $dim_values->[0]) {
+        if ($use_rownames) {
+          my $rowname = $rownames->[$d1 - 1];
+          $str .= "$rowname ";
+        }
+        else {
+          $str .= "[$d1,] ";
+        }
+        
+        my @parts;
+        for my $d2 (1 .. $dim_values->[1]) {
+          my $part = $x1->value($d1, $d2);
+          push @parts, Rstats::Func::_value_to_string($r, $x1, $part, $type, $is_factor);
+        }
+        
+        $str .= join(' ', @parts) . "\n";
+      }
+    }
+    else {
+      my $code;
+      $code = sub {
+        my (@dim_values) = @_;
+        my $dim_value = pop @dim_values;
+        
+        for (my $i = 1; $i <= $dim_value; $i++) {
+          $str .= (',' x $dim_num) . "$i" . "\n";
+          unshift @$poss, $i;
+          if (@dim_values > 2) {
+            $dim_num--;
+            $code->(@dim_values);
+            $dim_num++;
+          }
+          else {
+            $str .= '     ';
+            
+            my $l_dimnames = Rstats::Func::dimnames($r, $x1);
+            my $dimnames;
+            if (Rstats::Func::is_null($r, $l_dimnames)) {
+              $dimnames = [];
+            }
+            else {
+              my $x_dimnames = $l_dimnames->getin($i);
+              $dimnames = defined $l_dimnames ? $l_dimnames->values : [];
+            }
+            
+            if (@$dimnames) {
+              $str .= join(' ', @$dimnames) . "\n";
+            }
+            else {
+              for my $d2 (1 .. $dim_values[1]) {
+                $str .= $d2 == $dim_values[1] ? "[,$d2]\n" : "[,$d2] ";
+              }
+            }
+
+            for my $d1 (1 .. $dim_values[0]) {
+              $str .= "[$d1,] ";
+              
+              my @parts;
+              for my $d2 (1 .. $dim_values[1]) {
+                my $part = $x1->value($d1, $d2, @$poss);
+                push @parts, Rstats::Func::_value_to_string($r, $x1, $part, $type, $is_factor);
+              }
+              
+              $str .= join(' ', @parts) . "\n";
+            }
+          }
+          shift @$poss;
+        }
+      };
+      $code->(@$dim_values);
+    }
+
+    if ($is_factor) {
+      if ($is_ordered) {
+        $str .= 'Levels: ' . join(' < ', @$levels) . "\n";
+      }
+      else {
+        $str .= 'Levels: ' . join(' ', , @$levels) . "\n";
+      }
+    }
+  }
+  else {
+    $str = 'NULL';
+  }
+  
+  return $str;
+}
+
 =cut
