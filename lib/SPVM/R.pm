@@ -51,9 +51,15 @@ R class is a port of the R language Features.
 
 =item * L<R::NDArray|SPVM::R::NDArray>
 
+=item * L<R::NDArray::Byte|SPVM::R::NDArray::Byte>
+
+=item * L<R::NDArray::Short|SPVM::R::NDArray::Short>
+
 =item * L<R::NDArray::Int|SPVM::R::NDArray::Int>
 
 =item * L<R::NDArray::Long|SPVM::R::NDArray::Long>
+
+=item * L<R::NDArray::HalfFloat|SPVM::R::NDArray::HalfFloat>
 
 =item * L<R::NDArray::Float|SPVM::R::NDArray::Float>
 
@@ -65,9 +71,19 @@ R class is a port of the R language Features.
 
 =item * L<R::NDArray::String|SPVM::R::NDArray::String>
 
+=item * L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>
+
+=item * L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece>
+
+=item * L<R::Operation::Byte|SPVM::R::Operation::Byte>
+
+=item * L<R::Operation::Short|SPVM::R::Operation::Short>
+
 =item * L<R::Operation::Int|SPVM::R::Operation::Int>
 
 =item * L<R::Operation::Long|SPVM::R::Operation::Long>
+
+=item * L<R::Operation::HalfFloat|SPVM::R::Operation::HalfFloat>
 
 =item * L<R::Operation::Float|SPVM::R::Operation::Float>
 
@@ -79,9 +95,11 @@ R class is a port of the R language Features.
 
 =item * L<R::Operation::String|SPVM::R::Operation::String>
 
-=item * L<R::Operation::Normal|SPVM::R::Operation::Normal>
+=item * L<R::Operation::StringBuffer|SPVM::R::Operation::StringBuffer>
 
-=item * L<R::Operation::Type|SPVM::R::Operation::Type>
+=item * L<R::Operation::Time::Piece|SPVM::R::Operation::Time::Piece>
+
+=item * L<R::Operation::Normal|SPVM::R::Operation::Normal>
 
 =item * L<R::DataFrame|SPVM::R::DataFrame>
 
