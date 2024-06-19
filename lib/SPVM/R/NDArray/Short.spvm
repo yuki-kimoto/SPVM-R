@@ -51,4 +51,11 @@ class R::NDArray::Short extends R::NDArray {
     return (R::NDArray::Short)$self->SUPER::clone;
   }
   
+  method element_to_string : string ($element_ref : short[]) {
+    
+    my $string = (string)(short)$element_ref->[0];
+    
+    return $string;
+  }
+  
 }

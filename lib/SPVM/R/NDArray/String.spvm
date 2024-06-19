@@ -56,4 +56,15 @@ class R::NDArray::String extends R::NDArray {
     return (R::NDArray::String)$self->SUPER::clone;
   }
   
+  method element_to_string : string ($element_ref : string[]) {
+    
+    unless ($element_ref->[0]) {
+      return "undef";
+    }
+    
+    my $string = $element_ref->[0];
+    
+    return $string;
+  }
+  
 }

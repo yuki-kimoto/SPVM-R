@@ -177,6 +177,12 @@ class R::NDArray {
     return $clone;
   }
   
+  method to_string : string () {
+    # TODO
+  }
+  
+  method element_to_string : string ($element_ref : object) { die "Not impelmented."; }
+  
 }
 
 =pod TODO

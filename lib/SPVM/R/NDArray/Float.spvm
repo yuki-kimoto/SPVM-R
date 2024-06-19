@@ -51,4 +51,11 @@ class R::NDArray::Float extends R::NDArray {
     return (R::NDArray::Float)$self->SUPER::clone;
   }
   
+  method element_to_string : string ($element_ref : float[]) {
+    
+    my $string = (string)(float)$element_ref->[0];
+    
+    return $string;
+  }
+  
 }

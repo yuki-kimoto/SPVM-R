@@ -57,4 +57,15 @@ class R::NDArray::StringBuffer extends R::NDArray {
     return (R::NDArray::StringBuffer)$self->SUPER::clone;
   }
   
+  method element_to_string : string ($element_ref : StringBuffer[]) {
+    
+    unless ($element_ref->[0]) {
+      return "undef";
+    }
+    
+    my $string = $element_ref->[0]->to_string;
+    
+    return $string;
+  }
+  
 }

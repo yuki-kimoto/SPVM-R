@@ -51,4 +51,11 @@ class R::NDArray::Int extends R::NDArray {
     return (R::NDArray::Int)$self->SUPER::clone;
   }
   
+  method element_to_string : string ($element_ref : int[]) {
+    
+    my $string = (string)(int)$element_ref->[0];
+    
+    return $string;
+  }
+  
 }

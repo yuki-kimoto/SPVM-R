@@ -51,4 +51,11 @@ class R::NDArray::Double extends R::NDArray {
     return (R::NDArray::Double)$self->SUPER::clone;
   }
   
+  method element_to_string : string ($element_ref : double[]) {
+    
+    my $string = (string)(double)$element_ref->[0];
+    
+    return $string;
+  }
+  
 }
