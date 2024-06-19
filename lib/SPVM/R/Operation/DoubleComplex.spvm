@@ -928,5 +928,27 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $i;
   }
   
+  method mean : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->length > 0) {
+      die "The length of n-dimension array \$x_ndarray must be greater than 0.";
+    }
+    
+    my $sum_ndarray = $self->sum($x_ndarray);
+    my $sum = $sum_ndarray->data->[0];
+    
+    my $length = $x_ndarray->length;
+    
+    my $mean = Math->cdiv($sum, Math->complex($length, 0));
+    
+    my $ret_ndarray = $self->c([$mean]);
+    
+    return $ret_ndarray;
+  }
+  
 }
 
