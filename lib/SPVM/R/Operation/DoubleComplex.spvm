@@ -950,5 +950,35 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
+  precompile method diff : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    unless (@$x_dim == 1) {
+      die "The length of dim field of \$x_ndarray must be 1.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    unless ($length > 0) {
+      die "The length of \$x_ndarray must be greater than 0.";
+    }
+    
+    my $ret_ndarray = $self->c(undef, [$length - 1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length - 1; $i++) {
+      $ret_data->[$i] = Math->csub($x_data->[$i + 1], $x_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
 
