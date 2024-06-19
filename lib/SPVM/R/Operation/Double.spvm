@@ -1580,6 +1580,7 @@ class R::Operation::Double extends R::Operation {
   method rep : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $times : int) {
     return (R::NDArray::Double)$self->SUPER::rep($x_ndarray, $times);
   }
+  
 }
 
 =pod TODO

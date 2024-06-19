@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Operation::Byte {
+class R::Operation::Byte extends R::Operation {
   
   use R::NDArray::Byte;
   
@@ -19,6 +19,10 @@ class R::Operation::Byte {
     my $x_ndarray = R::NDArray::Byte->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
+  }
+  
+  method rep : R::NDArray::Byte ($x_ndarray : R::NDArray::Byte, $times : int) {
+    return (R::NDArray::Byte)$self->SUPER::rep($x_ndarray, $times);
   }
   
 }

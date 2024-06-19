@@ -762,5 +762,9 @@ class R::Operation::Long extends R::Operation {
     return $ret_ndarray;
   }
   
+  method rep : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $times : int) {
+    return (R::NDArray::Long)$self->SUPER::rep($x_ndarray, $times);
+  }
+  
 }
 

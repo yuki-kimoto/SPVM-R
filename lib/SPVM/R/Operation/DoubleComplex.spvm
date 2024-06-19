@@ -1060,5 +1060,9 @@ class R::Operation::DoubleComplex extends R::Operation {
     return $ret_ndarray;
   }
   
+  method rep : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $times : int) {
+    return (R::NDArray::DoubleComplex)$self->SUPER::rep($x_ndarray, $times);
+  }
+  
 }
 

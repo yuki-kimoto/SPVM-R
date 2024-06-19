@@ -1,5 +1,9 @@
 package SPVM::R::Operation::FloatComplex;
 
+  method rep : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $times : int) {
+    return (R::NDArray::Double)$self->SUPER::rep($x_ndarray, $times);
+  }
+  
 
 
 1;

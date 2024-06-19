@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Operation::Short {
+class R::Operation::Short extends R::Operation {
   
   use R::NDArray::Short;
   
@@ -19,6 +19,10 @@ class R::Operation::Short {
     my $x_ndarray = R::NDArray::Short->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
+  }
+  
+  method rep : R::NDArray::Short ($x_ndarray : R::NDArray::Short, $times : int) {
+    return (R::NDArray::Short)$self->SUPER::rep($x_ndarray, $times);
   }
   
 }

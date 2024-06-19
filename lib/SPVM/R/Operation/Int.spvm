@@ -850,5 +850,9 @@ class R::Operation::Int extends R::Operation {
     return $ret_ndarray;
   }
   
+  method rep : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $times : int) {
+    return (R::NDArray::Int)$self->SUPER::rep($x_ndarray, $times);
+  }
+  
 }
 

@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Operation::String {
+class R::Operation::String extends R::Operation {
   
   use R::NDArray::String;
   
@@ -19,6 +19,10 @@ class R::Operation::String {
     my $x_ndarray = R::NDArray::String->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
+  }
+  
+  method rep : R::NDArray::String ($x_ndarray : R::NDArray::String, $times : int) {
+    return (R::NDArray::String)$self->SUPER::rep($x_ndarray, $times);
   }
   
 }

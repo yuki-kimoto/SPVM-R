@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Operation::StringBuffer {
+class R::Operation::StringBuffer extends R::Operation {
   
   use R::NDArray::StringBuffer;
   
@@ -19,6 +19,10 @@ class R::Operation::StringBuffer {
     my $x_ndarray = R::NDArray::StringBuffer->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
+  }
+  
+  method rep : R::NDArray::StringBuffer ($x_ndarray : R::NDArray::StringBuffer, $times : int) {
+    return (R::NDArray::StringBuffer)$self->SUPER::rep($x_ndarray, $times);
   }
   
 }
