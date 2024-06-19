@@ -1412,6 +1412,38 @@ class R::Operation::Double extends R::Operation {
     
     return $ret_ndarray;
   }
+  
+  precompile method min : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->length > 0) {
+      die "The length of n-dimension array \$x_ndarray must be greater than 0.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = $self->c(undef, [1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $min = $x_data->[0];
+    for (my $i = 0; $i < $length; $i++) {
+      my $current = $x_data->[$i];
+      
+      if ($current < $min) {
+        $min = $current;
+      }
+    }
+    $ret_data->[0] = $min;
+    
+    return $ret_ndarray;
+  }
 }
 
 =pod TODO
@@ -1579,36 +1611,6 @@ sub set_array {
   return $x1;
 }
 
-sub max {
-  my $r = shift;
-
-  my @args = grep { !Rstats::Func::is_null($r, $_) } @_;
-  
-  my $x1 = Rstats::Func::c_($r, @args);
-  
-  unless (Rstats::Func::get_length($r, $x1)) {
-    Carp::carp 'no non-missing arguments to max; returning -Inf';
-    return -(Rstats::Func::Inf($r));
-  }
-  
-  my $x1_elements = Rstats::Func::decompose($r, $x1);
-  my $max = shift @$x1_elements;
-  for my $element (@$x1_elements) {
-    
-    if (Rstats::Func::is_na($r, $element)) {
-      return Rstats::Func::NA($r);
-    }
-    elsif (Rstats::Func::is_nan($r, $element)) {
-      $max = $element;
-    }
-    if (!Rstats::Func::is_nan($r, $max) && Rstats::Func::value($r, $element > $max)) {
-      $max = $element;
-    }
-  }
-  
-  return Rstats::Func::c_($r, $max);
-}
-
 sub mean {
   my $r = shift;
   
@@ -1617,36 +1619,6 @@ sub mean {
   my $x2 = divide($r, sum($r, $x1), Rstats::Func::get_length($r, $x1));
   
   return $x2;
-}
-
-sub min {
-  my $r = shift;
-  
-  my @args = grep { !Rstats::Func::is_null($r, $_) } @_;
-  
-  my $x1 = Rstats::Func::c_($r, @args);
-  
-  unless (Rstats::Func::get_length($r, $x1)) {
-    Carp::carp 'no non-missing arguments to min; returning Inf';
-    return Rstats::Func::Inf($r);
-  }
-  
-  my $x1_elements = Rstats::Func::decompose($r, $x1);
-  my $min = shift @$x1_elements;
-  for my $element (@$x1_elements) {
-    
-    if (Rstats::Func::is_na($r, $element)) {
-      return Rstats::Func::NA($r);
-    }
-    elsif (Rstats::Func::is_nan($r, $element)) {
-      $min = $element;
-    }
-    if (!Rstats::Func::is_nan($r, $min) && Rstats::Func::value($r, $element < $min)) {
-      $min = $element;
-    }
-  }
-  
-  return Rstats::Func::c_($r, $min);
 }
 
 =cut
