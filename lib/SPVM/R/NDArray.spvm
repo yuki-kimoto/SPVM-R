@@ -177,3 +177,53 @@ class R::NDArray {
     return $clone;
   }
 }
+
+=pod TODO
+
+    SV* pos_to_index(SV* sv_pos, SV* sv_dim) {
+      
+      SV* sv_index = Rstats::pl_new_avrv();
+      Rstats::Integer pos = SvIV(sv_pos);
+      Rstats::Integer before_dim_product = 1;
+      for (Rstats::Integer i = 0; i < Rstats::pl_av_len(sv_dim); i++) {
+        before_dim_product *= SvIV(Rstats::pl_av_fetch(sv_dim, i));
+      }
+      
+      for (Rstats::Integer i = Rstats::pl_av_len(sv_dim) - 1; i >= 0; i--) {
+        Rstats::Integer dim_product = 1;
+        for (Rstats::Integer k = 0; k < i; k++) {
+          dim_product *= SvIV(Rstats::pl_av_fetch(sv_dim, k));
+        }
+        
+        Rstats::Integer reminder = pos % before_dim_product;
+        Rstats::Integer quotient = (Rstats::Integer)(reminder / dim_product);
+        
+        Rstats::pl_av_unshift(sv_index, Rstats::pl_new_sv_iv(quotient + 1));
+        before_dim_product = dim_product;
+      }
+      
+      return sv_index;
+    }
+
+    SV* index_to_pos(SV* sv_index, SV* sv_dim_values) {
+      
+      Rstats::Integer pos = 0;
+      for (Rstats::Integer i = 0; i < Rstats::pl_av_len(sv_dim_values); i++) {
+        if (i > 0) {
+          Rstats::Integer tmp = 1;
+          for (Rstats::Integer k = 0; k < i; k++) {
+            tmp *= SvIV(Rstats::pl_av_fetch(sv_dim_values, k));
+          }
+          pos += tmp * (SvIV(Rstats::pl_av_fetch(sv_index, i)) - 1);
+        }
+        else {
+          pos += SvIV(Rstats::pl_av_fetch(sv_index, i));
+        }
+      }
+      
+      SV* sv_pos = Rstats::pl_new_sv_iv(pos - 1);
+      
+      return sv_pos;
+    }
+
+=cut
