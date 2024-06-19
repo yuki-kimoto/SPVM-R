@@ -3,4 +3,22 @@
 
 class R::Operation::Byte {
   
+  use R::NDArray::Byte;
+  
+  # Class Methods
+  static method new : R::Operation::Byte () {
+    
+    my $self = new R::Operation::Byte;
+    
+    return $self;
+  }
+  
+  # Instance Methods
+  method c : R::NDArray::Byte ($x_data : byte[], $x_dim : int[] = undef) {
+    
+    my $x_ndarray = R::NDArray::Byte->new({dim => $x_dim, data => $x_data});
+    
+    return $x_ndarray;
+  }
+  
 }

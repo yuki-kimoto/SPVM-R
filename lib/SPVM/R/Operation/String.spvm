@@ -4,7 +4,6 @@
 class R::Operation::String {
   
   use R::NDArray::String;
-  use Fn;
   
   # Class Methods
   static method new : R::Operation::String () {
