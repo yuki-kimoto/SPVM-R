@@ -59,8 +59,6 @@ R class is a port of the R language Features.
 
 =item * L<R::NDArray::Long|SPVM::R::NDArray::Long>
 
-=item * L<R::NDArray::HalfFloat|SPVM::R::NDArray::HalfFloat>
-
 =item * L<R::NDArray::Float|SPVM::R::NDArray::Float>
 
 =item * L<R::NDArray::Double|SPVM::R::NDArray::Double>
@@ -82,8 +80,6 @@ R class is a port of the R language Features.
 =item * L<R::Operation::Int|SPVM::R::Operation::Int>
 
 =item * L<R::Operation::Long|SPVM::R::Operation::Long>
-
-=item * L<R::Operation::HalfFloat|SPVM::R::Operation::HalfFloat>
 
 =item * L<R::Operation::Float|SPVM::R::Operation::Float>
 
