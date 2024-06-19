@@ -1597,7 +1597,7 @@ class R::Operation::Double extends R::Operation {
     
     my $ret_length = $x_length * $times;
     
-    my $ret_ndarray = R::Operation::Double->new->c(undef, [$ret_length]);
+    my $ret_ndarray = $self->c(undef, [$ret_length]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
