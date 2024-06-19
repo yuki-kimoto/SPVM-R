@@ -1444,6 +1444,29 @@ class R::Operation::Double extends R::Operation {
     
     return $ret_ndarray;
   }
+
+  method mean : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->length > 0) {
+      die "The length of n-dimension array \$x_ndarray must be greater than 0.";
+    }
+    
+    my $sum_ndarray = $self->sum($x_ndarray);
+    my $sum = $sum_ndarray->data->[0];
+    
+    my $length = $x_ndarray->length;
+    
+    my $mean = $sum / $length;
+    
+    my $ret_ndarray = $self->c([$mean]);
+    
+    return $ret_ndarray;
+  }
+  
 }
 
 =pod TODO
@@ -1609,16 +1632,6 @@ sub set_array {
   $x1->{object_type} = $x1_tmp->{object_type};
   
   return $x1;
-}
-
-sub mean {
-  my $r = shift;
-  
-  my $x1 = to_object($r, shift);
-  
-  my $x2 = divide($r, sum($r, $x1), Rstats::Func::get_length($r, $x1));
-  
-  return $x2;
 }
 
 =cut
