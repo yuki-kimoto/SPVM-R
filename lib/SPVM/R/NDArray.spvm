@@ -233,4 +233,118 @@ class R::NDArray {
       return sv_pos;
     }
 
+    SV* upgrade_length_avrv(SV* sv_r, SV* sv_xs) {
+      
+      Rstats::Integer xs_length = Rstats::pl_av_len(sv_xs);
+      Rstats::Integer max_length = 0;
+      for (Rstats::Integer i = 0; i < xs_length; i++) {
+        SV* sv_x1 = Rstats::pl_av_fetch(sv_xs, i);
+        Rstats::Integer x1_length = Rstats::Func::get_length(sv_r, sv_x1);
+        
+        if (x1_length > max_length) {
+          max_length = x1_length;
+        }
+      }
+      
+      SV* sv_new_xs = Rstats::pl_new_avrv();;
+      for (Rstats::Integer i = 0; i < xs_length; i++) {
+        SV* sv_x1 = Rstats::pl_av_fetch(sv_xs, i);
+        Rstats::Integer x1_length = Rstats::Func::get_length(sv_r, sv_x1);
+        
+        if (x1_length != max_length) {
+          Rstats::Vector<Rstats::Double>* v_length = new Rstats::Vector<Rstats::Double>(1, max_length);
+          SV* sv_x_length = Rstats::Func::new_vector<Rstats::Double>(sv_r, v_length);
+          Rstats::pl_av_push(
+            sv_new_xs,
+            Rstats::Func::array(sv_r, sv_x1, sv_x_length)
+          );
+        }
+        else {
+          Rstats::pl_av_push(sv_new_xs, sv_x1);
+        }
+      }
+      
+      return sv_new_xs;
+    }
+    
+    void upgrade_length(SV* sv_r, Rstats::Integer num, ...) {
+      va_list args;
+      
+      // Optimization if args count is 2
+      va_start(args, num);
+      if (num == 2) {
+        SV* sv_x1 = *va_arg(args, SV**);
+        SV* sv_x2 = *va_arg(args, SV**);
+
+        Rstats::Integer x1_length = Rstats::Func::get_length(sv_r, sv_x1);
+        Rstats::Integer x2_length = Rstats::Func::get_length(sv_r, sv_x2);
+        
+        if (x1_length == x2_length) {
+          return;
+        }
+      }
+      va_end(args);
+      
+      SV* sv_args = Rstats::pl_new_avrv();
+      va_start(args, num);
+      for (Rstats::Integer i = 0; i < num; i++) {
+        SV** arg = va_arg(args, SV**);
+        SV* x = *arg;
+        Rstats::pl_av_push(sv_args, x);
+      }
+      va_end(args);
+      
+      SV* sv_result = Rstats::Func::upgrade_length_avrv(sv_r, sv_args);
+      
+      va_start(args, num);
+      for (Rstats::Integer i = 0; i < num; i++) {
+        SV** arg = va_arg(args, SV**);
+        SV* sv_x = Rstats::pl_av_fetch(sv_result, i);
+
+        *arg = sv_x;
+      }
+      va_end(args);
+    }
+        
+    void upgrade_type(SV* sv_r, Rstats::Integer num, ...) {
+      va_list args;
+      
+      // Optimization if args count is 2
+      va_start(args, num);
+      if (num == 2) {
+        SV* x1 = *va_arg(args, SV**);
+        SV* x2 = *va_arg(args, SV**);
+        
+        if (
+            strEQ(
+              SvPV_nolen(Rstats::pl_hv_fetch(x1, "type")),
+              SvPV_nolen(Rstats::pl_hv_fetch(x2, "type"))
+            )
+          )
+        {
+          return;
+        }
+      }
+      va_end(args);
+      
+      SV* upgrade_type_args = Rstats::pl_new_avrv();
+      va_start(args, num);
+      for (Rstats::Integer i = 0; i < num; i++) {
+        SV** arg = va_arg(args, SV**);
+        SV* x = *arg;
+        Rstats::pl_av_push(upgrade_type_args, x);
+      }
+      va_end(args);
+      
+      SV* upgrade_type_result = Rstats::Func::upgrade_type_avrv(sv_r, upgrade_type_args);
+      
+      va_start(args, num);
+      for (Rstats::Integer i = 0; i < num; i++) {
+        SV** arg = va_arg(args, SV**);
+        SV* x = Rstats::pl_av_fetch(upgrade_type_result, i);
+        *arg = x;
+      }
+      va_end(args);
+    }
+
 =cut

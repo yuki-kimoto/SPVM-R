@@ -4,3 +4,261 @@
 class R::DataFrame {
   
 }
+
+=pod TODO
+
+sub data_frame {
+  my $r = shift;
+  
+  my @data = @_;
+  
+  return cbind($r, @data) if ref $data[0] && Rstats::Func::is_data_frame($r, $data[0]);
+  
+  my $elements = [];
+  
+  # name count
+  my $name_count = {};
+  
+  # count
+  my $counts = [];
+  my $column_names = [];
+  my $row_names = [];
+  my $row_count = 1;
+  while (my ($name, $v) = splice(@data, 0, 2)) {
+    if (Rstats::Func::is_character($r, $v) && !grep {$_ eq 'AsIs'} @{$v->class->values}) {
+      $v = Rstats::Func::as_factor($r, $v);
+    }
+
+    my $dim_values = Rstats::Func::dim($r, $v)->values;
+    if (@$dim_values > 1) {
+      my $count = $dim_values->[0];
+      my $dim_product = 1;
+      $dim_product *= $dim_values->[$_] for (1 .. @$dim_values - 1);
+      
+      for my $num (1 .. $dim_product) {
+        push @$counts, $count;
+        my $fix_name;
+        if (my $count = $name_count->{$name}) {
+          $fix_name = "$name.$count";
+        }
+        else {
+          $fix_name = $name;
+        }
+        push @$column_names, $fix_name;
+        push @$elements, splice(@{$v->values}, 0, $count);
+      }
+    }
+    else {
+      my $count = Rstats::Func::get_length($r, $v);
+      push @$counts, $count;
+      my $fix_name;
+      if (my $count = $name_count->{$name}) {
+        $fix_name = "$name.$count";
+      }
+      else {
+        $fix_name = $name;
+      }
+      push @$column_names, $fix_name;
+      push @$elements, $v;
+    }
+    push @$row_names, "$row_count";
+    $row_count++;
+    $name_count->{$name}++;
+  }
+  
+  # Max count
+  my $max_count = List::Util::max @$counts;
+  
+  # Check multiple number
+  for my $count (@$counts) {
+    if ($max_count % $count != 0) {
+      Carp::croak "Error in data.frame: arguments imply differing number of rows: @$counts";
+    }
+  }
+  
+  # Fill vector
+  for (my $i = 0; $i < @$counts; $i++) {
+    my $count = $counts->[$i];
+    
+    my $repeat = $max_count / $count;
+    if ($repeat > 1) {
+      my $repeat_elements = [];
+      push @$repeat_elements, $elements->[$i] for (1 .. $repeat);
+      $elements->[$i] = Rstats::Func::c_($r, @$repeat_elements);
+    }
+  }
+  
+  # Create data frame
+  my $data_frame = Rstats::Func::new_data_frame($r);
+  $data_frame->{row_length} = $max_count;
+  $data_frame->list($elements);
+  Rstats::Func::dimnames(
+    $r,
+    $data_frame,
+    Rstats::Func::list(
+      $r,
+      Rstats::Func::c_($r, @$row_names),
+      Rstats::Func::c_($r, @$column_names)
+    )
+  );
+  $data_frame->r($r);
+  
+  return $data_frame;
+}
+
+sub subset {
+  my $r = shift;
+  
+  my ($x1, $x_condition, $x_names)
+    = args_array($r, ['x1', 'condition', 'names'], @_);
+  
+  $x_names = Rstats::Func::NULL($r) unless defined $x_names;
+  
+  my $x2 = $x1->get($x_condition, $x_names);
+  
+  return $x2;
+}
+
+sub transform {
+  my $r = shift;
+  
+  my $x1 = shift;
+  my @args = @_;
+
+  my $new_names = Rstats::Func::names($r, $x1)->values;
+  my $new_elements = $x1->list;
+  
+  my $names = Rstats::Func::names($r, $x1)->values;
+  
+  while (my ($new_name, $new_v) = splice(@args, 0, 2)) {
+    if (Rstats::Func::is_character($r, $new_v)) {
+      $new_v = Rstats::Func::I($r, $new_v);
+    }
+
+    my $found_pos = -1;
+    for (my $i = 0; $i < @$names; $i++) {
+      my $name = $names->[$i];
+      if ($new_name eq $name) {
+        $found_pos = $i;
+        last;
+      }
+    }
+    
+    if ($found_pos == -1) {
+      push @$new_names, $new_name;
+      push @$new_elements, $new_v;
+    }
+    else {
+      $new_elements->[$found_pos] = $new_v;
+    }
+  }
+  
+  
+  my @new_args;
+  for (my $i = 0; $i < @$new_names; $i++) {
+    push @new_args, $new_names->[$i], $new_elements->[$i];
+  }
+  
+  my $x2 = Rstats::Func::data_frame($r, @new_args);
+  
+  return $x2;
+}
+
+sub merge {
+  my $r = shift;
+
+  die "Error in merge() : merge is not implemented yet";
+  
+  my ($x1, $x2, $x_all, $x_all_x, $x_all_y, $x_by, $x_by_x, $x_by_y, $x_sort)
+    = args_array($r, [qw/x1 x2 all all.x all.y by by.x by.y sort/], @_);
+  
+  # Join way
+  $x_all = Rstats::Func::FALSE($r) unless defined $x_all;
+  $x_all_x = Rstats::Func::FALSE($r) unless defined $x_all_x;
+  $x_all_y = Rstats::Func::FALSE($r) unless defined $x_all_y;
+  my $all;
+  if ($x_all) {
+    $all = 'both';
+  }
+  elsif ($x_all_x) {
+    $all = 'left';
+  }
+  elsif ($x_all_y) {
+    $all = 'rigth';
+  }
+  else {
+    $all = 'common';
+  }
+  
+  # ID
+  $x_by = Rstats::Func::names($r, $x1)->get(1) unless defined $x_by;
+  $x_by_x = $x_by unless defined $x_by_x;
+  $x_by_y = $x_by unless defined $x_by_y;
+  my $by_x = $x_by_x->value;
+  my $by_y = $x_by_y->value;
+  
+  # Sort
+  my $sort = defined $x_sort ? $x_sort->value : 0;
+}
+
+
+sub interaction {
+  my $r = shift;
+  
+  my $opt;
+  $opt = ref $_[-1] eq 'HASH' ? pop : {};
+  my @xs = map { Rstats::Func::as_factor($r, to_object($r, $_)) } @_;
+  my ($x_drop, $x_sep);
+  ($x_drop, $x_sep) = args_array($r, ['drop', 'sep'], $opt);
+  
+  $x_sep = Rstats::Func::c_($r, ".") unless defined $x_sep;
+  my $sep = $x_sep->value;
+  
+  $x_drop = Rstats::Func::FALSE($r) unless defined $x_drop;
+  
+  my $max_length;
+  my $values_list = [];
+  for my $x (@xs) {
+    my $length = Rstats::Func::length($r, $x)->value;
+    $max_length = $length if !defined $max_length || $length > $max_length;
+  }
+  
+  # Vector
+  my $f1_elements = [];
+  for (my $i = 0; $i < $max_length; $i++) {
+    my $chars = [];
+    for my $x (@xs) {
+      my $fix_x = Rstats::Func::as_character($r, $x);
+      my $length = Rstats::Func::get_length($r, $fix_x);
+      push @$chars, $fix_x->value(($i % $length) + 1)
+    }
+    my $value = join $sep, @$chars;
+    push @$f1_elements, $value;
+  }
+  
+  # Levels
+  my $f1;
+  my $f1_levels_elements = [];
+  if ($x_drop) {
+    $f1_levels_elements = $f1_elements;
+    $f1 = factor($r, c_($r, @$f1_elements));
+  }
+  else {
+    my $levels = [];
+    for my $x (@xs) {
+      push @$levels, Rstats::Func::levels($r, $x)->values;
+    }
+    my $cps = Rstats::Util::cross_product($levels);
+    for my $cp (@$cps) {
+      my $value = join $sep, @$cp;
+      push @$f1_levels_elements, $value;
+    }
+    $f1_levels_elements = [sort {$a cmp $b} @$f1_levels_elements];
+    $f1 = factor($r, c_($r, @$f1_elements), {levels => Rstats::Func::c_($r, @$f1_levels_elements)});
+  }
+  
+  return $f1;
+}
+
+
+=cut
