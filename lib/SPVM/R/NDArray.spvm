@@ -283,6 +283,54 @@ class R::NDArray {
     return $normalized_vector_indexes;
   }
   
+  private method create_get_ret_dim : int[] ($vector_indexes : R::NDArray::Int[]) {
+    
+    my $vector_indexes_length = @$vector_indexes;
+    
+    my $ret_dim = new int[$vector_indexes_length];
+    
+    for (my $i = 0; $i < $vector_indexes_length; $i++) {
+      my $vector_index = $vector_indexes->[$i];
+      
+      if ($vector_index) {
+        $ret_dim->[$i] = $vector_index->length;
+      }
+      else {
+        die "[Unexpected]\$vector_index must be defined.";
+      }
+    }
+    
+    return $ret_dim;
+  }
+
+=pod
+
+  private method parse_vector_index : void ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
+    
+    my $dim_length = @$dim;
+    
+    my $ret_dim = new int[$dim_length];
+    
+    for (my $i = 0; $i < $dim_length; $i++) {
+      my $vector_index = $vector_indexes->[$i];
+      
+      if ($vector_index) {
+        $ret_dim->[$i] = $dim->[$i];
+      }
+      else {
+        $ret_dim->[$i] = $vector_index->length;
+      }
+    }
+    
+    my $vector_index_values = [map { $_->values } $vector_indexes];
+    my $ords = cross_product($vector_index_values);
+    my $poss = map { $self->convert_ndarray_vector_index_to_data_vector_index($_, $dim) } @$ords;
+    
+    return [\$poss, \$ret_dim, \$vector_indexes];
+  }
+
+=cut
+
   precompile private method convert_ndarray_index_to_data_index : int ($ndarray_indexes : int[], $dim : int[]) {
     
     my $data_index = 0;
