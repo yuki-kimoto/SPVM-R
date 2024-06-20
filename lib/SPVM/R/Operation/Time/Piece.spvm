@@ -25,4 +25,8 @@ class R::Operation::Time::Piece extends R::Operation {
     return (R::NDArray::Time::Piece)$self->SUPER::rep($x_ndarray, $times);
   }
   
+  method rep_length : R::NDArray::Time::Piece ($x_ndarray : R::NDArray::Time::Piece, $length : int) {
+    return (R::NDArray::Time::Piece)$self->SUPER::rep_length($x_ndarray, $length);
+  }
+  
 }

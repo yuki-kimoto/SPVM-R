@@ -932,4 +932,8 @@ class R::Operation::FloatComplex extends R::Operation {
     return (R::NDArray::FloatComplex)$self->SUPER::rep($x_ndarray, $times);
   }
   
+  method rep_length : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $length : int) {
+    return (R::NDArray::FloatComplex)$self->SUPER::rep_length($x_ndarray, $length);
+  }
+  
 }

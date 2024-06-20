@@ -854,5 +854,9 @@ class R::Operation::Int extends R::Operation {
     return (R::NDArray::Int)$self->SUPER::rep($x_ndarray, $times);
   }
   
+  method rep_length : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $length : int) {
+    return (R::NDArray::Int)$self->SUPER::rep_length($x_ndarray, $length);
+  }
+  
 }
 
