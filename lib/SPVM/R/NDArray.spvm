@@ -244,7 +244,12 @@ class R::NDArray {
   }
   
   method get : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
-  
+    
+    my $dim = $self->{dim};
+    
+    $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
+    
+    
   }
   
   private method normalize_vector_indexes : R::NDArray::Int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
