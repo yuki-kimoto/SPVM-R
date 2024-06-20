@@ -21,6 +21,7 @@ class R::Operation::Float extends R::Operation {
   use Complex_2f;
   use Complex_2d;
   use Math;
+  use FloatList;
   
   # Class Methods
   static method new : R::Operation::Float () {
@@ -1389,23 +1390,37 @@ class R::Operation::Float extends R::Operation {
     return (R::NDArray::Float)$self->SUPER::rep_length($x_ndarray, $length);
   }
   
-  method seq : R::NDArray::Float ($x : float, $y : float, $by : float = 1.0f) {
+  method seq : R::NDArray::Float ($x : float, $y : float, $by : float = 1) {
     
-    my $length = (int)(($y - $x) / $by);
-    
-    unless (($y - $x) / $by == 0) {
-      die "\$x minus \$y must be devided by \$by.";
-    }
-    
-    my $ret_ndarray = $self->c(undef, [$length]);
-    
-    my $ret_data = $ret_ndarray->data;
-    
+    my $ret_data_list = FloatList->new;
     my $current = $x;
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $current;
+    while (1) {
+      if ($by >= 0) {
+        if ($current <= $y) {
+          last;
+        }
+      }
+      else {
+        if ($current >= $y) {
+          last;
+        }
+      }
       $current += $by;
+      $ret_data_list->push($current);
     }
+    
+    my $ret_data = $ret_data_list->to_array;
+    
+    my $ret_ndarray = $self->c($ret_data);
+    
+    return $ret_ndarray;
+  }
+  
+  method seq_length : R::NDArray::Float ($x : float, $y : float, $length : int) {
+    
+    my $by = (float)(($y - $x) / $length);
+    
+    my $ret_ndarray = $self->seq($x, $y, $by);
     
     return $ret_ndarray;
   }

@@ -21,6 +21,7 @@ class R::Operation::Double extends R::Operation {
   use Complex_2f;
   use Complex_2d;
   use Math;
+  use DoubleList;
   
   # Class Methods
   static method new : R::Operation::Double () {
@@ -1585,112 +1586,39 @@ class R::Operation::Double extends R::Operation {
     return (R::NDArray::Double)$self->SUPER::rep_length($x_ndarray, $length);
   }
   
-  method seq : R::NDArray::Double ($x : double, $y : double, $by : double = 1.0) {
+  method seq : R::NDArray::Double ($x : double, $y : double, $by : double = 1) {
     
-    my $length_tmp = ($y - $x) / $by;
-    
-    unless ($length_tmp) {
-      die "\$x minus \$y must be devided by \$by.";
-    }
-    
-    my $length = (int)$length_tmp;
-    
-    my $ret_ndarray = $self->c(undef, [$length]);
-    
-    my $ret_data = $ret_ndarray->data;
-    
+    my $ret_data_list = DoubleList->new;
     my $current = $x;
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $current;
+    while (1) {
+      if ($by >= 0) {
+        if ($current <= $y) {
+          last;
+        }
+      }
+      else {
+        if ($current >= $y) {
+          last;
+        }
+      }
       $current += $by;
+      $ret_data_list->push($current);
     }
+    
+    my $ret_data = $ret_data_list->to_array;
+    
+    my $ret_ndarray = $self->c($ret_data);
+    
+    return $ret_ndarray;
+  }
+  
+  method seq_length : R::NDArray::Double ($x : double, $y : double, $length : int) {
+    
+    my $by = (double)(($y - $x) / $length);
+    
+    my $ret_ndarray = $self->seq($x, $y, $by);
     
     return $ret_ndarray;
   }
   
 }
-
-=pod TODO
-
-sub seq {
-  my $r = shift;
-  
-  # Option
-  my $opt = ref $_[-1] eq 'HASH' ? pop @_ : {};
-  
-  # Along
-  my $_along = $opt->{along};
-  if (defined $_along) {
-    my $along = to_object($r, $_along);
-    my $length = Rstats::Func::get_length($r, $along);
-    return seq($r, 1, $length);
-  }
-  else {
-    my ($from, $to) = @_;
-    
-    # From
-    $from = $opt->{from} unless defined $from;
-    Carp::croak "seq function need from option" unless defined $from;
-    
-    # To
-    $to = $opt->{to} unless defined $to;
-    Carp::croak "seq function need to option" unless defined $to;
-
-    # Length
-    my $length = $opt->{length};
-    
-    # By
-    my $by = $opt->{by};
-    
-    if (defined $length && defined $by) {
-      Carp::croak "Can't use by option and length option as same time";
-    }
-    
-    unless (defined $by) {
-      if ($to >= $from) {
-        $by = 1;
-      }
-      else {
-        $by = -1;
-      }
-    }
-    Carp::croak "by option should be except for 0" if $by == 0;
-    
-    $to = $from unless defined $to;
-    
-    if (defined $length && $from ne $to) {
-      $by = ($to - $from) / ($length - 1);
-    }
-    
-    my $elements = [];
-    if ($to == $from) {
-      $elements->[0] = $to;
-    }
-    elsif ($to > $from) {
-      if ($by < 0) {
-        Carp::croak "by option is invalid number(seq function)";
-      }
-      
-      my $element = $from;
-      while ($element <= $to) {
-        push @$elements, $element;
-        $element += $by;
-      }
-    }
-    else {
-      if ($by > 0) {
-        Carp::croak "by option is invalid number(seq function)";
-      }
-      
-      my $element = $from;
-      while ($element >= $to) {
-        push @$elements, $element;
-        $element += $by;
-      }
-    }
-    
-    return Rstats::Func::c_($r, @$elements);
-  }
-}
-
-=cut

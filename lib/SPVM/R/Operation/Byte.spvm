@@ -34,7 +34,17 @@ class R::Operation::Byte extends R::Operation {
     
     my $ret_data_list = ByteList->new;
     my $current = $x;
-    while ($current <= $y) {
+    while (1) {
+      if ($by >= 0) {
+        if ($current <= $y) {
+          last;
+        }
+      }
+      else {
+        if ($current >= $y) {
+          last;
+        }
+      }
       $current += $by;
       $ret_data_list->push($current);
     }
