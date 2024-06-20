@@ -858,5 +858,26 @@ class R::Operation::Int extends R::Operation {
     return (R::NDArray::Int)$self->SUPER::rep_length($x_ndarray, $length);
   }
   
+  method seq : R::NDArray::Int ($x : int, $y : int, $by : int = 1) {
+    
+    my $length = (int)(($y - $x) / $by);
+    
+    unless (($y - $x) / $by == 0) {
+      die "\$x minus \$y must be devided by \$by.";
+    }
+    
+    my $ret_ndarray = $self->c(undef, [$length]);
+    
+    my $ret_data = $ret_ndarray->data;
+    
+    my $current = $x;
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $current;
+      $current += $by;
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
 

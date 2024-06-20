@@ -1585,23 +1585,32 @@ class R::Operation::Double extends R::Operation {
     return (R::NDArray::Double)$self->SUPER::rep_length($x_ndarray, $length);
   }
   
+  method seq : R::NDArray::Double ($x : double, $y : double, $by : double = 1.0) {
+    
+    my $length_tmp = ($y - $x) / $by;
+    
+    unless ($length_tmp) {
+      die "\$x minus \$y must be devided by \$by.";
+    }
+    
+    my $length = (int)$length_tmp;
+    
+    my $ret_ndarray = $self->c(undef, [$length]);
+    
+    my $ret_data = $ret_ndarray->data;
+    
+    my $current = $x;
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $current;
+      $current += $by;
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
 
 =pod TODO
-
-sub rep {
-  my $r = shift;
-  
-  my ($x1, $x_times) = args_array($r, ['x1', 'times'], @_);
-  
-  my $times = defined $x_times ? $x_times->value : 1;
-  
-  my $elements = [];
-  push @$elements, @{Rstats::Func::decompose($r, $x1)} for 1 .. $times;
-  my $x2 = Rstats::Func::c_($r, @$elements);
-  
-  return $x2;
-}
 
 sub seq {
   my $r = shift;
