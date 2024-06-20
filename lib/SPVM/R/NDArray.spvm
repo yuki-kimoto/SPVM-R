@@ -243,26 +243,8 @@ class R::NDArray {
     return $is_square_matrix;
   }
   
-  method get : R::NDArray ($ndarray_indexes : R::NDArray::Int[]) {
+  method get : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
   
-    unless ($ndarray_indexes) {
-      die "The indexes for n-dimension array must be defined.";
-    }
-
-=pod
-
-    my ($ret_data_indexes, $ret_dim, $new_indexes) = @{Rstats::Util::parse_index($self, $indexes_ndarray)};
-    
-    my $x1_values = $x1->values;
-    my @x2_values = map { $x1_values->[$_] } @$poss;
-    
-    my $ret_ndarray = Native::MethodCall->call_class_method($class_name, "new", [{data => $ret_data}]);
-    my $ret_ndarray->set_dim($ret_dim);
-    
-    return $ret_ndarray;
-
-=cut
-
   }
   
   precompile private method convert_ndarray_index_to_data_index : int ($ndarray_indexes : int[], $dim : int[]) {
@@ -286,11 +268,168 @@ class R::NDArray {
     
     return $data_index;
   }
-
 }
+
+=pod
+    unless ($vector_indexes) {
+      die "The indexes for n-dimension array \$vector_indexes must be defined.";
+    }
+    
+    my $vector_indexes_length = @$vector_indexes;
+    
+    my $self_dim = $self->{dim};
+    
+    unless ($vector_indexes_length <= @$self_dim) {
+      die "The length of indexes for n-dimension array \$vector_indexes must be less than or equal to the length of dim field.";
+    }
+    
+    for (my $i = 0; $i < $vector_indexes_length; $i++) {
+      my $vector_index = $vector_indexes->[$i];
+      
+      my $indexes = $vector_index->data;
+      
+      unless (!$vector_index || $vector_index->is_vector) {
+        die "The element of indexes for n-dimension array \$vector_indexes must be undef or vector.".
+      }
+      
+      unless ($vector_index) {
+        my $dim_max = $self->
+      }
+      
+      my $each_indexes = $vector_index->data;
+      
+=cut
+
+    
+=pod
+
+    my ($ret_data_indexes, $ret_dim, $new_indexes) = @{Rstats::Util::parse_index($self, $indexes_ndarray)};
+    
+    my $x1_values = $x1->values;
+    my @x2_values = map { $x1_values->[$_] } @$poss;
+    
+    my $ret_ndarray = Native::MethodCall->call_class_method($class_name, "new", [{data => $ret_data}]);
+    my $ret_ndarray->set_dim($ret_dim);
+    
+    return $ret_ndarray;
+
+=cut
+
+=pod
+
+  private method parse_index : void () {
+    my $r = shift;
+    
+    my ($x1, $drop, $_indexs) = @_;
+    my @_indexs = @$_indexs;
+    
+    my $x1_dim = $x1->dim_as_array->values;
+    my @indexs;
+    my @x2_dim;
+    
+    for (my $i = 0; $i < @$x1_dim; $i++) {
+      my $_index = $_indexs[$i];
+
+      my $index = defined $_index ? Rstats::Func::to_object($r, $_index) : Rstats::Func::NULL($r);
+      my $index_values = $index->values;
+      if (@$index_values && !Rstats::Func::is_character($r, $index) && !Rstats::Func::is_logical($r, $index)) {
+        my $minus_count = 0;
+        for my $index_value (@$index_values) {
+          if ($index_value == 0) {
+            croak "0 is invalid index";
+          }
+          else {
+            $minus_count++ if $index_value < 0;
+          }
+        }
+        croak "Can't min minus sign and plus sign"
+          if $minus_count > 0 && $minus_count != @$index_values;
+        $index->{_minus} = 1 if $minus_count > 0;
+      }
+      
+      if (!@{$index->values}) {
+        my $index_values_new = [1 .. $x1_dim->[$i]];
+        $index = Rstats::Func::c_integer($r, @$index_values_new);
+      }
+      elsif ($index->{_minus}) {
+        my $index_value_new = [];
+        
+        for my $k (1 .. $x1_dim->[$i]) {
+          push @$index_value_new, $k unless grep { $_ == -$k } @{$index->values};
+        }
+        $index = Rstats::Func::c_integer($r, @$index_value_new);
+      }
+
+      push @indexs, $index;
+
+      my $count = Rstats::Func::get_length($r, $index);
+      push @x2_dim, $count unless $count == 1 && $drop;
+    }
+    @x2_dim = (1) unless @x2_dim;
+    
+    my $index_values = [map { $_->values } @indexs];
+    my $ords = cross_product($index_values);
+    my @poss = map { Rstats::Util::index_to_pos($_, $x1_dim) } @$ords;
+    
+    return [\@poss, \@x2_dim, \@indexs];
+  }
+  
+=cut
 
 =pod TODO
 
+    SV* cross_product(SV* sv_values) {
+      
+      Rstats::Integer values_length = Rstats::pl_av_len(sv_values);
+      SV* sv_idxs = Rstats::pl_new_avrv();
+      for (Rstats::Integer i = 0; i < values_length; i++) {
+        Rstats::pl_av_push(sv_idxs, Rstats::pl_new_sv_iv(0)); 
+      }
+      
+      SV* sv_idx_idx = Rstats::pl_new_avrv();
+      for (Rstats::Integer i = 0; i < values_length; i++) {
+        Rstats::pl_av_push(sv_idx_idx, Rstats::pl_new_sv_iv(i));
+      }
+      
+      SV* sv_x1 = Rstats::pl_new_avrv();
+      for (Rstats::Integer i = 0; i < values_length; i++) {
+        SV* sv_value = Rstats::pl_av_fetch(sv_values, i);
+        Rstats::pl_av_push(sv_x1, Rstats::pl_av_fetch(sv_value, 0));
+      }
+
+      SV* sv_result = Rstats::pl_new_avrv();
+      Rstats::pl_av_push(sv_result, Rstats::pl_av_copy(sv_x1));
+      Rstats::Logical end_loop = 0;
+      while (1) {
+        for (Rstats::Integer i = 0; i < values_length; i++) {
+          
+          if (SvIV(Rstats::pl_av_fetch(sv_idxs, i)) < Rstats::pl_av_len(Rstats::pl_av_fetch(sv_values, i)) - 1) {
+            
+            SV* sv_idxs_tmp = Rstats::pl_av_fetch(sv_idxs, i);
+            sv_inc(sv_idxs_tmp);
+            Rstats::pl_av_store(sv_x1, i, Rstats::pl_av_fetch(Rstats::pl_av_fetch(sv_values, i), SvIV(sv_idxs_tmp)));
+            
+            Rstats::pl_av_push(sv_result, Rstats::pl_av_copy(sv_x1));
+            
+            break;
+          }
+          
+          if (i == SvIV(Rstats::pl_av_fetch(sv_idx_idx, values_length - 1))) {
+            end_loop = 1;
+            break;
+          }
+          
+          Rstats::pl_av_store(sv_idxs, i, Rstats::pl_new_sv_iv(0));
+          Rstats::pl_av_store(sv_x1, i, Rstats::pl_av_fetch(Rstats::pl_av_fetch(sv_values, i), 0));
+        }
+        if (end_loop) {
+          break;
+        }
+      }
+
+      return sv_result;
+    }
+    
   sub parse_index {
     my $r = shift;
     
