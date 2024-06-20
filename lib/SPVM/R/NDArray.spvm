@@ -243,6 +243,50 @@ class R::NDArray {
     return $is_square_matrix;
   }
   
+  method get : R::NDArray ($ndarray_indexes : R::NDArray::Int[]) {
+  
+    unless ($ndarray_indexes) {
+      die "The indexes for n-dimension array must be defined.";
+    }
+
+=pod
+
+    my ($ret_data_indexes, $ret_dim, $new_indexes) = @{Rstats::Util::parse_index($self, $indexes_ndarray)};
+    
+    my $x1_values = $x1->values;
+    my @x2_values = map { $x1_values->[$_] } @$poss;
+    
+    my $ret_ndarray = Native::MethodCall->call_class_method($class_name, "new", [{data => $ret_data}]);
+    my $ret_ndarray->set_dim($ret_dim);
+    
+    return $ret_ndarray;
+
+=cut
+
+  }
+  
+  precompile private method convert_ndarray_index_to_data_index : int ($ndarray_indexes : int[], $dim : int[]) {
+    
+    my $data_index = 0;
+    my $dim_length = @$dim;
+    for (my $i = 0; $i < $dim_length; $i++) {
+      if ($i > 0) {
+        my $tmp = 1;
+        for (my $k = 0; $k < $i; $k++) {
+          $tmp *= $dim->[$k];
+        }
+        $data_index += $tmp * $ndarray_indexes->[$i] - 1;
+      }
+      else {
+        $data_index += $ndarray_indexes->[$i];
+      }
+    }
+    
+    $data_index -= 1;
+    
+    return $data_index;
+  }
+
 }
 
 =pod TODO
