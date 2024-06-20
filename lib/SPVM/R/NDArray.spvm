@@ -187,6 +187,109 @@ class R::NDArray {
 
 =pod TODO
 
+  sub parse_index {
+    my $r = shift;
+    
+    my ($x1, $drop, $_indexs) = @_;
+    my @_indexs = @$_indexs;
+    
+    my $x1_dim = $x1->dim_as_array->values;
+    my @indexs;
+    my @x2_dim;
+    
+    if (ref $_indexs[0] && Rstats::Func::is_array($r, $_indexs[0])
+      && Rstats::Func::is_logical($r, $_indexs[0]) && Rstats::Func::dim($r, $_indexs[0])->get_length > 1) {
+      my $x2 = $_indexs[0];
+      my $x2_dim_values = Rstats::Func::dim($r, $x2)->values;
+      my $x2_values = $x2->values;
+      my $poss = [];
+      for (my $i = 0; $i < @$x2_values; $i++) {
+        next unless $x2_values->[$i];
+        push @$poss, $i;
+      }
+      
+      return [$poss, []];
+    }
+    else {
+      for (my $i = 0; $i < @$x1_dim; $i++) {
+        my $_index = $_indexs[$i];
+
+        my $index = defined $_index ? Rstats::Func::to_object($r, $_index) : Rstats::Func::NULL($r);
+        my $index_values = $index->values;
+        if (@$index_values && !Rstats::Func::is_character($r, $index) && !Rstats::Func::is_logical($r, $index)) {
+          my $minus_count = 0;
+          for my $index_value (@$index_values) {
+            if ($index_value == 0) {
+              croak "0 is invalid index";
+            }
+            else {
+              $minus_count++ if $index_value < 0;
+            }
+          }
+          croak "Can't min minus sign and plus sign"
+            if $minus_count > 0 && $minus_count != @$index_values;
+          $index->{_minus} = 1 if $minus_count > 0;
+        }
+        
+        if (!@{$index->values}) {
+          my $index_values_new = [1 .. $x1_dim->[$i]];
+          $index = Rstats::Func::c_integer($r, @$index_values_new);
+        }
+        elsif (Rstats::Func::is_character($r, $index)) {
+          if (Rstats::Func::is_vector($r, $x1)) {
+            my $index_new_values = [];
+            for my $name (@{$index->values}) {
+              my $i = 0;
+              my $value;
+              for my $x1_name (@{Rstats::Func::names($r, $x1)->values}) {
+                if ($name eq $x1_name) {
+                  $value = $x1->values->[$i];
+                  last;
+                }
+                $i++;
+              }
+              croak "Can't find name" unless defined $value;
+              push @$index_new_values, $value;
+            }
+            $indexs[$i] = Rstats::Func::c_integer($r, @$index_new_values);
+          }
+          elsif (Rstats::Func::is_matrix($r, $x1)) {
+            
+          }
+          else {
+            croak "Can't support name except vector and matrix";
+          }
+        }
+        elsif (Rstats::Func::is_logical($r, $index)) {
+          my $index_values_new = [];
+          for (my $i = 0; $i < @{$index->values}; $i++) {
+            push @$index_values_new, $i + 1 if $index_values->[$i];
+          }
+          $index = Rstats::Func::c_integer($r, @$index_values_new);
+        }
+        elsif ($index->{_minus}) {
+          my $index_value_new = [];
+          
+          for my $k (1 .. $x1_dim->[$i]) {
+            push @$index_value_new, $k unless grep { $_ == -$k } @{$index->values};
+          }
+          $index = Rstats::Func::c_integer($r, @$index_value_new);
+        }
+
+        push @indexs, $index;
+
+        my $count = Rstats::Func::get_length($r, $index);
+        push @x2_dim, $count unless $count == 1 && $drop;
+      }
+      @x2_dim = (1) unless @x2_dim;
+      
+      my $index_values = [map { $_->values } @indexs];
+      my $ords = cross_product($index_values);
+      my @poss = map { Rstats::Util::index_to_pos($_, $x1_dim) } @$ords;
+    
+      return [\@poss, \@x2_dim, \@indexs];
+    }
+  }
     SV* pos_to_index(SV* sv_pos, SV* sv_dim) {
       
       SV* sv_index = Rstats::pl_new_avrv();
@@ -231,120 +334,6 @@ class R::NDArray {
       SV* sv_pos = Rstats::pl_new_sv_iv(pos - 1);
       
       return sv_pos;
-    }
-
-    SV* upgrade_length_avrv(SV* sv_r, SV* sv_xs) {
-      
-      Rstats::Integer xs_length = Rstats::pl_av_len(sv_xs);
-      Rstats::Integer max_length = 0;
-      for (Rstats::Integer i = 0; i < xs_length; i++) {
-        SV* sv_x1 = Rstats::pl_av_fetch(sv_xs, i);
-        Rstats::Integer x1_length = Rstats::Func::get_length(sv_r, sv_x1);
-        
-        if (x1_length > max_length) {
-          max_length = x1_length;
-        }
-      }
-      
-      SV* sv_new_xs = Rstats::pl_new_avrv();;
-      for (Rstats::Integer i = 0; i < xs_length; i++) {
-        SV* sv_x1 = Rstats::pl_av_fetch(sv_xs, i);
-        Rstats::Integer x1_length = Rstats::Func::get_length(sv_r, sv_x1);
-        
-        if (x1_length != max_length) {
-          Rstats::Vector<Rstats::Double>* v_length = new Rstats::Vector<Rstats::Double>(1, max_length);
-          SV* sv_x_length = Rstats::Func::new_vector<Rstats::Double>(sv_r, v_length);
-          Rstats::pl_av_push(
-            sv_new_xs,
-            Rstats::Func::array(sv_r, sv_x1, sv_x_length)
-          );
-        }
-        else {
-          Rstats::pl_av_push(sv_new_xs, sv_x1);
-        }
-      }
-      
-      return sv_new_xs;
-    }
-    
-    void upgrade_length(SV* sv_r, Rstats::Integer num, ...) {
-      va_list args;
-      
-      // Optimization if args count is 2
-      va_start(args, num);
-      if (num == 2) {
-        SV* sv_x1 = *va_arg(args, SV**);
-        SV* sv_x2 = *va_arg(args, SV**);
-
-        Rstats::Integer x1_length = Rstats::Func::get_length(sv_r, sv_x1);
-        Rstats::Integer x2_length = Rstats::Func::get_length(sv_r, sv_x2);
-        
-        if (x1_length == x2_length) {
-          return;
-        }
-      }
-      va_end(args);
-      
-      SV* sv_args = Rstats::pl_new_avrv();
-      va_start(args, num);
-      for (Rstats::Integer i = 0; i < num; i++) {
-        SV** arg = va_arg(args, SV**);
-        SV* x = *arg;
-        Rstats::pl_av_push(sv_args, x);
-      }
-      va_end(args);
-      
-      SV* sv_result = Rstats::Func::upgrade_length_avrv(sv_r, sv_args);
-      
-      va_start(args, num);
-      for (Rstats::Integer i = 0; i < num; i++) {
-        SV** arg = va_arg(args, SV**);
-        SV* sv_x = Rstats::pl_av_fetch(sv_result, i);
-
-        *arg = sv_x;
-      }
-      va_end(args);
-    }
-        
-    void upgrade_type(SV* sv_r, Rstats::Integer num, ...) {
-      va_list args;
-      
-      // Optimization if args count is 2
-      va_start(args, num);
-      if (num == 2) {
-        SV* x1 = *va_arg(args, SV**);
-        SV* x2 = *va_arg(args, SV**);
-        
-        if (
-            strEQ(
-              SvPV_nolen(Rstats::pl_hv_fetch(x1, "type")),
-              SvPV_nolen(Rstats::pl_hv_fetch(x2, "type"))
-            )
-          )
-        {
-          return;
-        }
-      }
-      va_end(args);
-      
-      SV* upgrade_type_args = Rstats::pl_new_avrv();
-      va_start(args, num);
-      for (Rstats::Integer i = 0; i < num; i++) {
-        SV** arg = va_arg(args, SV**);
-        SV* x = *arg;
-        Rstats::pl_av_push(upgrade_type_args, x);
-      }
-      va_end(args);
-      
-      SV* upgrade_type_result = Rstats::Func::upgrade_type_avrv(sv_r, upgrade_type_args);
-      
-      va_start(args, num);
-      for (Rstats::Integer i = 0; i < num; i++) {
-        SV** arg = va_arg(args, SV**);
-        SV* x = Rstats::pl_av_fetch(upgrade_type_result, i);
-        *arg = x;
-      }
-      va_end(args);
     }
 
 sub get_array {
