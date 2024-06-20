@@ -224,7 +224,7 @@ class R::NDArray {
     my $dim = $self->{dim};
     
     my $is_matrix = 0;
-    if (@$dim == 1) {
+    if (@$dim == 2) {
       $is_matrix = 1;
     }
     
