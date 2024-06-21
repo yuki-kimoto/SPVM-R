@@ -265,13 +265,15 @@ class R::NDArray {
     
     my $vector_indexes_length = @$vector_indexes;
     
-    unless ($vector_indexes_length <= @$dim) {
+    my $dim_length = @$dim;
+    
+    unless ($vector_indexes_length <= $dim_length) {
       die "The length of indexes for n-dimension array \$vector_indexes must be less than or equal to the length of dim field.";
     }
     
     my $normalized_vector_indexes = new R::NDArray::Int[$vector_indexes_length];
     
-    for (my $vector_indexes_index = 0; $vector_indexes_index < $vector_indexes_length; $vector_indexes_index++) {
+    for (my $vector_indexes_index = 0; $vector_indexes_index < $dim_length; $vector_indexes_index++) {
       my $vector_index = $vector_indexes->[$vector_indexes_index];
       
       unless (!$vector_index || $vector_index->is_vector) {
