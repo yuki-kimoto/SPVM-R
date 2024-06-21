@@ -6,6 +6,7 @@ class R::NDArray {
   use Hash;
   use IntList;
   use Native::MethodCall;
+  use StringBuffer;
   
   # Fields
   has data : protected object;
@@ -184,10 +185,6 @@ class R::NDArray {
     return $clone;
   }
   
-  method to_string : string () {
-    # TODO
-  }
-  
   method element_to_string : string ($data_index : int) { die "Not impelmented."; }
   
   method is_empty : int () {
@@ -243,7 +240,7 @@ class R::NDArray {
     my $dim = $self->{dim};
     
     my $is_square_matrix = 0;
-    if ($self->is_matrix && $dim->[0] == $dim->[1]) {
+    if ($self->is_matrix && $dim->[0] == $dim->[0]) {
       $is_square_matrix = 1;
     }
     
@@ -547,6 +544,70 @@ class R::NDArray {
     my $equals_dropped_dim = $self->_equals_dim($x_dropped_dim, $y_dropped_dim);
     
     return $equals_dropped_dim;
+  }
+  
+  method to_string : string () {
+    
+    my $dim = $self->{dim};
+    
+    my $dim_length = @$dim;
+    my $dim_num = $dim_length - 1;
+    my $poss = [];
+    
+    my $data = $self->{data};
+    
+    my $string = (string)undef;
+    if ($self->is_empty) {
+      $string = "Empty";
+    }
+    elsif ($self->is_vector) {
+      my $data_length = $self->length;
+      my $string_buffer = StringBuffer->new;
+      $string_buffer->push("[0] ");
+      for (my $i = 0; $i < $data_length; $i++) {
+        my $element_string = $self->element_to_string($i);
+        $string_buffer->push($element_string);
+      }
+      $string_buffer->push("\n  ");
+      
+      $string = $string_buffer->to_string;
+    }
+    elsif ($self->is_matrix) {
+      my $string_buffer = StringBuffer->new;
+      
+      $string_buffer->push("     ");
+      
+      for (my $d2 = 0; $d2 < $dim->[0]; $d2++) {
+        $string_buffer->push(",$d2]");
+        if ($d2 == $dim->[0]) {
+          $string_buffer->push("\n");
+        }
+        else {
+          $string_buffer->push(" ");
+        }
+      }
+      
+      for (my $d1 = 0; $d1 < $dim->[0]; $d1++) {
+        $string_buffer->push("[$d1,] ");
+        
+        for (my $d2 = 0; $d2 < $dim->[0]; $d2++) {
+          
+          my $cordinate = [$d1, $d2];
+          
+          my $data_index = $self->convert_coordinate_to_data_index($cordinate, $dim);
+          
+          my $element_string = $self->element_to_string($data_index);
+          
+          $string_buffer->push($element_string);
+        }
+        
+        $string_buffer->push("\n");
+      }
+    }
+    else {
+    }
+    
+    return $string;
   }
 }
 
