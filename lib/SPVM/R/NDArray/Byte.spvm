@@ -54,9 +54,13 @@ class R::NDArray::Byte extends R::NDArray {
     return (R::NDArray::Byte)$self->SUPER::clone;
   }
   
-  method element_to_string : string ($element_ref : byte[]) {
+  method element_to_string : string ($data_index : int) {
     
-    my $string = (string)(byte)$element_ref->[0];
+    my $data = $self->data;
+    
+    my $element = $data->[$data_index];
+    
+    my $string = (string)(byte)$element;
     
     return $string;
   }

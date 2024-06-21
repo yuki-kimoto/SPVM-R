@@ -188,7 +188,7 @@ class R::NDArray {
     # TODO
   }
   
-  method element_to_string : string ($element_ref : object) { die "Not impelmented."; }
+  method element_to_string : string ($data_index : int) { die "Not impelmented."; }
   
   method is_empty : int () {
     
@@ -548,7 +548,6 @@ class R::NDArray {
     
     return $equals_dropped_dim;
   }
-  
 }
 
 =pod TODO
@@ -578,26 +577,26 @@ sub to_string_array {
   my $dim_num = $dim_length - 1;
   my $poss = [];
   
-  my $str;
+  my $string;
   if (@$values) {
     if ($dim_length == 1) {
       my $names = Rstats::Func::names($r, $x1)->values;
       if (@$names) {
-        $str .= join(' ', @$names) . "\n";
+        $string .= join(' ', @$names) . "\n";
       }
       my @parts = map { Rstats::Func::_value_to_string($r, $x1, $_, $type, $is_factor) } @$values;
-      $str .= '[1] ' . join(' ', @parts) . "\n";
+      $string .= '[1] ' . join(' ', @parts) . "\n";
     }
     elsif ($dim_length == 2) {
-      $str .= '     ';
+      $string .= '     ';
       
       my $colnames = Rstats::Func::colnames($r, $x1)->values;
       if (@$colnames) {
-        $str .= join(' ', @$colnames) . "\n";
+        $string .= join(' ', @$colnames) . "\n";
       }
       else {
         for my $d2 (1 .. $dim_values->[1]) {
-          $str .= $d2 == $dim_values->[1] ? "[,$d2]\n" : "[,$d2] ";
+          $string .= $d2 == $dim_values->[1] ? "[,$d2]\n" : "[,$d2] ";
         }
       }
       
@@ -606,10 +605,10 @@ sub to_string_array {
       for my $d1 (1 .. $dim_values->[0]) {
         if ($use_rownames) {
           my $rowname = $rownames->[$d1 - 1];
-          $str .= "$rowname ";
+          $string .= "$rowname ";
         }
         else {
-          $str .= "[$d1,] ";
+          $string .= "[$d1,] ";
         }
         
         my @parts;
@@ -618,7 +617,7 @@ sub to_string_array {
           push @parts, Rstats::Func::_value_to_string($r, $x1, $part, $type, $is_factor);
         }
         
-        $str .= join(' ', @parts) . "\n";
+        $string .= join(' ', @parts) . "\n";
       }
     }
     else {
@@ -628,7 +627,7 @@ sub to_string_array {
         my $dim_value = pop @dim_values;
         
         for (my $i = 1; $i <= $dim_value; $i++) {
-          $str .= (',' x $dim_num) . "$i" . "\n";
+          $string .= (',' x $dim_num) . "$i" . "\n";
           unshift @$poss, $i;
           if (@dim_values > 2) {
             $dim_num--;
@@ -636,7 +635,7 @@ sub to_string_array {
             $dim_num++;
           }
           else {
-            $str .= '     ';
+            $string .= '     ';
             
             my $l_dimnames = Rstats::Func::dimnames($r, $x1);
             my $dimnames;
@@ -649,16 +648,16 @@ sub to_string_array {
             }
             
             if (@$dimnames) {
-              $str .= join(' ', @$dimnames) . "\n";
+              $string .= join(' ', @$dimnames) . "\n";
             }
             else {
               for my $d2 (1 .. $dim_values[1]) {
-                $str .= $d2 == $dim_values[1] ? "[,$d2]\n" : "[,$d2] ";
+                $string .= $d2 == $dim_values[1] ? "[,$d2]\n" : "[,$d2] ";
               }
             }
 
             for my $d1 (1 .. $dim_values[0]) {
-              $str .= "[$d1,] ";
+              $string .= "[$d1,] ";
               
               my @parts;
               for my $d2 (1 .. $dim_values[1]) {
@@ -666,7 +665,7 @@ sub to_string_array {
                 push @parts, Rstats::Func::_value_to_string($r, $x1, $part, $type, $is_factor);
               }
               
-              $str .= join(' ', @parts) . "\n";
+              $string .= join(' ', @parts) . "\n";
             }
           }
           shift @$poss;
@@ -677,18 +676,18 @@ sub to_string_array {
 
     if ($is_factor) {
       if ($is_ordered) {
-        $str .= 'Levels: ' . join(' < ', @$levels) . "\n";
+        $string .= 'Levels: ' . join(' < ', @$levels) . "\n";
       }
       else {
-        $str .= 'Levels: ' . join(' ', , @$levels) . "\n";
+        $string .= 'Levels: ' . join(' ', , @$levels) . "\n";
       }
     }
   }
   else {
-    $str = 'NULL';
+    $string = 'NULL';
   }
   
-  return $str;
+  return $string;
 }
 
 =cut

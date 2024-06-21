@@ -53,9 +53,12 @@ class R::NDArray::FloatComplex extends R::NDArray {
     return (R::NDArray::FloatComplex)$self->SUPER::clone;
   }
   
-  method element_to_string : string ($element_ref : Complex_2f[]) {
+  method element_to_string : string ($data_index : int) {
+    my $data = $self->data;
     
-    my $string = (string)(float)$element_ref->[0]{re} . " + " . (string)(float)$element_ref->[0]{im};
+    my $element = $data->[$data_index];
+    
+    my $string = (string)(float)$element->{re} . " + " . (string)(float)$element->{im};
     
     return $string;
   }

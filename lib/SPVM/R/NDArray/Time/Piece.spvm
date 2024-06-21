@@ -57,13 +57,17 @@ class R::NDArray::Time::Piece extends R::NDArray {
     return (R::NDArray::Time::Piece)$self->SUPER::clone;
   }
   
-  method element_to_string : string ($element_ref : Time::Piece[]) {
+  method element_to_string : string ($data_index : int) {
     
-    unless ($element_ref->[0]) {
+    my $data = $self->data;
+    
+    my $element = $data->[$data_index];
+    
+    unless ($element) {
       return "undef";
     }
     
-    my $string = $element_ref->[0]->strftime("%Y-%m-%d %H:%M:%S");
+    my $string = $element->strftime("%Y-%m-%d %H:%M:%S");
     
     return $string;
   }

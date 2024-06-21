@@ -53,9 +53,13 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return (R::NDArray::DoubleComplex)$self->SUPER::clone;
   }
   
-  method element_to_string : string ($element_ref : Complex_2d[]) {
+  method element_to_string : string ($data_index : int) {
     
-    my $string = (string)(double)$element_ref->[0]{re} . " + " . (string)(double)$element_ref->[0]{im};
+    my $data = $self->data;
+    
+    my $element = $data->[$data_index];
+    
+    my $string = (string)(double)$element->{re} . " + " . (string)(double)$element->{im};
     
     return $string;
   }

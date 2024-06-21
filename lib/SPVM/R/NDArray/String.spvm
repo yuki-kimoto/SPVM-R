@@ -56,13 +56,13 @@ class R::NDArray::String extends R::NDArray {
     return (R::NDArray::String)$self->SUPER::clone;
   }
   
-  method element_to_string : string ($element_ref : string[]) {
+  method element_to_string : string ($data_index : int) {
     
-    unless ($element_ref->[0]) {
-      return "undef";
-    }
+    my $data = $self->data;
     
-    my $string = $element_ref->[0];
+    my $element = $data->[$data_index];
+    
+    my $string = $element;
     
     return $string;
   }
