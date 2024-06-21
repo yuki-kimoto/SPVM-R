@@ -279,7 +279,11 @@ class R::NDArray {
     
     my $data_indexes = $self->create_data_indexes($vector_indexes, $dim);
     
-    my $equals_dropped_dim = 
+    my $equals_dropped_dim = $self->_equals_dropped_dim($ndarray->dim, $ret_dim);
+    
+    unless ($equals_dropped_dim) {
+      die "The dim field of \$ndarray must be compatible with dim created by \$vector_indexes.";
+    }
     
     my $ret_data = $self->set_data($data_indexes, $ndarray->data);
     
