@@ -254,8 +254,24 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
+    $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
     
+    my $ret_dim = $self->create_ret_dim($vector_indexes);
+    
+    my $data_indexes = $self->create_data_indexes($vector_indexes, $dim);
+    
+    my $ret_data = $self->get_data($data_indexes);
+    
+    my $class_name = type_name $self;
+    
+    my $ret_ndarray = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [{data => $ret_data, dim => $ret_dim}]);
+    
+    return $ret_ndarray;
   }
+  
+  protected method get_data : object ($data_indexes : int[]) { die "Not implemented."; }
+  
+  protected method set_data : object ($data_indexes : int[], $data : object) { die "Not implemented."; }
   
   private method normalize_vector_indexes : R::NDArray::Int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
     
@@ -290,7 +306,7 @@ class R::NDArray {
     return $normalized_vector_indexes;
   }
   
-  private method create_get_ret_dim : int[] ($vector_indexes : R::NDArray::Int[]) {
+  private method create_ret_dim : int[] ($vector_indexes : R::NDArray::Int[]) {
     
     my $vector_indexes_length = @$vector_indexes;
     
@@ -310,11 +326,9 @@ class R::NDArray {
     return $ret_dim;
   }
   
-  private method parse_vector_indexes : int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
+  private method create_data_indexes : int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
     
-    $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
-    
-    my $ret_dim = $self->create_get_ret_dim($vector_indexes);
+    my $ret_dim = $self->create_ret_dim($vector_indexes);
     
     my $ret_dim_length = @$ret_dim;
     
