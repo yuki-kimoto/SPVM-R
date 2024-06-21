@@ -96,6 +96,13 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
+    my $length = $self->_length($dim);
+    
+    return $length;
+  }
+  
+  private method _length : int ($dim : int[]) {
+    
     my $length = 1;
     for my $dim_element (@$dim) {
       
@@ -247,8 +254,6 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
-    $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
-    
     
   }
   
@@ -302,35 +307,28 @@ class R::NDArray {
     
     return $ret_dim;
   }
-
-=pod
-
-  private method parse_vector_index : void ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
+  
+  private method parse_vector_indexes : void ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
     
-    my $dim_length = @$dim;
+    $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
     
-    my $ret_dim = new int[$dim_length];
+    my $ret_dim = $self->create_get_ret_dim($vector_indexes);
     
-    for (my $i = 0; $i < $dim_length; $i++) {
-      my $vector_index = $vector_indexes->[$i];
-      
-      if ($vector_index) {
-        $ret_dim->[$i] = $dim->[$i];
-      }
-      else {
-        $ret_dim->[$i] = $vector_index->length;
-      }
-    }
+    my $ret_length = $self->_length($ret_dim);
     
-    my $vector_index_values = [map { $_->values } $vector_indexes];
-    my $ords = cross_product($vector_index_values);
-    my $poss = map { $self->convert_ndarray_vector_index_to_data_vector_index($_, $dim) } @$ords;
+    my $ret_data = $self->create_default_data($ret_length);
     
-    return [\$poss, \$ret_dim, \$vector_indexes];
+    # like [3,2,5,  6,4,5,  2,4,6]
+    my $all_index_unit_size = @$ret_dim;
+    my $all_indexes = new int[$ret_length * $all_index_unit_size];
+    
+    # my $ords = cross_product($vector_index_values);
+    
+    # my $data_indexes = map { $self->convert_ndarray_vector_index_to_data_vector_index($_, $dim) } @$ords;
+    
+    # return $data_indexes;
   }
-
-=cut
-
+  
   precompile private method convert_ndarray_index_to_data_index : int ($ndarray_indexes : int[], $dim : int[]) {
     
     my $data_index = 0;
