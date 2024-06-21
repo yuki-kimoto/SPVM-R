@@ -423,6 +423,49 @@ class R::NDArray {
     
     return $coordinate;
   }
+  
+  method equals_dim : int ($y_ndarray : R::NDArray) {
+    
+    my $self_ndarray = $self;
+    
+    unless ($self_ndarray) {
+      die "The n-dimention array \$self_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimention array \$y_ndarray must be defined.";
+    }
+    
+    my $self_dim = $self_ndarray->dim;
+    
+    my $y_dim = $y_ndarray->dim;
+    
+    my $equals_dim = 0;
+    if ($self_dim && $y_dim) {
+      my $self_dim_length = @$self_dim;
+      
+      my $y_dim_length = @$y_dim;
+      
+      if ($self_dim_length == $y_dim_length) {
+        my $equals_dim_elements = 1;
+        for (my $i = 0; $i < $self_dim_length; $i++) {
+          my $self_dim_element = $self_dim->[$i];
+          my $y_dim_element = $y_dim->[$i];
+          
+          unless ($self_dim_element == $y_dim_element) {
+            $equals_dim_elements = 0;
+            last;
+          }
+        }
+        $equals_dim = $equals_dim_elements;
+      }
+    }
+    elsif (!$self_dim && !$y_dim) {
+      $equals_dim = 1;
+    }
+    
+    return $equals_dim;
+  }
 }
 
 =pod
