@@ -370,6 +370,33 @@ class R::NDArray {
     
     return $data_index;
   }
+  
+  precompile private method convert_data_index_to_coordinate : int[] ($data_index : int, $dim : int[]) {
+    
+    my $dim_length = @$dim;
+    
+    my $coordinate = new int[$dim_length];
+    
+    my $before_dim_product = 1;
+    for (my $i = 0; $i < $dim_length; $i++) {
+      $before_dim_product *= $dim->[$i];
+    }
+    
+    for (my $i = $dim_length - 1; $i >= 0; $i--) {
+      my $dim_product = 1;
+      for (my $k = 0; $k < $i; $k++) {
+        $dim_product *= $dim->[$k];
+      }
+      
+      my $reminder = $data_index % $before_dim_product;
+      my $quotient = $reminder / $dim_product;
+      
+      $coordinate->[$i] = $quotient + 1;
+      $before_dim_product = $dim_product;
+    }
+    
+    return $coordinate;
+  }
 }
 
 =pod
