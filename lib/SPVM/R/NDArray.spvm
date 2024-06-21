@@ -474,6 +474,42 @@ class R::NDArray {
     return $equals_dim;
   }
   
+  private method _drop_dim : int[] ($dim : int[]) {
+    
+    unless ($dim) {
+      die "[Unexpected Error]\$dim must be defined.";
+    }
+    
+    unless (@$dim > 0) {
+      die "[Unexpected Error]The length of \$dim must be greater than 0.";
+    }
+    
+    my $dropped_dim_list = IntList->new;
+    
+    for (my $i = 0; $i < @$dim; $i++) {
+      my $dim_element = $dim->[$i];
+      unless ($dim_element == 1) {
+        $dropped_dim_list->push($dim_element);
+      }
+    }
+    
+    if ($dropped_dim_list->length == 0) {
+      $dropped_dim_list->push(1);
+    }
+    
+    my $dropped_dim = $dropped_dim_list->to_array;
+    
+    return $dropped_dim;
+  }
+  
+  method drop_dim : void () {
+    
+    my $dim = $self->{dim};
+    
+    my $dropped_dim = $self->_drop_dim($dim);
+    
+    $self->set_dim($dropped_dim);
+  }
 }
 
 =pod
