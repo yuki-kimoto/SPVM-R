@@ -279,6 +279,8 @@ class R::NDArray {
     
     my $data_indexes = $self->create_data_indexes($vector_indexes, $dim);
     
+    my $equals_dropped_dim = 
+    
     my $ret_data = $self->set_data($data_indexes, $ndarray->data);
     
     my $class_name = type_name $self;
@@ -525,9 +527,16 @@ class R::NDArray {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $x_dropped_dim = $self->_drop_dim($x_dim);
-    
     my $y_dim = $y_ndarray->dim;
+    
+    my $equals_dropped_dim = $self->_equals_dropped_dim($x_dim, $y_dim);
+    
+    return $equals_dropped_dim;
+  }
+  
+  private method _equals_dropped_dim : int ($x_dim : int[], $y_dim : int[]) {
+    
+    my $x_dropped_dim = $self->_drop_dim($x_dim);
     
     my $y_dropped_dim = $self->_drop_dim($y_dim);
     
