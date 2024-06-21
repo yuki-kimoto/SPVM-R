@@ -310,7 +310,7 @@ class R::NDArray {
     return $ret_dim;
   }
   
-  private method parse_vector_indexes : void ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
+  private method parse_vector_indexes : int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
     
     $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
     
@@ -322,31 +322,24 @@ class R::NDArray {
     
     my $ret_data = $self->create_default_data($ret_length);
     
-    # like [3,2,5,  6,4,5,  2,4,6]
-    my $all_index_unit_size = @$ret_dim;
-    my $all_indexes = new int[$ret_length * $all_index_unit_size];
-
-=pod
-
-    my $offsets = new int [$ret_dim_length];
+    my $data_indexes = new int[$ret_length];
     
-    my $all_indexes_index = 0;
-    while (1) {
+    for (my $ret_data_index = 0; $ret_data_index < $ret_length; $ret_data_index++) {
+      my $ret_cordinate = $self->convert_data_index_to_coordinate($ret_data_index, $ret_dim);
       
-      for (my $ret_dim_index = 0; $ret_dim_index < $ret_dim_length; $ret_dim++) {
-        my $offset = $offsets->[$ret_dim_index];
-        
-        $all_indexes_index++;
+      my $cordinate = new int[$ret_dim_length];
+      
+      for (my $cordinate_index = 0; $cordinate_index < @$cordinate; $cordinate_index++) {
+        my $ret_cordinate_x = $ret_cordinate->[$cordinate_index];
+        $cordinate->[$cordinate_index] = $vector_indexes->[$cordinate_index]->data->[$ret_cordinate_x];
       }
+      
+      my $data_index = $self->convert_coordinate_to_data_index($cordinate, $dim);
+      
+      $data_indexes->[$ret_data_index] = $data_index;
     }
-
-=cut
-
-    # my $ords = cross_product($vector_index_values);
     
-    # my $data_indexes = map { $self->convert_ndarray_vector_index_to_data_vector_index($_, $dim) } @$ords;
-    
-    # return $data_indexes;
+    return $data_indexes;
   }
   
   precompile private method convert_coordinate_to_data_index : int ($coordinate : int[], $dim : int[]) {
