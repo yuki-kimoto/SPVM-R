@@ -269,6 +269,25 @@ class R::NDArray {
     return $ret_ndarray;
   }
   
+  method set : R::NDArray ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray) {
+    
+    my $dim = $self->{dim};
+    
+    $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
+    
+    my $ret_dim = $self->create_ret_dim($vector_indexes);
+    
+    my $data_indexes = $self->create_data_indexes($vector_indexes, $dim);
+    
+    my $ret_data = $self->set_data($data_indexes, $ndarray->data);
+    
+    my $class_name = type_name $self;
+    
+    my $ret_ndarray = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [{data => $ret_data, dim => $ret_dim}]);
+    
+    return $ret_ndarray;
+  }
+  
   protected method get_data : object ($data_indexes : int[]) { die "Not implemented."; }
   
   protected method set_data : object ($data_indexes : int[], $data : object) { die "Not implemented."; }
