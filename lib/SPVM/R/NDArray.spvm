@@ -426,33 +426,40 @@ class R::NDArray {
   
   method equals_dim : int ($y_ndarray : R::NDArray) {
     
-    my $self_ndarray = $self;
+    my $x_ndarray = $self;
     
-    unless ($self_ndarray) {
-      die "The n-dimention array \$self_ndarray must be defined.";
+    unless ($x_ndarray) {
+      die "The n-dimention array \$x_ndarray must be defined.";
     }
     
     unless ($y_ndarray) {
       die "The n-dimention array \$y_ndarray must be defined.";
     }
     
-    my $self_dim = $self_ndarray->dim;
+    my $x_dim = $x_ndarray->dim;
     
     my $y_dim = $y_ndarray->dim;
     
+    my $equals_dim = $self->_equals_dim($x_dim, $y_dim);
+    
+    return $equals_dim;
+  }
+  
+  method _equals_dim : int ($x_dim : int[], $y_dim : int[]) {
+    
     my $equals_dim = 0;
-    if ($self_dim && $y_dim) {
-      my $self_dim_length = @$self_dim;
+    if ($x_dim && $y_dim) {
+      my $x_dim_length = @$x_dim;
       
       my $y_dim_length = @$y_dim;
       
-      if ($self_dim_length == $y_dim_length) {
+      if ($x_dim_length == $y_dim_length) {
         my $equals_dim_elements = 1;
-        for (my $i = 0; $i < $self_dim_length; $i++) {
-          my $self_dim_element = $self_dim->[$i];
+        for (my $i = 0; $i < $x_dim_length; $i++) {
+          my $x_dim_element = $x_dim->[$i];
           my $y_dim_element = $y_dim->[$i];
           
-          unless ($self_dim_element == $y_dim_element) {
+          unless ($x_dim_element == $y_dim_element) {
             $equals_dim_elements = 0;
             last;
           }
@@ -460,12 +467,13 @@ class R::NDArray {
         $equals_dim = $equals_dim_elements;
       }
     }
-    elsif (!$self_dim && !$y_dim) {
+    elsif (!$x_dim && !$y_dim) {
       $equals_dim = 1;
     }
     
     return $equals_dim;
   }
+  
 }
 
 =pod
