@@ -1,8 +1,6 @@
 .gitattributes
 .gitignore
 Changes
-lib/SPVM/R.c
-lib/SPVM/R.config
 lib/SPVM/R.pm
 lib/SPVM/R.spvm
 lib/SPVM/R/DataFrame.pm
