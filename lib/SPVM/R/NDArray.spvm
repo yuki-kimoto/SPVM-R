@@ -609,6 +609,33 @@ class R::NDArray {
     
     return $string;
   }
+  
+  method nrow : int () {
+    
+    unless ($self->is_matrix) {
+      die "The invocant must be a matrix.";
+    }
+    
+    my $dim = $self->{dim};
+    
+    my $nrow = $dim->[0];
+    
+    return $nrow;
+  }
+  
+  method ncol : int () {
+    
+    unless ($self->is_matrix) {
+      die "The invocant must be a matrix.";
+    }
+    
+    my $dim = $self->{dim};
+    
+    my $ncol = $dim->[1];
+    
+    return $ncol;
+  }
+  
 }
 
 =pod TODO
