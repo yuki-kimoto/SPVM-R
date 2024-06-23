@@ -10,7 +10,6 @@ class TestCase::R {
   
   use R::NDArray::Byte;
   use R::NDArray::Short;
-  use R::NDArray::HalfFloat;
   use R::NDArray::String;
   use R::NDArray::StringBuffer;
   use R::NDArray::Time::Piece;
@@ -25,7 +24,6 @@ class TestCase::R {
   
   use R::Operation::Byte;
   use R::Operation::Short;
-  use R::Operation::HalfFloat;
   use R::Operation::String;
   use R::Operation::StringBuffer;
   use R::Operation::Time::Piece;
