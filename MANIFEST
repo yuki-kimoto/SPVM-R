@@ -47,10 +47,6 @@ lib/SPVM/R/Operation/Int.pm
 lib/SPVM/R/Operation/Int.spvm
 lib/SPVM/R/Operation/Long.pm
 lib/SPVM/R/Operation/Long.spvm
-lib/SPVM/R/Operation/Matrix/Double.pm
-lib/SPVM/R/Operation/Matrix/Double.spvm
-lib/SPVM/R/Operation/Matrix/DoubleComplex.pm
-lib/SPVM/R/Operation/Matrix/DoubleComplex.spvm
 lib/SPVM/R/Operation/Short.pm
 lib/SPVM/R/Operation/Short.spvm
 lib/SPVM/R/Operation/String.pm
