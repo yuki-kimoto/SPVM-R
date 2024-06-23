@@ -64,8 +64,6 @@ sub MY::postamble {
     
     local @INC = ('lib', @INC);
     
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R');
-    
     $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Int');
     $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Long');
     $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Float');
