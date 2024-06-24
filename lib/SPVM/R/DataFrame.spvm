@@ -195,7 +195,22 @@ class R::DataFrame {
     
     return $string;
   }
- 
+  
+  method set_order : void ($indexes : int[]) {
+    
+    my $names_list = $self->{names_list};
+    
+    my $names_length = $names_list->length;
+    
+    my $ndarrays_list = $self->{ndarrays_list};
+    
+    for (my $name_index = 0; $name_index < $names_length; $name_index++) {
+      my $ndarray = (R::NDArray)$ndarrays_list->get($name_index);
+      
+      $ndarray->set_order($indexes);
+    }
+  }
+  
   private method check_ndarray : void ($ndarray : R::NDArray) {
     
     unless ($ndarray) {
@@ -221,8 +236,3 @@ class R::DataFrame {
   
 }
 
-=pod TODO
-
-set_order
-
-=cut

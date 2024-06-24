@@ -636,6 +636,7 @@ class R::NDArray {
     return $ncol;
   }
   
+  method set_order : void ($indexes : int[]) { die "Not impelmeneted."; }
 }
 
 =pod TODO
