@@ -64,12 +64,12 @@ sub MY::postamble {
     
     local @INC = ('lib', @INC);
     
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Int');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Long');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Float');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::Double');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::FloatComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Operation::DoubleComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::Int');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::Long');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::Float');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::Double');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::FloatComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::DoubleComplex');
   }
   
   return $make_rule;

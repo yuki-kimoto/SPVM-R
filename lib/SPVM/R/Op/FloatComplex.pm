@@ -1,20 +1,24 @@
-package SPVM::R::Operation::Float;
+package SPVM::R::Op::FloatComplex;
 
+  method rep : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $times : int) {
+    return (R::NDArray::Double)$self->SUPER::rep($x_ndarray, $times);
+  }
+  
 
 
 1;
 
 =head1 Name
 
-SPVM::R::Operation::Float - Short Description
+SPVM::R::Op::FloatComplex - Short Description
 
 =head1 Description
 
-The R::Operation::Float class in L<SPVM> has methods to do someting.
+The R::Op::FloatComplex class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation::Float;
+  use R::Op::FloatComplex;
 
 =head1 Details
 

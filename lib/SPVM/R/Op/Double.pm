@@ -1,4 +1,4 @@
-package SPVM::R::Operation::StringBuffer;
+package SPVM::R::Op::Double;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Operation::StringBuffer;
 
 =head1 Name
 
-SPVM::R::Operation::StringBuffer - Short Description
+SPVM::R::Op::Double - Short Description
 
 =head1 Description
 
-The R::Operation::StringBuffer class in L<SPVM> has methods to do someting.
+The R::Op::Double class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation::StringBuffer;
+  use R::Op::Double;
 
 =head1 Details
 

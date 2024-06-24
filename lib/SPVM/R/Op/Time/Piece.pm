@@ -1,4 +1,4 @@
-package SPVM::R::Operation::Byte;
+package SPVM::R::Op::Time::Piece;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Operation::Byte;
 
 =head1 Name
 
-SPVM::R::Operation::Byte - Short Description
+SPVM::R::Op::Time::Piece - Short Description
 
 =head1 Description
 
-The R::Operation::Byte class in L<SPVM> has methods to do someting.
+The R::Op::Time::Piece class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation::Byte;
+  use R::Op::Time::Piece;
 
 =head1 Details
 

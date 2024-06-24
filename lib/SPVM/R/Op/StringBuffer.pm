@@ -1,4 +1,4 @@
-package SPVM::R::Operation::Int;
+package SPVM::R::Op::StringBuffer;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Operation::Int;
 
 =head1 Name
 
-SPVM::R::Operation::Int - Short Description
+SPVM::R::Op::StringBuffer - Short Description
 
 =head1 Description
 
-The R::Operation::Int class in L<SPVM> has methods to do someting.
+The R::Op::StringBuffer class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation::Int;
+  use R::Op::StringBuffer;
 
 =head1 Details
 

@@ -14,19 +14,19 @@ class TestCase::R {
   use R::NDArray::StringBuffer;
   use R::NDArray::Time::Piece;
   
-  use R::Operation;
-  use R::Operation::Int;
-  use R::Operation::Long;
-  use R::Operation::Float;
-  use R::Operation::Double;
-  use R::Operation::FloatComplex;
-  use R::Operation::DoubleComplex;
+  use R::Op;
+  use R::Op::Int;
+  use R::Op::Long;
+  use R::Op::Float;
+  use R::Op::Double;
+  use R::Op::FloatComplex;
+  use R::Op::DoubleComplex;
   
-  use R::Operation::Byte;
-  use R::Operation::Short;
-  use R::Operation::String;
-  use R::Operation::StringBuffer;
-  use R::Operation::Time::Piece;
+  use R::Op::Byte;
+  use R::Op::Short;
+  use R::Op::String;
+  use R::Op::StringBuffer;
+  use R::Op::Time::Piece;
   
   use R::DataFrame;
   

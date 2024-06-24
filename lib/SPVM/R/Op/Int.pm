@@ -1,4 +1,4 @@
-package SPVM::R::Operation::String;
+package SPVM::R::Op::Int;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Operation::String;
 
 =head1 Name
 
-SPVM::R::Operation::String - Short Description
+SPVM::R::Op::Int - Short Description
 
 =head1 Description
 
-The R::Operation::String class in L<SPVM> has methods to do someting.
+The R::Op::Int class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation::String;
+  use R::Op::Int;
 
 =head1 Details
 

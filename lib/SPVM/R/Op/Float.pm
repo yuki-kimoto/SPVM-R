@@ -1,4 +1,4 @@
-package SPVM::R::Operation::Double;
+package SPVM::R::Op::Float;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Operation::Double;
 
 =head1 Name
 
-SPVM::R::Operation::Double - Short Description
+SPVM::R::Op::Float - Short Description
 
 =head1 Description
 
-The R::Operation::Double class in L<SPVM> has methods to do someting.
+The R::Op::Float class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation::Double;
+  use R::Op::Float;
 
 =head1 Details
 

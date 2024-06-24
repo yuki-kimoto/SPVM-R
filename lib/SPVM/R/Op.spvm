@@ -1,14 +1,14 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Operation {
+class R::Op {
   
   use R::NDArray;
   
   # Class Methods
-  static method new : R::Operation () {
+  static method new : R::Op () {
     
-    my $self = new R::Operation;
+    my $self = new R::Op;
     
     return $self;
   }

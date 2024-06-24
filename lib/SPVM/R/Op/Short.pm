@@ -1,4 +1,4 @@
-package SPVM::R::Operation::Time::Piece;
+package SPVM::R::Op::Short;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Operation::Time::Piece;
 
 =head1 Name
 
-SPVM::R::Operation::Time::Piece - Short Description
+SPVM::R::Op::Short - Short Description
 
 =head1 Description
 
-The R::Operation::Time::Piece class in L<SPVM> has methods to do someting.
+The R::Op::Short class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation::Time::Piece;
+  use R::Op::Short;
 
 =head1 Details
 

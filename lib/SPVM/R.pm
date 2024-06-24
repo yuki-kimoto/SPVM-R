@@ -73,29 +73,29 @@ R class is a port of the R language Features.
 
 =item * L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece>
 
-=item * L<R::Operation::Byte|SPVM::R::Operation::Byte>
+=item * L<R::Op::Byte|SPVM::R::Op::Byte>
 
-=item * L<R::Operation::Short|SPVM::R::Operation::Short>
+=item * L<R::Op::Short|SPVM::R::Op::Short>
 
-=item * L<R::Operation::Int|SPVM::R::Operation::Int>
+=item * L<R::Op::Int|SPVM::R::Op::Int>
 
-=item * L<R::Operation::Long|SPVM::R::Operation::Long>
+=item * L<R::Op::Long|SPVM::R::Op::Long>
 
-=item * L<R::Operation::Float|SPVM::R::Operation::Float>
+=item * L<R::Op::Float|SPVM::R::Op::Float>
 
-=item * L<R::Operation::Double|SPVM::R::Operation::Double>
+=item * L<R::Op::Double|SPVM::R::Op::Double>
 
-=item * L<R::Operation::FloatComplex|SPVM::R::Operation::FloatComplex>
+=item * L<R::Op::FloatComplex|SPVM::R::Op::FloatComplex>
 
-=item * L<R::Operation::DoubleComplex|SPVM::R::Operation::DoubleComplex>
+=item * L<R::Op::DoubleComplex|SPVM::R::Op::DoubleComplex>
 
-=item * L<R::Operation::String|SPVM::R::Operation::String>
+=item * L<R::Op::String|SPVM::R::Op::String>
 
-=item * L<R::Operation::StringBuffer|SPVM::R::Operation::StringBuffer>
+=item * L<R::Op::StringBuffer|SPVM::R::Op::StringBuffer>
 
-=item * L<R::Operation::Time::Piece|SPVM::R::Operation::Time::Piece>
+=item * L<R::Op::Time::Piece|SPVM::R::Op::Time::Piece>
 
-=item * L<R::Operation::Normal|SPVM::R::Operation::Normal>
+=item * L<R::Op::Normal|SPVM::R::Op::Normal>
 
 =item * L<R::DataFrame|SPVM::R::DataFrame>
 

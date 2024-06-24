@@ -1,4 +1,4 @@
-package SPVM::R::Operation;
+package SPVM::R::Op::DoubleComplex;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Operation;
 
 =head1 Name
 
-SPVM::R::Operation - Short Description
+SPVM::R::Op::DoubleComplex - Short Description
 
 =head1 Description
 
-The R::Operation class in L<SPVM> has methods to do someting.
+The R::Op::DoubleComplex class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation;
+  use R::Op::DoubleComplex;
 
 =head1 Details
 

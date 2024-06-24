@@ -1,15 +1,15 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Operation::Byte extends R::Operation {
+class R::Op::Byte extends R::Op {
   
   use R::NDArray::Byte;
   use ByteList;
   
   # Class Methods
-  static method new : R::Operation::Byte () {
+  static method new : R::Op::Byte () {
     
-    my $self = new R::Operation::Byte;
+    my $self = new R::Op::Byte;
     
     return $self;
   }

@@ -1,4 +1,4 @@
-package SPVM::R::Operation::Long;
+package SPVM::R::Op::Long;
 
 
 
@@ -6,15 +6,15 @@ package SPVM::R::Operation::Long;
 
 =head1 Name
 
-SPVM::R::Operation::Long - Short Description
+SPVM::R::Op::Long - Short Description
 
 =head1 Description
 
-The R::Operation::Long class in L<SPVM> has methods to do someting.
+The R::Op::Long class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
-  use R::Operation::Long;
+  use R::Op::Long;
 
 =head1 Details
 
