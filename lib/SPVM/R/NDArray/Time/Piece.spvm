@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::NDArray::Time::Piece extends R::NDArray {
+class R::NDArray::Time::Piece extends R::NDArray::Object {
   
   use Fn;
   use Array;
@@ -72,21 +72,4 @@ class R::NDArray::Time::Piece extends R::NDArray {
     return $string;
   }
   
-  precompile method set_order : void ($indexes : int[]) {
-    
-    $self->check_set_order_args($indexes);
-    
-    my $data = (object[])$self->{data};
-    
-    my $tmp = $self->clone;
-    
-    my $tmp_data = $tmp->data;
-    
-    my $length = $self->length;
-    for (my $i = 0; $i < $length; $i++) {
-      my $order_index = $indexes->[$i];
-      
-      $data->[$i] = $tmp_data->[$order_index];
-    }
-  }
 }
