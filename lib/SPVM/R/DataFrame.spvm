@@ -3,6 +3,219 @@
 
 class R::DataFrame {
   
+  use StringList;
+  use List;
+  use R::NDArray;
+  
+  # Fields
+  has names_list : StringList;
+  
+  has ndarrays_list : List of R::NDArray;
+  
+  # Class Methods
+  static method new : R::DataFrame () {
+    
+    my $self = new R::DataFrame;
+    
+    my $names_list = StringList->new;
+    $self->{names_list} = $names_list;
+    
+    my $ndarrays_list = StringList->new;
+    $self->{ndarrays_list} = $ndarrays_list;
+    
+    return $self;
+  }
+  
+  # Instance Methods
+  method ncol : int () {
+    
+    my $names_list = $self->{names_list};
+    
+    my $names_length = $names_list->length;
+    
+    return $names_length;
+  }
+  
+  method nrow : int () {
+    
+    my $ncol = $self->ncol;
+    
+    if ($ncol == 0) {
+      return 0;
+    }
+    
+    my $ndarrays_list = $self->{ndarrays_list};
+    
+    my $ndarrays_length = $ndarrays_list->length;
+    
+    return $ndarrays_length;
+  }
+  
+  method names : string[] {
+    
+    my $names_list = $self->{names_list};
+    
+    my $names = $names_list->to_array;
+    
+    return $names;
+  }
+  
+  method name : string ($index : int) {
+    
+    my $names_list = $self->{names_list};
+    
+    my $name = $names_list->get($index, $name);
+    
+    return $name;
+  }
+  
+  method set_name : void ($index : int, $string : string) {
+    
+    my $names_list = $self->{names_list};
+    
+    $names_list->set($index, $name);
+  }
+  
+  method push : void ($ndarray : R::NDArray) {
+    
+    $self->check_ndarray($ndarray);
+    
+    my $ndarrays_list = $self->{ndarrays_list};
+    
+    $ndarrays_list->push($ndarray);
+    
+    my $names_list = $self->{ndarrays_list};
+    
+    $names_list->push(undef);
+    
+    unless ($ndarray_list->length == $names_list->length) {
+      die "[Unexpected Error]Invalid length.";
+    }
+  }
+  
+  method insert : void ($index : int, $ndarray : R::NDArray) {
+    
+    $self->check_ndarray($ndarray);
+    
+    my $names_list = $self->{names_list};
+    
+    $ndarrays_list->insert($index, $ndarray);
+    
+    my $ndarrays_list = $self->{ndarrays_list};
+    
+    $names_list->insert($index, undef);
+    
+    unless ($ndarray_list->length == $names_list->length) {
+      die "[Unexpected Error]Invalid length.";
+    }
+  }
+  
+  method remove : R::NDArray ($index : int) {
+    
+    my $names_list = $self->{names_list};
+    
+    my $ndarrays_list = $self->{ndarrays_list};
+    
+    my $ndarray = $ndarrays_list->remove($index);
+    
+    $names_list->remove($index);
+    
+    unless ($ndarray_list->length == $names_list->length) {
+      die "[Unexpected Error]Invalid length.";
+    }
+    
+    return $ndarray;
+  }
+  
+  method get : R::NDArray ($index : int) {
+    
+    my $ndarrays_list = $self->{ndarrays_list};
+    
+    my $ndarray = $ndarray_list->get($index);
+    
+    return $ndarray;
+  }
+  
+  method set : void ($index : int, $ndarray : R::NDArray) {
+    
+    $self->check_ndarray($ndarray);
+    
+    my $ndarrays_list = $self->{ndarrays_list};
+    
+    my $ndarray = $ndarray_list->set($index, $ndarray);
+  }
+  
+  method get_index_by_name : int ($name : string) {
+    
+    my $names_list = $self->{names_list};
+    
+    my $names_length = $names_list->lengt;
+    
+    my $match = 0;
+    for (my $index = 0; $index < $names_length; $index++) {
+      my $name_cmp = $names_list->get($index);
+      
+      if ($name eq $name_cmp) {
+        return $index;
+      }
+    }
+    
+    return -1;
+  }
+
+=pod
+
+  method to_string {
+    
+    my $t = Text::UnicodeTable::Simple->new(border => 0, alignment => 'right');
+    
+    # Names
+    my $column_names = Rstats::Func::names($r, $x1)->values;
+    $t->set_header('', @$column_names);
+    
+    # columns
+    my $columns = [];
+    for (my $i = 1; $i <= @$column_names; $i++) {
+      my $x = $x1->getin($i);
+      $x = Rstats::Func::as_character($r, $x) if Rstats::Func::is_factor($r, $x);
+      push @$columns, $x->values;
+    }
+    my $col_count = @{$columns};
+    my $row_count = @{$columns->[0]};
+    
+    for (my $i = 0; $i < $row_count; $i++) {
+      my @row;
+      push @row, $i + 1;
+      for (my $k = 0; $k < $col_count; $k++) {
+        push @row, $columns->[$k][$i];
+      }
+      $t->add_row(@row);
+    }
+    
+    return "$t";
+  }
+ 
+=cut
+ 
+  private method check_ndarray : void ($ndarray : R::NDArray) {
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $ndarray_length = $ndarray->length;
+    
+    my $names_list = $self->{names_list};
+    
+    my $names_length = $names_list->length;
+    
+    if ($names_length != 0) {
+      unless ($ndarray_length == $names_length) {
+        die "The length of n-dimension array \$ndarray must be the same as the length of names_list field.";
+      }
+    }
+  }
+  
 }
 
 =pod TODO
@@ -495,39 +708,6 @@ sub get_dataframe {
   );
   
   return $data_frame;
-}
-
-sub to_string_dataframe {
-  my $r = shift;
-  
-  my $x1 = shift;
-
-  my $t = Text::UnicodeTable::Simple->new(border => 0, alignment => 'right');
-  
-  # Names
-  my $column_names = Rstats::Func::names($r, $x1)->values;
-  $t->set_header('', @$column_names);
-  
-  # columns
-  my $columns = [];
-  for (my $i = 1; $i <= @$column_names; $i++) {
-    my $x = $x1->getin($i);
-    $x = Rstats::Func::as_character($r, $x) if Rstats::Func::is_factor($r, $x);
-    push @$columns, $x->values;
-  }
-  my $col_count = @{$columns};
-  my $row_count = @{$columns->[0]};
-  
-  for (my $i = 0; $i < $row_count; $i++) {
-    my @row;
-    push @row, $i + 1;
-    for (my $k = 0; $k < $col_count; $k++) {
-      push @row, $columns->[$k][$i];
-    }
-    $t->add_row(@row);
-  }
-  
-  return "$t";
 }
 
 sub cbind {
