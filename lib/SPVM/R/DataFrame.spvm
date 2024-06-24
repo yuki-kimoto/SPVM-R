@@ -203,6 +203,10 @@ class R::DataFrame {
       die "The n-dimension array \$ndarray must be defined.";
     }
     
+    unless ($ndarray->is_vector) {
+      die "The n-dimension array \$ndarray must be a vector.";
+    }
+    
     my $ndarray_length = $ndarray->length;
     
     my $names_list = $self->{names_list};
