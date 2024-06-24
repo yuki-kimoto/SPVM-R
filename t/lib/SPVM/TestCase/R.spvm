@@ -28,6 +28,8 @@ class TestCase::R {
   use R::Operation::StringBuffer;
   use R::Operation::Time::Piece;
   
+  use R::DataFrame;
+  
   static method test : int () {
     
     return 1;

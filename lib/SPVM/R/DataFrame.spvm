@@ -51,7 +51,7 @@ class R::DataFrame {
     return $ndarrays_length;
   }
   
-  method names : string[] {
+  method names : string[] () {
     
     my $names_list = $self->{names_list};
     
@@ -64,12 +64,12 @@ class R::DataFrame {
     
     my $names_list = $self->{names_list};
     
-    my $name = $names_list->get($index, $name);
+    my $name = $names_list->get($index);
     
     return $name;
   }
   
-  method set_name : void ($index : int, $string : string) {
+  method set_name : void ($index : int, $name : string) {
     
     my $names_list = $self->{names_list};
     
@@ -88,7 +88,7 @@ class R::DataFrame {
     
     $names_list->push(undef);
     
-    unless ($ndarray_list->length == $names_list->length) {
+    unless ($ndarrays_list->length == $names_list->length) {
       die "[Unexpected Error]Invalid length.";
     }
   }
@@ -99,13 +99,13 @@ class R::DataFrame {
     
     my $names_list = $self->{names_list};
     
-    $ndarrays_list->insert($index, $ndarray);
-    
     my $ndarrays_list = $self->{ndarrays_list};
+    
+    $ndarrays_list->insert($index, $ndarray);
     
     $names_list->insert($index, undef);
     
-    unless ($ndarray_list->length == $names_list->length) {
+    unless ($ndarrays_list->length == $names_list->length) {
       die "[Unexpected Error]Invalid length.";
     }
   }
@@ -116,11 +116,11 @@ class R::DataFrame {
     
     my $ndarrays_list = $self->{ndarrays_list};
     
-    my $ndarray = $ndarrays_list->remove($index);
+    my $ndarray = (R::NDArray)$ndarrays_list->remove($index);
     
     $names_list->remove($index);
     
-    unless ($ndarray_list->length == $names_list->length) {
+    unless ($ndarrays_list->length == $names_list->length) {
       die "[Unexpected Error]Invalid length.";
     }
     
@@ -131,7 +131,7 @@ class R::DataFrame {
     
     my $ndarrays_list = $self->{ndarrays_list};
     
-    my $ndarray = $ndarray_list->get($index);
+    my $ndarray = (R::NDArray)$ndarrays_list->get($index);
     
     return $ndarray;
   }
@@ -142,14 +142,14 @@ class R::DataFrame {
     
     my $ndarrays_list = $self->{ndarrays_list};
     
-    $ndarray_list->set($index, $ndarray);
+    $ndarrays_list->set($index, $ndarray);
   }
   
   method get_index_by_name : int ($name : string) {
     
     my $names_list = $self->{names_list};
     
-    my $names_length = $names_list->lengt;
+    my $names_length = $names_list->length;
     
     my $match = 0;
     for (my $index = 0; $index < $names_length; $index++) {
@@ -162,8 +162,8 @@ class R::DataFrame {
     
     return -1;
   }
-
-  method to_string {
+  
+  method to_string : string () {
     
     my $names = $self->names;
     
@@ -780,48 +780,6 @@ sub cbind {
   }
 }
 
-sub order {
-  my $r = shift;
-  my $opt = ref $_[-1] eq 'HASH' ? pop @_ : {};
-  my @xs = map { to_object($r, $_) } @_;
-  
-  my @xs_values;
-  for my $x (@xs) {
-    push @xs_values, $x->values;
-  }
-
-  my $decreasing = $opt->{decreasing} || Rstats::Func::FALSE($r);
-  
-  my @pos_vals;
-  for my $i (0 .. @{$xs_values[0]} - 1) {
-    my $pos_val = {pos => $i + 1};
-    $pos_val->{val} = [];
-    push @{$pos_val->{val}}, $xs_values[$_][$i] for (0 .. @xs_values);
-    push @pos_vals, $pos_val;
-  }
-  
-  my @sorted_pos_values = !$decreasing
-    ? sort {
-        my $comp;
-        for (my $i = 0; $i < @xs_values; $i++) {
-          $comp = $a->{val}[$i] <=> $b->{val}[$i];
-          last if $comp != 0;
-        }
-        $comp;
-      } @pos_vals
-    : sort {
-        my $comp;
-        for (my $i = 0; $i < @xs_values; $i++) {
-          $comp = $b->{val}[$i] <=> $a->{val}[$i];
-          last if $comp != 0;
-        }
-        $comp;
-      } @pos_vals;
-  my @orders = map { $_->{pos} } @sorted_pos_values;
-  
-  return Rstats::Func::c_($r, @orders);
-}
-
 sub rbind {
   my $r = shift;
   my (@xs) = @_;
@@ -910,5 +868,6 @@ sub sort {
   return Rstats::Func::c_($r, @$x3_elements);
 }
 
+set_order
 
 =cut
