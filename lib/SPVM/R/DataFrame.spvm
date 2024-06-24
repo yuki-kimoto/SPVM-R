@@ -163,39 +163,38 @@ class R::DataFrame {
     return -1;
   }
 
-=pod
-
   method to_string {
     
-    my $t = Text::UnicodeTable::Simple->new(border => 0, alignment => 'right');
+    my $names = $self->names;
     
-    # Names
-    my $column_names = Rstats::Func::names($r, $x1)->values;
-    $t->set_header('', @$column_names);
+    my $names_length = @$names;
     
-    # columns
-    my $columns = [];
-    for (my $i = 1; $i <= @$column_names; $i++) {
-      my $x = $x1->getin($i);
-      $x = Rstats::Func::as_character($r, $x) if Rstats::Func::is_factor($r, $x);
-      push @$columns, $x->values;
-    }
-    my $col_count = @{$columns};
-    my $row_count = @{$columns->[0]};
-    
-    for (my $i = 0; $i < $row_count; $i++) {
-      my @row;
-      push @row, $i + 1;
-      for (my $k = 0; $k < $col_count; $k++) {
-        push @row, $columns->[$k][$i];
+    my $string_buffer = StringBuffer->new;
+    for (my $name_index = 0; $name_index < $names_length; $name_index++) {
+      my $name = $names->[$name_index];
+      
+      $string_buffer->push("[[");
+      
+      if ($name) {
+        $string_buffer->push($name);
       }
-      $t->add_row(@row);
+      else {
+        $string_buffer->push($name_index);
+      }
+      
+      $string_buffer->push("]]\n");
+      
+      my $ndarray = $self->get($name_index);
+      
+      my $ndarray_string = $ndarray->to_string;
+      
+      $string_buffer->push($ndarray_string);
     }
     
-    return "$t";
+    my $string = $string_buffer->to_string;
+    
+    return $string;
   }
- 
-=cut
  
   private method check_ndarray : void ($ndarray : R::NDArray) {
     
