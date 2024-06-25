@@ -155,7 +155,7 @@ class R::NDArray {
   
   protected method create_default_data : object ($length : int) { die "Not implemented."; }
   
-  method clone : object () {
+  method clone : R::NDArray () {
     
     my $element_size = $self->{element_size};
     
@@ -180,7 +180,7 @@ class R::NDArray {
     
     my $class_name = type_name $self;
     
-    my $clone = Native::MethodCall->call_class_method($class_name, "new", [{data => $clone_data, dim => $clone_dim}]);
+    my $clone = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [{data => $clone_data, dim => $clone_dim}]);
     
     return $clone;
   }
