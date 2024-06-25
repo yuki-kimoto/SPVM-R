@@ -23,4 +23,38 @@ class R::Util {
     return $length;
   }
   
+  static method normalize_dim : int[] ($dim : int[]) {
+    
+    my $normalized_dim_list = IntList->new;
+    
+    my $normalized_dim = (int[])undef;
+    if ($dim) {
+      my $dim_length = @$dim;
+      my $check_tail_zero = 1;
+      for (my $i = $dim_length - 1; $i >= 0; $i--) {
+        my $dim_element = $dim->[$i];
+        if ($check_tail_zero && $dim_element == 0) {
+          next;
+        }
+        
+        if ($dim_element != 0) {
+          $check_tail_zero = 0;
+        }
+        
+        unless ($dim_element > 0) {
+          die "The element of dim option or \$dim argument except for tail must be greater than 0.";
+        }
+        
+        $normalized_dim_list->unshift($dim_element);
+      }
+      
+      $normalized_dim = $normalized_dim_list->to_array;
+    }
+    else {
+      $normalized_dim = new int[0];
+    }
+    
+    return $normalized_dim;
+  }
+  
 }
