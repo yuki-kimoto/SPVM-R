@@ -557,6 +557,37 @@ class R::Op::Int extends R::Op {
     return $ret_ndarray;
   }
   
+  precompile method to_indexes : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->is_vector) {
+      die "The n-dimension array \$x_ndarray must be a vector.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $indexes_list = IntList->new;
+    
+    my $x_data = $x_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      my $element = $x_data->[$i];
+      
+      if ($element) {
+        $indexes_list->push($i);
+      }
+    }
+    
+    my $ret_data = $indexes_list->to_array;
+    
+    my $ret_ndarray = $self->c($ret_data);
+    
+    return $ret_ndarray;
+  }
+  
   precompile method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
     unless ($x_ndarray) {
