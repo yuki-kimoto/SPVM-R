@@ -5,10 +5,9 @@ class R::Op::Short {
   
   use R::NDArray::Short;
   use ShortList;
+  use R::Op;
   
   # Class Methods
-  
-  # Instance Methods
   static method c : R::NDArray::Short ($x_data : short[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::Short->new({dim => $x_dim, data => $x_data});
@@ -46,7 +45,7 @@ class R::Op::Short {
     
     my $by = (short)(($y - $x) / $length);
     
-    my $ret_ndarray = R::Op::Short->seq($x, $y, $by);
+    my $ret_ndarray = &seq($x, $y, $by);
     
     return $ret_ndarray;
   }

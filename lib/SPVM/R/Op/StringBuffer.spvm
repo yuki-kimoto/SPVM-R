@@ -4,6 +4,7 @@
 class R::Op::StringBuffer {
   
   use R::NDArray::StringBuffer;
+  use R::Op;
   
   # Class Methods
   static method c : R::NDArray::StringBuffer ($x_data : string[], $x_dim : int[] = undef) {

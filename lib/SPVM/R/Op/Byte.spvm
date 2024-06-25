@@ -1,22 +1,21 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Op::Byte extends R::Op {
+class R::Op::Byte {
   
   use R::NDArray::Byte;
   use ByteList;
+  use R::Op;
   
   # Class Methods
-  
-  # Instance Methods
-  static method c : R::NDArray::Byte ($x_data : byte[], $x_dim : int[] = undef) {
+  static static method c : R::NDArray::Byte ($x_data : byte[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::Byte->new({dim => $x_dim, data => $x_data});
     
     return $x_ndarray;
   }
   
-  method seq : R::NDArray::Byte ($x : byte, $y : byte, $by : byte = 1) {
+  static method seq : R::NDArray::Byte ($x : byte, $y : byte, $by : byte = 1) {
     
     my $ret_data_list = ByteList->new;
     my $current = $x;
@@ -42,11 +41,11 @@ class R::Op::Byte extends R::Op {
     return $ret_ndarray;
   }
   
-  method seq_length : R::NDArray::Byte ($x : byte, $y : byte, $length : int) {
+  static method seq_length : R::NDArray::Byte ($x : byte, $y : byte, $length : int) {
     
     my $by = (byte)(($y - $x) / $length);
     
-    my $ret_ndarray = $self->seq($x, $y, $by);
+    my $ret_ndarray = &seq($x, $y, $by);
     
     return $ret_ndarray;
   }

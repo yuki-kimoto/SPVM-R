@@ -6,8 +6,7 @@ class R::Op {
   use R::NDArray;
   
   # Class Methods
-
-  method equals_dim : int ($x_ndarray : R::NDArray, $y_ndarray : R::NDArray) {
+  static method equals_dim : int ($x_ndarray : R::NDArray, $y_ndarray : R::NDArray) {
     
     unless ($x_ndarray) {
       die "The n-dimention array \$x_ndarray must be defined.";
@@ -26,7 +25,7 @@ class R::Op {
     return $equals_dim;
   }
   
-  precompile method rep : R::NDArray ($x_ndarray : R::NDArray, $times : int) {
+  precompile static method rep : R::NDArray ($x_ndarray : R::NDArray, $times : int) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -69,7 +68,7 @@ class R::Op {
     return $ret_ndarray;
   }
   
-  precompile method rep_length : R::NDArray ($x_ndarray : R::NDArray, $length : int) {
+  precompile static method rep_length : R::NDArray ($x_ndarray : R::NDArray, $length : int) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";

@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Op::Long extends R::Op {
+class R::Op::Long {
   
   use R::NDArray::Int;
   use R::NDArray::Long;
@@ -10,6 +10,7 @@ class R::Op::Long extends R::Op {
   use R::NDArray::FloatComplex;
   use R::NDArray::DoubleComplex;
   use R::NDArray::String;
+  use R::Op;
   use R::Op::Int;
   use R::Op::Long;
   use R::Op::Float;
@@ -23,8 +24,6 @@ class R::Op::Long extends R::Op {
   use LongList;
   
   # Class Methods
-  
-  # Instance Methods
   static method c : R::NDArray::Long ($x_data : long[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::Long->new({dim => $x_dim, data => $x_data});
@@ -32,7 +31,7 @@ class R::Op::Long extends R::Op {
     return $x_ndarray;
   }
   
-  method add : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  static method add : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -42,7 +41,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -65,7 +64,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method sub : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method sub : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -75,7 +74,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -98,7 +97,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method mul : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method mul : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -108,7 +107,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -131,7 +130,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method div : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method div : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -141,7 +140,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -164,7 +163,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method div_unsinged : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method div_unsinged : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -174,7 +173,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -197,7 +196,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method mod : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method mod : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -207,7 +206,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -230,7 +229,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method mod_unsinged : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method mod_unsinged : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -240,7 +239,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -263,7 +262,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method to_int : R::NDArray::Int ($x_ndarray : R::NDArray::Long) {
+  precompile static method to_int : R::NDArray::Int ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -285,7 +284,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method clone : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
+  precompile static method clone : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -307,7 +306,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method to_float : R::NDArray::Float ($x_ndarray : R::NDArray::Long) {
+  precompile static method to_float : R::NDArray::Float ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -329,7 +328,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method to_double : R::NDArray::Double ($x_ndarray : R::NDArray::Long) {
+  precompile static method to_double : R::NDArray::Double ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -351,7 +350,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method to_float_complex : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::Long) {
+  precompile static method to_float_complex : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -374,7 +373,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::Long) {
+  precompile static method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -397,7 +396,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method abs : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
+  precompile static method abs : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -419,7 +418,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method neg : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
+  precompile static method neg : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -441,7 +440,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -451,7 +450,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -474,7 +473,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method ne : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method ne : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -484,7 +483,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -507,7 +506,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method gt : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method gt : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -517,7 +516,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -540,7 +539,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method ge : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method ge : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -550,7 +549,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -573,7 +572,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method lt : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method lt : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -583,7 +582,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -606,7 +605,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method le : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method le : R::NDArray::Int ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -616,7 +615,7 @@ class R::Op::Long extends R::Op {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $self->equals_dim($x_ndarray, $y_ndarray);
+    my $equals_dim = R::Op->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dim) {
       die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
@@ -639,7 +638,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method sum : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
+  precompile static method sum : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -663,7 +662,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method cumsum : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
+  precompile static method cumsum : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -687,7 +686,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method prod : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
+  precompile static method prod : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -711,7 +710,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method cumprod : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
+  precompile static method cumprod : R::NDArray::Long ($x_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -735,7 +734,7 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  method seq : R::NDArray::Long ($x : long, $y : long, $by : long = 1) {
+  static method seq : R::NDArray::Long ($x : long, $y : long, $by : long = 1) {
     
     my $ret_data_list = LongList->new;
     my $current = $x;
@@ -761,11 +760,11 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  method seq_length : R::NDArray::Long ($x : long, $y : long, $length : int) {
+  static method seq_length : R::NDArray::Long ($x : long, $y : long, $length : int) {
     
     my $by = (long)(($y - $x) / $length);
     
-    my $ret_ndarray = $self->seq($x, $y, $by);
+    my $ret_ndarray = &seq($x, $y, $by);
     
     return $ret_ndarray;
   }

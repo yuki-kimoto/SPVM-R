@@ -4,6 +4,7 @@
 class R::Op::String {
   
   use R::NDArray::String;
+  use R::Op;
   
   # Class Methods
   static method c : R::NDArray::String ($x_data : string[], $x_dim : int[] = undef) {
