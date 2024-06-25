@@ -55,7 +55,9 @@ class R::Op {
     
     my $ret_length = $x_length * $times;
     
-    my $ret_ndarray = $self->c(undef, [$ret_length]);
+    my $ndarray_class_name = type_name $x_ndarray;
+    
+    my $ret_ndarray = R::NDArray->new_with_class_name($ndarray_class_name, {data => undef, dim => [$ret_length]});
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -94,7 +96,9 @@ class R::Op {
     
     my $x_length = $x_ndarray->length;
     
-    my $ret_ndarray = $self->c(undef, [$length]);
+    my $ndarray_class_name = type_name $x_ndarray;
+    
+    my $ret_ndarray = R::NDArray->new_with_class_name($ndarray_class_name, {data => undef, dim => [$length]});
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
