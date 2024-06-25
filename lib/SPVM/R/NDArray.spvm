@@ -380,27 +380,6 @@ class R::NDArray {
     return $data_indexes;
   }
   
-  method equals_dim : int ($y_ndarray : R::NDArray) {
-    
-    my $x_ndarray = $self;
-    
-    unless ($x_ndarray) {
-      die "The n-dimention array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimention array \$y_ndarray must be defined.";
-    }
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $y_dim = $y_ndarray->dim;
-    
-    my $equals_dim = R::Util->equals_dim($x_dim, $y_dim);
-    
-    return $equals_dim;
-  }
-  
   method drop_dim : void () {
     
     my $dim = $self->{dim};

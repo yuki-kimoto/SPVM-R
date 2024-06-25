@@ -6,7 +6,7 @@ class R::Op {
   use R::NDArray;
   
   # Class Methods
-  
+
   method equals_dim : int ($x_ndarray : R::NDArray, $y_ndarray : R::NDArray) {
     
     unless ($x_ndarray) {
@@ -17,7 +17,11 @@ class R::Op {
       die "The n-dimention array \$y_ndarray must be defined.";
     }
     
-    my $equals_dim = $x_ndarray->equals_dim($y_ndarray);
+    my $x_dim = $x_ndarray->dim;
+    
+    my $y_dim = $y_ndarray->dim;
+    
+    my $equals_dim = R::Util->equals_dim($x_dim, $y_dim);
     
     return $equals_dim;
   }
