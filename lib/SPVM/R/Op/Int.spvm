@@ -58,7 +58,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -91,7 +91,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -124,7 +124,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -157,7 +157,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -190,7 +190,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -223,7 +223,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -256,7 +256,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -279,7 +279,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -435,7 +435,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -457,7 +457,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -489,7 +489,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -522,7 +522,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -545,7 +545,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -583,7 +583,7 @@ class R::Op::Int extends R::Op {
     
     my $ret_data = $indexes_list->to_array;
     
-    my $ret_ndarray = $self->c($ret_data);
+    my $ret_ndarray = R::Op::Int->new->c($ret_data);
     
     return $ret_ndarray;
   }
@@ -796,7 +796,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, [1]);
+    my $ret_ndarray = R::Op::Int->new->c(undef, [1]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -820,7 +820,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -844,7 +844,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, [1]);
+    my $ret_ndarray = R::Op::Int->new->c(undef, [1]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -868,7 +868,7 @@ class R::Op::Int extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -911,7 +911,7 @@ class R::Op::Int extends R::Op {
     
     my $ret_data = $ret_data_list->to_array;
     
-    my $ret_ndarray = $self->c($ret_data);
+    my $ret_ndarray = R::Op::Int->new->c($ret_data);
     
     return $ret_ndarray;
   }

@@ -544,6 +544,13 @@ class R::NDArray {
     }
   }
   
+  static method new_with_class_name : R::NDArray ($class_name : string, $options : object[]) {
+    
+    my $ndarray = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [$options]);
+    
+    return $ndarray;
+  }
+  
   method nrow : int () {
     
     unless ($self->is_matrix) {
