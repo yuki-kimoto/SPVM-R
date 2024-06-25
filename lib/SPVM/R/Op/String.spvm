@@ -1,20 +1,12 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Op::String extends R::Op {
+class R::Op::String {
   
   use R::NDArray::String;
   
   # Class Methods
-  static method new : R::Op::String () {
-    
-    my $self = new R::Op::String;
-    
-    return $self;
-  }
-  
-  # Instance Methods
-  method c : R::NDArray::String ($x_data : string[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::String ($x_data : string[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::String->new({dim => $x_dim, data => $x_data});
     

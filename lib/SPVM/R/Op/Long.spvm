@@ -413,7 +413,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::String->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::String->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
