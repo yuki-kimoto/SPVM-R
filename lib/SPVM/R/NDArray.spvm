@@ -228,7 +228,7 @@ class R::NDArray {
     
     my $data_indexes = $self->create_data_indexes($vector_indexes, $dim);
     
-    my $equals_dropped_dim = $self->_equals_dropped_dim($ndarray->dim, $ret_dim);
+    my $equals_dropped_dim = R::Util->equals_dropped_dim($ndarray->dim, $ret_dim);
     
     unless ($equals_dropped_dim) {
       die "The dim field of \$ndarray must be compatible with dim created by \$vector_indexes.";
@@ -395,73 +395,16 @@ class R::NDArray {
     
     my $y_dim = $y_ndarray->dim;
     
-    my $equals_dim = $self->_equals_dim($x_dim, $y_dim);
+    my $equals_dim = R::Util->equals_dim($x_dim, $y_dim);
     
     return $equals_dim;
-  }
-  
-  method _equals_dim : int ($x_dim : int[], $y_dim : int[]) {
-    
-    my $equals_dim = 0;
-    if ($x_dim && $y_dim) {
-      my $x_dim_length = @$x_dim;
-      
-      my $y_dim_length = @$y_dim;
-      
-      if ($x_dim_length == $y_dim_length) {
-        my $equals_dim_elements = 1;
-        for (my $i = 0; $i < $x_dim_length; $i++) {
-          my $x_dim_element = $x_dim->[$i];
-          my $y_dim_element = $y_dim->[$i];
-          
-          unless ($x_dim_element == $y_dim_element) {
-            $equals_dim_elements = 0;
-            last;
-          }
-        }
-        $equals_dim = $equals_dim_elements;
-      }
-    }
-    elsif (!$x_dim && !$y_dim) {
-      $equals_dim = 1;
-    }
-    
-    return $equals_dim;
-  }
-  
-  private method _drop_dim : int[] ($dim : int[]) {
-    
-    unless ($dim) {
-      die "[Unexpected Error]\$dim must be defined.";
-    }
-    
-    unless (@$dim > 0) {
-      die "[Unexpected Error]The length of \$dim must be greater than 0.";
-    }
-    
-    my $dropped_dim_list = IntList->new;
-    
-    for (my $i = 0; $i < @$dim; $i++) {
-      my $dim_element = $dim->[$i];
-      unless ($dim_element == 1) {
-        $dropped_dim_list->push($dim_element);
-      }
-    }
-    
-    if ($dropped_dim_list->length == 0) {
-      $dropped_dim_list->push(1);
-    }
-    
-    my $dropped_dim = $dropped_dim_list->to_array;
-    
-    return $dropped_dim;
   }
   
   method drop_dim : void () {
     
     my $dim = $self->{dim};
     
-    my $dropped_dim = $self->_drop_dim($dim);
+    my $dropped_dim = R::Util->drop_dim($dim);
     
     $self->set_dim($dropped_dim);
   }
@@ -482,18 +425,7 @@ class R::NDArray {
     
     my $y_dim = $y_ndarray->dim;
     
-    my $equals_dropped_dim = $self->_equals_dropped_dim($x_dim, $y_dim);
-    
-    return $equals_dropped_dim;
-  }
-  
-  private method _equals_dropped_dim : int ($x_dim : int[], $y_dim : int[]) {
-    
-    my $x_dropped_dim = $self->_drop_dim($x_dim);
-    
-    my $y_dropped_dim = $self->_drop_dim($y_dim);
-    
-    my $equals_dropped_dim = $self->_equals_dim($x_dropped_dim, $y_dropped_dim);
+    my $equals_dropped_dim = R::Util->equals_dropped_dim($x_dim, $y_dim);
     
     return $equals_dropped_dim;
   }

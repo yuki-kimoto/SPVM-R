@@ -57,4 +57,72 @@ class R::Util {
     return $normalized_dim;
   }
   
+  static method drop_dim : int[] ($dim : int[]) {
+    
+    unless ($dim) {
+      die "The definsion \$dim must be defined.";
+    }
+    
+    unless (@$dim > 0) {
+      die "The length of the dimension \$dim must be greater than 0.";
+    }
+    
+    my $dropped_dim_list = IntList->new;
+    
+    for (my $i = 0; $i < @$dim; $i++) {
+      my $dim_element = $dim->[$i];
+      unless ($dim_element == 1) {
+        $dropped_dim_list->push($dim_element);
+      }
+    }
+    
+    if ($dropped_dim_list->length == 0) {
+      $dropped_dim_list->push(1);
+    }
+    
+    my $dropped_dim = $dropped_dim_list->to_array;
+    
+    return $dropped_dim;
+  }
+  
+  static method equals_dim : int ($x_dim : int[], $y_dim : int[]) {
+    
+    my $equals_dim = 0;
+    if ($x_dim && $y_dim) {
+      my $x_dim_length = @$x_dim;
+      
+      my $y_dim_length = @$y_dim;
+      
+      if ($x_dim_length == $y_dim_length) {
+        my $equals_dim_elements = 1;
+        for (my $i = 0; $i < $x_dim_length; $i++) {
+          my $x_dim_element = $x_dim->[$i];
+          my $y_dim_element = $y_dim->[$i];
+          
+          unless ($x_dim_element == $y_dim_element) {
+            $equals_dim_elements = 0;
+            last;
+          }
+        }
+        $equals_dim = $equals_dim_elements;
+      }
+    }
+    elsif (!$x_dim && !$y_dim) {
+      $equals_dim = 1;
+    }
+    
+    return $equals_dim;
+  }
+  
+  static method equals_dropped_dim : int ($x_dim : int[], $y_dim : int[]) {
+    
+    my $x_dropped_dim = &drop_dim($x_dim);
+    
+    my $y_dropped_dim = &drop_dim($y_dim);
+    
+    my $equals_dropped_dim = &equals_dim($x_dropped_dim, $y_dropped_dim);
+    
+    return $equals_dropped_dim;
+  }
+  
 }
