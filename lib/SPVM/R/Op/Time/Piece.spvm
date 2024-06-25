@@ -1,20 +1,12 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Op::Time::Piece extends R::Op {
+class R::Op::Time::Piece {
   
   use R::NDArray::Time::Piece;
   
   # Class Methods
-  static method new : R::Op::Time::Piece () {
-    
-    my $self = new R::Op::Time::Piece;
-    
-    return $self;
-  }
-  
-  # Instance Methods
-  method c : R::NDArray::Time::Piece ($x_data : string[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::Time::Piece ($x_data : string[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::Time::Piece->new({dim => $x_dim, data => $x_data});
     
