@@ -314,7 +314,7 @@ class R::NDArray {
     my $data_indexes = new int[$ret_length];
     
     for (my $ret_data_index = 0; $ret_data_index < $ret_length; $ret_data_index++) {
-      my $ret_cordinate = $self->convert_data_index_to_coordinate($ret_data_index, $ret_dim);
+      my $ret_cordinate = &convert_data_index_to_coordinate($ret_data_index, $ret_dim);
       
       my $cordinate = new int[$ret_dim_length];
       
@@ -323,7 +323,7 @@ class R::NDArray {
         $cordinate->[$cordinate_index] = $vector_indexes->[$cordinate_index]->data->[$ret_cordinate_x];
       }
       
-      my $data_index = $self->convert_coordinate_to_data_index($cordinate, $dim);
+      my $data_index = &convert_coordinate_to_data_index($cordinate, $dim);
       
       $data_indexes->[$ret_data_index] = $data_index;
     }
@@ -331,7 +331,7 @@ class R::NDArray {
     return $data_indexes;
   }
   
-  precompile private method convert_coordinate_to_data_index : int ($coordinate : int[], $dim : int[]) {
+  precompile private static method convert_coordinate_to_data_index : int ($coordinate : int[], $dim : int[]) {
     
     my $data_index = 0;
     my $dim_length = @$dim;
@@ -353,7 +353,7 @@ class R::NDArray {
     return $data_index;
   }
   
-  precompile private method convert_data_index_to_coordinate : int[] ($data_index : int, $dim : int[]) {
+  precompile static private method convert_data_index_to_coordinate : int[] ($data_index : int, $dim : int[]) {
     
     my $dim_length = @$dim;
     
@@ -479,7 +479,7 @@ class R::NDArray {
           
           my $cordinate = [$d1, $d2];
           
-          my $data_index = $self->convert_coordinate_to_data_index($cordinate, $dim);
+          my $data_index = &convert_coordinate_to_data_index($cordinate, $dim);
           
           my $element_string = $self->element_to_string($data_index);
           
