@@ -1382,14 +1382,6 @@ class R::Op::Float extends R::Op {
     return $ret_ndarray;
   }
   
-  method rep : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $times : int) {
-    return (R::NDArray::Float)$self->SUPER::rep($x_ndarray, $times);
-  }
-  
-  method rep_length : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $length : int) {
-    return (R::NDArray::Float)$self->SUPER::rep_length($x_ndarray, $length);
-  }
-  
   method seq : R::NDArray::Float ($x : float, $y : float, $by : float = 1) {
     
     my $ret_data_list = FloatList->new;

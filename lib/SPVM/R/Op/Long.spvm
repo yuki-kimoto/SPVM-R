@@ -763,14 +763,6 @@ class R::Op::Long extends R::Op {
     return $ret_ndarray;
   }
   
-  method rep : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $times : int) {
-    return (R::NDArray::Long)$self->SUPER::rep($x_ndarray, $times);
-  }
-  
-  method rep_length : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $length : int) {
-    return (R::NDArray::Long)$self->SUPER::rep_length($x_ndarray, $length);
-  }
-  
   method seq : R::NDArray::Long ($x : long, $y : long, $by : long = 1) {
     
     my $ret_data_list = LongList->new;

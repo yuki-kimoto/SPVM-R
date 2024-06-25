@@ -1578,14 +1578,6 @@ class R::Op::Double extends R::Op {
     return $ret_ndarray;
   }
   
-  method rep : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $times : int) {
-    return (R::NDArray::Double)$self->SUPER::rep($x_ndarray, $times);
-  }
-  
-  method rep_length : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $length : int) {
-    return (R::NDArray::Double)$self->SUPER::rep_length($x_ndarray, $length);
-  }
-  
   method seq : R::NDArray::Double ($x : double, $y : double, $by : double = 1) {
     
     my $ret_data_list = DoubleList->new;

@@ -21,12 +21,4 @@ class R::Op::StringBuffer extends R::Op {
     return $x_ndarray;
   }
   
-  method rep : R::NDArray::StringBuffer ($x_ndarray : R::NDArray::StringBuffer, $times : int) {
-    return (R::NDArray::StringBuffer)$self->SUPER::rep($x_ndarray, $times);
-  }
-  
-  method rep_length : R::NDArray::StringBuffer ($x_ndarray : R::NDArray::StringBuffer, $length : int) {
-    return (R::NDArray::StringBuffer)$self->SUPER::rep_length($x_ndarray, $length);
-  }
-  
 }
