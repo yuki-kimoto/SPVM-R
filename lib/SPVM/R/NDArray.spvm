@@ -7,6 +7,7 @@ class R::NDArray {
   use IntList;
   use Native::MethodCall;
   use StringBuffer;
+  use R::Util;
   
   # Fields
   has data : protected object;
@@ -97,22 +98,7 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
-    my $length = $self->_length($dim);
-    
-    return $length;
-  }
-  
-  private method _length : int ($dim : int[]) {
-    
-    my $length = 1;
-    for my $dim_element (@$dim) {
-      
-      unless ($dim_element > 0) {
-        die "[Unexpected Error]The element of dim field must be greater than 0.";
-      }
-      
-      $length *= $dim_element;
-    }
+    my $length = R::Util->calc_length($dim);
     
     return $length;
   }
@@ -354,7 +340,7 @@ class R::NDArray {
     
     my $ret_dim_length = @$ret_dim;
     
-    my $ret_length = $self->_length($ret_dim);
+    my $ret_length = R::Util->calc_length($ret_dim);
     
     my $ret_data = $self->create_default_data($ret_length);
     
