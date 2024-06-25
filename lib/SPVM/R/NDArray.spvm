@@ -21,22 +21,58 @@ class R::NDArray {
   
   has dim : int[];
   
-  method dim : int[] () {
+  # Class Methods
+  private static method normalize_vector_indexes : R::NDArray::Int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
     
-    my $dim = $self->{dim};
+    unless ($vector_indexes) {
+      die "The indexes for n-dimension array \$vector_indexes must be defined.";
+    }
     
-    my $dim_clone = copy $dim;
+    my $vector_indexes_length = @$vector_indexes;
     
-    return $dim_clone;
+    my $dim_length = @$dim;
+    
+    unless ($vector_indexes_length <= $dim_length) {
+      die "The length of indexes for n-dimension array \$vector_indexes must be less than or equal to the length of dim field.";
+    }
+    
+    my $normalized_vector_indexes = new R::NDArray::Int[$vector_indexes_length];
+    
+    for (my $vector_indexes_index = 0; $vector_indexes_index < $dim_length; $vector_indexes_index++) {
+      my $vector_index = $vector_indexes->[$vector_indexes_index];
+      
+      unless (!$vector_index || $vector_index->is_vector) {
+        die "The element of indexes for n-dimension array \$vector_indexes must be undef or vector.";
+      }
+      
+      unless ($vector_index) {
+        $vector_index = R::NDArray::Int->new({dim => [$dim->[$vector_indexes_index]]});
+      }
+      
+      $normalized_vector_indexes->[$vector_indexes_index] = $vector_index;
+    }
+    
+    return $normalized_vector_indexes;
   }
   
-  method set_dim : void ($dim : int[]) {
+  private static method create_ret_dim : int[] ($vector_indexes : R::NDArray::Int[]) {
     
-    my $nomalized_dim = R::Util->normalize_dim($dim);
+    my $vector_indexes_length = @$vector_indexes;
     
-    $self->{dim} = $nomalized_dim;
+    my $ret_dim = new int[$vector_indexes_length];
     
-    $self->check;
+    for (my $i = 0; $i < $vector_indexes_length; $i++) {
+      my $vector_index = $vector_indexes->[$i];
+      
+      if ($vector_index) {
+        $ret_dim->[$i] = $vector_index->length;
+      }
+      else {
+        die "[Unexpected]\$vector_index must be defined.";
+      }
+    }
+    
+    return $ret_dim;
   }
   
   # Class Mehtods
@@ -90,6 +126,24 @@ class R::NDArray {
     }
     
     $self->{data} = $data;
+    
+    $self->check;
+  }
+  
+  method dim : int[] () {
+    
+    my $dim = $self->{dim};
+    
+    my $dim_clone = copy $dim;
+    
+    return $dim_clone;
+  }
+  
+  method set_dim : void ($dim : int[]) {
+    
+    my $nomalized_dim = R::Util->normalize_dim($dim);
+    
+    $self->{dim} = $nomalized_dim;
     
     $self->check;
   }
@@ -203,9 +257,9 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
-    $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
+    $vector_indexes = &normalize_vector_indexes($vector_indexes, $dim);
     
-    my $ret_dim = $self->create_ret_dim($vector_indexes);
+    my $ret_dim = &create_ret_dim($vector_indexes);
     
     my $data_indexes = $self->create_data_indexes($vector_indexes, $dim);
     
@@ -222,9 +276,9 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
-    $vector_indexes = $self->normalize_vector_indexes($vector_indexes, $dim);
+    $vector_indexes = &normalize_vector_indexes($vector_indexes, $dim);
     
-    my $ret_dim = $self->create_ret_dim($vector_indexes);
+    my $ret_dim = &create_ret_dim($vector_indexes);
     
     my $data_indexes = $self->create_data_indexes($vector_indexes, $dim);
     
@@ -247,62 +301,9 @@ class R::NDArray {
   
   protected method set_data : object ($data_indexes : int[], $data : object) { die "Not implemented."; }
   
-  private method normalize_vector_indexes : R::NDArray::Int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
-    
-    unless ($vector_indexes) {
-      die "The indexes for n-dimension array \$vector_indexes must be defined.";
-    }
-    
-    my $vector_indexes_length = @$vector_indexes;
-    
-    my $dim_length = @$dim;
-    
-    unless ($vector_indexes_length <= $dim_length) {
-      die "The length of indexes for n-dimension array \$vector_indexes must be less than or equal to the length of dim field.";
-    }
-    
-    my $normalized_vector_indexes = new R::NDArray::Int[$vector_indexes_length];
-    
-    for (my $vector_indexes_index = 0; $vector_indexes_index < $dim_length; $vector_indexes_index++) {
-      my $vector_index = $vector_indexes->[$vector_indexes_index];
-      
-      unless (!$vector_index || $vector_index->is_vector) {
-        die "The element of indexes for n-dimension array \$vector_indexes must be undef or vector.";
-      }
-      
-      unless ($vector_index) {
-        $vector_index = R::NDArray::Int->new({dim => [$dim->[$vector_indexes_index]]});
-      }
-      
-      $normalized_vector_indexes->[$vector_indexes_index] = $vector_index;
-    }
-    
-    return $normalized_vector_indexes;
-  }
-  
-  private method create_ret_dim : int[] ($vector_indexes : R::NDArray::Int[]) {
-    
-    my $vector_indexes_length = @$vector_indexes;
-    
-    my $ret_dim = new int[$vector_indexes_length];
-    
-    for (my $i = 0; $i < $vector_indexes_length; $i++) {
-      my $vector_index = $vector_indexes->[$i];
-      
-      if ($vector_index) {
-        $ret_dim->[$i] = $vector_index->length;
-      }
-      else {
-        die "[Unexpected]\$vector_index must be defined.";
-      }
-    }
-    
-    return $ret_dim;
-  }
-  
   private method create_data_indexes : int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
     
-    my $ret_dim = $self->create_ret_dim($vector_indexes);
+    my $ret_dim = &create_ret_dim($vector_indexes);
     
     my $ret_dim_length = @$ret_dim;
     
