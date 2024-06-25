@@ -3,4 +3,24 @@
 
 class R::Util {
   
+  # Class Methods
+  static method calc_length : int ($dim : int[]) {
+    
+    unless ($dim) {
+      die "The dimention \$dim must be defined.";
+    }
+    
+    my $length = 1;
+    for my $dim_element (@$dim) {
+      
+      unless ($dim_element > 0) {
+        die "The element of the dimention \$dim must be greater than 0.";
+      }
+      
+      $length *= $dim_element;
+    }
+    
+    return $length;
+  }
+  
 }
