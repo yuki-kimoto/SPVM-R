@@ -6,12 +6,6 @@ class R::Op {
   use R::NDArray;
   
   # Class Methods
-  static method new : R::Op () {
-    
-    my $self = new R::Op;
-    
-    return $self;
-  }
   
   method equals_dim : int ($x_ndarray : R::NDArray, $y_ndarray : R::NDArray) {
     
@@ -26,13 +20,6 @@ class R::Op {
     my $equals_dim = $x_ndarray->equals_dim($y_ndarray);
     
     return $equals_dim;
-  }
-  
-  method c : R::NDArray ($x_data : object, $x_dim : int[] = undef) {
-    
-    my $x_ndarray = R::NDArray::Double->new({dim => $x_dim, data => $x_data});
-    
-    return $x_ndarray;
   }
   
   precompile method rep : R::NDArray ($x_ndarray : R::NDArray, $times : int) {

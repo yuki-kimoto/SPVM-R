@@ -7,15 +7,9 @@ class R::Op::Byte extends R::Op {
   use ByteList;
   
   # Class Methods
-  static method new : R::Op::Byte () {
-    
-    my $self = new R::Op::Byte;
-    
-    return $self;
-  }
   
   # Instance Methods
-  method c : R::NDArray::Byte ($x_data : byte[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::Byte ($x_data : byte[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::Byte->new({dim => $x_dim, data => $x_data});
     
@@ -43,7 +37,7 @@ class R::Op::Byte extends R::Op {
     
     my $ret_data = $ret_data_list->to_array;
     
-    my $ret_ndarray = $self->c($ret_data);
+    my $ret_ndarray = &c($ret_data);
     
     return $ret_ndarray;
   }

@@ -23,15 +23,9 @@ class R::Op::Long extends R::Op {
   use LongList;
   
   # Class Methods
-  static method new : R::Op::Long () {
-    
-    my $self = new R::Op::Long;
-    
-    return $self;
-  }
   
   # Instance Methods
-  method c : R::NDArray::Long ($x_data : long[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::Long ($x_data : long[], $x_dim : int[] = undef) {
     
     my $x_ndarray = R::NDArray::Long->new({dim => $x_dim, data => $x_data});
     
@@ -58,7 +52,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -91,7 +85,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -124,7 +118,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -157,7 +151,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -190,7 +184,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -223,7 +217,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -256,7 +250,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -279,7 +273,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -301,7 +295,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -323,7 +317,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Float->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Float->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -345,7 +339,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Double->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Double->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -367,7 +361,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::FloatComplex->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::FloatComplex->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -390,7 +384,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::DoubleComplex->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::DoubleComplex->c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -413,7 +407,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -435,7 +429,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -467,7 +461,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -500,7 +494,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -533,7 +527,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -566,7 +560,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -599,7 +593,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -632,7 +626,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = R::Op::Int->new->c(undef, $x_dim);
+    my $ret_ndarray = R::Op::Int->c(undef, $x_dim);
     my $ret_data = $ret_ndarray->data;
     
     my $x_data = $x_ndarray->data;
@@ -655,7 +649,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, [1]);
+    my $ret_ndarray = &c(undef, [1]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -679,7 +673,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -703,7 +697,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, [1]);
+    my $ret_ndarray = &c(undef, [1]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -727,7 +721,7 @@ class R::Op::Long extends R::Op {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = $self->c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, $x_dim);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -762,7 +756,7 @@ class R::Op::Long extends R::Op {
     
     my $ret_data = $ret_data_list->to_array;
     
-    my $ret_ndarray = $self->c($ret_data);
+    my $ret_ndarray = &c($ret_data);
     
     return $ret_ndarray;
   }
