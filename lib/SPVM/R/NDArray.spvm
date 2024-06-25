@@ -75,6 +75,55 @@ class R::NDArray {
     return $ret_dim;
   }
   
+  precompile private static method convert_coordinate_to_data_index : int ($coordinate : int[], $dim : int[]) {
+    
+    my $data_index = 0;
+    my $dim_length = @$dim;
+    for (my $i = 0; $i < $dim_length; $i++) {
+      if ($i > 0) {
+        my $tmp = 1;
+        for (my $k = 0; $k < $i; $k++) {
+          $tmp *= $dim->[$k];
+        }
+        $data_index += $tmp * $coordinate->[$i] - 1;
+      }
+      else {
+        $data_index += $coordinate->[$i];
+      }
+    }
+    
+    $data_index -= 1;
+    
+    return $data_index;
+  }
+  
+  precompile static private method convert_data_index_to_coordinate : int[] ($data_index : int, $dim : int[]) {
+    
+    my $dim_length = @$dim;
+    
+    my $coordinate = new int[$dim_length];
+    
+    my $before_dim_product = 1;
+    for (my $i = 0; $i < $dim_length; $i++) {
+      $before_dim_product *= $dim->[$i];
+    }
+    
+    for (my $i = $dim_length - 1; $i >= 0; $i--) {
+      my $dim_product = 1;
+      for (my $k = 0; $k < $i; $k++) {
+        $dim_product *= $dim->[$k];
+      }
+      
+      my $reminder = $data_index % $before_dim_product;
+      my $quotient = $reminder / $dim_product;
+      
+      $coordinate->[$i] = $quotient + 1;
+      $before_dim_product = $dim_product;
+    }
+    
+    return $coordinate;
+  }
+  
   # Class Mehtods
   static method new : R::NDArray ($options : object[] = undef) {
     
@@ -329,55 +378,6 @@ class R::NDArray {
     }
     
     return $data_indexes;
-  }
-  
-  precompile private static method convert_coordinate_to_data_index : int ($coordinate : int[], $dim : int[]) {
-    
-    my $data_index = 0;
-    my $dim_length = @$dim;
-    for (my $i = 0; $i < $dim_length; $i++) {
-      if ($i > 0) {
-        my $tmp = 1;
-        for (my $k = 0; $k < $i; $k++) {
-          $tmp *= $dim->[$k];
-        }
-        $data_index += $tmp * $coordinate->[$i] - 1;
-      }
-      else {
-        $data_index += $coordinate->[$i];
-      }
-    }
-    
-    $data_index -= 1;
-    
-    return $data_index;
-  }
-  
-  precompile static private method convert_data_index_to_coordinate : int[] ($data_index : int, $dim : int[]) {
-    
-    my $dim_length = @$dim;
-    
-    my $coordinate = new int[$dim_length];
-    
-    my $before_dim_product = 1;
-    for (my $i = 0; $i < $dim_length; $i++) {
-      $before_dim_product *= $dim->[$i];
-    }
-    
-    for (my $i = $dim_length - 1; $i >= 0; $i--) {
-      my $dim_product = 1;
-      for (my $k = 0; $k < $i; $k++) {
-        $dim_product *= $dim->[$k];
-      }
-      
-      my $reminder = $data_index % $before_dim_product;
-      my $quotient = $reminder / $dim_product;
-      
-      $coordinate->[$i] = $quotient + 1;
-      $before_dim_product = $dim_product;
-    }
-    
-    return $coordinate;
   }
   
   method equals_dim : int ($y_ndarray : R::NDArray) {
