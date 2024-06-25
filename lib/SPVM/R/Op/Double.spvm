@@ -371,28 +371,6 @@ class R::Op::Double extends R::Op {
     return $ret_ndarray;
   }
   
-  precompile method to_string : R::NDArray::String ($x_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimension array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::Op::String->c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (string)$x_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
   precompile method abs : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
