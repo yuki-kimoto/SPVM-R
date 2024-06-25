@@ -298,5 +298,19 @@ class R::DataFrame {
     return $ndarray;
   }
   
+  method clone : R::DataFrame () {
+    
+    my $field_names = $self->field_names;
+    
+    my $dim = $self->dim;
+    
+    my $dim_length = @$dim;
+    
+    my $vector_indexes = new R::NDArray::Int[$dim_length];
+    
+    my $ret_data_frame = $self->get($field_names, $vector_indexes);
+    
+    return $ret_data_frame;
+  }
 }
 
