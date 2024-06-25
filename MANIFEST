@@ -37,6 +37,8 @@ lib/SPVM/R/Op.pm
 lib/SPVM/R/Op.spvm
 lib/SPVM/R/Op/Byte.pm
 lib/SPVM/R/Op/Byte.spvm
+lib/SPVM/R/Op/DataFrame.pm
+lib/SPVM/R/Op/DataFrame.spvm
 lib/SPVM/R/Op/Double.pm
 lib/SPVM/R/Op/Double.spvm
 lib/SPVM/R/Op/DoubleComplex.pm
