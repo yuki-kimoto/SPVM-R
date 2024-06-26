@@ -64,17 +64,17 @@ sub MY::postamble {
     
     local @INC = ('lib', @INC);
     
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::Op::Matrix::Float');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::Op::Matrix::FloatComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::Op::Matrix::Double');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::Op::Matrix::DoubleComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::OP::Matrix::Float');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::OP::Matrix::FloatComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::OP::Matrix::Double');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::OP::Matrix::DoubleComplex');
     
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::Int');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::Long');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::Float');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::Double');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::FloatComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::Op::DoubleComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Int');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Long');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Float');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Double');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::FloatComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::DoubleComplex');
   }
   
   return $make_rule;
