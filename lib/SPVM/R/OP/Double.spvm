@@ -1630,6 +1630,59 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
+  precompile static method cross : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->is_vector) {
+      die "The n-dimension array \$x_ndarray must be a vector.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray->is_vector) {
+      die "The n-dimension array \$y_ndarray must be a vector.";
+    }
+    
+    my $equals_dropped_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dropped_dim) {
+      die "The dimension of n-dimension array \$x_ndarray must be equal to the dimension of n-dimension array \$y_ndarray.";
+    }
+    
+    my $x_length = $x_ndarray->length;
+    
+    unless ($x_length == 3) {
+      die "The length of elements of n-dimension array \$x_ndarray must be 3.";
+    }
+    
+    my $y_length = $y_ndarray->length;
+    
+    unless ($y_length == 3) {
+      die "The length of elements of n-dimension array \$y_ndarray must be 3.";
+    }
+    
+    my $length = $x_length;
+    
+    my $ret_dim = [3];
+    
+    my $ret_ndarray = &c(undef, $ret_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    $ret_data->[0] = $x_data->[1] * $y_data->[2] - $x_data->[2] * $y_data->[1];
+    $ret_data->[1] = $x_data->[2] * $y_data->[0] - $x_data->[0] * $y_data->[2];
+    $ret_data->[0] = $x_data->[0] * $y_data->[1] - $x_data->[1] * $y_data->[0];
+    
+    return $ret_ndarray;
+  }
+  
   precompile static method outer : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
