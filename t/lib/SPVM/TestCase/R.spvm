@@ -29,6 +29,7 @@ class TestCase::R {
   use R::OP::Time::Piece;
   
   use R::DataFrame;
+  use R::OP::Matrix;
   
   static method test : int () {
     

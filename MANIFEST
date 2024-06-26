@@ -52,6 +52,8 @@ lib/SPVM/R/OP/Int.pm
 lib/SPVM/R/OP/Int.spvm
 lib/SPVM/R/OP/Long.pm
 lib/SPVM/R/OP/Long.spvm
+lib/SPVM/R/OP/Matrix.pm
+lib/SPVM/R/OP/Matrix.spvm
 lib/SPVM/R/OP/Matrix/Double.config
 lib/SPVM/R/OP/Matrix/Double.cpp
 lib/SPVM/R/OP/Matrix/Double.pm

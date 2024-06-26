@@ -112,6 +112,8 @@ Use L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>, L<R::OP::Doubl
 
 =item * L<R::OP::Long|SPVM::R::OP::Long>
 
+=item * L<R::OP::Matrix|SPVM::R::OP::Matrix>
+
 =item * L<R::OP::Matrix::DoubleComplex|SPVM::R::OP::Matrix::DoubleComplex>
 
 =item * L<R::OP::Matrix::Double|SPVM::R::OP::Matrix::Double>
