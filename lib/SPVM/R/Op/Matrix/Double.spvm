@@ -44,20 +44,22 @@ class R::Op::Matrix::Double {
     
     my $y_data = (double[])$y_ndarray->data;
     
-    my $ret_dim = [$x_row, $y_column];
+    my $ret_row = -1;
     
-    my $ret_ndarray = R::Op::Double->c(undef, $ret_dim);
+    my $ret_column = -1;
     
-    my $ret_row = $ret_dim->[0];
+    my $ret_data_ref = new double[][1];
     
-    my $ret_column = $ret_dim->[1];
+    &_add($x_data, $x_row, $x_column, $y_data, $y_row, $y_column, $ret_data_ref, \$ret_row, \$ret_column);
     
-    my $ret_data = (double[])$ret_ndarray->data;
+    my $ret_dim = [$ret_row, $ret_column];
     
-    &_add($x_data, $x_row, $x_column, $y_data, $y_row, $y_column, $ret_data, $ret_row, $ret_column);
+    my $ret_data = $ret_data_ref->[0];
+    
+    my $ret_ndarray = R::Op::Double->c($ret_data, $ret_dim);
     
     return $ret_ndarray;
   }
   
-  native static method _add : void ($x_data : double[], $x_row :int, $x_column : int, $y_data : double[], $y_row : int, $y_column : int, $ret_data : double[], $ret_row : int, $ret_column : int);
+  native static method _add : void ($x_data : double[], $x_row :int, $x_column : int, $y_data : double[], $y_row : int, $y_column : int, $ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*);
 }
