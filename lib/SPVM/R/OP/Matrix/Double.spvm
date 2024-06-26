@@ -6,6 +6,13 @@ class R::OP::Matrix::Double {
   use R::NDArray::Double;
   use R::OP::Double;
   
+  static method matrix : R::NDArray::Double ($x_data : double[], $row : int, $column : int) {
+    
+    my $ndarray = R::OP::Double->c($x_data, [$row, $column]);
+    
+    return $ndarray;
+  }
+  
   static method mul : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
