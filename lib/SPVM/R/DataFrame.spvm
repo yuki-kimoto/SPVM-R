@@ -150,7 +150,8 @@ class R::DataFrame {
     
     my $field = new R::DataFrame::Field;
     $field->{name} = $field_name;
-    $field->{ndarray} = $ndarray->clone;
+    $ndarray->make_dim_read_only;
+    $field->{ndarray} = $ndarray;
     
     my $field_index = -1;
     if ($before_field_name) {
