@@ -32,11 +32,11 @@ int32_t SPVM__R__Op__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t* ret_column_ref = stack[8].iref;
   
-  Eigen::MatrixXd x_matrix = Eigen::Map<Eigen::MatrixXd>(x_data, x_row, x_column);
+  Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> x_matrix = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(x_data, x_row, x_column);
   
-  Eigen::MatrixXd y_matrix = Eigen::Map<Eigen::MatrixXd>(y_data, y_row, y_column);
+  Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> y_matrix = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(y_data, y_row, y_column);
   
-  Eigen::MatrixXd ret_matrix = x_matrix * y_matrix;
+  Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> ret_matrix = x_matrix * y_matrix;
   
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
   void* obj_ret_data = env->new_double_array(env, stack, ret_length);
