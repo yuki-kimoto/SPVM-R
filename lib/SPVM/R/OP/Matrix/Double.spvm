@@ -184,4 +184,5 @@ class R::OP::Matrix::Double {
     
     return $ret_ndarray;
   }
+  
 }
