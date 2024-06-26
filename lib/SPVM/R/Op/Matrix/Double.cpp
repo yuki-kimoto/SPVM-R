@@ -8,31 +8,51 @@
 
 using namespace Eigen;
 using Eigen::MatrixXd;
-using namespace std;
 
 extern "C" {
 
 static const char* FILE_NAME = "R/Op/Matrix/Double.cpp";
 
-int32_t SPVM__R__Op__Matrix__Double__foo(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__Op__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
-  void* obj_nums1 = stack[0].oval;
-  double* nums1 = env->get_elems_double(env, stack, obj_nums1);
+  void* obj_x_data = stack[0].oval;
+  double* x_data = env->get_elems_double(env, stack, obj_x_data);
   
-  void* obj_nums2 = stack[1].oval;
-  double* nums2 = env->get_elems_double(env, stack, obj_nums2);
+  int32_t x_row = stack[1].ival;
   
-  MatrixXd X1 = Map<MatrixXd>(nums1, 3, 3);
+  int32_t x_column = stack[2].ival;
   
-  MatrixXd X2 = Map<MatrixXd>(nums2, 3, 3);
+  void* obj_y_data = stack[3].oval;
+  double* y_data = env->get_elems_double(env, stack, obj_y_data);
   
-  MatrixXd X3 = X1 + X2;
+  int32_t y_row = stack[4].ival;
   
-  void* obj_nums3 = env->new_double_array(env, stack, 9);
-  double* nums3 = env->get_elems_double(env, stack, obj_nums3);
-  memcpy(nums3, X3.data(), sizeof(double) * 9);
+  int32_t y_column = stack[5].ival;
   
-  stack[0].oval = obj_nums3;
+  void* ret_ndarray_ref = stack[6].oval;
+  
+  int32_t* ret_row_ref = stack[7].iref;
+  
+  int32_t* ret_column_ref = stack[8].iref;
+  
+  MatrixXd x_matrix = Map<MatrixXd>(x_data, x_row, x_column);
+  
+  MatrixXd y_matrix = Map<MatrixXd>(y_data, y_row, y_column);
+  
+  MatrixXd ret_matrix = x_matrix * y_matrix;
+  
+  int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
+  void* obj_ret_data = env->new_double_array(env, stack, ret_length);
+  
+  double* ret_data = env->get_elems_double(env, stack, obj_ret_data);
+  
+  memcpy(ret_data, ret_matrix.data(), sizeof(double) * ret_length);
+  
+  env->set_elem_object(env, stack, ret_ndarray_ref, 0, ret_data);
+  
+  *ret_row_ref = ret_matrix.rows();
+  
+  *ret_column_ref = ret_matrix.cols();
   
   return 0;
 }
