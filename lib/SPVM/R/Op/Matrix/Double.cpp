@@ -7,7 +7,6 @@
 #include "Eigen/Dense"
 
 using namespace Eigen;
-using Eigen::MatrixXd;
 
 extern "C" {
 
