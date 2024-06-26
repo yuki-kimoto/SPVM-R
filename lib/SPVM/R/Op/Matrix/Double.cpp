@@ -3,6 +3,9 @@
 
 #include "spvm_native.h"
 
+#include "Eigen/Core"
+#include "Eigen/Dense"
+
 extern "C" {
 
 static const char* FILE_NAME = "R/Op/Matrix/Double.cpp";
