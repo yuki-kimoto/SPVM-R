@@ -133,4 +133,55 @@ class R::OP::Matrix::Double {
   }
   
   native static method _mul : void ($x_data : double[], $x_row :int, $x_column : int, $y_data : double[], $y_row : int, $y_column : int, $ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*);
+  
+  static method diag : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->is_vector || $x_ndarray->is_matrix) {
+      die "The n-dimension array \$x_ndarray must be a vector or a matrix.";
+    }
+    
+    my $row = $x_ndarray->length;
+    
+    my $column = $row;
+    
+    my $x_data = $x_ndarray->data;
+    
+    my $ret_dim = [$row, $column];
+    
+    my $ret_ndarray = R::OP::Double->c(undef, $ret_dim);
+    
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_index = 0;
+    for (my $row_index = 0; $row_index < $row; $row_index++) {
+      $ret_data->[$column * $row_index + $row_index] = $x_data->[$row_index];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  static method diag_identity : R::NDArray::Double ($row : int) {
+    
+    unless ($row > 0) {
+      die "The row \$row must be greater than 0.";
+    }
+    
+    my $column = $row;
+    
+    my $ret_dim = [$row, $column];
+    
+    my $ret_ndarray = R::OP::Double->c(undef, $ret_dim);
+    
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $row_index = 0; $row_index < $row; $row_index++) {
+      $ret_data->[$column * $row_index + $row_index] = 1;
+    }
+    
+    return $ret_ndarray;
+  }
 }
