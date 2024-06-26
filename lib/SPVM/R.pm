@@ -13,13 +13,10 @@ SPVM::R - Porting R language Features
 R class is a port of the R language Features.
 
 =head1 Usage
-
-  use R;
   
-  my $r = R->new;
+  
   
 =head1 Details
-
 
 
 =head1 Inheritance
