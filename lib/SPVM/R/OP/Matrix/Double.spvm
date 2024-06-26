@@ -12,29 +12,35 @@ class R::OP::Matrix::Double {
       die "The n-dimension array \$x_ndarray must be defined.";
     }
     
-    unless ($x_ndarray->is_matrix) {
-      die "The n-dimension array \$x_ndarray must be a matrix.";
+    unless ($x_ndarray->is_vector || $x_ndarray->is_matrix) {
+      die "The n-dimension array \$x_ndarray must be a vector or a matrix.";
     }
     
     unless ($y_ndarray) {
       die "The n-dimension array \$y_ndarray must be defined.";
     }
     
-    unless ($y_ndarray->is_matrix) {
-      die "The n-dimension array \$y_ndarray must be a matrix.";
+    unless ($x_ndarray->is_vector || $y_ndarray->is_matrix) {
+      die "The n-dimension array \$y_ndarray must be a vector or a matrix.";
     }
     
     my $x_dim = $x_ndarray->dim;
     
     my $x_row = $x_dim->[0];
     
-    my $x_column = $x_dim->[1];
+    my $x_column = 1;
+    if ($x_ndarray->is_matrix) {
+      $x_column = $x_dim->[1];
+    }
     
     my $y_dim = $y_ndarray->dim;
     
     my $y_row = $y_dim->[0];
     
-    my $y_column = $y_dim->[1];
+    my $y_column = 1;
+    if ($y_ndarray->is_matrix) {
+      $y_column = $y_dim->[1];
+    }
     
     unless ($x_column == $y_row) {
       die "The column of the matrix \$x_ndarray must be equal to the row of the matrix \$y_ndarray.";
