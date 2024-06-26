@@ -6,7 +6,7 @@ class R::Op::Matrix::Double {
   use R::NDArray::Double;
   use R::Op::Double;
   
-  static method add : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+  static method mul : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -50,7 +50,7 @@ class R::Op::Matrix::Double {
     
     my $ret_data_ref = new double[][1];
     
-    &_add($x_data, $x_row, $x_column, $y_data, $y_row, $y_column, $ret_data_ref, \$ret_row, \$ret_column);
+    &_mul($x_data, $x_row, $x_column, $y_data, $y_row, $y_column, $ret_data_ref, \$ret_row, \$ret_column);
     
     my $ret_dim = [$ret_row, $ret_column];
     
@@ -61,5 +61,5 @@ class R::Op::Matrix::Double {
     return $ret_ndarray;
   }
   
-  native static method _add : void ($x_data : double[], $x_row :int, $x_column : int, $y_data : double[], $y_row : int, $y_column : int, $ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*);
+  native static method _mul : void ($x_data : double[], $x_row :int, $x_column : int, $y_data : double[], $y_row : int, $y_column : int, $ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*);
 }
