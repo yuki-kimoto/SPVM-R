@@ -21,6 +21,8 @@ class R::NDArray {
   
   has dim : int[];
   
+  has is_dim_read_only : byte;
+  
   # Class Methods
   private static method normalize_vector_indexes : R::NDArray::Int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
     
@@ -189,6 +191,12 @@ class R::NDArray {
   }
   
   method set_dim : void ($dim : int[]) {
+    
+    my $is_dim_read_only = $self->{is_dim_read_only};
+    
+    if ($is_dim_read_only) {
+      die "dim field is read only.";
+    }
     
     my $nomalized_dim = R::Util->normalize_dim($dim);
     
@@ -575,6 +583,10 @@ class R::NDArray {
     unless ($indexes_length == $length) {
       die "The length of the indexes \$indexes must be the length of this vector.";
     }
+  }
+  
+  method make_dim_read_only : void () {
+    $self->{is_dim_read_only} = 1;
   }
 }
 
