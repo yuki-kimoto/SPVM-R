@@ -310,7 +310,7 @@ class R::NDArray {
     return $is_square_matrix;
   }
   
-  method get : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
+  method slice : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
     
     my $dim = $self->{dim};
     
@@ -329,7 +329,7 @@ class R::NDArray {
     return $ret_ndarray;
   }
   
-  method set : R::NDArray ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray) {
+  method slice_set : R::NDArray ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray) {
     
     my $dim = $self->{dim};
     
@@ -519,7 +519,7 @@ class R::NDArray {
               $poss_list_clone->push($poss_list->get($poss_index));
             }
             
-            my $ret_ndarray = $self->get((R::NDArray::Int[])$poss_list->to_array);
+            my $ret_ndarray = $self->slice((R::NDArray::Int[])$poss_list->to_array);
             
             $element_strings_list->push($ret_ndarray->element_to_string(0));
           }

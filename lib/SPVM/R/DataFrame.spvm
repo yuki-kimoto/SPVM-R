@@ -191,7 +191,7 @@ class R::DataFrame {
     die "The field specified by the field name \$field_name does not found.";
   }
 
-  method get : R::DataFrame ($field_names : string[], $ndarray_indexes : R::NDArray::Int[]) {
+  method slice : R::DataFrame ($field_names : string[], $ndarray_indexes : R::NDArray::Int[]) {
     
     my $fields_length = $self->fields_length;
     
@@ -203,7 +203,7 @@ class R::DataFrame {
       
       my $ndarray = $field->{ndarray};
       
-      my $ret_ndarray = $ndarray->get($ndarray_indexes);
+      my $ret_ndarray = $ndarray->slice($ndarray_indexes);
       
       $ret_data_frame->push_field($field_name, $ndarray);
     }
@@ -309,7 +309,7 @@ class R::DataFrame {
     
     my $vector_indexes = new R::NDArray::Int[$dim_length];
     
-    my $ret_data_frame = $self->get($field_names, $vector_indexes);
+    my $ret_data_frame = $self->slice($field_names, $vector_indexes);
     
     return $ret_data_frame;
   }
