@@ -1602,10 +1602,10 @@ class R::OP::Double {
       die "The n-dimension array \$y_ndarray must be a vector.";
     }
     
-    my $equals_dropped_dim = R::OP->equals_dropped_dim($x_ndarray, $y_ndarray);
+    my $equals_dropped_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
     
     unless ($equals_dropped_dim) {
-      die "The dropped dimension of n-dimension array \$x_ndarray must be equal to the dropped dimension of n-dimension array \$y_ndarray.";
+      die "The dimension of n-dimension array \$x_ndarray must be equal to the dimension of n-dimension array \$y_ndarray.";
     }
     
     my $length = $x_ndarray->length;
