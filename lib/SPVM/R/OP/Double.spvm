@@ -1584,6 +1584,52 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
+  precompile static method inner : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->is_vector) {
+      die "The n-dimension array \$x_ndarray must be a vector.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimension array \$y_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray->is_vector) {
+      die "The n-dimension array \$y_ndarray must be a vector.";
+    }
+    
+    my $equals_dropped_dim = R::OP->equals_dropped_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dropped_dim) {
+      die "The dropped dimension of n-dimension array \$x_ndarray must be equal to the dropped dimension of n-dimension array \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $ret_dim = [1];
+    
+    my $ret_ndarray = &c(undef, $ret_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    my $inner_product = 0;
+    for (my $y_index = 0; $y_index < $length; $y_index++) {
+      for (my $x_index = 0; $x_index < $length; $x_index++) {
+        my $data_index = $length * $y_index + $x_index;
+        $inner_product += $x_data->[$x_index] * $y_data->[$y_index];
+      }
+    }
+    $ret_data->[0] = $inner_product;
+    
+    return $ret_ndarray;
+  }
+  
   precompile static method outer : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {

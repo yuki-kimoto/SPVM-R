@@ -25,6 +25,25 @@ class R::OP {
     return $equals_dim;
   }
   
+  static method equals_dropped_dim : int ($x_ndarray : R::NDArray, $y_ndarray : R::NDArray) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimention array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimention array \$y_ndarray must be defined.";
+    }
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $y_dim = $y_ndarray->dim;
+    
+    my $equals_dim = R::Util->equals_dropped_dim($x_dim, $y_dim);
+    
+    return $equals_dim;
+  }
+  
   precompile static method rep : R::NDArray ($x_ndarray : R::NDArray, $times : int) {
     
     unless ($x_ndarray) {
