@@ -48,7 +48,10 @@ B<WARNINGS:Tests are not yet done. All of method and field definitions in all cl
   my $cos = DOP->div($inner_vec1_vec2, DOP->mul($abs_vec1, $abs_vec2));
   
   # Matrix and liner conversion
-  my $mat1 = DMOP->matrix([1, 0, 0, 1], 2, 2);
+  my $mat1 = DMOP->matrix_by_row(
+    [1, 0,
+     0, 1], 2, 2
+  );
   my $ret_vec = DMOP->mul($mat1, $vec1);
   $ret_vec->drop_dim;
 
