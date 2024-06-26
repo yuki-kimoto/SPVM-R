@@ -10,7 +10,9 @@ SPVM::R - Porting R language Features
 
 =head1 Description
 
-R class is a port of the R language Features.
+R class is a port of the R language features.
+
+B<WARNINGS:Tests are not yet done. All of method and field definitions in all classes will be changed.>
 
 =head1 Usage
 
