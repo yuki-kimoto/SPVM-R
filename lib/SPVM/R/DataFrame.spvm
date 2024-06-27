@@ -234,7 +234,7 @@ class R::DataFrame {
       
       $string_buffer->push("]]\n");
       
-      my $ndarray_string = $ndarray->to_string;
+      my $ndarray_string = $ndarray->dump;
       
       $string_buffer->push($ndarray_string);
     }

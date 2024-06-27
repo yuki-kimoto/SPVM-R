@@ -456,7 +456,7 @@ class R::NDArray {
     return $equals_dropped_dim;
   }
   
-  method to_string : string () {
+  method dump : string () {
     
     my $dim = $self->{dim};
     
