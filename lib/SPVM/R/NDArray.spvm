@@ -373,6 +373,25 @@ class R::NDArray {
     return $ret_ndarray;
   }
   
+  method set : R::NDArray ($coordinate : R::NDArray::Int, $ndarray : R::NDArray) {
+    
+    unless ($coordinate) {
+      die "The coordinate \$coordinate must be defined.";
+    }
+    
+    my $coordinate_length = $coordinate->length;
+    
+    my $vector_indexes = new R::NDArray::Int[$coordinate_length];
+    
+    for (my $i = 0; $i < $coordinate_length; $i++) {
+      $vector_indexes->[$i] = R::OP::Int->c([$coordinate->data->[$i]]);
+    }
+    
+    my $ret_ndarray = $self->slice_set($vector_indexes, $ndarray);
+    
+    return $ret_ndarray;
+  }
+  
   protected method get_data : object ($data_indexes : int[]) { die "Not implemented."; }
   
   protected method set_data : object ($data_indexes : int[], $data : object) { die "Not implemented."; }
