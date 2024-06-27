@@ -30,6 +30,7 @@ class TestCase::R {
   
   use R::DataFrame;
   use R::OP::Matrix;
+  use R::OP::DataFrame;
   
   static method test : int () {
     

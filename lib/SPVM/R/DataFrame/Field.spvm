@@ -7,7 +7,7 @@ class R::DataFrame::Field {
   use R::NDArray;
   
   # Fields
-  has name : string;
+  has name : ro string;
   
-  has ndarray : R::NDArray;
+  has ndarray : ro R::NDArray;
 }

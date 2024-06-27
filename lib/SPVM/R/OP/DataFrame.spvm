@@ -3,4 +3,36 @@
 
 class R::OP::DataFrame {
   
+  # Class Methods
+  static method cbind : R::DataFrame ($x_data_frame : R::DataFrame, $y_data_frame : R::DataFrame) {
+    
+    my $ret_data_frame = R::DataFrame->new;
+    
+    my $x_fields_length = $x_data_frame->fields_length;
+    
+    for (my $i = 0; $i < $x_fields_length; $i++) {
+      my $x_field = $x_data_frame->get_field($i);
+      
+      my $x_field_name = $x_field->name;
+      
+      my $x_ndarray = $x_field->ndarray;
+      
+      $ret_data_frame->push_field($x_field_name, $x_ndarray);
+    }
+    
+    my $y_fields_length = $y_data_frame->fields_length;
+    
+    for (my $i = 0; $i < $y_fields_length; $i++) {
+      my $y_field = $y_data_frame->get_field($i);
+      
+      my $y_field_name = $y_field->name;
+      
+      my $y_ndarray = $y_field->ndarray;
+      
+      $ret_data_frame->push_field($y_field_name, $y_ndarray);
+    }
+    
+    return $ret_data_frame;
+  }
+  
 }
