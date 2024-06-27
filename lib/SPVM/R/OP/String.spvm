@@ -14,4 +14,167 @@ class R::OP::String {
     return $x_ndarray;
   }
   
+  precompile static method to_int : R::NDArray::Int ($x_ndarray : R::NDArray::Int) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (int)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method to_long : R::NDArray::Long ($x_ndarray : R::NDArray::String) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Long->c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (long)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method to_float : R::NDArray::Float ($x_ndarray : R::NDArray::String) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Float->c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (float)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method to_double : R::NDArray::Double ($x_ndarray : R::NDArray::String) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Double->c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (double)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method to_float_complex : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::String) {
+    die "This method will be implemented.";
+  }
+  
+  precompile static method to_double_complex : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::String) {
+    die "This method will be implemented.";
+  }
+  
+  precompile static method to_string_buffer : R::NDArray::StringBuffer ($x_ndarray : R::NDArray::String) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::StringBuffer->c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = StringBuffer->new($x_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method to_time_piece : R::NDArray::Time::Piece ($x_ndarray : R::NDArray::String) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Time::Piece->c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      if ($x_data->[$i]) {
+        if (length $x_data->[$i] == 10) {
+          
+          my $tp = (Time::Piece)undef;
+          
+          eval { $tp = Time::Piece->strptime($x_data->[$i], "%Y-%m-%d"); }
+          
+          $ret_data->[$i] = $tp;
+        }
+        elsif (length $x_data->[$i] == 19) {
+          
+          my $tp = (Time::Piece)undef;
+          
+          eval { $tp = Time::Piece->strptime($x_data->[$i], "%Y-%m-%d %H:%M:%S"); }
+          
+          $ret_data->[$i] = $tp;
+        }
+        else {
+          $ret_data->[$i] = undef;
+        }
+      }
+      else {
+        $ret_data->[$i] = undef;
+      }
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
