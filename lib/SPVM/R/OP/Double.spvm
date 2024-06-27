@@ -1732,4 +1732,40 @@ class R::OP::Double {
   static method rep_length : R::NDArray::Double ($x_ndarray : R::NDArray, $length : int) {
     return (R::NDArray::Double)R::OP->rep_length($x_ndarray, $length);
   }
+  
+  static method runif : R::NDArray::Double($length : int, $options : object[]) {
+    
+    my $options_h = Hash->new($options);
+    
+    my $min = $options_h->get_or_default_int("min", 0);
+    
+    my $max = $options_h->get_or_default_int("max", 1);
+    
+    my $seed_ref = (int[])$options_h->get_or_default("seed_ref", undef);
+    
+    my $seed = -1;
+    if ($seed_ref) {
+      $seed = $seed_ref->[0];
+    }
+    else {
+      $seed = (int)(Sys->time * Sys->process_id);
+    }
+    
+    my $ret_ndarray = R::OP::Double->c(undef, [$length]);
+    
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      my $range = $max - $min + 1;
+      my $rand = Fn->rand(\$seed, $range) + $min;
+      $ret_data->[$i] = $rand;
+    }
+    
+    if ($seed_ref) {
+      $seed_ref->[0] = $seed;
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
