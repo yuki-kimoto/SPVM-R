@@ -60,6 +60,20 @@ class R::OP::Matrix::Double {
     }
   }
   
+  static method add : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    my $ret_ndarray = R::OP::Double->add($x_ndarray, $y_ndarray);
+    
+    return $ret_ndarray;
+  }
+  
+  static method sub : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    my $ret_ndarray = R::OP::Double->sub($x_ndarray, $y_ndarray);
+    
+    return $ret_ndarray;
+  }
+  
   static method mul : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
