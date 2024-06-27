@@ -18,15 +18,16 @@ B<WARNINGS:Tests are not yet done. All of method and field definitions in all cl
 
 =head2 Math Examples
 
+  use R;
   use R::OP::Double as DOP;
   use R::OP::Matrix::Double as DMOP;
   
   # Scalar
-  my $sca1 = DOP->c(3);
+  my $sca1 = R->double([3.0]);
   
   # Vector
-  my $vec1 = DOP->c(1, 2);
-  my $vec2 = DOP->c(3, 4);
+  my $vec1 = R->double([1.0, 2.0]);
+  my $vec2 = R->double([3.0, 4.0]);
   
   # Addition
   my $add = DOP->add($vec1, $vec2);
