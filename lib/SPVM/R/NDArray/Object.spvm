@@ -3,6 +3,15 @@
 
 class R::NDArray::Object extends R::NDArray {
   
+  static method new : R::NDArray::Object ($options : object[] = undef) {
+    
+    my $self = new R::NDArray::Object;
+    
+    $self->init($options);
+    
+    return $self;
+  }
+  
   precompile method set_order : void ($indexes : int[]) {
     
     $self->check_set_order_args($indexes);
