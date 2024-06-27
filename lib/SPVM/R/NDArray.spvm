@@ -329,6 +329,25 @@ class R::NDArray {
     return $ret_ndarray;
   }
   
+  method get : R::NDArray ($coordinate : R::NDArray::Int) {
+    
+    unless ($coordinate) {
+      die "The coordinate \$coordinate must be defined.";
+    }
+    
+    my $coordinate_length = $coordinate->length;
+    
+    my $vector_indexes = new R::NDArray::Int[$coordinate_length];
+    
+    for (my $i = 0; $i < $coordinate_length; $i++) {
+      $vector_indexes->[$i] = R::OP::Int->c([$coordinate->data->[$i]]);
+    }
+    
+    my $ret_ndarray = $self->slice($vector_indexes);
+    
+    return $ret_ndarray;
+  }
+  
   method slice_set : R::NDArray ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray) {
     
     my $dim = $self->{dim};
@@ -371,16 +390,16 @@ class R::NDArray {
     my $data_indexes = new int[$ret_length];
     
     for (my $ret_data_index = 0; $ret_data_index < $ret_length; $ret_data_index++) {
-      my $ret_cordinate = &convert_data_index_to_coordinate($ret_data_index, $ret_dim);
+      my $ret_coordinate = &convert_data_index_to_coordinate($ret_data_index, $ret_dim);
       
-      my $cordinate = new int[$ret_dim_length];
+      my $coordinate = new int[$ret_dim_length];
       
-      for (my $cordinate_index = 0; $cordinate_index < @$cordinate; $cordinate_index++) {
-        my $ret_cordinate_x = $ret_cordinate->[$cordinate_index];
-        $cordinate->[$cordinate_index] = $vector_indexes->[$cordinate_index]->data->[$ret_cordinate_x];
+      for (my $coordinate_index = 0; $coordinate_index < @$coordinate; $coordinate_index++) {
+        my $ret_coordinate_x = $ret_coordinate->[$coordinate_index];
+        $coordinate->[$coordinate_index] = $vector_indexes->[$coordinate_index]->data->[$ret_coordinate_x];
       }
       
-      my $data_index = &convert_coordinate_to_data_index($cordinate, $dim);
+      my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
       
       $data_indexes->[$ret_data_index] = $data_index;
     }
@@ -457,9 +476,9 @@ class R::NDArray {
         
         for (my $d2 = 0; $d2 < $dim->[0]; $d2++) {
           
-          my $cordinate = [$d1, $d2];
+          my $coordinate = [$d1, $d2];
           
-          my $data_index = &convert_coordinate_to_data_index($cordinate, $dim);
+          my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
           
           my $element_string = $self->element_to_string($data_index);
           
