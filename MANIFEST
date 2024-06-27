@@ -20,6 +20,8 @@ lib/SPVM/R/NDArray/Float.pm
 lib/SPVM/R/NDArray/Float.spvm
 lib/SPVM/R/NDArray/FloatComplex.pm
 lib/SPVM/R/NDArray/FloatComplex.spvm
+lib/SPVM/R/NDArray/Hash.pm
+lib/SPVM/R/NDArray/Hash.spvm
 lib/SPVM/R/NDArray/Int.pm
 lib/SPVM/R/NDArray/Int.spvm
 lib/SPVM/R/NDArray/Long.pm
@@ -387,8 +389,6 @@ lib/SPVM/R/Resource/Eigen.native/include/Eigen/UmfPackSupport
 lib/SPVM/R/Resource/Eigen.native/src/.gitkeep
 lib/SPVM/R/Resource/Eigen.pm
 lib/SPVM/R/Resource/Eigen.spvm
-lib/SPVM/R/Result.pm
-lib/SPVM/R/Result.spvm
 lib/SPVM/R/Util.pm
 lib/SPVM/R/Util.spvm
 LICENSE

@@ -7,7 +7,7 @@ class R::OP::Matrix::Double {
   use R::OP::Double;
   use Sys;
   use Hash;
-  use R::Result;
+  use R::NDArray::Hash;
   
   static method matrix : R::NDArray::Double ($x_data : double[], $row : int, $column : int) {
     

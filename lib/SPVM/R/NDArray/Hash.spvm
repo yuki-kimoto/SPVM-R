@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::Result {
+class R::NDArray::Hash {
   
   use Hash;
   use R::NDArray::Byte;
@@ -18,9 +18,9 @@ class R::Result {
   has hash : Hash of R::NDArray;
   
   # Class Methods
-  static method new : R::Result () {
+  static method new : R::NDArray::Hash () {
     
-    my $self = new R::Result;
+    my $self = new R::NDArray::Hash;
     
     my $hash = Hash->new;
     
