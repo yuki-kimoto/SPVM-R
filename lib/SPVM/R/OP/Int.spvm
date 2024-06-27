@@ -875,18 +875,18 @@ class R::OP::Int {
     return $ret_ndarray;
   }
   
-  static method seq : R::NDArray::Int ($x : int, $y : int, $by : int = 1) {
+  static method seq : R::NDArray::Int ($begin : int, $end : int, $by : int = 1) {
     
     my $ret_data_list = IntList->new;
-    my $current = $x;
+    my $current = $begin;
     while (1) {
       if ($by >= 0) {
-        if ($current <= $y) {
+        if ($current <= $end) {
           last;
         }
       }
       else {
-        if ($current >= $y) {
+        if ($current >= $end) {
           last;
         }
       }
@@ -901,11 +901,11 @@ class R::OP::Int {
     return $ret_ndarray;
   }
   
-  static method seq_length : R::NDArray::Int ($x : int, $y : int, $length : int) {
+  static method seq_length : R::NDArray::Int ($begin : int, $end : int, $length : int) {
     
-    my $by = (int)(($y - $x) / $length);
+    my $by = (int)(($end - $begin) / $length);
     
-    my $ret_ndarray = &seq($x, $y, $by);
+    my $ret_ndarray = &seq($begin, $end, $by);
     
     return $ret_ndarray;
   }
