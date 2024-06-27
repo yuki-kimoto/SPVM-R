@@ -70,6 +70,8 @@ lib/SPVM/R/OP/Matrix/FloatComplex.config
 lib/SPVM/R/OP/Matrix/FloatComplex.cpp
 lib/SPVM/R/OP/Matrix/FloatComplex.pm
 lib/SPVM/R/OP/Matrix/FloatComplex.spvm
+lib/SPVM/R/OP/Object.pm
+lib/SPVM/R/OP/Object.spvm
 lib/SPVM/R/OP/Short.pm
 lib/SPVM/R/OP/Short.spvm
 lib/SPVM/R/OP/String.pm
@@ -385,6 +387,8 @@ lib/SPVM/R/Resource/Eigen.native/include/Eigen/UmfPackSupport
 lib/SPVM/R/Resource/Eigen.native/src/.gitkeep
 lib/SPVM/R/Resource/Eigen.pm
 lib/SPVM/R/Resource/Eigen.spvm
+lib/SPVM/R/Result.pm
+lib/SPVM/R/Result.spvm
 lib/SPVM/R/Util.pm
 lib/SPVM/R/Util.spvm
 LICENSE

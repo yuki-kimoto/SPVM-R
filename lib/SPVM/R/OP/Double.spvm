@@ -3,6 +3,8 @@
 
 class R::OP::Double {
   
+  use R::NDArray::Byte;
+  use R::NDArray::Short;
   use R::NDArray::Int;
   use R::NDArray::Long;
   use R::NDArray::Float;
