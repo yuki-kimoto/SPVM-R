@@ -308,7 +308,7 @@ class R::OP::Matrix::Double {
   
   native static method _det : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
   
-  static method eigen : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $eigen_values_ndarray_ref : R::NDArray::Double[]) {
+  static method eigen : R::NDArray::Hash ($x_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
       die "The n-dimension array \$x_ndarray must be defined.";
@@ -316,14 +316,6 @@ class R::OP::Matrix::Double {
     
     unless ($x_ndarray->is_square_matrix) {
       die "The n-dimension array \$x_ndarray must be a squre matrix.";
-    }
-    
-    unless ($eigen_values_ndarray_ref) {
-      die "The array for engen values \$eigen_values_ndarray_ref must be defined.";
-    }
-    
-    unless (@$eigen_values_ndarray_ref == 1) {
-      die "The length of the array for engen values \$eigen_values_ndarray_ref must be 1.";
     }
     
     my $x_dim = $x_ndarray->dim;
@@ -337,28 +329,32 @@ class R::OP::Matrix::Double {
     
     my $x_data = (double[])$x_ndarray->data;
     
-    my $ret_row = -1;
+    my $eigen_vectors_row = -1;
     
-    my $ret_column = -1;
+    my $eigen_vectors_column = -1;
     
-    my $ret_data_ref = new double[][1];
+    my $eigen_vectors_data_ref = new double[][1];
     
     my $eigen_values_data_ref = new double[][1];
-    &_eigen($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_row, $x_column, $eigen_values_data_ref);
+    &_eigen($eigen_vectors_data_ref, \$eigen_vectors_row, \$eigen_vectors_column, $x_data, $x_row, $x_column, $eigen_values_data_ref);
     
-    my $ret_dim = [$ret_row, $ret_column];
+    my $eigen_vectors_dim = [$eigen_vectors_row, $eigen_vectors_column];
     
-    my $ret_data = $ret_data_ref->[0];
+    my $eigen_vectors_data = $eigen_vectors_data_ref->[0];
     
-    my $ret_ndarray = R::OP::Double->c($ret_data, $ret_dim);
+    my $eigen_vectors_ndarray = R::OP::Double->c($eigen_vectors_data, $eigen_vectors_dim);
     
     my $eigen_values_data = $eigen_values_data_ref->[0];
     
     my $eigen_values_ndarray = R::OP::Double->c($eigen_values_data);
     
-    $eigen_values_ndarray_ref->[0] = $eigen_values_ndarray;
+    my $ret_ndarray_hash = R::NDArray::Hash->new;
     
-    return $ret_ndarray;
+    $ret_ndarray_hash->set("vectors", $eigen_vectors_ndarray);
+    
+    $ret_ndarray_hash->set("values", $eigen_values_ndarray);
+    
+    return $ret_ndarray_hash;
   }
   
   native static method _eigen : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int, $eigen_values_data_ref : double[][]);
