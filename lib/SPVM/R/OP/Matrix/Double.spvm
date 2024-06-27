@@ -267,4 +267,44 @@ class R::OP::Matrix::Double {
   
   native static method _t : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
   
+  static method det : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimension array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->is_square_matrix) {
+      die "The n-dimension array \$x_ndarray must be a squre matrix.";
+    }
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $x_row = $x_dim->[0];
+    
+    my $x_column = 1;
+    if ($x_ndarray->is_matrix) {
+      $x_column = $x_dim->[1];
+    }
+    
+    my $x_data = (double[])$x_ndarray->data;
+    
+    my $ret_row = -1;
+    
+    my $ret_column = -1;
+    
+    my $ret_data_ref = new double[][1];
+    
+    &_det($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_row, $x_column);
+    
+    my $ret_dim = [$ret_row, $ret_column];
+    
+    my $ret_data = $ret_data_ref->[0];
+    
+    my $ret_ndarray = R::OP::Double->c($ret_data, $ret_dim);
+    
+    return $ret_ndarray;
+  }
+  
+  native static method _det : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
+  
 }
