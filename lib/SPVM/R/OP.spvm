@@ -4,6 +4,8 @@
 class R::OP {
   
   use R::NDArray;
+  use Fn;
+  use Array;
   
   # Class Methods
   static method equals_dim : int ($x_ndarray : R::NDArray, $y_ndarray : R::NDArray) {
@@ -173,11 +175,20 @@ class R::OP {
     
     my $x_data = $x_ndarray->data;
     
-    Fn->memcpy($ret_data, 0, $x_data, 0, $x_row * $x_column);
-    
     my $y_data = $y_ndarray->data;
     
-    Fn->memcpy($ret_data, $x_row * $x_column, $y_data, 0, $y_row * $y_column);
+    my $element_size = $x_ndarray->element_size;
+    
+    if ($x_ndarray->is_numeric) {
+      Fn->memcpy($ret_data, 0, $x_data, 0, $element_size * ($x_row * $x_column));
+      
+      Fn->memcpy($ret_data, $x_row * $x_column, $y_data, 0, $element_size * ($y_row * $y_column));
+    }
+    else {
+      Array->memcpy_object_address((object[])$ret_data, 0, (object[])$x_data, 0, $x_row * $x_column);
+      
+      Array->memcpy_object_address((object[])$ret_data, $x_row * $x_column, (object[])$y_data, 0, $y_row * $y_column);
+    }
     
     return $ret_ndarray;
   }
@@ -230,10 +241,20 @@ class R::OP {
     my $y_data = $y_ndarray->data;
     
     my $ret_data_index = 0;
+    
+    my $element_size = $x_ndarray->element_size;
+    
     for (my $column_index = 0; $column_index < $ret_column; $column_index++) {
-      Fn->memcpy($ret_data, $ret_data_index, $x_data, 0, $x_row);
-      
-      Fn->memcpy($ret_data, $ret_data_index + $x_row, $y_data, 0, $y_row);
+      if ($x_ndarray->is_numeric) {
+        Fn->memcpy($ret_data, $element_size * $ret_data_index, $x_data, 0, $element_size * $x_row);
+        
+        Fn->memcpy($ret_data, $element_size * ($ret_data_index + $x_row), $y_data, 0, $element_size * $y_row);
+      }
+      else {
+        Array->memcpy_object_address((object[])$ret_data, $ret_data_index, (object[])$x_data, 0, $x_row);
+        
+        Array->memcpy_object_address((object[])$ret_data, ($ret_data_index + $x_row), (object[])$y_data, 0, $y_row);
+      }
       
       $ret_data_index += $ret_column;
     }
