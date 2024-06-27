@@ -23,6 +23,7 @@ class R::OP::Double {
   use Complex_2d;
   use Math;
   use DoubleList;
+  use Sys;
   
   # Class Methods
   static method c : R::NDArray::Double ($x_data : double[], $x_dim : int[] = undef) {
