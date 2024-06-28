@@ -90,16 +90,16 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::FloatComplex->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::FloatComplex->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i]{re} = (float)$x_data->[$i]{re};
-      $ret_data->[$i]{im} = (float)$x_data->[$i]{im};
+      $ret_data->[$i]{re} = (float)$data->[$i]{re};
+      $ret_data->[$i]{im} = (float)$data->[$i]{im};
     }
     
     return $ret_ndarray;

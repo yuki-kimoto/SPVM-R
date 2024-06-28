@@ -75,15 +75,15 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::Int->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (int)$x_data->[$i];
+      $ret_data->[$i] = (int)$data->[$i];
     }
     
     return $ret_ndarray;
@@ -97,15 +97,15 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Long->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::Long->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (long)$x_data->[$i];
+      $ret_data->[$i] = (long)$data->[$i];
     }
     
     return $ret_ndarray;
@@ -119,15 +119,15 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Float->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::Float->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (float)$x_data->[$i];
+      $ret_data->[$i] = (float)$data->[$i];
     }
     
     return $ret_ndarray;
@@ -141,15 +141,15 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Double->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::Double->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (double)$x_data->[$i];
+      $ret_data->[$i] = (double)$data->[$i];
     }
     
     return $ret_ndarray;
@@ -171,15 +171,15 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::StringBuffer->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::StringBuffer->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = StringBuffer->new($x_data->[$i]);
+      $ret_data->[$i] = StringBuffer->new($data->[$i]);
     }
     
     return $ret_ndarray;
@@ -193,28 +193,28 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Time::Piece->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::Time::Piece->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      if ($x_data->[$i]) {
-        if (length $x_data->[$i] == 10) {
+      if ($data->[$i]) {
+        if (length $data->[$i] == 10) {
           
           my $tp = (Time::Piece)undef;
           
-          eval { $tp = Time::Piece->strptime($x_data->[$i], "%Y-%m-%d"); }
+          eval { $tp = Time::Piece->strptime($data->[$i], "%Y-%m-%d"); }
           
           $ret_data->[$i] = $tp;
         }
-        elsif (length $x_data->[$i] == 19) {
+        elsif (length $data->[$i] == 19) {
           
           my $tp = (Time::Piece)undef;
           
-          eval { $tp = Time::Piece->strptime($x_data->[$i], "%Y-%m-%d %H:%M:%S"); }
+          eval { $tp = Time::Piece->strptime($data->[$i], "%Y-%m-%d %H:%M:%S"); }
           
           $ret_data->[$i] = $tp;
         }

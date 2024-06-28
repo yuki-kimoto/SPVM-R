@@ -88,15 +88,15 @@ class R::NDArray::Double extends R::NDArray {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::Int->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (int)$x_data->[$i];
+      $ret_data->[$i] = (int)$data->[$i];
     }
     
     return $ret_ndarray;
@@ -110,15 +110,15 @@ class R::NDArray::Double extends R::NDArray {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Long->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::Long->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (long)$x_data->[$i];
+      $ret_data->[$i] = (long)$data->[$i];
     }
     
     return $ret_ndarray;
@@ -132,15 +132,15 @@ class R::NDArray::Double extends R::NDArray {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Float->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::Float->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (float)$x_data->[$i];
+      $ret_data->[$i] = (float)$data->[$i];
     }
     
     return $ret_ndarray;
@@ -154,15 +154,15 @@ class R::NDArray::Double extends R::NDArray {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::FloatComplex->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::FloatComplex->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i]{re} = (float)$x_data->[$i];
+      $ret_data->[$i]{re} = (float)$data->[$i];
       $ret_data->[$i]{im} = 0f;
     }
     
@@ -177,15 +177,15 @@ class R::NDArray::Double extends R::NDArray {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::DoubleComplex->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::DoubleComplex->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i]{re} = (double)$x_data->[$i];
+      $ret_data->[$i]{re} = (double)$data->[$i];
       $ret_data->[$i]{im} = 0;
     }
     
