@@ -190,7 +190,7 @@ class R::DataFrame {
   
   method length : int () {
     
-    my $ndarray = $self->get_ndarray(0);;
+    my $ndarray = $self->get_ndarray(0);
     
     my $length = $ndarray->length;
     
@@ -199,7 +199,7 @@ class R::DataFrame {
   
   method dim : int[] () {
     
-    my $ndarray = $self->get_ndarray(0);;
+    my $ndarray = $self->get_ndarray(0);
     
     my $dim = $ndarray->dim;
     
@@ -208,7 +208,7 @@ class R::DataFrame {
   
   method is_empty : int () {
     
-    my $ndarray = $self->get_ndarray(0);;
+    my $ndarray = $self->get_ndarray(0);
     
     my $is_empty = $ndarray->is_empty;
     
@@ -217,7 +217,7 @@ class R::DataFrame {
   
   method is_scalar : int () {
     
-    my $ndarray = $self->get_ndarray(0);;
+    my $ndarray = $self->get_ndarray(0);
     
     my $is_scalar = $ndarray->is_scalar;
     
@@ -226,7 +226,7 @@ class R::DataFrame {
   
   method is_vector : int () {
     
-    my $ndarray = $self->get_ndarray(0);;
+    my $ndarray = $self->get_ndarray(0);
     
     my $is_vector = $ndarray->is_vector;
     
@@ -235,7 +235,7 @@ class R::DataFrame {
   
   method is_matrix : int () {
     
-    my $ndarray = $self->get_ndarray(0);;
+    my $ndarray = $self->get_ndarray(0);
     
     my $is_matrix = $ndarray->is_matrix;
     
@@ -244,7 +244,7 @@ class R::DataFrame {
   
   method is_square_matrix : int () {
     
-    my $ndarray = $self->get_ndarray(0);;
+    my $ndarray = $self->get_ndarray(0);
     
     my $is_square_matrix = $ndarray->is_square_matrix;
     
