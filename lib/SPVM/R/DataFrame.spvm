@@ -28,7 +28,7 @@ class R::DataFrame {
   }
   
   # Instance Methods
-  method fields_length : int () {
+  method get_fields_length : int () {
     
     my $fields_list = $self->{fields_list};
     
@@ -37,7 +37,7 @@ class R::DataFrame {
     return $fields_length;
   }
   
-  method field_names : string[] () {
+  method get_field_names : string[] () {
     
     my $fields_list = $self->{fields_list};
     
@@ -176,7 +176,7 @@ class R::DataFrame {
   
   method push_field : void ($field_name : string, $ndarray : R::NDArray) {
     
-    my $fields_length = $self->fields_length;
+    my $fields_length = $self->get_fields_length;
     
     $self->insert_field($field_name, $ndarray);
   }
@@ -195,7 +195,7 @@ class R::DataFrame {
       $field_index = $self->get_field_index_by_name($before_field_name);
     }
     else {
-      $field_index = $self->fields_length;
+      $field_index = $self->get_fields_length;
     }
     
     my $fields_list = $self->{fields_list};
@@ -207,14 +207,12 @@ class R::DataFrame {
     
     my $field_index = $self->get_field_index_by_name($field_name);
     
-    my $fields_list = $self->{fields_list};
-    
-    $fields_list->remove($field_index);
+    $self->remove_field($field_index);
   }
   
   private method get_field_index_by_name : int ($field_name : string) {
     
-    my $fields_length = $self->fields_length;
+    my $fields_length = $self->get_fields_length;
     
     my $match = 0;
     for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
@@ -227,10 +225,10 @@ class R::DataFrame {
     
     die "The field specified by the field name \$field_name does not found.";
   }
-
+  
   method slice : R::DataFrame ($field_names : string[], $vector_indexes : R::NDArray::Int[]) {
     
-    my $fields_length = $self->fields_length;
+    my $fields_length = $self->get_fields_length;
     
     my $fields_h = $self->{fields_h};
     
@@ -271,7 +269,7 @@ class R::DataFrame {
   
   method dump : string () {
     
-    my $fields_length = $self->fields_length;
+    my $fields_length = $self->get_fields_length;
     
     my $string_buffer = StringBuffer->new;
     for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
@@ -303,7 +301,7 @@ class R::DataFrame {
   
   method set_order : void ($indexes : int[]) {
     
-    my $fields_length = $self->fields_length;
+    my $fields_length = $self->get_fields_length;
     
     for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
       my $ndarray = $self->get_ndarray($field_index);
@@ -326,7 +324,7 @@ class R::DataFrame {
       die "The n-dimension array \$ndarray must be defined.";
     }
     
-    my $fields_length = $self->fields_length;
+    my $fields_length = $self->get_fields_length;
     
     if ($fields_length != 0) {
       my $ndarray_length = $ndarray->length;
@@ -339,7 +337,7 @@ class R::DataFrame {
   
   method clone : R::DataFrame () {
     
-    my $field_names = $self->field_names;
+    my $field_names = $self->get_field_names;
     
     my $dim = $self->dim;
     
