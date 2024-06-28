@@ -235,7 +235,7 @@ class R::NDArray {
     }
     else {
       for (my $i = 0; $i < $length; $i++) {
-        $clone_data->(object[])->[$i] = $data->(object[])->[$i];
+        $clone_data->(object[])->[$i] = $self->element_clone($i);
       }
     }
     
@@ -249,6 +249,8 @@ class R::NDArray {
   }
   
   method element_to_string : string ($data_index : int) { die "Not impelmented."; }
+  
+  method element_clone : string ($data_index : int) { die "Not impelmented."; }
   
   method is_empty : int () {
     
