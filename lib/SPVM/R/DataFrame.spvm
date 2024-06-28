@@ -37,13 +37,97 @@ class R::DataFrame {
     return $fields_length;
   }
   
-  method get_field : R::DataFrame::Field ($index : int) {
+  method field_names : string[] () {
     
     my $fields_list = $self->{fields_list};
     
-    my $field = (R::DataFrame::Field)$fields_list->get($index);
+    my $fields_length = $fields_list->length;
+    
+    my $field_names = new string[$fields_length];
+    
+    for (my $i = 0; $i < $fields_length; $i++) {
+      my $field = $self->get_field($i);
+      
+      $field_names->[$i] = $field->{name};
+    }
+    
+    return $field_names;
+  }
+  
+  method field_name : string ($field_index : int) {
+    
+    my $fields_list = $self->{fields_list};
+    
+    my $field = $self->get_field($field_index);
+    
+    my $field_name = $field->{name};
+    
+    return $field_name;
+  }
+  
+  method get_field : R::DataFrame::Field ($field_index : int) {
+    
+    my $fields_list = $self->{fields_list};
+    
+    my $field = (R::DataFrame::Field)$fields_list->get($field_index);
     
     return $field;
+  }
+  
+  method exists_field_by_index : int ($field_index : int) {
+    
+    my $fields_list = $self->{fields_list};
+    
+    my $exists = 0;
+    if ($field_index >= 0 && $field_index < $fields_list->length) {
+      $exists = 1;
+    }
+    
+    return $exists;
+  }
+  
+  method exists_field_by_name : int ($field_name : string) {
+    
+    my $fields_h = $self->{fields_h};
+    
+    my $field = (R::DataFrame::Field)$fields_h->get($field_name);
+    
+    my $exists = 0;
+    if ($field) {
+      $exists = 1;
+    }
+    
+    return $exists;
+  }
+  
+  method get_ndarray_by_field_index : R::NDArray ($field_index : int) {
+    
+    my $fields_list = $self->{fields_list};
+    
+    unless ($field_index >= 0 && $field_index < $fields_list->length) {
+      die "The field at index $field_index is not found.";
+    }
+    
+    my $field = (R::DataFrame::Field)$fields_list->get($field_index);
+    
+    my $ndarray = $field->{ndarray};
+    
+    return $ndarray;
+  }
+  
+  method get_ndarray_by_field_name : R::NDArray ($field_name : string) {
+    
+    my $fields_h = $self->{fields_h};
+    
+    my $field = (R::DataFrame::Field)$fields_h->get($field_name);
+    
+    unless ($field) {
+      die "The field which name is \"$field_name\" is not found.";
+    }
+    
+    my $ndarray = $field->{ndarray};
+    
+    return $ndarray;
   }
   
   method length : int () {
@@ -107,34 +191,6 @@ class R::DataFrame {
     my $is_square_matrix = $ndarray->is_square_matrix;
     
     return $is_square_matrix;
-  }
-  
-  method field_names : string[] () {
-    
-    my $fields_list = $self->{fields_list};
-    
-    my $fields_length = $fields_list->length;
-    
-    my $field_names = new string[$fields_length];
-    
-    for (my $i = 0; $i < $fields_length; $i++) {
-      my $field = $self->get_field($i);
-      
-      $field_names->[$i] = $field->{name};
-    }
-    
-    return $field_names;
-  }
-  
-  method field_name : string ($index : int) {
-    
-    my $fields_list = $self->{fields_list};
-    
-    my $field = $self->get_field($index);
-    
-    my $field_name = $field->{name};
-    
-    return $field_name;
   }
   
   method push_field : void ($field_name : string, $ndarray : R::NDArray) {
