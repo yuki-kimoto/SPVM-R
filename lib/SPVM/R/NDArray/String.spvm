@@ -67,4 +67,167 @@ class R::NDArray::String extends R::NDArray::Object {
     return $string;
   }
   
+  precompile method to_int : R::NDArray::Int () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (int)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_long : R::NDArray::Long () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Long->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (long)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_float : R::NDArray::Float () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Float->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (float)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_double : R::NDArray::Double () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Double->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (double)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_float_complex : R::NDArray::FloatComplex () {
+    die "This method will be implemented.";
+  }
+  
+  precompile method to_double_complex : R::NDArray::DoubleComplex () {
+    die "This method will be implemented.";
+  }
+  
+  precompile method to_string_buffer : R::NDArray::StringBuffer () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::StringBuffer->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = StringBuffer->new($x_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_time_piece : R::NDArray::Time::Piece () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Time::Piece->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      if ($x_data->[$i]) {
+        if (length $x_data->[$i] == 10) {
+          
+          my $tp = (Time::Piece)undef;
+          
+          eval { $tp = Time::Piece->strptime($x_data->[$i], "%Y-%m-%d"); }
+          
+          $ret_data->[$i] = $tp;
+        }
+        elsif (length $x_data->[$i] == 19) {
+          
+          my $tp = (Time::Piece)undef;
+          
+          eval { $tp = Time::Piece->strptime($x_data->[$i], "%Y-%m-%d %H:%M:%S"); }
+          
+          $ret_data->[$i] = $tp;
+        }
+        else {
+          $ret_data->[$i] = undef;
+        }
+      }
+      else {
+        $ret_data->[$i] = undef;
+      }
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
