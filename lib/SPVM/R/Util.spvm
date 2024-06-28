@@ -4,7 +4,7 @@
 class R::Util {
   
   # Class Methods
-  static method calc_length : int ($dim : int[]) {
+  static method calc_data_length : int ($dim : int[]) {
     
     unless ($dim) {
       die "The dimention \$dim must be defined.";

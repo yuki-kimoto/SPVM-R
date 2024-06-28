@@ -184,7 +184,7 @@ class R::NDArray {
     $dim = R::Util->normalize_dim($dim);
     
     unless ($data) {
-      my $data_length = R::Util->calc_length($dim);
+      my $data_length = R::Util->calc_data_length($dim);
       $data = $self->create_default_data($data_length);
     }
     
@@ -223,7 +223,7 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
-    my $length = R::Util->calc_length($dim);
+    my $length = R::Util->calc_data_length($dim);
     
     return $length;
   }
@@ -415,7 +415,7 @@ class R::NDArray {
     
     my $ret_dim_length = @$ret_dim;
     
-    my $ret_length = R::Util->calc_length($ret_dim);
+    my $ret_length = R::Util->calc_data_length($ret_dim);
     
     my $ret_data = $self->create_default_data($ret_length);
     
