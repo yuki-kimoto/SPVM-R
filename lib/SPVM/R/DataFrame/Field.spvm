@@ -1,13 +1,13 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::DataFrame::Field {
+class R::DataFrame::Field : private {
   allow R::DataFrame;
   
   use R::NDArray;
   
   # Fields
-  has name : ro string;
+  has name : string;
   
-  has ndarray : ro R::NDArray;
+  has ndarray : R::NDArray;
 }
