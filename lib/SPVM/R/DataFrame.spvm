@@ -46,32 +46,10 @@ class R::DataFrame {
     my $field_names = new string[$fields_length];
     
     for (my $i = 0; $i < $fields_length; $i++) {
-      my $field = $self->get_field($i);
-      
-      $field_names->[$i] = $field->{name};
+      $field_names->[$i] = $self->get_field_name($i);
     }
     
     return $field_names;
-  }
-  
-  method get_field_name : string ($field_index : int) {
-    
-    my $fields_list = $self->{fields_list};
-    
-    my $field = $self->get_field($field_index);
-    
-    my $field_name = $field->{name};
-    
-    return $field_name;
-  }
-  
-  method get_field : R::DataFrame::Field ($field_index : int) {
-    
-    my $fields_list = $self->{fields_list};
-    
-    my $field = (R::DataFrame::Field)$fields_list->get($field_index);
-    
-    return $field;
   }
   
   method exists_field : int ($field_name : string) {
@@ -86,6 +64,21 @@ class R::DataFrame {
     }
     
     return $exists;
+  }
+  
+  method get_field_name : string ($field_index : int) {
+    
+    my $fields_list = $self->{fields_list};
+    
+    unless ($field_index >= 0 && $field_index < $fields_list->length) {
+      die "The field at index $field_index is not found.";
+    }
+    
+    my $field = (R::DataFrame::Field)$fields_list->get($field_index);
+    
+    my $field_name = $field->{name};
+    
+    return $field_name;
   }
   
   method get_ndarray : R::NDArray ($field_index : int) {
@@ -225,9 +218,9 @@ class R::DataFrame {
     
     my $match = 0;
     for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
-      my $field_cmp = $self->get_field($field_index);
+      my $field_name_cmp = $self->get_field_name($field_index);
       
-      if ($field_name eq $field_cmp->{name}) {
+      if ($field_name eq $field_name_cmp) {
         return $field_index;
       }
     }
@@ -282,11 +275,10 @@ class R::DataFrame {
     
     my $string_buffer = StringBuffer->new;
     for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
-      my $field = $self->get_field($field_index);
       
-      my $field_name = $field->{name};
+      my $field_name = $self->get_field_name($field_index);
       
-      my $ndarray = $field->{ndarray};
+      my $ndarray = $self->get_ndarray($field_index);
       
       $string_buffer->push("[[");
       
@@ -314,9 +306,7 @@ class R::DataFrame {
     my $fields_length = $self->fields_length;
     
     for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
-      my $field = $self->get_field($field_index);
-      
-      my $ndarray = $field->{ndarray};
+      my $ndarray = $self->get_ndarray($field_index);
       
       $ndarray->set_order($indexes);
     }
