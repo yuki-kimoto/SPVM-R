@@ -74,19 +74,7 @@ class R::DataFrame {
     return $field;
   }
   
-  method exists_field : int ($field_index : int) {
-    
-    my $fields_list = $self->{fields_list};
-    
-    my $exists = 0;
-    if ($field_index >= 0 && $field_index < $fields_list->length) {
-      $exists = 1;
-    }
-    
-    return $exists;
-  }
-  
-  method exists_field_by_name : int ($field_name : string) {
+  method exists_field : int ($field_name : string) {
     
     my $fields_h = $self->{fields_h};
     
