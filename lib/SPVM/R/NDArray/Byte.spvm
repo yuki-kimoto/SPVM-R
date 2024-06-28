@@ -82,4 +82,5 @@ class R::NDArray::Byte extends R::NDArray {
       $data->[$i] = $tmp_data->[$order_index];
     }
   }
+  
 }
