@@ -54,7 +54,7 @@ class R::DataFrame {
     return $field_names;
   }
   
-  method field_name : string ($field_index : int) {
+  method get_field_name : string ($field_index : int) {
     
     my $fields_list = $self->{fields_list};
     
