@@ -67,6 +67,17 @@ class R::NDArray::String extends R::NDArray::Object {
     return $string;
   }
   
+  method element_clone : string ($data_index : int) {
+    
+    my $data = $self->data;
+    
+    my $element = $data->[$data_index];
+    
+    my $clone = copy $element;
+    
+    return $clone;
+  }
+  
   precompile method to_int : R::NDArray::Int () {
     
     unless ($self) {
