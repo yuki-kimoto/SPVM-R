@@ -34,6 +34,258 @@ class TestCase::R {
   
   static method test : int () {
     
+    # R::NDArray
+    {
+      # R::NDArray#is_empty method
+      {
+        {
+          my $dim = new int[0];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->is_empty) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_empty) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_empty) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_empty) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2, 3];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_empty) {
+            return 0;
+          }
+        }
+      }
+      
+      # R::NDArray#is_scalar method
+      {
+        {
+          my $dim = new int[0];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_scalar) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->is_scalar) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_scalar) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_scalar) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2, 3];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_scalar) {
+            return 0;
+          }
+        }
+      }
+      
+      # R::NDArray#is_vector method
+      {
+        {
+          my $dim = new int[0];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_vector) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->is_vector) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->is_vector) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_vector) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2, 3];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_vector) {
+            return 0;
+          }
+        }
+      }
+      
+      # R::NDArray#is_matrix method
+      {
+        {
+          my $dim = new int[0];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->is_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2, 3];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_matrix) {
+            return 0;
+          }
+        }
+      }
+
+      # R::NDArray#is_square_matrix method
+      {
+        {
+          my $dim = new int[0];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_square_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_square_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_square_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_square_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2, 2];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->is_square_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2, 3];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          if ($ndarray->is_square_matrix) {
+            return 0;
+          }
+        }
+      }
+    }
+    
     # R::NDArray::Int
     {
       # R::NDArray::Int#new method

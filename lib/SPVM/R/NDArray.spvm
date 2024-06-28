@@ -324,7 +324,7 @@ class R::NDArray {
     my $dim = $self->{dim};
     
     my $is_square_matrix = 0;
-    if ($self->is_matrix && $dim->[0] == $dim->[0]) {
+    if ($self->is_matrix && $dim->[0] == $dim->[1]) {
       $is_square_matrix = 1;
     }
     
