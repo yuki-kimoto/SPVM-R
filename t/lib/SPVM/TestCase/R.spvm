@@ -34,11 +34,23 @@ class TestCase::R {
   
   static method test : int () {
     
+    # R::NDArray::Int
     {
-      my $data = [1, 2, 3];
-      my $ndarray = R::NDArray::Int->new({data => $data});
-      
-      
+      # R::NDArray::Int#new method
+      {
+        {
+          my $data = [1, 2, 3];
+          my $ndarray = R::NDArray::Int->new({data => $data});
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->data, [1, 2, 3])) {
+            return 0;
+          }
+        }
+      }
     }
 
 =pod
