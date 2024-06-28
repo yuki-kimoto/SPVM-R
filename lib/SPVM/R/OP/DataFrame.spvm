@@ -21,7 +21,7 @@ class R::OP::DataFrame {
       die "The data frame \$x_data_frame must be defined.";
     }
     
-    my $nrow = $x_data_frame->length;
+    my $nrow = $x_data_frame->get_ndarray_by_index(0)->length;
     
     return $nrow;
   }

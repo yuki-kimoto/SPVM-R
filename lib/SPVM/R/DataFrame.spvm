@@ -182,73 +182,10 @@ class R::DataFrame {
     if ($fields_length != 0) {
       my $ndarray_length = $ndarray->length;
       
-      unless ($ndarray_length == $self->length) {
+      unless ($ndarray_length == $self->get_ndarray_by_index(0)->length) {
         die "The length of n-dimension array \$ndarray must be the same as the return value of ndarray_length method given the invocant.";
       }
     }
-  }
-  
-  method length : int () {
-    
-    my $ndarray = $self->get_ndarray(0);
-    
-    my $length = $ndarray->length;
-    
-    return $length;
-  }
-  
-  method dim : int[] () {
-    
-    my $ndarray = $self->get_ndarray(0);
-    
-    my $dim = $ndarray->dim;
-    
-    return $dim;
-  }
-  
-  method is_empty : int () {
-    
-    my $ndarray = $self->get_ndarray(0);
-    
-    my $is_empty = $ndarray->is_empty;
-    
-    return $is_empty;
-  }
-  
-  method is_scalar : int () {
-    
-    my $ndarray = $self->get_ndarray(0);
-    
-    my $is_scalar = $ndarray->is_scalar;
-    
-    return $is_scalar;
-  }
-  
-  method is_vector : int () {
-    
-    my $ndarray = $self->get_ndarray(0);
-    
-    my $is_vector = $ndarray->is_vector;
-    
-    return $is_vector;
-  }
-  
-  method is_matrix : int () {
-    
-    my $ndarray = $self->get_ndarray(0);
-    
-    my $is_matrix = $ndarray->is_matrix;
-    
-    return $is_matrix;
-  }
-  
-  method is_square_matrix : int () {
-    
-    my $ndarray = $self->get_ndarray(0);
-    
-    my $is_square_matrix = $ndarray->is_square_matrix;
-    
-    return $is_square_matrix;
   }
   
   method slice : R::DataFrame ($field_names : string[], $vector_indexes : R::NDArray::Int[]) {
