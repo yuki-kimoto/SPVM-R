@@ -335,17 +335,24 @@ class R::DataFrame {
     }
   }
   
-  method clone : R::DataFrame () {
+  method clone : R::DataFrame ($deep : int = 0) {
+    
+    my $fields_length = $self->get_fields_length;
+    
+    my $fields_h = $self->{fields_h};
     
     my $field_names = $self->get_field_names;
     
-    my $dim = $self->dim;
-    
-    my $dim_length = @$dim;
-    
-    my $vector_indexes = new R::NDArray::Int[$dim_length];
-    
-    my $ret_data_frame = $self->slice($field_names, $vector_indexes);
+    my $ret_data_frame = R::DataFrame->new;
+    for my $field_name (@$field_names) {
+      my $field = (R::DataFrame::Field)$fields_h->get($field_name);
+      
+      my $ndarray = $field->{ndarray};
+      
+      my $ret_ndarray = $ndarray->clone($deep);
+      
+      $ret_data_frame->push_field($field_name, $ndarray);
+    }
     
     return $ret_data_frame;
   }
