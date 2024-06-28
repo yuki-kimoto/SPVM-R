@@ -218,7 +218,7 @@ class R::NDArray {
   
   protected method create_default_data : object ($length : int) { die "Not implemented."; }
   
-  method clone : R::NDArray () {
+  method clone : R::NDArray ($deep : int = 0) {
     
     my $element_size = $self->{element_size};
     
@@ -235,7 +235,12 @@ class R::NDArray {
     }
     else {
       for (my $i = 0; $i < $length; $i++) {
-        $clone_data->(object[])->[$i] = $self->element_clone($i);
+        if ($deep) {
+          $clone_data->(object[])->[$i] = $self->element_clone($i);
+        }
+        else {
+          $clone_data->(object[])->[$i] = $data->(object[])->[$i];
+        }
       }
     }
     
