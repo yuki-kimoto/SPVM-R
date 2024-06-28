@@ -131,9 +131,11 @@ class R::NDArray::DoubleComplex extends R::NDArray {
       die "The data indexes \$data_indexes must be defined.";
     }
     
+    my $data_index = 0;
     my $data_indexes_length = @$data_indexes;
     for (my $i = 0; $i < $data_indexes_length; $i++) {
-      $self_data->(Complex_2d[])->[$i] = $data->(Complex_2d[])->[$i];
+      $self_data->(Complex_2d[])->[$i] = $data->(Complex_2d[])->[$data_index];
+      $data_index++;
     }
   }
   
