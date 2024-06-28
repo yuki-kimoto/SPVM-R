@@ -126,7 +126,7 @@ class R::Util {
   }
   
   # This method will be added to Fn class.
-  private static method _get_array_length : int ($array : object) {
+  static method _get_array_length : int ($array : object) {
     
     unless ($array) {
       die "The array \$array must be defined.";

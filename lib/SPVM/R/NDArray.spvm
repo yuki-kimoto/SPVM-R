@@ -141,18 +141,21 @@ class R::NDArray {
     
     my $options_h = Hash->new($options);
     
+    # element_size option
     my $element_size = $options_h->get_or_default_int("element_size", -1);
     unless ($element_size > 0) {
       die "element_size option must be greter than 0.";
     }
     $self->{element_size} = $element_size;
     
+    # is_numeric option
     my $is_numeric = $options_h->get_or_default_int("is_numeric", 0);
     unless ($is_numeric > 0) {
       die "is_numeric option must be greter than 0.";
     }
     $self->{is_numeric} = (byte)$is_numeric;
     
+    # type option
     my $type = $options_h->get_or_default_string("type", undef);
     unless ($type) {
       die "type option must be defined.";
@@ -162,19 +165,30 @@ class R::NDArray {
     }
     $self->{type} = $type;
     
-    my $dim = (int[])$options_h->get_or_default("dim", undef);
-    
-    my $normalized_dim = R::Util->normalize_dim($dim);
-    
-    $self->{dim} = $normalized_dim;
-    
+    # data option
     my $data = $options_h->get_or_default("data", undef);
     
-    unless ($data) {
-      my $length = $self->length;
-      
-      $data = $self->create_default_data($length);
+    # dim option
+    my $dim = (int[])$options_h->get_or_default("dim", undef);
+    
+    unless ($dim) {
+      if ($data) {
+        my $data_length = R::Util->_get_array_length($data);
+        $dim = [$data_length];
+      }
+      else {
+        $dim = new int[0];
+      }
     }
+    
+    $dim = R::Util->normalize_dim($dim);
+    
+    unless ($data) {
+      my $data_length = R::Util->calc_length($dim);
+      $data = $self->create_default_data($data_length);
+    }
+    
+    $self->{dim} = $dim;
     
     $self->{data} = $data;
     

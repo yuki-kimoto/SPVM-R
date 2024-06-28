@@ -34,6 +34,31 @@ class TestCase::R {
   
   static method test : int () {
     
+    {
+      my $data = [1, 2, 3];
+      my $ndarray = R::NDArray::Int->new({data => $data});
+      
+      
+    }
+
+=pod
+
+  data => [
+    1,
+    2,
+    3
+  ] : int[](0x55614f2fb8d0),
+  element_size => 4,
+  is_numeric => 1,
+  type => "int",
+  dim => [
+    3
+  ] : int[](0x55614f2eb450),
+  is_dim_read_only => 0
+
+=cut
+    
+    
     return 1;
   }
 }
