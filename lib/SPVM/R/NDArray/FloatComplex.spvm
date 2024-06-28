@@ -80,4 +80,28 @@ class R::NDArray::FloatComplex extends R::NDArray {
       $data->[$i] = $tmp_data->[$order_index];
     }
   }
+  
+  precompile method to_double_complex : R::NDArray::DoubleComplex () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::DoubleComplex->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i]{re} = (double)$x_data->[$i]{re};
+      $ret_data->[$i]{im} = (double)$x_data->[$i]{im};
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
