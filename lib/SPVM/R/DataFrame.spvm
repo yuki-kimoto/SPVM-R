@@ -211,7 +211,7 @@ class R::DataFrame {
     return $ret_data_frame;
   }
   
-  method to_string : string () {
+  method dump : string () {
     
     my $fields_length = $self->fields_length;
     
