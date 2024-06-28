@@ -2,7 +2,7 @@
 # MIT License
 
 class R {
-  version "0.001";
+  version "0.002";
   
   use StringBuffer;
   use Time::Piece;
