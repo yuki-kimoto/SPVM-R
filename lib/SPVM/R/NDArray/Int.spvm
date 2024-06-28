@@ -78,4 +78,139 @@ class R::NDArray::Int extends R::NDArray {
       $data->[$i] = $tmp_data->[$order_index];
     }
   }
+  
+  precompile method to_long : R::NDArray::Long () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Long->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (long)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_float : R::NDArray::Float () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Float->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (float)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_double : R::NDArray::Double () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Double->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (double)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_float_complex : R::NDArray::FloatComplex () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::FloatComplex->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i]{re} = (float)$x_data->[$i];
+      $ret_data->[$i]{im} = 0f;
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_double_complex : R::NDArray::DoubleComplex () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::DoubleComplex->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i]{re} = (double)$x_data->[$i];
+      $ret_data->[$i]{im} = 0;
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_string : R::NDArray::String () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $x_dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::String->c(undef, $x_dim);
+    
+    my $x_data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (string)$x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
