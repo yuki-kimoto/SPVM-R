@@ -81,7 +81,23 @@ class R::DataFrame {
     return $field_name;
   }
   
-  method get_ndarray : R::NDArray ($field_index : int) {
+  method get_field_index : int ($field_name : string) {
+    
+    my $fields_length = $self->get_fields_length;
+    
+    my $match = 0;
+    for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
+      my $field_name_cmp = $self->get_field_name($field_index);
+      
+      if ($field_name eq $field_name_cmp) {
+        return $field_index;
+      }
+    }
+    
+    die "The field specified by the field name \$field_name does not found.";
+  }
+  
+  method get_ndarray_by_index : R::NDArray ($field_index : int) {
     
     my $fields_list = $self->{fields_list};
     
@@ -96,7 +112,7 @@ class R::DataFrame {
     return $ndarray;
   }
   
-  method get_ndarray_by_name : R::NDArray ($field_name : string) {
+  method get_ndarray : R::NDArray ($field_name : string) {
     
     my $fields_h = $self->{fields_h};
     
@@ -109,6 +125,67 @@ class R::DataFrame {
     my $ndarray = $field->{ndarray};
     
     return $ndarray;
+  }
+  
+  method push_field : void ($field_name : string, $ndarray : R::NDArray) {
+    
+    my $fields_length = $self->get_fields_length;
+    
+    $self->insert_field($field_name, $ndarray);
+  }
+  
+  method insert_field : void ($field_name : string, $ndarray : R::NDArray, $before_field_name : string = undef) {
+    
+    $self->check_field($field_name, $ndarray);
+    
+    my $field = new R::DataFrame::Field;
+    $field->{name} = $field_name;
+    $ndarray->make_dim_read_only;
+    $field->{ndarray} = $ndarray;
+    
+    my $field_index = -1;
+    if ($before_field_name) {
+      $field_index = $self->get_field_index($before_field_name);
+    }
+    else {
+      $field_index = $self->get_fields_length;
+    }
+    
+    my $fields_list = $self->{fields_list};
+    
+    $fields_list->insert($field_index, $field);
+  }
+  
+  method remove_field : void ($field_name : string) {
+    
+    my $field_index = $self->get_field_index($field_name);
+    
+    $self->remove_field($field_index);
+  }
+  
+  private method check_field : void ($field_name : string, $ndarray : R::NDArray) {
+    
+    my $fields_h = $self->{fields_h};
+    
+    my $field = $fields_h->get($field_name);
+    
+    if ($field) {
+      die "The field name \$field_name is already used.";
+    }
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $fields_length = $self->get_fields_length;
+    
+    if ($fields_length != 0) {
+      my $ndarray_length = $ndarray->length;
+      
+      unless ($ndarray_length == $self->length) {
+        die "The length of n-dimension array \$ndarray must be the same as the return value of ndarray_length method given the invocant.";
+      }
+    }
   }
   
   method length : int () {
@@ -172,83 +249,6 @@ class R::DataFrame {
     my $is_square_matrix = $ndarray->is_square_matrix;
     
     return $is_square_matrix;
-  }
-  
-  method push_field : void ($field_name : string, $ndarray : R::NDArray) {
-    
-    my $fields_length = $self->get_fields_length;
-    
-    $self->insert_field($field_name, $ndarray);
-  }
-  
-  method insert_field : void ($field_name : string, $ndarray : R::NDArray, $before_field_name : string = undef) {
-    
-    $self->check_field($field_name, $ndarray);
-    
-    my $field = new R::DataFrame::Field;
-    $field->{name} = $field_name;
-    $ndarray->make_dim_read_only;
-    $field->{ndarray} = $ndarray;
-    
-    my $field_index = -1;
-    if ($before_field_name) {
-      $field_index = $self->get_field_index($before_field_name);
-    }
-    else {
-      $field_index = $self->get_fields_length;
-    }
-    
-    my $fields_list = $self->{fields_list};
-    
-    $fields_list->insert($field_index, $field);
-  }
-  
-  method remove_field : void ($field_name : string) {
-    
-    my $field_index = $self->get_field_index($field_name);
-    
-    $self->remove_field($field_index);
-  }
-  
-  method get_field_index : int ($field_name : string) {
-    
-    my $fields_length = $self->get_fields_length;
-    
-    my $match = 0;
-    for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
-      my $field_name_cmp = $self->get_field_name($field_index);
-      
-      if ($field_name eq $field_name_cmp) {
-        return $field_index;
-      }
-    }
-    
-    die "The field specified by the field name \$field_name does not found.";
-  }
-  
-  private method check_field : void ($field_name : string, $ndarray : R::NDArray) {
-    
-    my $fields_h = $self->{fields_h};
-    
-    my $field = $fields_h->get($field_name);
-    
-    if ($field) {
-      die "The field name \$field_name is already used.";
-    }
-    
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
-    }
-    
-    my $fields_length = $self->get_fields_length;
-    
-    if ($fields_length != 0) {
-      my $ndarray_length = $ndarray->length;
-      
-      unless ($ndarray_length == $self->length) {
-        die "The length of n-dimension array \$ndarray must be the same as the return value of ndarray_length method given the invocant.";
-      }
-    }
   }
   
   method slice : R::DataFrame ($field_names : string[], $vector_indexes : R::NDArray::Int[]) {
