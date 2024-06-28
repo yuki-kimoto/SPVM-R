@@ -192,7 +192,7 @@ class R::DataFrame {
     
     my $field_index = -1;
     if ($before_field_name) {
-      $field_index = $self->get_field_index_by_name($before_field_name);
+      $field_index = $self->get_field_index($before_field_name);
     }
     else {
       $field_index = $self->get_fields_length;
@@ -205,12 +205,12 @@ class R::DataFrame {
   
   method remove_field : void ($field_name : string) {
     
-    my $field_index = $self->get_field_index_by_name($field_name);
+    my $field_index = $self->get_field_index($field_name);
     
     $self->remove_field($field_index);
   }
   
-  private method get_field_index_by_name : int ($field_name : string) {
+  method get_field_index : int ($field_name : string) {
     
     my $fields_length = $self->get_fields_length;
     
@@ -224,6 +224,31 @@ class R::DataFrame {
     }
     
     die "The field specified by the field name \$field_name does not found.";
+  }
+  
+  private method check_field : void ($field_name : string, $ndarray : R::NDArray) {
+    
+    my $fields_h = $self->{fields_h};
+    
+    my $field = $fields_h->get($field_name);
+    
+    if ($field) {
+      die "The field name \$field_name is already used.";
+    }
+    
+    unless ($ndarray) {
+      die "The n-dimension array \$ndarray must be defined.";
+    }
+    
+    my $fields_length = $self->get_fields_length;
+    
+    if ($fields_length != 0) {
+      my $ndarray_length = $ndarray->length;
+      
+      unless ($ndarray_length == $self->length) {
+        die "The length of n-dimension array \$ndarray must be the same as the return value of ndarray_length method given the invocant.";
+      }
+    }
   }
   
   method slice : R::DataFrame ($field_names : string[], $vector_indexes : R::NDArray::Int[]) {
@@ -307,31 +332,6 @@ class R::DataFrame {
       my $ndarray = $self->get_ndarray($field_index);
       
       $ndarray->set_order($indexes);
-    }
-  }
-  
-  private method check_field : void ($field_name : string, $ndarray : R::NDArray) {
-    
-    my $fields_h = $self->{fields_h};
-    
-    my $field = $fields_h->get($field_name);
-    
-    if ($field) {
-      die "The field name \$field_name is already used.";
-    }
-    
-    unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
-    }
-    
-    my $fields_length = $self->get_fields_length;
-    
-    if ($fields_length != 0) {
-      my $ndarray_length = $ndarray->length;
-      
-      unless ($ndarray_length == $self->length) {
-        die "The length of n-dimension array \$ndarray must be the same as the return value of ndarray_length method given the invocant.";
-      }
     }
   }
   
