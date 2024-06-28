@@ -11,13 +11,18 @@ class R::Util {
     }
     
     my $length = 1;
-    for my $dim_element (@$dim) {
-      
-      unless ($dim_element > 0) {
-        die "The element of the dimention \$dim must be greater than 0.";
+    if (@$dim) {
+      for my $dim_element (@$dim) {
+        
+        unless ($dim_element > 0) {
+          die "The element of the dimention \$dim must be greater than 0.";
+        }
+        
+        $length *= $dim_element;
       }
-      
-      $length *= $dim_element;
+    }
+    else {
+      $length = 0;
     }
     
     return $length;

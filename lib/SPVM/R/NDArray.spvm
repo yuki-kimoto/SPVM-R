@@ -21,7 +21,7 @@ class R::NDArray {
   
   has dim : int[];
   
-  has is_dim_read_only : byte;
+  has is_dim_read_only : ro byte;
   
   # Class Methods
   private static method normalize_vector_indexes : R::NDArray::Int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
