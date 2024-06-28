@@ -602,12 +602,16 @@ class R::NDArray {
     return $ncol;
   }
   
-  method set_order : void ($indexes : int[]) { die "Not impelmeneted."; }
+  method set_order : void ($indexes_ndarray : R::NDArray::Int) { die "Not impelmeneted."; }
   
-  method check_set_order_args : void ($indexes : int[]) {
+  method check_set_order_args : void ($indexes_ndarray : R::NDArray::Int) {
     
-    unless ($indexes) {
-      die "The indexes \$indexes must be defined.";
+    unless ($indexes_ndarray) {
+      die "The indexes \$indexes_ndarray must be defined.";
+    }
+    
+    unless ($indexes_ndarray->is_vector) {
+      die "The indexes \$indexes_ndarray must be a vector.";
     }
     
     unless ($self->is_vector) {
@@ -616,10 +620,10 @@ class R::NDArray {
     
     my $length = $self->length;
     
-    my $indexes_length = @$indexes;
+    my $indexes_length = $indexes_ndarray->length;
     
     unless ($indexes_length == $length) {
-      die "The length of the indexes \$indexes must be the length of this vector.";
+      die "The length of the indexes \$indexes_ndarray must be the length of this vector.";
     }
   }
   

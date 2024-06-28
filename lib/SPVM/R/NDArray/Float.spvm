@@ -62,9 +62,11 @@ class R::NDArray::Float extends R::NDArray {
     return $string;
   }
   
-  precompile method set_order : void ($indexes : int[]) {
+  precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
-    $self->check_set_order_args($indexes);
+    $self->check_set_order_args($indexes_ndarray);
+    
+    my $indexes = $indexes_ndarray->data;
     
     my $data = (float[])$self->{data};
     

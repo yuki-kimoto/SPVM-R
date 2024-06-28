@@ -324,14 +324,14 @@ class R::DataFrame {
     return $string;
   }
   
-  method set_order : void ($indexes : int[]) {
+  method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
     my $fields_length = $self->get_fields_length;
     
     for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
       my $ndarray = $self->get_ndarray($field_index);
       
-      $ndarray->set_order($indexes);
+      $ndarray->set_order($indexes_ndarray);
     }
   }
   

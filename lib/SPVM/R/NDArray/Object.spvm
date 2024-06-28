@@ -12,9 +12,11 @@ class R::NDArray::Object extends R::NDArray {
     return $self;
   }
   
-  precompile method set_order : void ($indexes : int[]) {
+  precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
-    $self->check_set_order_args($indexes);
+    $self->check_set_order_args($indexes_ndarray);
+    
+    my $indexes = $indexes_ndarray->data;
     
     my $data = (object[])$self->{data};
     
