@@ -379,6 +379,36 @@ class TestCase::R {
           }
         }
       }
+      # R::NDArray#length
+      {
+        {
+          my $dim = new int[0];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->length == 0) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->length == 1) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2, 3, 5];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ndarray->length == 30) {
+            return 0;
+          }
+        }
+      }
+      
     }
     
     # R::NDArray::Int

@@ -220,6 +220,35 @@ class R::NDArray {
     $self->check;
   }
   
+  method nrow : int () {
+    
+    unless ($self->is_vector || $self->is_matrix) {
+      die "The n-dimension array \$self must be a vector or a matrix.";
+    }
+    
+    my $dim = $self->dim;
+    
+    my $nrow = $dim->[0];
+    
+    return $nrow;
+  }
+  
+  method ncol : int () {
+    
+    unless ($self->is_vector || $self->is_matrix) {
+      die "The n-dimension array \$self must be a vector or a matrix.";
+    }
+    
+    my $dim = $self->dim;
+    
+    my $ncol = 1;
+    if ($self->is_matrix) {
+      $ncol = $dim->[1];
+    }
+    
+    return $ncol;
+  }
+  
   method length : int () {
     
     my $dim = $self->{dim};
@@ -666,33 +695,5 @@ class R::NDArray {
     return $ret_ndarray;
   }
   
-  method nrow : int () {
-    
-    unless ($self->is_vector || $self->is_matrix) {
-      die "The n-dimension array \$self must be a vector or a matrix.";
-    }
-    
-    my $dim = $self->dim;
-    
-    my $nrow = $dim->[0];
-    
-    return $nrow;
-  }
-  
-  method ncol : int () {
-    
-    unless ($self->is_vector || $self->is_matrix) {
-      die "The n-dimension array \$self must be a vector or a matrix.";
-    }
-    
-    my $dim = $self->dim;
-    
-    my $ncol = 1;
-    if ($self->is_matrix) {
-      $ncol = $dim->[1];
-    }
-    
-    return $ncol;
-  }
 }
 
