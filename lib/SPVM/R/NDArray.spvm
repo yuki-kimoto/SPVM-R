@@ -220,6 +220,19 @@ class R::NDArray {
     $self->check;
   }
   
+  method drop_dim : void () {
+    
+    my $dim = $self->{dim};
+    
+    my $dropped_dim = R::Util->drop_dim($dim);
+    
+    $self->set_dim($dropped_dim);
+  }
+  
+  method make_dim_read_only : void () {
+    $self->{is_dim_read_only} = 1;
+  }
+  
   method nrow : int () {
     
     unless ($self->is_vector || $self->is_matrix) {
@@ -257,49 +270,6 @@ class R::NDArray {
     
     return $length;
   }
-  
-  protected method check : void () { die "Not implemented."; }
-  
-  protected method create_default_data : object ($length : int) { die "Not implemented."; }
-  
-  method clone : R::NDArray ($deep : int = 0) {
-    
-    my $element_size = $self->{element_size};
-    
-    my $is_numeric = $self->{is_numeric};
-    
-    my $length = $self->length;
-    
-    my $clone_data = $self->create_default_data($length);
-    
-    my $data = $self->{data};
-    
-    if ($is_numeric) {
-      Fn->memcpy($clone_data, 0, $data, 0, $element_size * $length);
-    }
-    else {
-      for (my $i = 0; $i < $length; $i++) {
-        if ($deep) {
-          $clone_data->(object[])->[$i] = $self->element_clone($i);
-        }
-        else {
-          $clone_data->(object[])->[$i] = $data->(object[])->[$i];
-        }
-      }
-    }
-    
-    my $clone_dim = $self->dim;
-    
-    my $class_name = type_name $self;
-    
-    my $clone = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [{data => $clone_data, dim => $clone_dim}]);
-    
-    return $clone;
-  }
-  
-  method element_to_string : string ($data_index : int) { die "Not impelmented."; }
-  
-  method element_clone : object ($data_index : int) { die "Not impelmented."; }
   
   method is_empty : int () {
     
@@ -360,6 +330,95 @@ class R::NDArray {
     
     return $is_square_matrix;
   }
+  
+  method to_matrix : void () {
+    
+    unless ($self->is_vector || $self->is_matrix) {
+      die "The invocant must be a vector or a matrix";
+    }
+    
+    if ($self->is_matrix) {
+      return;
+    }
+    
+    my $dim = $self->{dim};
+    
+    my $row = $dim->[0];
+    
+    my $column = 1;
+    
+    my $new_dim = [$row, $column];
+    
+    $self->set_dim($new_dim);
+  }
+  
+  method to_vector : void () {
+    
+    unless ($self->is_vector || $self->is_matrix) {
+      die "The invocant must be a vector or a matrix";
+    }
+    
+    if ($self->is_vector) {
+      return;
+    }
+    
+    my $dim = $self->{dim};
+    
+    my $row = $dim->[0];
+    
+    my $column = $dim->[1];
+    
+    unless ($column == 1) {
+      die "The column must be 1.";
+    }
+    
+    my $new_dim = [$row];
+    
+    $self->set_dim($new_dim);
+  }
+  
+  protected method check : void () { die "Not implemented."; }
+  
+  protected method create_default_data : object ($length : int) { die "Not implemented."; }
+  
+  method clone : R::NDArray ($deep : int = 0) {
+    
+    my $element_size = $self->{element_size};
+    
+    my $is_numeric = $self->{is_numeric};
+    
+    my $length = $self->length;
+    
+    my $clone_data = $self->create_default_data($length);
+    
+    my $data = $self->{data};
+    
+    if ($is_numeric) {
+      Fn->memcpy($clone_data, 0, $data, 0, $element_size * $length);
+    }
+    else {
+      for (my $i = 0; $i < $length; $i++) {
+        if ($deep) {
+          $clone_data->(object[])->[$i] = $self->element_clone($i);
+        }
+        else {
+          $clone_data->(object[])->[$i] = $data->(object[])->[$i];
+        }
+      }
+    }
+    
+    my $clone_dim = $self->dim;
+    
+    my $class_name = type_name $self;
+    
+    my $clone = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [{data => $clone_data, dim => $clone_dim}]);
+    
+    return $clone;
+  }
+  
+  method element_to_string : string ($data_index : int) { die "Not impelmented."; }
+  
+  method element_clone : object ($data_index : int) { die "Not impelmented."; }
   
   method slice : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
     
@@ -467,15 +526,6 @@ class R::NDArray {
     }
     
     return $data_indexes;
-  }
-  
-  method drop_dim : void () {
-    
-    my $dim = $self->{dim};
-    
-    my $dropped_dim = R::Util->drop_dim($dim);
-    
-    $self->set_dim($dropped_dim);
   }
   
   method dump : string () {
@@ -621,56 +671,6 @@ class R::NDArray {
     unless ($indexes_length == $length) {
       die "The length of the indexes \$indexes_ndarray must be the length of this vector.";
     }
-  }
-  
-  method make_dim_read_only : void () {
-    $self->{is_dim_read_only} = 1;
-  }
-  
-  method to_matrix : void () {
-    
-    unless ($self->is_vector || $self->is_matrix) {
-      die "The invocant must be a vector or a matrix";
-    }
-    
-    if ($self->is_matrix) {
-      return;
-    }
-    
-    my $dim = $self->{dim};
-    
-    my $row = $dim->[0];
-    
-    my $column = 1;
-    
-    my $new_dim = [$row, $column];
-    
-    $self->set_dim($new_dim);
-  }
-  
-  method to_vector : void () {
-    
-    unless ($self->is_vector || $self->is_matrix) {
-      die "The invocant must be a vector or a matrix";
-    }
-    
-    if ($self->is_vector) {
-      return;
-    }
-    
-    my $dim = $self->{dim};
-    
-    my $row = $dim->[0];
-    
-    my $column = $dim->[1];
-    
-    unless ($column == 1) {
-      die "The column must be 1.";
-    }
-    
-    my $new_dim = [$row];
-    
-    $self->set_dim($new_dim);
   }
   
   precompile method to_string : R::NDArray::String () {
