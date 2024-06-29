@@ -448,23 +448,21 @@ class R::NDArray {
     $self->set_dim($dropped_dim);
   }
   
-  method equals_dropped_dim : int ($y_ndarray : R::NDArray) {
+  method equals_dropped_dim : int ($ndarray : R::NDArray) {
     
-    my $x_ndarray = $self;
-    
-    unless ($x_ndarray) {
-      die "The n-dimention array \$x_ndarray must be defined.";
+    unless ($self) {
+      die "The n-dimention array \$self must be defined.";
     }
     
-    unless ($y_ndarray) {
-      die "The n-dimention array \$y_ndarray must be defined.";
+    unless ($ndarray) {
+      die "The n-dimention array \$ndarray must be defined.";
     }
     
-    my $x_dim = $x_ndarray->dim;
+    my $self_dim = $self->dim;
     
-    my $y_dim = $y_ndarray->dim;
+    my $dim = $ndarray->dim;
     
-    my $equals_dropped_dim = R::Util->equals_dropped_dim($x_dim, $y_dim);
+    my $equals_dropped_dim = R::Util->equals_dropped_dim($self_dim, $dim);
     
     return $equals_dropped_dim;
   }
@@ -589,32 +587,6 @@ class R::NDArray {
     return $ndarray;
   }
   
-  method nrow : int () {
-    
-    unless ($self->is_matrix) {
-      die "The invocant must be a matrix.";
-    }
-    
-    my $dim = $self->{dim};
-    
-    my $nrow = $dim->[0];
-    
-    return $nrow;
-  }
-  
-  method ncol : int () {
-    
-    unless ($self->is_matrix) {
-      die "The invocant must be a matrix.";
-    }
-    
-    my $dim = $self->{dim};
-    
-    my $ncol = $dim->[1];
-    
-    return $ncol;
-  }
-  
   method set_order : void ($indexes_ndarray : R::NDArray::Int) { die "Not impelmeneted."; }
   
   method check_set_order_args : void ($indexes_ndarray : R::NDArray::Int) {
@@ -698,11 +670,11 @@ class R::NDArray {
     
     my $length = $self->length;
     
-    my $x_dim = $self->dim;
+    my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::String->c(undef, $x_dim);
+    my $ret_ndarray = R::OP::String->c(undef, $dim);
     
-    my $x_data = $self->data;
+    my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
@@ -712,5 +684,33 @@ class R::NDArray {
     return $ret_ndarray;
   }
   
+  method nrow : int () {
+    
+    unless ($self->is_vector || $self->is_matrix) {
+      die "The n-dimension array \$self must be a vector or a matrix.";
+    }
+    
+    my $dim = $self->dim;
+    
+    my $nrow = $dim->[0];
+    
+    return $nrow;
+  }
+  
+  method ncol : int () {
+    
+    unless ($self->is_vector || $self->is_matrix) {
+      die "The n-dimension array \$self must be a vector or a matrix.";
+    }
+    
+    my $dim = $self->dim;
+    
+    my $ncol = 1;
+    if ($self->is_matrix) {
+      $ncol = $dim->[1];
+    }
+    
+    return $ncol;
+  }
 }
 
