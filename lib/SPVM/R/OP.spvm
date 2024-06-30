@@ -136,16 +136,16 @@ class R::OP {
       die "The n-dimention array \$x_ndarray must be defined.";
     }
     
-    unless ($x_ndarray->is_vector || $x_ndarray->is_matrix) {
-      die "The n-dimention array \$x_ndarray must be a vector or a matrix.";
+    unless ($x_ndarray->is_matrix) {
+      die "The n-dimention array \$x_ndarray must be a matrix.";
     }
     
     unless ($y_ndarray) {
       die "The n-dimention array \$y_ndarray must be defined.";
     }
     
-    unless ($y_ndarray->is_vector || $y_ndarray->is_matrix) {
-      die "The n-dimention array \$y_ndarray must be a vector or a matrix.";
+    unless ($y_ndarray->is_matrix) {
+      die "The n-dimention array \$y_ndarray must be a matrix.";
     }
     
     unless (type_name $x_ndarray eq type_name $y_ndarray) {
@@ -199,16 +199,16 @@ class R::OP {
       die "The n-dimention array \$x_ndarray must be defined.";
     }
     
-    unless ($x_ndarray->is_vector || $x_ndarray->is_matrix) {
-      die "The n-dimention array \$x_ndarray must be a vector or a matrix.";
+    unless ($x_ndarray->is_matrix) {
+      die "The n-dimention array \$x_ndarray must be a matrix.";
     }
     
     unless ($y_ndarray) {
       die "The n-dimention array \$y_ndarray must be defined.";
     }
     
-    unless ($y_ndarray->is_vector || $y_ndarray->is_matrix) {
-      die "The n-dimention array \$y_ndarray must be a vector or a matrix.";
+    unless ($y_ndarray->is_matrix) {
+      die "The n-dimention array \$y_ndarray must be a matrix.";
     }
     
     unless (type_name $x_ndarray eq type_name $y_ndarray) {
