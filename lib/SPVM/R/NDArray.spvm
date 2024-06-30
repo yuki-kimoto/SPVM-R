@@ -235,11 +235,11 @@ class R::NDArray {
   
   method nrow : int () {
     
-    unless ($self->is_vector || $self->is_matrix) {
-      die "The n-dimension array \$self must be a vector or a matrix.";
+    unless ($self->is_matrix) {
+      die "The n-dimension array \$self must be a matrix.";
     }
     
-    my $dim = $self->dim;
+    my $dim = $self->{dim};
     
     my $nrow = $dim->[0];
     
@@ -248,14 +248,15 @@ class R::NDArray {
   
   method ncol : int () {
     
-    unless ($self->is_vector || $self->is_matrix) {
-      die "The n-dimension array \$self must be a vector or a matrix.";
+    unless ($self->is_matrix) {
+      die "The n-dimension array \$self must be a matrix.";
     }
     
-    my $dim = $self->dim;
+    my $dim = $self->{dim};
     
     my $ncol = 1;
-    if ($self->is_matrix) {
+    
+    if (@$dim == 2) {
       $ncol = $dim->[1];
     }
     
@@ -288,7 +289,7 @@ class R::NDArray {
     my $dim = $self->{dim};
     
     my $is_scalar = 0;
-    if ($self->is_vector && $dim->[0] == 1) {
+    if (@$dim == 1 && $dim->[0] == 1) {
       $is_scalar = 1;
     }
     
@@ -312,7 +313,7 @@ class R::NDArray {
     my $dim = $self->{dim};
     
     my $is_matrix = 0;
-    if (@$dim == 2) {
+    if (@$dim == 1 || @$dim == 2) {
       $is_matrix = 1;
     }
     
@@ -324,7 +325,7 @@ class R::NDArray {
     my $dim = $self->{dim};
     
     my $is_square_matrix = 0;
-    if ($self->is_matrix && $dim->[0] == $dim->[1]) {
+    if ($self->is_matrix && $self->nrow == $self->ncol) {
       $is_square_matrix = 1;
     }
     
