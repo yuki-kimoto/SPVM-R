@@ -332,52 +332,6 @@ class R::NDArray {
     return $is_square_matrix;
   }
   
-  method to_matrix : void () {
-    
-    unless ($self->is_vector || $self->is_matrix) {
-      die "The invocant must be a vector or a matrix";
-    }
-    
-    if ($self->is_matrix) {
-      return;
-    }
-    
-    my $dim = $self->{dim};
-    
-    my $row = $dim->[0];
-    
-    my $column = 1;
-    
-    my $new_dim = [$row, $column];
-    
-    $self->set_dim($new_dim);
-  }
-  
-  method to_vector : void () {
-    
-    unless ($self->is_vector || $self->is_matrix) {
-      die "The invocant must be a vector or a matrix";
-    }
-    
-    if ($self->is_vector) {
-      return;
-    }
-    
-    my $dim = $self->{dim};
-    
-    my $row = $dim->[0];
-    
-    my $column = $dim->[1];
-    
-    unless ($column == 1) {
-      die "The column must be 1.";
-    }
-    
-    my $new_dim = [$row];
-    
-    $self->set_dim($new_dim);
-  }
-  
   protected method check : void () { die "Not implemented."; }
   
   protected method create_default_data : object ($length : int) { die "Not implemented."; }
