@@ -269,6 +269,84 @@ class TestCase::R {
           }
         }
       }
+      
+      # R#float_complex method
+      {
+        {
+          my $data = [(Complex_2f)Math->complexf(1, 1), Math->complexf(2, 1), Math->complexf(3, 1), Math->complexf(4, 1), Math->complexf(5, 1), Math->complexf(6, 1)];
+          my $dim = [2, 3];
+          my $ndarray = R->float_complex($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::FloatComplex) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(Complex_2f)Math->complexf(1, 1), Math->complexf(2, 1), Math->complexf(3, 1), Math->complexf(4, 1), Math->complexf(5, 1), Math->complexf(6, 1)];
+          my $data_length = @$data;
+          my $ndarray = R->float_complex($data);
+          
+          unless ($ndarray is_type R::NDArray::FloatComplex) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
+      
+      # R#double_complex method
+      {
+        {
+          my $data = [(Complex_2d)Math->complex(1, 1), Math->complex(2, 1), Math->complex(3, 1), Math->complex(4, 1), Math->complex(5, 1), Math->complex(6, 1)];
+          my $dim = [2, 3];
+          my $ndarray = R->double_complex($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::DoubleComplex) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(Complex_2d)Math->complex(1, 1), Math->complex(2, 1), Math->complex(3, 1), Math->complex(4, 1), Math->complex(5, 1), Math->complex(6, 1)];
+          my $data_length = @$data;
+          my $ndarray = R->double_complex($data);
+          
+          unless ($ndarray is_type R::NDArray::DoubleComplex) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
     }
     
     # R::NDArray
