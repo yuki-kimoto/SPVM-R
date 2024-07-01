@@ -187,34 +187,36 @@ class R::Util {
       $elem_size = Fn->sizeof_native_pointer;
     }
     else {
-      if ($array isa byte[]) {
+      if ($array is_type byte[]) {
         $elem_size = 1;
       }
-      elsif ($array isa short[]) {
+      elsif ($array is_type short[]) {
         $elem_size = 2;
       }
-      elsif ($array isa int[]) {
+      elsif ($array is_type int[]) {
         $elem_size = 4;
       }
-      elsif ($array isa long[]) {
+      elsif ($array is_type long[]) {
         $elem_size = 8;
       }
-      elsif ($array isa float[]) {
+      elsif ($array is_type float[]) {
         $elem_size = 4;
       }
-      elsif ($array isa double[]) {
+      elsif ($array is_type double[]) {
         $elem_size = 8;
       }
-      elsif ($array isa Complex_2f[]) {
+      elsif ($array is_type Complex_2f[]) {
         $elem_size = 8;
       }
-      elsif ($array isa Complex_2d[]) {
+      elsif ($array is_type Complex_2d[]) {
         $elem_size = 16;
       }
       else {
         die "The array is invalid elem_type.";
       }
     }
+    
+    return $elem_size;
   }
   
   # This method will be added to Fn class.

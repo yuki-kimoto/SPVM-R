@@ -14,7 +14,7 @@ class R::NDArray {
   has data : protected object;
   method data : object () { die "Not implemented."; }
   
-  has elem_size : ro protected int;
+  has elem_size : protected int;
   
   has elem_type : ro protected string;
   
@@ -682,5 +682,13 @@ class R::NDArray {
     return $is_mulnum;
   }
   
+  method elem_size : int () {
+    
+    my $data = $self->{data};
+    
+    my $elem_size = R::Util->_get_elem_size($data);
+    
+    return $elem_size;
+  }
 }
 
