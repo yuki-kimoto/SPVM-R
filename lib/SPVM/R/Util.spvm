@@ -100,7 +100,12 @@ class R::Util {
         }
       }
       else {
-        $dropped_dim_list->push($dim_elem);
+        if ($i == $index) {
+          die "The element of the dimension \$dim at index $i must be 1.";
+        }
+        else {
+          $dropped_dim_list->push($dim_elem);
+        }
       }
     }
     
