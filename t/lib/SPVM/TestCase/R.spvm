@@ -426,7 +426,19 @@ class TestCase::R {
             return 0;
           }
           
-          unless ($ndarray->is_numeric == 1) {
+          unless ($ndarray->is_numeric_ndarray == 1) {
+            return 0;
+          }
+          
+          unless ($ndarray->is_any_numeric_ndarray == 1) {
+            return 0;
+          }
+          
+          unless ($ndarray->is_mulnum_ndarray == 0) {
+            return 0;
+          }
+          
+          unless ($ndarray->is_object_ndarray == 0) {
             return 0;
           }
           
