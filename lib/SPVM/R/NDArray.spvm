@@ -300,11 +300,11 @@ class R::NDArray {
     return $is_square_matrix;
   }
   
-  method drop_dim : void () {
+  method drop_dim : void ($index : int = -1) {
     
     my $dim = $self->{dim};
     
-    my $dropped_dim = R::Util->drop_dim($dim);
+    my $dropped_dim = R::Util->drop_dim($dim, $index);
     
     $self->set_dim($dropped_dim);
   }
