@@ -229,7 +229,7 @@ class R::DataFrame {
     return $ret_ndarray;
   }
   
-  method dump : string () {
+  method to_string : string () {
     
     my $fields_length = $self->get_fields_length;
     
@@ -251,7 +251,7 @@ class R::DataFrame {
       
       $string_buffer->push("]]\n");
       
-      my $ndarray_string = $ndarray->dump;
+      my $ndarray_string = $ndarray->to_string;
       
       $string_buffer->push($ndarray_string);
     }
