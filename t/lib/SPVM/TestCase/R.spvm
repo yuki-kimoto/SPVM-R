@@ -74,6 +74,201 @@ class TestCase::R {
           }
         }
       }
+      
+      # R#short method
+      {
+        {
+          my $data = [(short)1, 2, 3, 4, 5, 6];
+          my $dim = [2, 3];
+          my $ndarray = R->short($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::Short) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(short)1, 2, 3, 4, 5, 6];
+          my $data_length = @$data;
+          my $ndarray = R->short($data);
+          
+          unless ($ndarray is_type R::NDArray::Short) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
+
+      # R#int method
+      {
+        {
+          my $data = [(int)1, 2, 3, 4, 5, 6];
+          my $dim = [2, 3];
+          my $ndarray = R->int($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(int)1, 2, 3, 4, 5, 6];
+          my $data_length = @$data;
+          my $ndarray = R->int($data);
+          
+          unless ($ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
+      
+      # R#long method
+      {
+        {
+          my $data = [(long)1, 2, 3, 4, 5, 6];
+          my $dim = [2, 3];
+          my $ndarray = R->long($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::Long) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(long)1, 2, 3, 4, 5, 6];
+          my $data_length = @$data;
+          my $ndarray = R->long($data);
+          
+          unless ($ndarray is_type R::NDArray::Long) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
+      
+      # R#float method
+      {
+        {
+          my $data = [(float)1, 2, 3, 4, 5, 6];
+          my $dim = [2, 3];
+          my $ndarray = R->float($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::Float) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(float)1, 2, 3, 4, 5, 6];
+          my $data_length = @$data;
+          my $ndarray = R->float($data);
+          
+          unless ($ndarray is_type R::NDArray::Float) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
+      
+      # R#double method
+      {
+        {
+          my $data = [(double)1, 2, 3, 4, 5, 6];
+          my $dim = [2, 3];
+          my $ndarray = R->double($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::Double) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(double)1, 2, 3, 4, 5, 6];
+          my $data_length = @$data;
+          my $ndarray = R->double($data);
+          
+          unless ($ndarray is_type R::NDArray::Double) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
     }
     
     # R::NDArray
