@@ -15,8 +15,6 @@ class R::NDArray::Float extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options($options, {elem_size => 4, elem_type => "float"});
-    
     $self->SUPER::init($options);
   }
   
