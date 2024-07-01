@@ -32,7 +32,9 @@ class R::NDArray::Object extends R::NDArray {
     }
   }
   
-  method clone :  R::NDArray () { die "Not implemented."; }
+  method clone : R::NDArray::Object () {
+    return (R::NDArray::Object)$self->SUPER::clone;
+  }
   
   protected method slice_data : object ($data_indexes : int[]) {
     
