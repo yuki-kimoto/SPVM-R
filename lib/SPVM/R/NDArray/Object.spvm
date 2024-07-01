@@ -32,8 +32,8 @@ class R::NDArray::Object extends R::NDArray {
     }
   }
   
-  method clone : R::NDArray::Object () {
-    return (R::NDArray::Object)$self->SUPER::clone;
+  method clone : R::NDArray::Object ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Object)$self->SUPER::clone($elem_shallow_clone);
   }
   
   protected method slice_data : object ($data_indexes : int[]) {

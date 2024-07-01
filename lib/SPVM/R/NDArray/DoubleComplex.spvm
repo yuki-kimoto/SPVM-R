@@ -47,8 +47,8 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return $data;
   }
   
-  method clone : R::NDArray::DoubleComplex () {
-    return (R::NDArray::DoubleComplex)$self->SUPER::clone;
+  method clone : R::NDArray::DoubleComplex ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::DoubleComplex)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data_index : int) {

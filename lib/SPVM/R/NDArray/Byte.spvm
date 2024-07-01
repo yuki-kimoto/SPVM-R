@@ -48,8 +48,8 @@ class R::NDArray::Byte extends R::NDArray {
     return $data;
   }
   
-  method clone : R::NDArray::Byte () {
-    return (R::NDArray::Byte)$self->SUPER::clone;
+  method clone : R::NDArray::Byte ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Byte)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data_index : int) {

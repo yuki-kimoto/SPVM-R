@@ -45,8 +45,8 @@ class R::NDArray::Double extends R::NDArray {
     return $data;
   }
   
-  method clone : R::NDArray::Double () {
-    return (R::NDArray::Double)$self->SUPER::clone;
+  method clone : R::NDArray::Double ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Double)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data_index : int) {

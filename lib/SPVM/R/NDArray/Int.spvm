@@ -45,8 +45,8 @@ class R::NDArray::Int extends R::NDArray {
     return $data;
   }
   
-  method clone : R::NDArray::Int () {
-    return (R::NDArray::Int)$self->SUPER::clone;
+  method clone : R::NDArray::Int ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Int)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data_index : int) {

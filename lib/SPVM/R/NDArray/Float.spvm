@@ -45,8 +45,8 @@ class R::NDArray::Float extends R::NDArray {
     return $data;
   }
   
-  method clone : R::NDArray::Float () {
-    return (R::NDArray::Float)$self->SUPER::clone;
+  method clone : R::NDArray::Float ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Float)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data_index : int) {

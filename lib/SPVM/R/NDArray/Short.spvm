@@ -45,8 +45,8 @@ class R::NDArray::Short extends R::NDArray {
     return $data;
   }
   
-  method clone : R::NDArray::Short () {
-    return (R::NDArray::Short)$self->SUPER::clone;
+  method clone : R::NDArray::Short ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Short)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data_index : int) {
