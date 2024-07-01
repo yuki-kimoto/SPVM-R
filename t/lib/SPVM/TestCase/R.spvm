@@ -34,6 +34,48 @@ class TestCase::R {
   
   static method test : int () {
     
+    # R
+    {
+      # R#byte method
+      {
+        {
+          my $data = [(byte)1, 2, 3, 4, 5, 6];
+          my $dim = [2, 3];
+          my $ndarray = R->byte($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::Byte) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(byte)1, 2, 3, 4, 5, 6];
+          my $data_length = @$data;
+          my $ndarray = R->byte($data);
+          
+          unless ($ndarray is_type R::NDArray::Byte) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
+    }
+    
     # R::NDArray
     {
       # R::NDArray#is_empty method
