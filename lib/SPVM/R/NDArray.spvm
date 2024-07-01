@@ -16,8 +16,6 @@ class R::NDArray {
   
   has elem_size : ro protected int;
   
-  has is_numeric : ro byte;
-  
   has elem_type : ro protected string;
   
   has dim : int[];
@@ -148,13 +146,6 @@ class R::NDArray {
       die "elem_size option must be greter than 0.";
     }
     $self->{elem_size} = $elem_size;
-    
-    # is_numeric option
-    my $is_numeric = $options_h->get_or_default_int("is_numeric", 0);
-    unless ($is_numeric > 0) {
-      die "is_numeric option must be greter than 0.";
-    }
-    $self->{is_numeric} = (byte)$is_numeric;
     
     # elem_type option
     my $elem_type = $options_h->get_or_default_string("elem_type", undef);
@@ -340,15 +331,13 @@ class R::NDArray {
     
     my $elem_size = $self->{elem_size};
     
-    my $is_numeric = $self->{is_numeric};
-    
     my $length = $self->length;
     
     my $clone_data = $self->create_default_data($length);
     
     my $data = $self->{data};
     
-    if ($is_numeric) {
+    if ($self->is_any_numeric_ndarray) {
       Fn->memcpy($clone_data, 0, $data, 0, $elem_size * $length);
     }
     else {
