@@ -14,8 +14,6 @@ class R::NDArray {
   has data : protected object;
   method data : object () { die "Not implemented."; }
   
-  has elem_size : protected int;
-  
   has elem_type : ro protected string;
   
   has dim : int[];
@@ -139,13 +137,6 @@ class R::NDArray {
   protected method init : void ($options : object[] = undef) {
     
     my $options_h = Hash->new($options);
-    
-    # elem_size option
-    my $elem_size = $options_h->get_or_default_int("elem_size", -1);
-    unless ($elem_size > 0) {
-      die "elem_size option must be greter than 0.";
-    }
-    $self->{elem_size} = $elem_size;
     
     # elem_type option
     my $elem_type = $options_h->get_or_default_string("elem_type", undef);
@@ -329,7 +320,7 @@ class R::NDArray {
   
   method clone : R::NDArray ($deep : int = 0) {
     
-    my $elem_size = $self->{elem_size};
+    my $elem_size = $self->elem_size;
     
     my $length = $self->length;
     
