@@ -430,7 +430,7 @@ class TestCase::R {
             return 0;
           }
           
-          unless ($ndarray->type eq "int") {
+          unless ($ndarray->element_type eq "int") {
             return 0;
           }
           

@@ -21,7 +21,7 @@ class R::NDArray::Time::Piece extends R::NDArray::Object {
     
     my $element_size = Fn->sizeof_native_pointer;
     
-    $options = Fn->merge_options($options, {element_size => $element_size, type => "Time::Piece"});
+    $options = Fn->merge_options($options, {element_size => $element_size, element_type => "Time::Piece"});
     
     $self->SUPER::init($options);
   }

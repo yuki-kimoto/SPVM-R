@@ -15,7 +15,7 @@ class R::NDArray::Long extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options($options, {element_size => 8, type => "long", is_numeric => 1});
+    $options = Fn->merge_options($options, {element_size => 8, element_type => "long", is_numeric => 1});
     
     $self->SUPER::init($options);
   }

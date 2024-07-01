@@ -168,7 +168,7 @@ class R::Util {
         $length = @(Complex_2d[])$array;
       }
       else {
-        die "The array is invalid type.";
+        die "The array is invalid element_type.";
       }
     }
     

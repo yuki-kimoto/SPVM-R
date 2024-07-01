@@ -18,7 +18,7 @@ class R::NDArray {
   
   has is_numeric : ro byte;
   
-  has type : ro protected string;
+  has element_type : ro protected string;
   
   has dim : int[];
   
@@ -156,15 +156,15 @@ class R::NDArray {
     }
     $self->{is_numeric} = (byte)$is_numeric;
     
-    # type option
-    my $type = $options_h->get_or_default_string("type", undef);
-    unless ($type) {
-      die "type option must be defined.";
+    # element_type option
+    my $element_type = $options_h->get_or_default_string("element_type", undef);
+    unless ($element_type) {
+      die "element_type option must be defined.";
     }
-    unless (length $type) {
-      die "The length of \"type\" option must greater than 0.";
+    unless (length $element_type) {
+      die "The length of \"element_type\" option must greater than 0.";
     }
-    $self->{type} = $type;
+    $self->{element_type} = $element_type;
     
     # data option
     my $data = $options_h->get_or_default("data", undef);

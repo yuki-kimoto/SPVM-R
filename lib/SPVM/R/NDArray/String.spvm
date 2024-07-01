@@ -20,7 +20,7 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $element_size = Fn->sizeof_native_pointer;
     
-    $options = Fn->merge_options($options, {element_size => $element_size, type => "string"});
+    $options = Fn->merge_options($options, {element_size => $element_size, element_type => "string"});
     
     $self->SUPER::init($options);
   }
