@@ -681,5 +681,14 @@ class R::NDArray {
     
     return $elem_size;
   }
+  
+  method elem_type_name : string () {
+    
+    my $data = $self->{data};
+    
+    my $elem_type_name = R::Util->_get_elem_type_name($data);
+    
+    return $elem_type_name;
+  }
 }
 
