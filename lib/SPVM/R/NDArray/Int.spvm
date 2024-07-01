@@ -34,7 +34,7 @@ class R::NDArray::Int extends R::NDArray {
     }
   }
   
-  protected method create_default_data : int[] ($length : int) {
+  protected method create_default_data : int[] ($length : int = 0) {
     
     unless ($length >= 0) {
       die "The length \$length must be more than or equal to 0.";

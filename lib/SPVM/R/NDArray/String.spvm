@@ -37,7 +37,7 @@ class R::NDArray::String extends R::NDArray::Object {
     }
   }
   
-  protected method create_default_data : string[] ($length : int) {
+  protected method create_default_data : string[] ($length : int = 0) {
     
     unless ($length >= 0) {
       die "The length \$length must be more than or equal to 0.";
