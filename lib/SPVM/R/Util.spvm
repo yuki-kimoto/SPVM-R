@@ -175,4 +175,61 @@ class R::Util {
     return $length;
   }
   
+  # This method will be added to Fn class.
+  static method _get_elem_size : int ($array : object) {
+    
+    unless ($array) {
+      die "The array \$array must be defined.";
+    }
+    
+    my $elem_size = -1;
+    if (Fn->is_object_array($array)) {
+      $elem_size = Fn->sizeof_native_pointer;
+    }
+    else {
+      if ($array isa byte[]) {
+        $elem_size = 1;
+      }
+      elsif ($array isa short[]) {
+        $elem_size = 2;
+      }
+      elsif ($array isa int[]) {
+        $elem_size = 4;
+      }
+      elsif ($array isa long[]) {
+        $elem_size = 8;
+      }
+      elsif ($array isa float[]) {
+        $elem_size = 4;
+      }
+      elsif ($array isa double[]) {
+        $elem_size = 8;
+      }
+      elsif ($array isa Complex_2f[]) {
+        $elem_size = 8;
+      }
+      elsif ($array isa Complex_2d[]) {
+        $elem_size = 16;
+      }
+      else {
+        die "The array is invalid element_type.";
+      }
+    }
+  }
+  
+  # This method will be added to Fn class.
+  static method _get_elem_type_name : string ($array : object) {
+    
+    unless ($array) {
+      die "The array \$array must be defined.";
+    }
+    
+    my $type_name = type_name $array;
+    
+    my $type_name_length = length $type_name;
+    
+    my $elem_type_name = Fn->substr($type_name, 0, $type_name_length - 2);
+    
+    return $elem_type_name;
+  }
 }
