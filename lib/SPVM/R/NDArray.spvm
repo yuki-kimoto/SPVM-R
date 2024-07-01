@@ -138,6 +138,13 @@ class R::NDArray {
     
     # data option
     my $data = $options_h->get_or_default("data", undef);
+    if ($data) {
+      my $default_data = $self->create_default_data(0);
+      unless (type_name $data eq type_name $default_data) {
+        my $type_name = type_name $default_data;
+        die "The type of the data \$data must be $type_name type.";
+      }
+    }
     
     # dim option
     my $dim = (int[])$options_h->get_or_default("dim", undef);
