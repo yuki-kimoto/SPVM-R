@@ -76,7 +76,7 @@ class R::OP {
     for (my $i = 0; $i < $ret_length; $i += $x_length) {
       my $x_index = $i % $x_length;
       
-      if ($x_ndarray->is_numeric) {
+      if ($x_ndarray->is_any_numeric_ndarray) {
         my $elem_size = $x_ndarray->elem_size;
         
         Fn->memcpy($ret_data, $i, $x_data, $x_index, $elem_size);
@@ -117,7 +117,7 @@ class R::OP {
     for (my $i = 0; $i < $length; $i += $x_length) {
       my $x_index = $i % $x_length;
       
-      if ($x_ndarray->is_numeric) {
+      if ($x_ndarray->is_any_numeric_ndarray) {
         my $elem_size = $x_ndarray->elem_size;
         
         Fn->memcpy($ret_data, $i, $x_data, $x_index, $elem_size);
@@ -179,7 +179,7 @@ class R::OP {
     
     my $elem_size = $x_ndarray->elem_size;
     
-    if ($x_ndarray->is_numeric) {
+    if ($x_ndarray->is_any_numeric_ndarray) {
       Fn->memcpy($ret_data, 0, $x_data, 0, $elem_size * ($x_row * $x_column));
       
       Fn->memcpy($ret_data, $x_row * $x_column, $y_data, 0, $elem_size * ($y_row * $y_column));
@@ -245,7 +245,7 @@ class R::OP {
     my $elem_size = $x_ndarray->elem_size;
     
     for (my $column_index = 0; $column_index < $ret_column; $column_index++) {
-      if ($x_ndarray->is_numeric) {
+      if ($x_ndarray->is_any_numeric_ndarray) {
         Fn->memcpy($ret_data, $elem_size * $ret_data_index, $x_data, 0, $elem_size * $x_row);
         
         Fn->memcpy($ret_data, $elem_size * ($ret_data_index + $x_row), $y_data, 0, $elem_size * $y_row);
