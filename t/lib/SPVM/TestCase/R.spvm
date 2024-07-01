@@ -554,6 +554,11 @@ class TestCase::R {
           if ($ret_ndarray->data == $data){
             return 0;
           }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $dim)){
+            return 0;
+          }
+          
         }
       }
     }
