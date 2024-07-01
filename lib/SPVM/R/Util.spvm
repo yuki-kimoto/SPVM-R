@@ -62,7 +62,7 @@ class R::Util {
     return $normalized_dim;
   }
   
-  static method drop_dim : int[] ($dim : int[]) {
+  static method drop_dim : int[] ($dim : int[], $index : int = -1) {
     
     unless ($dim) {
       die "The definsion \$dim must be defined.";
@@ -74,9 +74,26 @@ class R::Util {
     
     my $dropped_dim_list = IntList->new;
     
+    my $drop_all = 0;
+    if ($index < 0) {
+      $drop_all = 1;
+    }
+    
     for (my $i = 0; $i < @$dim; $i++) {
       my $dim_elem = $dim->[$i];
-      unless ($dim_elem == 1) {
+      
+      if ($dim_elem == 1) {
+        if ($drop_all) {
+          # Do not push
+        }
+        elsif ($i == $index) {
+          # Do not push
+        }
+        else {
+          $dropped_dim_list->push($dim_elem);
+        }
+      }
+      else {
         $dropped_dim_list->push($dim_elem);
       }
     }

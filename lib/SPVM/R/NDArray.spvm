@@ -197,15 +197,6 @@ class R::NDArray {
     $self->check;
   }
   
-  method drop_dim : void () {
-    
-    my $dim = $self->{dim};
-    
-    my $dropped_dim = R::Util->drop_dim($dim);
-    
-    $self->set_dim($dropped_dim);
-  }
-  
   method make_dim_read_only : void () {
     $self->{is_dim_read_only} = 1;
   }
@@ -307,6 +298,15 @@ class R::NDArray {
     }
     
     return $is_square_matrix;
+  }
+  
+  method drop_dim : void () {
+    
+    my $dim = $self->{dim};
+    
+    my $dropped_dim = R::Util->drop_dim($dim);
+    
+    $self->set_dim($dropped_dim);
   }
   
   protected method check : void () { die "Not implemented."; }
