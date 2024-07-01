@@ -350,7 +350,7 @@ class R::NDArray {
     
     my $class_name = type_name $self;
     
-    my $clone = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [{data => $clone_data, dim => $clone_dim}]);
+    my $clone = (R::NDArray)R::Util->new_proto($self, [{data => $clone_data, dim => $clone_dim}]);
     
     return $clone;
   }
@@ -373,7 +373,7 @@ class R::NDArray {
     
     my $class_name = type_name $self;
     
-    my $ret_ndarray = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [{data => $ret_data, dim => $ret_dim}]);
+    my $ret_ndarray = (R::NDArray)R::Util->new_proto($self, [{data => $ret_data, dim => $ret_dim}]);
     
     return $ret_ndarray;
   }

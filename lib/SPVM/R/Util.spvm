@@ -304,4 +304,14 @@ class R::Util {
     
     return $elem_type_name;
   }
+  
+  static method new_proto : object ($proto : object, $options : object[]) {
+    
+    my $class_name = type_name $proto;
+    
+    my $object = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [$options]);
+    
+    return $object;
+  }
+  
 }
