@@ -68,8 +68,14 @@ class R::Util {
       die "The definsion \$dim must be defined.";
     }
     
+    my $dim_length = @$dim;
+    
     unless (@$dim > 0) {
       die "The length of the dimension \$dim must be greater than 0.";
+    }
+    
+    unless ($index < $dim_length) {
+      die "The index \$index must be less than the length of the dimension \$dim.";
     }
     
     my $dropped_dim_list = IntList->new;
@@ -99,6 +105,48 @@ class R::Util {
     }
     
     if ($dropped_dim_list->length == 0) {
+      $dropped_dim_list->push(1);
+    }
+    
+    my $dropped_dim = $dropped_dim_list->to_array;
+    
+    return $dropped_dim;
+  }
+  
+  static method expand_dim : int[] ($dim : int[], $index : int = -1) {
+    
+    unless ($dim) {
+      die "The definsion \$dim must be defined.";
+    }
+    
+    my $dim_length = @$dim;
+    
+    unless (@$dim > 0) {
+      die "The length of the dimension \$dim must be greater than 0.";
+    }
+    
+    unless ($index < $dim_length) {
+      die "The index \$index must be less than the length of the dimension \$dim.";
+    }
+    
+    my $dropped_dim_list = IntList->new;
+    
+    my $push_to_last = 0;
+    if ($index < 0) {
+      $push_to_last = 1;
+    }
+    
+    for (my $i = 0; $i < @$dim; $i++) {
+      my $dim_elem = $dim->[$i];
+      
+      if ($i == $index) {
+        $dropped_dim_list->push(1);
+      }
+      
+      $dropped_dim_list->push($dim_elem);
+    }
+    
+    if ($push_to_last) {
       $dropped_dim_list->push(1);
     }
     
