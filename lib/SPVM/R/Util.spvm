@@ -309,7 +309,7 @@ class R::Util {
     
     my $class_name = type_name $proto;
     
-    my $object = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [$options]);
+    my $object = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [(object)$options]);
     
     return $object;
   }

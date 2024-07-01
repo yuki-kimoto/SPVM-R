@@ -538,6 +538,24 @@ class TestCase::R {
         }
       }
       
+      # R::NDArray#clone method
+      {
+        {
+          my $dim = [2, 3];
+          my $data = [1, 2, 3, 4, 5, 6];
+          my $ndarray = R::NDArray::Int->new({data => $data, dim => $dim});
+          
+          my $ret_ndarray = $ndarray->clone;
+          
+          unless (Array->equals_int($ret_ndarray->data, $data)){
+            return 0;
+          }
+          
+          if ($ret_ndarray->data == $data){
+            return 0;
+          }
+        }
+      }
     }
     
     # R::NDArray::Int
