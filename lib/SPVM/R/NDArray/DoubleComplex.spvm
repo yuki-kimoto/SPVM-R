@@ -17,7 +17,7 @@ class R::NDArray::DoubleComplex extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options($options, {element_size => 16, element_type => "Complex_2d", is_numeric => 1});
+    $options = Fn->merge_options($options, {elem_size => 16, elem_type => "Complex_2d", is_numeric => 1});
     
     $self->SUPER::init($options);
   }
@@ -53,13 +53,13 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return (R::NDArray::DoubleComplex)$self->SUPER::clone;
   }
   
-  method element_to_string : string ($data_index : int) {
+  method elem_to_string : string ($data_index : int) {
     
     my $data = $self->data;
     
-    my $element = $data->[$data_index];
+    my $elem = $data->[$data_index];
     
-    my $string = (string)(double)$element->{re} . " + " . (string)(double)$element->{im};
+    my $string = (string)(double)$elem->{re} . " + " . (string)(double)$elem->{im};
     
     return $string;
   }

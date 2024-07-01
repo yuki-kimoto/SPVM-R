@@ -28,9 +28,9 @@ class R::OP::Matrix::Double {
     
     for (my $column_index = 0; $column_index < $column; $column_index++) {
       for (my $row_index = 0; $row_index < $row; $row_index++) {
-        my $element = $x_data->[$column * $column_index + $row_index];
+        my $elem = $x_data->[$column * $column_index + $row_index];
         
-        $new_x_data->[$row * $row_index + $column] = $element;
+        $new_x_data->[$row * $row_index + $column] = $elem;
       }
     }
     

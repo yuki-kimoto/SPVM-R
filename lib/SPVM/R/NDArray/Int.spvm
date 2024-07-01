@@ -15,7 +15,7 @@ class R::NDArray::Int extends R::NDArray {
   
   protected method init : void ($options : object[] = undef) {
     
-    $options = Fn->merge_options($options, {element_size => 4, element_type => "int", is_numeric => 1});
+    $options = Fn->merge_options($options, {elem_size => 4, elem_type => "int", is_numeric => 1});
     
     $self->SUPER::init($options);
   }
@@ -51,12 +51,12 @@ class R::NDArray::Int extends R::NDArray {
     return (R::NDArray::Int)$self->SUPER::clone;
   }
   
-  method element_to_string : string ($data_index : int) {
+  method elem_to_string : string ($data_index : int) {
     my $data = $self->data;
     
-    my $element = $data->[$data_index];
+    my $elem = $data->[$data_index];
     
-    my $string = (string)(int)$element;
+    my $string = (string)(int)$elem;
     
     return $string;
   }

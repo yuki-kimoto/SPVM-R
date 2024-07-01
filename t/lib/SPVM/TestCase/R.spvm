@@ -422,7 +422,7 @@ class TestCase::R {
             return 0;
           }
           
-          unless ($ndarray->element_size == 4) {
+          unless ($ndarray->elem_size == 4) {
             return 0;
           }
           
@@ -430,7 +430,7 @@ class TestCase::R {
             return 0;
           }
           
-          unless ($ndarray->element_type eq "int") {
+          unless ($ndarray->elem_type eq "int") {
             return 0;
           }
           

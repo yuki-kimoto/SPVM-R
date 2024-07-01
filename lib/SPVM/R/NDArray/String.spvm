@@ -18,9 +18,9 @@ class R::NDArray::String extends R::NDArray::Object {
   
   protected method init : void ($options : object[] = undef) {
     
-    my $element_size = Fn->sizeof_native_pointer;
+    my $elem_size = Fn->sizeof_native_pointer;
     
-    $options = Fn->merge_options($options, {element_size => $element_size, element_type => "string"});
+    $options = Fn->merge_options($options, {elem_size => $elem_size, elem_type => "string"});
     
     $self->SUPER::init($options);
   }
@@ -56,24 +56,24 @@ class R::NDArray::String extends R::NDArray::Object {
     return (R::NDArray::String)$self->SUPER::clone;
   }
   
-  method element_to_string : string ($data_index : int) {
+  method elem_to_string : string ($data_index : int) {
     
     my $data = $self->data;
     
-    my $element = $data->[$data_index];
+    my $elem = $data->[$data_index];
     
-    my $string = $element;
+    my $string = $elem;
     
     return $string;
   }
   
-  method element_clone : string ($data_index : int) {
+  method elem_clone : string ($data_index : int) {
     
     my $data = $self->data;
     
-    my $element = $data->[$data_index];
+    my $elem = $data->[$data_index];
     
-    my $clone = copy $element;
+    my $clone = copy $elem;
     
     return $clone;
   }
