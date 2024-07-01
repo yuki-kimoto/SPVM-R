@@ -80,7 +80,7 @@ class R::NDArray::Double extends R::NDArray {
     }
   }
   
-  precompile method to_int : R::NDArray::Int () {
+  precompile method to_int_ndarray : R::NDArray::Int () {
     
     unless ($self) {
       die "The n-dimension array \$self must be defined.";
@@ -102,7 +102,7 @@ class R::NDArray::Double extends R::NDArray {
     return $ret_ndarray;
   }
   
-  precompile method to_long : R::NDArray::Long () {
+  precompile method to_long_ndarray : R::NDArray::Long () {
     
     unless ($self) {
       die "The n-dimension array \$self must be defined.";
@@ -124,7 +124,7 @@ class R::NDArray::Double extends R::NDArray {
     return $ret_ndarray;
   }
   
-  precompile method to_float : R::NDArray::Float () {
+  precompile method to_float_ndarray : R::NDArray::Float () {
     
     unless ($self) {
       die "The n-dimension array \$self must be defined.";
@@ -146,7 +146,7 @@ class R::NDArray::Double extends R::NDArray {
     return $ret_ndarray;
   }
   
-  precompile method to_float_complex : R::NDArray::FloatComplex () {
+  precompile method to_float_complex_ndarray : R::NDArray::FloatComplex () {
     
     unless ($self) {
       die "The n-dimension array \$self must be defined.";
@@ -169,7 +169,7 @@ class R::NDArray::Double extends R::NDArray {
     return $ret_ndarray;
   }
   
-  precompile method to_double_complex : R::NDArray::DoubleComplex () {
+  precompile method to_double_complex_ndarray : R::NDArray::DoubleComplex () {
     
     unless ($self) {
       die "The n-dimension array \$self must be defined.";

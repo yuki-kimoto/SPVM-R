@@ -603,7 +603,7 @@ class R::NDArray {
     }
   }
   
-  precompile method to_string : R::NDArray::String () {
+  precompile method to_string_ndarray : R::NDArray::String () {
     
     unless ($self) {
       die "The n-dimension array \$self must be defined.";
