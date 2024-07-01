@@ -130,8 +130,8 @@ class R::Util {
       die "The length of the dimension \$dim must be greater than 0.";
     }
     
-    unless ($index < $dim_length) {
-      die "The index \$index must be less than the length of the dimension \$dim.";
+    unless ($index <= $dim_length) {
+      die "The index \$index must be less than or equal to the length of the dimension \$dim.";
     }
     
     my $dropped_dim_list = IntList->new;
@@ -151,7 +151,7 @@ class R::Util {
       $dropped_dim_list->push($dim_elem);
     }
     
-    if ($push_to_last) {
+    if ($push_to_last || $index == $dim_length) {
       $dropped_dim_list->push(1);
     }
     

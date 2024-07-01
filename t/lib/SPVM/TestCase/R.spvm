@@ -452,6 +452,62 @@ class TestCase::R {
         }
       }
       
+      # R::NDArray#expand_dim
+      {
+        {
+          my $dim = [2, 3, 5];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          $ndarray->expand_dim;
+          
+          unless (Array->equals_int($ndarray->dim, [2, 3, 5, 1])) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2, 3, 5];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          my $dim_index = 3;
+          
+          $ndarray->expand_dim($dim_index);
+          
+          unless (Array->equals_int($ndarray->dim, [2, 3, 5, 1])) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [2, 3, 5];
+          my $ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          my $dim_index = 1;
+          
+          $ndarray->expand_dim($dim_index);
+          
+          unless (Array->equals_int($ndarray->dim, [2, 1, 3, 5])) {
+            return 0;
+          }
+        }
+        
+        # Exceptions
+        {
+          {
+            my $dim = [2, 3, 5];
+            my $ndarray = R::NDArray::Int->new({dim => $dim});
+            
+            my $dim_index = 4;
+            
+            eval { $ndarray->expand_dim($dim_index); }
+            
+            unless ($@) {
+              return 0;
+            }
+          }
+        }
+      }
+      
       # R::NDArray#length
       {
         {
