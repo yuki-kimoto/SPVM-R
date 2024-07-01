@@ -309,6 +309,15 @@ class R::NDArray {
     $self->set_dim($dropped_dim);
   }
   
+  method expand_dim : void ($index : int = -1) {
+    
+    my $dim = $self->{dim};
+    
+    my $expandped_dim = R::Util->expand_dim($dim, $index);
+    
+    $self->set_dim($expandped_dim);
+  }
+  
   protected method check : void () { die "Not implemented."; }
   
   protected method create_default_data : object ($length : int = 0) { die "Not implemented."; }
