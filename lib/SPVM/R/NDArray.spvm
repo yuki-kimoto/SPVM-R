@@ -650,5 +650,48 @@ class R::NDArray {
     return $ret_ndarray;
   }
   
+  method is_numeric_ndarray : int () {
+    
+    my $data = $self->{data};
+    
+    my $is_numeric_ndarray = 0;
+    if (Fn->is_numeric_array($data)) {
+      $is_numeric_ndarray = 1;
+    }
+    
+    return $is_numeric_ndarray;
+  }
+  
+  method is_mulnum_ndarray : int () {
+    
+    my $data = $self->{data};
+    
+    my $is_mulnum_ndarray = 0;
+    if (Fn->is_mulnum_array($data)) {
+      $is_mulnum_ndarray = 1;
+    }
+    
+    return $is_mulnum_ndarray;
+  }
+  
+  method is_any_numeric_ndarray : int () {
+    
+    my $any_numeric_ndarray = $self->is_numeric_ndarray || $self->is_mulnum_ndarray;
+    
+    return $any_numeric_ndarray;
+  }
+  
+  method is_object_ndarray : int () {
+    
+    my $data = $self->{data};
+    
+    my $is_mulnum = 0;
+    if (Fn->is_object_array($data)) {
+      $is_mulnum = 1;
+    }
+    
+    return $is_mulnum;
+  }
+  
 }
 
