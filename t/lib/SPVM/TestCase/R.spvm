@@ -73,6 +73,24 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $data = (byte)1;
+          my $ret_ndarray = R->byte($data);
+          
+          unless ($ret_ndarray is_type R::NDArray::Byte) {
+            return 0;
+          }
+          
+          unless (Array->equals_byte($ret_ndarray->data, [(byte)1])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
+        
       }
       
       # R#short method
@@ -112,6 +130,24 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $data = (short)1;
+          my $ret_ndarray = R->short($data);
+          
+          unless ($ret_ndarray is_type R::NDArray::Short) {
+            return 0;
+          }
+          
+          unless (Array->equals_short($ret_ndarray->data, [(short)1])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
+        
       }
 
       # R#int method
@@ -151,6 +187,24 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $data = (int)1;
+          my $ret_ndarray = R->int($data);
+          
+          unless ($ret_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->data, [(int)1])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
+        
       }
       
       # R#long method
@@ -190,6 +244,24 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $data = (long)1;
+          my $ret_ndarray = R->long($data);
+          
+          unless ($ret_ndarray is_type R::NDArray::Long) {
+            return 0;
+          }
+          
+          unless (Array->equals_long($ret_ndarray->data, [(long)1])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
+        
       }
       
       # R#float method
@@ -229,6 +301,24 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $data = (float)1;
+          my $ret_ndarray = R->float($data);
+          
+          unless ($ret_ndarray is_type R::NDArray::Float) {
+            return 0;
+          }
+          
+          unless (Array->equals_float($ret_ndarray->data, [(float)1])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
+        
       }
       
       # R#double method
@@ -268,6 +358,24 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $data = (double)1;
+          my $ret_ndarray = R->double($data);
+          
+          unless ($ret_ndarray is_type R::NDArray::Double) {
+            return 0;
+          }
+          
+          unless (Array->equals_double($ret_ndarray->data, [(double)1])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
+        
       }
       
       # R#float_complex method

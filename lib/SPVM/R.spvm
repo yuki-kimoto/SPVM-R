@@ -35,28 +35,106 @@ class R {
   use R::OP::StringBuffer;
   use R::OP::Time::Piece;
   
-  static method byte : R::NDArray::Byte ($data : byte[], $dim : int[] = undef) {
-    return R::OP::Byte->c($data, $dim);
+  static method byte : R::NDArray::Byte ($data : object of Byte|byte[], $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Byte) {
+        $data = [(byte)$data->(Byte)];
+      }
+      elsif ($data is_type byte[]) {
+        # Do nothing
+      }
+      else {
+        die "The type of the data \data must be Byte or byte[].";
+      }
+    }
+    
+    return R::OP::Byte->c((byte[])$data, $dim);
   }
   
-  static method short : R::NDArray::Short ($data : short[], $dim : int[] = undef) {
-    return R::OP::Short->c($data, $dim);
+  static method short : R::NDArray::Short ($data : object of Short|short[], $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Short) {
+        $data = [(short)$data->(Short)];
+      }
+      elsif ($data is_type short[]) {
+        # Do nothing
+      }
+      else {
+        die "The type of the data \data must be Short or short[].";
+      }
+    }
+    
+    return R::OP::Short->c((short[])$data, $dim);
   }
   
-  static method int : R::NDArray::Int ($data : int[], $dim : int[] = undef) {
-    return R::OP::Int->c($data, $dim);
+  static method int : R::NDArray::Int ($data : object of Short|int[], $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Int) {
+        $data = [(int)$data->(Int)];
+      }
+      elsif ($data is_type int[]) {
+        # Do nothing
+      }
+      else {
+        die "The type of the data \data must be Int or int[].";
+      }
+    }
+    
+    return R::OP::Int->c((int[])$data, $dim);
   }
   
-  static method long : R::NDArray::Long ($data : long[], $dim : int[] = undef) {
-    return R::OP::Long->c($data, $dim);
+  static method long : R::NDArray::Long ($data : object of Long|long[], $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Long) {
+        $data = [(long)$data->(Long)];
+      }
+      elsif ($data is_type long[]) {
+        # Do nothing
+      }
+      else {
+        die "The type of the data \data must be Long or long[].";
+      }
+    }
+    
+    return R::OP::Long->c((long[])$data, $dim);
   }
   
-  static method float : R::NDArray::Float ($data : float[], $dim : int[] = undef) {
-    return R::OP::Float->c($data, $dim);
+  static method float : R::NDArray::Float ($data : object of Float|float[], $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Float) {
+        $data = [(float)$data->(Float)];
+      }
+      elsif ($data is_type float[]) {
+        # Do nothing
+      }
+      else {
+        die "The type of the data \data must be Float or float[].";
+      }
+    }
+    
+    return R::OP::Float->c((float[])$data, $dim);
   }
   
-  static method double : R::NDArray::Double ($data : double[], $dim : int[] = undef) {
-    return R::OP::Double->c($data, $dim);
+  static method double : R::NDArray::Double ($data : object of Double|double[], $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Double) {
+        $data = [(double)$data->(Double)];
+      }
+      elsif ($data is_type double[]) {
+        # Do nothing
+      }
+      else {
+        die "The type of the data \data must be Double or double[].";
+      }
+    }
+    
+    return R::OP::Double->c((double[])$data, $dim);
   }
   
   static method float_complex : R::NDArray::FloatComplex ($data : Complex_2f[], $dim : int[] = undef) {
