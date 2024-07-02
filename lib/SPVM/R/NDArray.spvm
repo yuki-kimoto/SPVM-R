@@ -254,10 +254,10 @@ class R::NDArray {
   
   method is_scalar : int () {
     
-    my $dim = $self->{dim};
+    my $length = $self->length;
     
     my $is_scalar = 0;
-    if (@$dim == 1 && $dim->[0] == 1) {
+    if ($length == 1) {
       $is_scalar = 1;
     }
     
