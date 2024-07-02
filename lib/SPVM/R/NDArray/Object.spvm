@@ -68,4 +68,31 @@ class R::NDArray::Object extends R::NDArray {
     }
   }
   
+  protected method create_default_data : object[] ($length : int = 0) {
+    
+    unless ($length >= 0) {
+      die "The length \$length must be more than or equal to 0.";
+    }
+    
+    my $data = new object[$length];
+    
+    return $data;
+  }
+  
+  protected method check : void () {
+    
+    my $data = (object[])$self->{data};
+    
+    my $length = $self->length;
+    
+    unless (@$data == $length) {
+      die "The length of data field must be the same as length field.";
+    }
+  }
+  
+  method data : object[] () {
+    
+    return (object[])$self->{data};
+  }
+  
 }

@@ -462,6 +462,45 @@ class TestCase::R {
         }
       }
       
+      # R#object method
+      {
+        {
+          my $data = [(object)"1", "2", "3", "4", "5", "6"];
+          my $dim = [2, 3];
+          my $ndarray = R->object($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::Object) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(object)"1", "2", "3", "4", "5", "6"];
+          my $data_length = @$data;
+          my $ndarray = R->object($data);
+          
+          unless ($ndarray is_type R::NDArray::Object) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
+      
     }
     
     # R::NDArray
