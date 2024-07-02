@@ -540,6 +540,45 @@ class TestCase::R {
         }
       }
 
+      # R#string method
+      {
+        {
+          my $data = [(StringBuffer)StringBuffer->new("1"), StringBuffer->new("2"), StringBuffer->new("3"), StringBuffer->new("4"), StringBuffer->new("5"), StringBuffer->new("6")];
+          my $dim = [2, 3];
+          my $ndarray = R->string_buffer($data, $dim);
+          
+          unless ($ndarray is_type R::NDArray::StringBuffer) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, $ndarray->dim)) {
+            return 0;
+          }
+        }
+        
+        {
+          my $data = [(StringBuffer)StringBuffer->new("1"), StringBuffer->new("2"), StringBuffer->new("3"), StringBuffer->new("4"), StringBuffer->new("5"), StringBuffer->new("6")];
+          my $data_length = @$data;
+          my $ndarray = R->string_buffer($data);
+          
+          unless ($ndarray is_type R::NDArray::StringBuffer) {
+            return 0;
+          }
+          
+          unless ($ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [$data_length])) {
+            return 0;
+          }
+        }
+      }
+
     }
     
     # R::NDArray
