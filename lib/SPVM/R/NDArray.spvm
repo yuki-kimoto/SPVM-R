@@ -268,8 +268,10 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
+    my $length = $self->length;
+    
     my $is_vector = 0;
-    if (@$dim == 1) {
+    if (@$dim >= 1 && $dim->[0] == $length) {
       $is_vector = 1;
     }
     
