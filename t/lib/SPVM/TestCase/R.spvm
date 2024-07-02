@@ -438,6 +438,30 @@ class TestCase::R {
         }
       }
       
+      # R#i method
+      {
+        {
+          my $ndarray = R->i;
+          
+          unless ($ndarray is_type R::NDArray::DoubleComplex) {
+            return 0;
+          }
+          
+          unless ($ndarray->data->[0]{re} == 0) {
+            return 0;
+          }
+          
+          unless ($ndarray->data->[0]{im} == 1) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ndarray->dim, [1])) {
+            return 0;
+          }
+          
+        }
+      }
+      
     }
     
     # R::NDArray
