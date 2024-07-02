@@ -75,7 +75,7 @@ class R {
     
     my $pairs_length = @$pairs;
     
-    unless ($pairs_length % 2) {
+    unless ($pairs_length % 2 == 0) {
       die "The pairs \$pairs must be devided by even number.";
     }
     
@@ -83,7 +83,7 @@ class R {
     
     my $data = new Complex_2f[$length];
     
-    Fn->memcpy($data, 0, $pairs, 0, 4 * $length);
+    Fn->memcpy($data, 0, $pairs, 0, 4 * 2 * $length);
     
     return R::OP::FloatComplex->c($data, $dim);
   }
@@ -96,7 +96,7 @@ class R {
     
     my $pairs_length = @$pairs;
     
-    unless ($pairs_length % 2) {
+    unless ($pairs_length % 2 == 0) {
       die "The pairs \$pairs must be devided by even number.";
     }
     
@@ -104,14 +104,14 @@ class R {
     
     my $data = new Complex_2d[$length];
     
-    Fn->memcpy($data, 0, $pairs, 0, 8 * $length);
+    Fn->memcpy($data, 0, $pairs, 0, 8 * 2 * $length);
     
     return R::OP::DoubleComplex->c($data, $dim);
   }
   
   static method i : R::NDArray::DoubleComplex () {
     
-    my $ret_ndarray = &complex([0.0,1.0]);
+    my $ret_ndarray = &complex([(double)0, 1]);
     
     return $ret_ndarray;
   }
