@@ -721,21 +721,25 @@ class R::OP::Int {
   
   static method seq : R::NDArray::Int ($begin : int, $end : int, $by : int = 1) {
     
+    if ($by == 0) {
+      die "\$by must not be 0.";
+    }
+    
     my $ret_data_list = IntList->new;
     my $current = $begin;
     while (1) {
       if ($by >= 0) {
-        if ($current <= $end) {
+        if ($current > $end) {
           last;
         }
       }
       else {
-        if ($current >= $end) {
+        if ($current < $end) {
           last;
         }
       }
-      $current += $by;
       $ret_data_list->push($current);
+      $current += $by;
     }
     
     my $ret_data = $ret_data_list->to_array;
