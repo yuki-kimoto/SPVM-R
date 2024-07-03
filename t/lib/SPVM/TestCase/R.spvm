@@ -881,6 +881,19 @@ class TestCase::R {
         }
       }
       
+      # R#undef method
+      {
+        my $undef = R->undef;
+        
+        unless ($undef is_compile_type R::NDArray::Int) {
+          return 0;
+        }
+        
+        if ($undef) {
+          return 0;
+        }
+      }
+      
       # R::NDArray#slice method
       {
 

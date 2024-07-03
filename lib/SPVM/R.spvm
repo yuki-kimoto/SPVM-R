@@ -251,4 +251,7 @@ class R {
     return R::OP::Int->seq($begin, $end, $by);
   }
   
+  static method undef : R::NDArray::Int () {
+    return (R::NDArray::Int)undef;
+  }
 }
