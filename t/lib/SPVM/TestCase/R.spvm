@@ -815,14 +815,97 @@ class TestCase::R {
             return 0;
           }
           
-          # warn dump $ret_ndarray;
-          
           unless (Array->equals_int($ret_ndarray->data, [2])) {
             return 0;
           }
           
           unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
             return 0;
+          }
+        }
+        
+        {
+          my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
+          
+          my $ret_ndarray = $ndarray->slice([R->int(2), R->int(0)]);
+          
+          unless ($ret_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->data, [3])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+            return 0;
+          }
+        }
+        
+        {
+          my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
+          
+          my $ret_ndarray = $ndarray->slice([R->int(0), R->int(1)]);
+          
+          unless ($ret_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->data, [4])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+            return 0;
+          }
+        }
+        
+        {
+          my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
+          
+          my $ret_ndarray = $ndarray->slice([R->int(1), R->int(1)]);
+          
+          unless ($ret_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->data, [5])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+            return 0;
+          }
+        }
+        
+        {
+          my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
+          
+          my $ret_ndarray = $ndarray->slice([R->int(2), R->int(1)]);
+          
+          unless ($ret_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->data, [6])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+            return 0;
+          }
+        }
+        
+        # Exceptions
+        {
+          {
+            my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
+            
+            eval { $ndarray->slice([R->int(3), R->int(0)]); }
+            
+            unless ($@) {
+              return 0;
+            }
           }
         }
       }

@@ -455,9 +455,11 @@ class R::NDArray {
         my $ret_coordinate_x = $ret_coordinate->[$coordinate_index];
         
         $coordinate->[$coordinate_index] = $vector_indexes->[$coordinate_index]->data->[$ret_coordinate_x];
+        
+        if ($coordinate->[$coordinate_index] >= $dim->[$coordinate_index]) {
+          die "Invalid coordinate.";
+        }
       }
-      
-      # warn dump $coordinate;
       
       my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
       
