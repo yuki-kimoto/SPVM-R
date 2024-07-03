@@ -943,6 +943,16 @@ class TestCase::R {
               return 0;
             }
           }
+          
+          {
+            my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
+            
+            eval { $ndarray->slice([R->int(0), R->int(2)]); }
+            
+            unless ($@) {
+              return 0;
+            }
+          }
         }
       }
     }
