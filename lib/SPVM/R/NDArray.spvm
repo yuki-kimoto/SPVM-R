@@ -471,23 +471,28 @@ class R::NDArray {
     
     my $dim = $self->{dim};
     
+    my $dim_length = @$dim;
+    
     my $data = $self->{data};
     
     my $string_buffer = StringBuffer->new;
-    if ($self->is_empty) {
+    if ($dim_length == 0) {
       $string_buffer->push("Empty");
     }
-    elsif ($self->is_vector) {
+    elsif ($dim_length == 1) {
       my $data_length = $self->length;
-      my $string_buffer = StringBuffer->new;
-      $string_buffer->push("[0]");
+      
       for (my $i = 0; $i < $data_length; $i++) {
+        $string_buffer->push("[$i]\t");
         my $elem_string = $self->elem_to_string($i);
         $string_buffer->push($elem_string);
+        
+        unless ($i == $data_length - 1) {
+          $string_buffer->push("\n");
+        }
       }
-      $string_buffer->push("\n  ");
     }
-    elsif ($self->is_matrix) {
+    elsif ($dim_length == 2) {
       
       $string_buffer->push("     ");
       

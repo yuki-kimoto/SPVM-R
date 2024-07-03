@@ -1937,6 +1937,14 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $ret_ndarray = R->int([1, 2]);
+          
+          unless ($ret_ndarray->to_string eq "[0]\t1\n[1]\t2") {
+            return 0;
+          }
+        }
       }
       
     }
