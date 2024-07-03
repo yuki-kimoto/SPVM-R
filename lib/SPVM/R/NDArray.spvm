@@ -43,7 +43,13 @@ class R::NDArray {
       }
       
       unless ($vector_index) {
-        $vector_index = R::NDArray::Int->new({dim => [$dim->[$vector_indexes_index]]});
+        my $vector_index_data = new int[$dim->[$vector_indexes_index]];
+        
+        for (my $i = 0; $i < $dim->[$vector_indexes_index]; $i++) {
+          $vector_index_data->[$i] = $i;
+        }
+        
+        $vector_index = R::NDArray::Int->new({data => $vector_index_data});
       }
       
       $normalized_vector_indexes->[$vector_indexes_index] = $vector_index;
