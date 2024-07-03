@@ -114,7 +114,7 @@ class R::NDArray {
       my $reminder = $data_index % $before_dim_product;
       my $quotient = $reminder / $dim_product;
       
-      $coordinate->[$i] = $quotient + 1;
+      $coordinate->[$i] = $quotient;
       $before_dim_product = $dim_product;
     }
     
@@ -436,12 +436,21 @@ class R::NDArray {
     my $data_indexes = new int[$ret_length];
     
     for (my $ret_data_index = 0; $ret_data_index < $ret_length; $ret_data_index++) {
+      
       my $ret_coordinate = &convert_data_index_to_coordinate($ret_data_index, $ret_dim);
+      
+      warn $ret_data_index;
+      
+      warn dump $ret_dim;
+      
+      warn dump $ret_coordinate;
       
       my $coordinate = new int[$ret_dim_length];
       
       for (my $coordinate_index = 0; $coordinate_index < @$coordinate; $coordinate_index++) {
+        
         my $ret_coordinate_x = $ret_coordinate->[$coordinate_index];
+        
         $coordinate->[$coordinate_index] = $vector_indexes->[$coordinate_index]->data->[$ret_coordinate_x];
       }
       
