@@ -114,7 +114,8 @@ class R::NDArray::FloatComplex extends R::NDArray {
     my $data = $self->data;
     my $ret_data = new Complex_2f[$data_indexes_length];
     for (my $i = 0; $i < $data_indexes_length; $i++) {
-      $ret_data->(Complex_2f[])->[$i] = $data->(Complex_2f[])->[$i];
+      my $data_index = $data_indexes->[$i];
+      $ret_data->(Complex_2f[])->[$i] = $data->(Complex_2f[])->[$data_index];
     }
     
     return $ret_data;

@@ -223,7 +223,8 @@ class R::NDArray::Int extends R::NDArray {
     my $data = $self->data;
     my $ret_data = new int[$data_indexes_length];
     for (my $i = 0; $i < $data_indexes_length; $i++) {
-      $ret_data->(int[])->[$i] = $data->(int[])->[$i];
+      my $data_index = $data_indexes->[$i];
+      $ret_data->(int[])->[$i] = $data->(int[])->[$data_index];
     }
     
     return $ret_data;

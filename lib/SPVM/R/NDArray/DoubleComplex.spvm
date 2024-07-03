@@ -115,7 +115,8 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     my $data = $self->data;
     my $ret_data = new Complex_2d[$data_indexes_length];
     for (my $i = 0; $i < $data_indexes_length; $i++) {
-      $ret_data->(Complex_2d[])->[$i] = $data->(Complex_2d[])->[$i];
+      my $data_index = $data_indexes->[$i];
+      $ret_data->(Complex_2d[])->[$i] = $data->(Complex_2d[])->[$data_index];
     }
     
     return $ret_data;

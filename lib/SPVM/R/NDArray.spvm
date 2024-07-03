@@ -389,9 +389,11 @@ class R::NDArray {
     
     my $data_indexes = $self->create_data_indexes($vector_indexes, $dim);
     
+    # warn dump $data_indexes;
+    
     my $ret_data = $self->slice_data($data_indexes);
     
-    my $class_name = type_name $self;
+    # warn dump $ret_data;
     
     my $ret_ndarray = (R::NDArray)R::Util->new_proto($self, {data => $ret_data, dim => $ret_dim});
     
@@ -437,6 +439,15 @@ class R::NDArray {
       
       my $ret_coordinate = &convert_data_index_to_coordinate($ret_data_index, $ret_dim);
       
+      # warn "[\$ret_data_index]\n";
+      # warn $ret_data_index;
+      
+      # warn "[\$ret_dim]\n";
+      # warn dump $ret_dim;
+      
+      # warn "[\$ret_coordinate]\n";
+      # warn dump $ret_coordinate;
+      
       my $coordinate = new int[$ret_dim_length];
       
       for (my $coordinate_index = 0; $coordinate_index < @$coordinate; $coordinate_index++) {
@@ -446,10 +457,16 @@ class R::NDArray {
         $coordinate->[$coordinate_index] = $vector_indexes->[$coordinate_index]->data->[$ret_coordinate_x];
       }
       
+      # warn dump $coordinate;
+      
       my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
+      
+      # warn $data_index;
       
       $data_indexes->[$ret_data_index] = $data_index;
     }
+    
+    # warn dump $data_indexes;
     
     return $data_indexes;
   }

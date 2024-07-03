@@ -202,7 +202,8 @@ class R::NDArray::Double extends R::NDArray {
     my $data = $self->data;
     my $ret_data = new double[$data_indexes_length];
     for (my $i = 0; $i < $data_indexes_length; $i++) {
-      $ret_data->(double[])->[$i] = $data->(double[])->[$i];
+      my $data_index = $data_indexes->[$i];
+      $ret_data->(double[])->[$i] = $data->(double[])->[$data_index];
     }
     
     return $ret_data;
