@@ -393,7 +393,7 @@ class R::NDArray {
     
     my $class_name = type_name $self;
     
-    my $ret_ndarray = (R::NDArray)R::Util->new_proto($self, [{data => $ret_data, dim => $ret_dim}]);
+    my $ret_ndarray = (R::NDArray)R::Util->new_proto($self, {data => $ret_data, dim => $ret_dim});
     
     return $ret_ndarray;
   }
