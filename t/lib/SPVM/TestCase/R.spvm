@@ -867,6 +867,15 @@ class TestCase::R {
         }
         
         {
+          my $dim = [1, 1];
+          my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ret_ndarray->is_scalar) {
+            return 0;
+          }
+        }
+        
+        {
           my $dim = [1, 2];
           my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
           
