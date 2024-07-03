@@ -82,14 +82,12 @@ class R::NDArray {
         for (my $k = 0; $k < $i; $k++) {
           $tmp *= $dim->[$k];
         }
-        $data_index += $tmp * $coordinate->[$i] - 1;
+        $data_index += $tmp * $coordinate->[$i];
       }
       else {
         $data_index += $coordinate->[$i];
       }
     }
-    
-    $data_index -= 1;
     
     return $data_index;
   }
@@ -438,12 +436,6 @@ class R::NDArray {
     for (my $ret_data_index = 0; $ret_data_index < $ret_length; $ret_data_index++) {
       
       my $ret_coordinate = &convert_data_index_to_coordinate($ret_data_index, $ret_dim);
-      
-      warn $ret_data_index;
-      
-      warn dump $ret_dim;
-      
-      warn dump $ret_coordinate;
       
       my $coordinate = new int[$ret_dim_length];
       
