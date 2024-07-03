@@ -91,6 +91,22 @@ class TestCase::R {
           }
         }
         
+        {
+          my $data = [(byte)1, 2, 3, 4, 5, 6];
+          my $ret_ndarray = R->byte(R::OP::Byte->c($data));
+          
+          unless ($ret_ndarray is_type R::NDArray::Byte) {
+            return 0;
+          }
+          
+          unless ($ret_ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
       }
       
       # R#short method
