@@ -1114,6 +1114,19 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $dim = [3, 2, 1];
+          my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ret_ndarray->nrow == 3) {
+            return 0;
+          }
+          
+          unless ($ret_ndarray->ncol == 2) {
+            return 0;
+          }
+        }
       }
       
       # R::NDArray#dim

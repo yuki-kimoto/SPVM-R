@@ -224,7 +224,7 @@ class R::NDArray {
     
     my $ncol = 1;
     
-    if (@$dim == 2) {
+    if (@$dim >= 2) {
       $ncol = $dim->[1];
     }
     
