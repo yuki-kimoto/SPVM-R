@@ -230,19 +230,17 @@ class R::NDArray::Int extends R::NDArray {
     return $ret_data;
   }
   
-  protected method slice_set_data : void ($data_indexes : int[], $data : object) {
+  protected method slice_set_data : void ($data_indexes : int[], $data : int[]) {
     
-    my $self_data = $self->{data};
+    my $self_data = $self->data;
     
     unless ($data_indexes) {
       die "The data indexes \$data_indexes must be defined.";
     }
     
-    my $data_index = 0;
-    my $data_indexes_length = @$data_indexes;
-    for (my $i = 0; $i < $data_indexes_length; $i++) {
-      $self_data->(int[])->[$i] = $data->(int[])->[$data_index];
-      $data_index++;
+    for (my $i = 0; $i < @$data; $i++) {
+      my $data_index = $data_indexes->[$i];
+      $self_data->[$data_index] = $data->[$i];
     }
   }
   
