@@ -80,7 +80,7 @@ class R::NDArray::Float extends R::NDArray {
     }
   }
   
-  protected method slice_data : object ($data_indexes : int[]) {
+  protected method slice_data : float[] ($data_indexes : int[]) {
     
     unless ($data_indexes) {
       die "The data indexes \$data_indexes must be defined.";
@@ -91,7 +91,7 @@ class R::NDArray::Float extends R::NDArray {
     my $ret_data = new float[$data_indexes_length];
     for (my $i = 0; $i < $data_indexes_length; $i++) {
       my $data_index = $data_indexes->[$i];
-      $ret_data->(float[])->[$i] = $data->(float[])->[$data_index];
+      $ret_data->[$i] = $data->[$data_index];
     }
     
     return $ret_data;
