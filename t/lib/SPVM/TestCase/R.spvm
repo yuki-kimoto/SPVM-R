@@ -1912,6 +1912,20 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        # Exceptions
+        {
+          # Invalid dimension
+          {
+            my $ret_ndarray = R->int(R->seq(1, 24), [4, 3, 2]);
+            
+            eval { $ret_ndarray->slice_set([R->seq(0, 2), R->seq(0, 1)], R->int(R->seq(101, 112), [2, 3, 2])); }
+            
+            unless ($@) {
+              return 0;
+            }
+          }
+        }
       }
       
     }
