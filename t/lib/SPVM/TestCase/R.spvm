@@ -164,6 +164,22 @@ class TestCase::R {
           }
         }
         
+        {
+          my $data = [(short)1, 2, 3, 4, 5, 6];
+          my $ret_ndarray = R->short(R::OP::Short->c($data));
+          
+          unless ($ret_ndarray is_type R::NDArray::Short) {
+            return 0;
+          }
+          
+          unless ($ret_ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
       }
 
       # R#int method
@@ -221,6 +237,22 @@ class TestCase::R {
           }
         }
         
+        {
+          my $data = [(int)1, 2, 3, 4, 5, 6];
+          my $ret_ndarray = R->int(R::OP::Int->c($data));
+          
+          unless ($ret_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless ($ret_ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
       }
       
       # R#long method
@@ -278,6 +310,22 @@ class TestCase::R {
           }
         }
         
+        {
+          my $data = [(long)1, 2, 3, 4, 5, 6];
+          my $ret_ndarray = R->long(R::OP::Long->c($data));
+          
+          unless ($ret_ndarray is_type R::NDArray::Long) {
+            return 0;
+          }
+          
+          unless ($ret_ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
       }
       
       # R#float method
@@ -335,6 +383,22 @@ class TestCase::R {
           }
         }
         
+        {
+          my $data = [(float)1, 2, 3, 4, 5, 6];
+          my $ret_ndarray = R->float(R::OP::Float->c($data));
+          
+          unless ($ret_ndarray is_type R::NDArray::Float) {
+            return 0;
+          }
+          
+          unless ($ret_ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
       }
       
       # R#double method
@@ -392,6 +456,22 @@ class TestCase::R {
           }
         }
         
+        {
+          my $data = [(double)1, 2, 3, 4, 5, 6];
+          my $ret_ndarray = R->double(R::OP::Double->c($data));
+          
+          unless ($ret_ndarray is_type R::NDArray::Double) {
+            return 0;
+          }
+          
+          unless ($ret_ndarray->data == $data) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, $ret_ndarray->dim)) {
+            return 0;
+          }
+        }
       }
       
       # R#float_complex method
