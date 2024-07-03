@@ -1822,6 +1822,24 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $ret_ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
+          
+          $ret_ndarray->slice_set([R->seq(0, 2), R->int(0)], R->int([100, 101, 102]));
+          
+          unless ($ret_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->data, [100, 101, 102, 4, 5, 6])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, [3, 2])) {
+            return 0;
+          }
+        }
       }
       
     }
