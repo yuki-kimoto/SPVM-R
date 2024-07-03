@@ -400,25 +400,6 @@ class R::NDArray {
     return $ret_ndarray;
   }
   
-  method get : R::NDArray ($coordinate : R::NDArray::Int) {
-    
-    unless ($coordinate) {
-      die "The coordinate \$coordinate must be defined.";
-    }
-    
-    my $coordinate_length = $coordinate->length;
-    
-    my $vector_indexes = new R::NDArray::Int[$coordinate_length];
-    
-    for (my $i = 0; $i < $coordinate_length; $i++) {
-      $vector_indexes->[$i] = R::OP::Int->c([$coordinate->data->[$i]]);
-    }
-    
-    my $ret_ndarray = $self->slice($vector_indexes);
-    
-    return $ret_ndarray;
-  }
-  
   method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray) {
     
     my $dim = $self->{dim};
@@ -436,23 +417,6 @@ class R::NDArray {
     }
     
     $self->slice_set_data($data_indexes, $ndarray->data);
-  }
-  
-  method set : void ($coordinate : R::NDArray::Int, $ndarray : R::NDArray) {
-    
-    unless ($coordinate) {
-      die "The coordinate \$coordinate must be defined.";
-    }
-    
-    my $coordinate_length = $coordinate->length;
-    
-    my $vector_indexes = new R::NDArray::Int[$coordinate_length];
-    
-    for (my $i = 0; $i < $coordinate_length; $i++) {
-      $vector_indexes->[$i] = R::OP::Int->c([$coordinate->data->[$i]]);
-    }
-    
-    $self->slice_set($vector_indexes, $ndarray);
   }
   
   protected method slice_data : object ($data_indexes : int[]) { die "Not implemented."; }
