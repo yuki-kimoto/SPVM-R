@@ -993,7 +993,7 @@ class TestCase::R {
         }
         
         {
-          my $ndarray = R->int(R->seq(1, 24)->data, [4, 3, 2]);
+          my $ndarray = R->int(R->seq(1, 24), [4, 3, 2]);
           
           my $ret_ndarray = $ndarray->slice([R->int(3), R->int(2), R->int(1)]);
           
@@ -1011,7 +1011,7 @@ class TestCase::R {
         }
         
         {
-          my $ndarray = R->int(R->seq(1, 24)->data, [4, 3, 2]);
+          my $ndarray = R->int(R->seq(1, 24), [4, 3, 2]);
           
           my $ret_ndarray = $ndarray->slice([R->int(1), R->int(1), R->int(1)]);
           
