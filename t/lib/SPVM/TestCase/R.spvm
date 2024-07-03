@@ -981,7 +981,25 @@ class TestCase::R {
         }
         
         {
+          my $dim = [2, 1];
+          my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ret_ndarray->is_matrix) {
+            return 0;
+          }
+        }
+        
+        {
           my $dim = [1, 2];
+          my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+          
+          unless ($ret_ndarray->is_matrix) {
+            return 0;
+          }
+        }
+        
+        {
+          my $dim = [1, 2, 1];
           my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
           
           unless ($ret_ndarray->is_matrix) {
