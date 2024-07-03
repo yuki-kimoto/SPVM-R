@@ -1928,6 +1928,17 @@ class TestCase::R {
         }
       }
       
+      # R::NDArray#to_string method
+      {
+        {
+          my $ret_ndarray = R->int(new int[0]);
+          
+          unless ($ret_ndarray->to_string eq "Empty") {
+            return 0;
+          }
+        }
+      }
+      
     }
     
     # R::NDArray::Int

@@ -480,7 +480,7 @@ class R::NDArray {
     elsif ($self->is_vector) {
       my $data_length = $self->length;
       my $string_buffer = StringBuffer->new;
-      $string_buffer->push("[0] ");
+      $string_buffer->push("[0]");
       for (my $i = 0; $i < $data_length; $i++) {
         my $elem_string = $self->elem_to_string($i);
         $string_buffer->push($elem_string);
