@@ -223,5 +223,13 @@ class R::NDArray::Long extends R::NDArray {
     }
   }
   
+  method slice : R::NDArray::Long ($vector_indexes : R::NDArray::Int[]) {
+    return (R::NDArray::Long)$self->SUPER::slice($vector_indexes);
+  }
+  
+  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::Long) {
+    $self->SUPER::slice_set($vector_indexes, $ndarray);
+  }
+  
 }
 

@@ -112,4 +112,12 @@ class R::NDArray::Float extends R::NDArray {
     }
   }
   
+  method slice : R::NDArray::Float ($vector_indexes : R::NDArray::Int[]) {
+    return (R::NDArray::Float)$self->SUPER::slice($vector_indexes);
+  }
+  
+  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::Float) {
+    $self->SUPER::slice_set($vector_indexes, $ndarray);
+  }
+  
 }

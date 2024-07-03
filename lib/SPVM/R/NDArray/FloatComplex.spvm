@@ -136,4 +136,12 @@ class R::NDArray::FloatComplex extends R::NDArray {
     }
   }
   
+  method slice : R::NDArray::FloatComplex ($vector_indexes : R::NDArray::Int[]) {
+    return (R::NDArray::FloatComplex)$self->SUPER::slice($vector_indexes);
+  }
+  
+  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::FloatComplex) {
+    $self->SUPER::slice_set($vector_indexes, $ndarray);
+  }
+  
 }

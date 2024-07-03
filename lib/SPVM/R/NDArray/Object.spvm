@@ -95,4 +95,12 @@ class R::NDArray::Object extends R::NDArray {
     return (object[])$self->{data};
   }
   
+  method slice : R::NDArray::Object ($vector_indexes : R::NDArray::Int[]) {
+    return (R::NDArray::Object)$self->SUPER::slice($vector_indexes);
+  }
+  
+  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::Object) {
+    $self->SUPER::slice_set($vector_indexes, $ndarray);
+  }
+  
 }

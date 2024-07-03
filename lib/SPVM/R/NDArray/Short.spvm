@@ -111,4 +111,12 @@ class R::NDArray::Short extends R::NDArray {
     }
   }
   
+  method slice : R::NDArray::Short ($vector_indexes : R::NDArray::Int[]) {
+    return (R::NDArray::Short)$self->SUPER::slice($vector_indexes);
+  }
+  
+  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::Short) {
+    $self->SUPER::slice_set($vector_indexes, $ndarray);
+  }
+  
 }
