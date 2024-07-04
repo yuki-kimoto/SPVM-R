@@ -45,27 +45,9 @@ class R {
     return R::OP::Short->c($data, $dim);
   }
   
-  static method int : R::NDArray::Int ($data : object of Short|int[]|R::NDArray::Int, $dim : int[] = undef) {
+  static method int : R::NDArray::Int ($data : object of Int|int[]|R::NDArray::Int, $dim : int[] = undef) {
     
-    if ($data) {
-      if ($data is_type Int) {
-        $data = [(int)$data->(Int)];
-      }
-      elsif ($data is_type int[]) {
-        # Do nothing
-      }
-      elsif ($data is_type R::NDArray::Int) {
-        unless ($dim) {
-          $dim = $data->(R::NDArray::Int)->dim;
-        }
-        $data = $data->(R::NDArray::Int)->data;
-      }
-      else {
-        die "The type of the data \data must be Int or int[].";
-      }
-    }
-    
-    return R::OP::Int->c((int[])$data, $dim);
+    return R::OP::Int->c($data, $dim);
   }
   
   static method long : R::NDArray::Long ($data : object of Long|long[]|R::NDArray::Long, $dim : int[] = undef) {
