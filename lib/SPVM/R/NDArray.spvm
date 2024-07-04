@@ -539,7 +539,9 @@ class R::NDArray {
       &recursive_to_string($self, $dim_list, $string_buffer, \$dim_num, $poss_list);
     }
     
-    my $string = $string_buffer->to_string;
+    my $string = (mutable string)$string_buffer->to_string;
+    
+    Fn->chomp($string);
     
     return $string;
   }
@@ -584,6 +586,8 @@ class R::NDArray {
             
             my $ret_ndarray = $self->slice((R::NDArray::Int[])$poss_list->to_array);
             
+            warn dump $ret_ndarray;
+            
             $elem_strings_list->push($ret_ndarray->elem_to_string(0));
           }
           
@@ -591,6 +595,8 @@ class R::NDArray {
         }
       }
       $poss_list->shift;
+      
+      $string_buffer->push("\n");
     }
   }
   
