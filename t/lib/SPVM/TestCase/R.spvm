@@ -693,7 +693,7 @@ class TestCase::R {
       # R#i method
       {
         {
-          my $ret_ndarray = R->i;
+          my $ret_ndarray = DCOP->i;
           
           unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
             return 0;

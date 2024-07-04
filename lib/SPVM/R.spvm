@@ -85,11 +85,4 @@ class R {
     return R::OP::DoubleComplex->c($data, $dim);
   }
   
-  static method i : R::NDArray::DoubleComplex () {
-    
-    my $ret_ndarray = &complex([(double)0, 1]);
-    
-    return $ret_ndarray;
-  }
-  
 }
