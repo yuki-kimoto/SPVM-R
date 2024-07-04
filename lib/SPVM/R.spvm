@@ -122,8 +122,4 @@ class R {
     return $ret_ndarray;
   }
   
-  static method seq : R::NDArray::Int ($begin : int, $end : int, $by : int = 1) {
-    return R::OP::Int->seq($begin, $end, $by);
-  }
-  
 }

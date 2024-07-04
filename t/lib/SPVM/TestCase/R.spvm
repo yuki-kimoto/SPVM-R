@@ -875,7 +875,7 @@ class TestCase::R {
         {
           my $begin = 1;
           my $end = 5;
-          my $ret_ndarray = R->seq($begin, $end);
+          my $ret_ndarray = IOP->seq($begin, $end);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -894,7 +894,7 @@ class TestCase::R {
           my $begin = 1;
           my $end = 5;
           my $by = 2;
-          my $ret_ndarray = R->seq($begin, $end, $by);
+          my $ret_ndarray = IOP->seq($begin, $end, $by);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -913,7 +913,7 @@ class TestCase::R {
           my $begin = 5;
           my $end = 1;
           my $by = -1;
-          my $ret_ndarray = R->seq($begin, $end, $by);
+          my $ret_ndarray = IOP->seq($begin, $end, $by);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1683,7 +1683,7 @@ class TestCase::R {
         }
         
         {
-          my $ndarray = R->int(R->seq(1, 24), [4, 3, 2]);
+          my $ndarray = R->int(IOP->seq(1, 24), [4, 3, 2]);
           
           my $ret_ndarray = $ndarray->slice([R->int(3), R->int(2), R->int(1)]);
           
@@ -1701,7 +1701,7 @@ class TestCase::R {
         }
         
         {
-          my $ndarray = R->int(R->seq(1, 24), [4, 3, 2]);
+          my $ndarray = R->int(IOP->seq(1, 24), [4, 3, 2]);
           
           my $ret_ndarray = $ndarray->slice([R->int(1), R->int(1), R->int(1)]);
           
@@ -1721,7 +1721,7 @@ class TestCase::R {
         {
           my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          my $ret_ndarray = $ndarray->slice([R->seq(0, 1), R->int(0)]);
+          my $ret_ndarray = $ndarray->slice([IOP->seq(0, 1), R->int(0)]);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1739,7 +1739,7 @@ class TestCase::R {
         {
           my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          my $ret_ndarray = $ndarray->slice([R->seq(0, 2), R->int(0)]);
+          my $ret_ndarray = $ndarray->slice([IOP->seq(0, 2), R->int(0)]);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1757,7 +1757,7 @@ class TestCase::R {
         {
           my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          my $ret_ndarray = $ndarray->slice([R->int(0), R->seq(0, 1)]);
+          my $ret_ndarray = $ndarray->slice([R->int(0), IOP->seq(0, 1)]);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1775,7 +1775,7 @@ class TestCase::R {
         {
           my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          my $ret_ndarray = $ndarray->slice([R->seq(1, 2), R->seq(0, 1)]);
+          my $ret_ndarray = $ndarray->slice([IOP->seq(1, 2), IOP->seq(0, 1)]);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1793,7 +1793,7 @@ class TestCase::R {
         {
           my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          my $ret_ndarray = $ndarray->slice([R->seq(0, 2), R->seq(0, 1)]);
+          my $ret_ndarray = $ndarray->slice([IOP->seq(0, 2), IOP->seq(0, 1)]);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1892,7 +1892,7 @@ class TestCase::R {
         {
           my $ret_ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          $ret_ndarray->slice_set([R->seq(0, 2), R->int(0)], R->int([100, 101, 102]));
+          $ret_ndarray->slice_set([IOP->seq(0, 2), R->int(0)], R->int([100, 101, 102]));
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1910,7 +1910,7 @@ class TestCase::R {
         {
           my $ret_ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          $ret_ndarray->slice_set([R->int(1), R->seq(0, 1)], R->int([100, 101], [1, 2]));
+          $ret_ndarray->slice_set([R->int(1), IOP->seq(0, 1)], R->int([100, 101], [1, 2]));
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1928,7 +1928,7 @@ class TestCase::R {
         {
           my $ret_ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          $ret_ndarray->slice_set([R->int(1), R->seq(0, 1)], R->int([100, 101], [2, 1]));
+          $ret_ndarray->slice_set([R->int(1), IOP->seq(0, 1)], R->int([100, 101], [2, 1]));
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1944,9 +1944,9 @@ class TestCase::R {
         }
         
         {
-          my $ret_ndarray = R->int(R->seq(1, 24), [4, 3, 2]);
+          my $ret_ndarray = R->int(IOP->seq(1, 24), [4, 3, 2]);
           
-          $ret_ndarray->slice_set([R->seq(0, 2), R->seq(0, 1)], R->int(R->seq(101, 112), [3, 2, 2]));
+          $ret_ndarray->slice_set([IOP->seq(0, 2), IOP->seq(0, 1)], R->int(IOP->seq(101, 112), [3, 2, 2]));
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1965,9 +1965,9 @@ class TestCase::R {
         {
           # Invalid dimension
           {
-            my $ret_ndarray = R->int(R->seq(1, 24), [4, 3, 2]);
+            my $ret_ndarray = R->int(IOP->seq(1, 24), [4, 3, 2]);
             
-            eval { $ret_ndarray->slice_set([R->seq(0, 2), R->seq(0, 1)], R->int(R->seq(101, 112), [2, 3, 2])); }
+            eval { $ret_ndarray->slice_set([IOP->seq(0, 2), IOP->seq(0, 1)], R->int(IOP->seq(101, 112), [2, 3, 2])); }
             
             unless ($@) {
               return 0;
@@ -1995,7 +1995,7 @@ class TestCase::R {
         }
         
         {
-          my $ret_ndarray = R->int(R->seq(1, 6), [3, 2]);
+          my $ret_ndarray = R->int(IOP->seq(1, 6), [3, 2]);
           
           unless ($ret_ndarray->to_string eq "\x{09}[,0]\x{09}[,1]\x{09}\x{0A}[0]\x{09}1\x{09}4\x{0A}[1]\x{09}2\x{09}5\x{0A}[2]\x{09}3\x{09}6") {
             return 0;
@@ -2004,7 +2004,7 @@ class TestCase::R {
         }
         
         {
-          my $ret_ndarray = R->int(R->seq(1, 24), [4, 3, 2]);
+          my $ret_ndarray = R->int(IOP->seq(1, 24), [4, 3, 2]);
           
           unless ($ret_ndarray->to_string eq "[,,0]\x{0A}\x{09}[,0]\x{09}[,1]\x{09}[,2]\x{09}\x{0A}[0]\x{09}1\x{09}5\x{09}9\x{0A}[1]\x{09}2\x{09}6\x{09}10\x{0A}[2]\x{09}3\x{09}7\x{09}11\x{0A}[3]\x{09}4\x{09}8\x{09}12\x{0A}\x{0A}[,,1]\x{0A}\x{09}[,0]\x{09}[,1]\x{09}[,2]\x{09}\x{0A}[0]\x{09}13\x{09}17\x{09}21\x{0A}[1]\x{09}14\x{09}18\x{09}22\x{0A}[2]\x{09}15\x{09}19\x{09}23\x{0A}[3]\x{09}16\x{09}20\x{09}24") {
             return 0;
@@ -2012,7 +2012,7 @@ class TestCase::R {
         }
         
         {
-          my $ret_ndarray = R->int(R->seq(1, 120), [5, 4, 3, 2]);
+          my $ret_ndarray = R->int(IOP->seq(1, 120), [5, 4, 3, 2]);
           
           unless ($ret_ndarray->to_string eq "[,,,0]\x{0A}[,,0]\x{0A}\x{09}[,0]\x{09}[,1]\x{09}[,2]\x{09}[,3]\x{09}\x{0A}[0]\x{09}1\x{09}6\x{09}11\x{09}16\x{0A}[1]\x{09}2\x{09}7\x{09}12\x{09}17\x{0A}[2]\x{09}3\x{09}8\x{09}13\x{09}18\x{0A}[3]\x{09}4\x{09}9\x{09}14\x{09}19\x{0A}[4]\x{09}5\x{09}10\x{09}15\x{09}20\x{0A}\x{0A}[,,1]\x{0A}\x{09}[,0]\x{09}[,1]\x{09}[,2]\x{09}[,3]\x{09}\x{0A}[0]\x{09}21\x{09}26\x{09}31\x{09}36\x{0A}[1]\x{09}22\x{09}27\x{09}32\x{09}37\x{0A}[2]\x{09}23\x{09}28\x{09}33\x{09}38\x{0A}[3]\x{09}24\x{09}29\x{09}34\x{09}39\x{0A}[4]\x{09}25\x{09}30\x{09}35\x{09}40\x{0A}\x{0A}[,,2]\x{0A}\x{09}[,0]\x{09}[,1]\x{09}[,2]\x{09}[,3]\x{09}\x{0A}[0]\x{09}41\x{09}46\x{09}51\x{09}56\x{0A}[1]\x{09}42\x{09}47\x{09}52\x{09}57\x{0A}[2]\x{09}43\x{09}48\x{09}53\x{09}58\x{0A}[3]\x{09}44\x{09}49\x{09}54\x{09}59\x{0A}[4]\x{09}45\x{09}50\x{09}55\x{09}60\x{0A}\x{0A}\x{0A}[,,,1]\x{0A}[,,0]\x{0A}\x{09}[,0]\x{09}[,1]\x{09}[,2]\x{09}[,3]\x{09}\x{0A}[0]\x{09}61\x{09}66\x{09}71\x{09}76\x{0A}[1]\x{09}62\x{09}67\x{09}72\x{09}77\x{0A}[2]\x{09}63\x{09}68\x{09}73\x{09}78\x{0A}[3]\x{09}64\x{09}69\x{09}74\x{09}79\x{0A}[4]\x{09}65\x{09}70\x{09}75\x{09}80\x{0A}\x{0A}[,,1]\x{0A}\x{09}[,0]\x{09}[,1]\x{09}[,2]\x{09}[,3]\x{09}\x{0A}[0]\x{09}81\x{09}86\x{09}91\x{09}96\x{0A}[1]\x{09}82\x{09}87\x{09}92\x{09}97\x{0A}[2]\x{09}83\x{09}88\x{09}93\x{09}98\x{0A}[3]\x{09}84\x{09}89\x{09}94\x{09}99\x{0A}[4]\x{09}85\x{09}90\x{09}95\x{09}100\x{0A}\x{0A}[,,2]\x{0A}\x{09}[,0]\x{09}[,1]\x{09}[,2]\x{09}[,3]\x{09}\x{0A}[0]\x{09}101\x{09}106\x{09}111\x{09}116\x{0A}[1]\x{09}102\x{09}107\x{09}112\x{09}117\x{0A}[2]\x{09}103\x{09}108\x{09}113\x{09}118\x{0A}[3]\x{09}104\x{09}109\x{09}114\x{09}119\x{0A}[4]\x{09}105\x{09}110\x{09}115\x{09}120") {
             return 0;
