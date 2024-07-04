@@ -836,7 +836,7 @@ class R::OP::DoubleComplex {
     return $ret_ndarray;
   }
   
-  static method complex : R::NDArray::DoubleComplex ($pairs : double[]) {
+  static method complex : R::NDArray::DoubleComplex ($pairs : double[], $dim : int[] = undef) {
     
     unless ($pairs) {
       die "The pairs \$pairs must be defined.";
@@ -845,20 +845,16 @@ class R::OP::DoubleComplex {
     my $pairs_length = @$pairs;
     
     unless ($pairs_length % 2 == 0) {
-      die "The length of the pairs \$pairs must be even number.";
+      die "The pairs \$pairs must be devided by even number.";
     }
     
     my $length = $pairs_length / 2;
     
-    my $ret_ndarray = &c(undef, [$length]);
-    my $ret_data = $ret_ndarray->data;
+    my $data = new Complex_2d[$length];
     
-    for (my $i = 0; $i < $pairs_length; $i += 2) {
-      $ret_data->[$i]{re} = $pairs->[$i];
-      $ret_data->[$i]{im} = $pairs->[$i + 1];
-    }
+    Fn->memcpy($data, 0, $pairs, 0, 8 * 2 * $length);
     
-    return $ret_ndarray;
+    return R::OP::DoubleComplex->c($data, $dim);
   }
   
   static method mean : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
