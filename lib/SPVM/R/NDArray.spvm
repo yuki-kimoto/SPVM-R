@@ -534,7 +534,7 @@ class R::NDArray {
       my $dim_length = @$dim;
       my $dim_num = $dim_length - 1;
       my $dim_list = IntList->new($dim);
-      my $poss_list = List->new(new R::NDArray::Int[0]);
+      my $poss_list = IntList->new;
       
       &recursive_to_string($self, $dim_list, $string_buffer, \$dim_num, $poss_list);
     }
@@ -546,12 +546,12 @@ class R::NDArray {
     return $string;
   }
   
-  private static method recursive_to_string : void ($self : R::NDArray, $dim_list : IntList, $string_buffer : StringBuffer, $dim_num_ref : int*, $poss_list : List of R::NDArray::Int) {
+  private static method recursive_to_string : void ($self : R::NDArray, $dim_list : IntList, $string_buffer : StringBuffer, $dim_num_ref : int*, $poss_list : IntList) {
     my $dim_elem = $dim_list->pop;
     
     for (my $i = 0; $i < $dim_elem; $i++) {
       $string_buffer->push(Fn->repeat(",", $$dim_num_ref) . "$i" . "\n");
-      $poss_list->unshift(R::NDArray::Int->new({data => [$i]}));
+      $poss_list->unshift($i);
       if ($dim_list->length > 2) {
         $$dim_num_ref--;
         &recursive_to_string($self, $dim_list, $string_buffer, $dim_num_ref, $poss_list);
@@ -577,18 +577,20 @@ class R::NDArray {
           my $elem_strings_list = StringList->new;
           for (my $dim1 = 0; $dim1 < $dim_list->get(1); $dim1++) {
             
-            my $poss_list_clone = List->new(new R::NDArray::Int[0]);
-            $poss_list_clone->push(R::NDArray::Int->new({data => [$dim0]}));
-            $poss_list_clone->push(R::NDArray::Int->new({data => [$dim1]}));
+            my $poss_list_clone = IntList->new;
+            $poss_list_clone->push($dim0);
+            $poss_list_clone->push($dim1);
             for (my $poss_index = 0; $poss_index < $poss_list->length; $poss_index++) {
               $poss_list_clone->push($poss_list->get($poss_index));
             }
             
-            my $ret_ndarray = $self->slice((R::NDArray::Int[])$poss_list->to_array);
+            my $coordinate = $poss_list_clone->to_array;
             
-            warn dump $ret_ndarray;
+            my $data_index = &convert_coordinate_to_data_index($coordinate, $self->dim);
             
-            $elem_strings_list->push($ret_ndarray->elem_to_string(0));
+            warn $data_index;
+            
+            $elem_strings_list->push($self->elem_to_string($data_index));
           }
           
           $string_buffer->push(Fn->join("\t", $elem_strings_list->to_array) . "\n");
