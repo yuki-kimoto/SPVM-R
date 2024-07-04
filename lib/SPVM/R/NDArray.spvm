@@ -93,6 +93,7 @@ class R::NDArray {
         for (my $k = 0; $k < $i; $k++) {
           $tmp *= $dim->[$k];
         }
+        
         $data_index += $tmp * $coordinate->[$i];
       }
       else {
@@ -541,16 +542,21 @@ class R::NDArray {
     
     my $string = (mutable string)$string_buffer->to_string;
     
-    Fn->chomp($string);
+    while (length $string > 0 && $string->[length $string - 1] == '\n') {
+      Fn->chomp($string);
+    }
     
     return $string;
   }
   
   private static method recursive_to_string : void ($self : R::NDArray, $dim_list : IntList, $string_buffer : StringBuffer, $dim_num_ref : int*, $coordinate_list : IntList) {
+    
     my $dim_elem = $dim_list->pop;
     
     for (my $i = 0; $i < $dim_elem; $i++) {
-      $string_buffer->push(Fn->repeat(",", $$dim_num_ref) . "$i" . "\n");
+      $string_buffer->push("[");
+      $string_buffer->push(Fn->repeat(",", $$dim_num_ref) . "$i");
+      $string_buffer->push("]\n");
       $coordinate_list->unshift($i);
       if ($dim_list->length > 2) {
         $$dim_num_ref--;
@@ -584,11 +590,15 @@ class R::NDArray {
               $coordinate_list_clone->push($coordinate_list->get($coordinate_index));
             }
             
+            my $dim = $self->dim;
+            
+            for (my $tmp_dim_index = $coordinate_list_clone->length - 1; $tmp_dim_index < @$dim; $tmp_dim_index++) {
+              $coordinate_list_clone->push(0);
+            }
+            
             my $coordinate = $coordinate_list_clone->to_array;
             
-            my $data_index = &convert_coordinate_to_data_index($coordinate, $self->dim);
-            
-            warn $data_index;
+            my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
             
             $elem_strings_list->push($self->elem_to_string($data_index));
           }
@@ -600,6 +610,8 @@ class R::NDArray {
       
       $string_buffer->push("\n");
     }
+    
+    $dim_list->push($dim_elem);
   }
   
   method set_order : void ($indexes_ndarray : R::NDArray::Int) { die "Not impelmeneted."; }
