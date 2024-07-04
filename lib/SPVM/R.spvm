@@ -37,26 +37,7 @@ class R {
   
   static method byte : R::NDArray::Byte ($data : object of Byte|byte[]|R::NDArray::Byte, $dim : int[] = undef) {
     
-    if ($data) {
-      if ($data is_type Byte) {
-        $data = [(byte)$data->(Byte)];
-      }
-      elsif ($data is_type byte[]) {
-        # Do nothing
-      }
-      elsif ($data is_type R::NDArray::Byte) {
-        unless ($dim) {
-          $dim = $data->(R::NDArray::Byte)->dim;
-        }
-        
-        $data = $data->(R::NDArray::Byte)->data;
-      }
-      else {
-        die "The type of the data \data must be Byte or byte[].";
-      }
-    }
-    
-    return R::OP::Byte->c((byte[])$data, $dim);
+    return R::OP::Byte->c($data, $dim);
   }
   
   static method short : R::NDArray::Short ($data : object of Short|short[]|R::NDArray::Short, $dim : int[] = undef) {
