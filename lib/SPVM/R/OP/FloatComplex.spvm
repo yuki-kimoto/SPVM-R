@@ -24,10 +24,25 @@ class R::OP::FloatComplex {
   use Math;
   
   # Class Methods
-  static method c : R::NDArray::FloatComplex ($data : object of Complex_2f[]|R::NDArray::FloatComplex, $dim : int[] = undef) {
+  static method c : R::NDArray::FloatComplex ($data : object of float[]|Complex_2f[]|R::NDArray::FloatComplex, $dim : int[] = undef) {
     
     if ($data) {
-      if ($data is_type Complex_2f[]) {
+      if ($data is_type float[]) {
+        my $pairs = (float[])$data;
+        
+        my $pairs_length = @$pairs;
+        
+        unless ($pairs_length % 2 == 0) {
+          die "The pairs \$data must be devided by even number.";
+        }
+        
+        my $length = $pairs_length / 2;
+        
+        $data = new Complex_2f[$length];
+        
+        Fn->memcpy($data, 0, $pairs, 0, 4 * 2 * $length);
+      }
+      elsif ($data is_type Complex_2f[]) {
         # Do nothing
       }
       elsif ($data is_type R::NDArray::FloatComplex) {
