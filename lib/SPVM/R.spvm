@@ -52,48 +52,12 @@ class R {
   
   static method long : R::NDArray::Long ($data : object of Long|long[]|R::NDArray::Long, $dim : int[] = undef) {
     
-    if ($data) {
-      if ($data is_type Long) {
-        $data = [(long)$data->(Long)];
-      }
-      elsif ($data is_type long[]) {
-        # Do nothing
-      }
-      elsif ($data is_type R::NDArray::Long) {
-        unless ($dim) {
-          $dim = $data->(R::NDArray::Long)->dim;
-        }
-        $data = $data->(R::NDArray::Long)->data;
-      }
-      else {
-        die "The type of the data \data must be Long or long[].";
-      }
-    }
-    
-    return R::OP::Long->c((long[])$data, $dim);
+    return R::OP::Long->c($data, $dim);
   }
   
   static method float : R::NDArray::Float ($data : object of Float|float[]|R::NDArray::Float, $dim : int[] = undef) {
     
-    if ($data) {
-      if ($data is_type Float) {
-        $data = [(float)$data->(Float)];
-      }
-      elsif ($data is_type float[]) {
-        # Do nothing
-      }
-      elsif ($data is_type R::NDArray::Float) {
-        unless ($dim) {
-          $dim = $data->(R::NDArray::Float)->dim;
-        }
-        $data = $data->(R::NDArray::Float)->data;
-      }
-      else {
-        die "The type of the data \data must be Float or float[].";
-      }
-    }
-    
-    return R::OP::Float->c((float[])$data, $dim);
+    return R::OP::Float->c($data, $dim);
   }
   
   static method double : R::NDArray::Double ($data : object of Double|double[]|R::NDArray::Double, $dim : int[] = undef) {

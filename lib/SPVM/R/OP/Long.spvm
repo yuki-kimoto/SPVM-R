@@ -24,7 +24,25 @@ class R::OP::Long {
   use LongList;
   
   # Class Methods
-  static method c : R::NDArray::Long ($data : long[], $dim : int[] = undef) {
+  static method c : R::NDArray::Long ($data : object of Long|long[]|R::NDArray::Long, $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Long) {
+        $data = [(long)$data->(Long)];
+      }
+      elsif ($data is_type long[]) {
+        # Do nothing
+      }
+      elsif ($data is_type R::NDArray::Long) {
+        unless ($dim) {
+          $dim = $data->(R::NDArray::Long)->dim;
+        }
+        $data = $data->(R::NDArray::Long)->data;
+      }
+      else {
+        die "The type of the data \data must be Long, long[], or R::NDArray::Long.";
+      }
+    }
     
     my $ndarray = R::NDArray::Long->new({dim => $dim, data => $data});
     

@@ -25,7 +25,25 @@ class R::OP::Float {
   use FloatList;
   
   # Class Methods
-  static method c : R::NDArray::Float ($data : float[], $dim : int[] = undef) {
+  static method c : R::NDArray::Float ($data : object of Float|float[]|R::NDArray::Float, $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Float) {
+        $data = [(float)$data->(Float)];
+      }
+      elsif ($data is_type float[]) {
+        # Do nothing
+      }
+      elsif ($data is_type R::NDArray::Float) {
+        unless ($dim) {
+          $dim = $data->(R::NDArray::Float)->dim;
+        }
+        $data = $data->(R::NDArray::Float)->data;
+      }
+      else {
+        die "The type of the data \data must be Float, float[], or R::NDArray::Float.";
+      }
+    }
     
     my $ndarray = R::NDArray::Float->new({dim => $dim, data => $data});
     
