@@ -8,7 +8,26 @@ class R::OP::StringBuffer {
   use StringBuffer;
   
   # Class Methods
-  static method c : R::NDArray::StringBuffer ($data : StringBuffer[], $dim : int[] = undef) {
+  static method c : R::NDArray::StringBuffer ($data : object of StringBuffer|StringBuffer[]|R::NDArray::StringBuffer, $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type StringBuffer) {
+        $data = [(StringBuffer)$data];
+      }
+      elsif ($data is_type StringBuffer[]) {
+        # Do nothing
+      }
+      elsif ($data is_type R::NDArray::StringBuffer) {
+        unless ($dim) {
+          $dim = $data->(R::NDArray::StringBuffer)->dim;
+        }
+        
+        $data = $data->(R::NDArray::StringBuffer)->data;
+      }
+      else {
+        die "The type of the data \data must be StringBuffer, StringBuffer[], or R::NDArray::StringBuffer.";
+      }
+    }
     
     my $ndarray = R::NDArray::StringBuffer->new({dim => $dim, data => $data});
     
