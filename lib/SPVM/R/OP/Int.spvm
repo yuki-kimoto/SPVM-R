@@ -759,14 +759,5 @@ class R::OP::Int {
     return $ret_ndarray;
   }
   
-  static method seq_length : R::NDArray::Int ($begin : int, $end : int, $length : int) {
-    
-    my $by = (int)(($end - $begin) / $length);
-    
-    my $ret_ndarray = &seq($begin, $end, $by);
-    
-    return $ret_ndarray;
-  }
-  
 }
 
