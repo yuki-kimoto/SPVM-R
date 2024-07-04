@@ -861,13 +861,6 @@ class R::OP::DoubleComplex {
     return $ret_ndarray;
   }
   
-  static method i : R::NDArray::DoubleComplex () {
-    
-    my $i = &complex([0.0,1.0]);
-    
-    return $i;
-  }
-  
   static method mean : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
@@ -996,6 +989,15 @@ class R::OP::DoubleComplex {
     for (my $i = 0; $i < $length; $i++) {
       $ret_data->[$i] = Math->cdiv($scalar, $x_data->[$i]);
     }
+    
+    return $ret_ndarray;
+  }
+  
+  static method i : R::NDArray::DoubleComplex () {
+    
+    my $x = Math->complex(0, 1);
+    
+    my $ret_ndarray = &c([$x]);
     
     return $ret_ndarray;
   }

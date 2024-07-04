@@ -862,9 +862,11 @@ class R::OP::FloatComplex {
   
   static method i : R::NDArray::FloatComplex () {
     
-    my $i = &complex([0f,1f]);
+    my $x = Math->complexf(0f, 1f);
     
-    return $i;
+    my $ret_ndarray = &c([$x]);
+    
+    return $ret_ndarray;
   }
   
 }
