@@ -122,22 +122,6 @@ class R {
     return $ret_ndarray;
   }
   
-  static method object : R::NDArray::Object ($data : object[], $dim : int[] = undef) {
-    return R::OP::Object->c($data, $dim);
-  }
-  
-  static method string : R::NDArray::String ($data : string[], $dim : int[] = undef) {
-    return R::OP::String->c($data, $dim);
-  }
-  
-  static method string_buffer : R::NDArray::StringBuffer ($data : StringBuffer[], $dim : int[] = undef) {
-    return R::OP::StringBuffer->c($data, $dim);
-  }
-  
-  static method time_piece : R::NDArray::Time::Piece ($data : Time::Piece[], $dim : int[] = undef) {
-    return R::OP::Time::Piece->c($data, $dim);
-  }
-  
   static method seq : R::NDArray::Int ($begin : int, $end : int, $by : int = 1) {
     return R::OP::Int->seq($begin, $end, $by);
   }
