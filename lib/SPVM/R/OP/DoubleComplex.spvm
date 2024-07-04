@@ -24,10 +24,25 @@ class R::OP::DoubleComplex {
   use Math;
   
   # Class Methods
-  static method c : R::NDArray::DoubleComplex ($data : object of Complex_2d[]|R::NDArray::DoubleComplex, $dim : int[] = undef) {
+  static method c : R::NDArray::DoubleComplex ($data : object of double[]|Complex_2d[]|R::NDArray::DoubleComplex, $dim : int[] = undef) {
     
     if ($data) {
-      if ($data is_type Complex_2d[]) {
+      if ($data is_type double[]) {
+        my $pairs = (double[])$data;
+        
+        my $pairs_length = @$pairs;
+        
+        unless ($pairs_length % 2 == 0) {
+          die "The pairs \$data must be devided by even number.";
+        }
+        
+        my $length = $pairs_length / 2;
+        
+        $data = new Complex_2d[$length];
+        
+        Fn->memcpy($data, 0, $pairs, 0, 8 * 2 * $length);
+      }
+      elsif ($data is_type Complex_2d[]) {
         # Do nothing
       }
       elsif ($data is_type R::NDArray::DoubleComplex) {
@@ -44,6 +59,27 @@ class R::OP::DoubleComplex {
     my $ndarray = R::NDArray::DoubleComplex->new({dim => $dim, data => $data});
     
     return $ndarray;
+  }
+  
+  static method complex : R::NDArray::DoubleComplex ($pairs : double[], $dim : int[] = undef) {
+    
+    unless ($pairs) {
+      die "The pairs \$pairs must be defined.";
+    }
+    
+    my $pairs_length = @$pairs;
+    
+    unless ($pairs_length % 2 == 0) {
+      die "The pairs \$pairs must be devided by even number.";
+    }
+    
+    my $length = $pairs_length / 2;
+    
+    my $data = new Complex_2d[$length];
+    
+    Fn->memcpy($data, 0, $pairs, 0, 8 * 2 * $length);
+    
+    return R::OP::DoubleComplex->c($data, $dim);
   }
   
   static method add : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
@@ -834,27 +870,6 @@ class R::OP::DoubleComplex {
     }
     
     return $ret_ndarray;
-  }
-  
-  static method complex : R::NDArray::DoubleComplex ($pairs : double[], $dim : int[] = undef) {
-    
-    unless ($pairs) {
-      die "The pairs \$pairs must be defined.";
-    }
-    
-    my $pairs_length = @$pairs;
-    
-    unless ($pairs_length % 2 == 0) {
-      die "The pairs \$pairs must be devided by even number.";
-    }
-    
-    my $length = $pairs_length / 2;
-    
-    my $data = new Complex_2d[$length];
-    
-    Fn->memcpy($data, 0, $pairs, 0, 8 * 2 * $length);
-    
-    return R::OP::DoubleComplex->c($data, $dim);
   }
   
   static method mean : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {
