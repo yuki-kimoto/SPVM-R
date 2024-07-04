@@ -24,7 +24,22 @@ class R::OP::DoubleComplex {
   use Math;
   
   # Class Methods
-  static method c : R::NDArray::DoubleComplex ($data : Complex_2d[], $dim : int[] = undef) {
+  static method c : R::NDArray::DoubleComplex ($data : object of Complex_2d[]|R::NDArray::DoubleComplex, $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Complex_2d[]) {
+        # Do nothing
+      }
+      elsif ($data is_type R::NDArray::DoubleComplex) {
+        unless ($dim) {
+          $dim = $data->(R::NDArray::DoubleComplex)->dim;
+        }
+        $data = $data->(R::NDArray::DoubleComplex)->data;
+      }
+      else {
+        die "The type of the data \data must be Complex_2d[] or R::NDArray::DoubleComplex.";
+      }
+    }
     
     my $ndarray = R::NDArray::DoubleComplex->new({dim => $dim, data => $data});
     

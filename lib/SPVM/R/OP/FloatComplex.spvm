@@ -24,13 +24,27 @@ class R::OP::FloatComplex {
   use Math;
   
   # Class Methods
-  static method c : R::NDArray::FloatComplex ($data : Complex_2f[], $dim : int[] = undef) {
+  static method c : R::NDArray::FloatComplex ($data : object of Complex_2f[]|R::NDArray::FloatComplex, $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Complex_2f[]) {
+        # Do nothing
+      }
+      elsif ($data is_type R::NDArray::FloatComplex) {
+        unless ($dim) {
+          $dim = $data->(R::NDArray::FloatComplex)->dim;
+        }
+        $data = $data->(R::NDArray::FloatComplex)->data;
+      }
+      else {
+        die "The type of the data \data must be Complex_2f[] or R::NDArray::FloatComplex.";
+      }
+    }
     
     my $ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
     
     return $ndarray;
   }
-  
   
   static method add : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
