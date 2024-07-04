@@ -18,7 +18,7 @@ class TestCase::R {
   use R::OP::Int;
   use R::OP::Long;
   use R::OP::Float;
-  use R::OP::Double;
+  use R::OP::Double as DOP;
   use R::OP::FloatComplex;
   use R::OP::DoubleComplex;
   
@@ -31,8 +31,20 @@ class TestCase::R {
   use R::DataFrame;
   use R::OP::Matrix;
   use R::OP::DataFrame;
+  use R::OP::Matrix::Double as MDOP;
   
   static method test : int () {
+    
+    # R::OP::Matrix::Double
+    {
+      # R::OP::Matrix::Double#t
+      {
+        my $matrix = MDOP->matrix(DOP->seq(1, 4), 2, 2);
+        
+        
+      }
+      
+    }
     
     # R
     {
