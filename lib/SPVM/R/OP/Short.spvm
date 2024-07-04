@@ -8,7 +8,25 @@ class R::OP::Short {
   use R::OP;
   
   # Class Methods
-  static method c : R::NDArray::Short ($data : short[], $dim : int[] = undef) {
+  static method c : R::NDArray::Short ($data : object of Short|short[]|R::NDArray::Short, $dim : int[] = undef) {
+    
+    if ($data) {
+      if ($data is_type Short) {
+        $data = [(short)$data->(Short)];
+      }
+      elsif ($data is_type short[]) {
+        # Do nothing
+      }
+      elsif ($data is_type R::NDArray::Short) {
+        unless ($dim) {
+          $dim = $data->(R::NDArray::Short)->dim;
+        }
+        $data = $data->(R::NDArray::Short)->data;
+      }
+      else {
+        die "The type of the data \data must be Short, short[], or R::NDArray::Short.";
+      }
+    }
     
     my $ndarray = R::NDArray::Short->new({dim => $dim, data => $data});
     

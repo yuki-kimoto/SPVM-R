@@ -42,25 +42,7 @@ class R {
   
   static method short : R::NDArray::Short ($data : object of Short|short[]|R::NDArray::Short, $dim : int[] = undef) {
     
-    if ($data) {
-      if ($data is_type Short) {
-        $data = [(short)$data->(Short)];
-      }
-      elsif ($data is_type short[]) {
-        # Do nothing
-      }
-      elsif ($data is_type R::NDArray::Short) {
-        unless ($dim) {
-          $dim = $data->(R::NDArray::Short)->dim;
-        }
-        $data = $data->(R::NDArray::Short)->data;
-      }
-      else {
-        die "The type of the data \data must be Short or short[].";
-      }
-    }
-    
-    return R::OP::Short->c((short[])$data, $dim);
+    return R::OP::Short->c($data, $dim);
   }
   
   static method int : R::NDArray::Int ($data : object of Short|int[]|R::NDArray::Int, $dim : int[] = undef) {
