@@ -15,12 +15,12 @@ class TestCase::R {
   use R::NDArray::Time::Piece;
   
   use R::OP;
-  use R::OP::Int;
+  use R::OP::Int as IOP;
   use R::OP::Long;
   use R::OP::Float;
   use R::OP::Double as DOP;
-  use R::OP::FloatComplex;
-  use R::OP::DoubleComplex;
+  use R::OP::FloatComplex as FCOP;
+  use R::OP::DoubleComplex as DCOP;
   
   use R::OP::Byte;
   use R::OP::Short;
@@ -931,7 +931,7 @@ class TestCase::R {
       
       # R#undef method
       {
-        my $undef = R->undef;
+        my $undef = IOP->undef;
         
         unless ($undef is_compile_type R::NDArray::Int) {
           return 0;
@@ -1811,7 +1811,7 @@ class TestCase::R {
         {
           my $ndarray = R->int([1, 2, 3, 4, 5, 6], [3, 2]);
           
-          my $ret_ndarray = $ndarray->slice([R->undef, R->int(1)]);
+          my $ret_ndarray = $ndarray->slice([IOP->undef, R->int(1)]);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
