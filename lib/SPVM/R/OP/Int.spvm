@@ -24,11 +24,11 @@ class R::OP::Int {
   use IntList;
   
   # Class Methods
-  static method c : R::NDArray::Int ($x_data : int[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::Int ($data : int[], $dim : int[] = undef) {
     
-    my $x_ndarray = R::NDArray::Int->new({dim => $x_dim, data => $x_data});
+    my $ndarray = R::NDArray::Int->new({dim => $dim, data => $data});
     
-    return $x_ndarray;
+    return $ndarray;
   }
   
   precompile static method add : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {

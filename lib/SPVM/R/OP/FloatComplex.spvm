@@ -24,11 +24,11 @@ class R::OP::FloatComplex {
   use Math;
   
   # Class Methods
-  static method c : R::NDArray::FloatComplex ($x_data : Complex_2f[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::FloatComplex ($data : Complex_2f[], $dim : int[] = undef) {
     
-    my $x_ndarray = R::NDArray::FloatComplex->new({dim => $x_dim, data => $x_data});
+    my $ndarray = R::NDArray::FloatComplex->new({dim => $dim, data => $data});
     
-    return $x_ndarray;
+    return $ndarray;
   }
   
   

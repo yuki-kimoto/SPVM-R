@@ -24,11 +24,11 @@ class R::OP::Long {
   use LongList;
   
   # Class Methods
-  static method c : R::NDArray::Long ($x_data : long[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::Long ($data : long[], $dim : int[] = undef) {
     
-    my $x_ndarray = R::NDArray::Long->new({dim => $x_dim, data => $x_data});
+    my $ndarray = R::NDArray::Long->new({dim => $dim, data => $data});
     
-    return $x_ndarray;
+    return $ndarray;
   }
   
   static method add : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {

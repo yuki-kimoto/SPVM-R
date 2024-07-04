@@ -8,11 +8,11 @@ class R::OP::StringBuffer {
   use StringBuffer;
   
   # Class Methods
-  static method c : R::NDArray::StringBuffer ($x_data : StringBuffer[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::StringBuffer ($data : StringBuffer[], $dim : int[] = undef) {
     
-    my $x_ndarray = R::NDArray::StringBuffer->new({dim => $x_dim, data => $x_data});
+    my $ndarray = R::NDArray::StringBuffer->new({dim => $dim, data => $data});
     
-    return $x_ndarray;
+    return $ndarray;
   }
   
 }

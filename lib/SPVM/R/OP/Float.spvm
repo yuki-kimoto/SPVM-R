@@ -25,11 +25,11 @@ class R::OP::Float {
   use FloatList;
   
   # Class Methods
-  static method c : R::NDArray::Float ($x_data : float[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::Float ($data : float[], $dim : int[] = undef) {
     
-    my $x_ndarray = R::NDArray::Float->new({dim => $x_dim, data => $x_data});
+    my $ndarray = R::NDArray::Float->new({dim => $dim, data => $data});
     
-    return $x_ndarray;
+    return $ndarray;
   }
   
   static method add : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {

@@ -28,11 +28,11 @@ class R::OP::Double {
   use Sys;
   
   # Class Methods
-  static method c : R::NDArray::Double ($x_data : double[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::Double ($data : double[], $dim : int[] = undef) {
     
-    my $x_ndarray = R::NDArray::Double->new({dim => $x_dim, data => $x_data});
+    my $ndarray = R::NDArray::Double->new({dim => $dim, data => $data});
     
-    return $x_ndarray;
+    return $ndarray;
   }
   
   static method add : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {

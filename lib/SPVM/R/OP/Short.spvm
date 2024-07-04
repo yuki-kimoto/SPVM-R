@@ -8,11 +8,11 @@ class R::OP::Short {
   use R::OP;
   
   # Class Methods
-  static method c : R::NDArray::Short ($x_data : short[], $x_dim : int[] = undef) {
+  static method c : R::NDArray::Short ($data : short[], $dim : int[] = undef) {
     
-    my $x_ndarray = R::NDArray::Short->new({dim => $x_dim, data => $x_data});
+    my $ndarray = R::NDArray::Short->new({dim => $dim, data => $data});
     
-    return $x_ndarray;
+    return $ndarray;
   }
   
 }
