@@ -62,25 +62,7 @@ class R {
   
   static method double : R::NDArray::Double ($data : object of Double|double[]|R::NDArray::Double, $dim : int[] = undef) {
     
-    if ($data) {
-      if ($data is_type Double) {
-        $data = [(double)$data->(Double)];
-      }
-      elsif ($data is_type double[]) {
-        # Do nothing
-      }
-      elsif ($data is_type R::NDArray::Double) {
-        unless ($dim) {
-          $dim = $data->(R::NDArray::Double)->dim;
-        }
-        $data = $data->(R::NDArray::Double)->data;
-      }
-      else {
-        die "The type of the data \data must be Double or double[].";
-      }
-    }
-    
-    return R::OP::Double->c((double[])$data, $dim);
+    return R::OP::Double->c($data, $dim);
   }
   
   static method float_complex : R::NDArray::FloatComplex ($data : Complex_2f[], $dim : int[] = undef) {
