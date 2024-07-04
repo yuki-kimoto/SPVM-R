@@ -59,6 +59,27 @@ class TestCase::R {
         
       }
       
+      # R::OP::Matrix::Double#matrix_byrow
+      {
+        my $seq_ndarray = DOP->seq(1, 6);
+        
+        my $nrow = 3;
+        my $ncol = 2;
+        my $ret_ndarray = MDOP->matrix_byrow($seq_ndarray, $nrow, $ncol);
+        
+        unless ($ret_ndarray is_type R::NDArray::Double) {
+          return 0;
+        }
+        
+        unless (Array->equals_double($ret_ndarray->data, [(double)1, 3, 5, 2, 4, 6])) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($ret_ndarray->dim, [$nrow, $ncol])) {
+          return 0;
+        }
+        
+      }
     }
     
     # R
