@@ -32,6 +32,7 @@ class TestCase::R {
   use R::OP::Matrix;
   use R::OP::DataFrame;
   use R::OP::Matrix::Double as MDOP;
+  use R::OP::Object;
   
   static method test : int () {
     
@@ -527,7 +528,7 @@ class TestCase::R {
         {
           my $data = [(Complex_2f)Math->complexf(1, 1), Math->complexf(2, 1), Math->complexf(3, 1), Math->complexf(4, 1), Math->complexf(5, 1), Math->complexf(6, 1)];
           my $dim = [2, 3];
-          my $ret_ndarray = R->float_complex($data, $dim);
+          my $ret_ndarray = FCOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::FloatComplex) {
             return 0;
@@ -545,7 +546,7 @@ class TestCase::R {
         {
           my $data = [(Complex_2f)Math->complexf(1, 1), Math->complexf(2, 1), Math->complexf(3, 1), Math->complexf(4, 1), Math->complexf(5, 1), Math->complexf(6, 1)];
           my $data_length = @$data;
-          my $ret_ndarray = R->float_complex($data);
+          my $ret_ndarray = FCOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::FloatComplex) {
             return 0;
@@ -566,7 +567,7 @@ class TestCase::R {
         {
           my $data = [(Complex_2d)Math->complex(1, 1), Math->complex(2, 1), Math->complex(3, 1), Math->complex(4, 1), Math->complex(5, 1), Math->complex(6, 1)];
           my $dim = [2, 3];
-          my $ret_ndarray = R->double_complex($data, $dim);
+          my $ret_ndarray = DCOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
             return 0;
@@ -584,7 +585,7 @@ class TestCase::R {
         {
           my $data = [(Complex_2d)Math->complex(1, 1), Math->complex(2, 1), Math->complex(3, 1), Math->complex(4, 1), Math->complex(5, 1), Math->complex(6, 1)];
           my $data_length = @$data;
-          my $ret_ndarray = R->double_complex($data);
+          my $ret_ndarray = DCOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
             return 0;

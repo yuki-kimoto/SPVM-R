@@ -4,43 +4,4 @@
 class R {
   version "0.004";
   
-  use StringBuffer;
-  use Time::Piece;
-  use Complex_2d;
-  use Complex_2f;
-  
-  use R::NDArray::Byte;
-  use R::NDArray::Short;
-  use R::NDArray::Int;
-  use R::NDArray::Long;
-  use R::NDArray::Float;
-  use R::NDArray::Double;
-  use R::NDArray::FloatComplex;
-  use R::NDArray::DoubleComplex;
-  use R::NDArray::Object;
-  use R::NDArray::String;
-  use R::NDArray::StringBuffer;
-  use R::NDArray::Time::Piece;
-  
-  use R::OP::Byte;
-  use R::OP::Short;
-  use R::OP::Int;
-  use R::OP::Long;
-  use R::OP::Float;
-  use R::OP::Double;
-  use R::OP::FloatComplex;
-  use R::OP::DoubleComplex;
-  use R::OP::Object;
-  use R::OP::String;
-  use R::OP::StringBuffer;
-  use R::OP::Time::Piece;
-  
-  static method float_complex : R::NDArray::FloatComplex ($data : Complex_2f[], $dim : int[] = undef) {
-    return R::OP::FloatComplex->c($data, $dim);
-  }
-  
-  static method double_complex : R::NDArray::DoubleComplex ($data : Complex_2d[], $dim : int[] = undef) {
-    return R::OP::DoubleComplex->c($data, $dim);
-  }
-  
 }
