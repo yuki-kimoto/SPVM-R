@@ -777,5 +777,8 @@ class R::OP::Int {
     return $ret_ndarray;
   }
   
+  static method undef : R::NDArray::Int () {
+    return (R::NDArray::Int)undef;
+  }
 }
 
