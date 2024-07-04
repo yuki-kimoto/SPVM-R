@@ -18,16 +18,15 @@ B<WARNINGS:Tests are not yet done. All of method and field definitions in all cl
 
 =head2 Math Examples
 
-  use R;
   use R::OP::Double as DOP;
   use R::OP::Matrix::Double as DMOP;
   
   # Scalar
-  my $sca1 = R->double([3.0]);
+  my $sca1 = DOP->c(3);
   
   # Vector
-  my $vec1 = R->double([1.0, 2.0]);
-  my $vec2 = R->double([3.0, 4.0]);
+  my $vec1 = DOP->c([(double)1, 2]);
+  my $vec2 = DOP->c([(double)3, 4]);
   
   # Addition
   my $add = DOP->add($vec1, $vec2);
@@ -50,11 +49,13 @@ B<WARNINGS:Tests are not yet done. All of method and field definitions in all cl
   
   # Matrix and liner conversion
   my $mat1 = DMOP->matrix_by_row(
-    [1, 0,
-     0, 1], 2, 2
+    [(double)
+      1, 0,
+      0, 1
+    ],
+    2, 2
   );
   my $ret_vec = DMOP->mul($mat1, $vec1);
-  $ret_vec->drop_dim;
 
 =head1 Details
 

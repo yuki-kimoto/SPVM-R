@@ -16,17 +16,17 @@ class TestCase::R {
   
   use R::OP;
   use R::OP::Int as IOP;
-  use R::OP::Long;
-  use R::OP::Float;
+  use R::OP::Long as LOP;
+  use R::OP::Float as FOP;
   use R::OP::Double as DOP;
   use R::OP::FloatComplex as FCOP;
   use R::OP::DoubleComplex as DCOP;
   
-  use R::OP::Byte;
-  use R::OP::Short;
-  use R::OP::String;
-  use R::OP::StringBuffer;
-  use R::OP::Time::Piece;
+  use R::OP::Byte as BOP;
+  use R::OP::Short as SOP;
+  use R::OP::String as STROP;
+  use R::OP::StringBuffer as STRBOP;
+  use R::OP::Time::Piece as TPOP;
   
   use R::DataFrame;
   use R::OP::Matrix;
@@ -89,7 +89,7 @@ class TestCase::R {
         {
           my $data = [(byte)1, 2, 3, 4, 5, 6];
           my $dim = [2, 3];
-          my $ret_ndarray = R->byte($data, $dim);
+          my $ret_ndarray = BOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::Byte) {
             return 0;
@@ -107,7 +107,7 @@ class TestCase::R {
         {
           my $data = [(byte)1, 2, 3, 4, 5, 6];
           my $data_length = @$data;
-          my $ret_ndarray = R->byte($data);
+          my $ret_ndarray = BOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Byte) {
             return 0;
@@ -124,7 +124,7 @@ class TestCase::R {
         
         {
           my $data = (byte)1;
-          my $ret_ndarray = R->byte($data);
+          my $ret_ndarray = BOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Byte) {
             return 0;
@@ -141,7 +141,7 @@ class TestCase::R {
         
         {
           my $data = [(byte)1, 2, 3, 4, 5, 6];
-          my $ret_ndarray = R->byte(R::OP::Byte->c($data));
+          my $ret_ndarray = BOP->c(R::OP::Byte->c($data));
           
           unless ($ret_ndarray is_type R::NDArray::Byte) {
             return 0;
@@ -162,7 +162,7 @@ class TestCase::R {
         {
           my $data = [(short)1, 2, 3, 4, 5, 6];
           my $dim = [2, 3];
-          my $ret_ndarray = R->short($data, $dim);
+          my $ret_ndarray = SOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::Short) {
             return 0;
@@ -180,7 +180,7 @@ class TestCase::R {
         {
           my $data = [(short)1, 2, 3, 4, 5, 6];
           my $data_length = @$data;
-          my $ret_ndarray = R->short($data);
+          my $ret_ndarray = SOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Short) {
             return 0;
@@ -197,7 +197,7 @@ class TestCase::R {
         
         {
           my $data = (short)1;
-          my $ret_ndarray = R->short($data);
+          my $ret_ndarray = SOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Short) {
             return 0;
@@ -214,7 +214,7 @@ class TestCase::R {
         
         {
           my $data = [(short)1, 2, 3, 4, 5, 6];
-          my $ret_ndarray = R->short(R::OP::Short->c($data));
+          my $ret_ndarray = SOP->c(R::OP::Short->c($data));
           
           unless ($ret_ndarray is_type R::NDArray::Short) {
             return 0;
@@ -308,7 +308,7 @@ class TestCase::R {
         {
           my $data = [(long)1, 2, 3, 4, 5, 6];
           my $dim = [2, 3];
-          my $ret_ndarray = R->long($data, $dim);
+          my $ret_ndarray = LOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::Long) {
             return 0;
@@ -326,7 +326,7 @@ class TestCase::R {
         {
           my $data = [(long)1, 2, 3, 4, 5, 6];
           my $data_length = @$data;
-          my $ret_ndarray = R->long($data);
+          my $ret_ndarray = LOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Long) {
             return 0;
@@ -343,7 +343,7 @@ class TestCase::R {
         
         {
           my $data = (long)1;
-          my $ret_ndarray = R->long($data);
+          my $ret_ndarray = LOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Long) {
             return 0;
@@ -360,7 +360,7 @@ class TestCase::R {
         
         {
           my $data = [(long)1, 2, 3, 4, 5, 6];
-          my $ret_ndarray = R->long(R::OP::Long->c($data));
+          my $ret_ndarray = LOP->c(R::OP::Long->c($data));
           
           unless ($ret_ndarray is_type R::NDArray::Long) {
             return 0;
@@ -381,7 +381,7 @@ class TestCase::R {
         {
           my $data = [(float)1, 2, 3, 4, 5, 6];
           my $dim = [2, 3];
-          my $ret_ndarray = R->float($data, $dim);
+          my $ret_ndarray = FOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::Float) {
             return 0;
@@ -399,7 +399,7 @@ class TestCase::R {
         {
           my $data = [(float)1, 2, 3, 4, 5, 6];
           my $data_length = @$data;
-          my $ret_ndarray = R->float($data);
+          my $ret_ndarray = FOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Float) {
             return 0;
@@ -416,7 +416,7 @@ class TestCase::R {
         
         {
           my $data = (float)1;
-          my $ret_ndarray = R->float($data);
+          my $ret_ndarray = FOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Float) {
             return 0;
@@ -433,7 +433,7 @@ class TestCase::R {
         
         {
           my $data = [(float)1, 2, 3, 4, 5, 6];
-          my $ret_ndarray = R->float(R::OP::Float->c($data));
+          my $ret_ndarray = FOP->c(R::OP::Float->c($data));
           
           unless ($ret_ndarray is_type R::NDArray::Float) {
             return 0;
@@ -454,7 +454,7 @@ class TestCase::R {
         {
           my $data = [(double)1, 2, 3, 4, 5, 6];
           my $dim = [2, 3];
-          my $ret_ndarray = R->double($data, $dim);
+          my $ret_ndarray = DOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::Double) {
             return 0;
@@ -472,7 +472,7 @@ class TestCase::R {
         {
           my $data = [(double)1, 2, 3, 4, 5, 6];
           my $data_length = @$data;
-          my $ret_ndarray = R->double($data);
+          my $ret_ndarray = DOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Double) {
             return 0;
@@ -489,7 +489,7 @@ class TestCase::R {
         
         {
           my $data = (double)1;
-          my $ret_ndarray = R->double($data);
+          my $ret_ndarray = DOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::Double) {
             return 0;
@@ -506,7 +506,7 @@ class TestCase::R {
         
         {
           my $data = [(double)1, 2, 3, 4, 5, 6];
-          my $ret_ndarray = R->double(R::OP::Double->c($data));
+          my $ret_ndarray = DOP->c(R::OP::Double->c($data));
           
           unless ($ret_ndarray is_type R::NDArray::Double) {
             return 0;
