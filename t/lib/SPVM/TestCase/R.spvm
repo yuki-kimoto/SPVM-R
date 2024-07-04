@@ -1945,6 +1945,18 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $ret_ndarray = R->int(R->seq(1, 6), [3, 2]);
+          
+          # warn $ret_ndarray->to_string;
+          
+          unless ($ret_ndarray->to_string eq "\x{09}[,0]\x{09}[,1]\x{09}\x{0A}[0]\x{09}1\x{09}4\x{0A}[1]\x{09}2\x{09}5\x{0A}[2]\x{09}3\x{09}6") {
+            warn dump $ret_ndarray->to_string;
+            return 0;
+          }
+          
+        }
       }
       
     }

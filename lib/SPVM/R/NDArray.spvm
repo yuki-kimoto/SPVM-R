@@ -494,33 +494,40 @@ class R::NDArray {
     }
     elsif ($dim_length == 2) {
       
-      $string_buffer->push("     ");
+      my $nrow = $self->nrow;
       
-      for (my $d2 = 0; $d2 < $dim->[0]; $d2++) {
-        $string_buffer->push(",$d2]");
-        if ($d2 == $dim->[0]) {
-          $string_buffer->push("\n");
-        }
-        else {
-          $string_buffer->push(" ");
+      $string_buffer->push("\t");
+      for (my $row_index = 0; $row_index < $dim->[1]; $row_index++) {
+        $string_buffer->push("[,$row_index]");
+        unless ($row_index == $nrow - 1) {
+          $string_buffer->push("\t");
         }
       }
+      $string_buffer->push("\n");
       
-      for (my $d1 = 0; $d1 < $dim->[0]; $d1++) {
-        $string_buffer->push("[$d1,] ");
+      my $ncol = $self->ncol;
+      
+      for (my $row_index = 0; $row_index < $nrow; $row_index++) {
+        $string_buffer->push("[$row_index]\t");
         
-        for (my $d2 = 0; $d2 < $dim->[0]; $d2++) {
+        for (my $column_index = 0; $column_index < $ncol; $column_index++) {
           
-          my $coordinate = [$d1, $d2];
+          my $coordinate = [$row_index, $column_index];
           
           my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
           
           my $elem_string = $self->elem_to_string($data_index);
           
           $string_buffer->push($elem_string);
+          
+          unless ($column_index == $ncol - 1) {
+            $string_buffer->push("\t");
+          }
         }
         
-        $string_buffer->push("\n");
+        unless ($row_index == $nrow - 1) {
+          $string_buffer->push("\n");
+        }
       }
     }
     else {
