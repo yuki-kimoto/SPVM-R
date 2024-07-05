@@ -9,20 +9,20 @@ class R::DataFrame {
   use R::DataFrame::Column;
   
   # Fields
-  has columns_list : List of R::DataFrame::Column;
+  has cols_list : List of R::DataFrame::Column;
   
-  has columns_h : Hash of R::DataFrame::Column;
+  has cols_h : Hash of R::DataFrame::Column;
   
   # Class Methods
   static method new : R::DataFrame () {
     
     my $self = new R::DataFrame;
     
-    my $columns_list = List->new(new R::DataFrame::Column[0]);
-    $self->{columns_list} = $columns_list;
+    my $cols_list = List->new(new R::DataFrame::Column[0]);
+    $self->{cols_list} = $cols_list;
     
-    my $columns_h = Hash->new;
-    $self->{columns_h} = $columns_h;
+    my $cols_h = Hash->new;
+    $self->{cols_h} = $cols_h;
     
     return $self;
   }
@@ -30,147 +30,147 @@ class R::DataFrame {
   # Instance Methods
   method colnames : string[] () {
     
-    my $columns_list = $self->{columns_list};
+    my $cols_list = $self->{cols_list};
     
-    my $columns_length = $columns_list->length;
+    my $cols_length = $cols_list->length;
     
-    my $column_names = new string[$columns_length];
+    my $col_names = new string[$cols_length];
     
-    for (my $i = 0; $i < $columns_length; $i++) {
-      $column_names->[$i] = $self->get_column_name($i);
+    for (my $i = 0; $i < $cols_length; $i++) {
+      $col_names->[$i] = $self->get_col_name($i);
     }
     
-    return $column_names;
+    return $col_names;
   }
   
-  method exists_column : int ($column_name : string) {
+  method exists_col : int ($col_name : string) {
     
-    my $columns_h = $self->{columns_h};
+    my $cols_h = $self->{cols_h};
     
-    my $column = (R::DataFrame::Column)$columns_h->get($column_name);
+    my $col = (R::DataFrame::Column)$cols_h->get($col_name);
     
     my $exists = 0;
-    if ($column) {
+    if ($col) {
       $exists = 1;
     }
     
     return $exists;
   }
   
-  method get_column_name : string ($column_index : int) {
+  method get_col_name : string ($col_index : int) {
     
-    my $columns_list = $self->{columns_list};
+    my $cols_list = $self->{cols_list};
     
-    unless ($column_index >= 0 && $column_index < $columns_list->length) {
-      die "The column at index $column_index is not found.";
+    unless ($col_index >= 0 && $col_index < $cols_list->length) {
+      die "The col at index $col_index is not found.";
     }
     
-    my $column = (R::DataFrame::Column)$columns_list->get($column_index);
+    my $col = (R::DataFrame::Column)$cols_list->get($col_index);
     
-    my $column_name = $column->{name};
+    my $col_name = $col->{name};
     
-    return $column_name;
+    return $col_name;
   }
   
-  method get_column_index : int ($column_name : string) {
+  method get_col_index : int ($col_name : string) {
     
-    my $columns_length = $self->ncol;
+    my $cols_length = $self->ncol;
     
     my $match = 0;
-    for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
-      my $column_name_cmp = $self->get_column_name($column_index);
+    for (my $col_index = 0; $col_index < $cols_length; $col_index++) {
+      my $col_name_cmp = $self->get_col_name($col_index);
       
-      if ($column_name eq $column_name_cmp) {
-        return $column_index;
+      if ($col_name eq $col_name_cmp) {
+        return $col_index;
       }
     }
     
-    die "The column specified by the column name \$column_name does not found.";
+    die "The col specified by the col name \$col_name does not found.";
   }
   
-  method get_ndarray_by_index : R::NDArray ($column_index : int) {
+  method get_ndarray_by_index : R::NDArray ($col_index : int) {
     
-    my $columns_list = $self->{columns_list};
+    my $cols_list = $self->{cols_list};
     
-    unless ($column_index >= 0 && $column_index < $columns_list->length) {
-      die "The column at index $column_index is not found.";
+    unless ($col_index >= 0 && $col_index < $cols_list->length) {
+      die "The col at index $col_index is not found.";
     }
     
-    my $column = (R::DataFrame::Column)$columns_list->get($column_index);
+    my $col = (R::DataFrame::Column)$cols_list->get($col_index);
     
-    my $ndarray = $column->{ndarray};
+    my $ndarray = $col->{ndarray};
     
     return $ndarray;
   }
   
-  method get_ndarray : R::NDArray ($column_name : string) {
+  method get_ndarray : R::NDArray ($col_name : string) {
     
-    my $columns_h = $self->{columns_h};
+    my $cols_h = $self->{cols_h};
     
-    my $column = (R::DataFrame::Column)$columns_h->get($column_name);
+    my $col = (R::DataFrame::Column)$cols_h->get($col_name);
     
-    unless ($column) {
-      die "The column which name is \"$column_name\" is not found.";
+    unless ($col) {
+      die "The col which name is \"$col_name\" is not found.";
     }
     
-    my $ndarray = $column->{ndarray};
+    my $ndarray = $col->{ndarray};
     
     return $ndarray;
   }
   
-  method push_column : void ($column_name : string, $ndarray : R::NDArray) {
+  method push_col : void ($col_name : string, $ndarray : R::NDArray) {
     
-    my $columns_length = $self->ncol;
+    my $cols_length = $self->ncol;
     
-    $self->insert_column($column_name, $ndarray);
+    $self->insert_col($col_name, $ndarray);
   }
   
-  method insert_column : void ($column_name : string, $ndarray : R::NDArray, $before_column_name : string = undef) {
+  method insert_col : void ($col_name : string, $ndarray : R::NDArray, $before_col_name : string = undef) {
     
-    $self->check_column($column_name, $ndarray);
+    $self->check_col($col_name, $ndarray);
     
-    my $column = new R::DataFrame::Column;
-    $column->{name} = $column_name;
+    my $col = new R::DataFrame::Column;
+    $col->{name} = $col_name;
     $ndarray->make_dim_read_only;
-    $column->{ndarray} = $ndarray;
+    $col->{ndarray} = $ndarray;
     
-    my $column_index = -1;
-    if ($before_column_name) {
-      $column_index = $self->get_column_index($before_column_name);
+    my $col_index = -1;
+    if ($before_col_name) {
+      $col_index = $self->get_col_index($before_col_name);
     }
     else {
-      $column_index = $self->ncol;
+      $col_index = $self->ncol;
     }
     
-    my $columns_list = $self->{columns_list};
+    my $cols_list = $self->{cols_list};
     
-    $columns_list->insert($column_index, $column);
+    $cols_list->insert($col_index, $col);
   }
   
-  method remove_column : void ($column_name : string) {
+  method remove_col : void ($col_name : string) {
     
-    my $column_index = $self->get_column_index($column_name);
+    my $col_index = $self->get_col_index($col_name);
     
-    $self->remove_column($column_index);
+    $self->remove_col($col_index);
   }
   
-  private method check_column : void ($column_name : string, $ndarray : R::NDArray) {
+  private method check_col : void ($col_name : string, $ndarray : R::NDArray) {
     
-    my $columns_h = $self->{columns_h};
+    my $cols_h = $self->{cols_h};
     
-    my $column = $columns_h->get($column_name);
+    my $col = $cols_h->get($col_name);
     
-    if ($column) {
-      die "The column name \$column_name is already used.";
+    if ($col) {
+      die "The col name \$col_name is already used.";
     }
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";
     }
     
-    my $columns_length = $self->ncol;
+    my $cols_length = $self->ncol;
     
-    if ($columns_length != 0) {
+    if ($cols_length != 0) {
       my $ndarray_length = $ndarray->length;
       
       unless ($ndarray_length == $self->get_ndarray_by_index(0)->length) {
@@ -179,21 +179,21 @@ class R::DataFrame {
     }
   }
   
-  method slice : R::DataFrame ($column_names : string[], $vector_indexes : R::NDArray::Int[]) {
+  method slice : R::DataFrame ($col_names : string[], $vector_indexes : R::NDArray::Int[]) {
     
-    my $columns_length = $self->ncol;
+    my $cols_length = $self->ncol;
     
-    my $columns_h = $self->{columns_h};
+    my $cols_h = $self->{cols_h};
     
     my $ret_data_frame = R::DataFrame->new;
-    for my $column_name (@$column_names) {
-      my $column = (R::DataFrame::Column)$columns_h->get($column_name);
+    for my $col_name (@$col_names) {
+      my $col = (R::DataFrame::Column)$cols_h->get($col_name);
       
-      my $ndarray = $column->{ndarray};
+      my $ndarray = $col->{ndarray};
       
       my $ret_ndarray = $ndarray->slice($vector_indexes);
       
-      $ret_data_frame->push_column($column_name, $ndarray);
+      $ret_data_frame->push_col($col_name, $ndarray);
     }
     
     return $ret_data_frame;
@@ -201,22 +201,22 @@ class R::DataFrame {
   
   method to_string : string () {
     
-    my $columns_length = $self->ncol;
+    my $cols_length = $self->ncol;
     
     my $string_buffer = StringBuffer->new;
-    for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
+    for (my $col_index = 0; $col_index < $cols_length; $col_index++) {
       
-      my $column_name = $self->get_column_name($column_index);
+      my $col_name = $self->get_col_name($col_index);
       
-      my $ndarray = $self->get_ndarray($column_index);
+      my $ndarray = $self->get_ndarray($col_index);
       
       $string_buffer->push("[[");
       
-      if ($column_name) {
-        $string_buffer->push($column_name);
+      if ($col_name) {
+        $string_buffer->push($col_name);
       }
       else {
-        $string_buffer->push($column_index);
+        $string_buffer->push($col_index);
       }
       
       $string_buffer->push("]]\n");
@@ -233,10 +233,10 @@ class R::DataFrame {
   
   method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
-    my $columns_length = $self->ncol;
+    my $cols_length = $self->ncol;
     
-    for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
-      my $ndarray = $self->get_ndarray($column_index);
+    for (my $col_index = 0; $col_index < $cols_length; $col_index++) {
+      my $ndarray = $self->get_ndarray($col_index);
       
       $ndarray->set_order($indexes_ndarray);
     }
@@ -244,21 +244,21 @@ class R::DataFrame {
   
   method clone : R::DataFrame ($deep : int = 0) {
     
-    my $columns_length = $self->ncol;
+    my $cols_length = $self->ncol;
     
-    my $columns_h = $self->{columns_h};
+    my $cols_h = $self->{cols_h};
     
-    my $column_names = $self->colnames;
+    my $col_names = $self->colnames;
     
     my $ret_data_frame = R::DataFrame->new;
-    for my $column_name (@$column_names) {
-      my $column = (R::DataFrame::Column)$columns_h->get($column_name);
+    for my $col_name (@$col_names) {
+      my $col = (R::DataFrame::Column)$cols_h->get($col_name);
       
-      my $ndarray = $column->{ndarray};
+      my $ndarray = $col->{ndarray};
       
       my $ret_ndarray = $ndarray->clone($deep);
       
-      $ret_data_frame->push_column($column_name, $ndarray);
+      $ret_data_frame->push_col($col_name, $ndarray);
     }
     
     return $ret_data_frame;
@@ -266,19 +266,19 @@ class R::DataFrame {
   
   method ncol : int () {
     
-    my $columns_list = $self->{columns_list};
+    my $cols_list = $self->{cols_list};
     
-    my $columns_length = $columns_list->length;
+    my $cols_length = $cols_list->length;
     
-    return $columns_length;
+    return $cols_length;
   }
   
   method nrow : int () {
     
-    my $columns_length = $self->ncol;
+    my $cols_length = $self->ncol;
     
     my $nrow = 0;
-    if ($columns_length > 0) {
+    if ($cols_length > 0) {
       $nrow = $self->get_ndarray_by_index(0)->length;
     }
     

@@ -8,24 +8,24 @@ class R::OP::DataFrame {
     
     my $ret_data_frame = R::DataFrame->new;
     
-    my $x_columns_length = $x_data_frame->ncol;
+    my $x_cols_length = $x_data_frame->ncol;
     
-    for (my $i = 0; $i < $x_columns_length; $i++) {
-      my $x_column_name = $x_data_frame->get_column_name($i);
+    for (my $i = 0; $i < $x_cols_length; $i++) {
+      my $x_col_name = $x_data_frame->get_col_name($i);
       
       my $x_ndarray = $x_data_frame->get_ndarray($i);
       
-      $ret_data_frame->push_column($x_column_name, $x_ndarray);
+      $ret_data_frame->push_col($x_col_name, $x_ndarray);
     }
     
-    my $y_columns_length = $y_data_frame->ncol;
+    my $y_cols_length = $y_data_frame->ncol;
     
-    for (my $i = 0; $i < $y_columns_length; $i++) {
-      my $y_column_name = $y_data_frame->get_column_name($i);
+    for (my $i = 0; $i < $y_cols_length; $i++) {
+      my $y_col_name = $y_data_frame->get_col_name($i);
       
       my $y_ndarray = $y_data_frame->get_ndarray($i);
       
-      $ret_data_frame->push_column($y_column_name, $y_ndarray);
+      $ret_data_frame->push_col($y_col_name, $y_ndarray);
     }
     
     return $ret_data_frame;
@@ -35,39 +35,39 @@ class R::OP::DataFrame {
     
     my $ret_data_frame = R::DataFrame->new;
     
-    my $x_columns_length = $x_data_frame->ncol;
+    my $x_cols_length = $x_data_frame->ncol;
     
-    my $y_columns_length = $y_data_frame->ncol;
+    my $y_cols_length = $y_data_frame->ncol;
     
-    unless ($x_columns_length == $y_columns_length) {
-      die "The length of the columns of the data frame \$x_data_frame must be equal to the length of the columns of the data frame \$y_data_frame.";
+    unless ($x_cols_length == $y_cols_length) {
+      die "The length of the cols of the data frame \$x_data_frame must be equal to the length of the cols of the data frame \$y_data_frame.";
     }
     
-    my $columns_length = $x_columns_length;
+    my $cols_length = $x_cols_length;
     
-    for (my $i = 0; $i < $columns_length; $i++) {
+    for (my $i = 0; $i < $cols_length; $i++) {
       
-      my $x_column_name = $x_data_frame->get_column_name($i);
+      my $x_col_name = $x_data_frame->get_col_name($i);
       
       my $x_ndarray = $x_data_frame->get_ndarray($i);
       
-      my $y_column_name = $y_data_frame->get_column_name($i);
+      my $y_col_name = $y_data_frame->get_col_name($i);
       
       my $y_ndarray = $y_data_frame->get_ndarray($i);
       
-      unless ($x_column_name eq $y_column_name) {
-        die "The column name at column index $i of the data frame \$x_data_frame must be equal to the column name at column index $i of the data frame \$y_data_frame.";
+      unless ($x_col_name eq $y_col_name) {
+        die "The col name at col index $i of the data frame \$x_data_frame must be equal to the col name at col index $i of the data frame \$y_data_frame.";
       }
       
       unless (type_name $x_ndarray eq type_name $y_ndarray) {
-        die "The n-dimension array class name at column index $i of the data frame \$x_data_frame must be equal to the n-dimension array class name at column index $i of the data frame \$y_data_frame.";
+        die "The n-dimension array class name at col index $i of the data frame \$x_data_frame must be equal to the n-dimension array class name at col index $i of the data frame \$y_data_frame.";
       }
       
-      my $column_name = $x_column_name;
+      my $col_name = $x_col_name;
       
       my $ret_ndarray = R::OP->rbind($x_ndarray, $y_ndarray);
       
-      $ret_data_frame->push_column($column_name, $ret_ndarray);
+      $ret_data_frame->push_col($col_name, $ret_ndarray);
     }
     
     return $ret_data_frame;
