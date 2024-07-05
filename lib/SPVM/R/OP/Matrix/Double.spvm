@@ -58,40 +58,30 @@ class R::OP::Matrix::Double {
     }
     
     unless ($y_ndarray->is_matrix) {
-      die "The n-dimension array \$y_ndarray must be a a matrix.";
-    }
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $x_row = $x_dim->[0];
-    
-    my $x_column = 1;
-    if ($x_ndarray->is_matrix) {
-      $x_column = $x_dim->[1];
-    }
-    
-    my $y_dim = $y_ndarray->dim;
-    
-    my $y_row = $y_dim->[0];
-    
-    my $y_column = 1;
-    if ($y_ndarray->is_matrix) {
-      $y_column = $y_dim->[1];
-    }
-    
-    unless ($x_column == $y_row) {
-      die "The column of the matrix \$x_ndarray must be equal to the row of the matrix \$y_ndarray.";
+      die "The n-dimension array \$y_ndarray must be a matrix.";
     }
     
     my $x_data = (double[])$x_ndarray->data;
     
     my $y_data = (double[])$y_ndarray->data;
     
+    my $x_row = $x_ndarray->nrow;
+    
+    my $x_column = $x_ndarray->ncol;
+    
+    my $y_row = $y_ndarray->nrow;
+    
+    my $y_column = $y_ndarray->ncol;
+    
+    unless ($x_column == $y_row) {
+      die "The column of the matrix \$x_ndarray must be equal to the row of the matrix \$y_ndarray.";
+    }
+    
+    my $ret_data_ref = new double[][1];
+    
     my $ret_row = -1;
     
     my $ret_column = -1;
-    
-    my $ret_data_ref = new double[][1];
     
     &_mul($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_row, $x_column, $y_data, $y_row, $y_column);
     
