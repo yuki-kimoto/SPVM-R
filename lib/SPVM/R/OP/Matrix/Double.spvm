@@ -9,16 +9,16 @@ class R::OP::Matrix::Double {
   use Hash;
   use R::NDArray::Hash;
   
-  static method matrix : R::NDArray::Double ($data : object of Double|double[]|R::NDArray::Double, $row : int, $column : int) {
+  static method matrix : R::NDArray::Double ($data : object of Double|double[]|R::NDArray::Double, $nrow : int, $ncol : int) {
     
-    my $ndarray = R::OP::Double->c($data, [$row, $column]);
+    my $ndarray = R::OP::Double->c($data, [$nrow, $ncol]);
     
     return $ndarray;
   }
   
-  static method matrix_byrow : R::NDArray::Double ($data : object of Double|double[]|R::NDArray::Double, $row : int, $column : int) {
+  static method matrix_byrow : R::NDArray::Double ($data : object of Double|double[]|R::NDArray::Double, $nrow : int, $ncol : int) {
     
-    my $ndarray = &matrix($data, $row, $column);
+    my $ndarray = &matrix($data, $nrow, $ncol);
     
     $data = $ndarray->data;
     
@@ -29,16 +29,16 @@ class R::OP::Matrix::Double {
     for (my $data_index = 0; $data_index < $length; $data_index++) {
       my $elem = $data->(double[])->[$data_index];
       
-      my $new_row_index = $data_index / $column;
+      my $new_row_index = $data_index / $ncol;
       
-      my $new_column_index = $data_index - $column * $new_row_index;
+      my $new_column_index = $data_index - $ncol * $new_row_index;
       
-      my $new_data_index = $row * $new_column_index + $new_row_index;
+      my $new_data_index = $nrow * $new_column_index + $new_row_index;
       
       $new_data->[$new_data_index] = $elem;
     }
     
-    my $ret_ndarray = &matrix($new_data, $row, $column);
+    my $ret_ndarray = &matrix($new_data, $nrow, $ncol);
     
     return $ret_ndarray;
   }
@@ -119,29 +119,29 @@ class R::OP::Matrix::Double {
     my $ret_data = $ret_ndarray->data;
     
     my $x_index = 0;
-    for (my $row_index = 0; $row_index < $x_row; $row_index++) {
-      $ret_data->[$x_column * $row_index + $row_index] = $x_data->[$row_index];
+    for (my $nrow_index = 0; $nrow_index < $x_row; $nrow_index++) {
+      $ret_data->[$x_column * $nrow_index + $nrow_index] = $x_data->[$nrow_index];
     }
     
     return $ret_ndarray;
   }
   
-  static method diag_identity : R::NDArray::Double ($row : int) {
+  static method diag_identity : R::NDArray::Double ($nrow : int) {
     
-    unless ($row > 0) {
-      die "The row \$row must be greater than 0.";
+    unless ($nrow > 0) {
+      die "The row \$nrow must be greater than 0.";
     }
     
-    my $column = $row;
+    my $ncol = $nrow;
     
-    my $ret_dim = [$row, $column];
+    my $ret_dim = [$nrow, $ncol];
     
     my $ret_ndarray = R::OP::Double->c(undef, $ret_dim);
     
     my $ret_data = $ret_ndarray->data;
     
-    for (my $row_index = 0; $row_index < $row; $row_index++) {
-      $ret_data->[$column * $row_index + $row_index] = 1;
+    for (my $nrow_index = 0; $nrow_index < $nrow; $nrow_index++) {
+      $ret_data->[$ncol * $nrow_index + $nrow_index] = 1;
     }
     
     return $ret_ndarray;

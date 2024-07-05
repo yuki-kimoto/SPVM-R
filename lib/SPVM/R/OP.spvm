@@ -236,7 +236,7 @@ class R::OP {
     
     my $elem_size = $x_ndarray->elem_size;
     
-    for (my $column_index = 0; $column_index < $ret_column; $column_index++) {
+    for (my $ncol_index = 0; $ncol_index < $ret_column; $ncol_index++) {
       if ($x_ndarray->is_any_numeric_ndarray) {
         Fn->memcpy($ret_data, $elem_size * $ret_data_index, $x_data, 0, $elem_size * $x_row);
         
