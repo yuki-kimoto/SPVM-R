@@ -71,7 +71,7 @@ Use L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>, L<R::OP::Doubl
 
 =over 2
 
-=item * L<R::DataFrame::Field|SPVM::R::DataFrame::Field>
+=item * L<R::DataFrame::Column|SPVM::R::DataFrame::Column>
 
 =item * L<R::DataFrame|SPVM::R::DataFrame>
 

@@ -6,19 +6,19 @@ class R::DataFrame {
   use StringList;
   use List;
   use R::NDArray;
-  use R::DataFrame::Field;
+  use R::DataFrame::Column;
   
   # Fields
-  has fields_list : List of R::DataFrame::Field;
+  has fields_list : List of R::DataFrame::Column;
   
-  has fields_h : Hash of R::DataFrame::Field;
+  has fields_h : Hash of R::DataFrame::Column;
   
   # Class Methods
   static method new : R::DataFrame () {
     
     my $self = new R::DataFrame;
     
-    my $fields_list = List->new(new R::DataFrame::Field[0]);
+    my $fields_list = List->new(new R::DataFrame::Column[0]);
     $self->{fields_list} = $fields_list;
     
     my $fields_h = Hash->new;
@@ -56,7 +56,7 @@ class R::DataFrame {
     
     my $fields_h = $self->{fields_h};
     
-    my $field = (R::DataFrame::Field)$fields_h->get($field_name);
+    my $field = (R::DataFrame::Column)$fields_h->get($field_name);
     
     my $exists = 0;
     if ($field) {
@@ -74,7 +74,7 @@ class R::DataFrame {
       die "The field at index $field_index is not found.";
     }
     
-    my $field = (R::DataFrame::Field)$fields_list->get($field_index);
+    my $field = (R::DataFrame::Column)$fields_list->get($field_index);
     
     my $field_name = $field->{name};
     
@@ -105,7 +105,7 @@ class R::DataFrame {
       die "The field at index $field_index is not found.";
     }
     
-    my $field = (R::DataFrame::Field)$fields_list->get($field_index);
+    my $field = (R::DataFrame::Column)$fields_list->get($field_index);
     
     my $ndarray = $field->{ndarray};
     
@@ -116,7 +116,7 @@ class R::DataFrame {
     
     my $fields_h = $self->{fields_h};
     
-    my $field = (R::DataFrame::Field)$fields_h->get($field_name);
+    my $field = (R::DataFrame::Column)$fields_h->get($field_name);
     
     unless ($field) {
       die "The field which name is \"$field_name\" is not found.";
@@ -138,7 +138,7 @@ class R::DataFrame {
     
     $self->check_field($field_name, $ndarray);
     
-    my $field = new R::DataFrame::Field;
+    my $field = new R::DataFrame::Column;
     $field->{name} = $field_name;
     $ndarray->make_dim_read_only;
     $field->{ndarray} = $ndarray;
@@ -196,7 +196,7 @@ class R::DataFrame {
     
     my $ret_data_frame = R::DataFrame->new;
     for my $field_name (@$field_names) {
-      my $field = (R::DataFrame::Field)$fields_h->get($field_name);
+      my $field = (R::DataFrame::Column)$fields_h->get($field_name);
       
       my $ndarray = $field->{ndarray};
       
@@ -261,7 +261,7 @@ class R::DataFrame {
     
     my $ret_data_frame = R::DataFrame->new;
     for my $field_name (@$field_names) {
-      my $field = (R::DataFrame::Field)$fields_h->get($field_name);
+      my $field = (R::DataFrame::Column)$fields_h->get($field_name);
       
       my $ndarray = $field->{ndarray};
       
