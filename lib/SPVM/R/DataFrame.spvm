@@ -37,7 +37,7 @@ class R::DataFrame {
     my $colnames = new string[$cols_length];
     
     for (my $i = 0; $i < $cols_length; $i++) {
-      $colnames->[$i] = $self->get_colname($i);
+      $colnames->[$i] = $self->colname($i);
     }
     
     return $colnames;
@@ -57,48 +57,48 @@ class R::DataFrame {
     return $exists;
   }
   
-  method get_colname : string ($col_index : int) {
+  method colname : string ($col : int) {
     
     my $cols_list = $self->{cols_list};
     
-    unless ($col_index >= 0 && $col_index < $cols_list->length) {
-      die "The col at index $col_index is not found.";
+    unless ($col >= 0 && $col < $cols_list->length) {
+      die "The col at index $col is not found.";
     }
     
-    my $col = (R::DataFrame::Column)$cols_list->get($col_index);
+    my $column_object = (R::DataFrame::Column)$cols_list->get($col);
     
-    my $colname = $col->{name};
+    my $colname = $column_object->{name};
     
     return $colname;
   }
   
-  method get_col_index : int ($colname : string) {
+  method colindex : int ($colname : string) {
     
     my $cols_length = $self->ncol;
     
     my $match = 0;
-    for (my $col_index = 0; $col_index < $cols_length; $col_index++) {
-      my $colname_cmp = $self->get_colname($col_index);
+    for (my $col = 0; $col < $cols_length; $col++) {
+      my $colname_cmp = $self->colname($col);
       
       if ($colname eq $colname_cmp) {
-        return $col_index;
+        return $col;
       }
     }
     
     die "The col specified by the col name \$colname does not found.";
   }
   
-  method get_ndarray_by_index : R::NDArray ($col_index : int) {
+  method get_ndarray_by_index : R::NDArray ($col : int) {
     
     my $cols_list = $self->{cols_list};
     
-    unless ($col_index >= 0 && $col_index < $cols_list->length) {
-      die "The col at index $col_index is not found.";
+    unless ($col >= 0 && $col < $cols_list->length) {
+      die "The col at index $col is not found.";
     }
     
-    my $col = (R::DataFrame::Column)$cols_list->get($col_index);
+    my $column_object = (R::DataFrame::Column)$cols_list->get($col);
     
-    my $ndarray = $col->{ndarray};
+    my $ndarray = $column_object->{ndarray};
     
     return $ndarray;
   }
@@ -129,29 +129,29 @@ class R::DataFrame {
     
     $self->check_col($colname, $ndarray);
     
-    my $col = new R::DataFrame::Column;
-    $col->{name} = $colname;
+    my $column_object = new R::DataFrame::Column;
+    $column_object->{name} = $colname;
     $ndarray->make_dim_read_only;
-    $col->{ndarray} = $ndarray;
+    $column_object->{ndarray} = $ndarray;
     
-    my $col_index = -1;
+    my $col = -1;
     if ($before_colname) {
-      $col_index = $self->get_col_index($before_colname);
+      $col = $self->colindex($before_colname);
     }
     else {
-      $col_index = $self->ncol;
+      $col = $self->ncol;
     }
     
     my $cols_list = $self->{cols_list};
     
-    $cols_list->insert($col_index, $col);
+    $cols_list->insert($col, $col);
   }
   
   method remove_col : void ($colname : string) {
     
-    my $col_index = $self->get_col_index($colname);
+    my $col = $self->colindex($colname);
     
-    $self->remove_col($col_index);
+    $self->remove_col($col);
   }
   
   private method check_col : void ($colname : string, $ndarray : R::NDArray) {
@@ -204,11 +204,11 @@ class R::DataFrame {
     my $cols_length = $self->ncol;
     
     my $string_buffer = StringBuffer->new;
-    for (my $col_index = 0; $col_index < $cols_length; $col_index++) {
+    for (my $col = 0; $col < $cols_length; $col++) {
       
-      my $colname = $self->get_colname($col_index);
+      my $colname = $self->colname($col);
       
-      my $ndarray = $self->get_ndarray($col_index);
+      my $ndarray = $self->get_ndarray($col);
       
       $string_buffer->push("[[");
       
@@ -216,7 +216,7 @@ class R::DataFrame {
         $string_buffer->push($colname);
       }
       else {
-        $string_buffer->push($col_index);
+        $string_buffer->push($col);
       }
       
       $string_buffer->push("]]\n");
@@ -235,8 +235,8 @@ class R::DataFrame {
     
     my $cols_length = $self->ncol;
     
-    for (my $col_index = 0; $col_index < $cols_length; $col_index++) {
-      my $ndarray = $self->get_ndarray($col_index);
+    for (my $col = 0; $col < $cols_length; $col++) {
+      my $ndarray = $self->get_ndarray($col);
       
       $ndarray->set_order($indexes_ndarray);
     }

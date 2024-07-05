@@ -11,7 +11,7 @@ class R::OP::DataFrame {
     my $x_cols_length = $x_data_frame->ncol;
     
     for (my $i = 0; $i < $x_cols_length; $i++) {
-      my $x_colname = $x_data_frame->get_colname($i);
+      my $x_colname = $x_data_frame->colname($i);
       
       my $x_ndarray = $x_data_frame->get_ndarray($i);
       
@@ -21,7 +21,7 @@ class R::OP::DataFrame {
     my $y_cols_length = $y_data_frame->ncol;
     
     for (my $i = 0; $i < $y_cols_length; $i++) {
-      my $y_colname = $y_data_frame->get_colname($i);
+      my $y_colname = $y_data_frame->colname($i);
       
       my $y_ndarray = $y_data_frame->get_ndarray($i);
       
@@ -47,11 +47,11 @@ class R::OP::DataFrame {
     
     for (my $i = 0; $i < $cols_length; $i++) {
       
-      my $x_colname = $x_data_frame->get_colname($i);
+      my $x_colname = $x_data_frame->colname($i);
       
       my $x_ndarray = $x_data_frame->get_ndarray($i);
       
-      my $y_colname = $y_data_frame->get_colname($i);
+      my $y_colname = $y_data_frame->colname($i);
       
       my $y_ndarray = $y_data_frame->get_ndarray($i);
       
