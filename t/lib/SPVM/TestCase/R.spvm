@@ -36,6 +36,30 @@ class TestCase::R {
   
   static method test : int () {
     
+    # R::OP::Int
+    {
+      # R::OP::Int#eq
+      {
+        my $x_ndarray = IOP->c([1, 2, 3]);
+        
+        my $y_ndarray = IOP->c([1, 2, 4]);
+        
+        my $ret_ndarray = IOP->eq($x_ndarray, $y_ndarray);
+        
+        unless ($ret_ndarray is_type R::NDArray::Int) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($ret_ndarray->data, [1, 1, 0])) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($ret_ndarray->dim, [3])) {
+          return 0;
+        }
+      }
+    }
+    
     # R::OP::Matrix::Double
     {
       # R::OP::Matrix::Double#matrix
