@@ -12,7 +12,7 @@ static const char* FILE_NAME = "R/OP/Matrix/Double.cpp";
 
 int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
-  void* ret_ndarray_ref = stack[0].oval;
+  void* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_row_ref = stack[1].iref;
   
@@ -45,7 +45,7 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   memcpy(ret_data, ret_matrix.data(), sizeof(double) * ret_length);
   
-  env->set_elem_object(env, stack, ret_ndarray_ref, 0, ret_data);
+  env->set_elem_object(env, stack, obj_ret_data_ref, 0, obj_ret_data);
   
   *ret_row_ref = ret_matrix.rows();
   
