@@ -9,44 +9,38 @@ class R::OP::Matrix::Double {
   use Hash;
   use R::NDArray::Hash;
   
-  static method matrix : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $row : int, $column : int) {
+  static method matrix : R::NDArray::Double ($data : object of Double|double[]|R::NDArray::Double, $row : int, $column : int) {
     
-    &check_matrix($x_ndarray, $row, $column);
-    
-    my $x_data = $x_ndarray->data;
-    
-    my $ndarray = R::OP::Double->c($x_data, [$row, $column]);
+    my $ndarray = R::OP::Double->c($data, [$row, $column]);
     
     return $ndarray;
   }
   
-  static method matrix_byrow : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $row : int, $column : int) {
+  static method matrix_byrow : R::NDArray::Double ($data : object of Double|double[]|R::NDArray::Double, $row : int, $column : int) {
     
-    &check_matrix($x_ndarray, $row, $column);
+    my $ndarray = &matrix($data, $row, $column);
     
-    my $x_data = $x_ndarray->data;
+    $data = $ndarray->data;
     
-    my $x_length = @$x_data;
+    my $length = @(double[])$data;
     
-    my $new_x_data = new double[$x_length];
+    my $new_data = new double[$length];
     
-    for (my $x_data_index = 0; $x_data_index < $x_length; $x_data_index++) {
-      my $elem = $x_data->[$x_data_index];
+    for (my $data_index = 0; $data_index < $length; $data_index++) {
+      my $elem = $data->(double[])->[$data_index];
       
-      my $new_row_index = $x_data_index / $column;
+      my $new_row_index = $data_index / $column;
       
-      my $new_column_index = $x_data_index - $column * $new_row_index;
+      my $new_column_index = $data_index - $column * $new_row_index;
       
       my $new_data_index = $row * $new_column_index + $new_row_index;
       
-      $new_x_data->[$new_data_index] = $elem;
+      $new_data->[$new_data_index] = $elem;
     }
     
-    my $new_x_ndarray = R::OP::Double->c($new_x_data);
+    my $ret_ndarray = &matrix($new_data, $row, $column);
     
-    my $ndarray = &matrix($new_x_ndarray, $row, $column);
-    
-    return $ndarray;
+    return $ret_ndarray;
   }
   
   private static method check_matrix : void ($x_ndarray : R::NDArray::Double, $row : int, $column : int) {
