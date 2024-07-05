@@ -75,7 +75,7 @@ class R::OP {
       if ($x_ndarray->is_any_numeric_ndarray) {
         my $elem_size = $x_ndarray->elem_size;
         
-        Fn->memcpy($ret_data, $i, $x_data, 0, $elem_size * $x_length);
+        Fn->memcpy($ret_data, $elem_size * $i, $x_data, 0, $elem_size * $x_length);
       }
       else {
         Array->memcpy_object_address((object[])$ret_data, $i, (object[])$x_data, 0, $x_length);
