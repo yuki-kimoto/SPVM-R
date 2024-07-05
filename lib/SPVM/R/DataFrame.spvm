@@ -28,15 +28,6 @@ class R::DataFrame {
   }
   
   # Instance Methods
-  method get_columns_length : int () {
-    
-    my $columns_list = $self->{columns_list};
-    
-    my $columns_length = $columns_list->length;
-    
-    return $columns_length;
-  }
-  
   method colnames : string[] () {
     
     my $columns_list = $self->{columns_list};
@@ -83,7 +74,7 @@ class R::DataFrame {
   
   method get_column_index : int ($column_name : string) {
     
-    my $columns_length = $self->get_columns_length;
+    my $columns_length = $self->ncol;
     
     my $match = 0;
     for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
@@ -129,7 +120,7 @@ class R::DataFrame {
   
   method push_column : void ($column_name : string, $ndarray : R::NDArray) {
     
-    my $columns_length = $self->get_columns_length;
+    my $columns_length = $self->ncol;
     
     $self->insert_column($column_name, $ndarray);
   }
@@ -148,7 +139,7 @@ class R::DataFrame {
       $column_index = $self->get_column_index($before_column_name);
     }
     else {
-      $column_index = $self->get_columns_length;
+      $column_index = $self->ncol;
     }
     
     my $columns_list = $self->{columns_list};
@@ -177,7 +168,7 @@ class R::DataFrame {
       die "The n-dimension array \$ndarray must be defined.";
     }
     
-    my $columns_length = $self->get_columns_length;
+    my $columns_length = $self->ncol;
     
     if ($columns_length != 0) {
       my $ndarray_length = $ndarray->length;
@@ -190,7 +181,7 @@ class R::DataFrame {
   
   method slice : R::DataFrame ($column_names : string[], $vector_indexes : R::NDArray::Int[]) {
     
-    my $columns_length = $self->get_columns_length;
+    my $columns_length = $self->ncol;
     
     my $columns_h = $self->{columns_h};
     
@@ -210,7 +201,7 @@ class R::DataFrame {
   
   method to_string : string () {
     
-    my $columns_length = $self->get_columns_length;
+    my $columns_length = $self->ncol;
     
     my $string_buffer = StringBuffer->new;
     for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
@@ -242,7 +233,7 @@ class R::DataFrame {
   
   method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
-    my $columns_length = $self->get_columns_length;
+    my $columns_length = $self->ncol;
     
     for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
       my $ndarray = $self->get_ndarray($column_index);
@@ -253,7 +244,7 @@ class R::DataFrame {
   
   method clone : R::DataFrame ($deep : int = 0) {
     
-    my $columns_length = $self->get_columns_length;
+    my $columns_length = $self->ncol;
     
     my $columns_h = $self->{columns_h};
     
@@ -275,14 +266,16 @@ class R::DataFrame {
   
   method ncol : int () {
     
-    my $ncol = $self->get_columns_length;
+    my $columns_list = $self->{columns_list};
     
-    return $ncol;
+    my $columns_length = $columns_list->length;
+    
+    return $columns_length;
   }
   
   method nrow : int () {
     
-    my $columns_length = $self->get_columns_length;
+    my $columns_length = $self->ncol;
     
     my $nrow = 0;
     if ($columns_length > 0) {
