@@ -498,9 +498,9 @@ class R::NDArray {
       my $nrow = $self->nrow;
       
       $string_buffer->push("\t");
-      for (my $nrow_index = 0; $nrow_index < $dim->[1]; $nrow_index++) {
-        $string_buffer->push("[,$nrow_index]");
-        unless ($nrow_index == $nrow - 1) {
+      for (my $row = 0; $row < $dim->[1]; $row++) {
+        $string_buffer->push("[,$row]");
+        unless ($row == $nrow - 1) {
           $string_buffer->push("\t");
         }
       }
@@ -508,12 +508,12 @@ class R::NDArray {
       
       my $ncol = $self->ncol;
       
-      for (my $nrow_index = 0; $nrow_index < $nrow; $nrow_index++) {
-        $string_buffer->push("[$nrow_index]\t");
+      for (my $row = 0; $row < $nrow; $row++) {
+        $string_buffer->push("[$row]\t");
         
-        for (my $ncol_index = 0; $ncol_index < $ncol; $ncol_index++) {
+        for (my $col = 0; $col < $ncol; $col++) {
           
-          my $coordinate = [$nrow_index, $ncol_index];
+          my $coordinate = [$row, $col];
           
           my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
           
@@ -521,12 +521,12 @@ class R::NDArray {
           
           $string_buffer->push($elem_string);
           
-          unless ($ncol_index == $ncol - 1) {
+          unless ($col == $ncol - 1) {
             $string_buffer->push("\t");
           }
         }
         
-        unless ($nrow_index == $nrow - 1) {
+        unless ($row == $nrow - 1) {
           $string_buffer->push("\n");
         }
       }

@@ -119,8 +119,8 @@ class R::OP::Matrix::Double {
     my $ret_data = $ret_ndarray->data;
     
     my $x_index = 0;
-    for (my $nrow_index = 0; $nrow_index < $x_row; $nrow_index++) {
-      $ret_data->[$x_column * $nrow_index + $nrow_index] = $x_data->[$nrow_index];
+    for (my $row = 0; $row < $x_row; $row++) {
+      $ret_data->[$x_column * $row + $row] = $x_data->[$row];
     }
     
     return $ret_ndarray;
@@ -140,8 +140,8 @@ class R::OP::Matrix::Double {
     
     my $ret_data = $ret_ndarray->data;
     
-    for (my $nrow_index = 0; $nrow_index < $nrow; $nrow_index++) {
-      $ret_data->[$ncol * $nrow_index + $nrow_index] = 1;
+    for (my $row = 0; $row < $nrow; $row++) {
+      $ret_data->[$ncol * $row + $row] = 1;
     }
     
     return $ret_ndarray;
