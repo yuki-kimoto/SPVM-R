@@ -606,7 +606,7 @@ class TestCase::R {
         {
           my $data = [(float)1,1,  2,1,  3,1,  4,1,  5,1,  6,1];
           my $dim = [2, 3];
-          my $ret_ndarray = FCOP->complex($data, $dim);
+          my $ret_ndarray = FCOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::FloatComplex) {
             return 0;
@@ -627,7 +627,7 @@ class TestCase::R {
         {
           my $data = [(float)1,1,  2,1,  3,1,  4,1,  5,1,  6,1];
           my $data_length = @$data / 2;
-          my $ret_ndarray = FCOP->complex($data);
+          my $ret_ndarray = FCOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::FloatComplex) {
             return 0;
@@ -651,7 +651,7 @@ class TestCase::R {
         {
           my $data = [(double)1,1,  2,1,  3,1,  4,1,  5,1,  6,1];
           my $dim = [2, 3];
-          my $ret_ndarray = DCOP->complex($data, $dim);
+          my $ret_ndarray = DCOP->c($data, $dim);
           
           unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
             return 0;
@@ -672,7 +672,7 @@ class TestCase::R {
         {
           my $data = [(double)1,1,  2,1,  3,1,  4,1,  5,1,  6,1];
           my $data_length = @$data / 2;
-          my $ret_ndarray = DCOP->complex($data);
+          my $ret_ndarray = DCOP->c($data);
           
           unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
             return 0;
