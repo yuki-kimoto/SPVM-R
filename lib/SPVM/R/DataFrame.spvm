@@ -37,7 +37,7 @@ class R::DataFrame {
     return $columns_length;
   }
   
-  method get_column_names : string[] () {
+  method colnames : string[] () {
     
     my $columns_list = $self->{columns_list};
     
@@ -257,7 +257,7 @@ class R::DataFrame {
     
     my $columns_h = $self->{columns_h};
     
-    my $column_names = $self->get_column_names;
+    my $column_names = $self->colnames;
     
     my $ret_data_frame = R::DataFrame->new;
     for my $column_name (@$column_names) {
