@@ -36,6 +36,13 @@ class TestCase::R {
   
   static method test : int () {
     
+    # R::DataFrame
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      
+    }
+    
     # R::OP::Int
     {
       # R::OP::Int#eq
