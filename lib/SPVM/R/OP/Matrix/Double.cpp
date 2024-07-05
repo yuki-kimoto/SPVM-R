@@ -56,7 +56,7 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
 
 int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   
-  void* ret_ndarray_ref = stack[0].oval;
+  void* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
@@ -82,7 +82,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   memcpy(ret_data, ret_matrix.data(), sizeof(double) * ret_length);
   
-  env->set_elem_object(env, stack, ret_ndarray_ref, 0, ret_data);
+  env->set_elem_object(env, stack, obj_ret_data_ref, 0, obj_ret_data);
   
   *ret_nrow_ref = ret_matrix.rows();
   
@@ -93,7 +93,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
 
 int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   
-  void* ret_ndarray_ref = stack[0].oval;
+  void* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
@@ -119,7 +119,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   memcpy(ret_data, ret_matrix.data(), sizeof(double) * ret_length);
   
-  env->set_elem_object(env, stack, ret_ndarray_ref, 0, ret_data);
+  env->set_elem_object(env, stack, obj_ret_data_ref, 0, obj_ret_data);
   
   *ret_nrow_ref = ret_matrix.rows();
   
@@ -130,7 +130,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
 
 int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   
-  void* ret_ndarray_ref = stack[0].oval;
+  void* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
@@ -154,7 +154,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   memcpy(ret_data, &ret, sizeof(double) * ret_length);
   
-  env->set_elem_object(env, stack, ret_ndarray_ref, 0, ret_data);
+  env->set_elem_object(env, stack, obj_ret_data_ref, 0, obj_ret_data);
   
   *ret_nrow_ref = 1;
   
@@ -165,7 +165,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
 
 int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
-  void* ret_ndarray_ref = stack[0].oval;
+  void* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
@@ -195,7 +195,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   memcpy(ret_data, eigen_vectors.data(), sizeof(double) * ret_length);
   
-  env->set_elem_object(env, stack, ret_ndarray_ref, 0, ret_data);
+  env->set_elem_object(env, stack, obj_ret_data_ref, 0, obj_ret_data);
   
   *ret_nrow_ref = eigen_vectors.rows();
   
