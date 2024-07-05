@@ -2156,6 +2156,25 @@ class TestCase::R {
         
       }
       
+      # R::NDArray#set_order method
+      {
+        {
+          my $data = [1, 2, 3];
+          my $ret_ndarray = IOP->c($data);
+          
+          $ret_ndarray->set_order(IOP->c([2, 0, 1]));
+          
+          unless (Array->equals_int($ret_ndarray->data, [3, 1, 2])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($ret_ndarray->dim, [3])){
+            return 0;
+          }
+          
+        }
+      }
+      
     }
     
     # R::NDArray::Int
@@ -2344,7 +2363,7 @@ class TestCase::R {
         {
           my $x_ndarray = IOP->c([1, 2, 3, 4]);
           
-          my $gt_ndarray = IOP->gt($x_ndarray, IOP->rep_length(IOP->c(2), 4));
+          my $gt_ndarray = IOP->gt($x_ndarray, IOP->rep_length(IOP->c(2), $x_ndarray->length));
           
           my $indexes_ndarray = $gt_ndarray->to_indexes;
           
