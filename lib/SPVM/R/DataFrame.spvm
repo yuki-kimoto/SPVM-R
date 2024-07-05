@@ -193,7 +193,7 @@ class R::DataFrame {
       
       my $ret_ndarray = $ndarray->slice($vector_indexes);
       
-      $ret_data_frame->push_col($colname, $ndarray);
+      $ret_data_frame->insert_col($colname, $ndarray);
     }
     
     return $ret_data_frame;
@@ -258,7 +258,7 @@ class R::DataFrame {
       
       my $ret_ndarray = $ndarray->clone($deep);
       
-      $ret_data_frame->push_col($colname, $ndarray);
+      $ret_data_frame->insert_col($colname, $ndarray);
     }
     
     return $ret_data_frame;

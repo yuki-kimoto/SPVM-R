@@ -15,7 +15,7 @@ class R::OP::DataFrame {
       
       my $x_ndarray = $x_data_frame->get_ndarray($i);
       
-      $ret_data_frame->push_col($x_colname, $x_ndarray);
+      $ret_data_frame->insert_col($x_colname, $x_ndarray);
     }
     
     my $y_cols_length = $y_data_frame->ncol;
@@ -25,7 +25,7 @@ class R::OP::DataFrame {
       
       my $y_ndarray = $y_data_frame->get_ndarray($i);
       
-      $ret_data_frame->push_col($y_colname, $y_ndarray);
+      $ret_data_frame->insert_col($y_colname, $y_ndarray);
     }
     
     return $ret_data_frame;
@@ -67,7 +67,7 @@ class R::OP::DataFrame {
       
       my $ret_ndarray = R::OP->rbind($x_ndarray, $y_ndarray);
       
-      $ret_data_frame->push_col($colname, $ret_ndarray);
+      $ret_data_frame->insert_col($colname, $ret_ndarray);
     }
     
     return $ret_data_frame;
