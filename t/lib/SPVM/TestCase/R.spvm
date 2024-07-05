@@ -2340,6 +2340,40 @@ class TestCase::R {
             return 0;
           }
         }
+        
+        {
+          my $x_ndarray = IOP->c([1, 2, 3, 4]);
+          
+          my $gt_ndarray = IOP->gt($x_ndarray, IOP->rep_length(IOP->c(2), 4));
+          
+          my $indexes_ndarray = $gt_ndarray->to_indexes;
+          
+          unless ($indexes_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($indexes_ndarray->data, [2, 3])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($indexes_ndarray->dim, [2])) {
+            return 0;
+          }
+          
+          my $slice_ndarray = $x_ndarray->slice([$indexes_ndarray]);
+          
+          unless ($slice_ndarray is_type R::NDArray::Int) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($slice_ndarray->data, [3, 4])) {
+            return 0;
+          }
+          
+          unless (Array->equals_int($slice_ndarray->dim, [2])) {
+            return 0;
+          }
+        }
       }
     }
     
