@@ -88,7 +88,7 @@ class R::DataFrame {
     die "The col specified by the col name \$colname does not found.";
   }
   
-  method get_ndarray_by_index : R::NDArray ($col : int) {
+  method get_ndarray_by_col : R::NDArray ($col : int) {
     
     my $cols_list = $self->{cols_list};
     
@@ -173,7 +173,7 @@ class R::DataFrame {
     if ($cols_length != 0) {
       my $ndarray_length = $ndarray->length;
       
-      unless ($ndarray_length == $self->get_ndarray_by_index(0)->length) {
+      unless ($ndarray_length == $self->get_ndarray_by_col(0)->length) {
         die "The length of n-dimension array \$ndarray must be the same as the return value of ndarray_length method given the invocant.";
       }
     }
@@ -279,7 +279,7 @@ class R::DataFrame {
     
     my $nrow = 0;
     if ($cols_length > 0) {
-      $nrow = $self->get_ndarray_by_index(0)->length;
+      $nrow = $self->get_ndarray_by_col(0)->length;
     }
     
     return $nrow;
