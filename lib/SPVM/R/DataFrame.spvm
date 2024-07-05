@@ -9,177 +9,177 @@ class R::DataFrame {
   use R::DataFrame::Column;
   
   # Fields
-  has fields_list : List of R::DataFrame::Column;
+  has columns_list : List of R::DataFrame::Column;
   
-  has fields_h : Hash of R::DataFrame::Column;
+  has columns_h : Hash of R::DataFrame::Column;
   
   # Class Methods
   static method new : R::DataFrame () {
     
     my $self = new R::DataFrame;
     
-    my $fields_list = List->new(new R::DataFrame::Column[0]);
-    $self->{fields_list} = $fields_list;
+    my $columns_list = List->new(new R::DataFrame::Column[0]);
+    $self->{columns_list} = $columns_list;
     
-    my $fields_h = Hash->new;
-    $self->{fields_h} = $fields_h;
+    my $columns_h = Hash->new;
+    $self->{columns_h} = $columns_h;
     
     return $self;
   }
   
   # Instance Methods
-  method get_fields_length : int () {
+  method get_columns_length : int () {
     
-    my $fields_list = $self->{fields_list};
+    my $columns_list = $self->{columns_list};
     
-    my $fields_length = $fields_list->length;
+    my $columns_length = $columns_list->length;
     
-    return $fields_length;
+    return $columns_length;
   }
   
-  method get_field_names : string[] () {
+  method get_column_names : string[] () {
     
-    my $fields_list = $self->{fields_list};
+    my $columns_list = $self->{columns_list};
     
-    my $fields_length = $fields_list->length;
+    my $columns_length = $columns_list->length;
     
-    my $field_names = new string[$fields_length];
+    my $column_names = new string[$columns_length];
     
-    for (my $i = 0; $i < $fields_length; $i++) {
-      $field_names->[$i] = $self->get_field_name($i);
+    for (my $i = 0; $i < $columns_length; $i++) {
+      $column_names->[$i] = $self->get_column_name($i);
     }
     
-    return $field_names;
+    return $column_names;
   }
   
-  method exists_field : int ($field_name : string) {
+  method exists_column : int ($column_name : string) {
     
-    my $fields_h = $self->{fields_h};
+    my $columns_h = $self->{columns_h};
     
-    my $field = (R::DataFrame::Column)$fields_h->get($field_name);
+    my $column = (R::DataFrame::Column)$columns_h->get($column_name);
     
     my $exists = 0;
-    if ($field) {
+    if ($column) {
       $exists = 1;
     }
     
     return $exists;
   }
   
-  method get_field_name : string ($field_index : int) {
+  method get_column_name : string ($column_index : int) {
     
-    my $fields_list = $self->{fields_list};
+    my $columns_list = $self->{columns_list};
     
-    unless ($field_index >= 0 && $field_index < $fields_list->length) {
-      die "The field at index $field_index is not found.";
+    unless ($column_index >= 0 && $column_index < $columns_list->length) {
+      die "The column at index $column_index is not found.";
     }
     
-    my $field = (R::DataFrame::Column)$fields_list->get($field_index);
+    my $column = (R::DataFrame::Column)$columns_list->get($column_index);
     
-    my $field_name = $field->{name};
+    my $column_name = $column->{name};
     
-    return $field_name;
+    return $column_name;
   }
   
-  method get_field_index : int ($field_name : string) {
+  method get_column_index : int ($column_name : string) {
     
-    my $fields_length = $self->get_fields_length;
+    my $columns_length = $self->get_columns_length;
     
     my $match = 0;
-    for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
-      my $field_name_cmp = $self->get_field_name($field_index);
+    for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
+      my $column_name_cmp = $self->get_column_name($column_index);
       
-      if ($field_name eq $field_name_cmp) {
-        return $field_index;
+      if ($column_name eq $column_name_cmp) {
+        return $column_index;
       }
     }
     
-    die "The field specified by the field name \$field_name does not found.";
+    die "The column specified by the column name \$column_name does not found.";
   }
   
-  method get_ndarray_by_index : R::NDArray ($field_index : int) {
+  method get_ndarray_by_index : R::NDArray ($column_index : int) {
     
-    my $fields_list = $self->{fields_list};
+    my $columns_list = $self->{columns_list};
     
-    unless ($field_index >= 0 && $field_index < $fields_list->length) {
-      die "The field at index $field_index is not found.";
+    unless ($column_index >= 0 && $column_index < $columns_list->length) {
+      die "The column at index $column_index is not found.";
     }
     
-    my $field = (R::DataFrame::Column)$fields_list->get($field_index);
+    my $column = (R::DataFrame::Column)$columns_list->get($column_index);
     
-    my $ndarray = $field->{ndarray};
+    my $ndarray = $column->{ndarray};
     
     return $ndarray;
   }
   
-  method get_ndarray : R::NDArray ($field_name : string) {
+  method get_ndarray : R::NDArray ($column_name : string) {
     
-    my $fields_h = $self->{fields_h};
+    my $columns_h = $self->{columns_h};
     
-    my $field = (R::DataFrame::Column)$fields_h->get($field_name);
+    my $column = (R::DataFrame::Column)$columns_h->get($column_name);
     
-    unless ($field) {
-      die "The field which name is \"$field_name\" is not found.";
+    unless ($column) {
+      die "The column which name is \"$column_name\" is not found.";
     }
     
-    my $ndarray = $field->{ndarray};
+    my $ndarray = $column->{ndarray};
     
     return $ndarray;
   }
   
-  method push_field : void ($field_name : string, $ndarray : R::NDArray) {
+  method push_column : void ($column_name : string, $ndarray : R::NDArray) {
     
-    my $fields_length = $self->get_fields_length;
+    my $columns_length = $self->get_columns_length;
     
-    $self->insert_field($field_name, $ndarray);
+    $self->insert_column($column_name, $ndarray);
   }
   
-  method insert_field : void ($field_name : string, $ndarray : R::NDArray, $before_field_name : string = undef) {
+  method insert_column : void ($column_name : string, $ndarray : R::NDArray, $before_column_name : string = undef) {
     
-    $self->check_field($field_name, $ndarray);
+    $self->check_column($column_name, $ndarray);
     
-    my $field = new R::DataFrame::Column;
-    $field->{name} = $field_name;
+    my $column = new R::DataFrame::Column;
+    $column->{name} = $column_name;
     $ndarray->make_dim_read_only;
-    $field->{ndarray} = $ndarray;
+    $column->{ndarray} = $ndarray;
     
-    my $field_index = -1;
-    if ($before_field_name) {
-      $field_index = $self->get_field_index($before_field_name);
+    my $column_index = -1;
+    if ($before_column_name) {
+      $column_index = $self->get_column_index($before_column_name);
     }
     else {
-      $field_index = $self->get_fields_length;
+      $column_index = $self->get_columns_length;
     }
     
-    my $fields_list = $self->{fields_list};
+    my $columns_list = $self->{columns_list};
     
-    $fields_list->insert($field_index, $field);
+    $columns_list->insert($column_index, $column);
   }
   
-  method remove_field : void ($field_name : string) {
+  method remove_column : void ($column_name : string) {
     
-    my $field_index = $self->get_field_index($field_name);
+    my $column_index = $self->get_column_index($column_name);
     
-    $self->remove_field($field_index);
+    $self->remove_column($column_index);
   }
   
-  private method check_field : void ($field_name : string, $ndarray : R::NDArray) {
+  private method check_column : void ($column_name : string, $ndarray : R::NDArray) {
     
-    my $fields_h = $self->{fields_h};
+    my $columns_h = $self->{columns_h};
     
-    my $field = $fields_h->get($field_name);
+    my $column = $columns_h->get($column_name);
     
-    if ($field) {
-      die "The field name \$field_name is already used.";
+    if ($column) {
+      die "The column name \$column_name is already used.";
     }
     
     unless ($ndarray) {
       die "The n-dimension array \$ndarray must be defined.";
     }
     
-    my $fields_length = $self->get_fields_length;
+    my $columns_length = $self->get_columns_length;
     
-    if ($fields_length != 0) {
+    if ($columns_length != 0) {
       my $ndarray_length = $ndarray->length;
       
       unless ($ndarray_length == $self->get_ndarray_by_index(0)->length) {
@@ -188,21 +188,21 @@ class R::DataFrame {
     }
   }
   
-  method slice : R::DataFrame ($field_names : string[], $vector_indexes : R::NDArray::Int[]) {
+  method slice : R::DataFrame ($column_names : string[], $vector_indexes : R::NDArray::Int[]) {
     
-    my $fields_length = $self->get_fields_length;
+    my $columns_length = $self->get_columns_length;
     
-    my $fields_h = $self->{fields_h};
+    my $columns_h = $self->{columns_h};
     
     my $ret_data_frame = R::DataFrame->new;
-    for my $field_name (@$field_names) {
-      my $field = (R::DataFrame::Column)$fields_h->get($field_name);
+    for my $column_name (@$column_names) {
+      my $column = (R::DataFrame::Column)$columns_h->get($column_name);
       
-      my $ndarray = $field->{ndarray};
+      my $ndarray = $column->{ndarray};
       
       my $ret_ndarray = $ndarray->slice($vector_indexes);
       
-      $ret_data_frame->push_field($field_name, $ndarray);
+      $ret_data_frame->push_column($column_name, $ndarray);
     }
     
     return $ret_data_frame;
@@ -210,22 +210,22 @@ class R::DataFrame {
   
   method to_string : string () {
     
-    my $fields_length = $self->get_fields_length;
+    my $columns_length = $self->get_columns_length;
     
     my $string_buffer = StringBuffer->new;
-    for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
+    for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
       
-      my $field_name = $self->get_field_name($field_index);
+      my $column_name = $self->get_column_name($column_index);
       
-      my $ndarray = $self->get_ndarray($field_index);
+      my $ndarray = $self->get_ndarray($column_index);
       
       $string_buffer->push("[[");
       
-      if ($field_name) {
-        $string_buffer->push($field_name);
+      if ($column_name) {
+        $string_buffer->push($column_name);
       }
       else {
-        $string_buffer->push($field_index);
+        $string_buffer->push($column_index);
       }
       
       $string_buffer->push("]]\n");
@@ -242,10 +242,10 @@ class R::DataFrame {
   
   method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
-    my $fields_length = $self->get_fields_length;
+    my $columns_length = $self->get_columns_length;
     
-    for (my $field_index = 0; $field_index < $fields_length; $field_index++) {
-      my $ndarray = $self->get_ndarray($field_index);
+    for (my $column_index = 0; $column_index < $columns_length; $column_index++) {
+      my $ndarray = $self->get_ndarray($column_index);
       
       $ndarray->set_order($indexes_ndarray);
     }
@@ -253,21 +253,21 @@ class R::DataFrame {
   
   method clone : R::DataFrame ($deep : int = 0) {
     
-    my $fields_length = $self->get_fields_length;
+    my $columns_length = $self->get_columns_length;
     
-    my $fields_h = $self->{fields_h};
+    my $columns_h = $self->{columns_h};
     
-    my $field_names = $self->get_field_names;
+    my $column_names = $self->get_column_names;
     
     my $ret_data_frame = R::DataFrame->new;
-    for my $field_name (@$field_names) {
-      my $field = (R::DataFrame::Column)$fields_h->get($field_name);
+    for my $column_name (@$column_names) {
+      my $column = (R::DataFrame::Column)$columns_h->get($column_name);
       
-      my $ndarray = $field->{ndarray};
+      my $ndarray = $column->{ndarray};
       
       my $ret_ndarray = $ndarray->clone($deep);
       
-      $ret_data_frame->push_field($field_name, $ndarray);
+      $ret_data_frame->push_column($column_name, $ndarray);
     }
     
     return $ret_data_frame;
@@ -275,17 +275,17 @@ class R::DataFrame {
   
   method ncol : int () {
     
-    my $ncol = $self->get_fields_length;
+    my $ncol = $self->get_columns_length;
     
     return $ncol;
   }
   
   method nrow : int () {
     
-    my $fields_length = $self->get_fields_length;
+    my $columns_length = $self->get_columns_length;
     
     my $nrow = 0;
-    if ($fields_length > 0) {
+    if ($columns_length > 0) {
       $nrow = $self->get_ndarray_by_index(0)->length;
     }
     
