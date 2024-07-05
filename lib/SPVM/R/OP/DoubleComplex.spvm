@@ -61,27 +61,6 @@ class R::OP::DoubleComplex {
     return $ndarray;
   }
   
-  static method complex : R::NDArray::DoubleComplex ($pairs : double[], $dim : int[] = undef) {
-    
-    unless ($pairs) {
-      die "The pairs \$pairs must be defined.";
-    }
-    
-    my $pairs_length = @$pairs;
-    
-    unless ($pairs_length % 2 == 0) {
-      die "The pairs \$pairs must be devided by even number.";
-    }
-    
-    my $length = $pairs_length / 2;
-    
-    my $data = new Complex_2d[$length];
-    
-    Fn->memcpy($data, 0, $pairs, 0, 8 * 2 * $length);
-    
-    return R::OP::DoubleComplex->c($data, $dim);
-  }
-  
   static method add : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {

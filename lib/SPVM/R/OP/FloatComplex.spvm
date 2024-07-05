@@ -850,27 +850,6 @@ class R::OP::FloatComplex {
     return $ret_ndarray;
   }
   
-  static method complex : R::NDArray::FloatComplex ($pairs : float[], $dim : int[] = undef) {
-    
-    unless ($pairs) {
-      die "The pairs \$pairs must be defined.";
-    }
-    
-    my $pairs_length = @$pairs;
-    
-    unless ($pairs_length % 2 == 0) {
-      die "The pairs \$pairs must be devided by even number.";
-    }
-    
-    my $length = $pairs_length / 2;
-    
-    my $data = new Complex_2f[$length];
-    
-    Fn->memcpy($data, 0, $pairs, 0, 4 * 2 * $length);
-    
-    return R::OP::FloatComplex->c($data, $dim);
-  }
-  
   static method i : R::NDArray::FloatComplex () {
     
     my $x = Math->complexf(0f, 1f);
