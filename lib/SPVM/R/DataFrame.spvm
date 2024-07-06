@@ -30,9 +30,7 @@ class R::DataFrame {
   # Instance Methods
   method colnames : string[] () {
     
-    my $colobjs_list = $self->{colobjs_list};
-    
-    my $ncol = $colobjs_list->length;
+    my $ncol = $self->ncol;
     
     my $colnames = new string[$ncol];
     
