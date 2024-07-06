@@ -32,11 +32,11 @@ class R::DataFrame {
     
     my $cols_list = $self->{cols_list};
     
-    my $cols_length = $cols_list->length;
+    my $ncol = $cols_list->length;
     
-    my $colnames = new string[$cols_length];
+    my $colnames = new string[$ncol];
     
-    for (my $i = 0; $i < $cols_length; $i++) {
+    for (my $i = 0; $i < $ncol; $i++) {
       $colnames->[$i] = $self->colname($i);
     }
     
@@ -69,10 +69,10 @@ class R::DataFrame {
   
   method colindex : int ($colname : string) {
     
-    my $cols_length = $self->ncol;
+    my $ncol = $self->ncol;
     
     my $match = 0;
-    for (my $col = 0; $col < $cols_length; $col++) {
+    for (my $col = 0; $col < $ncol; $col++) {
       my $colname_cmp = $self->colname($col);
       
       if ($colname eq $colname_cmp) {
@@ -115,7 +115,7 @@ class R::DataFrame {
   
   method push_col : void ($colname : string, $ndarray : R::NDArray) {
     
-    my $cols_length = $self->ncol;
+    my $ncol = $self->ncol;
     
     $self->insert_col($colname, $ndarray);
   }
@@ -163,9 +163,9 @@ class R::DataFrame {
       die "The n-dimension array \$ndarray must be defined.";
     }
     
-    my $cols_length = $self->ncol;
+    my $ncol = $self->ncol;
     
-    if ($cols_length != 0) {
+    if ($ncol != 0) {
       my $ndarray_length = $ndarray->length;
       
       unless ($ndarray_length == $self->col_by_index(0)->length) {
@@ -176,7 +176,7 @@ class R::DataFrame {
   
   method slice : R::DataFrame ($colnames : string[], $vector_indexes : R::NDArray::Int[]) {
     
-    my $cols_length = $self->ncol;
+    my $ncol = $self->ncol;
     
     my $colnames_h = $self->{colnames_h};
     
@@ -196,10 +196,10 @@ class R::DataFrame {
   
   method to_string : string () {
     
-    my $cols_length = $self->ncol;
+    my $ncol = $self->ncol;
     
     my $string_buffer = StringBuffer->new;
-    for (my $col = 0; $col < $cols_length; $col++) {
+    for (my $col = 0; $col < $ncol; $col++) {
       
       my $colname = $self->colname($col);
       
@@ -228,9 +228,9 @@ class R::DataFrame {
   
   method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
-    my $cols_length = $self->ncol;
+    my $ncol = $self->ncol;
     
-    for (my $col = 0; $col < $cols_length; $col++) {
+    for (my $col = 0; $col < $ncol; $col++) {
       my $ndarray = $self->col($col);
       
       $ndarray->set_order($indexes_ndarray);
@@ -239,9 +239,7 @@ class R::DataFrame {
   
   method clone : R::DataFrame ($elem_shallow_clone : int = 0) {
     
-    my $cols_length = $self->ncol;
-    
-    my $colnames_h = $self->{colnames_h};
+    my $ncol = $self->ncol;
     
     my $colnames = $self->colnames;
     
@@ -261,17 +259,17 @@ class R::DataFrame {
     
     my $cols_list = $self->{cols_list};
     
-    my $cols_length = $cols_list->length;
+    my $ncol = $cols_list->length;
     
-    return $cols_length;
+    return $ncol;
   }
   
   method nrow : int () {
     
-    my $cols_length = $self->ncol;
+    my $ncol = $self->ncol;
     
     my $nrow = 0;
-    if ($cols_length > 0) {
+    if ($ncol > 0) {
       $nrow = $self->col_by_index(0)->length;
     }
     
