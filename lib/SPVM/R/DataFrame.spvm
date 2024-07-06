@@ -159,7 +159,9 @@ class R::DataFrame {
     
     my $col = $self->colindex($colname);
     
-    $self->remove_col($col);
+    my $colobjs_list = $self->{colobjs_list};
+    
+    $colobjs_list->remove($col);
     
     $self->update_colobjs_indexes_h;
   }
