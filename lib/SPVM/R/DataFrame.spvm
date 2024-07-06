@@ -237,7 +237,7 @@ class R::DataFrame {
     }
   }
   
-  method clone : R::DataFrame ($deep : int = 0) {
+  method clone : R::DataFrame ($elem_shallow_clone : int = 0) {
     
     my $cols_length = $self->ncol;
     
@@ -247,11 +247,9 @@ class R::DataFrame {
     
     my $ret_data_frame = R::DataFrame->new;
     for my $colname (@$colnames) {
-      my $col = (R::DataFrame::Column)$colnames_h->get($colname);
+      my $ndarray = $self->col($colname);
       
-      my $ndarray = $col->{ndarray};
-      
-      my $ret_ndarray = $ndarray->clone($deep);
+      my $ret_ndarray = $ndarray->clone($elem_shallow_clone);
       
       $ret_data_frame->insert_col($colname, $ndarray);
     }
