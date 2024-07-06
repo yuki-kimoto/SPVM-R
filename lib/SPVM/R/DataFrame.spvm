@@ -9,20 +9,20 @@ class R::DataFrame {
   use R::DataFrame::Column;
   
   # Fields
-  has cols_list : List of R::DataFrame::Column;
+  has colobjs_list : List of R::DataFrame::Column;
   
-  has colindexes_h : Hash of Int;
+  has colobjs_indexes_h : Hash of Int;
   
   # Class Methods
   static method new : R::DataFrame () {
     
     my $self = new R::DataFrame;
     
-    my $cols_list = List->new(new R::DataFrame::Column[0]);
-    $self->{cols_list} = $cols_list;
+    my $colobjs_list = List->new(new R::DataFrame::Column[0]);
+    $self->{colobjs_list} = $colobjs_list;
     
-    my $colindexes_h = Hash->new;
-    $self->{colindexes_h} = $colindexes_h;
+    my $colobjs_indexes_h = Hash->new;
+    $self->{colobjs_indexes_h} = $colobjs_indexes_h;
     
     return $self;
   }
@@ -30,9 +30,9 @@ class R::DataFrame {
   # Instance Methods
   method colnames : string[] () {
     
-    my $cols_list = $self->{cols_list};
+    my $colobjs_list = $self->{colobjs_list};
     
-    my $ncol = $cols_list->length;
+    my $ncol = $colobjs_list->length;
     
     my $colnames = new string[$ncol];
     
@@ -45,22 +45,22 @@ class R::DataFrame {
   
   method exists_col : int ($colname : string) {
     
-    my $colindexes_h = $self->{colindexes_h};
+    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
     
-    my $exists = $colindexes_h->exists($colname);
+    my $exists = $colobjs_indexes_h->exists($colname);
     
     return $exists;
   }
   
   method colname : string ($col : int) {
     
-    my $cols_list = $self->{cols_list};
+    my $colobjs_list = $self->{colobjs_list};
     
-    unless ($col >= 0 && $col < $cols_list->length) {
+    unless ($col >= 0 && $col < $colobjs_list->length) {
       die "The col at index $col is not found.";
     }
     
-    my $colobj = (R::DataFrame::Column)$cols_list->get($col);
+    my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
     
     my $colname = $colobj->{name};
     
@@ -85,13 +85,13 @@ class R::DataFrame {
   
   method col_by_index : R::NDArray ($col : int) {
     
-    my $cols_list = $self->{cols_list};
+    my $colobjs_list = $self->{colobjs_list};
     
-    unless ($col >= 0 && $col < $cols_list->length) {
+    unless ($col >= 0 && $col < $colobjs_list->length) {
       die "The col at index $col is not found.";
     }
     
-    my $colobj = (R::DataFrame::Column)$cols_list->get($col);
+    my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
     
     my $ndarray = $colobj->{ndarray};
     
@@ -100,9 +100,9 @@ class R::DataFrame {
   
   method col : R::NDArray ($colname : string) {
     
-    my $colindexes_h = $self->{colindexes_h};
+    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
     
-    my $colobj = (R::DataFrame::Column)$colindexes_h->get($colname);
+    my $colobj = (R::DataFrame::Column)$colobjs_indexes_h->get($colname);
     
     unless ($colobj) {
       die "The col which name is \"$colname\" is not found.";
@@ -137,9 +137,24 @@ class R::DataFrame {
       $col = $self->ncol;
     }
     
-    my $cols_list = $self->{cols_list};
+    my $colobjs_list = $self->{colobjs_list};
     
-    $cols_list->insert($col, $col);
+    $colobjs_list->insert($col, $colobj);
+    
+    $self->update_colobjs_indexes_h;
+  }
+  
+  private method update_colobjs_indexes_h : void () {
+    
+    my $colobjs_list = $self->{colobjs_list};
+    
+    my $new_colobjs_indexes_h = Hash->new;
+    for (my $i = 0; $i < $colobjs_list->length; $i++) {
+      my $colobj = (R::DataFrame::Column)$colobjs_list->get($i);
+      my $colname = $colobj->{name};
+      
+      $new_colobjs_indexes_h->set($colname, $i);
+    }
   }
   
   method remove_col : void ($colname : string) {
@@ -147,13 +162,15 @@ class R::DataFrame {
     my $col = $self->colindex($colname);
     
     $self->remove_col($col);
+    
+    $self->update_colobjs_indexes_h;
   }
   
   private method check_col : void ($colname : string, $ndarray : R::NDArray) {
     
-    my $colindexes_h = $self->{colindexes_h};
+    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
     
-    my $col = $colindexes_h->get($colname);
+    my $col = $colobjs_indexes_h->get($colname);
     
     if ($col) {
       die "The col name \$colname is already used.";
@@ -178,11 +195,11 @@ class R::DataFrame {
     
     my $ncol = $self->ncol;
     
-    my $colindexes_h = $self->{colindexes_h};
+    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
     
     my $ret_data_frame = R::DataFrame->new;
     for my $colname (@$colnames) {
-      my $col = (R::DataFrame::Column)$colindexes_h->get($colname);
+      my $col = (R::DataFrame::Column)$colobjs_indexes_h->get($colname);
       
       my $ndarray = $col->{ndarray};
       
@@ -257,9 +274,9 @@ class R::DataFrame {
   
   method ncol : int () {
     
-    my $cols_list = $self->{cols_list};
+    my $colobjs_list = $self->{colobjs_list};
     
-    my $ncol = $cols_list->length;
+    my $ncol = $colobjs_list->length;
     
     return $ncol;
   }
