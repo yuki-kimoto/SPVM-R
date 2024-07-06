@@ -65,9 +65,9 @@ class R::DataFrame {
       die "The col at index $col is not found.";
     }
     
-    my $column_object = (R::DataFrame::Column)$cols_list->get($col);
+    my $colobj = (R::DataFrame::Column)$cols_list->get($col);
     
-    my $colname = $column_object->{name};
+    my $colname = $colobj->{name};
     
     return $colname;
   }
@@ -96,9 +96,9 @@ class R::DataFrame {
       die "The col at index $col is not found.";
     }
     
-    my $column_object = (R::DataFrame::Column)$cols_list->get($col);
+    my $colobj = (R::DataFrame::Column)$cols_list->get($col);
     
-    my $ndarray = $column_object->{ndarray};
+    my $ndarray = $colobj->{ndarray};
     
     return $ndarray;
   }
@@ -129,10 +129,10 @@ class R::DataFrame {
     
     $self->check_col($colname, $ndarray);
     
-    my $column_object = new R::DataFrame::Column;
-    $column_object->{name} = $colname;
+    my $colobj = new R::DataFrame::Column;
+    $colobj->{name} = $colname;
     $ndarray->make_dim_read_only;
-    $column_object->{ndarray} = $ndarray;
+    $colobj->{ndarray} = $ndarray;
     
     my $col = -1;
     if ($before_colname) {
