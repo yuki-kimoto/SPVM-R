@@ -47,12 +47,7 @@ class R::DataFrame {
     
     my $colnames_h = $self->{colnames_h};
     
-    my $col = (R::DataFrame::Column)$colnames_h->get($colname);
-    
-    my $exists = 0;
-    if ($col) {
-      $exists = 1;
-    }
+    my $exists = $colnames_h->exists($colname);
     
     return $exists;
   }
