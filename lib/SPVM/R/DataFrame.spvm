@@ -11,7 +11,7 @@ class R::DataFrame {
   # Fields
   has cols_list : List of R::DataFrame::Column;
   
-  has cols_h : Hash of R::DataFrame::Column;
+  has colnames_h : Hash of Int;
   
   # Class Methods
   static method new : R::DataFrame () {
@@ -21,8 +21,8 @@ class R::DataFrame {
     my $cols_list = List->new(new R::DataFrame::Column[0]);
     $self->{cols_list} = $cols_list;
     
-    my $cols_h = Hash->new;
-    $self->{cols_h} = $cols_h;
+    my $colnames_h = Hash->new;
+    $self->{colnames_h} = $colnames_h;
     
     return $self;
   }
@@ -45,9 +45,9 @@ class R::DataFrame {
   
   method exists_col : int ($colname : string) {
     
-    my $cols_h = $self->{cols_h};
+    my $colnames_h = $self->{colnames_h};
     
-    my $col = (R::DataFrame::Column)$cols_h->get($colname);
+    my $col = (R::DataFrame::Column)$colnames_h->get($colname);
     
     my $exists = 0;
     if ($col) {
@@ -105,9 +105,9 @@ class R::DataFrame {
   
   method col : R::NDArray ($colname : string) {
     
-    my $cols_h = $self->{cols_h};
+    my $colnames_h = $self->{colnames_h};
     
-    my $col = (R::DataFrame::Column)$cols_h->get($colname);
+    my $col = (R::DataFrame::Column)$colnames_h->get($colname);
     
     unless ($col) {
       die "The col which name is \"$colname\" is not found.";
@@ -156,9 +156,9 @@ class R::DataFrame {
   
   private method check_col : void ($colname : string, $ndarray : R::NDArray) {
     
-    my $cols_h = $self->{cols_h};
+    my $colnames_h = $self->{colnames_h};
     
-    my $col = $cols_h->get($colname);
+    my $col = $colnames_h->get($colname);
     
     if ($col) {
       die "The col name \$colname is already used.";
@@ -183,11 +183,11 @@ class R::DataFrame {
     
     my $cols_length = $self->ncol;
     
-    my $cols_h = $self->{cols_h};
+    my $colnames_h = $self->{colnames_h};
     
     my $ret_data_frame = R::DataFrame->new;
     for my $colname (@$colnames) {
-      my $col = (R::DataFrame::Column)$cols_h->get($colname);
+      my $col = (R::DataFrame::Column)$colnames_h->get($colname);
       
       my $ndarray = $col->{ndarray};
       
@@ -246,13 +246,13 @@ class R::DataFrame {
     
     my $cols_length = $self->ncol;
     
-    my $cols_h = $self->{cols_h};
+    my $colnames_h = $self->{colnames_h};
     
     my $colnames = $self->colnames;
     
     my $ret_data_frame = R::DataFrame->new;
     for my $colname (@$colnames) {
-      my $col = (R::DataFrame::Column)$cols_h->get($colname);
+      my $col = (R::DataFrame::Column)$colnames_h->get($colname);
       
       my $ndarray = $col->{ndarray};
       
