@@ -111,11 +111,20 @@ class R::DataFrame {
     return $ndarray;
   }
   
-  method push_col : void ($colname : string, $ndarray : R::NDArray) {
+  method set_col : void ($colname : string, $ndarray : R::NDArray) {
     
-    my $ncol = $self->ncol;
+    my $exists_col = $self->exists_col($colname);
     
-    $self->insert_col($colname, $ndarray);
+    if ($exists_col) {
+      my $col = $self->colindex($colname);
+      
+      my $colobjs_list = $self->{colobjs_list};
+      
+      $colobjs_list->set($col, $ndarray);
+    }
+    else {
+      $self->insert_col($colname, $ndarray);
+    }
   }
   
   method insert_col : void ($colname : string, $ndarray : R::NDArray, $before_colname : string = undef) {
