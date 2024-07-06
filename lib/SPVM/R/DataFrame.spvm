@@ -11,7 +11,7 @@ class R::DataFrame {
   # Fields
   has cols_list : List of R::DataFrame::Column;
   
-  has colnames_h : Hash of Int;
+  has colindexes_h : Hash of Int;
   
   # Class Methods
   static method new : R::DataFrame () {
@@ -21,8 +21,8 @@ class R::DataFrame {
     my $cols_list = List->new(new R::DataFrame::Column[0]);
     $self->{cols_list} = $cols_list;
     
-    my $colnames_h = Hash->new;
-    $self->{colnames_h} = $colnames_h;
+    my $colindexes_h = Hash->new;
+    $self->{colindexes_h} = $colindexes_h;
     
     return $self;
   }
@@ -45,9 +45,9 @@ class R::DataFrame {
   
   method exists_col : int ($colname : string) {
     
-    my $colnames_h = $self->{colnames_h};
+    my $colindexes_h = $self->{colindexes_h};
     
-    my $exists = $colnames_h->exists($colname);
+    my $exists = $colindexes_h->exists($colname);
     
     return $exists;
   }
@@ -100,15 +100,15 @@ class R::DataFrame {
   
   method col : R::NDArray ($colname : string) {
     
-    my $colnames_h = $self->{colnames_h};
+    my $colindexes_h = $self->{colindexes_h};
     
-    my $col = (R::DataFrame::Column)$colnames_h->get($colname);
+    my $colobj = (R::DataFrame::Column)$colindexes_h->get($colname);
     
-    unless ($col) {
+    unless ($colobj) {
       die "The col which name is \"$colname\" is not found.";
     }
     
-    my $ndarray = $col->{ndarray};
+    my $ndarray = $colobj->{ndarray};
     
     return $ndarray;
   }
@@ -151,9 +151,9 @@ class R::DataFrame {
   
   private method check_col : void ($colname : string, $ndarray : R::NDArray) {
     
-    my $colnames_h = $self->{colnames_h};
+    my $colindexes_h = $self->{colindexes_h};
     
-    my $col = $colnames_h->get($colname);
+    my $col = $colindexes_h->get($colname);
     
     if ($col) {
       die "The col name \$colname is already used.";
@@ -178,11 +178,11 @@ class R::DataFrame {
     
     my $ncol = $self->ncol;
     
-    my $colnames_h = $self->{colnames_h};
+    my $colindexes_h = $self->{colindexes_h};
     
     my $ret_data_frame = R::DataFrame->new;
     for my $colname (@$colnames) {
-      my $col = (R::DataFrame::Column)$colnames_h->get($colname);
+      my $col = (R::DataFrame::Column)$colindexes_h->get($colname);
       
       my $ndarray = $col->{ndarray};
       
