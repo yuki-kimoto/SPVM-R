@@ -156,16 +156,16 @@ class R::DataFrame {
       $colobjs_indexes_h->set($colname, $col);
     }
     else {
-      $self->update_colobjs_indexes_h;
+      $self->update_colobjs_indexes_h($col);
     }
   }
   
-  private method update_colobjs_indexes_h : void () {
+  private method update_colobjs_indexes_h : void ($begin_col : int) {
     
     my $colobjs_list = $self->{colobjs_list};
     
     my $new_colobjs_indexes_h = Hash->new;
-    for (my $i = 0; $i < $colobjs_list->length; $i++) {
+    for (my $i = $begin_col; $i < $colobjs_list->length; $i++) {
       my $colobj = (R::DataFrame::Column)$colobjs_list->get($i);
       my $colname = $colobj->{name};
       
@@ -181,7 +181,12 @@ class R::DataFrame {
     
     $colobjs_list->remove($col);
     
-    $self->update_colobjs_indexes_h;
+      
+    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
+    
+    $colobjs_indexes_h->delete($colname);
+    
+    $self->update_colobjs_indexes_h($col);
   }
   
   private method check_col : void ($colname : string, $ndarray : R::NDArray) {
