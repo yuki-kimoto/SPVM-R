@@ -150,14 +150,7 @@ class R::DataFrame {
     
     $colobjs_list->insert($col, $colobj);
     
-    if ($col == $current_colobjs_length) {
-      my $colobjs_indexes_h = $self->{colobjs_indexes_h};
-      
-      $colobjs_indexes_h->set($colname, $col);
-    }
-    else {
-      $self->update_colobjs_indexes_h($col);
-    }
+    $self->update_colobjs_indexes_h($col);
   }
   
   private method update_colobjs_indexes_h : void ($begin_col : int) {
