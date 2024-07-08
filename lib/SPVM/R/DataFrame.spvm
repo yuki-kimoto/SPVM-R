@@ -231,7 +231,7 @@ class R::DataFrame {
       $string_buffer->push("Empty");
     }
     else {
-      my $first_ndarray = $self->col(0);
+      my $first_ndarray = $self->col_by_index(0);
       
       my $first_dim = $first_ndarray->dim;
       
@@ -248,8 +248,10 @@ class R::DataFrame {
           }
         }
         
+        $string_buffer->push("\n");
+            
         for (my $col = 0; $col < $ncol; $col++) {
-          my $ndarray = $self->col($col);
+          my $ndarray = $self->col_by_index($col);
           
           my $nrow = $self->nrow;
           
@@ -268,7 +270,7 @@ class R::DataFrame {
           
           my $colname = $self->colname($col);
           
-          my $ndarray = $self->col($col);
+          my $ndarray = $self->col_by_index($col);
           
           my $dim = $ndarray->dim;
           

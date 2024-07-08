@@ -101,7 +101,18 @@ class TestCase::R {
         }
       }
       
-    }
+      {
+        my $data_frame = R::DataFrame->new;
+        
+        $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+        $data_frame->set_col("Name2", IOP->c([4, 5, 6]));
+        
+        unless ($data_frame->to_string eq "Name1\x{09}Name2\x{0A}123\x{09}456") {
+          return 0;
+        }
+        
+      }
+   }
     
     # R::OP::Int
     {
