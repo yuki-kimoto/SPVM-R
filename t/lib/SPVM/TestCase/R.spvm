@@ -48,6 +48,10 @@ class TestCase::R {
         return 0;
       }
       
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
       unless ($data_frame->exists_col("Name1")) {
         return 0;
       }
@@ -73,6 +77,18 @@ class TestCase::R {
       $data_frame->insert_col("Name0", IOP->c([1, 2, 3]), "Name1");
       
       unless (Array->equals_string($data_frame->colnames, ["Name0", "Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->remove_col("Name0");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->remove_col("Name4");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
         return 0;
       }
       
