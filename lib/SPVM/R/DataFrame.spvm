@@ -78,7 +78,7 @@ class R::DataFrame {
       }
     }
     
-    die "The col specified by the column name \$colname does not found.";
+    die "The column specified by the column name \"$colname\" does not found.";
   }
   
   method col_by_index : R::NDArray ($col : int) {

@@ -41,12 +41,22 @@ class TestCase::R {
       my $data_frame = R::DataFrame->new;
       
       $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
-      $data_frame->set_col("Name2", IOP->c([4, 5, 6]));
-      $data_frame->set_col("Name3", IOP->c([4, 5, 6]));
+      $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name3", IOP->c([1, 2, 3]));
       
-      my $colnames = $data_frame->colnames;
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
       
-      unless (Array->equals_string($colnames, ["Name1", "Name2", "Name3"])) {
+      $data_frame->insert_col("Name4", IOP->c([1, 2, 3]));
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->insert_col("Name0", IOP->c([1, 2, 3]), "Name1");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name0", "Name1", "Name2", "Name3", "Name4"])) {
         return 0;
       }
       
