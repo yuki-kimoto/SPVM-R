@@ -3,6 +3,8 @@
 
 class R::NDArray::Long extends R::NDArray {
   
+  use Sort;
+  
   # Class Mehtods
   static method new : R::NDArray::Long ($options : object[] = undef) {
     

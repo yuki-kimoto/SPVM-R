@@ -6,6 +6,8 @@
 
 class R::NDArray::Byte extends R::NDArray {
   
+  use Sort;
+  
   # Class Mehtods
   static method new : R::NDArray::Byte ($options : object[] = undef) {
     
@@ -131,4 +133,18 @@ class R::NDArray::Byte extends R::NDArray {
     return $cmp;
   }
   
+  method sort_asc : void () {
+    
+    my $data = $self->data;
+    
+    Sort->sort_byte_asc($data);
+  }
+  
+  method sort_desc : void () {
+    
+    my $data = $self->data;
+    
+    Sort->sort_byte_desc($data);
+  }
+
 }
