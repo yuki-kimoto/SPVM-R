@@ -40,6 +40,9 @@ class TestCase::R {
     {
       my $data_frame = R::DataFrame->new;
       
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name2", IOP->c([4, 5, 6]));
+      
       
     }
     

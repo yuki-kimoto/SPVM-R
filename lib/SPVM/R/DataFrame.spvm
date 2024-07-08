@@ -146,7 +146,7 @@ class R::DataFrame {
     if ($self->ncol > 0) {
       my $nrow = $self->nrow;
       
-      unless (R::OP->equals_dim($ndarray, $self->col(0))) {
+      unless (R::OP->equals_dim($ndarray, $self->col_by_index(0))) {
         die "The dimension of the n-dimension array \$ndarray must be equal to the dimension of the n-dimension array which is the invocant.";
       }
     }
