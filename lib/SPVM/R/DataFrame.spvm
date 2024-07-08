@@ -276,11 +276,13 @@ class R::DataFrame {
           
           my $dim_length = @$dim;
           
-          $string_buffer->push("[$colname]\n");
+          $string_buffer->push("$colname\n");
           
           my $ndarray_string = $ndarray->to_string;
           
           $string_buffer->push($ndarray_string);
+          
+          $string_buffer->push("\n\n");
         }
       }
     }
