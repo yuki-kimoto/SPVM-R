@@ -293,7 +293,7 @@ class R::DataFrame {
     my $ncol = $self->ncol;
     
     for (my $col = 0; $col < $ncol; $col++) {
-      my $ndarray = $self->col($col);
+      my $ndarray = $self->col_by_index($col);
       
       $ndarray->set_order($indexes_ndarray);
     }

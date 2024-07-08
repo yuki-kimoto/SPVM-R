@@ -157,6 +157,24 @@ class TestCase::R {
         }
       }
       
+      {
+        my $data_frame = R::DataFrame->new;
+        
+        $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+        $data_frame->set_col("Name2", my $col2 = IOP->c([4, 5, 6]));
+        $data_frame->set_col("Name3", my $col3 = IOP->c([7, 8, 9]));
+        
+        $data_frame->set_order(IOP->c([2, 0, 1]));
+        
+        unless (Array->equals_int($data_frame->col("Name1")->(R::NDArray::Int)->data, [3, 1, 2])) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($data_frame->col("Name2")->(R::NDArray::Int)->data, [6, 4, 5])) {
+          return 0;
+        }
+      }
+      
     }
     
     # R::OP::Int
