@@ -55,7 +55,7 @@ class R::DataFrame {
     my $colobjs_list = $self->{colobjs_list};
     
     unless ($col >= 0 && $col < $colobjs_list->length) {
-      die "The col at index $col is not found.";
+      die "The column at index $col is not found.";
     }
     
     my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
@@ -86,7 +86,7 @@ class R::DataFrame {
     my $colobjs_list = $self->{colobjs_list};
     
     unless ($col >= 0 && $col < $colobjs_list->length) {
-      die "The col at index $col is not found.";
+      die "The column at index $col is not found.";
     }
     
     my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
@@ -98,15 +98,13 @@ class R::DataFrame {
   
   method col : R::NDArray ($colname : string) {
     
-    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
-    
-    my $colobj = (R::DataFrame::Column)$colobjs_indexes_h->get($colname);
-    
-    unless ($colobj) {
-      die "The col which name is \"$colname\" is not found.";
+    unless ($self->exists_col($colname)) {
+      die "The column which name is \"$colname\" is not found.";
     }
     
-    my $ndarray = $colobj->{ndarray};
+    my $col = $self->colindex($colname);
+    
+    my $ndarray = $self->col_by_index($col);
     
     return $ndarray;
   }
