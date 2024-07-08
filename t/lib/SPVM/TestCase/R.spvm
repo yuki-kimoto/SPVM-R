@@ -107,7 +107,7 @@ class TestCase::R {
         $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
         $data_frame->set_col("Name2", IOP->c([4, 5, 6]));
         
-        unless ($data_frame->to_string eq "Name1\x{09}Name2\x{0A}123\x{09}456") {
+        unless ($data_frame->to_string eq "Name1\x{09}Name2\x{0A}1\x{09}4\x{0A}2\x{09}5\x{0A}3\x{09}6\x{0A}") {
           return 0;
         }
         
