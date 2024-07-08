@@ -92,6 +92,12 @@ class TestCase::R {
         return 0;
       }
       
+      $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
     }
     
     # R::OP::Int
