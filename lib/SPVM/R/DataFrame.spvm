@@ -175,12 +175,11 @@ class R::DataFrame {
     
     my $colobjs_list = $self->{colobjs_list};
     
-    my $new_colobjs_indexes_h = Hash->new;
+    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
     for (my $i = $begin_col; $i < $colobjs_list->length; $i++) {
       my $colobj = (R::DataFrame::Column)$colobjs_list->get($i);
       my $colname = $colobj->{name};
-      
-      $new_colobjs_indexes_h->set($colname, $i);
+      $colobjs_indexes_h->set($colname, $i);
     }
   }
   
