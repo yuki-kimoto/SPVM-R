@@ -173,6 +173,7 @@ class TestCase::R {
         unless (Array->equals_int($data_frame->col("Name2")->(R::NDArray::Int)->data, [6, 4, 5])) {
           return 0;
         }
+        
       }
       
     }
