@@ -242,7 +242,7 @@ class R::NDArray::Double extends R::NDArray {
     return $cmp;
   }
   
-  method sort_asc : void () {
+  method sort_asc : void ($offset : int = 0, $length : int = -1) {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -250,10 +250,10 @@ class R::NDArray::Double extends R::NDArray {
     
     my $data = $self->data;
     
-    Sort->sort_double_asc($data);
+    Sort->sort_double_asc($data, $offset, $length);
   }
   
-  method sort_desc : void () {
+  method sort_desc : void ($offset : int = 0, $length : int = -1) {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -261,7 +261,7 @@ class R::NDArray::Double extends R::NDArray {
     
     my $data = $self->data;
     
-    Sort->sort_double_desc($data);
+    Sort->sort_double_desc($data, $offset, $length);
   }
 
 }

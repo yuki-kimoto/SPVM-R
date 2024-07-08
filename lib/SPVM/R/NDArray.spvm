@@ -724,6 +724,5 @@ class R::NDArray {
   
   protected method elem_cmp : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
   
-  
 }
 

@@ -258,7 +258,7 @@ class R::NDArray::String extends R::NDArray::Object {
     return $cmp;
   }
   
-  method sort_asc : void () {
+  method sort_asc : void ($offset : int = 0, $length : int = -1) {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -266,10 +266,10 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $data = $self->data;
     
-    Sort->sort_string_asc($data);
+    Sort->sort_string_asc($data, $offset, $length);
   }
   
-  method sort_desc : void () {
+  method sort_desc : void ($offset : int = 0, $length : int = -1) {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -277,7 +277,7 @@ class R::NDArray::String extends R::NDArray::Object {
     
     my $data = $self->data;
     
-    Sort->sort_string_desc($data);
+    Sort->sort_string_desc($data, $offset, $length);
   }
 
 }
