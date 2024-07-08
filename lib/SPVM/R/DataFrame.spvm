@@ -143,6 +143,14 @@ class R::DataFrame {
       die "The column with the name \$colname already exists.";
     }
     
+    if ($self->ncol > 0) {
+      my $nrow = $self->nrow;
+      
+      unless (R::OP->equals_dim($ndarray, $self->col(0))) {
+        die "The dimension of the n-dimension array \$ndarray must be equal to the dimension of the n-dimension array which is the invocant.";
+      }
+    }
+    
     my $colobj = new R::DataFrame::Column;
     $colobj->{name} = $colname;
     $colobj->{ndarray} = $ndarray;
@@ -216,26 +224,61 @@ class R::DataFrame {
     my $ncol = $self->ncol;
     
     my $string_buffer = StringBuffer->new;
-    for (my $col = 0; $col < $ncol; $col++) {
+    
+    if ($ncol == 0) {
+      $string_buffer->push("Empty");
+    }
+    else {
+      my $first_ndarray = $self->col(0);
       
-      my $colname = $self->colname($col);
+      my $first_dim = $first_ndarray->dim;
       
-      my $ndarray = $self->col($col);
+      my $first_dim_length = @$first_dim;
       
-      $string_buffer->push("[[");
-      
-      if ($colname) {
-        $string_buffer->push($colname);
+      if ($first_dim_length <= 1) {
+        for (my $col = 0; $col < $ncol; $col++) {
+          my $colname = $self->colname($col);
+          
+          $string_buffer->push("$colname");
+          
+          unless ($col == $ncol - 1) {
+            $string_buffer->push("\t");
+          }
+        }
+        
+        for (my $col = 0; $col < $ncol; $col++) {
+          my $ndarray = $self->col($col);
+          
+          my $nrow = $self->nrow;
+          
+          for (my $row = 0; $row < $nrow; $row++) {
+            my $elem_string = $ndarray->elem_to_string($row);
+            $string_buffer->push($elem_string);
+          }
+          
+          unless ($col == $ncol - 1) {
+            $string_buffer->push("\t");
+          }
+        }
       }
       else {
-        $string_buffer->push($col);
+        for (my $col = 0; $col < $ncol; $col++) {
+          
+          my $colname = $self->colname($col);
+          
+          my $ndarray = $self->col($col);
+          
+          my $dim = $ndarray->dim;
+          
+          my $dim_length = @$dim;
+          
+          $string_buffer->push("[$colname]\n");
+          
+          my $ndarray_string = $ndarray->to_string;
+          
+          $string_buffer->push($ndarray_string);
+        }
       }
-      
-      $string_buffer->push("]]\n");
-      
-      my $ndarray_string = $ndarray->to_string;
-      
-      $string_buffer->push($ndarray_string);
     }
     
     my $string = $string_buffer->to_string;
