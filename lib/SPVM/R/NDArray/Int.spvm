@@ -279,6 +279,19 @@ class R::NDArray::Int extends R::NDArray {
     return $ret_ndarray;
   }
   
+  method order_asc : R::NDArray::Int () {
+    
+  }
+  
+  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
+    
+    my $data = $self->data;
+    
+    my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
+    
+    return $cmp;
+  }
+  
 }
 
 =pod TODO
