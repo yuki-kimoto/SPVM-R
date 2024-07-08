@@ -130,6 +130,7 @@ class TestCase::R {
         
         $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
         $data_frame->set_col("Name2", my $col2 = IOP->c([4, 5, 6]));
+        $data_frame->set_col("Name3", my $col3 = IOP->c([7, 8, 9]));
         
         my $ret_col = $data_frame->col("Name2");
         
@@ -137,6 +138,23 @@ class TestCase::R {
           return 0;
         }
         
+        my $slice_data_frame = $data_frame->slice(["Name2", "Name3"], [IOP->c([1, 2])]);
+        
+        unless ($slice_data_frame is_type R::DataFrame) {
+          return 0;
+        }
+        
+        unless (Array->equals_string($slice_data_frame->colnames, ["Name2", "Name3"])) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($slice_data_frame->col("Name2")->(R::NDArray::Int)->data, [5, 6])) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($slice_data_frame->col("Name3")->(R::NDArray::Int)->data, [8, 9])) {
+          return 0;
+        }
       }
       
     }
