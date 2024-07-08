@@ -38,64 +38,67 @@ class TestCase::R {
     
     # R::DataFrame
     {
-      my $data_frame = R::DataFrame->new;
-      
-      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
-      $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
-      $data_frame->set_col("Name3", IOP->c([1, 2, 3]));
-      
-      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
-        return 0;
-      }
-      
-      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
-        return 0;
-      }
-      
-      unless ($data_frame->exists_col("Name1")) {
-        return 0;
-      }
-      
-      unless ($data_frame->exists_col("Name2")) {
-        return 0;
-      }
-      
-      unless ($data_frame->exists_col("Name3")) {
-        return 0;
-      }
-      
-      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
-        return 0;
-      }
-      
-      $data_frame->insert_col("Name4", IOP->c([1, 2, 3]));
-      
-      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
-        return 0;
-      }
-      
-      $data_frame->insert_col("Name0", IOP->c([1, 2, 3]), "Name1");
-      
-      unless (Array->equals_string($data_frame->colnames, ["Name0", "Name1", "Name2", "Name3", "Name4"])) {
-        return 0;
-      }
-      
-      $data_frame->remove_col("Name0");
-      
-      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
-        return 0;
-      }
-      
-      $data_frame->remove_col("Name4");
-      
-      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
-        return 0;
-      }
-      
-      $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
-      
-      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
-        return 0;
+      # set_col, insert_col, remove_col, exists_col, colnames
+      {
+        my $data_frame = R::DataFrame->new;
+        
+        $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+        $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
+        $data_frame->set_col("Name3", IOP->c([1, 2, 3]));
+        
+        unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+          return 0;
+        }
+        
+        unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+          return 0;
+        }
+        
+        unless ($data_frame->exists_col("Name1")) {
+          return 0;
+        }
+        
+        unless ($data_frame->exists_col("Name2")) {
+          return 0;
+        }
+        
+        unless ($data_frame->exists_col("Name3")) {
+          return 0;
+        }
+        
+        unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+          return 0;
+        }
+        
+        $data_frame->insert_col("Name4", IOP->c([1, 2, 3]));
+        
+        unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
+          return 0;
+        }
+        
+        $data_frame->insert_col("Name0", IOP->c([1, 2, 3]), "Name1");
+        
+        unless (Array->equals_string($data_frame->colnames, ["Name0", "Name1", "Name2", "Name3", "Name4"])) {
+          return 0;
+        }
+        
+        $data_frame->remove_col("Name0");
+        
+        unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
+          return 0;
+        }
+        
+        $data_frame->remove_col("Name4");
+        
+        unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+          return 0;
+        }
+        
+        $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
+        
+        unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+          return 0;
+        }
       }
       
     }
