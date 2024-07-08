@@ -99,7 +99,7 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     return $cmp;
   }
   
-  method sort_asc : void ($offset : int = 0, $length : int = -1) {
+  method sort_asc : void () {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -109,10 +109,10 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     
     Sort->sort_object($data, method : int ($a : object, $b : object) {
       return $a->(StringBuffer)->to_string cmp $b->(StringBuffer)->to_string;
-    }, $offset, $length);
+    });
   }
   
-  method sort_desc : void ($offset : int = 0, $length : int = -1) {
+  method sort_desc : void () {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -122,7 +122,7 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     
     Sort->sort_object($data, method : int ($a : object, $b : object) {
       return $b->(StringBuffer)->to_string cmp $a->(StringBuffer)->to_string;
-    }, $offset, $length);
+    });
   }
 
 }

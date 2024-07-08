@@ -133,7 +133,7 @@ class R::NDArray::Byte extends R::NDArray {
     return $cmp;
   }
   
-  method sort_asc : void ($offset : int = 0, $length : int = -1) {
+  method sort_asc : void () {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -141,10 +141,10 @@ class R::NDArray::Byte extends R::NDArray {
     
     my $data = $self->data;
     
-    Sort->sort_byte_asc($data, $offset, $length);
+    Sort->sort_byte_asc($data);
   }
   
-  method sort_desc : void ($offset : int = 0, $length : int = -1) {
+  method sort_desc : void () {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -152,7 +152,7 @@ class R::NDArray::Byte extends R::NDArray {
     
     my $data = $self->data;
     
-    Sort->sort_byte_desc($data, $offset, $length);
+    Sort->sort_byte_desc($data);
   }
 
 }

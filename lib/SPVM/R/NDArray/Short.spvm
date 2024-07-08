@@ -129,7 +129,7 @@ class R::NDArray::Short extends R::NDArray {
     return $cmp;
   }
   
-  method sort_asc : void ($offset : int = 0, $length : int = -1) {
+  method sort_asc : void () {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -137,10 +137,10 @@ class R::NDArray::Short extends R::NDArray {
     
     my $data = $self->data;
     
-    Sort->sort_short_asc($data, $offset, $length);
+    Sort->sort_short_asc($data);
   }
   
-  method sort_desc : void ($offset : int = 0, $length : int = -1) {
+  method sort_desc : void () {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -148,7 +148,7 @@ class R::NDArray::Short extends R::NDArray {
     
     my $data = $self->data;
     
-    Sort->sort_short_desc($data, $offset, $length);
+    Sort->sort_short_desc($data);
   }
 
 }

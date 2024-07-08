@@ -130,7 +130,7 @@ class R::NDArray::Float extends R::NDArray {
     return $cmp;
   }
   
-  method sort_asc : void ($offset : int = 0, $length : int = -1) {
+  method sort_asc : void () {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -138,10 +138,10 @@ class R::NDArray::Float extends R::NDArray {
     
     my $data = $self->data;
     
-    Sort->sort_float_asc($data, $offset, $length);
+    Sort->sort_float_asc($data);
   }
   
-  method sort_desc : void ($offset : int = 0, $length : int = -1) {
+  method sort_desc : void () {
     
     unless ($self->is_vector) {
       die "The instance must be a vector.";
@@ -149,7 +149,7 @@ class R::NDArray::Float extends R::NDArray {
     
     my $data = $self->data;
     
-    Sort->sort_float_desc($data, $offset, $length);
+    Sort->sort_float_desc($data);
   }
 
 }
