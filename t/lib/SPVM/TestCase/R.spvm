@@ -217,6 +217,24 @@ class TestCase::R {
         }
         
       }
+      
+      {
+        my $data_frame = R::DataFrame->new;
+        
+        $data_frame->set_col("Name1", IOP->c([3, 3, 1, 1, 2, 2]));
+        $data_frame->set_col("Name2", my $col2 = IOP->c([5, 6, 3, 4, 1, 2]));
+        
+        $data_frame->sort_desc(["Name2"]);
+        
+        unless (Array->equals_int($data_frame->col("Name1")->(R::NDArray::Int)->data, [3, 3, 1, 1, 2, 2])) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($data_frame->col("Name2")->(R::NDArray::Int)->data, [6, 5, 4, 3, 2, 1])) {
+          return 0;
+        }
+        
+      }
     }
     
     # R::OP::Int
