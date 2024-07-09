@@ -742,7 +742,7 @@ class R::NDArray {
   
   protected method elem_cmp_old : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
   
-  protected method elem_cmp_v2 : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
+  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
   
   method order : R::NDArray::Int () {
     
@@ -757,7 +757,7 @@ class R::NDArray {
     my $order_data = $order_ndarray->data;
     
     Sort->sort_int($order_data, [has that : R::NDArray = $self] method : int ($a_data_index : int, $b_data_index : int) {
-      return $self->{that}->elem_cmp_v2($a_data_index, $b_data_index);
+      return $self->{that}->elem_cmp($a_data_index, $b_data_index);
     });
     
     return $order_ndarray;

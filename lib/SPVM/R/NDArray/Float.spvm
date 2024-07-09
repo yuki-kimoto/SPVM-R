@@ -139,7 +139,7 @@ class R::NDArray::Float extends R::NDArray {
     return $cmp;
   }
   
-  protected method elem_cmp_v2 : int ($a_data_index : int, $b_data_index : int) {
+  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
     
     my $data = $self->data;
     
