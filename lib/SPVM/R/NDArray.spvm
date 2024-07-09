@@ -759,7 +759,10 @@ class R::NDArray {
       my $a_elem = $a->(object[])->[0];
       my $b_elem = $b->(object[])->[0];
       
-      return $clone->elem_cmp($a_elem, $b_elem);
+      my $a_data_index = (int)$a->(object[])->[1];
+      my $b_data_index = (int)$b->(object[])->[1];
+      
+      return $clone->elem_cmp_v2($a_data_index, $b_data_index);
     });
     
     my $order_data = new int[$length];
