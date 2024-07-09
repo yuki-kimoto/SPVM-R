@@ -738,18 +738,14 @@ class R::NDArray {
       die "The instance must be a vector.";
     }
     
-    my $shallow = 1;
-    my $clone = $self->clone($shallow);
-    my $clone_data = $clone->data;
-    
-    my $length = $clone->length;
+    my $length = $self->length;
     
     my $order_ndarray = R::OP::Int->seq(0, $length - 1);
     
     my $order_data = $order_ndarray->data;
     
-    Sort->sort_int($order_data, [$clone : R::NDArray] method : int ($a_data_index : int, $b_data_index : int) {
-      return $clone->elem_cmp_v2($a_data_index, $b_data_index);
+    Sort->sort_int($order_data, [has that : R::NDArray = $self] method : int ($a_data_index : int, $b_data_index : int) {
+      return $self->{that}->elem_cmp_v2($a_data_index, $b_data_index);
     });
     
     return $order_ndarray;
