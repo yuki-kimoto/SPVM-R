@@ -736,7 +736,7 @@ class R::NDArray {
     
     my $length = $self->length;
     
-    my $ret_ndarray = R::OP::Int->seq(0, $length);
+    my $ret_ndarray = R::OP::Int->seq(0, $length - 1);
     my $indexes = $ret_ndarray->data;
     
     Sort->sort_int($indexes, [has that : R::NDArray = $self] method : int ($a_data_index : int, $b_data_index : int) {
