@@ -61,6 +61,17 @@ class R::NDArray::Int extends R::NDArray {
     return $string;
   }
   
+  method elem_to_object : Int ($data_index : int) {
+    
+    my $data = $self->data;
+    
+    my $elem = $data->[$data_index];
+    
+    my $object = (Int)$elem;
+    
+    return $object;
+  }
+  
   precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
     $self->check_set_order_args($indexes_ndarray);
