@@ -762,14 +762,11 @@ class R::NDArray {
     
     my $order_data = new int[$length];
     
-    my $order_index = 0;
     for (my $data_index = 0; $data_index < $length; $data_index++) {
       
       my $item = (object[])$items->[$data_index];
       
-      my $item_data_index = (int)(Int)$item->[1];
-      $order_data->[$item_data_index] = $order_index;
-      $order_index++;
+      $order_data->[$data_index] = (int)(Int)$item->[1];
     }
     
     my $order_ndarray = R::OP::Int->c($order_data);
