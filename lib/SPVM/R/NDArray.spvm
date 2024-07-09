@@ -724,9 +724,21 @@ class R::NDArray {
     return $elem_type_name;
   }
   
-  method sort_asc : void () { die "Not implemented."; }
+  method sort_asc : void () {
+    
+    my $order_ndarray = $self->order;
+    
+    $self->set_order($order_ndarray);
+  }
   
-  method sort_desc : void () { die "Not implemented."; }
+  method sort_desc : void () {
+    
+    my $order_ndarray = $self->order;
+    
+    &reverse_int($order_ndarray->data);
+    
+    $self->set_order($order_ndarray);
+  }
   
   protected method elem_cmp : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
   
