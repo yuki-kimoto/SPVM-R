@@ -744,37 +744,13 @@ class R::NDArray {
     
     my $length = $clone->length;
     
-    my $items = new object[$length];
+    my $order_ndarray = R::OP::Int->seq(0, $length - 1);
     
-    for (my $data_index = 0; $data_index < $length; $data_index++) {
-      my $item = new object[2];
-      
-      $item->[0] = $clone->elem_to_object($data_index);
-      $item->[1] = (Int)$data_index;
-      
-      $items->[$data_index] = $item;
-    }
+    my $order_data = $order_ndarray->data;
     
-    Sort->sort_object($items, [$clone : R::NDArray] method : int ($a : object, $b : object) {
-      my $a_elem = $a->(object[])->[0];
-      my $b_elem = $b->(object[])->[0];
-      
-      my $a_data_index = (int)$a->(object[])->[1];
-      my $b_data_index = (int)$b->(object[])->[1];
-      
+    Sort->sort_int($order_data, [$clone : R::NDArray] method : int ($a_data_index : int, $b_data_index : int) {
       return $clone->elem_cmp_v2($a_data_index, $b_data_index);
     });
-    
-    my $order_data = new int[$length];
-    
-    for (my $data_index = 0; $data_index < $length; $data_index++) {
-      
-      my $item = (object[])$items->[$data_index];
-      
-      $order_data->[$data_index] = (int)(Int)$item->[1];
-    }
-    
-    my $order_ndarray = R::OP::Int->c($order_data);
     
     return $order_ndarray;
   }
