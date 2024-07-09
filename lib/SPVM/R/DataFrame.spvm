@@ -404,14 +404,17 @@ class R::DataFrame {
         die "The column which name is \"$colname\" does not eixsts.";
       }
       
-      if (@$ret >= 1 && @$ret <= 2 && ($order_by eq "asc" || $order_by eq "desc")) {
-        die "The colname \"$colname_with_order_by\" is invalid format.";
+      unless (@$ret >= 1 && @$ret <= 2 && ($order_by eq "asc" || $order_by eq "desc")) {
+        die "The column name \"$colname_with_order_by\" is invalid format.";
       }
       
       $colnames->[$col] = $colname;
       
       if ($order_by eq "desc") {
         $order_by_desc_h->set($colname, 1);
+      }
+      else {
+        $order_by_desc_h->set($colname, 0);
       }
     }
     
