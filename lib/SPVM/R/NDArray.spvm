@@ -389,6 +389,8 @@ class R::NDArray {
   
   method elem_to_string : string ($data_index : int) { die "Not impelmented."; }
   
+  method elem_to_object : object ($data_index : int) { die "Not impelmented."; }
+  
   method elem_clone : object ($data_index : int) { die "Not impelmented."; }
   
   method slice : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
@@ -727,5 +729,49 @@ class R::NDArray {
   method sort_desc : void () { die "Not implemented."; }
   
   protected method elem_cmp : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
+  
+  method order : R::NDArray::Int () {
+    
+    unless ($self->is_vector) {
+      die "The instance must be a vector.";
+    }
+    
+    my $shallow = 1;
+    my $clone = $self->clone($shallow);
+    my $clone_data = $clone->data;
+    
+    my $length = $clone->length;
+    
+    my $items = new object[$length];
+    
+    for (my $data_index = 0; $data_index < $length; $data_index++) {
+      my $item = new object[2];
+      
+      $item->[0] = $clone->elem_to_object($data_index);
+      $item->[1] = (Int)$data_index;
+      
+      $items->[$data_index] = $item;
+    }
+    
+    Sort->sort_object($items, [$clone : R::NDArray] method : int ($a : object, $b : object) {
+      my $a_elem = $a->(object[])->[0];
+      my $b_elem = $b->(object[])->[0];
+      
+      return $clone->elem_cmp($a_elem, $b_elem);
+    });
+    
+    my $order_data = new int[$length];
+    
+    for (my $data_index = 0; $data_index < $length; $data_index++) {
+      
+      my $item = (object[])$items->[$data_index];
+      
+      $order_data->[$data_index] = (int)(Int)$item->[1];
+    }
+    
+    my $order_ndarray = R::OP::Int->c($order_data);
+    
+    return $order_ndarray;
+  }
 }
 
