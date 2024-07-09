@@ -260,7 +260,7 @@ class R::NDArray::String extends R::NDArray::Object {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  protected method elem_cmp : int ($a_elem : string, $b_elem : string) {
+  protected method elem_cmp_old : int ($a_elem : string, $b_elem : string) {
     
     my $cmp = $a_elem cmp $b_elem;
     

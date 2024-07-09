@@ -296,7 +296,7 @@ class R::NDArray::Int extends R::NDArray {
     
   }
   
-  protected method elem_cmp : int ($a_elem : Int, $b_elem : Int) {
+  protected method elem_cmp_old : int ($a_elem : Int, $b_elem : Int) {
     
     my $cmp = (int)$a_elem <=> (int)$b_elem;
     

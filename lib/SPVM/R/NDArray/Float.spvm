@@ -132,7 +132,7 @@ class R::NDArray::Float extends R::NDArray {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  protected method elem_cmp : int ($a_elem : Float, $b_elem : Float) {
+  protected method elem_cmp_old : int ($a_elem : Float, $b_elem : Float) {
     
     my $cmp = (float)$a_elem <=> (float)$b_elem;
     
