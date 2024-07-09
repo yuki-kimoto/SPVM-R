@@ -108,6 +108,15 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     return $cmp;
   }
   
+  protected method elem_cmp_v2 : int ($a_data_index : int, $b_data_index : int) {
+    
+    my $data = $self->data;
+    
+    my $cmp = $data->[$a_data_index]->to_string cmp $data->[$b_data_index]->to_string;
+    
+    return $cmp;
+  }
+  
   method sort_asc : void () {
     
     unless ($self->is_vector) {

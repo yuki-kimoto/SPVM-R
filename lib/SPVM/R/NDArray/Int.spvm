@@ -303,6 +303,15 @@ class R::NDArray::Int extends R::NDArray {
     return $cmp;
   }
   
+  protected method elem_cmp_v2 : int ($a_data_index : int, $b_data_index : int) {
+    
+    my $data = $self->data;
+    
+    my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
+    
+    return $cmp;
+  }
+  
   method sort_asc : void () {
     
     unless ($self->is_vector) {

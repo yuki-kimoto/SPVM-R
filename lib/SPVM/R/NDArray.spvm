@@ -730,6 +730,8 @@ class R::NDArray {
   
   protected method elem_cmp : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
   
+  protected method elem_cmp_v2 : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
+  
   method order : R::NDArray::Int () {
     
     unless ($self->is_vector) {
