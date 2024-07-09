@@ -722,30 +722,10 @@ class R::NDArray {
     return $elem_type_name;
   }
   
-  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int, $data : object = undef) { die "Not implemented."; }
-  
   method sort_asc : void () { die "Not implemented."; }
   
   method sort_desc : void () { die "Not implemented."; }
   
-  method order : R::NDArray::Int () {
-    
-    unless ($self->is_vector) {
-      die "The instance must be a vector.";
-    }
-    
-    my $length = $self->length;
-    
-    my $ret_ndarray = R::OP::Int->seq(0, $length - 1);
-    my $indexes = $ret_ndarray->data;
-    
-    Sort->sort_int($indexes, [has that : R::NDArray = $self] method : int ($a_data_index : int, $b_data_index : int) {
-      
-      return $self->{that}->elem_cmp($a_data_index, $b_data_index);
-    });
-    
-    return $ret_ndarray;
-  }
-  
+  protected method elem_cmp : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
 }
 

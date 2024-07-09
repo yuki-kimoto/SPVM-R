@@ -131,13 +131,9 @@ class R::NDArray::Short extends R::NDArray {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int, $data : short[] = undef) {
+  protected method elem_cmp : int ($a_elem : Short, $b_elem : Short) {
     
-    unless ($data) {
-      $data = $self->data;
-    }
-    
-    my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
+    my $cmp = (short)$a_elem <=> (short)$b_elem;
     
     return $cmp;
   }

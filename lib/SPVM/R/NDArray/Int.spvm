@@ -296,13 +296,9 @@ class R::NDArray::Int extends R::NDArray {
     
   }
   
-  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int, $data : int[] = undef) {
+  protected method elem_cmp : int ($a_elem : Int, $b_elem : Int) {
     
-    unless ($data) {
-      $data = $self->data;
-    }
-    
-    my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
+    my $cmp = (int)$a_elem <=> (int)$b_elem;
     
     return $cmp;
   }
