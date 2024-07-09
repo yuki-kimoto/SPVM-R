@@ -312,28 +312,6 @@ class R::NDArray::Int extends R::NDArray {
     return $cmp;
   }
   
-  method sort_asc : void () {
-    
-    unless ($self->is_vector) {
-      die "The instance must be a vector.";
-    }
-    
-    my $data = $self->data;
-    
-    Sort->sort_int_asc($data);
-  }
-  
-  method sort_desc : void () {
-    
-    unless ($self->is_vector) {
-      die "The instance must be a vector.";
-    }
-    
-    my $data = $self->data;
-    
-    Sort->sort_int_desc($data);
-  }
-
 }
 
 =pod TODO

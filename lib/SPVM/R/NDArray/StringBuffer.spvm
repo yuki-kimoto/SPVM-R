@@ -117,30 +117,4 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     return $cmp;
   }
   
-  method sort_asc : void () {
-    
-    unless ($self->is_vector) {
-      die "The instance must be a vector.";
-    }
-    
-    my $data = $self->data;
-    
-    Sort->sort_object($data, method : int ($a : object, $b : object) {
-      return $a->(StringBuffer)->to_string cmp $b->(StringBuffer)->to_string;
-    });
-  }
-  
-  method sort_desc : void () {
-    
-    unless ($self->is_vector) {
-      die "The instance must be a vector.";
-    }
-    
-    my $data = $self->data;
-    
-    Sort->sort_object($data, method : int ($a : object, $b : object) {
-      return $b->(StringBuffer)->to_string cmp $a->(StringBuffer)->to_string;
-    });
-  }
-
 }
