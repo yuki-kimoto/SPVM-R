@@ -135,14 +135,14 @@ class R::NDArray::Byte extends R::NDArray {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  protected method elem_cmp_old : int ($a_elem : Byte, $b_elem : Byte) {
+  method elem_cmp_old : int ($a_elem : Byte, $b_elem : Byte) {
     
     my $cmp = (byte)$a_elem <=> (byte)$b_elem;
     
     return $cmp;
   }
   
-  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
+  method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
     
     my $data = $self->data;
     

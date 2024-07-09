@@ -724,9 +724,9 @@ class R::NDArray {
     return $elem_type_name;
   }
   
-  protected method elem_cmp_old : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
+  method elem_cmp_old : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
   
-  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
+  method elem_cmp : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
   
   method sort_asc : void () {
     

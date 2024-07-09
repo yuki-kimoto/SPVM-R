@@ -296,14 +296,14 @@ class R::NDArray::Int extends R::NDArray {
     
   }
   
-  protected method elem_cmp_old : int ($a_elem : Int, $b_elem : Int) {
+  method elem_cmp_old : int ($a_elem : Int, $b_elem : Int) {
     
     my $cmp = (int)$a_elem <=> (int)$b_elem;
     
     return $cmp;
   }
   
-  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
+  method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
     
     my $data = $self->data;
     

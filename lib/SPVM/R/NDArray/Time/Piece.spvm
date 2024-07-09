@@ -101,14 +101,14 @@ class R::NDArray::Time::Piece extends R::NDArray::Object {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  protected method elem_cmp_old : int ($a_elem : Time::Piece, $b_elem : Time::Piece) {
+  method elem_cmp_old : int ($a_elem : Time::Piece, $b_elem : Time::Piece) {
     
     my $cmp = $a_elem->epoch <=> $b_elem->epoch;
     
     return $cmp;
   }
   
-  protected method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
+  method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
     
     my $data = $self->data;
     
