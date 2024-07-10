@@ -11,8 +11,7 @@ class R::NDArray {
   use R::OP;
   
   # Fields
-  has data : protected object;
-  method data : object () { die "Not implemented."; }
+  has data : protected ro object;
   
   has dim : int[];
   
