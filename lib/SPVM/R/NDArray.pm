@@ -60,82 +60,12 @@ If this field is a true value, it indicates L</"dim"> field is read only, otherw
 
 =head1 Class Methods
 
-  static method new : R::NDArray ($options : object[] = undef) {
+=head2 new
+
+C<static method new : R::NDArray ($options : object[] = undef);>
 
 =head1 Instance Methods
 
-  protected method init : void ($options : object[] = undef) {
-
-  method make_dim_read_only : void () {
-  
-  method nrow : int () {
-  
-  method ncol : int () {
-  
-  method length : int () {
-  
-  method is_empty : int () {
-  
-  method is_scalar : int () {
-  
-  method is_vector : int () {
-  
-  method is_matrix : int () {
-  
-  method is_square_matrix : int () {
-  
-  method drop_dim : void ($index : int = -1) {
-  
-  method expand_dim : void ($index : int = -1) {
-  
-  protected method create_default_data : object ($length : int = 0) { die "Not implemented."; }
-  
-  method clone : R::NDArray ($elem_shallow_clone : int = 0) {
-  
-  method slice : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
-  
-  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray) {
-  
-  protected method slice_data : object ($data_indexes : int[]) { die "Not implemented."; }
-  
-  protected method slice_set_data : void ($data_indexes : int[], $data : object) { die "Not implemented."; }
-  
-  private precompile method create_data_indexes : int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
-  
-  method to_string : string () {
-  
-  private static method recursive_to_string : void ($self : R::NDArray, $dim_list : IntList, $string_buffer : StringBuffer, $dim_num_ref : int*, $coordinate_list : IntList) {
-  
-  method set_order : void ($indexes_ndarray : R::NDArray::Int) { die "Not impelmeneted."; }
-  
-  method check_set_order_args : void ($indexes_ndarray : R::NDArray::Int) {
-  
-  method to_string_ndarray : R::NDArray::String () {
-  
-  method is_numeric_ndarray : int () {
-  
-  method is_mulnum_ndarray : int () {
-  
-  method is_any_numeric_ndarray : int () {
-  
-  method is_object_ndarray : int () {
-  
-  method elem_size : int () {
-  
-  method elem_type_name : string () {
-  
-  method sort_asc : void () {
-  
-  method sort_desc : void () {
-  
-  method order : R::NDArray::Int () {
-  
-  method elem_cmp : int ($data : object, $a_data_index : int, $b_data_index : int) { die "Not implemented."; }
-  
-  method elem_to_string : string ($data : object, $data_index : int) { die "Not impelmented."; }
-  
-  method elem_clone : void ($dist_data : object, $dist_data_index, $src_data : object, $src_data_index : int) { die "Not impelmented."; }
-  
 =head1 Well Known Child Classes
 
 =over 2
