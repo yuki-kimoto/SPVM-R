@@ -222,13 +222,6 @@ class R::NDArray::Long extends R::NDArray {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  method elem_cmp_old : int ($a_elem : Long, $b_elem : Long) {
-    
-    my $cmp = (long)$a_elem <=> (long)$b_elem;
-    
-    return $cmp;
-  }
-  
   method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
     
     my $data = $self->data;

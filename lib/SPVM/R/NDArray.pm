@@ -130,8 +130,6 @@ If this field is a true value, it indicates L</"dim"> field is read only, otherw
   
   method order : R::NDArray::Int () {
   
-  method elem_cmp_old : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
-  
   method elem_cmp : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
   
   method elem_to_string : string ($data_index : int) { die "Not impelmented."; }

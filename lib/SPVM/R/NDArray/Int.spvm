@@ -275,13 +275,6 @@ class R::NDArray::Int extends R::NDArray {
     
   }
   
-  method elem_cmp_old : int ($a_elem : Int, $b_elem : Int) {
-    
-    my $cmp = (int)$a_elem <=> (int)$b_elem;
-    
-    return $cmp;
-  }
-  
   method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
     
     my $data = $self->data;
