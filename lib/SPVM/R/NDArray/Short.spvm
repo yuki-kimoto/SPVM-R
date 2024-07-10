@@ -3,6 +3,12 @@
 
 class R::NDArray::Short extends R::NDArray {
   
+  # Fields
+  method data : short[] () {
+    
+    return (short[])$self->{data};
+  }
+  
   # Class Mehtods
   static method new : R::NDArray::Short ($options : object[] = undef) {
     
@@ -16,22 +22,6 @@ class R::NDArray::Short extends R::NDArray {
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
-  }
-  
-  method data : short[] () {
-    
-    return (short[])$self->{data};
-  }
-  
-  protected method check : void () {
-    
-    my $data = (short[])$self->{data};
-    
-    my $length = $self->length;
-    
-    unless (@$data == $length) {
-      die "The length of data field must be the same as length field.";
-    }
   }
   
   protected method create_default_data : short[] ($length : int = 0) {

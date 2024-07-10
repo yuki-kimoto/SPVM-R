@@ -27,17 +27,6 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     return (StringBuffer[])$self->{data};
   }
   
-  protected method check : void () {
-    
-    my $data = (StringBuffer[])$self->{data};
-    
-    my $length = $self->length;
-    
-    unless (@$data == $length) {
-      die "The length of data field must be the same as length field.";
-    }
-  }
-  
   protected method create_default_data : StringBuffer[] ($length : int = 0) {
     
     unless ($length >= 0) {

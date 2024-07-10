@@ -8,6 +8,12 @@ class R::NDArray::Byte extends R::NDArray {
   
   use Sort;
   
+  # Fields
+  method data : byte[] () {
+    
+    return (byte[])$self->{data};
+  }
+  
   # Class Mehtods
   static method new : R::NDArray::Byte ($options : object[] = undef) {
     
@@ -21,22 +27,6 @@ class R::NDArray::Byte extends R::NDArray {
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
-  }
-  
-  method data : byte[] () {
-    
-    return (byte[])$self->{data};
-  }
-  
-  protected method check : void () {
-    
-    my $data = (byte[])$self->{data};
-    
-    my $length = $self->length;
-    
-    unless (@$data == $length) {
-      die "The length of data field must be the same as length field.";
-    }
   }
   
   protected method create_default_data : byte[] ($length : int = 0) {

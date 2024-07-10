@@ -5,6 +5,12 @@ class R::NDArray::Double extends R::NDArray {
   
   use Sort;
   
+  # Fields
+  method data : double[] () {
+    
+    return (double[])$self->{data};
+  }
+  
   # Class Mehtods
   static method new : R::NDArray::Double ($options : object[] = undef) {
     
@@ -18,22 +24,6 @@ class R::NDArray::Double extends R::NDArray {
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
-  }
-  
-  method data : double[] () {
-    
-    return (double[])$self->{data};
-  }
-  
-  protected method check : void () {
-    
-    my $data = (double[])$self->{data};
-    
-    my $length = $self->length;
-    
-    unless (@$data == $length) {
-      die "The length of data field must be the same as length field.";
-    }
   }
   
   protected method create_default_data : double[] ($length : int = 0) {

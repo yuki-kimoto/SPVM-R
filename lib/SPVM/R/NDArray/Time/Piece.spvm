@@ -7,6 +7,12 @@ class R::NDArray::Time::Piece extends R::NDArray::Object {
   use Array;
   use Time::Piece;
   
+  # Fields
+  method data : Time::Piece[] () {
+    
+    return (Time::Piece[])$self->{data};
+  }
+  
   # Class Mehtods
   static method new : R::NDArray::Time::Piece ($options : object[] = undef) {
     
@@ -20,22 +26,6 @@ class R::NDArray::Time::Piece extends R::NDArray::Object {
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
-  }
-  
-  method data : Time::Piece[] () {
-    
-    return (Time::Piece[])$self->{data};
-  }
-  
-  protected method check : void () {
-    
-    my $data = (Time::Piece[])$self->{data};
-    
-    my $length = $self->length;
-    
-    unless (@$data == $length) {
-      die "The length of data field must be the same as length field.";
-    }
   }
   
   protected method create_default_data : Time::Piece[] ($length : int = 0) {

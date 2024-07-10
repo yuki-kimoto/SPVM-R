@@ -10,6 +10,12 @@ class R::NDArray::String extends R::NDArray::Object {
   use R::OP::StringBuffer;
   use R::OP::Time::Piece;
   
+  # Fields
+  method data : string[] () {
+    
+    return (string[])$self->{data};
+  }
+  
   # Class Mehtods
   static method new : R::NDArray::String ($options : object[] = undef) {
     
@@ -23,22 +29,6 @@ class R::NDArray::String extends R::NDArray::Object {
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
-  }
-  
-  method data : string[] () {
-    
-    return (string[])$self->{data};
-  }
-  
-  protected method check : void () {
-    
-    my $data = (string[])$self->{data};
-    
-    my $length = $self->length;
-    
-    unless (@$data == $length) {
-      die "The length of data field must be the same as length field.";
-    }
   }
   
   protected method create_default_data : string[] ($length : int = 0) {

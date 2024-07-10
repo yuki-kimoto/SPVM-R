@@ -5,6 +5,12 @@ class R::NDArray::Float extends R::NDArray {
   
   use Sort;
   
+  # Fields
+  method data : float[] () {
+    
+    return (float[])$self->{data};
+  }
+  
   # Class Mehtods
   static method new : R::NDArray::Float ($options : object[] = undef) {
     
@@ -18,22 +24,6 @@ class R::NDArray::Float extends R::NDArray {
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
-  }
-  
-  method data : float[] () {
-    
-    return (float[])$self->{data};
-  }
-  
-  protected method check : void () {
-    
-    my $data = (float[])$self->{data};
-    
-    my $length = $self->length;
-    
-    unless (@$data == $length) {
-      die "The length of data field must be the same as length field.";
-    }
   }
   
   protected method create_default_data : float[] ($length : int = 0) {

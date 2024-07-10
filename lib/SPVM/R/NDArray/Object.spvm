@@ -3,6 +3,13 @@
 
 class R::NDArray::Object extends R::NDArray {
   
+  # Fields
+  method data : object[] () {
+    
+    return (object[])$self->{data};
+  }
+  
+  # Class Methods
   static method new : R::NDArray::Object ($options : object[] = undef) {
     
     my $self = new R::NDArray::Object;
@@ -76,22 +83,6 @@ class R::NDArray::Object extends R::NDArray {
     my $data = new object[$length];
     
     return $data;
-  }
-  
-  protected method check : void () {
-    
-    my $data = (object[])$self->{data};
-    
-    my $length = $self->length;
-    
-    unless (@$data == $length) {
-      die "The length of data field must be the same as length field.";
-    }
-  }
-  
-  method data : object[] () {
-    
-    return (object[])$self->{data};
   }
   
   method slice : R::NDArray::Object ($vector_indexes : R::NDArray::Int[]) {

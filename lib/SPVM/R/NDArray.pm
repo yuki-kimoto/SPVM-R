@@ -40,7 +40,7 @@ Creates a new array, copies the elements of this field, and returns the array.
 
 C<method set_dim : void ($dim : int[]);>
 
-The dimensions $dim is normalized by L<R::Util#normalize_dim> method, checks normalized dim by L</"check"> method, and sets this field to its return value.
+The dimensions $dim is normalized by L<R::Util#normalize_dim> method, checks normalized dim by L</"check_length"> method, and sets this field to its return value.
 
 Exceptions:
 
@@ -48,7 +48,7 @@ C<set_dim> Method:
 
 If L</"is_dim_read_only"> is a true value, an exception is thrown.
 
-Exceptions thrown by L</"check"> method could be thrown.
+Exceptions thrown by L</"check_length"> method could be thrown.
 
 =head2 is_dim_read_only
 
