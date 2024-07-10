@@ -231,7 +231,7 @@ class R::NDArray::Int extends R::NDArray {
     
     for (my $i = 0; $i < @$data; $i++) {
       my $data_index = $data_indexes->[$i];
-      $self_data->[$data_index] = $data->[$i];
+      $self->elem_assign($self_data, $data_index, $data, $i);
     }
   }
   
