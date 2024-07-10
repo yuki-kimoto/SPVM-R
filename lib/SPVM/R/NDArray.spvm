@@ -356,6 +356,12 @@ class R::NDArray {
   
   method create_default_data : object ($length : int = 0) { die "Not implemented."; }
   
+  method elem_to_string : string ($data : object, $data_index : int) { die "Not impelmented."; }
+  
+  method elem_assign : void ($dist_data : object, $dist_data_index : int, $src_data : object, $src_data_index : int) { die "Not impelmented."; }
+  
+  method elem_clone : void ($dist_data : object, $dist_data_index : int, $src_data : object, $src_data_index : int) { die "Not impelmented."; }
+  
   method clone : R::NDArray ($elem_shallow_clone : int = 0) {
     
     my $elem_size = $self->elem_size;
@@ -381,12 +387,6 @@ class R::NDArray {
     
     return $clone;
   }
-  
-  method elem_to_string : string ($data : object, $data_index : int) { die "Not impelmented."; }
-  
-  method elem_assign : void ($dist_data : object, $dist_data_index : int, $src_data : object, $src_data_index : int) { die "Not impelmented."; }
-  
-  method elem_clone : void ($dist_data : object, $dist_data_index : int, $src_data : object, $src_data_index : int) { die "Not impelmented."; }
   
   method slice : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
     
