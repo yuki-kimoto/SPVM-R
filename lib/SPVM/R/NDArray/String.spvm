@@ -59,13 +59,16 @@ class R::NDArray::String extends R::NDArray::Object {
     return $string;
   }
   
-  method elem_clone : string ($data : string[], $data_index : int) {
+  method elem_clone : void ($dist_data : string[], $dist_data_index : int, $src_data : string[], $src_data_index : int) {
     
-    my $elem = $data->[$data_index];
+    my $src_elem = $src_data->[$src_data_index];
     
-    my $clone = copy $elem;
-    
-    return $clone;
+    if ($src_elem) {
+      $dist_data->[$dist_data_index] = copy $src_elem;
+    }
+    else {
+      $dist_data->[$dist_data_index] = undef;
+    }
   }
   
   precompile method to_int_ndarray : R::NDArray::Int () {

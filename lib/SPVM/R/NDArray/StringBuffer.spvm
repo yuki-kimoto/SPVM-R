@@ -55,16 +55,16 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     return $string;
   }
   
-  method elem_clone : StringBuffer ($data : StringBuffer[], $data_index : int) {
+  method elem_clone : void ($dist_data : StringBuffer[], $dist_data_index : int, $src_data : StringBuffer[], $src_data_index : int) {
     
-    my $elem = $data->[$data_index];
+    my $src_elem = $src_data->[$src_data_index];
     
-    my $clone = (StringBuffer)undef;
-    if ($elem) {
-      $clone = StringBuffer->new($elem->to_string);
+    if ($src_elem) {
+      $dist_data->[$dist_data_index] = StringBuffer->new($src_elem->to_string);
     }
-    
-    return $clone;
+    else {
+      $dist_data->[$dist_data_index] = undef;
+    }
   }
   
   method slice : R::NDArray::StringBuffer ($vector_indexes : R::NDArray::Int[]) {

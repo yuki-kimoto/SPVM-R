@@ -56,16 +56,16 @@ class R::NDArray::Time::Piece extends R::NDArray::Object {
     return $string;
   }
   
-  method elem_clone : Time::Piece ($data : Time::Piece[], $data_index : int) {
+  method elem_clone : void ($dist_data : Time::Piece[], $dist_data_index : int, $src_data : Time::Piece[], $src_data_index : int) {
     
-    my $elem = $data->[$data_index];
+    my $src_elem = $src_data->[$src_data_index];
     
-    my $clone = (Time::Piece)undef;
-    if ($elem) {
-      $clone = $elem->clone;
+    if ($src_elem) {
+      $dist_data->[$dist_data_index] = $src_elem->clone;
     }
-    
-    return $clone;
+    else {
+      $dist_data->[$dist_data_index] = undef;
+    }
   }
   
   method slice : R::NDArray::Time::Piece ($vector_indexes : R::NDArray::Int[]) {
