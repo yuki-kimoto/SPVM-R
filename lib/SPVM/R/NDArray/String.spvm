@@ -26,6 +26,7 @@ class R::NDArray::String extends R::NDArray::Object {
     return $self;
   }
   
+  # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
@@ -40,10 +41,6 @@ class R::NDArray::String extends R::NDArray::Object {
     my $data = new string[$length];
     
     return $data;
-  }
-  
-  method clone : R::NDArray::String ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::String)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data : string[], $data_index : int) {
@@ -76,6 +73,14 @@ class R::NDArray::String extends R::NDArray::Object {
     my $cmp = $data->[$a_data_index] cmp $data->[$b_data_index];
     
     return $cmp;
+  }
+  
+  method clone : R::NDArray::String ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::String)$self->SUPER::clone($elem_shallow_clone);
+  }
+  
+  method slice : R::NDArray::String ($vector_indexes : R::NDArray::Int[]) {
+    return (R::NDArray::String)$self->SUPER::slice($vector_indexes);
   }
   
   precompile method to_int_ndarray : R::NDArray::Int () {
@@ -239,10 +244,6 @@ class R::NDArray::String extends R::NDArray::Object {
     }
     
     return $ret_ndarray;
-  }
-  
-  method slice : R::NDArray::String ($vector_indexes : R::NDArray::Int[]) {
-    return (R::NDArray::String)$self->SUPER::slice($vector_indexes);
   }
   
 }

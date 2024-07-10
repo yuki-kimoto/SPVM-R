@@ -19,6 +19,7 @@ class R::NDArray::Short extends R::NDArray {
     return $self;
   }
   
+  # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
@@ -33,10 +34,6 @@ class R::NDArray::Short extends R::NDArray {
     my $data = new short[$length];
     
     return $data;
-  }
-  
-  method clone : R::NDArray::Short ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::Short)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data : short[], $data_index : int) {
@@ -63,6 +60,10 @@ class R::NDArray::Short extends R::NDArray {
     my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
     
     return $cmp;
+  }
+  
+  method clone : R::NDArray::Short ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Short)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method slice : R::NDArray::Short ($vector_indexes : R::NDArray::Int[]) {

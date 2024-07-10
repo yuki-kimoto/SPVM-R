@@ -21,6 +21,7 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return $self;
   }
   
+  # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
@@ -60,6 +61,10 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
   }
   
+  method slice : R::NDArray::DoubleComplex ($vector_indexes : R::NDArray::Int[]) {
+    return (R::NDArray::DoubleComplex)$self->SUPER::slice($vector_indexes);
+  }
+  
   precompile method to_float_complex_ndarray : R::NDArray::FloatComplex () {
     
     unless ($self) {
@@ -81,10 +86,6 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     }
     
     return $ret_ndarray;
-  }
-  
-  method slice : R::NDArray::DoubleComplex ($vector_indexes : R::NDArray::Int[]) {
-    return (R::NDArray::DoubleComplex)$self->SUPER::slice($vector_indexes);
   }
   
 }

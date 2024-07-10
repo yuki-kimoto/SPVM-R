@@ -24,6 +24,7 @@ class R::NDArray::Byte extends R::NDArray {
     return $self;
   }
   
+  # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);

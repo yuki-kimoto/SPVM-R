@@ -19,15 +19,7 @@ class R::NDArray::Object extends R::NDArray {
     return $self;
   }
   
-  method elem_assign : void ($dist_data : object[], $dist_data_index : int, $src_data : object[], $src_data_index : int) {
-    
-    $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
-  }
-  
-  method clone : R::NDArray::Object ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::Object)$self->SUPER::clone($elem_shallow_clone);
-  }
-  
+  # Instance Methods
   method create_default_data : object[] ($length : int = 0) {
     
     unless ($length >= 0) {
@@ -37,6 +29,15 @@ class R::NDArray::Object extends R::NDArray {
     my $data = new object[$length];
     
     return $data;
+  }
+  
+  method elem_assign : void ($dist_data : object[], $dist_data_index : int, $src_data : object[], $src_data_index : int) {
+    
+    $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
+  }
+  
+  method clone : R::NDArray::Object ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Object)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method slice : R::NDArray::Object ($vector_indexes : R::NDArray::Int[]) {

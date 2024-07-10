@@ -21,6 +21,7 @@ class R::NDArray::Int extends R::NDArray {
     return $self;
   }
   
+  # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
     $self->SUPER::init($options);
@@ -35,10 +36,6 @@ class R::NDArray::Int extends R::NDArray {
     my $data = new int[$length];
     
     return $data;
-  }
-  
-  method clone : R::NDArray::Int ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::Int)$self->SUPER::clone($elem_shallow_clone);
   }
   
   method elem_to_string : string ($data : int[], $data_index : int) {
@@ -65,6 +62,14 @@ class R::NDArray::Int extends R::NDArray {
     my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
     
     return $cmp;
+  }
+  
+  method clone : R::NDArray::Int ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Int)$self->SUPER::clone($elem_shallow_clone);
+  }
+  
+  method slice : R::NDArray::Int ($vector_indexes : R::NDArray::Int[]) {
+    return (R::NDArray::Int)$self->SUPER::slice($vector_indexes);
   }
   
   precompile method to_long_ndarray : R::NDArray::Long () {
@@ -201,10 +206,6 @@ class R::NDArray::Int extends R::NDArray {
     return $ret_ndarray;
   }
   
-  method slice : R::NDArray::Int ($vector_indexes : R::NDArray::Int[]) {
-    return (R::NDArray::Int)$self->SUPER::slice($vector_indexes);
-  }
-  
   precompile method to_indexes : R::NDArray::Int () {
     
     unless ($self->is_vector) {
@@ -232,54 +233,4 @@ class R::NDArray::Int extends R::NDArray {
     return $ret_ndarray;
   }
   
-  method order_asc : R::NDArray::Int () {
-    
-  }
-  
 }
-
-=pod TODO
-
-sub order {
-  my $r = shift;
-  my $opt = ref $_[-1] eq 'HASH' ? pop @_ : {};
-  my @xs = map { to_object($r, $_) } @_;
-  
-  my @xs_values;
-  for my $x (@xs) {
-    push @xs_values, $x->values;
-  }
-
-  my $decreasing = $opt->{decreasing} || Rstats::Func::FALSE($r);
-  
-  my @pos_vals;
-  for my $i (0 .. @{$xs_values[0]} - 1) {
-    my $pos_val = {pos => $i + 1};
-    $pos_val->{val} = [];
-    push @{$pos_val->{val}}, $xs_values[$_][$i] for (0 .. @xs_values);
-    push @pos_vals, $pos_val;
-  }
-  
-  my @sorted_pos_values = !$decreasing
-    ? sort {
-        my $comp;
-        for (my $i = 0; $i < @xs_values; $i++) {
-          $comp = $a->{val}[$i] <=> $b->{val}[$i];
-          last if $comp != 0;
-        }
-        $comp;
-      } @pos_vals
-    : sort {
-        my $comp;
-        for (my $i = 0; $i < @xs_values; $i++) {
-          $comp = $b->{val}[$i] <=> $a->{val}[$i];
-          last if $comp != 0;
-        }
-        $comp;
-      } @pos_vals;
-  my @orders = map { $_->{pos} } @sorted_pos_values;
-  
-  return Rstats::Func::c_($r, @orders);
-}
-
-=cut
