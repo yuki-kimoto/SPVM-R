@@ -42,9 +42,7 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     return (R::NDArray::StringBuffer)$self->SUPER::clone($elem_shallow_clone);
   }
   
-  method elem_to_string : string ($data_index : int) {
-    
-    my $data = $self->data;
+  method elem_to_string : string ($data : StringBuffer[], $data_index : int) {
     
     my $elem = $data->[$data_index];
     

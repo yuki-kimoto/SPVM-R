@@ -252,7 +252,7 @@ class R::DataFrame {
           for (my $col = 0; $col < $ncol; $col++) {
             my $ndarray = $self->col_by_index($col);
             
-            my $elem_string = $ndarray->elem_to_string($row);
+            my $elem_string = $ndarray->elem_to_string($ndarray->data, $row);
             $string_buffer->push($elem_string);
             
             unless ($col == $ncol - 1) {

@@ -41,8 +41,7 @@ class R::NDArray::Long extends R::NDArray {
     return (R::NDArray::Long)$self->SUPER::clone($elem_shallow_clone);
   }
   
-  method elem_to_string : string ($data_index : int) {
-    my $data = $self->data;
+  method elem_to_string : string ($data : long[], $data_index : int) {
     
     my $elem = $data->[$data_index];
     

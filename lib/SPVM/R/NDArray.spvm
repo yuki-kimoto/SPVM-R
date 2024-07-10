@@ -387,7 +387,7 @@ class R::NDArray {
     return $clone;
   }
   
-  method elem_to_string : string ($data_index : int) { die "Not impelmented."; }
+  method elem_to_string : string ($data : object, $data_index : int) { die "Not impelmented."; }
   
   method elem_clone : object ($data : object, $data_index : int) { die "Not impelmented."; }
   
@@ -485,7 +485,7 @@ class R::NDArray {
       
       for (my $i = 0; $i < $data_length; $i++) {
         $string_buffer->push("[$i]\t");
-        my $elem_string = $self->elem_to_string($i);
+        my $elem_string = $self->elem_to_string($data, $i);
         $string_buffer->push($elem_string);
         
         unless ($i == $data_length - 1) {
@@ -517,7 +517,7 @@ class R::NDArray {
           
           my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
           
-          my $elem_string = $self->elem_to_string($data_index);
+          my $elem_string = $self->elem_to_string($data, $data_index);
           
           $string_buffer->push($elem_string);
           
@@ -550,6 +550,8 @@ class R::NDArray {
   }
   
   private static method recursive_to_string : void ($self : R::NDArray, $dim_list : IntList, $string_buffer : StringBuffer, $dim_num_ref : int*, $coordinate_list : IntList) {
+    
+    my $data = $self->{data};
     
     my $dim_elem = $dim_list->pop;
     
@@ -600,7 +602,7 @@ class R::NDArray {
             
             my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
             
-            $elem_strings_list->push($self->elem_to_string($data_index));
+            $elem_strings_list->push($self->elem_to_string($data, $data_index));
           }
           
           $string_buffer->push(Fn->join("\t", $elem_strings_list->to_array) . "\n");
@@ -655,7 +657,7 @@ class R::NDArray {
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $self->elem_to_string($i);
+      $ret_data->[$i] = $self->elem_to_string($data, $i);
     }
     
     return $ret_ndarray;
