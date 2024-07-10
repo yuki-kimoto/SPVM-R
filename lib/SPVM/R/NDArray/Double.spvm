@@ -20,11 +20,6 @@ class R::NDArray::Double extends R::NDArray {
   }
   
   # Instance Methods
-  protected method init : void ($options : object[] = undef) {
-    
-    $self->SUPER::init($options);
-  }
-  
   protected method create_default_data : double[] ($length : int = 0) {
     
     unless ($length >= 0) {

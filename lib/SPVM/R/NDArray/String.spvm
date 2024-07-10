@@ -27,11 +27,6 @@ class R::NDArray::String extends R::NDArray::Object {
   }
   
   # Instance Methods
-  protected method init : void ($options : object[] = undef) {
-    
-    $self->SUPER::init($options);
-  }
-  
   method create_default_data : string[] ($length : int = 0) {
     
     unless ($length >= 0) {

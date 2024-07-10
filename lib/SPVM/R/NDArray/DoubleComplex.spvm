@@ -22,11 +22,6 @@ class R::NDArray::DoubleComplex extends R::NDArray {
   }
   
   # Instance Methods
-  protected method init : void ($options : object[] = undef) {
-    
-    $self->SUPER::init($options);
-  }
-  
   method create_default_data : Complex_2d[] ($length : int = 0) {
     
     unless ($length >= 0) {

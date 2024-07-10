@@ -24,11 +24,6 @@ class R::NDArray::Time::Piece extends R::NDArray::Object {
   }
   
   # Instance Methods
-  protected method init : void ($options : object[] = undef) {
-    
-    $self->SUPER::init($options);
-  }
-  
   method create_default_data : Time::Piece[] ($length : int = 0) {
     
     unless ($length >= 0) {

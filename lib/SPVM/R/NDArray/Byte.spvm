@@ -23,11 +23,6 @@ class R::NDArray::Byte extends R::NDArray {
   }
   
   # Instance Methods
-  protected method init : void ($options : object[] = undef) {
-    
-    $self->SUPER::init($options);
-  }
-  
   method create_default_data : byte[] ($length : int = 0) {
     
     unless ($length >= 0) {
