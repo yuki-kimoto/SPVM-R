@@ -40,10 +40,6 @@ class R::NDArray::Byte extends R::NDArray {
     return $data;
   }
   
-  method clone : R::NDArray::Byte ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::Byte)$self->SUPER::clone($elem_shallow_clone);
-  }
-  
   method elem_to_string : string ($data : byte[], $data_index : int) {
     
     my $elem = $data->[$data_index];
@@ -68,6 +64,10 @@ class R::NDArray::Byte extends R::NDArray {
     my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
     
     return $cmp;
+  }
+  
+  method clone : R::NDArray::Byte ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::Byte)$self->SUPER::clone($elem_shallow_clone);
   }
   
   precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {

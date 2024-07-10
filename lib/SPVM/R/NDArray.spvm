@@ -362,6 +362,8 @@ class R::NDArray {
   
   method elem_clone : void ($dist_data : object, $dist_data_index : int, $src_data : object, $src_data_index : int) { die "Not impelmented."; }
   
+  method elem_cmp : int ($data : object, $a_data_index : int, $b_data_index : int) { die "Not implemented."; }
+  
   method clone : R::NDArray ($elem_shallow_clone : int = 0) {
     
     my $elem_size = $self->elem_size;
@@ -720,8 +722,6 @@ class R::NDArray {
     
     return $elem_type_name;
   }
-  
-  method elem_cmp : int ($data : object, $a_data_index : int, $b_data_index : int) { die "Not implemented."; }
   
   method sort_asc : void () {
     
