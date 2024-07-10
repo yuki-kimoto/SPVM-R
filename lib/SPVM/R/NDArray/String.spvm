@@ -71,6 +71,13 @@ class R::NDArray::String extends R::NDArray::Object {
     }
   }
   
+  method elem_cmp : int ($data : string[], $a_data_index : int, $b_data_index : int) {
+    
+    my $cmp = $data->[$a_data_index] cmp $data->[$b_data_index];
+    
+    return $cmp;
+  }
+  
   precompile method to_int_ndarray : R::NDArray::Int () {
     
     unless ($self) {
@@ -240,13 +247,6 @@ class R::NDArray::String extends R::NDArray::Object {
   
   method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::String) {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
-  }
-  
-  method elem_cmp : int ($data : string[], $a_data_index : int, $b_data_index : int) {
-    
-    my $cmp = $data->[$a_data_index] cmp $data->[$b_data_index];
-    
-    return $cmp;
   }
   
   method sort_asc : void () {

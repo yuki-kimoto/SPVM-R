@@ -50,9 +50,21 @@ class R::NDArray::Long extends R::NDArray {
     return $string;
   }
   
+  method elem_assign : void ($dist_data : long[], $dist_data_index : int, $src_data : long[], $src_data_index : int) {
+    
+    $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
+  }
+  
   method elem_clone : void ($dist_data : long[], $dist_data_index : int, $src_data : long[], $src_data_index : int) {
     
     $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
+  }
+  
+  method elem_cmp : int ($data : long[], $a_data_index : int, $b_data_index : int) {
+    
+    my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
+    
+    return $cmp;
   }
   
   precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {
@@ -224,13 +236,6 @@ class R::NDArray::Long extends R::NDArray {
   
   method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::Long) {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
-  }
-  
-  method elem_cmp : int ($data : long[], $a_data_index : int, $b_data_index : int) {
-    
-    my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
-    
-    return $cmp;
   }
   
 }
