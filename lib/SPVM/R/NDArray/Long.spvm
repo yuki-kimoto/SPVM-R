@@ -67,26 +67,6 @@ class R::NDArray::Long extends R::NDArray {
     return $cmp;
   }
   
-  precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {
-    
-    $self->check_set_order_args($indexes_ndarray);
-    
-    my $indexes = $indexes_ndarray->data;
-    
-    my $data = (long[])$self->{data};
-    
-    my $tmp = $self->clone;
-    
-    my $tmp_data = $tmp->data;
-    
-    my $length = $self->length;
-    for (my $i = 0; $i < $length; $i++) {
-      my $order_index = $indexes->[$i];
-      
-      $data->[$i] = $tmp_data->[$order_index];
-    }
-  }
-  
   precompile method to_int_ndarray : R::NDArray::Int () {
     
     unless ($self) {

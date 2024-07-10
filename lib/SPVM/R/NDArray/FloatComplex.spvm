@@ -55,26 +55,6 @@ class R::NDArray::FloatComplex extends R::NDArray {
     $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
   }
   
-  precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {
-    
-    $self->check_set_order_args($indexes_ndarray);
-    
-    my $indexes = $indexes_ndarray->data;
-    
-    my $data = (Complex_2f[])$self->{data};
-    
-    my $tmp = $self->clone;
-    
-    my $tmp_data = $tmp->data;
-    
-    my $length = $self->length;
-    for (my $i = 0; $i < $length; $i++) {
-      my $order_index = $indexes->[$i];
-      
-      $data->[$i] = $tmp_data->[$order_index];
-    }
-  }
-  
   precompile method to_double_complex_ndarray : R::NDArray::DoubleComplex () {
     
     unless ($self) {

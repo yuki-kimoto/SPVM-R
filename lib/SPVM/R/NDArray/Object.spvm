@@ -24,26 +24,6 @@ class R::NDArray::Object extends R::NDArray {
     $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
   }
   
-  precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {
-    
-    $self->check_set_order_args($indexes_ndarray);
-    
-    my $indexes = $indexes_ndarray->data;
-    
-    my $data = (object[])$self->{data};
-    
-    my $tmp = $self->clone;
-    
-    my $tmp_data = (object[])$tmp->{data};
-    
-    my $length = $self->length;
-    for (my $i = 0; $i < $length; $i++) {
-      my $order_index = $indexes->[$i];
-      
-      $data->[$i] = $tmp_data->[$order_index];
-    }
-  }
-  
   method clone : R::NDArray::Object ($elem_shallow_clone : int = 0) {
     return (R::NDArray::Object)$self->SUPER::clone($elem_shallow_clone);
   }
