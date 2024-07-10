@@ -50,6 +50,11 @@ class R::NDArray::Long extends R::NDArray {
     return $string;
   }
   
+  method elem_clone : void ($dist_data : long[], $dist_data_index : int, $src_data : long[], $src_data_index : int) {
+    
+    $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
+  }
+  
   precompile method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
     $self->check_set_order_args($indexes_ndarray);
