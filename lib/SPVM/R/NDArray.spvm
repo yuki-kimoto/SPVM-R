@@ -252,6 +252,89 @@ class R::NDArray {
   
   method elem_cmp : int ($data : object, $a_data_index : int, $b_data_index : int) { die "Not implemented."; }
   
+  precompile method to_string_ndarray : R::NDArray::String () {
+    
+    unless ($self) {
+      die "The n-dimension array \$self must be defined.";
+    }
+    
+    my $length = $self->length;
+    
+    my $dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::String->c(undef, $dim);
+    
+    my $data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $self->elem_to_string($data, $i);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  method elem_size : int () {
+    
+    my $data = $self->{data};
+    
+    my $elem_size = R::Util->_get_elem_size($data);
+    
+    return $elem_size;
+  }
+  
+  method elem_type_name : string () {
+    
+    my $data = $self->{data};
+    
+    my $elem_type_name = R::Util->_get_elem_type_name($data);
+    
+    return $elem_type_name;
+  }
+  
+  method is_numeric_ndarray : int () {
+    
+    my $data = $self->{data};
+    
+    my $is_numeric_ndarray = 0;
+    if (Fn->is_numeric_array($data)) {
+      $is_numeric_ndarray = 1;
+    }
+    
+    return $is_numeric_ndarray;
+  }
+  
+  method is_mulnum_ndarray : int () {
+    
+    my $data = $self->{data};
+    
+    my $is_mulnum_ndarray = 0;
+    if (Fn->is_mulnum_array($data)) {
+      $is_mulnum_ndarray = 1;
+    }
+    
+    return $is_mulnum_ndarray;
+  }
+  
+  method is_any_numeric_ndarray : int () {
+    
+    my $any_numeric_ndarray = $self->is_numeric_ndarray || $self->is_mulnum_ndarray;
+    
+    return $any_numeric_ndarray;
+  }
+  
+  method is_object_ndarray : int () {
+    
+    my $data = $self->{data};
+    
+    my $is_mulnum = 0;
+    if (Fn->is_object_array($data)) {
+      $is_mulnum = 1;
+    }
+    
+    return $is_mulnum;
+  }
+  
   method clone : R::NDArray ($elem_shallow_clone : int = 0) {
     
     my $elem_size = $self->elem_size;
@@ -393,89 +476,6 @@ class R::NDArray {
     }
     
     return $string;
-  }
-  
-  precompile method to_string_ndarray : R::NDArray::String () {
-    
-    unless ($self) {
-      die "The n-dimension array \$self must be defined.";
-    }
-    
-    my $length = $self->length;
-    
-    my $dim = $self->dim;
-    
-    my $ret_ndarray = R::OP::String->c(undef, $dim);
-    
-    my $data = $self->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $self->elem_to_string($data, $i);
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  method is_numeric_ndarray : int () {
-    
-    my $data = $self->{data};
-    
-    my $is_numeric_ndarray = 0;
-    if (Fn->is_numeric_array($data)) {
-      $is_numeric_ndarray = 1;
-    }
-    
-    return $is_numeric_ndarray;
-  }
-  
-  method is_mulnum_ndarray : int () {
-    
-    my $data = $self->{data};
-    
-    my $is_mulnum_ndarray = 0;
-    if (Fn->is_mulnum_array($data)) {
-      $is_mulnum_ndarray = 1;
-    }
-    
-    return $is_mulnum_ndarray;
-  }
-  
-  method is_any_numeric_ndarray : int () {
-    
-    my $any_numeric_ndarray = $self->is_numeric_ndarray || $self->is_mulnum_ndarray;
-    
-    return $any_numeric_ndarray;
-  }
-  
-  method is_object_ndarray : int () {
-    
-    my $data = $self->{data};
-    
-    my $is_mulnum = 0;
-    if (Fn->is_object_array($data)) {
-      $is_mulnum = 1;
-    }
-    
-    return $is_mulnum;
-  }
-  
-  method elem_size : int () {
-    
-    my $data = $self->{data};
-    
-    my $elem_size = R::Util->_get_elem_size($data);
-    
-    return $elem_size;
-  }
-  
-  method elem_type_name : string () {
-    
-    my $data = $self->{data};
-    
-    my $elem_type_name = R::Util->_get_elem_type_name($data);
-    
-    return $elem_type_name;
   }
   
   method order : R::NDArray::Int () {
