@@ -90,10 +90,6 @@ class R::NDArray::Byte extends R::NDArray {
     }
   }
   
-  method slice_data : byte[] ($data_indexes : int[]) {
-    return (byte[])$self->SUPER::slice_data($data_indexes);
-  }
-  
   precompile method slice_set_data : void ($data_indexes : int[], $data : byte[]) {
     
     my $self_data = $self->data;

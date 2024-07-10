@@ -103,10 +103,6 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return $ret_ndarray;
   }
   
-  method slice_data : Complex_2d[] ($data_indexes : int[]) {
-    return (Complex_2d[])$self->SUPER::slice_data($data_indexes);
-  }
-  
   precompile method slice_set_data : void ($data_indexes : int[], $data : Complex_2d[]) {
     
     my $self_data = $self->data;

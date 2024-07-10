@@ -199,10 +199,6 @@ class R::NDArray::Double extends R::NDArray {
     return $ret_ndarray;
   }
   
-  method slice_data : double[] ($data_indexes : int[]) {
-    return (double[])$self->SUPER::slice_data($data_indexes);
-  }
-  
   precompile method slice_set_data : void ($data_indexes : int[], $data : double[]) {
     
     my $self_data = $self->data;

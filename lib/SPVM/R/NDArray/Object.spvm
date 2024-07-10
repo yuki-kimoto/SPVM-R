@@ -48,10 +48,6 @@ class R::NDArray::Object extends R::NDArray {
     return (R::NDArray::Object)$self->SUPER::clone($elem_shallow_clone);
   }
   
-  method slice_data : object[] ($data_indexes : int[]) {
-    return (object[])$self->SUPER::slice_data($data_indexes);
-  }
-  
   precompile method slice_set_data : void ($data_indexes : int[], $data : object[]) {
     
     my $self_data = $self->data;

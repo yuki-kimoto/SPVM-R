@@ -199,10 +199,6 @@ class R::NDArray::Long extends R::NDArray {
     return $ret_ndarray;
   }
   
-  method slice_data : long[] ($data_indexes : int[]) {
-    return (long[])$self->SUPER::slice_data($data_indexes);
-  }
-  
   precompile method slice_set_data : void ($data_indexes : int[], $data : long[]) {
     
     my $self_data = $self->data;

@@ -83,8 +83,4 @@ class R::NDArray::Time::Piece extends R::NDArray::Object {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  method slice_data : Time::Piece[] ($data_indexes : int[]) {
-    return (Time::Piece[])$self->SUPER::slice_data($data_indexes);
-  }
-  
 }

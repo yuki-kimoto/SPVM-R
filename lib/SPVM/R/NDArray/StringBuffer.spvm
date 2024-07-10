@@ -82,8 +82,4 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  method slice_data : StringBuffer[] ($data_indexes : int[]) {
-    return (StringBuffer[])$self->SUPER::slice_data($data_indexes);
-  }
-  
 }

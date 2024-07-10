@@ -85,10 +85,6 @@ class R::NDArray::Short extends R::NDArray {
     }
   }
   
-  method slice_data : short[] ($data_indexes : int[]) {
-    return (short[])$self->SUPER::slice_data($data_indexes);
-  }
-  
   method slice_set_data : void ($data_indexes : int[], $data : object) {
     
     my $self_data = $self->{data};
