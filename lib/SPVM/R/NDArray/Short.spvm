@@ -70,4 +70,22 @@ class R::NDArray::Short extends R::NDArray {
     return (R::NDArray::Short)$self->SUPER::slice($vector_indexes);
   }
   
+  precompile method to_int_ndarray : R::NDArray::Int () {
+    
+    my $length = $self->length;
+    
+    my $dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $dim);
+    
+    my $data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (int)$data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
