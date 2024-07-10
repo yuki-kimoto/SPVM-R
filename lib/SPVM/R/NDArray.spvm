@@ -395,26 +395,6 @@ class R::NDArray {
     return $string;
   }
   
-  method set_order : void ($indexes_ndarray : R::NDArray::Int) {
-    
-    $self->check_set_order_args($indexes_ndarray);
-    
-    my $indexes = $indexes_ndarray->data;
-    
-    my $data = $self->{data};
-    
-    my $tmp = $self->clone;
-    
-    my $tmp_data = $tmp->data;
-    
-    my $length = $self->length;
-    for (my $i = 0; $i < $length; $i++) {
-      my $order_index = $indexes->[$i];
-      
-      $self->elem_assign($data, $i, $tmp_data, $order_index);
-    }
-  }
-  
   precompile method to_string_ndarray : R::NDArray::String () {
     
     unless ($self) {
@@ -498,22 +478,6 @@ class R::NDArray {
     return $elem_type_name;
   }
   
-  method sort_asc : void () {
-    
-    my $order_ndarray = $self->order;
-    
-    $self->set_order($order_ndarray);
-  }
-  
-  method sort_desc : void () {
-    
-    my $order_ndarray = $self->order;
-    
-    &reverse_int($order_ndarray->data);
-    
-    $self->set_order($order_ndarray);
-  }
-  
   method order : R::NDArray::Int () {
     
     unless ($self->is_vector) {
@@ -531,6 +495,42 @@ class R::NDArray {
     });
     
     return $order_ndarray;
+  }
+  
+  method set_order : void ($indexes_ndarray : R::NDArray::Int) {
+    
+    $self->check_set_order_args($indexes_ndarray);
+    
+    my $indexes = $indexes_ndarray->data;
+    
+    my $data = $self->{data};
+    
+    my $tmp = $self->clone;
+    
+    my $tmp_data = $tmp->data;
+    
+    my $length = $self->length;
+    for (my $i = 0; $i < $length; $i++) {
+      my $order_index = $indexes->[$i];
+      
+      $self->elem_assign($data, $i, $tmp_data, $order_index);
+    }
+  }
+  
+  method sort_asc : void () {
+    
+    my $order_ndarray = $self->order;
+    
+    $self->set_order($order_ndarray);
+  }
+  
+  method sort_desc : void () {
+    
+    my $order_ndarray = $self->order;
+    
+    &reverse_int($order_ndarray->data);
+    
+    $self->set_order($order_ndarray);
   }
   
   # Private Class Methods
