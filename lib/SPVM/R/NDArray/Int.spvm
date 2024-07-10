@@ -221,20 +221,6 @@ class R::NDArray::Int extends R::NDArray {
     return $ret_ndarray;
   }
   
-  precompile method slice_set_data : void ($data_indexes : int[], $data : int[]) {
-    
-    my $self_data = $self->data;
-    
-    unless ($data_indexes) {
-      die "The data indexes \$data_indexes must be defined.";
-    }
-    
-    for (my $i = 0; $i < @$data; $i++) {
-      my $data_index = $data_indexes->[$i];
-      $self->elem_assign($self_data, $data_index, $data, $i);
-    }
-  }
-  
   method slice : R::NDArray::Int ($vector_indexes : R::NDArray::Int[]) {
     return (R::NDArray::Int)$self->SUPER::slice($vector_indexes);
   }

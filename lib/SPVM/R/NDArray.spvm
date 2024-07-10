@@ -426,7 +426,7 @@ class R::NDArray {
     $self->slice_set_data($data_indexes, $ndarray->data);
   }
   
-  method slice_data : object ($data_indexes : int[]) {
+  private precompile method slice_data : object ($data_indexes : int[]) {
     
     unless ($data_indexes) {
       die "The data indexes \$data_indexes must be defined.";
@@ -443,17 +443,17 @@ class R::NDArray {
     return $ret_data;
   }
   
-  method slice_set_data : void ($data_indexes : int[], $data : object) {
+  private precompile method slice_set_data : void ($data_indexes : int[], $data : object) {
     
     my $self_data = $self->data;
-    
-    my $length = $self->length;
     
     unless ($data_indexes) {
       die "The data indexes \$data_indexes must be defined.";
     }
     
-    for (my $i = 0; $i < $length; $i++) {
+    my $data_length = R::Util->_get_array_length($data);
+    
+    for (my $i = 0; $i < $data_length; $i++) {
       my $data_index = $data_indexes->[$i];
       $self->elem_assign($self_data, $data_index, $data, $i);
     }

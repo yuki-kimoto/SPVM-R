@@ -87,20 +87,6 @@ class R::NDArray::Float extends R::NDArray {
     }
   }
   
-  precompile method slice_set_data : void ($data_indexes : int[], $data : float[]) {
-    
-    my $self_data = $self->data;
-    
-    unless ($data_indexes) {
-      die "The data indexes \$data_indexes must be defined.";
-    }
-    
-    for (my $i = 0; $i < @$data; $i++) {
-      my $data_index = $data_indexes->[$i];
-      $self_data->[$data_index] = $data->[$i];
-    }
-  }
-  
   method slice : R::NDArray::Float ($vector_indexes : R::NDArray::Int[]) {
     return (R::NDArray::Float)$self->SUPER::slice($vector_indexes);
   }
