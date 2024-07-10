@@ -3,8 +3,6 @@
 
 class R::NDArray::Double extends R::NDArray {
   
-  use Sort;
-  
   # Fields
   method data : double[] () {
     

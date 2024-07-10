@@ -6,8 +6,6 @@
 
 class R::NDArray::Byte extends R::NDArray {
   
-  use Sort;
-  
   # Fields
   method data : byte[] () {
     

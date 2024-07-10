@@ -3,8 +3,6 @@
 
 class R::NDArray::Float extends R::NDArray {
   
-  use Sort;
-  
   # Fields
   method data : float[] () {
     

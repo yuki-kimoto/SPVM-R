@@ -3,8 +3,6 @@
 
 class R::NDArray::Int extends R::NDArray {
   
-  use Sort;
-  
   # Fields
   method data : int[] () {
     
