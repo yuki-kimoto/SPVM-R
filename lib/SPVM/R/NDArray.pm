@@ -92,12 +92,6 @@ If this field is a true value, it indicates L</"dim"> field is read only, otherw
   
   method clone : R::NDArray ($elem_shallow_clone : int = 0) {
   
-  method elem_to_string : string ($data_index : int) { die "Not impelmented."; }
-  
-  method elem_to_object : object ($data_index : int) { die "Not impelmented."; }
-  
-  method elem_clone : object ($data_index : int) { die "Not impelmented."; }
-  
   method slice : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
   
   method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray) {
@@ -139,6 +133,12 @@ If this field is a true value, it indicates L</"dim"> field is read only, otherw
   method elem_cmp_old : int ($a_elem : object, $b_elem : object) { die "Not implemented."; }
   
   method elem_cmp : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
+  
+  method elem_to_string : string ($data_index : int) { die "Not impelmented."; }
+  
+  method elem_to_object : object ($data_index : int) { die "Not impelmented."; }
+  
+  method elem_clone : object ($data : object, $data_index : int) { die "Not impelmented."; }
   
 =head1 Well Known Child Classes
 

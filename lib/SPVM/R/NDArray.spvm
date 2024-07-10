@@ -375,7 +375,7 @@ class R::NDArray {
           $clone_data->(object[])->[$i] = $data->(object[])->[$i];
         }
         else {
-          $clone_data->(object[])->[$i] = $self->elem_clone($i);
+          $clone_data->(object[])->[$i] = $self->elem_clone($data, $i);
         }
       }
     }
@@ -391,7 +391,7 @@ class R::NDArray {
   
   method elem_to_object : object ($data_index : int) { die "Not impelmented."; }
   
-  method elem_clone : object ($data_index : int) { die "Not impelmented."; }
+  method elem_clone : object ($data : object, $data_index : int) { die "Not impelmented."; }
   
   method slice : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
     
