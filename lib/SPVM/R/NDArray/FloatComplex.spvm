@@ -54,10 +54,6 @@ class R::NDArray::FloatComplex extends R::NDArray {
   
   precompile method to_double_complex_ndarray : R::NDArray::DoubleComplex () {
     
-    unless ($self) {
-      die "The n-dimension array \$self must be defined.";
-    }
-    
     my $length = $self->length;
     
     my $dim = $self->dim;
