@@ -74,8 +74,4 @@ class R::NDArray::Byte extends R::NDArray {
     return (R::NDArray::Byte)$self->SUPER::slice($vector_indexes);
   }
   
-  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::Byte) {
-    $self->SUPER::slice_set($vector_indexes, $ndarray);
-  }
-  
 }

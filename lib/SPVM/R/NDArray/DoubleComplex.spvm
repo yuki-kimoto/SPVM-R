@@ -87,9 +87,5 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     return (R::NDArray::DoubleComplex)$self->SUPER::slice($vector_indexes);
   }
   
-  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::DoubleComplex) {
-    $self->SUPER::slice_set($vector_indexes, $ndarray);
-  }
-  
 }
 

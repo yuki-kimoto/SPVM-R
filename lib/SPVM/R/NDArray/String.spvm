@@ -245,8 +245,4 @@ class R::NDArray::String extends R::NDArray::Object {
     return (R::NDArray::String)$self->SUPER::slice($vector_indexes);
   }
   
-  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::String) {
-    $self->SUPER::slice_set($vector_indexes, $ndarray);
-  }
-  
 }

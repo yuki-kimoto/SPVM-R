@@ -205,10 +205,6 @@ class R::NDArray::Int extends R::NDArray {
     return (R::NDArray::Int)$self->SUPER::slice($vector_indexes);
   }
   
-  method slice_set : void ($vector_indexes : R::NDArray::Int[], $ndarray : R::NDArray::Int) {
-    $self->SUPER::slice_set($vector_indexes, $ndarray);
-  }
-  
   precompile method to_indexes : R::NDArray::Int () {
     
     unless ($self->is_vector) {
