@@ -36,8 +36,8 @@ class R::NDArray::Object extends R::NDArray {
     $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
   }
   
-  method clone : R::NDArray::Object ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::Object)$self->SUPER::clone($elem_shallow_clone);
+  method clone : R::NDArray::Object ($shallow : int = 0) {
+    return (R::NDArray::Object)$self->SUPER::clone($shallow);
   }
   
   method slice : R::NDArray::Object ($vector_indexes : R::NDArray::Int[]) {

@@ -70,8 +70,8 @@ class R::NDArray::FloatComplex extends R::NDArray {
     return (R::NDArray::FloatComplex)$self->SUPER::slice($vector_indexes);
   }
   
-  method clone : R::NDArray::FloatComplex ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::FloatComplex)$self->SUPER::clone($elem_shallow_clone);
+  method clone : R::NDArray::FloatComplex ($shallow : int = 0) {
+    return (R::NDArray::FloatComplex)$self->SUPER::clone($shallow);
   }
   
 }

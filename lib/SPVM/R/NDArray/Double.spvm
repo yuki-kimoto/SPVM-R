@@ -57,8 +57,8 @@ class R::NDArray::Double extends R::NDArray {
     return $cmp;
   }
   
-  method clone : R::NDArray::Double ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::Double)$self->SUPER::clone($elem_shallow_clone);
+  method clone : R::NDArray::Double ($shallow : int = 0) {
+    return (R::NDArray::Double)$self->SUPER::clone($shallow);
   }
   
   method slice : R::NDArray::Short ($vector_indexes : R::NDArray::Int[]) {

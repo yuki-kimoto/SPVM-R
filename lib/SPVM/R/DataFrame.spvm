@@ -300,7 +300,7 @@ class R::DataFrame {
     }
   }
   
-  method clone : R::DataFrame ($elem_shallow_clone : int = 0) {
+  method clone : R::DataFrame ($shallow : int = 0) {
     
     my $ncol = $self->ncol;
     
@@ -310,7 +310,7 @@ class R::DataFrame {
     for my $colname (@$colnames) {
       my $ndarray = $self->col($colname);
       
-      my $ret_ndarray = $ndarray->clone($elem_shallow_clone);
+      my $ret_ndarray = $ndarray->clone($shallow);
       
       $ret_data_frame->insert_col($colname, $ndarray);
     }

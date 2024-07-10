@@ -60,8 +60,8 @@ class R::NDArray::Byte extends R::NDArray {
     return $cmp;
   }
   
-  method clone : R::NDArray::Byte ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::Byte)$self->SUPER::clone($elem_shallow_clone);
+  method clone : R::NDArray::Byte ($shallow : int = 0) {
+    return (R::NDArray::Byte)$self->SUPER::clone($shallow);
   }
   
   method slice : R::NDArray::Byte ($vector_indexes : R::NDArray::Int[]) {
