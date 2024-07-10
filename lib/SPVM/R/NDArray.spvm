@@ -15,6 +15,30 @@ class R::NDArray {
   
   has dim : int[];
   
+  method dim : int[] () {
+    
+    my $dim = $self->{dim};
+    
+    my $dim_clone = copy $dim;
+    
+    return $dim_clone;
+  }
+  
+  method set_dim : void ($dim : int[]) {
+    
+    my $is_dim_read_only = $self->{is_dim_read_only};
+    
+    if ($is_dim_read_only) {
+      die "dim field is read only.";
+    }
+    
+    my $nomalized_dim = R::Util->normalize_dim($dim);
+    
+    $self->{dim} = $nomalized_dim;
+    
+    $self->check;
+  }
+  
   has is_dim_read_only : ro byte;
   
   # Class Methods
@@ -175,33 +199,9 @@ class R::NDArray {
       $data = $self->create_default_data($data_length);
     }
     
-    $self->{dim} = $dim;
-    
     $self->{data} = $data;
     
-    $self->check;
-  }
-  
-  method dim : int[] () {
-    
-    my $dim = $self->{dim};
-    
-    my $dim_clone = copy $dim;
-    
-    return $dim_clone;
-  }
-  
-  method set_dim : void ($dim : int[]) {
-    
-    my $is_dim_read_only = $self->{is_dim_read_only};
-    
-    if ($is_dim_read_only) {
-      die "dim field is read only.";
-    }
-    
-    my $nomalized_dim = R::Util->normalize_dim($dim);
-    
-    $self->{dim} = $nomalized_dim;
+    $self->{dim} = $dim;
     
     $self->check;
   }

@@ -305,6 +305,7 @@ class R::Util {
     return $elem_type_name;
   }
   
+  # This method will be added to Fn class.
   static method new_proto : object ($proto : object, $options : object[]) {
     
     my $class_name = type_name $proto;

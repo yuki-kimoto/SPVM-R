@@ -22,7 +22,39 @@ R::NDArray is column major.
 
 =head1 Fields
 
+=head2 data
 
+C<has data : protected ro object;>
+
+An array of numeric type, multi-numeric type, or object type.
+
+=head2 dim
+
+C<has dim : int[];>
+
+Dimensions.
+
+C<method dim : int[] ();>
+
+Creates a new array, copies the elements of this field, and returns the array.
+
+C<method set_dim : void ($dim : int[]);>
+
+The dimensions $dim is normalized by L<R::Util#normalize_dim> method, checks normalized dim by L</"check"> method, and sets this field to its return value.
+
+Exceptions:
+
+C<set_dim> Method:
+
+If L</"is_dim_read_only"> is a true value, an exception is thrown.
+
+Exceptions thrown by L</"check"> method could be thrown.
+
+=head2 is_dim_read_only
+
+C<has is_dim_read_only : ro byte;>
+
+If this field is a true value, it indicates L</"dim"> field is read only, otherwise writable.
 
 =head1 Class Methods
 
