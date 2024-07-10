@@ -104,20 +104,7 @@ class R::NDArray::DoubleComplex extends R::NDArray {
   }
   
   method slice_data : Complex_2d[] ($data_indexes : int[]) {
-    
-    unless ($data_indexes) {
-      die "The data indexes \$data_indexes must be defined.";
-    }
-    
-    my $data_indexes_length = @$data_indexes;
-    my $data = $self->data;
-    my $ret_data = new Complex_2d[$data_indexes_length];
-    for (my $i = 0; $i < $data_indexes_length; $i++) {
-      my $data_index = $data_indexes->[$i];
-      $ret_data->[$i] = $data->[$data_index];
-    }
-    
-    return $ret_data;
+    return (Complex_2d[])$self->SUPER::slice_data($data_indexes);
   }
   
   precompile method slice_set_data : void ($data_indexes : int[], $data : Complex_2d[]) {

@@ -38,10 +38,6 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     return $data;
   }
   
-  method clone : R::NDArray::StringBuffer ($elem_shallow_clone : int = 0) {
-    return (R::NDArray::StringBuffer)$self->SUPER::clone($elem_shallow_clone);
-  }
-  
   method elem_to_string : string ($data : StringBuffer[], $data_index : int) {
     
     my $elem = $data->[$data_index];
@@ -67,6 +63,17 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     }
   }
   
+  method elem_cmp : int ($data : StringBuffer[], $a_data_index : int, $b_data_index : int) {
+    
+    my $cmp = $data->[$a_data_index]->to_string cmp $data->[$b_data_index]->to_string;
+    
+    return $cmp;
+  }
+  
+  method clone : R::NDArray::StringBuffer ($elem_shallow_clone : int = 0) {
+    return (R::NDArray::StringBuffer)$self->SUPER::clone($elem_shallow_clone);
+  }
+  
   method slice : R::NDArray::StringBuffer ($vector_indexes : R::NDArray::Int[]) {
     return (R::NDArray::StringBuffer)$self->SUPER::slice($vector_indexes);
   }
@@ -75,11 +82,8 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  method elem_cmp : int ($data : StringBuffer[], $a_data_index : int, $b_data_index : int) {
-    
-    my $cmp = $data->[$a_data_index]->to_string cmp $data->[$b_data_index]->to_string;
-    
-    return $cmp;
+  method slice_data : StringBuffer[] ($data_indexes : int[]) {
+    return (StringBuffer[])$self->SUPER::slice_data($data_indexes);
   }
   
 }
