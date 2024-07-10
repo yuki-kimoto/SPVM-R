@@ -61,8 +61,8 @@ class R::NDArray::Float extends R::NDArray {
     return (R::NDArray::Float)$self->SUPER::clone($shallow);
   }
   
-  method slice : R::NDArray::Float ($vector_indexes : R::NDArray::Int[]) {
-    return (R::NDArray::Float)$self->SUPER::slice($vector_indexes);
+  method slice : R::NDArray::Float ($asix_indexes_product : R::NDArray::Int[]) {
+    return (R::NDArray::Float)$self->SUPER::slice($asix_indexes_product);
   }
   
 }

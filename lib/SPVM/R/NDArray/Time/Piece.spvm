@@ -71,8 +71,8 @@ class R::NDArray::Time::Piece extends R::NDArray::Object {
     return (R::NDArray::Time::Piece)$self->SUPER::clone($shallow);
   }
   
-  method slice : R::NDArray::Time::Piece ($vector_indexes : R::NDArray::Int[]) {
-    return (R::NDArray::Time::Piece)$self->SUPER::slice($vector_indexes);
+  method slice : R::NDArray::Time::Piece ($asix_indexes_product : R::NDArray::Int[]) {
+    return (R::NDArray::Time::Piece)$self->SUPER::slice($asix_indexes_product);
   }
   
 }

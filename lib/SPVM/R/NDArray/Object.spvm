@@ -40,8 +40,8 @@ class R::NDArray::Object extends R::NDArray {
     return (R::NDArray::Object)$self->SUPER::clone($shallow);
   }
   
-  method slice : R::NDArray::Object ($vector_indexes : R::NDArray::Int[]) {
-    return (R::NDArray::Object)$self->SUPER::slice($vector_indexes);
+  method slice : R::NDArray::Object ($asix_indexes_product : R::NDArray::Int[]) {
+    return (R::NDArray::Object)$self->SUPER::slice($asix_indexes_product);
   }
   
 }

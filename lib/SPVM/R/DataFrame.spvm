@@ -199,7 +199,7 @@ class R::DataFrame {
     $self->update_colobjs_indexes_h($col);
   }
   
-  method slice : R::DataFrame ($colnames : string[], $vector_indexes : R::NDArray::Int[]) {
+  method slice : R::DataFrame ($colnames : string[], $asix_indexes_product : R::NDArray::Int[]) {
     
     my $ncol = $self->ncol;
     
@@ -209,7 +209,7 @@ class R::DataFrame {
     for my $colname (@$colnames) {
       my $ndarray = $self->col($colname);
       
-      my $ret_ndarray = $ndarray->slice($vector_indexes);
+      my $ret_ndarray = $ndarray->slice($asix_indexes_product);
       
       $ret_data_frame->insert_col($colname, $ret_ndarray);
     }
