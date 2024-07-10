@@ -136,8 +136,6 @@ If this field is a true value, it indicates L</"dim"> field is read only, otherw
   
   method elem_to_string : string ($data_index : int) { die "Not impelmented."; }
   
-  method elem_to_object : object ($data_index : int) { die "Not impelmented."; }
-  
   method elem_clone : object ($data : object, $data_index : int) { die "Not impelmented."; }
   
 =head1 Well Known Child Classes

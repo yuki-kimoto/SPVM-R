@@ -389,8 +389,6 @@ class R::NDArray {
   
   method elem_to_string : string ($data_index : int) { die "Not impelmented."; }
   
-  method elem_to_object : object ($data_index : int) { die "Not impelmented."; }
-  
   method elem_clone : object ($data : object, $data_index : int) { die "Not impelmented."; }
   
   method slice : R::NDArray ($vector_indexes : R::NDArray::Int[]) {
