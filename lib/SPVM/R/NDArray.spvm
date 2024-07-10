@@ -366,17 +366,12 @@ class R::NDArray {
     
     my $data = $self->{data};
     
-    if ($self->is_any_numeric_ndarray) {
-      Fn->memcpy($clone_data, 0, $data, 0, $elem_size * $length);
-    }
-    else {
-      for (my $i = 0; $i < $length; $i++) {
-        if ($elem_shallow_clone) {
-          $clone_data->(object[])->[$i] = $data->(object[])->[$i];
-        }
-        else {
-          $self->elem_clone($clone_data, $i, $data, $i);
-        }
+    for (my $i = 0; $i < $length; $i++) {
+      if ($elem_shallow_clone) {
+        $self->elem_assign($clone_data, $i, $data, $i);
+      }
+      else {
+        $self->elem_clone($clone_data, $i, $data, $i);
       }
     }
     
