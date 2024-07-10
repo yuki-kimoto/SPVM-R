@@ -36,7 +36,7 @@ class R::NDArray {
     
     my $data = $self->{data};
     
-    $self->check_length($data, $nomalized_dim);
+    R::Util->check_length($data, $nomalized_dim);
     
     $self->{dim} = $nomalized_dim;
   }
@@ -201,7 +201,7 @@ class R::NDArray {
       $data = $self->create_default_data($data_length);
     }
     
-    $self->check_length($data, $dim);
+    R::Util->check_length($data, $dim);
     
     $self->{data} = $data;
     
@@ -352,30 +352,6 @@ class R::NDArray {
     my $expandped_dim = R::Util->expand_dim($dim, $index);
     
     $self->set_dim($expandped_dim);
-  }
-  
-  protected method check_length : void ($data : object, $dim : int[]) {
-    
-    unless ($data) {
-      die "The data \$data must be defined.";
-    }
-    
-    unless (Fn->is_array($data)) {
-      die "The data \$data must be an array.";
-    }
-    
-    unless ($dim) {
-      die "The dimensions \$dim must be defined.";
-    }
-    
-    my $length_from_data = R::Util->_get_array_length($data);
-    
-    my $length_from_dim = R::Util->calc_data_length($dim);
-    
-    unless ($length_from_data == $length_from_dim) {
-      die "The length got from the data \$data must be equal to the length calcurated from the dimensions \$dim.";
-    }
-    
   }
   
   protected method create_default_data : object ($length : int = 0) { die "Not implemented."; }
