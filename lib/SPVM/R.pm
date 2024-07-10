@@ -70,6 +70,8 @@ L<SPVM::R Tutorial|https://github.com/yuki-kimoto/SPVM-R/wiki/SPVM%3A%3AR-Tutori
 
 =item * L<R::NDArray::Short|SPVM::R::NDArray::Short>
 
+=item * L<R::NDArray::Int|SPVM::R::NDArray::Int>
+
 =item * L<R::NDArray::Float|SPVM::R::NDArray::Float>
 
 =item * L<R::NDArray::Double|SPVM::R::NDArray::Double>
@@ -77,8 +79,6 @@ L<SPVM::R Tutorial|https://github.com/yuki-kimoto/SPVM-R/wiki/SPVM%3A%3AR-Tutori
 =item * L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex>
 
 =item * L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>
-
-=item * L<R::NDArray::Int|SPVM::R::NDArray::Int>
 
 =item * L<R::NDArray::Long|SPVM::R::NDArray::Long>
 
