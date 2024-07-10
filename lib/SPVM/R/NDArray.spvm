@@ -724,7 +724,7 @@ class R::NDArray {
     return $elem_type_name;
   }
   
-  method elem_cmp : int ($a_data_index : int, $b_data_index : int) { die "Not implemented."; }
+  method elem_cmp : int ($data : object, $a_data_index : int, $b_data_index : int) { die "Not implemented."; }
   
   method sort_asc : void () {
     
@@ -755,7 +755,7 @@ class R::NDArray {
     my $order_data = $order_ndarray->data;
     
     Sort->sort_int($order_data, [has that : R::NDArray = $self] method : int ($a_data_index : int, $b_data_index : int) {
-      return $self->{that}->elem_cmp($a_data_index, $b_data_index);
+      return $self->{that}->elem_cmp($self->{that}->data, $a_data_index, $b_data_index);
     });
     
     return $order_ndarray;

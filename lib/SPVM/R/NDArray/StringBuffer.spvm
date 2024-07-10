@@ -75,9 +75,7 @@ class R::NDArray::StringBuffer extends R::NDArray::Object {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
-    
-    my $data = $self->data;
+  method elem_cmp : int ($data : StringBuffer[], $a_data_index : int, $b_data_index : int) {
     
     my $cmp = $data->[$a_data_index]->to_string cmp $data->[$b_data_index]->to_string;
     

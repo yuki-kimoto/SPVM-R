@@ -274,9 +274,7 @@ class R::NDArray::Int extends R::NDArray {
     
   }
   
-  method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
-    
-    my $data = $self->data;
+  method elem_cmp : int ($data : int[], $a_data_index : int, $b_data_index : int) {
     
     my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
     

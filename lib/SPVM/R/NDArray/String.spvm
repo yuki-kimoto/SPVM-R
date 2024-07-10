@@ -239,9 +239,7 @@ class R::NDArray::String extends R::NDArray::Object {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
-    
-    my $data = $self->data;
+  method elem_cmp : int ($data : string[], $a_data_index : int, $b_data_index : int) {
     
     my $cmp = $data->[$a_data_index] cmp $data->[$b_data_index];
     

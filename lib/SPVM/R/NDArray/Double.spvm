@@ -221,9 +221,7 @@ class R::NDArray::Double extends R::NDArray {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  method elem_cmp : int ($a_data_index : int, $b_data_index : int) {
-    
-    my $data = $self->data;
+  method elem_cmp : int ($data : double[], $a_data_index : int, $b_data_index : int) {
     
     my $cmp = $data->[$a_data_index] <=> $data->[$b_data_index];
     
