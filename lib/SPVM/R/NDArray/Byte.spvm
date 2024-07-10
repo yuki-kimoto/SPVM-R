@@ -29,7 +29,7 @@ class R::NDArray::Byte extends R::NDArray {
     $self->SUPER::init($options);
   }
   
-  protected method create_default_data : byte[] ($length : int = 0) {
+  method create_default_data : byte[] ($length : int = 0) {
     
     unless ($length >= 0) {
       die "The length \$length must be more than or equal to 0.";
@@ -73,7 +73,7 @@ class R::NDArray::Byte extends R::NDArray {
     }
   }
   
-  protected method slice_data : byte[] ($data_indexes : int[]) {
+  method slice_data : byte[] ($data_indexes : int[]) {
     
     unless ($data_indexes) {
       die "The data indexes \$data_indexes must be defined.";
@@ -90,7 +90,7 @@ class R::NDArray::Byte extends R::NDArray {
     return $ret_data;
   }
   
-  protected precompile method slice_set_data : void ($data_indexes : int[], $data : byte[]) {
+  precompile method slice_set_data : void ($data_indexes : int[], $data : byte[]) {
     
     my $self_data = $self->data;
     

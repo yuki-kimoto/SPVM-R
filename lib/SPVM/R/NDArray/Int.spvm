@@ -204,7 +204,7 @@ class R::NDArray::Int extends R::NDArray {
     return $ret_ndarray;
   }
   
-  protected method slice_data : int[] ($data_indexes : int[]) {
+  method slice_data : int[] ($data_indexes : int[]) {
     
     unless ($data_indexes) {
       die "The data indexes \$data_indexes must be defined.";
@@ -221,7 +221,7 @@ class R::NDArray::Int extends R::NDArray {
     return $ret_data;
   }
   
-  protected precompile method slice_set_data : void ($data_indexes : int[], $data : int[]) {
+  precompile method slice_set_data : void ($data_indexes : int[], $data : int[]) {
     
     my $self_data = $self->data;
     

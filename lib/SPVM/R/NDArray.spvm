@@ -354,7 +354,7 @@ class R::NDArray {
     $self->set_dim($expandped_dim);
   }
   
-  protected method create_default_data : object ($length : int = 0) { die "Not implemented."; }
+  method create_default_data : object ($length : int = 0) { die "Not implemented."; }
   
   method clone : R::NDArray ($elem_shallow_clone : int = 0) {
     
@@ -427,9 +427,9 @@ class R::NDArray {
     $self->slice_set_data($data_indexes, $ndarray->data);
   }
   
-  protected method slice_data : object ($data_indexes : int[]) { die "Not implemented."; }
+  method slice_data : object ($data_indexes : int[]) { die "Not implemented."; }
   
-  protected method slice_set_data : void ($data_indexes : int[], $data : object) { die "Not implemented."; }
+  method slice_set_data : void ($data_indexes : int[], $data : object) { die "Not implemented."; }
   
   private precompile method create_data_indexes : int[] ($vector_indexes : R::NDArray::Int[], $dim : int[]) {
     

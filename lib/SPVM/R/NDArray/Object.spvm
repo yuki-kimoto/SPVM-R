@@ -43,7 +43,7 @@ class R::NDArray::Object extends R::NDArray {
     return (R::NDArray::Object)$self->SUPER::clone($elem_shallow_clone);
   }
   
-  protected method slice_data : object[] ($data_indexes : int[]) {
+  method slice_data : object[] ($data_indexes : int[]) {
     
     unless ($data_indexes) {
       die "The data indexes \$data_indexes must be defined.";
@@ -60,7 +60,7 @@ class R::NDArray::Object extends R::NDArray {
     return $ret_data;
   }
   
-  protected precompile method slice_set_data : void ($data_indexes : int[], $data : object[]) {
+  precompile method slice_set_data : void ($data_indexes : int[], $data : object[]) {
     
     my $self_data = $self->data;
     
@@ -74,7 +74,7 @@ class R::NDArray::Object extends R::NDArray {
     }
   }
   
-  protected method create_default_data : object[] ($length : int = 0) {
+  method create_default_data : object[] ($length : int = 0) {
     
     unless ($length >= 0) {
       die "The length \$length must be more than or equal to 0.";

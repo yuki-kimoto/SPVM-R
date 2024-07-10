@@ -26,7 +26,7 @@ class R::NDArray::Float extends R::NDArray {
     $self->SUPER::init($options);
   }
   
-  protected method create_default_data : float[] ($length : int = 0) {
+  method create_default_data : float[] ($length : int = 0) {
     
     unless ($length >= 0) {
       die "The length \$length must be more than or equal to 0.";
@@ -70,7 +70,7 @@ class R::NDArray::Float extends R::NDArray {
     }
   }
   
-  protected method slice_data : float[] ($data_indexes : int[]) {
+  method slice_data : float[] ($data_indexes : int[]) {
     
     unless ($data_indexes) {
       die "The data indexes \$data_indexes must be defined.";
@@ -87,7 +87,7 @@ class R::NDArray::Float extends R::NDArray {
     return $ret_data;
   }
   
-  protected precompile method slice_set_data : void ($data_indexes : int[], $data : float[]) {
+  precompile method slice_set_data : void ($data_indexes : int[], $data : float[]) {
     
     my $self_data = $self->data;
     
