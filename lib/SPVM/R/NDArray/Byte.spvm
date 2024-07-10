@@ -129,26 +129,4 @@ class R::NDArray::Byte extends R::NDArray {
     $self->SUPER::slice_set($vector_indexes, $ndarray);
   }
   
-  method sort_asc : void () {
-    
-    unless ($self->is_vector) {
-      die "The instance must be a vector.";
-    }
-    
-    my $data = $self->data;
-    
-    Sort->sort_byte_asc($data);
-  }
-  
-  method sort_desc : void () {
-    
-    unless ($self->is_vector) {
-      die "The instance must be a vector.";
-    }
-    
-    my $data = $self->data;
-    
-    Sort->sort_byte_desc($data);
-  }
-
 }
