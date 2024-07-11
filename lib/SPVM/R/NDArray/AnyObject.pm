@@ -64,12 +64,6 @@ C<method elem_clone : void ($dist_data : object[], $dist_data_index : int, $src_
 
 Copies the element $src_data at index $src_data_indext to the element $dist_data at index $dist_data_index.
 
-=head2 elem_cmp
-
-C<method elem_cmp : int ($data : object[], $a_data_index : int, $b_data_index : int);>
-
-Compares the element $data at index $a_data_index and the element $data at index $b_data_index and returns the result.
-
 =head2 clone
 
 C<method clone : L<R::NDArray::AnyObject|SPVM::R::NDArray::AnyObject> ($shallow : int = 0);>
@@ -81,12 +75,6 @@ Same as L<R::NDArray#clone|SPVM::R::NDArray/"clone"> method, but the return type
 C<method slice : L<R::NDArray::AnyObject|SPVM::R::NDArray::AnyObject> ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
 
 Same as L<R::NDArray#slice|SPVM::R::NDArray/"slice"> method, but the return type is different.
-
-=head2 to_int_ndarray
-
-C<method to_int_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
-
-Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Int|SPVM::R::NDArray::Int> and returns it.
 
 =head1 Copyright & License
 
