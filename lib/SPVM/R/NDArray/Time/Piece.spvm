@@ -80,4 +80,22 @@ class R::NDArray::Time::Piece extends R::NDArray {
     return (R::NDArray::Time::Piece)$self->SUPER::slice($asix_indexes_product);
   }
   
+  precompile method to_long_ndarray : R::NDArray::Long () {
+    
+    my $length = $self->length;
+    
+    my $dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Long->c(undef, $dim);
+    
+    my $data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $data->[$i]->epoch;
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
