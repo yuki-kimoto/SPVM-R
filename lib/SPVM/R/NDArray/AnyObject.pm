@@ -1,4 +1,4 @@
-package SPVM::R::NDArray::Object;
+package SPVM::R::NDArray::AnyObject;
 
 
 
@@ -6,17 +6,17 @@ package SPVM::R::NDArray::Object;
 
 =head1 Name
 
-SPVM::R::NDArray::Object - N-Dimensional Array of object Type.
+SPVM::R::NDArray::AnyObject - N-Dimensional Array of object Type.
 
 =head1 Description
 
-R::NDArray::Object class in L<SPVM> represents n-dimensional array of object type.
+R::NDArray::AnyObject class in L<SPVM> represents n-dimensional array of object type.
 
 =head1 Usage
 
-  use R::NDArray::Object;
+  use R::NDArray::AnyObject;
   
-  my $ndarray = R::NDArray::Object->new({data => [(object)1, 2, 3, 4, 5, 6], dim => [3, 2]});
+  my $ndarray = R::NDArray::AnyObject->new({data => [(object)1, 2, 3, 4, 5, 6], dim => [3, 2]});
 
 =head1 Super Class
 
@@ -32,9 +32,9 @@ Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type i
 
 =head1 Class Methods
 
-C<static method new : L<R::NDArray::Object|SPVM::R::NDArray::Object> ($options : object[] = undef);>
+C<static method new : L<R::NDArray::AnyObject|SPVM::R::NDArray::AnyObject> ($options : object[] = undef);>
 
-Creates a new L<R::NDArray::Object|SPVM::R::NDArray::Object> and returns it.
+Creates a new L<R::NDArray::AnyObject|SPVM::R::NDArray::AnyObject> and returns it.
 
 This method calls L<R::NDArray#init|SPVM::R::NDArray/"init"> method given the options $options.
 
@@ -72,13 +72,13 @@ Compares the element $data at index $a_data_index and the element $data at index
 
 =head2 clone
 
-C<method clone : L<R::NDArray::Object|SPVM::R::NDArray::Object> ($shallow : int = 0);>
+C<method clone : L<R::NDArray::AnyObject|SPVM::R::NDArray::AnyObject> ($shallow : int = 0);>
 
 Same as L<R::NDArray#clone|SPVM::R::NDArray/"clone"> method, but the return type is different.
 
 =head2 slice
 
-C<method slice : L<R::NDArray::Object|SPVM::R::NDArray::Object> ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
+C<method slice : L<R::NDArray::AnyObject|SPVM::R::NDArray::AnyObject> ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
 
 Same as L<R::NDArray#slice|SPVM::R::NDArray/"slice"> method, but the return type is different.
 

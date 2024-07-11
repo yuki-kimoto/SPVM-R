@@ -98,7 +98,7 @@ Slices this n-dimensional array using the cartesian product of asix indexes $asi
 
 =item * L<R::NDArray::Long|SPVM::R::NDArray::Long>
 
-=item * L<R::NDArray::Object|SPVM::R::NDArray::Object>
+=item * L<R::NDArray::AnyObject|SPVM::R::NDArray::AnyObject>
 
 =item * L<R::NDArray::String|SPVM::R::NDArray::String>
 

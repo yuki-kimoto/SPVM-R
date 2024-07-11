@@ -1,7 +1,7 @@
 # Copyright (c) 2024 Yuki Kimoto
 # MIT License
 
-class R::NDArray::Object extends R::NDArray {
+class R::NDArray::AnyObject extends R::NDArray {
   
   # Fields
   method data : object[] () {
@@ -10,9 +10,9 @@ class R::NDArray::Object extends R::NDArray {
   }
   
   # Class Methods
-  static method new : R::NDArray::Object ($options : object[] = undef) {
+  static method new : R::NDArray::AnyObject ($options : object[] = undef) {
     
-    my $self = new R::NDArray::Object;
+    my $self = new R::NDArray::AnyObject;
     
     $self->init($options);
     
@@ -36,12 +36,12 @@ class R::NDArray::Object extends R::NDArray {
     $dist_data->[$dist_data_index] = $src_data->[$src_data_index];
   }
   
-  method clone : R::NDArray::Object ($shallow : int = 0) {
-    return (R::NDArray::Object)$self->SUPER::clone($shallow);
+  method clone : R::NDArray::AnyObject ($shallow : int = 0) {
+    return (R::NDArray::AnyObject)$self->SUPER::clone($shallow);
   }
   
-  method slice : R::NDArray::Object ($asix_indexes_product : R::NDArray::Int[]) {
-    return (R::NDArray::Object)$self->SUPER::slice($asix_indexes_product);
+  method slice : R::NDArray::AnyObject ($asix_indexes_product : R::NDArray::Int[]) {
+    return (R::NDArray::AnyObject)$self->SUPER::slice($asix_indexes_product);
   }
   
 }
