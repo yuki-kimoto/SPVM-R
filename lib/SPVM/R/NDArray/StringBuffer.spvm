@@ -73,7 +73,7 @@ class R::NDArray::StringBuffer extends R::NDArray {
       $a_string = $a_elem->to_string;
     }
     
-    my $b_elem =$data->[$b_data_index];
+    my $b_elem = $data->[$b_data_index];
     my $b_string = (string)undef;
     if ($b_elem) {
       $b_string = $b_elem->to_string;
