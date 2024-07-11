@@ -6,18 +6,27 @@ package SPVM::R::NDArray::FloatComplex;
 
 =head1 Name
 
-SPVM::R::NDArray::FloatComplex - N-Dimensional Array of Complex_2f Type.
+SPVM::R::NDArray::FloatComplex - N-Dimensional Array of Float Complex Type.
 
 =head1 Description
 
-R::NDArray::FloatComplex class in L<SPVM> represents n-dimensional array of C<Complex_2f> type.
+R::NDArray::FloatComplex class in L<SPVM> represents n-dimensional array of float complex L<Complex_2f|SPVM::Complex_2f> type.
 
 =head1 Usage
 
   use R::NDArray::FloatComplex;
   use Math;
   
-  my $ndarray = R::NDArray::FloatComplex->new({data => [(Complex_2f)Math->complexf(1, 0), Math->complexf(2, 0), Math->complexf(3, 0), Math->complexf(4, 0), Math->complexf(5, 0), Math->complexf(6, 0)], dim => [3, 2]});
+  my $data = [
+    Math->complexf(1, 0),
+    Math->complexf(2, 0),
+    Math->complexf(3, 0),
+    Math->complexf(4, 0),
+    Math->complexf(5, 0),
+    Math->complexf(6, 0)
+  ];
+  
+  my $ndarray = R::NDArray::FloatComplex->new({data => $data, dim => [3, 2]});
 
 =head1 Super Class
 
@@ -76,6 +85,12 @@ Same as L<R::NDArray#clone|SPVM::R::NDArray/"clone"> method, but the return type
 C<method slice : L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex> ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
 
 Same as L<R::NDArray#slice|SPVM::R::NDArray/"slice"> method, but the return type is different.
+
+=head2 to_double_complex_ndarray
+
+C<method to_double_complex_ndarray : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex> and returns it.
 
 =head1 Copyright & License
 
