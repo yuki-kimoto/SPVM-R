@@ -27,7 +27,7 @@ L<R::NDArray|SPVM::R::NDArray>
 
 =head2 data
 
-C<method data : Complex_2f[] ();>
+C<method data : L<Complex_2f|SPVM::Complex_2f>[] ();>
 
 Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type is different.
 
@@ -43,31 +43,31 @@ This method calls L<R::NDArray#init|SPVM::R::NDArray/"init"> method given the op
 
 =head2 create_default_data
 
-C<method create_default_data : Complex_2f[] ($length : int = 0);>
+C<method create_default_data : L<Complex_2f|SPVM::Complex_2f>[] ($length : int = 0);>
 
 Creates a default data given the length $length and returns it.
 
 =head2 elem_to_string
 
-C<method elem_to_string : string ($data : Complex_2f[], $data_index : int);>
+C<method elem_to_string : string ($data : L<Complex_2f|SPVM::Complex_2f>[], $data_index : int);>
 
 Converts an element $data at index $data_index to a string and returns it.
 
 =head2 elem_assign
 
-C<method elem_assign : void ($dist_data : Complex_2f[], $dist_data_index : int, $src_data : Complex_2f[], $src_data_index : int);>
+C<method elem_assign : void ($dist_data : L<Complex_2f|SPVM::Complex_2f>[], $dist_data_index : int, $src_data : L<Complex_2f|SPVM::Complex_2f>[], $src_data_index : int);>
 
 Assigns the element $src_data at index $src_data_index to the element $dist_data at index $dist_data_index.
 
 =head2 elem_clone
 
-C<method elem_clone : void ($dist_data : Complex_2f[], $dist_data_index : int, $src_data : Complex_2f[], $src_data_index : int);>
+C<method elem_clone : void ($dist_data : L<Complex_2f|SPVM::Complex_2f>[], $dist_data_index : int, $src_data : L<Complex_2f|SPVM::Complex_2f>[], $src_data_index : int);>
 
 Copies the element $src_data at index $src_data_indext to the element $dist_data at index $dist_data_index.
 
 =head2 elem_cmp
 
-C<method elem_cmp : int ($data : Complex_2f[], $a_data_index : int, $b_data_index : int);>
+C<method elem_cmp : int ($data : L<Complex_2f|SPVM::Complex_2f>[], $a_data_index : int, $b_data_index : int);>
 
 Compares the element $data at index $a_data_index and the element $data at index $b_data_index and returns the result.
 
