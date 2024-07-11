@@ -65,12 +65,6 @@ C<method elem_clone : void ($dist_data : L<Complex_2f|SPVM::Complex_2f>[], $dist
 
 Copies the element $src_data at index $src_data_indext to the element $dist_data at index $dist_data_index.
 
-=head2 elem_cmp
-
-C<method elem_cmp : int ($data : L<Complex_2f|SPVM::Complex_2f>[], $a_data_index : int, $b_data_index : int);>
-
-Compares the element $data at index $a_data_index and the element $data at index $b_data_index and returns the result.
-
 =head2 clone
 
 C<method clone : L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex> ($shallow : int = 0);>
