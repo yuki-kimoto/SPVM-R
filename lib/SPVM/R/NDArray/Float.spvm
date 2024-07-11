@@ -65,4 +65,77 @@ class R::NDArray::Float extends R::NDArray {
     return (R::NDArray::Float)$self->SUPER::slice($asix_indexes_product);
   }
   
+  precompile method to_int_ndarray : R::NDArray::Int () {
+    
+    my $length = $self->length;
+    
+    my $dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $dim);
+    
+    my $data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (int)$data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_long_ndarray : R::NDArray::Long () {
+    
+    my $length = $self->length;
+    
+    my $dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Long->c(undef, $dim);
+    
+    my $data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (long)$data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_double_ndarray : R::NDArray::Double () {
+    
+    my $length = $self->length;
+    
+    my $dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::Double->c(undef, $dim);
+    
+    my $data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = (double)$data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile method to_float_complex_ndarray : R::NDArray::FloatComplex () {
+    
+    my $length = $self->length;
+    
+    my $dim = $self->dim;
+    
+    my $ret_ndarray = R::OP::FloatComplex->c(undef, $dim);
+    
+    my $data = $self->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i]{re} = (float)$data->[$i];
+      $ret_data->[$i]{im} = 0f;
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }

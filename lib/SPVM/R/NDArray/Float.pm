@@ -82,6 +82,30 @@ C<method slice : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($asix_indexes_pro
 
 Same as L<R::NDArray#slice|SPVM::R::NDArray/"slice"> method, but the return type is different.
 
+=head2 to_int_ndarray
+
+C<method to_int_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Int|SPVM::R::NDArray::Int> and returns it.
+
+=head2 to_long_ndarray
+
+C<method to_long_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Long|SPVM::R::NDArray::Long> and returns it.
+
+=head2 to_double_ndarray
+
+C<method to_double_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Double|SPVM::R::NDArray::Double> and returns it.
+
+=head2 to_float_complex_ndarray
+
+C<method to_float_complex_ndarray : L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex> and returns it.
+
 =head1 Copyright & License
 
 Copyright (c) 2024 Yuki Kimoto
