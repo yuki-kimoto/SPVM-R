@@ -36,7 +36,7 @@ C<static method new : L<R::NDArray::Short|SPVM::R::NDArray::Short> ($options : o
 
 Creates a new L<R::NDArray::Short|SPVM::R::NDArray::Short> and returns it.
 
-This method calls L<R::NDArray#new|SPVM::R::NDArray/"new"> method given the options $options.
+This method calls L<R::NDArray#init|SPVM::R::NDArray/"init"> method given the options $options.
 
 =head1 Instance Methods
 
