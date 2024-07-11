@@ -135,7 +135,7 @@ class R::DataFrame {
     }
     
     unless ($ndarray) {
-      die "The n-dimension array \$ndarray must be defined.";
+      die "The n-dimensional array \$ndarray must be defined.";
     }
     
     my $exists_col = $self->exists_col($colname);
@@ -148,7 +148,7 @@ class R::DataFrame {
       my $nrow = $self->nrow;
       
       unless (R::OP->equals_dim($ndarray, $self->col_by_index(0))) {
-        die "The dimension of the n-dimension array \$ndarray must be equal to the dimension of the n-dimension array which is the invocant.";
+        die "The dimension of the n-dimensional array \$ndarray must be equal to the dimension of the n-dimensional array which is the invocant.";
       }
     }
     
@@ -370,7 +370,7 @@ class R::DataFrame {
     my $first_ndarray = $self->col_by_index(0);
     
     unless ($first_ndarray->is_vector) {
-      die "The n-dimension array of the instance must be a vector.";
+      die "The n-dimensional array of the instance must be a vector.";
     }
     
     my $nrow = $self->nrow;

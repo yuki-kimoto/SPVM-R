@@ -122,7 +122,7 @@ For example, C<[0, 1, 0, 1, 1]> is converted to C<[1, 3, 4]>.
 
 Exceptions: 
 
-This n-dimension array must be a vector. Otherwise an exception is thrown.
+This n-dimensional array must be a vector. Otherwise an exception is thrown.
 
 =head1 Copyright & License
 
