@@ -95,7 +95,7 @@ class R::NDArray::String extends R::NDArray {
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (int)$data->[$i];
+      $ret_data->[$i] = Fn->to_int($data->[$i]);
     }
     
     return $ret_ndarray;
@@ -113,7 +113,7 @@ class R::NDArray::String extends R::NDArray {
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (long)$data->[$i];
+      $ret_data->[$i] = Fn->to_long($data->[$i]);
     }
     
     return $ret_ndarray;
@@ -131,7 +131,7 @@ class R::NDArray::String extends R::NDArray {
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (float)$data->[$i];
+      $ret_data->[$i] =Fn->to_float($data->[$i]);
     }
     
     return $ret_ndarray;
@@ -149,18 +149,10 @@ class R::NDArray::String extends R::NDArray {
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (double)$data->[$i];
+      $ret_data->[$i] = Fn->to_double($data->[$i]);
     }
     
     return $ret_ndarray;
-  }
-  
-  precompile method to_float_complex_ndarray : R::NDArray::FloatComplex () {
-    die "This method will be implemented.";
-  }
-  
-  precompile method to_double_complex_ndarray : R::NDArray::DoubleComplex () {
-    die "This method will be implemented.";
   }
   
   precompile method to_string_buffer_ndarray : R::NDArray::StringBuffer () {
@@ -175,7 +167,14 @@ class R::NDArray::String extends R::NDArray {
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = StringBuffer->new($data->[$i]);
+      my $elem = $data->[$i];
+      
+      if ($elem) {
+        StringBuffer->new($data->[$i]);
+      }
+      else {
+        $ret_data->[$i] = undef;
+      }
     }
     
     return $ret_ndarray;
@@ -193,8 +192,10 @@ class R::NDArray::String extends R::NDArray {
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      if ($data->[$i]) {
-        if (length $data->[$i] == 10) {
+      my $elem = $data->[$i];
+      
+      if ($elem) {
+        if (length $elem == 10) {
           
           my $tp = (Time::Piece)undef;
           
@@ -202,7 +203,7 @@ class R::NDArray::String extends R::NDArray {
           
           $ret_data->[$i] = $tp;
         }
-        elsif (length $data->[$i] == 19) {
+        elsif (length $elem == 19) {
           
           my $tp = (Time::Piece)undef;
           
@@ -211,7 +212,7 @@ class R::NDArray::String extends R::NDArray {
           $ret_data->[$i] = $tp;
         }
         else {
-          $ret_data->[$i] = undef;
+          die "The string \"$elem\" is invalid date or datetime format.";
         }
       }
       else {

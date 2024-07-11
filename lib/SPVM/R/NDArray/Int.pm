@@ -84,7 +84,7 @@ Same as L<R::NDArray#slice|SPVM::R::NDArray/"slice"> method, but the return type
 
 =head2 to_byte_ndarray
 
-C<method to_byte_ndarray : R::NDArray::Byte ();>
+C<method to_byte_ndarray : L<R::NDArray::Byte|SPVM::R::NDArray::Byte> ();>
 
 Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Byte|SPVM::R::NDArray::Byte> and returns it.
 
