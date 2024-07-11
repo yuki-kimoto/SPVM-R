@@ -172,18 +172,6 @@ class R::DataFrame {
     $self->update_colobjs_indexes_h($col);
   }
   
-  private method update_colobjs_indexes_h : void ($begin_col : int) {
-    
-    my $colobjs_list = $self->{colobjs_list};
-    
-    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
-    for (my $i = $begin_col; $i < $colobjs_list->length; $i++) {
-      my $colobj = (R::DataFrame::Column)$colobjs_list->get($i);
-      my $colname = $colobj->{name};
-      $colobjs_indexes_h->set($colname, $i);
-    }
-  }
-  
   method remove_col : void ($colname : string) {
     
     my $col = $self->colindex($colname);
@@ -197,24 +185,6 @@ class R::DataFrame {
     $colobjs_indexes_h->delete($colname);
     
     $self->update_colobjs_indexes_h($col);
-  }
-  
-  method slice : R::DataFrame ($colnames : string[], $asix_indexes_product : R::NDArray::Int[]) {
-    
-    my $ncol = $self->ncol;
-    
-    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
-    
-    my $ret_data_frame = R::DataFrame->new;
-    for my $colname (@$colnames) {
-      my $ndarray = $self->col($colname);
-      
-      my $ret_ndarray = $ndarray->slice($asix_indexes_product);
-      
-      $ret_data_frame->insert_col($colname, $ret_ndarray);
-    }
-    
-    return $ret_data_frame;
   }
   
   method to_string : string () {
@@ -289,6 +259,24 @@ class R::DataFrame {
     return $string;
   }
   
+  method slice : R::DataFrame ($colnames : string[], $asix_indexes_product : R::NDArray::Int[]) {
+    
+    my $ncol = $self->ncol;
+    
+    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
+    
+    my $ret_data_frame = R::DataFrame->new;
+    for my $colname (@$colnames) {
+      my $ndarray = $self->col($colname);
+      
+      my $ret_ndarray = $ndarray->slice($asix_indexes_product);
+      
+      $ret_data_frame->insert_col($colname, $ret_ndarray);
+    }
+    
+    return $ret_data_frame;
+  }
+  
   method set_order : void ($indexes_ndarray : R::NDArray::Int) {
     
     my $ncol = $self->ncol;
@@ -339,18 +327,9 @@ class R::DataFrame {
     return $nrow;
   }
   
-  method sort_asc : void ($colnames : string[]) {
+  method sort : void ($colnames_with_order_by : string[]) {
     
-    my $order_ndarray = $self->order($colnames);
-    
-    $self->set_order($order_ndarray);
-  }
-  
-  method sort_desc : void ($colnames : string[]) {
-    
-    my $order_ndarray = $self->order($colnames);
-    
-    &reverse_int($order_ndarray->data);
+    my $order_ndarray = $self->order($colnames_with_order_by);
     
     $self->set_order($order_ndarray);
   }
@@ -444,7 +423,8 @@ class R::DataFrame {
     
     return $order_ndarray;
   }
-
+  
+  # Private Class Methods
   private static method reverse_int : void ($array : int[]) {
     
     unless ($array) {
@@ -459,5 +439,19 @@ class R::DataFrame {
       $array->[$length - $i - 1] = $temp;
     }
   }
+  
+  # Private Static Methods
+  private method update_colobjs_indexes_h : void ($begin_col : int) {
+    
+    my $colobjs_list = $self->{colobjs_list};
+    
+    my $colobjs_indexes_h = $self->{colobjs_indexes_h};
+    for (my $i = $begin_col; $i < $colobjs_list->length; $i++) {
+      my $colobj = (R::DataFrame::Column)$colobjs_list->get($i);
+      my $colname = $colobj->{name};
+      $colobjs_indexes_h->set($colname, $i);
+    }
+  }
+  
 }
 
