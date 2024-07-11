@@ -28,7 +28,7 @@ L<R::NDArray|SPVM::R::NDArray>
 
 C<method data : byte[] ();>
 
-Returns the value of L<R::NDArray#data|SPVM::R::NDArray/"data"> field.
+Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type is different.
 
 =head1 Class Methods
 
