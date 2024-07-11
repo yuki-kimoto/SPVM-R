@@ -82,6 +82,54 @@ C<method slice : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($asix_indexes_product
 
 Same as L<R::NDArray#slice|SPVM::R::NDArray/"slice"> method, but the return type is different.
 
+=head2 to_byte_ndarray
+
+C<method to_byte_ndarray : R::NDArray::Byte ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Byte|SPVM::R::NDArray::Byte> and returns it.
+
+=head2 to_short_ndarray
+
+C<method to_short_ndarray : L<R::NDArray::Short|SPVM::R::NDArray::Short> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Short|SPVM::R::NDArray::Short> and returns it.
+
+=head2 to_long_ndarray
+
+C<method to_long_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Long|SPVM::R::NDArray::Long> and returns it.
+
+=head2 to_float_ndarray
+
+C<method to_float_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Float|SPVM::R::NDArray::Float> and returns it.
+
+=head2 to_double_ndarray
+
+C<method to_double_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Double|SPVM::R::NDArray::Double> and returns it.
+
+=head2 to_string_ndarray
+
+C<method to_string_ndarray : L<R::NDArray::String|SPVM::R::NDArray::String> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::String|SPVM::R::NDArray::String> and returns it.
+
+=head2 to_indexes
+
+C<method to_indexes : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
+
+Creates a list of indexes whose elements are true values, convert it to an N-dimensional array that is a vector, and return it.
+
+For example, C<[0, 1, 0, 1, 1]> is converted to C<[1, 3, 4]>.
+
+Exceptions: 
+
+This n-dimension array must be a vector. Otherwise an exception is thrown.
+
 =head1 Copyright & License
 
 Copyright (c) 2024 Yuki Kimoto
