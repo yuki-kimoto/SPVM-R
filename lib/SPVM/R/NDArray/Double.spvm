@@ -119,25 +119,6 @@ class R::NDArray::Double extends R::NDArray {
     return $ret_ndarray;
   }
   
-  precompile method to_float_complex_ndarray : R::NDArray::FloatComplex () {
-    
-    my $length = $self->length;
-    
-    my $dim = $self->dim;
-    
-    my $ret_ndarray = R::OP::FloatComplex->c(undef, $dim);
-    
-    my $data = $self->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i]{re} = (float)$data->[$i];
-      $ret_data->[$i]{im} = 0f;
-    }
-    
-    return $ret_ndarray;
-  }
-  
   precompile method to_double_complex_ndarray : R::NDArray::DoubleComplex () {
     
     my $length = $self->length;
