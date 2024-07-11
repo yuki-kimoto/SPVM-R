@@ -66,7 +66,20 @@ class R::NDArray::StringBuffer extends R::NDArray {
   
   method elem_cmp : int ($data : StringBuffer[], $a_data_index : int, $b_data_index : int) {
     
-    my $cmp = $data->[$a_data_index]->to_string cmp $data->[$b_data_index]->to_string;
+    my $a_elem = $data->[$a_data_index];
+    
+    my $a_string = (string)undef;
+    if ($a_elem) {
+      $a_string = $a_elem->to_string;
+    }
+    
+    my $b_elem =$data->[$b_data_index];
+    my $b_string = (string)undef;
+    if ($b_elem) {
+      $b_string = $b_elem->to_string;
+    }
+    
+    my $cmp = $a_string cmp $b_string;
     
     return $cmp;
   }
