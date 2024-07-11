@@ -3,6 +3,9 @@
 
 class R::NDArray::Int extends R::NDArray {
   
+  use R::OP::Byte;
+  use R::OP::Short;
+  
   # Fields
   method data : int[] () {
     
@@ -71,7 +74,7 @@ class R::NDArray::Int extends R::NDArray {
     
     my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Long->c(undef, $dim);
+    my $ret_ndarray = R::OP::Byte->c(undef, $dim);
     
     my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
@@ -89,7 +92,7 @@ class R::NDArray::Int extends R::NDArray {
     
     my $dim = $self->dim;
     
-    my $ret_ndarray = R::OP::Long->c(undef, $dim);
+    my $ret_ndarray = R::OP::Short->c(undef, $dim);
     
     my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
@@ -150,24 +153,6 @@ class R::NDArray::Int extends R::NDArray {
     
     for (my $i = 0; $i < $length; $i++) {
       $ret_data->[$i] = (double)$data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile method to_string_ndarray : R::NDArray::String () {
-    
-    my $length = $self->length;
-    
-    my $dim = $self->dim;
-    
-    my $ret_ndarray = R::OP::String->c(undef, $dim);
-    
-    my $data = $self->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (string)$data->[$i];
     }
     
     return $ret_ndarray;

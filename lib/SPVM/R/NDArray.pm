@@ -78,6 +78,12 @@ C<method slice : object ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDAr
 
 Slices this n-dimensional array using the cartesian product of asix indexes $asix_indexes_product and returns it.
 
+=head2 to_string_ndarray
+
+C<method to_string_ndarray : L<R::NDArray::String|SPVM::R::NDArray::String> ();>
+
+Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::String|SPVM::R::NDArray::String> and returns it.
+
 =head1 Well Known Child Classes
 
 =over 2

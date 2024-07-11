@@ -112,12 +112,6 @@ C<method to_double_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double> ();>
 
 Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Double|SPVM::R::NDArray::Double> and returns it.
 
-=head2 to_string_ndarray
-
-C<method to_string_ndarray : L<R::NDArray::String|SPVM::R::NDArray::String> ();>
-
-Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::String|SPVM::R::NDArray::String> and returns it.
-
 =head2 to_indexes
 
 C<method to_indexes : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
