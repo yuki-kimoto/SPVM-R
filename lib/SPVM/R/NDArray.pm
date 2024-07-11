@@ -66,6 +66,18 @@ C<static method new : R::NDArray ($options : object[] = undef);>
 
 =head1 Instance Methods
 
+=head2 clone
+
+C<method clone : object ($shallow : int = 0);>
+
+Clones this n-dimensional array and returns it.
+
+=head2 slice
+
+C<method slice : object ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
+
+Slices this n-dimensional array using the cartesian product of asix indexes $asix_indexes_product and returns it.
+
 =head1 Well Known Child Classes
 
 =over 2
