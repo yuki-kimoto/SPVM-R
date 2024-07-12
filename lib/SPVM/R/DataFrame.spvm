@@ -96,6 +96,11 @@ class R::DataFrame {
     return $ndarray;
   }
   
+  method first_col : R::NDArray () {
+    
+    return $self->col_by_index(0);
+  }
+  
   method col : R::NDArray ($colname : string) {
     
     unless ($self->exists_col($colname)) {
@@ -185,6 +190,45 @@ class R::DataFrame {
     $colobjs_indexes_h->delete($colname);
     
     $self->update_colobjs_indexes_h($col);
+  }
+  
+  method ncol : int () {
+    
+    my $colobjs_list = $self->{colobjs_list};
+    
+    my $ncol = $colobjs_list->length;
+    
+    return $ncol;
+  }
+  
+  method nrow : int () {
+    
+    my $ncol = $self->ncol;
+    
+    my $nrow = 0;
+    if ($ncol > 0) {
+      $nrow = $self->col_by_index(0)->length;
+    }
+    
+    return $nrow;
+  }
+  
+  method clone : R::DataFrame ($shallow : int = 0) {
+    
+    my $ncol = $self->ncol;
+    
+    my $colnames = $self->colnames;
+    
+    my $ret_data_frame = R::DataFrame->new;
+    for my $colname (@$colnames) {
+      my $ndarray = $self->col($colname);
+      
+      my $ret_ndarray = $ndarray->clone($shallow);
+      
+      $ret_data_frame->insert_col($colname, $ndarray);
+    }
+    
+    return $ret_data_frame;
   }
   
   method to_string : string () {
@@ -286,45 +330,6 @@ class R::DataFrame {
       
       $ndarray->set_order($indexes_ndarray);
     }
-  }
-  
-  method clone : R::DataFrame ($shallow : int = 0) {
-    
-    my $ncol = $self->ncol;
-    
-    my $colnames = $self->colnames;
-    
-    my $ret_data_frame = R::DataFrame->new;
-    for my $colname (@$colnames) {
-      my $ndarray = $self->col($colname);
-      
-      my $ret_ndarray = $ndarray->clone($shallow);
-      
-      $ret_data_frame->insert_col($colname, $ndarray);
-    }
-    
-    return $ret_data_frame;
-  }
-  
-  method ncol : int () {
-    
-    my $colobjs_list = $self->{colobjs_list};
-    
-    my $ncol = $colobjs_list->length;
-    
-    return $ncol;
-  }
-  
-  method nrow : int () {
-    
-    my $ncol = $self->ncol;
-    
-    my $nrow = 0;
-    if ($ncol > 0) {
-      $nrow = $self->col_by_index(0)->length;
-    }
-    
-    return $nrow;
   }
   
   method sort : void ($colnames_with_order_by : string[]) {

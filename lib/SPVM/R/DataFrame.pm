@@ -70,6 +70,10 @@ C<method colindex : int ($colname : string);>
 
 C<method col_by_index : L<R::NDArray|SPVM::R::NDArray> ($col : int);>
 
+=head2 first_col
+
+C<method first_col : L<R::NDArray|SPVM::R::NDArray> ();>
+
 =head2 col
 
 C<method col : L<R::NDArray|SPVM::R::NDArray> ($colname : string);>
@@ -82,9 +86,21 @@ C<method set_col : void ($colname : string, $ndarray : L<R::NDArray|SPVM::R::NDA
 
 C<method insert_col : void ($colname : string, $ndarray : L<R::NDArray|SPVM::R::NDArray>, $before_colname : string = undef);>
 
+=head2 ncol
+
+C<method ncol : int ();>
+
+=head2 nrow
+
+C<method nrow : int ();>
+
 =head2 remove_col
 
 C<method remove_col : void ($colname : string);>
+
+=head2 clone
+
+C<method clone : L<R::DataFrame|SPVM::R::DataFrame> ($shallow : int = 0);>
 
 =head2 to_string
 
@@ -97,18 +113,6 @@ C<method slice : L<R::DataFrame|SPVM::R::DataFrame> ($colnames : string[], $asix
 =head2 set_order
 
 C<method set_order : void ($indexes_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
-
-=head2 clone
-
-C<method clone : L<R::DataFrame|SPVM::R::DataFrame> ($shallow : int = 0);>
-
-=head2 ncol
-
-C<method ncol : int ();>
-
-=head2 nrow
-
-C<method nrow : int ();>
 
 =head2 sort
 
