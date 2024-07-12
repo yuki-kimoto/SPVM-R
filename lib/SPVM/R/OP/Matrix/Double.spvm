@@ -44,6 +44,14 @@ class R::OP::Matrix::Double {
     return $ret_ndarray;
   }
   
+  static method add : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    return R::OP::Double->add($x_ndarray, $y_ndarray);
+  }
+  
+  static method sub : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    return R::OP::Double->sub($x_ndarray, $y_ndarray);
+  }
+  
   static method mul : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
