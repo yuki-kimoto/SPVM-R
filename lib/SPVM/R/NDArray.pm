@@ -125,33 +125,143 @@ Sets L</"dim_read_only"> field to 1.
 
 C<method nrow : int ();>
 
+Returns the number of rows. This is the element of L</"dim"> field at index 0.
+
+This instance must be a matrix L</"is_matrix"> method returns a true value.
+
+Exceptions:
+
 =head2 ncol
 
 C<method ncol : int ();>
+
+This instance must be a matrix. Otherwise an exception is thrown.
+
+Returns the number of columns.
+
+If the length of L</"dim"> field is greater than or equal to 2, the number of columns is the element of L</"dim"> field at index 1, otherwise the number of columns is 1.
+
+This instance must be a matrix L</"is_matrix"> method returns a true value.
+
+Exceptions:
+
+This instance must be a matrix. Otherwise an exception is thrown.
 
 =head2 length
 
 C<method length : int ();>
 
+Culcurates the array length of L</"data"> field by L<R::Util#calc_data_length|SPVM::R::Util/"calc_data_length"> method and returns it.
+
 =head2 is_empty
 
 C<method is_empty : int ();>
+
+If the length of L</"dim"> field is equal to 0, returns 1, otherwise returns 0.
 
 =head2 is_scalar
 
 C<method is_scalar : int ();>
 
+Checks if this instance can be treated as a scalar.
+
+If the length of L</"dim"> field is greater than or equal to 1 and the data length calcureated by L<R::Util#calc_data_length|SPVM::R::Util/"calc_data_length"> method is 1, returns 1, otherwise return 0.
+
+Examples Where The Condition Is Met:
+
+  # OK dim
+  [1]
+  
+  [1, 1]
+  
+  [1, 1, 1]
+  
+  # Not OK dim
+  []
+  [2]
+  [1, 2]
+
 =head2 is_vector
 
 C<method is_vector : int ();>
+
+Checks if this instance can be treated as a vector.
+
+If the length of L</"dim"> field is greater than or equal to 1 and the element of L</"dim"> field at index 0 is the same as the data length calcureated by L<R::Util#calc_data_length|SPVM::R::Util/"calc_data_length"> method, returns 1, otherwise return 0.
+
+Examples Where The Condition Is Met:
+
+  # OK dim
+  [1]
+  
+  [1, 1]
+  
+  [1, 1, 1]
+  
+  [2]
+  
+  [2, 1]
+  
+  [2, 1, 1]
+  
+  # Not OK dim
+  []
+  [2, 2]
+  [1, 2]
 
 =head2 is_matrix
 
 C<method is_matrix : int ();>
 
+Checks if this instance can be treated as a matrix.
+
+Implemntation:
+
+$dim : L</"dim"> field.
+
+$dim_length : the length of $dim.
+
+$legnth : the data length calcureated by L<R::Util#calc_data_length|SPVM::R::Util/"calc_data_length"> method.
+
+If $dim_length is not greater than or equal to 1, this method returns 0.
+
+$nrow : numbers of rows. this is $dim at index 0.
+
+$ncol : numbers of columns. If $dim_length is equal to 1, this is 0. Otherwise this is $dim at index 1.
+
+If $nrow multiplied by $ncol is the same as $length, this method returns 1, otherwise returns 0.
+
+Examples Where The Condition Is Met:
+
+  # OK dim
+  [3, 2]
+  
+  [3, 2, 1]
+  
+  [2]
+  
+  [2, 1]
+  
+  [2, 1, 1]
+  
+  [1]
+  
+  [1, 1]
+  
+  [1, 1, 1]
+  
+  # Not OK dim
+  []
+  [1, 1, 3]
+  [1, 2, 3]
+
 =head2 is_square_matrix
 
 C<method is_square_matrix : int ();>
+
+Checks if this instance can be treated as a square matrix.
+
+If this instance is a matrix L</"is_matrix"> method returns a true value and the return value of L</"nrow"> is equal to the return value of L</"ncol">, returns 1, otherwise returns 0.
 
 =head2 drop_dim
 
