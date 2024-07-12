@@ -15,9 +15,31 @@ The R::OP class in L<SPVM> has methods for operations for L<R::NDArray|SPVM::R::
 =head1 Usage
 
   use R::OP;
+  use R::IO::Int as IOP;
+  
+  my $ndarray1 = IOP->c([1, 2, 3]);
+  
+  my $ndarray2 = IOP->c([3, 4, 5]);
+  
+  my $equals_dim = R::OP->equals_dim($ndarray1, $ndarray2);
 
 =head1 Class Methods
 
+=head2 equals_dim
+
+C<static method equals_dim : int ($x_ndarray : L<R::NDArray|SPVM::R::NDArray>, $y_ndarray : L<R::NDArray|SPVM::R::NDArray>);>
+
+=head2 equals_dropped_dim
+
+C<static method equals_dropped_dim : int ($x_ndarray : L<R::NDArray|SPVM::R::NDArray>, $y_ndarray : L<R::NDArray|SPVM::R::NDArray>);>
+
+=head2 rep
+
+C<static method rep : R::NDArray ($x_ndarray : L<R::NDArray|SPVM::R::NDArray>, $times : int);>
+
+=head2 rep_length
+
+C<static method rep_length : R::NDArray ($x_ndarray : L<R::NDArray|SPVM::R::NDArray>, $length : int);>
 
 =head1 Related Modules
 
