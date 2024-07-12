@@ -10,7 +10,7 @@ SPVM::R::DataFrame - Short Description
 
 =head1 Description
 
-The R::DataFrame class in L<SPVM> has methods to do someting.
+The R::DataFrame class in L<SPVM> represents a data frame.
 
 =head1 Usage
 
@@ -33,6 +33,16 @@ The R::DataFrame class in L<SPVM> has methods to do someting.
   my $slice_data_frame = $data_frame->slice(["name", "age"], [IOP->c([0, 1])]);
   
   $data_frame->sort(["name", "age desc"]);
+  
+  my $nrow = $data_frame->nrow;
+  
+  my $ncol = $data_frame->ncol;
+  
+  my $dim = $data_frame->first_col->dim;
+
+=head1 Details
+
+This class is a port of data frame features of L<R language|https://www.r-project.org/>.
 
 =head1 Fields
 
