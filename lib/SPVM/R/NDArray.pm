@@ -44,8 +44,6 @@ The dimensions $dim is normalized by L<R::Util#normalize_dim|SPVM::R::Util/"norm
 
 Exceptions:
 
-C<set_dim> Method:
-
 If L</"is_dim_read_only"> is a true value, an exception is thrown.
 
 Exceptions thrown by L<R::Util#normalize_dim|SPVM::R::Util/"normalize_dim"> method could be thrown.
@@ -64,15 +62,64 @@ If this field is a true value, it indicates L</"dim"> field is read only, otherw
 
 C<static method new : R::NDArray ($options : object[] = undef);>
 
+Creates a new L<R::NDArray|SPVM::R::NDArray> object given the options $options and returns the created object.
+
+This method calls L</"init"> method for initialization for the object.
+
+Options:
+
+=over 2
+
+=item C<data> : object = undef
+
+An array set to L</"data"> field.
+
+=item C<dim> : int[] = undef
+
+Dimensions set to L</"dim"> field.
+
+=back
+
 =head1 Instance Methods
 
 =head2 init
 
 C<protected method init : void ($options : object[] = undef);>
 
+Initialize this instance given the options $options that is the same as L</"new"> method.
+
+C<dim> option is assinged to $dim variable.
+
+C<data> option is assinged to $data variable.
+
+If $data is defined, the data type is checked. The type must be same as the type of an object created by L</"create_default_data"> method.
+
+If $dim is not defined, $dim is created by the length of $data. $dim is set to C<[length of $data]>. If $data is not defined, $dim is set to C<[]>.
+
+$dim is normalized by L<R::Util#normalize_dim|SPVM::R::Util/"normalize_dim"> method.
+
+If $data is not defined, $data is created by $dim. The data length is calcurated by L<R::Util#calc_data_length|SPVM::R::Util/"calc_data_length"> method 
+and L</"create_default_data"> method is called given the data length.
+
+L<R::Util#check_length|SPVM::R::Util/"check_length"> method is called to check integrity for $dim and $data.
+
+L</"data"> field is set to $data.
+
+L</"dim"> field is set to $dim.
+
+Exceptions:
+
+If checking data type failed, an exception is thrown.
+
+Exceptions thrown by L<R::Util#normalize_dim|SPVM::R::Util/"normalize_dim"> method could be thrown.
+
+Exceptions thrown by L<R::Util#check_length|SPVM::R::Util/"check_length"> method could be thrown.
+
 =head2 make_dim_read_only
 
 C<method make_dim_read_only : void ();>
+
+Sets L</"dim_read_only"> field to 1.
 
 =head2 nrow
 
