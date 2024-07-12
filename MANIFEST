@@ -76,14 +76,10 @@ lib/SPVM/R/OP/Matrix/FloatComplex.pm
 lib/SPVM/R/OP/Matrix/FloatComplex.spvm
 lib/SPVM/R/OP/Matrix/Int.config
 lib/SPVM/R/OP/Matrix/Int.cpp
-lib/SPVM/R/OP/Matrix/Int.native/include/.gitkeep
-lib/SPVM/R/OP/Matrix/Int.native/src/.gitkeep
 lib/SPVM/R/OP/Matrix/Int.pm
 lib/SPVM/R/OP/Matrix/Int.spvm
 lib/SPVM/R/OP/Matrix/Long.config
 lib/SPVM/R/OP/Matrix/Long.cpp
-lib/SPVM/R/OP/Matrix/Long.native/include/.gitkeep
-lib/SPVM/R/OP/Matrix/Long.native/src/.gitkeep
 lib/SPVM/R/OP/Matrix/Long.pm
 lib/SPVM/R/OP/Matrix/Long.spvm
 lib/SPVM/R/OP/Short.pm
