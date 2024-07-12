@@ -71,6 +71,14 @@ C<static method rep_length : R::NDArray ($x_ndarray : L<R::NDArray|SPVM::R::NDAr
 
 =item * L<R::OP::Time::Piece|SPVM::R::OP::Time::Piece>
 
+=item * L<R::OP::Matrix::Float|SPVM::R::OP::Matrix::Float>
+
+=item * L<R::OP::Matrix::Double|SPVM::R::OP::Matrix::Double>
+
+=item * L<R::OP::Matrix::FloatComplex|SPVM::R::OP::Matrix::FloatComplex>
+
+=item * L<R::OP::Matrix::DoubleComplex|SPVM::R::OP::Matrix::DoubleComplex>
+
 =back
 
 =head1 See Also
