@@ -6,52 +6,41 @@ package SPVM::R::OP::Byte;
 
 =head1 Name
 
-SPVM::R::OP::Byte - Short Description
+SPVM::R::OP::Byte - N-Dimensional Array Operations for R::NDArray::Byte
 
 =head1 Description
 
-The R::OP::Byte class in L<SPVM> has methods to do someting.
+The R::OP::Byte class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Byte|SPVM::R::NDArray::Byte>.
 
 =head1 Usage
 
-  use R::OP::Byte;
-
-=head1 Details
-
-
-
-=head1 Inheritance
-
-
-
-=head1 Interfaces
-
-
-
-=head1 Enumerations
-
-
-
-=head1 Fields
-
-
+  use R::OP::Byte as BOP;
+  
+  my $ndarray_scalar = BOP->c((byte)1);
+  
+  my $ndarray_vector = BOP->c([(byte)1, 2, 3]);
+  
+  my $ndarray = BOP->c([(byte)1, 2, 3, 4, 5, 6], [3, 2]);
+  
+  my $ndarray2 = BOP->c($ndarray);
 
 =head1 Class Methods
 
+=head2 c
 
+C<static method c : L<R::NDArray::Byte|SPVM::R::NDArray::Byte> ($data : object of L<Byte|SPVM::Byte>|byte[]|L<R::NDArray::Byte|SPVM::R::NDArray::Byte>, $dim : int[] = undef);>
 
-=head1 Instance Methods
+=head1 See Also
 
+=over 2
 
+=item * L<R::NDArray::Byte|SPVM::R::NDArray::Byte>
 
+=item * L<R::NDArray|SPVM::R::NDArray>
 
-=head1 Repository
+=item * L<R|SPVM::R>
 
-
-
-=head1 Author
-
-Yuki Kimoto C<kimoto.yuki@gmail.com>
+=back
 
 =head1 Copyright & License
 
