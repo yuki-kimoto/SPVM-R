@@ -128,11 +128,11 @@ C<static method undef : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
 
 =head2 rep
 
-C<static method rep : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : R::NDArray, $times : int);>
+C<static method rep : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $times : int);>
 
 =head2 rep_length
 
-C<static method rep_length : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : R::NDArray, $length : int);>
+C<static method rep_length : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $length : int);>
 
 =head1 See Also
 

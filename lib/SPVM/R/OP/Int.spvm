@@ -750,11 +750,11 @@ class R::OP::Int {
     return (R::NDArray::Int)undef;
   }
   
-  static method rep : R::NDArray::Int ($x_ndarray : R::NDArray, $times : int) {
+  static method rep : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $times : int) {
     return (R::NDArray::Int)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::Int ($x_ndarray : R::NDArray, $length : int) {
+  static method rep_length : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $length : int) {
     return (R::NDArray::Int)R::OP->rep_length($x_ndarray, $length);
   }
   

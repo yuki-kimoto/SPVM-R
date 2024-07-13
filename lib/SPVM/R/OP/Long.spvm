@@ -658,5 +658,17 @@ class R::OP::Long {
     return $ret_ndarray;
   }
   
+  static method undef : R::NDArray::Long () {
+    return (R::NDArray::Long)undef;
+  }
+  
+  static method rep : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $times : int) {
+    return (R::NDArray::Long)R::OP->rep($x_ndarray, $times);
+  }
+  
+  static method rep_length : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $length : int) {
+    return (R::NDArray::Long)R::OP->rep_length($x_ndarray, $length);
+  }
+  
 }
 
