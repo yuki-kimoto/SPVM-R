@@ -46,17 +46,17 @@ C<static method mul : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R
 
 C<static method div : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-=head2 div_unsinged
+=head2 div_u
 
-C<static method div_unsinged : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+C<static method div_u : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head2 mod
 
 C<static method mod : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-=head2 mod_unsinged
+=head2 mod_u
 
-C<static method mod_unsinged : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+C<static method mod_u : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head2 abs
 

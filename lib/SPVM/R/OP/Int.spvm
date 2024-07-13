@@ -181,7 +181,7 @@ class R::OP::Int {
     return $ret_ndarray;
   }
   
-  precompile static method div_unsinged : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
+  precompile static method div_u : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";
@@ -247,7 +247,7 @@ class R::OP::Int {
     return $ret_ndarray;
   }
   
-  precompile static method mod_unsinged : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
+  precompile static method mod_u : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";

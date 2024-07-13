@@ -181,7 +181,7 @@ class R::OP::Long {
     return $ret_ndarray;
   }
   
-  precompile static method div_unsinged : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method div_u : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";
@@ -247,7 +247,7 @@ class R::OP::Long {
     return $ret_ndarray;
   }
   
-  precompile static method mod_unsinged : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method mod_u : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";
