@@ -18,7 +18,21 @@ The R::NDArray class in L<SPVM> represetns n-dimensional array and it is the bas
 
 =head1 Details
 
-R::NDArray is column major.
+=head2 Row and Column Major Order
+
+Elements of n-dimesion array that is a L<R::NDArray|SPVM::NDArray> object is L<column major order|https://en.wikipedia.org/wiki/Row-_and_column-major_order>.
+
+=head2 Scalar
+
+A sacalr is a n-dimensional array that L</"is_scalar"> method returns a true value.
+
+=head2 Vector
+
+A vector is a n-dimensional array that L</"is_vector"> method returns a true value.
+
+=head2 Matrix
+
+A matrix is a n-dimensional array that L</"is_matrix"> method returns a true value.
 
 =head1 Fields
 
