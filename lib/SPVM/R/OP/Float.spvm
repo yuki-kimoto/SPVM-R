@@ -248,50 +248,6 @@ class R::OP::Float {
     return $ret_ndarray;
   }
   
-  precompile static method to_int_ndarray : R::NDArray::Int ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (int)$x_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method to_long_ndarray : R::NDArray::Long ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Long->c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (long)$x_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
   precompile static method clone : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
     
     unless ($x_ndarray) {
@@ -309,74 +265,6 @@ class R::OP::Float {
     
     for (my $i = 0; $i < $length; $i++) {
       $ret_data->[$i] = (float)$x_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method to_double_ndarray : R::NDArray::Double ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Double->c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (double)$x_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method to_float_complex_ndarray : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::FloatComplex->c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i]{re} = (float)$x_data->[$i];
-      $ret_data->[$i]{im} = 0f;
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method to_double_complex_ndarray : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::DoubleComplex->c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i]{re} = (double)$x_data->[$i];
-      $ret_data->[$i]{im} = 0;
     }
     
     return $ret_ndarray;
