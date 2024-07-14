@@ -58,13 +58,13 @@ C<static method mod : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L
 
 C<static method mod_u : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $y_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
 
-=head2 abs
-
-C<static method abs : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
-
 =head2 neg
 
 C<static method neg : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
+
+=head2 abs
+
+C<static method abs : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
 
 =head2 and
 

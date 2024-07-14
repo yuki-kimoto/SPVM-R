@@ -58,25 +58,13 @@ C<static method mod : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R
 
 C<static method mod_u : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-=head2 abs
-
-C<static method abs : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
-
 =head2 neg
 
 C<static method neg : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-=head2 and
+=head2 abs
 
-C<static method and : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
-
-=head2 or
-
-C<static method or : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
-
-=head2 not
-
-C<static method not : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+C<static method abs : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head2 eq
 
@@ -102,6 +90,18 @@ C<static method lt : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R:
 
 C<static method le : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
+=head2 rep
+
+C<static method rep : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $times : int);>
+
+=head2 rep_length
+
+C<static method rep_length : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $length : int);>
+
+=head2 seq
+
+C<static method seq : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($begin : int, $end : int, $by : int = 1);>
+
 =head2 sum
 
 C<static method sum : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
@@ -118,21 +118,21 @@ C<static method prod : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<
 
 C<static method cumprod : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-=head2 seq
-
-C<static method seq : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($begin : int, $end : int, $by : int = 1);>
-
 =head2 undef
 
 C<static method undef : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
 
-=head2 rep
+=head2 and
 
-C<static method rep : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $times : int);>
+C<static method and : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-=head2 rep_length
+=head2 or
 
-C<static method rep_length : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $length : int);>
+C<static method or : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+
+=head2 not
+
+C<static method not : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head1 See Also
 
