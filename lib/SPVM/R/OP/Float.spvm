@@ -1017,6 +1017,18 @@ class R::OP::Float {
     return $ret_ndarray;
   }
   
+  static method is_infinite : R::NDArray::Int ($x_ndarray : R::NDArray::Float) {
+    
+    return &isinf($x_ndarray);
+  }
+  
+  static method is_finite : R::NDArray::Int ($x_ndarray : R::NDArray::Float) {
+    
+    my $is_finite = R::OP::Int->and(R::OP::Int->not(&isnan($x_ndarray)), R::OP::Int->not(&is_infinite($x_ndarray)));
+    
+    return $is_finite;
+  }
+  
   precompile static method isnan : R::NDArray::Int ($x_ndarray : R::NDArray::Float) {
     
     unless ($x_ndarray) {
@@ -1037,6 +1049,11 @@ class R::OP::Float {
     }
     
     return $ret_ndarray;
+  }
+  
+  static method is_nan : R::NDArray::Int ($x_ndarray : R::NDArray::Float) {
+    
+    return &isnan($x_ndarray);
   }
   
   precompile static method pow : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
@@ -1160,6 +1177,10 @@ class R::OP::Float {
     }
     
     return $ret_ndarray;
+  }
+  
+  static method ceiling : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    return &ceil($x_ndarray);
   }
   
   precompile static method floor : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
