@@ -856,6 +856,10 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
+  static method is_nan : R::NDArray::Int ($x_ndarray : R::NDArray::Double) {
+    return &isnan($x_ndarray);
+  }
+  
   precompile static method pow : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
@@ -1175,6 +1179,10 @@ class R::OP::Double {
     }
     
     return $ret_ndarray;
+  }
+  
+  static method ceiling : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    return &ceil($x_ndarray);
   }
   
   precompile static method floor : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
