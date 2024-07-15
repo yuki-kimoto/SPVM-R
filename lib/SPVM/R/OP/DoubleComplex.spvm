@@ -5,7 +5,6 @@ class R::OP::DoubleComplex {
   
   use R::NDArray::Int;
   use R::NDArray::Long;
-  use R::NDArray::Float;
   use R::NDArray::Double;
   use R::NDArray::DoubleComplex;
   use R::NDArray::DoubleComplex;
@@ -13,7 +12,6 @@ class R::OP::DoubleComplex {
   use R::OP;
   use R::OP::Int;
   use R::OP::Long;
-  use R::OP::Float;
   use R::OP::Double;
   use R::OP::DoubleComplex;
   use R::OP::DoubleComplex;
