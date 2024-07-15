@@ -74,6 +74,18 @@ C<static method neg : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L
 
 C<static method abs : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
 
+=head2 rep
+
+C<static method rep : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $times : int);>
+
+=head2 rep_length
+
+C<static method rep_length : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $length : int);>
+
+=head2 seq
+
+C<static method seq : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($begin : long, $end : long, $by : long = 1);>
+
 =head2 eq
 
 C<static method eq : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $y_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
@@ -98,18 +110,6 @@ C<static method lt : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<
 
 C<static method le : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $y_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
 
-=head2 rep
-
-C<static method rep : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $times : int);>
-
-=head2 rep_length
-
-C<static method rep_length : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $length : int);>
-
-=head2 seq
-
-C<static method seq : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($begin : long, $end : long, $by : long = 1);>
-
 =head2 sum
 
 C<static method sum : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
@@ -125,6 +125,18 @@ C<static method prod : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : 
 =head2 cumprod
 
 C<static method cumprod : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
+
+=head2 diff
+
+C<static method diff : R::NDArray::Long ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
+
+=head2 max
+
+C<static method max : R::NDArray::Long ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
+
+=head2 min
+
+C<static method min : R::NDArray::Long ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
 
 =head1 See Also
 
