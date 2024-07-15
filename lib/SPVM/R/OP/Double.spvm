@@ -491,11 +491,11 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
-  static method rep : R::NDArray::Double ($x_ndarray : R::NDArray, $times : int) {
+  static method rep : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $times : int) {
     return (R::NDArray::Double)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::Double ($x_ndarray : R::NDArray, $length : int) {
+  static method rep_length : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $length : int) {
     return (R::NDArray::Double)R::OP->rep_length($x_ndarray, $length);
   }
   

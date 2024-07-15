@@ -30,6 +30,18 @@ The R::OP::Byte class in L<SPVM> has methods for n-dimensional array operations 
 
 C<static method c : L<R::NDArray::Byte|SPVM::R::NDArray::Byte> ($data : object of L<Byte|SPVM::Byte>|byte[]|L<R::NDArray::Byte|SPVM::R::NDArray::Byte>, $dim : int[] = undef);>
 
+=head2 rep
+
+C<static method rep : L<R::NDArray::Byte|SPVM::R::NDArray::Byte> ($x_ndarray : L<R::NDArray::Byte|SPVM::R::NDArray::Byte>, $times : int);>
+
+=head2 rep_length
+
+C<static method rep_length : L<R::NDArray::Byte|SPVM::R::NDArray::Byte> ($x_ndarray : L<R::NDArray::Byte|SPVM::R::NDArray::Byte>, $length : int);>
+
+=head2 seq
+
+C<static method seq : L<R::NDArray::Byte|SPVM::R::NDArray::Byte> ($begin : byte, $end : byte, $by : byte = 1);>
+
 =head1 See Also
 
 =over 2

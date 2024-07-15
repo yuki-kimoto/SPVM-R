@@ -263,11 +263,11 @@ class R::OP::StringBuffer {
     return $ret_ndarray;
   }
   
-  static method rep : R::NDArray::StringBuffer ($x_ndarray : R::NDArray, $times : int) {
+  static method rep : R::NDArray::StringBuffer ($x_ndarray : R::NDArray::StringBuffer, $times : int) {
     return (R::NDArray::StringBuffer)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::StringBuffer ($x_ndarray : R::NDArray, $length : int) {
+  static method rep_length : R::NDArray::StringBuffer ($x_ndarray : R::NDArray::StringBuffer, $length : int) {
     return (R::NDArray::StringBuffer)R::OP->rep_length($x_ndarray, $length);
   }
 }
