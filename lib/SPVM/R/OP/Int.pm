@@ -132,15 +132,15 @@ C<static method cumprod : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray :
 
 =head2 diff
 
-C<precompile static method diff : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+C<static method diff : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head2 max
 
-C<precompile static method max : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+C<static method max : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head2 min
 
-C<precompile static method min : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+C<static method min : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head2 and
 
