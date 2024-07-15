@@ -464,6 +464,14 @@ class R::OP::FloatComplex {
     return $ret_ndarray;
   }
   
+  static method rep : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $times : int) {
+    return (R::NDArray::FloatComplex)R::OP->rep($x_ndarray, $times);
+  }
+  
+  static method rep_length : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex, $length : int) {
+    return (R::NDArray::FloatComplex)R::OP->rep_length($x_ndarray, $length);
+  }
+  
   precompile static method sin : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
