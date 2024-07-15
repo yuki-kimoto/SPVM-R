@@ -3,6 +3,8 @@
 
 class R::OP::Matrix::Int {
   
+  use R::NDArray::Int;
+  
   static method matrix : R::NDArray::Int ($data : object of Int|int[]|R::NDArray::Int, $nrow : int, $ncol : int) {
     
     my $ndarray = R::OP::Int->c($data, [$nrow, $ncol]);

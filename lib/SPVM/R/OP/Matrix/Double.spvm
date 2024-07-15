@@ -256,12 +256,6 @@ class R::OP::Matrix::Double {
     return $ret_ndarray;
   }
   
-  native static method _solve : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row :int, $x_column : int);
-  
-  native static method _t : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
-  
-  native static method _det : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
-  
   static method eigen : R::NDArray::Hash ($x_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
@@ -307,5 +301,11 @@ class R::OP::Matrix::Double {
     return $ret_ndarray_hash;
   }
   
-  native static method _eigen : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int, $eigen_values_data_ref : double[][]);
+  private native static method _det : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
+  
+  private native static method _t : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
+  
+  private native static method _solve : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row :int, $x_column : int);
+  
+  private native static method _eigen : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int, $eigen_values_data_ref : double[][]);
 }
