@@ -42,9 +42,17 @@ C<static method sub : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R
 
 C<static method mul : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
+=head2 scamul
+
+C<static method scamul : R::NDArray::Int ($scalar_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+
 =head2 div
 
 C<static method div : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+
+=head2 scadiv
+
+C<static method scadiv : R::NDArray::Int ($scalar_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head2 div_u
 
