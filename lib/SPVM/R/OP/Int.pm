@@ -110,6 +110,10 @@ C<static method rep_length : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarra
 
 C<static method seq : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($begin : int, $end : int, $by : int = 1);>
 
+=head2 undef
+
+C<static method undef : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
+
 =head2 sum
 
 C<static method sum : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
@@ -126,9 +130,17 @@ C<static method prod : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<
 
 C<static method cumprod : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-=head2 undef
+=head2 diff
 
-C<static method undef : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
+C<precompile static method diff : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+
+=head2 max
+
+C<precompile static method max : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+
+=head2 min
+
+C<precompile static method min : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
 =head2 and
 
