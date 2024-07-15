@@ -293,6 +293,204 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
+  precompile static method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $x_data->[$i] == $y_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method ne : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = !($x_data->[$i] == $y_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method gt : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $x_data->[$i] > $y_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method ge : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $x_data->[$i] >= $y_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method lt : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $x_data->[$i] < $y_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method le : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = $x_data->[$i] <= $y_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
   static method rep : R::NDArray::Double ($x_ndarray : R::NDArray, $times : int) {
     return (R::NDArray::Double)R::OP->rep($x_ndarray, $times);
   }
@@ -346,102 +544,6 @@ class R::OP::Double {
     my $by = (double)(($end - $begin) / $length);
     
     my $ret_ndarray = &seq($begin, $end, $by);
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method sum : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, [1]);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    my $sum = 0.0;
-    for (my $i = 0; $i < $length; $i++) {
-      $sum += $x_data->[$i];
-    }
-    $ret_data->[0] = $sum;
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method cumsum : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    my $sum = 0;
-    for (my $i = 0; $i < $length; $i++) {
-      $sum += $x_data->[$i];
-      $ret_data->[$i] = $sum;
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method prod : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, [1]);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    my $prod = 1.0;
-    for (my $i = 0; $i < $length; $i++) {
-      $prod *= $x_data->[$i];
-    }
-    $ret_data->[0] = $prod;
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method cumprod : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    my $prod = 1.0;
-    for (my $i = 0; $i < $length; $i++) {
-      $prod *= $x_data->[$i];
-      $ret_data->[$i] = $prod;
-    }
     
     return $ret_ndarray;
   }
@@ -990,204 +1092,6 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
-  precompile static method eq : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimensional array \$y_ndarray must be defined.";
-    }
-    
-    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
-    
-    unless ($equals_dim) {
-      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $x_data = $x_ndarray->data;
-    my $y_data = $y_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_data->[$i] == $y_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method ne : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimensional array \$y_ndarray must be defined.";
-    }
-    
-    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
-    
-    unless ($equals_dim) {
-      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $x_data = $x_ndarray->data;
-    my $y_data = $y_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = !($x_data->[$i] == $y_data->[$i]);
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method gt : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimensional array \$y_ndarray must be defined.";
-    }
-    
-    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
-    
-    unless ($equals_dim) {
-      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $x_data = $x_ndarray->data;
-    my $y_data = $y_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_data->[$i] > $y_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method ge : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimensional array \$y_ndarray must be defined.";
-    }
-    
-    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
-    
-    unless ($equals_dim) {
-      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $x_data = $x_ndarray->data;
-    my $y_data = $y_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_data->[$i] >= $y_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method lt : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimensional array \$y_ndarray must be defined.";
-    }
-    
-    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
-    
-    unless ($equals_dim) {
-      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $x_data = $x_ndarray->data;
-    my $y_data = $y_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_data->[$i] < $y_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method le : R::NDArray::Int ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimensional array \$y_ndarray must be defined.";
-    }
-    
-    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
-    
-    unless ($equals_dim) {
-      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $x_data = $x_ndarray->data;
-    my $y_data = $y_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_data->[$i] <= $y_data->[$i];
-    }
-    
-    return $ret_ndarray;
-  }
-  
   precompile static method modf : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $intpart_ndarray_ref : R::NDArray::Double[]) {
     
     unless ($x_ndarray) {
@@ -1315,6 +1219,233 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
+  precompile static method remainder : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = Math->remainder($x_data->[$i], $y_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method fmod : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+    
+    unless ($equals_dim) {
+      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = Math->fmod($x_data->[$i], $y_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  static method runif : R::NDArray::Double($length : int, $options : object[]) {
+    
+    my $options_h = Hash->new($options);
+    
+    my $min = $options_h->get_or_default_int("min", 0);
+    
+    my $max = $options_h->get_or_default_int("max", 1);
+    
+    my $seed_ref = (int[])$options_h->get_or_default("seed_ref", undef);
+    
+    my $seed = -1;
+    if ($seed_ref) {
+      $seed = $seed_ref->[0];
+    }
+    else {
+      $seed = (int)(Sys->time * Sys->process_id);
+    }
+    
+    my $ret_ndarray = R::OP::Double->c(undef, [$length]);
+    
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      my $range = $max - $min + 1;
+      my $rand = Fn->rand(\$seed, $range) + $min;
+      $ret_data->[$i] = $rand;
+    }
+    
+    if ($seed_ref) {
+      $seed_ref->[0] = $seed;
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method sum : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, [1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $sum = 0.0;
+    for (my $i = 0; $i < $length; $i++) {
+      $sum += $x_data->[$i];
+    }
+    $ret_data->[0] = $sum;
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method cumsum : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $sum = 0;
+    for (my $i = 0; $i < $length; $i++) {
+      $sum += $x_data->[$i];
+      $ret_data->[$i] = $sum;
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method prod : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, [1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $prod = 1.0;
+    for (my $i = 0; $i < $length; $i++) {
+      $prod *= $x_data->[$i];
+    }
+    $ret_data->[0] = $prod;
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method cumprod : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $prod = 1.0;
+    for (my $i = 0; $i < $length; $i++) {
+      $prod *= $x_data->[$i];
+      $ret_data->[$i] = $prod;
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method diff : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    unless (@$x_dim == 1) {
+      die "The length of dim field of \$x_ndarray must be 1.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    unless ($length > 0) {
+      die "The length of \$x_ndarray must be greater than 0.";
+    }
+    
+    my $ret_ndarray = &c(undef, [$length - 1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length - 1; $i++) {
+      $ret_data->[$i] = $x_data->[$i + 1] - $x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
   precompile static method max : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
@@ -1397,36 +1528,6 @@ class R::OP::Double {
     my $mean = $sum / $length;
     
     my $ret_ndarray = &c([$mean]);
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method diff : R::NDArray::Double ($x_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    unless (@$x_dim == 1) {
-      die "The length of dim field of \$x_ndarray must be 1.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    unless ($length > 0) {
-      die "The length of \$x_ndarray must be greater than 0.";
-    }
-    
-    my $ret_ndarray = &c(undef, [$length - 1]);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length - 1; $i++) {
-      $ret_data->[$i] = $x_data->[$i + 1] - $x_data->[$i];
-    }
     
     return $ret_ndarray;
   }
@@ -1567,107 +1668,6 @@ class R::OP::Double {
         my $data_index = $y_length * $y_index + $x_index;
         $ret_data->[$data_index] = $x_data->[$x_index] * $y_data->[$y_index];
       }
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  static method runif : R::NDArray::Double($length : int, $options : object[]) {
-    
-    my $options_h = Hash->new($options);
-    
-    my $min = $options_h->get_or_default_int("min", 0);
-    
-    my $max = $options_h->get_or_default_int("max", 1);
-    
-    my $seed_ref = (int[])$options_h->get_or_default("seed_ref", undef);
-    
-    my $seed = -1;
-    if ($seed_ref) {
-      $seed = $seed_ref->[0];
-    }
-    else {
-      $seed = (int)(Sys->time * Sys->process_id);
-    }
-    
-    my $ret_ndarray = R::OP::Double->c(undef, [$length]);
-    
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      my $range = $max - $min + 1;
-      my $rand = Fn->rand(\$seed, $range) + $min;
-      $ret_data->[$i] = $rand;
-    }
-    
-    if ($seed_ref) {
-      $seed_ref->[0] = $seed;
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method remainder : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimensional array \$y_ndarray must be defined.";
-    }
-    
-    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
-    
-    unless ($equals_dim) {
-      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $x_data = $x_ndarray->data;
-    my $y_data = $y_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = Math->remainder($x_data->[$i], $y_data->[$i]);
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method fmod : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    unless ($y_ndarray) {
-      die "The n-dimensional array \$y_ndarray must be defined.";
-    }
-    
-    my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
-    
-    unless ($equals_dim) {
-      die "The dim field of \$x_ndarray must be the same as the dim field of \$y_ndarray.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $x_data = $x_ndarray->data;
-    my $y_data = $y_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = Math->fmod($x_data->[$i], $y_data->[$i]);
     }
     
     return $ret_ndarray;

@@ -545,102 +545,6 @@ class R::OP::Float {
     return $ret_ndarray;
   }
   
-  precompile static method sum : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, [1]);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    my $sum = 0f;
-    for (my $i = 0; $i < $length; $i++) {
-      $sum += $x_data->[$i];
-    }
-    $ret_data->[0] = $sum;
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method cumsum : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    my $sum = 0f;
-    for (my $i = 0; $i < $length; $i++) {
-      $sum += $x_data->[$i];
-      $ret_data->[$i] = $sum;
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method prod : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, [1]);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    my $prod = 1f;
-    for (my $i = 0; $i < $length; $i++) {
-      $prod *= $x_data->[$i];
-    }
-    $ret_data->[0] = $prod;
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method cumprod : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    my $prod = 1f;
-    for (my $i = 0; $i < $length; $i++) {
-      $prod *= $x_data->[$i];
-      $ret_data->[$i] = $prod;
-    }
-    
-    return $ret_ndarray;
-  }
-  
   precompile static method sin : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
     
     unless ($x_ndarray) {
@@ -1374,6 +1278,102 @@ class R::OP::Float {
     
     for (my $i = 0; $i < $length; $i++) {
       $ret_data->[$i] = Math->fmodf($x_data->[$i], $y_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method sum : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, [1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $sum = 0f;
+    for (my $i = 0; $i < $length; $i++) {
+      $sum += $x_data->[$i];
+    }
+    $ret_data->[0] = $sum;
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method cumsum : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $sum = 0f;
+    for (my $i = 0; $i < $length; $i++) {
+      $sum += $x_data->[$i];
+      $ret_data->[$i] = $sum;
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method prod : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, [1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $prod = 1f;
+    for (my $i = 0; $i < $length; $i++) {
+      $prod *= $x_data->[$i];
+    }
+    $ret_data->[0] = $prod;
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method cumprod : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $prod = 1f;
+    for (my $i = 0; $i < $length; $i++) {
+      $prod *= $x_data->[$i];
+      $ret_data->[$i] = $prod;
     }
     
     return $ret_ndarray;

@@ -102,22 +102,6 @@ C<method seq : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($begin : float, $en
 
 C<method seq_length : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($begin : float, $end : float, $length : int);>
 
-=head2 sum
-
-C<method sum : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
-
-=head2 cumsum
-
-C<method cumsum : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
-
-=head2 prod
-
-C<method prod : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
-
-=head2 cumprod
-
-C<method cumprod : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
-
 =head2 sin
 
 C<method sin : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
@@ -237,6 +221,22 @@ C<method remainder : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : 
 =head2 fmod
 
 C<method fmod : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>, $y_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 sum
+
+C<method sum : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 cumsum
+
+C<method cumsum : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 prod
+
+C<method prod : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 cumprod
+
+C<method cumprod : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
 =head1 See Also
 
