@@ -180,11 +180,23 @@ C<method sqrt : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::
 
 =head2 isinf
 
-C<method isinf : R::NDArray::Int ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+C<method isinf : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 is_infinite
+
+C<static method is_infinite : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 is_finite
+
+C<static method is_finite : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
 =head2 isnan
 
-C<method isnan : R::NDArray::Int ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+C<method isnan : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 is_nan
+
+C<static method is_nan : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
 =head2 pow
 
@@ -201,6 +213,10 @@ C<method modf : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::
 =head2 ceil
 
 C<method ceil : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 ceiling
+
+C<static method ceiling : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
 =head2 floor
 
@@ -237,6 +253,18 @@ C<method prod : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::
 =head2 cumprod
 
 C<method cumprod : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 diff
+
+C<static method diff : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 max
+
+C<static method max : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+
+=head2 min
+
+C<static method min : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
 =head1 See Also
 
