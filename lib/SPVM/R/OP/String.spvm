@@ -263,11 +263,11 @@ class R::OP::String {
     return $ret_ndarray;
   }
   
-  static method rep : R::NDArray::String ($x_ndarray : R::NDArray, $times : int) {
+  static method rep : R::NDArray::String ($x_ndarray : R::NDArray::String, $times : int) {
     return (R::NDArray::String)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::String ($x_ndarray : R::NDArray, $length : int) {
+  static method rep_length : R::NDArray::String ($x_ndarray : R::NDArray::String, $length : int) {
     return (R::NDArray::String)R::OP->rep_length($x_ndarray, $length);
   }
   

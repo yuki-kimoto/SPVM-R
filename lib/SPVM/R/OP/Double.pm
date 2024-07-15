@@ -88,11 +88,11 @@ C<static method le : R::NDArray::Int ($x_ndarray : L<R::NDArray::Double|SPVM::R:
 
 =head2 rep
 
-C<static method rep : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>, $times : int);>
+C<static method rep : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $times : int);>
 
 =head2 rep_length
 
-C<static method rep_length : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>, $length : int);>
+C<static method rep_length : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $length : int);>
 
 =head2 seq
 
