@@ -1298,7 +1298,7 @@ class R::OP::Float {
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
     
-    my $sum = 0f;
+    my $sum = (float)0;
     for (my $i = 0; $i < $length; $i++) {
       $sum += $x_data->[$i];
     }
@@ -1322,7 +1322,7 @@ class R::OP::Float {
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
     
-    my $sum = 0f;
+    my $sum = (float)0;
     for (my $i = 0; $i < $length; $i++) {
       $sum += $x_data->[$i];
       $ret_data->[$i] = $sum;
@@ -1346,7 +1346,7 @@ class R::OP::Float {
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
     
-    my $prod = 1f;
+    my $prod = (float)1;
     for (my $i = 0; $i < $length; $i++) {
       $prod *= $x_data->[$i];
     }
@@ -1370,7 +1370,7 @@ class R::OP::Float {
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
     
-    my $prod = 1f;
+    my $prod = (float)1;
     for (my $i = 0; $i < $length; $i++) {
       $prod *= $x_data->[$i];
       $ret_data->[$i] = $prod;
@@ -1379,4 +1379,98 @@ class R::OP::Float {
     return $ret_ndarray;
   }
   
+  precompile static method diff : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    unless (@$x_dim == 1) {
+      die "The length of dim field of \$x_ndarray must be 1.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    unless ($length > 0) {
+      die "The length of \$x_ndarray must be greater than 0.";
+    }
+    
+    my $ret_ndarray = &c(undef, [$length - 1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length - 1; $i++) {
+      $ret_data->[$i] = $x_data->[$i + 1] - $x_data->[$i];
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method max : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->length > 0) {
+      die "The length of n-dimensional array \$x_ndarray must be greater than 0.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, [1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $max = $x_data->[0];
+    for (my $i = 0; $i < $length; $i++) {
+      my $current = $x_data->[$i];
+      
+      if ($current > $max) {
+        $max = $current;
+      }
+    }
+    $ret_data->[0] = $max;
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method min : R::NDArray::Float ($x_ndarray : R::NDArray::Float) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->length > 0) {
+      die "The length of n-dimensional array \$x_ndarray must be greater than 0.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, [1]);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    my $min = $x_data->[0];
+    for (my $i = 0; $i < $length; $i++) {
+      my $current = $x_data->[$i];
+      
+      if ($current < $min) {
+        $min = $current;
+      }
+    }
+    $ret_data->[0] = $min;
+    
+    return $ret_ndarray;
+  }
+
 }
