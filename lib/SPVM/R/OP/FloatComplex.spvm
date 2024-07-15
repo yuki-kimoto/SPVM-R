@@ -354,6 +354,50 @@ class R::OP::FloatComplex {
     return $ret_ndarray;
   }
   
+  precompile static method conj : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = &c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = Math->conjf($x_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method arg : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Float->c(undef, $x_dim);
+    
+    my $x_data = $x_ndarray->data;
+    my $ret_data = $ret_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      $ret_data->[$i] = Math->cargf($x_data->[$i]);
+    }
+    
+    return $ret_ndarray;
+  }
+  
   precompile static method eq : R::NDArray::Int ($x_ndarray : R::NDArray::FloatComplex, $y_ndarray : R::NDArray::FloatComplex) {
     
     unless ($x_ndarray) {
@@ -745,50 +789,6 @@ class R::OP::FloatComplex {
     
     for (my $i = 0; $i < $length; $i++) {
       $ret_data->[$i] = Math->csqrtf($x_data->[$i]);
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method conj : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = Math->conjf($x_data->[$i]);
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method arg : R::NDArray::Float ($x_ndarray : R::NDArray::FloatComplex) {
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = R::OP::Float->c(undef, $x_dim);
-    
-    my $x_data = $x_ndarray->data;
-    my $ret_data = $ret_ndarray->data;
-    
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = Math->cargf($x_data->[$i]);
     }
     
     return $ret_ndarray;
