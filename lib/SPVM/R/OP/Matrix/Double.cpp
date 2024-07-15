@@ -184,7 +184,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   Eigen::SelfAdjointEigenSolver<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>> eigen_solver(x_matrix);
   
-  Eigen::VectorXd eigen_values = eigen_solver.eigenvalues();
+  Eigen::Matrix<double, Eigen::Dynamic, 1> eigen_values = eigen_solver.eigenvalues();
   
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> eigen_vectors = eigen_solver.eigenvectors();
   
