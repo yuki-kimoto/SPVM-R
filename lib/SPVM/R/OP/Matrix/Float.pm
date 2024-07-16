@@ -14,13 +14,11 @@ R::OP::Matrix::Float class in L<SPVM> has methods for matrix operations for L<R:
 
 =head1 Usage
 
-  use R::OP::Matrix::Float as MDOP;
+  use R::OP::Matrix::Float as MFOP;
   
   my $nrow = 3;
-  
   my $ncol = 2;
-  
-  my $ndarray = MDOP->matrix([(float)1, 2, 3, 4, 5, 6], $nrow, $ncol);
+  my $ndarray = MFOP->matrix([(float)1, 2, 3, 4, 5, 6], $nrow, $ncol);
 
 =head1 Class Methods
 

@@ -17,9 +17,7 @@ R::OP::Matrix::Double class in L<SPVM> has methods for matrix operations for L<R
   use R::OP::Matrix::Double as MDOP;
   
   my $nrow = 3;
-  
   my $ncol = 2;
-  
   my $ndarray = MDOP->matrix([(double)1, 2, 3, 4, 5, 6], $nrow, $ncol);
 
 =head1 Class Methods
