@@ -19,14 +19,14 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  double* x_data = env->get_elems_double(env, stack, obj_x_data);
+  double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
   int32_t x_ncol = stack[5].ival;
   
   void* obj_y_data = stack[6].oval;
-  double* y_data = env->get_elems_double(env, stack, obj_y_data);
+  double* y_data = (double*)env->get_elems_double(env, stack, obj_y_data);
   
   int32_t y_nrow = stack[7].ival;
   
@@ -41,7 +41,7 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
   void* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
-  double* ret_data = env->get_elems_double(env, stack, obj_ret_data);
+  double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
   memcpy(ret_data, ret_matrix.data(), sizeof(double) * ret_length);
   
@@ -63,7 +63,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  double* x_data = env->get_elems_double(env, stack, obj_x_data);
+  double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
@@ -78,7 +78,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
   void* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
-  double* ret_data = env->get_elems_double(env, stack, obj_ret_data);
+  double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
   memcpy(ret_data, ret_matrix.data(), sizeof(double) * ret_length);
   
@@ -100,7 +100,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  double* x_data = env->get_elems_double(env, stack, obj_x_data);
+  double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
@@ -113,7 +113,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = 1;
   void* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
-  double* ret_data = env->get_elems_double(env, stack, obj_ret_data);
+  double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
   memcpy(ret_data, &ret, sizeof(double) * ret_length);
   
@@ -135,7 +135,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  double* x_data = env->get_elems_double(env, stack, obj_x_data);
+  double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
@@ -150,7 +150,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
   void* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
-  double* ret_data = env->get_elems_double(env, stack, obj_ret_data);
+  double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
   memcpy(ret_data, ret_matrix.data(), sizeof(double) * ret_length);
   
@@ -172,7 +172,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  double* x_data = env->get_elems_double(env, stack, obj_x_data);
+  double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
@@ -191,7 +191,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = eigen_vectors.rows() * eigen_vectors.cols();
   void* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
-  double* ret_data = env->get_elems_double(env, stack, obj_ret_data);
+  double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
   memcpy(ret_data, eigen_vectors.data(), sizeof(double) * ret_length);
   
