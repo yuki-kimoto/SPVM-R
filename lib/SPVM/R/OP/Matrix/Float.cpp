@@ -211,11 +211,13 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   *ret_ncol_ref = eigen_vectors.cols();
   
-  void* eigen_values_data = env->new_float_array(env, stack, eigen_values.size());
+  void* obj_eigen_values_data = env->new_float_array(env, stack, eigen_values.size());
+  
+  float* eigen_values_data = (float*)env->get_elems_float(env, stack, obj_eigen_values_data);
   
   memcpy(eigen_values_data, eigen_values.data(), sizeof(float) * eigen_values.size());
   
-  env->set_elem_object(env, stack, obj_eigen_values_data_ref, 0, eigen_values_data);
+  env->set_elem_object(env, stack, obj_eigen_values_data_ref, 0, obj_eigen_values_data);
   
   return 0;
 }
