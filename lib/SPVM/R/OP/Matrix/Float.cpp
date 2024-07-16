@@ -12,6 +12,8 @@ static const char* FILE_NAME = "R/OP/Matrix/Double.cpp";
 
 int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
+  int32_t e = 0;
+  
   void* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
@@ -56,6 +58,8 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
 
 int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   
+  int32_t e = 0;
+  
   void* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
@@ -93,6 +97,8 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
 
 int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   
+  int32_t e = 0;
+  
   void* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
@@ -127,6 +133,8 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
 }
 
 int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
+  
+  int32_t e = 0;
   
   void* obj_ret_data_ref = stack[0].oval;
   
@@ -164,6 +172,8 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
 }
 
 int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
+  
+  int32_t e = 0;
   
   void* obj_ret_data_ref = stack[0].oval;
   
