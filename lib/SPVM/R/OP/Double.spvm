@@ -152,7 +152,7 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
-  precompile static method scamul : R::NDArray::Double ($scalar_ndarray : R::NDArray::Double, $x_ndarray : R::NDArray::Double) {
+  precompile static method scamul : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $scalar_ndarray : R::NDArray::Double) {
     
     unless ($scalar_ndarray) {
       die "The n-dimensional array \$scalar_ndarray must be defined.";
@@ -178,7 +178,7 @@ class R::OP::Double {
     
     my $scalar = $scalar_data->[0];
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $scalar * $x_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] * $scalar;
     }
     
     return $ret_ndarray;
@@ -217,7 +217,7 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
-  precompile static method scadiv : R::NDArray::Double ($scalar_ndarray : R::NDArray::Double, $x_ndarray : R::NDArray::Double) {
+  precompile static method scadiv : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $scalar_ndarray : R::NDArray::Double) {
     
     unless ($scalar_ndarray) {
       die "The n-dimensional array \$scalar_ndarray must be defined.";
@@ -243,7 +243,7 @@ class R::OP::Double {
     
     my $scalar = $scalar_data->[0];
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $scalar / $x_data->[$i];
+      $ret_data->[$i] = $x_data->[$i] / $scalar;
     }
     
     return $ret_ndarray;
