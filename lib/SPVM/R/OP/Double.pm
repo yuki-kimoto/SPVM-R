@@ -74,7 +74,7 @@ The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherw
 
 =head2 scamul
 
-C<static method scamul : R::NDArray::Int ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $scalar_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
+C<static method scamul : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $scalar_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
 Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object for a return value, performs multiplication operations on each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array and the n-dimensional array $scalar_ndarray at data index 0 to the each operation result, and returns the new n-dimensional array.
 
@@ -102,7 +102,7 @@ The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherw
 
 =head2 scadiv
 
-C<static method scadiv : R::NDArray::Int ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $scalar_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
+C<static method scadiv : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $scalar_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
 Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object for a return value, performs division operations on the n-dimensional array $scalar_ndarray at data index 0 and each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
@@ -124,7 +124,7 @@ C<static method abs : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray
 
 =head2 eq
 
-C<static method eq : R::NDArray::Int ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
+C<static method eq : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
 Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object for a return value, performs numeric comparison C<==> operations on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
