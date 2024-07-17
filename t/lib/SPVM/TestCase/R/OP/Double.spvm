@@ -1,10 +1,33 @@
 class TestCase::R::OP::Double {
   
-  use R::OP::Double;
+  use Array;
+  
+  use R::OP::Double as DOP;
   
   static method c : int () { return 1; }
 
-  static method add : int () { return 1; }
+  static method add : int () {
+    
+    my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+    
+    my $y_ndarray = DOP->c([(double)3, 4], [1, 2]);
+    
+    my $ret_ndarray = DOP->add($x_ndarray, $y_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::Double) {
+      return 0;
+    }
+    
+    unless (Array->equals_double($ret_ndarray->data, [(double)4, 6])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    return 1;
+  }
 
   static method sub : int () { return 1; }
 
