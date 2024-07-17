@@ -196,6 +196,16 @@ The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherw
 
 C<static method le : R::NDArray::Int ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<lt>=> operations on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+
+Exceptions:
+
+The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
+
+The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
+
+The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+
 =head2 rep
 
 C<static method rep : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $times : int);>
