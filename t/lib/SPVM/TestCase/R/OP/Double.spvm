@@ -1,0 +1,133 @@
+class TestCase::R::OP::Double {
+  
+  use R::OP::Double;
+  
+  static method c : int () { return 1; }
+
+  static method add : int () { return 1; }
+
+  static method sub : int () { return 1; }
+
+  static method mul : int () { return 1; }
+
+  static method scamul : int () { return 1; }
+
+  static method div : int () { return 1; }
+
+  static method scadiv : int () { return 1; }
+
+  static method neg : int () { return 1; }
+
+  static method abs : int () { return 1; }
+
+  static method eq : int () { return 1; }
+
+  static method ne : int () { return 1; }
+
+  static method gt : int () { return 1; }
+
+  static method ge : int () { return 1; }
+
+  static method lt : int () { return 1; }
+
+  static method le : int () { return 1; }
+
+  static method rep : int () { return 1; }
+
+  static method rep_length : int () { return 1; }
+
+  static method seq : int () { return 1; }
+
+  static method seq_length : int () { return 1; }
+
+  static method sin : int () { return 1; }
+
+  static method cos : int () { return 1; }
+
+  static method tan : int () { return 1; }
+
+  static method sinh : int () { return 1; }
+
+  static method cosh : int () { return 1; }
+
+  static method tanh : int () { return 1; }
+
+  static method acos : int () { return 1; }
+
+  static method asin : int () { return 1; }
+
+  static method atan : int () { return 1; }
+
+  static method asinh : int () { return 1; }
+
+  static method acosh : int () { return 1; }
+
+  static method atanh : int () { return 1; }
+
+  static method exp : int () { return 1; }
+
+  static method expm1 : int () { return 1; }
+
+  static method log : int () { return 1; }
+
+  static method logb : int () { return 1; }
+
+  static method log2 : int () { return 1; }
+
+  static method log10 : int () { return 1; }
+
+  static method sqrt : int () { return 1; }
+
+  static method isinf : int () { return 1; }
+
+  static method is_infinite : int () { return 1; }
+
+  static method is_finite : int () { return 1; }
+
+  static method isnan : int () { return 1; }
+
+  static method is_nan : int () { return 1; }
+
+  static method pow : int () { return 1; }
+
+  static method atan2 : int () { return 1; }
+
+  static method modf : int () { return 1; }
+
+  static method ceil : int () { return 1; }
+
+  static method ceiling : int () { return 1; }
+
+  static method floor : int () { return 1; }
+
+  static method round : int () { return 1; }
+
+  static method lround : int () { return 1; }
+
+  static method remainder : int () { return 1; }
+
+  static method fmod : int () { return 1; }
+
+  static method sum : int () { return 1; }
+
+  static method cumsum : int () { return 1; }
+
+  static method prod : int () { return 1; }
+
+  static method cumprod : int () { return 1; }
+
+  static method diff : int () { return 1; }
+
+  static method max : int () { return 1; }
+
+  static method min : int () { return 1; }
+
+  static method mean : int () { return 1; }
+
+  static method inner : int () { return 1; }
+
+  static method cross : int () { return 1; }
+
+  static method outer : int () { return 1; }
+
+}
