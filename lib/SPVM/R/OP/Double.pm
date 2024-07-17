@@ -238,6 +238,12 @@ C<static method seq_length : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($be
 
 C<static method sin : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
+Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object for a return value, performs L<Math#sin|SPVM::Math/"sin"> method on each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+
+Exceptions:
+
+The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
+
 =head2 cos
 
 C<static method cos : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
