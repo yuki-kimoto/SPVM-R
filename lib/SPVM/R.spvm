@@ -3,5 +3,4 @@
 
 class R {
   version "0.010";
-  
 }
