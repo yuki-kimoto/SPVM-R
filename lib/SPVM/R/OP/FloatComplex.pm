@@ -19,7 +19,7 @@ The R::OP::FloatComplex class in L<SPVM> has methods for n-dimensional array ope
   # 1+10i
   my $ndarray_scalar = FCOP->c([(float)1,10]);
   
-  # 1+10i, 2+20i, 3 + 30i
+  # 1+10i, 2+20i, 3+30i
   my $ndarray_vector = FCOP->c([(float)1,10,  2,20,  3,30]);
   
   my $ndarray = FCOP->c([(float)1,10,  2,20,  3,30,  4,40,  5,50,  6,60], [3, 2]);
