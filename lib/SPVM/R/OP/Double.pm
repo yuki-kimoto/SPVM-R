@@ -14,21 +14,21 @@ The R::OP::Double class in L<SPVM> has methods for n-dimensional array operation
 
 =head1 Usage
 
-  use R::OP::Double as FOP;
+  use R::OP::Double as DOP;
   
-  my $ndarray_scalar = FOP->c((float)1);
+  my $ndarray_scalar = DOP->c((double)1);
   
-  my $ndarray_vector = FOP->c([(float)1, 2, 3]);
+  my $ndarray_vector = DOP->c([(double)1, 2, 3]);
   
-  my $ndarray = FOP->c([(float)1, 2, 3, 4, 5, 6], [3, 2]);
+  my $ndarray = DOP->c([(double)1, 2, 3, 4, 5, 6], [3, 2]);
   
-  my $ndarray2 = FOP->c($ndarray);
+  my $ndarray2 = DOP->c($ndarray);
 
 =head1 Class Methods
 
 =head2 c
 
-C<static method c : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($data : object of L<Double|SPVM::Double>|float[]|L<R::NDArray::Double|SPVM::R::NDArray::Double>, $dim : int[] = undef);>
+C<static method c : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($data : object of L<Double|SPVM::Double>|double[]|L<R::NDArray::Double|SPVM::R::NDArray::Double>, $dim : int[] = undef);>
 
 =head2 add
 
@@ -48,9 +48,29 @@ The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherw
 
 C<static method sub : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
+Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object for a return value, performs subtraction operations on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+
+Exceptions:
+
+The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
+
+The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
+
+The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+
 =head2 mul
 
 C<static method mul : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
+
+Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object for a return value, performs multiplication operations on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+
+Exceptions:
+
+The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
+
+The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
+
+The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 scamul
 
@@ -106,11 +126,11 @@ C<static method rep_length : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_
 
 =head2 seq
 
-C<static method seq : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($begin : float, $end : float, $by : float = 1);>
+C<static method seq : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($begin : double, $end : double, $by : double = 1);>
 
 =head2 seq_length
 
-C<static method seq_length : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($begin : float, $end : float, $length : int);>
+C<static method seq_length : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($begin : double, $end : double, $length : int);>
 
 =head2 sin
 
