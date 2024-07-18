@@ -1686,9 +1686,80 @@ class TestCase::R::OP::Double {
     return 1;
   }
   
-  static method isnan : int () { return 1; }
-
-  static method is_nan : int () { return 1; }
+  static method isnan : int () {
+    
+    my $x_ndarray = DOP->c([(double)Math->NAN, 2], [1, 2]);
+    
+    my $ret_ndarray = DOP->isnan($x_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::Int) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->data, [Math->isnan($x_ndarray->data->[0]), Math->isnan($x_ndarray->data->[1])])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        eval { DOP->isnan(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
+  static method is_nan : int () {
+    
+    my $x_ndarray = DOP->c([(double)Math->NAN, 2], [1, 2]);
+    
+    my $ret_ndarray = DOP->is_nan($x_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::Int) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->data, [Math->isnan($x_ndarray->data->[0]), Math->isnan($x_ndarray->data->[1])])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        eval { DOP->is_nan(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
 
   static method pow : int () { return 1; }
 
@@ -1696,7 +1767,42 @@ class TestCase::R::OP::Double {
 
   static method modf : int () { return 1; }
 
-  static method ceil : int () { return 1; }
+  static method ceil : int () {
+    
+    my $x_ndarray = DOP->c([(double)1.5, 2.5], [1, 2]);
+    
+    my $ret_ndarray = DOP->ceil($x_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::Double) {
+      return 0;
+    }
+    
+    unless (Array->equals_double($ret_ndarray->data, [(double)Math->ceil($x_ndarray->data->[0]), Math->ceil($x_ndarray->data->[1])])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        eval { DOP->ceil(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
 
   static method ceiling : int () { return 1; }
 
