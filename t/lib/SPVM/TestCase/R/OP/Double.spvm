@@ -1878,8 +1878,43 @@ class TestCase::R::OP::Double {
     return 1;
   }
   
-  static method round : int () { return 1; }
-
+  static method round : int () {
+    
+    my $x_ndarray = DOP->c([(double)1.5, 2.5], [1, 2]);
+    
+    my $ret_ndarray = DOP->round($x_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::Double) {
+      return 0;
+    }
+    
+    unless (Array->equals_double($ret_ndarray->data, [(double)Math->round($x_ndarray->data->[0]), Math->round($x_ndarray->data->[1])])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        eval { DOP->round(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method lround : int () { return 1; }
 
   static method remainder : int () { return 1; }
