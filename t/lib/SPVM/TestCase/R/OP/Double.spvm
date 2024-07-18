@@ -993,4 +993,6 @@ class TestCase::R::OP::Double {
 
   static method outer : int () { return 1; }
 
+  static method pi : int () { return 1; }
+
 }
