@@ -1673,4 +1673,13 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
+  static method pi : R::NDArray::Double () {
+    
+    my $x = Math->PI;
+    
+    my $ret_ndarray = &c([$x]);
+    
+    return $ret_ndarray;
+  }
+  
 }

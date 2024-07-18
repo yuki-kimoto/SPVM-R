@@ -420,6 +420,10 @@ C<static method cross : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarr
 
 C<static method outer : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
+=head2 pi
+
+C<static method pi : L<R::NDArray::Double|SPVM::R::NDArray::Double> ();>
+
 =head1 See Also
 
 =over 2

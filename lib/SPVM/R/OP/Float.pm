@@ -282,6 +282,10 @@ C<static method cross : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray
 
 C<static method outer : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>, $y_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
+=head2 pi
+
+C<static method pi : L<R::NDArray::Float|SPVM::R::NDArray::Float> ();>
+
 =head1 See Also
 
 =over 2

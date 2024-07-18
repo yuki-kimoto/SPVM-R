@@ -200,6 +200,10 @@ C<static method cross : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComp
 
 C<static method outer : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex> ($x_ndarray : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>, $y_ndarray : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>);>
 
+=head2 pi
+
+C<static method pi : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex> ();>
+
 =head1 See Also
 
 =over 2

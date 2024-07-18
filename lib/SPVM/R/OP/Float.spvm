@@ -1636,4 +1636,13 @@ class R::OP::Float {
     return $ret_ndarray;
   }
   
+  static method pi : R::NDArray::Float () {
+    
+    my $x = (float)Math->PI;
+    
+    my $ret_ndarray = &c([$x]);
+    
+    return $ret_ndarray;
+  }
+  
 }

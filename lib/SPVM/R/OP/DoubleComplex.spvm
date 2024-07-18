@@ -1123,5 +1123,14 @@ class R::OP::DoubleComplex {
     return $ret_ndarray;
   }
   
+  static method pi : R::NDArray::DoubleComplex () {
+    
+    my $x = Math->PI;
+    
+    my $ret_ndarray = &c([$x,0]);
+    
+    return $ret_ndarray;
+  }
+  
 }
 
