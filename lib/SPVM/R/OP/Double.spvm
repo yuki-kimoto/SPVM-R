@@ -1647,7 +1647,7 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
-  static method runif : R::NDArray::Double($length : int, $options : object[]) {
+  static method runif : R::NDArray::Double ($length : int, $options : object[]) {
     
     my $options_h = Hash->new($options);
     

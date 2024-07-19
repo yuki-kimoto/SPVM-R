@@ -1645,6 +1645,10 @@ class R::OP::Float {
     return $ret_ndarray;
   }
   
+  static method runif : R::NDArray::Float ($length : int, $options : object[]) {
+    return R::OP::Double->runif($length, $options)->to_float_ndarray;
+  }
+  
   static method pi : R::NDArray::Float () {
     
     my $x = (float)Math->PI;
