@@ -1323,7 +1323,7 @@ class R::OP::Double {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = &c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, [$length]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
@@ -1375,7 +1375,7 @@ class R::OP::Double {
     
     my $x_dim = $x_ndarray->dim;
     
-    my $ret_ndarray = &c(undef, $x_dim);
+    my $ret_ndarray = &c(undef, [$length]);
     
     my $x_data = $x_ndarray->data;
     my $ret_data = $ret_ndarray->data;
