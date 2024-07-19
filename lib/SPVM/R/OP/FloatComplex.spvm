@@ -1003,8 +1003,12 @@ class R::OP::FloatComplex {
     
     my $equals_dropped_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
     
-    unless ($equals_dropped_dim) {
-      die "The dimension of n-dimensional array \$x_ndarray must be equal to the dimension of n-dimensional array \$y_ndarray.";
+    my $x_length = $x_ndarray->length;
+    
+    my $y_length = $y_ndarray->length;
+    
+    unless ($x_length == $y_length) {
+      die "The length of the n-dimensional array \$x_ndarray must be equal to the length of the n-dimensional array \$y_ndarray.";
     }
     
     my $length = $x_ndarray->length;
@@ -1018,11 +1022,8 @@ class R::OP::FloatComplex {
     my $y_data = $y_ndarray->data;
     
     my $inner_product = Math->complexf(1, 0);
-    for (my $y_index = 0; $y_index < $length; $y_index++) {
-      for (my $x_index = 0; $x_index < $length; $x_index++) {
-        my $data_index = $length * $y_index + $x_index;
-        $inner_product = Math->caddf($inner_product, Math->cmulf($x_data->[$x_index], $y_data->[$y_index]));
-      }
+    for (my $data_index = 0; $data_index < $length; $data_index++) {
+      $inner_product = Math->caddf($inner_product, Math->cmulf($x_data->[$data_index], $y_data->[$data_index]));
     }
     $ret_data->[0] = $inner_product;
     
