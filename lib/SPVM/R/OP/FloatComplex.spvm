@@ -1078,7 +1078,7 @@ class R::OP::FloatComplex {
     
     $ret_data->[0] = Math->csubf(Math->cmulf($x_data->[1], $y_data->[2]), Math->cmulf($x_data->[2], $y_data->[1]));
     $ret_data->[1] = Math->csubf(Math->cmulf($x_data->[2], $y_data->[0]), Math->cmulf($x_data->[0], $y_data->[2]));
-    $ret_data->[0] = Math->csubf(Math->cmulf($x_data->[0], $y_data->[1]), Math->cmulf($x_data->[1], $y_data->[0]));
+    $ret_data->[2] = Math->csubf(Math->cmulf($x_data->[0], $y_data->[1]), Math->cmulf($x_data->[1], $y_data->[0]));
     
     return $ret_ndarray;
   }
