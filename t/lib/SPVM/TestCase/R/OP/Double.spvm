@@ -2118,11 +2118,82 @@ class TestCase::R::OP::Double {
     
     return 1;
   }
-
-  static method cumsum : int () { return 1; }
-
-  static method prod : int () { return 1; }
-
+  
+  static method cumsum : int () {
+    
+    my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+    
+    my $ret_ndarray = DOP->cumsum($x_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::Double) {
+      return 0;
+    }
+    
+    unless (Array->equals_double($ret_ndarray->data, [(double)1, 3])) {
+      return 0;
+    }
+    
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        eval { DOP->cumsum(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
+  static method prod : int () {
+    
+    my $x_ndarray = DOP->c([(double)2, 3], [1, 2]);
+    
+    my $ret_ndarray = DOP->prod($x_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::Double) {
+      return 0;
+    }
+    
+    unless (Array->equals_double($ret_ndarray->data, [(double)6])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1])) {
+      return 0;
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        eval { DOP->prod(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method cumprod : int () { return 1; }
 
   static method diff : int () { return 1; }
