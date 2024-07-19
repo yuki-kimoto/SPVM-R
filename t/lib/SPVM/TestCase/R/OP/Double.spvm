@@ -2411,13 +2411,13 @@ class TestCase::R::OP::Double {
     return 1;
   }
   
-  static method inner : int () {
+  static method dot : int () {
     
     my $x_ndarray = DOP->c([(double)1, 2]);
     
     my $y_ndarray = DOP->c([(double)3, 4]);
     
-    my $ret_ndarray = DOP->inner($x_ndarray, $y_ndarray);
+    my $ret_ndarray = DOP->dot($x_ndarray, $y_ndarray);
     
     unless ($ret_ndarray is_type R::NDArray::Double) {
       return 0;
@@ -2438,7 +2438,7 @@ class TestCase::R::OP::Double {
         
         my $y_ndarray = DOP->c([(double)3, 4]);
         
-        eval { DOP->inner(undef, $y_ndarray); }
+        eval { DOP->dot(undef, $y_ndarray); }
         
         unless ($@) {
           return 0;
@@ -2450,7 +2450,7 @@ class TestCase::R::OP::Double {
         
         my $y_ndarray = DOP->c([(double)3, 4]);
         
-        eval { DOP->inner($x_ndarray, undef); }
+        eval { DOP->dot($x_ndarray, undef); }
         
         unless ($@) {
           return 0;
@@ -2462,7 +2462,7 @@ class TestCase::R::OP::Double {
         
         my $y_ndarray = DOP->c([(double)3, 4]);
         
-        eval { DOP->inner($x_ndarray, $y_ndarray); }
+        eval { DOP->dot($x_ndarray, $y_ndarray); }
         
         unless ($@) {
           return 0;
@@ -2474,7 +2474,7 @@ class TestCase::R::OP::Double {
         
         my $y_ndarray = DOP->c([(double)3, 4], [1, 2]);
         
-        eval { DOP->inner($x_ndarray, $y_ndarray); }
+        eval { DOP->dot($x_ndarray, $y_ndarray); }
         
         unless ($@) {
           return 0;
@@ -2486,7 +2486,7 @@ class TestCase::R::OP::Double {
         
         my $y_ndarray = DOP->c([(double)3, 4, 5]);
         
-        eval { DOP->inner($x_ndarray, $y_ndarray); }
+        eval { DOP->dot($x_ndarray, $y_ndarray); }
         
         unless ($@) {
           return 0;

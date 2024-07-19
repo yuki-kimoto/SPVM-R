@@ -1505,7 +1505,7 @@ class R::OP::Double {
     return $ret_ndarray;
   }
   
-  precompile static method inner : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
+  precompile static method dot : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $y_ndarray : R::NDArray::Double) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";

@@ -270,9 +270,9 @@ C<static method min : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray :
 
 C<static method mean : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
-=head2 inner
+=head2 dot
 
-C<static method inner : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>, $y_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
+C<static method dot : L<R::NDArray::Float|SPVM::R::NDArray::Float> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>, $y_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
 =head2 cross
 

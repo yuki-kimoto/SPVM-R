@@ -1495,7 +1495,7 @@ class R::OP::Float {
     return $ret_ndarray;
   }
   
-  precompile static method inner : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
+  precompile static method dot : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $y_ndarray : R::NDArray::Float) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";
