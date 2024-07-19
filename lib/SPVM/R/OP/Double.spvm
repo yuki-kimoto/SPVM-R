@@ -1315,6 +1315,10 @@ class R::OP::Double {
       die "The n-dimensional array \$x_ndarray must be defined.";
     }
     
+    unless ($x_ndarray->is_vector) {
+      die "The n-dimensional array \$x_ndarray must be a vector.";
+    }
+    
     my $length = $x_ndarray->length;
     
     my $x_dim = $x_ndarray->dim;
@@ -1361,6 +1365,10 @@ class R::OP::Double {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->is_vector) {
+      die "The n-dimensional array \$x_ndarray must be a vector.";
     }
     
     my $length = $x_ndarray->length;
