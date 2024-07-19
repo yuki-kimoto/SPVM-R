@@ -1600,7 +1600,7 @@ class R::OP::Double {
     
     $ret_data->[0] = $x_data->[1] * $y_data->[2] - $x_data->[2] * $y_data->[1];
     $ret_data->[1] = $x_data->[2] * $y_data->[0] - $x_data->[0] * $y_data->[2];
-    $ret_data->[0] = $x_data->[0] * $y_data->[1] - $x_data->[1] * $y_data->[0];
+    $ret_data->[2] = $x_data->[0] * $y_data->[1] - $x_data->[1] * $y_data->[0];
     
     return $ret_ndarray;
   }
