@@ -859,7 +859,7 @@ class TestCase::R::OP::Double {
     
     return 1;
   }
-
+  
   static method rep : int () {
     
     my $x_ndarray = DOP->c([(double)1, 2]);
@@ -894,8 +894,101 @@ class TestCase::R::OP::Double {
     return 1;
   }
   
-  static method seq : int () { return 1; }
-
+  static method seq : int () {
+    
+    {
+      my $ret_ndarray = DOP->seq(1, 4);
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)1, 2, 3, 4])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [4])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ret_ndarray = DOP->seq(-3, 0);
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)-3, -2, -1, 0])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [4])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ret_ndarray = DOP->seq(1, 5, 2);
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)1, 3, 5])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [3])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ret_ndarray = DOP->seq(4, 1, -1);
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)4, 3, 2, 1])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [4])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ret_ndarray = DOP->seq(5, 1, -2);
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)5, 3, 1])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [3])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        eval { DOP->seq(1, 4, 0); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        eval { DOP->seq(1, 4, -1); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        eval { DOP->seq(4, 1, 1); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method seq_length : int () { return 1; }
 
   static method sin : int () {
