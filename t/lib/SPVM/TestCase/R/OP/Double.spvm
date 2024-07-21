@@ -85,6 +85,17 @@ class TestCase::R::OP::Double {
       }
     }
     
+    # Exceptions
+    {
+      {
+        eval { DOP->c(true); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+    }
+    
     return 1;
   }
   
