@@ -877,8 +877,23 @@ class TestCase::R::OP::Double {
     return 1;
   }
   
-  static method rep_length : int () { return 1; }
-
+  static method rep_length : int () {
+    
+    my $x_ndarray = DOP->c([(double)1, 2]);
+    
+    my $ret_ndarray = DOP->rep_length($x_ndarray, 4);
+    
+    unless (Array->equals_double($ret_ndarray->data, [(double)1, 2, 1, 2])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [4])) {
+      return 0;
+    }
+    
+    return 1;
+  }
+  
   static method seq : int () { return 1; }
 
   static method seq_length : int () { return 1; }
