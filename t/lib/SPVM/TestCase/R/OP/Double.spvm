@@ -1890,9 +1890,105 @@ class TestCase::R::OP::Double {
     
     return 1;
   }
-
-  static method modf : int () { return 1; }
-
+  
+  static method modf : int () {
+    
+    my $x_ndarray = DOP->c([(double)1, 0.5], [1, 2]);
+    
+    my $intpart_ndarray = DOP->c([(double)0, 0], [1, 2]);
+    
+    my $intpart_ndarray_ref = [$intpart_ndarray];
+    
+    my $ret_ndarray = DOP->modf($x_ndarray, $intpart_ndarray_ref);
+    
+    unless ($ret_ndarray is_type R::NDArray::Double) {
+      return 0;
+    }
+    
+    
+    warn;
+    
+    my $intpart0 = (double)0;
+    my $intpart1 = (double)0;
+    unless (Array->equals_double($ret_ndarray->data, [Math->modf($x_ndarray->data->[0], \$intpart0), Math->modf($x_ndarray->data->[1], \$intpart1)])) {
+      return 0;
+    }
+    
+    warn $intpart_ndarray_ref->[0]->data->[0];
+    
+    warn $intpart0;
+    
+    unless ($intpart_ndarray_ref->[0]->data->[0] == $intpart0) {
+      return 0;
+    }
+    
+    warn $intpart_ndarray_ref->[0]->data->[1];
+    
+    warn $intpart1;
+    
+    unless ($intpart_ndarray_ref->[0]->data->[1] == $intpart1) {
+      return 0;
+    }
+    
+    warn;
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    warn;
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        my $intpart_ndarray = DOP->c([(double)1, 0.5], [1, 2]);
+        
+        my $intpart_ndarray_ref = [$intpart_ndarray];
+        
+        eval { DOP->modf(undef, $intpart_ndarray_ref); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        my $intpart_ndarray = DOP->c([(double)1, 0.5], [1, 2]);
+        
+        my $intpart_ndarray_ref = [$intpart_ndarray];
+        
+        eval { DOP->modf($x_ndarray, undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = DOP->c([(double)1, 2], [1, 2]);
+        
+        my $intpart_ndarray = DOP->c([(double)1, 0.5], [1, 2]);
+        
+        my $intpart_ndarray_ref = [$intpart_ndarray, $intpart_ndarray];
+        
+        eval { DOP->modf($x_ndarray, $intpart_ndarray_ref); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method ceil : int () {
     
     my $x_ndarray = DOP->c([(double)1.5, 2.5], [1, 2]);

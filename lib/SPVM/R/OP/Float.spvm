@@ -1122,6 +1122,8 @@ class R::OP::Float {
       $x_data_intpart->[$i] = $intpart;
     }
     
+    $intpart_ndarray_ref->[0] = $intpart_ndarray;
+    
     return $ret_ndarray;
   }
   
