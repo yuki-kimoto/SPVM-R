@@ -541,7 +541,7 @@ class R::OP::Double {
   
   static method seq_length : R::NDArray::Double ($begin : double, $end : double, $length : int) {
     
-    my $by = (double)(($end - $begin) / $length);
+    my $by = (double)(($end - $begin + 1) / $length);
     
     my $ret_ndarray = &seq($begin, $end, $by);
     
