@@ -1122,8 +1122,6 @@ class R::OP::Double {
       my $intpart = 0.0;
       $ret_data->[$i] = Math->modf($x_data->[$i], \$intpart);
       
-      warn $intpart;
-      
       $x_data_intpart->[$i] = $intpart;
     }
     
