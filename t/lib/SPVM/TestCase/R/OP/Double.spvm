@@ -904,7 +904,7 @@ class TestCase::R::OP::Double {
     
     return 1;
   }
-
+  
   static method cos : int () {
     
     my $x_ndarray = DOP->c([(double)1, -2], [1, 2]);
@@ -2678,6 +2678,26 @@ class TestCase::R::OP::Double {
     return 1;
   }
 
-  static method pi : int () { return 1; }
+  static method pi : int () {
+    
+    my $ret_ndarray = DOP->pi;
+    
+    unless ($ret_ndarray is_type R::NDArray::Double) {
+      return 0;
+    }
+    
+    unless (Array->equals_double($ret_ndarray->data, [(double)Math->PI])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1])) {
+      return 0;
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
 
 }
