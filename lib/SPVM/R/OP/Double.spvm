@@ -1400,8 +1400,8 @@ class R::OP::Double {
     
     my $x_dim = $x_ndarray->dim;
     
-    unless (@$x_dim == 1) {
-      die "The length of dim field of \$x_ndarray must be 1.";
+    unless ($x_ndarray->is_vector) {
+      die "The n-dimensional array \$x_ndarray must be a vector.";
     }
     
     my $length = $x_ndarray->length;

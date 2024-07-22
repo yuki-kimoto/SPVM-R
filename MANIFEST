@@ -92,4 +92,8 @@ README.md
 t/basic.t
 t/lib/SPVM/TestCase/R.spvm
 t/lib/SPVM/TestCase/R/OP/Double.spvm
+t/lib/SPVM/TestCase/R/OP/Float.spvm
+t/lib/SPVM/TestCase/R/OP/Long.spvm
 t/R-OP-Double.t
+t/R-OP-Float.t
+t/R-OP-Long.t
