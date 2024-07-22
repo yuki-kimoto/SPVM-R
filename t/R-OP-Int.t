@@ -44,6 +44,9 @@ ok(SPVM::TestCase::R::OP::Int->cumprod);
 ok(SPVM::TestCase::R::OP::Int->diff);
 ok(SPVM::TestCase::R::OP::Int->max);
 ok(SPVM::TestCase::R::OP::Int->min);
+ok(SPVM::TestCase::R::OP::Int->and);
+ok(SPVM::TestCase::R::OP::Int->or);
+ok(SPVM::TestCase::R::OP::Int->not);
 
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
