@@ -4,6 +4,8 @@
 class R::OP::String {
   
   use R::NDArray::String;
+  use R::NDArray::Int;
+  
   
   # Class Methods
   static method c : R::NDArray::String ($data : object of string|string[]|R::NDArray::String, $dim : int[] = undef) {
@@ -125,7 +127,7 @@ class R::OP::String {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = !($x_data->[$i] ne $y_data->[$i]);
+      $ret_data->[$i] = $x_data->[$i] ne $y_data->[$i];
     }
     
     return $ret_ndarray;
