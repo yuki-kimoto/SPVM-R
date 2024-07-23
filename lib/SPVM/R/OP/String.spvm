@@ -61,7 +61,23 @@ class R::OP::String {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_data->[$i] . $y_data->[$i];
+      my $x = (string)undef;
+      if ($x_data->[$i]) {
+        $x = $x_data->[$i];
+      }
+      else {
+        $x = "";
+      }
+      
+      my $y = (string)undef;
+      if ($y_data->[$i]) {
+        $y = $y_data->[$i];
+      }
+      else {
+        $y = "";
+      }
+      
+      $ret_data->[$i] = $x . $y;
     }
     
     return $ret_ndarray;
