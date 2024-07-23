@@ -99,6 +99,7 @@ t/lib/SPVM/TestCase/R/OP/Long.spvm
 t/lib/SPVM/TestCase/R/OP/Short.spvm
 t/lib/SPVM/TestCase/R/OP/String.spvm
 t/lib/SPVM/TestCase/R/OP/StringBuffer.spvm
+t/lib/SPVM/TestCase/R/OP/Time/Piece.spvm
 t/R-OP-Byte.t
 t/R-OP-Double.t
 t/R-OP-Float.t
@@ -107,3 +108,4 @@ t/R-OP-Long.t
 t/R-OP-Short.t
 t/R-OP-String.t
 t/R-OP-StringBuffer.t
+t/R-OP-Time-Piece.t

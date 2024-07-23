@@ -83,6 +83,32 @@ class R::OP::String {
     return $ret_ndarray;
   }
   
+  precompile static method substr : R::NDArray::String ($x_ndarray : R::NDArray::String, $offset : int, $substr_length : int = -1, $replacement : string = undef) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::String->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    
+    for (my $i = 0; $i < $length; $i++) {
+      eval { $ret_data->[$i] = Fn->substr($x_data->[$i], $offset, $substr_length, $replacement); }
+      
+      if ($@) {
+        $ret_data->[$i] = undef;
+      }
+    }
+    
+    return $ret_ndarray;
+  }
+  
   precompile static method eq : R::NDArray::Int ($x_ndarray : R::NDArray::String, $y_ndarray : R::NDArray::String) {
     
     unless ($x_ndarray) {
