@@ -78,23 +78,23 @@ class R::OP::StringBuffer {
     
     for (my $i = 0; $i < $length; $i++) {
       
-      my $x_elem = (StringBuffer)undef;
+      my $x_elem_string = (StringBuffer)undef;
       if ($x_data->[$i]) {
-        $x_elem = $x_data->[$i];
+        $x_elem_string = $x_data->[$i];
       }
       else {
-        $x_elem = StringBuffer->new;
+        $x_elem_string = StringBuffer->new;
       }
       
-      my $y_elem = (string)undef;
+      my $y_elem_string = (string)undef;
       if ($y_data->[$i]) {
-        $y_elem = $y_data->[$i];
+        $y_elem_string = $y_data->[$i];
       }
       else {
-        $y_elem = "";
+        $y_elem_string = "";
       }
       
-      $x_elem->push($y_elem);
+      $x_elem_string->push($y_elem_string);
     }
   }
   
@@ -125,17 +125,17 @@ class R::OP::StringBuffer {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem = (string)undef;
+      my $x_elem_string = (string)undef;
       if ($x_data->[$i]) {
-        $x_elem = $x_data->[$i]->to_string;
+        $x_elem_string = $x_data->[$i]->to_string;
       }
       
-      my $y_elem = (string)undef;
+      my $y_elem_string = (string)undef;
       if ($y_data->[$i]) {
-        $y_elem = $y_data->[$i]->to_string;
+        $y_elem_string = $y_data->[$i]->to_string;
       }
       
-      $ret_data->[$i] = $x_elem eq $y_elem;
+      $ret_data->[$i] = $x_elem_string eq $y_elem_string;
     }
     
     return $ret_ndarray;
@@ -168,17 +168,17 @@ class R::OP::StringBuffer {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem = (string)undef;
+      my $x_elem_string = (string)undef;
       if ($x_data->[$i]) {
-        $x_elem = $x_data->[$i]->to_string;
+        $x_elem_string = $x_data->[$i]->to_string;
       }
       
-      my $y_elem = (string)undef;
+      my $y_elem_string = (string)undef;
       if ($y_data->[$i]) {
-        $y_elem = $y_data->[$i]->to_string;
+        $y_elem_string = $y_data->[$i]->to_string;
       }
       
-      $ret_data->[$i] = $x_elem ne $y_elem;
+      $ret_data->[$i] = $x_elem_string ne $y_elem_string;
     }
     
     return $ret_ndarray;
@@ -211,17 +211,17 @@ class R::OP::StringBuffer {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem = (string)undef;
+      my $x_elem_string = (string)undef;
       if ($x_data->[$i]) {
-        $x_elem = $x_data->[$i]->to_string;
+        $x_elem_string = $x_data->[$i]->to_string;
       }
       
-      my $y_elem = (string)undef;
+      my $y_elem_string = (string)undef;
       if ($y_data->[$i]) {
-        $y_elem = $y_data->[$i]->to_string;
+        $y_elem_string = $y_data->[$i]->to_string;
       }
       
-      $ret_data->[$i] = $x_elem gt $y_elem;
+      $ret_data->[$i] = $x_elem_string gt $y_elem_string;
     }
     
     return $ret_ndarray;
@@ -254,17 +254,17 @@ class R::OP::StringBuffer {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem = (string)undef;
+      my $x_elem_string = (string)undef;
       if ($x_data->[$i]) {
-        $x_elem = $x_data->[$i]->to_string;
+        $x_elem_string = $x_data->[$i]->to_string;
       }
       
-      my $y_elem = (string)undef;
+      my $y_elem_string = (string)undef;
       if ($y_data->[$i]) {
-        $y_elem = $y_data->[$i]->to_string;
+        $y_elem_string = $y_data->[$i]->to_string;
       }
       
-      $ret_data->[$i] = $x_elem ge $y_elem;
+      $ret_data->[$i] = $x_elem_string ge $y_elem_string;
     }
     
     return $ret_ndarray;
@@ -297,17 +297,17 @@ class R::OP::StringBuffer {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem = (string)undef;
+      my $x_elem_string = (string)undef;
       if ($x_data->[$i]) {
-        $x_elem = $x_data->[$i]->to_string;
+        $x_elem_string = $x_data->[$i]->to_string;
       }
       
-      my $y_elem = (string)undef;
+      my $y_elem_string = (string)undef;
       if ($y_data->[$i]) {
-        $y_elem = $y_data->[$i]->to_string;
+        $y_elem_string = $y_data->[$i]->to_string;
       }
       
-      $ret_data->[$i] = $x_elem lt $y_elem;
+      $ret_data->[$i] = $x_elem_string lt $y_elem_string;
     }
     
     return $ret_ndarray;
@@ -340,17 +340,17 @@ class R::OP::StringBuffer {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem = (string)undef;
+      my $x_elem_string = (string)undef;
       if ($x_data->[$i]) {
-        $x_elem = $x_data->[$i]->to_string;
+        $x_elem_string = $x_data->[$i]->to_string;
       }
       
-      my $y_elem = (string)undef;
+      my $y_elem_string = (string)undef;
       if ($y_data->[$i]) {
-        $y_elem = $y_data->[$i]->to_string;
+        $y_elem_string = $y_data->[$i]->to_string;
       }
       
-      $ret_data->[$i] = $x_elem le $y_elem;
+      $ret_data->[$i] = $x_elem_string le $y_elem_string;
     }
     
     return $ret_ndarray;
