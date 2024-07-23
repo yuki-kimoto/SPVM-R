@@ -99,6 +99,71 @@ class TestCase::R::OP::String {
     return 1;
   }
   
+  static method concat : int () {
+    
+    my $x_ndarray = STROP->c([(string)1, 1], [1, 2]);
+    
+    my $y_ndarray = STROP->c([(string)1, 2], [1, 2]);
+    
+    my $ret_ndarray = STROP->concat($x_ndarray, $y_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::String) {
+      return 0;
+    }
+    
+    unless (Array->equals_string($ret_ndarray->data, ["11", "12"])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = STROP->c([(string)1, 2], [1, 2]);
+        
+        my $y_ndarray = STROP->c([(string)3, 4], [1, 2]);
+        
+        eval { STROP->concat(undef, $y_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = STROP->c([(string)1, 2], [1, 2]);
+        
+        my $y_ndarray = STROP->c([(string)3, 4], [1, 2]);
+        
+        eval { STROP->concat($x_ndarray, undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = STROP->c([(string)1, 2], [1, 2]);
+        
+        my $y_ndarray = STROP->c([(string)3, 4], [2, 1]);
+        
+        eval { STROP->concat($x_ndarray, $y_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method eq : int () {
     
     my $x_ndarray = STROP->c([(string)1, 1], [1, 2]);
