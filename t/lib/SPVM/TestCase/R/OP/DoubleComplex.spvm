@@ -1594,7 +1594,7 @@ class TestCase::R::OP::DoubleComplex {
   
   static method dot : int () {
     
-    my $x_ndarray = DCOP->c([Math->complex(1, 1), Math->complex(2, -2)]);
+    my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(2, -2)]);
     
     my $y_ndarray = DCOP->c([Math->complex(3, -3), Math->complex(4, -4)]);
     
@@ -1603,8 +1603,6 @@ class TestCase::R::OP::DoubleComplex {
     unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
       return 0;
     }
-    
-    warn dump $ret_ndarray->data;
     
     unless (&equals_double_complex($ret_ndarray->data, [Math->complex(22, 0)])) {
       return 0;
@@ -1667,7 +1665,7 @@ class TestCase::R::OP::DoubleComplex {
       {
         my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(2, -2)]);
         
-        my $y_ndarray = DCOP->c([(double)3, 4, 5]);
+        my $y_ndarray = DCOP->c([Math->complex(3, -3), Math->complex(4, -4), Math->complex(5, -5)]);
         
         eval { DCOP->dot($x_ndarray, $y_ndarray); }
         

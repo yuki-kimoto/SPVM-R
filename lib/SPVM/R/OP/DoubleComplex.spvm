@@ -1028,7 +1028,7 @@ class R::OP::DoubleComplex {
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
-    my $inner_product = Math->complex(1, 0);
+    my $inner_product = Math->complex(0, 0);
     for (my $data_index = 0; $data_index < $length; $data_index++) {
       $inner_product = Math->cadd($inner_product, Math->cmul(Math->conj($x_data->[$data_index]), $y_data->[$data_index]));
     }
