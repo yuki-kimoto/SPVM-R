@@ -25,7 +25,7 @@ class R::OP::DataFrame {
     for (my $col = 0; $col < $x_ncol; $col++) {
       my $x_colname = $x_data_frame->colname($col);
       
-      my $x_ndarray = $x_data_frame->col($col);
+      my $x_ndarray = $x_data_frame->col_by_index($col);
       
       $ret_data_frame->insert_col($x_colname, $x_ndarray);
     }
@@ -35,7 +35,7 @@ class R::OP::DataFrame {
     for (my $col = 0; $col < $y_ncol; $col++) {
       my $y_colname = $y_data_frame->colname($col);
       
-      my $y_ndarray = $y_data_frame->col($col);
+      my $y_ndarray = $y_data_frame->col_by_index($col);
       
       $ret_data_frame->insert_col($y_colname, $y_ndarray);
     }
@@ -69,11 +69,11 @@ class R::OP::DataFrame {
       
       my $x_colname = $x_data_frame->colname($i);
       
-      my $x_ndarray = $x_data_frame->col($i);
+      my $x_ndarray = $x_data_frame->col_by_index($i);
       
       my $y_colname = $y_data_frame->colname($i);
       
-      my $y_ndarray = $y_data_frame->col($i);
+      my $y_ndarray = $y_data_frame->col_by_index($i);
       
       unless ($x_colname eq $y_colname) {
         die "The col name at col index $i of the data frame \$x_data_frame must be equal to the col name at col index $i of the data frame \$y_data_frame.";
