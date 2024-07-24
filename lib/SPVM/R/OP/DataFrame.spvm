@@ -3,27 +3,39 @@
 
 class R::OP::DataFrame {
   
+  use R::DataFrame;
+  use R::NDArray::Int;
+  use R::OP::Matrix;
+  
   # Class Methods
   static method cbind : R::DataFrame ($x_data_frame : R::DataFrame, $y_data_frame : R::DataFrame) {
     
+    unless ($x_data_frame) {
+      die "The data frame \$x_data_frame must be defined.";
+    }
+    
+    unless ($y_data_frame) {
+      die "The data frame \$y_data_frame must be defined.";
+    }
+    
     my $ret_data_frame = R::DataFrame->new;
     
-    my $x_cols_length = $x_data_frame->ncol;
+    my $x_ncol = $x_data_frame->ncol;
     
-    for (my $i = 0; $i < $x_cols_length; $i++) {
-      my $x_colname = $x_data_frame->colname($i);
+    for (my $col = 0; $col < $x_ncol; $col++) {
+      my $x_colname = $x_data_frame->colname($col);
       
-      my $x_ndarray = $x_data_frame->col($i);
+      my $x_ndarray = $x_data_frame->col($col);
       
       $ret_data_frame->insert_col($x_colname, $x_ndarray);
     }
     
-    my $y_cols_length = $y_data_frame->ncol;
+    my $y_ncol = $y_data_frame->ncol;
     
-    for (my $i = 0; $i < $y_cols_length; $i++) {
-      my $y_colname = $y_data_frame->colname($i);
+    for (my $col = 0; $col < $y_ncol; $col++) {
+      my $y_colname = $y_data_frame->colname($col);
       
-      my $y_ndarray = $y_data_frame->col($i);
+      my $y_ndarray = $y_data_frame->col($col);
       
       $ret_data_frame->insert_col($y_colname, $y_ndarray);
     }
@@ -33,19 +45,27 @@ class R::OP::DataFrame {
   
   static method rbind : R::DataFrame ($x_data_frame : R::DataFrame, $y_data_frame : R::DataFrame) {
     
-    my $ret_data_frame = R::DataFrame->new;
+    unless ($x_data_frame) {
+      die "The data frame \$x_data_frame must be defined.";
+    }
     
-    my $x_cols_length = $x_data_frame->ncol;
+    unless ($y_data_frame) {
+      die "The data frame \$y_data_frame must be defined.";
+    }
     
-    my $y_cols_length = $y_data_frame->ncol;
+    my $x_ncol = $x_data_frame->ncol;
     
-    unless ($x_cols_length == $y_cols_length) {
+    my $y_ncol = $y_data_frame->ncol;
+    
+    unless ($x_ncol == $y_ncol) {
       die "The length of the cols of the data frame \$x_data_frame must be equal to the length of the cols of the data frame \$y_data_frame.";
     }
     
-    my $cols_length = $x_cols_length;
+    my $ncol = $x_ncol;
     
-    for (my $i = 0; $i < $cols_length; $i++) {
+    my $ret_data_frame = R::DataFrame->new;
+    
+    for (my $i = 0; $i < $ncol; $i++) {
       
       my $x_colname = $x_data_frame->colname($i);
       

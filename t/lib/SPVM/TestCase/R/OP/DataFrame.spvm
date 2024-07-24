@@ -1,0 +1,10 @@
+class TestCase::R::OP::DataFrame {
+  
+  use Array;
+  
+  use R::OP::DataFrame as DFOP;
+  
+  static method cbind : int () { return 1; }
+  
+  static method rbind : int () { return 1; }
+}
