@@ -93,6 +93,7 @@ t/basic.t
 t/lib/SPVM/TestCase/R.spvm
 t/lib/SPVM/TestCase/R/OP/Byte.spvm
 t/lib/SPVM/TestCase/R/OP/Double.spvm
+t/lib/SPVM/TestCase/R/OP/DoubleComplex.spvm
 t/lib/SPVM/TestCase/R/OP/Float.spvm
 t/lib/SPVM/TestCase/R/OP/Int.spvm
 t/lib/SPVM/TestCase/R/OP/Long.spvm
@@ -102,6 +103,7 @@ t/lib/SPVM/TestCase/R/OP/StringBuffer.spvm
 t/lib/SPVM/TestCase/R/OP/Time/Piece.spvm
 t/R-OP-Byte.t
 t/R-OP-Double.t
+t/R-OP-DoubleComplex.t
 t/R-OP-Float.t
 t/R-OP-Int.t
 t/R-OP-Long.t
