@@ -1058,7 +1058,7 @@ class R::OP::FloatComplex {
     
     my $x_length = $x_ndarray->length;
     
-    my $y_length = $x_ndarray->length;
+    my $y_length = $y_ndarray->length;
     
     my $ret_length = $x_length * $y_length;
     

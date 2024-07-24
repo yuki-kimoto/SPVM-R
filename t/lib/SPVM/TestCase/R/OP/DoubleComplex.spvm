@@ -943,7 +943,7 @@ class TestCase::R::OP::DoubleComplex {
 
   static method acos : int () {
     
-    my $x_ndarray = DCOP->c([(double)1, -1], [1, 2]);
+    my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(-1, 1)], [1, 2]);
     
     my $ret_ndarray = DCOP->acos($x_ndarray);
     
@@ -980,7 +980,7 @@ class TestCase::R::OP::DoubleComplex {
   
   static method asin : int () {
     
-    my $x_ndarray = DCOP->c([(double)1, -1], [1, 2]);
+    my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(-1, 1)], [1, 2]);
     
     my $ret_ndarray = DCOP->asin($x_ndarray);
     
@@ -1017,7 +1017,7 @@ class TestCase::R::OP::DoubleComplex {
   
   static method atan : int () {
     
-    my $x_ndarray = DCOP->c([(double)1, -1], [1, 2]);
+    my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(-1, 1)], [1, 2]);
     
     my $ret_ndarray = DCOP->atan($x_ndarray);
     
@@ -1054,7 +1054,7 @@ class TestCase::R::OP::DoubleComplex {
   
   static method asinh : int () {
     
-    my $x_ndarray = DCOP->c([(double)1, -1], [1, 2]);
+    my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(-1, 1)], [1, 2]);
     
     my $ret_ndarray = DCOP->asinh($x_ndarray);
     
@@ -1128,7 +1128,7 @@ class TestCase::R::OP::DoubleComplex {
   
   static method atanh : int () {
     
-    my $x_ndarray = DCOP->c([(double)1, -1], [1, 2]);
+    my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(-1, 1)], [1, 2]);
     
     my $ret_ndarray = DCOP->atanh($x_ndarray);
     
@@ -1165,7 +1165,7 @@ class TestCase::R::OP::DoubleComplex {
 
   static method exp : int () {
     
-    my $x_ndarray = DCOP->c([(double)1, -1], [1, 2]);
+    my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(-1, 1)], [1, 2]);
     
     my $ret_ndarray = DCOP->exp($x_ndarray);
     
@@ -1276,9 +1276,9 @@ class TestCase::R::OP::DoubleComplex {
   
   static method pow : int () {
     
-    my $x_ndarray = DCOP->c([(double)1, 0.5], [1, 2]);
+    my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(0.5, -0.5)], [1, 2]);
     
-    my $y_ndarray = DCOP->c([(double)0.5, 0.25], [1, 2]);
+    my $y_ndarray = DCOP->c([Math->complex(0.5, -0.5), Math->complex(0.25, -0.25)], [1, 2]);
     
     my $ret_ndarray = DCOP->pow($x_ndarray, $y_ndarray);
     
@@ -1603,6 +1603,8 @@ class TestCase::R::OP::DoubleComplex {
     unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
       return 0;
     }
+    
+    warn dump $ret_ndarray->data;
     
     unless (&equals_double_complex($ret_ndarray->data, [Math->complex(22, 0)])) {
       return 0;
