@@ -58,7 +58,7 @@ class R::OP::DataFrame {
     my $y_ncol = $y_data_frame->ncol;
     
     unless ($x_ncol == $y_ncol) {
-      die "The length of the cols of the data frame \$x_data_frame must be equal to the length of the cols of the data frame \$y_data_frame.";
+      die "The length of the columns of the data frame \$x_data_frame must be equal to the length of the columns of the data frame \$y_data_frame.";
     }
     
     my $ncol = $x_ncol;
