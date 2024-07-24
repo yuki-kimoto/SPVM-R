@@ -42,7 +42,54 @@ class TestCase::R::NDArray::Byte {
     return 1;
   }
   
-  static method create_default_data : int () { return 1; }
+  static method create_default_data : int () {
+    
+    {
+      my $ndarray = R::NDArray::Byte->new;
+      
+      my $default_data = $ndarray->create_default_data;
+      
+      unless ($default_data is_type byte[]) {
+        return 0;
+      }
+      
+      unless (Array->equals_byte($default_data, new byte[0])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = R::NDArray::Byte->new;
+      
+      my $length = 0;
+      my $default_data = $ndarray->create_default_data($length);
+      
+      unless ($default_data is_type byte[]) {
+        return 0;
+      }
+      
+      unless (Array->equals_byte($default_data, new byte[0])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = R::NDArray::Byte->new;
+      
+      my $length = 2;
+      my $default_data = $ndarray->create_default_data($length);
+      
+      unless ($default_data is_type byte[]) {
+        return 0;
+      }
+      
+      unless (Array->equals_byte($default_data, [(byte)0, 0])) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
   
   static method elem_to_string : int () { return 1; }
   
