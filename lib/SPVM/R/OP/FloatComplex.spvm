@@ -20,7 +20,6 @@ class R::OP::FloatComplex {
   use R::OP::String;
   use Fn;
   use Complex_2f;
-  use Complex_2d;
   use Math;
   
   # Class Methods
@@ -1029,9 +1028,9 @@ class R::OP::FloatComplex {
     my $x_data = $x_ndarray->data;
     my $y_data = $y_ndarray->data;
     
-    my $inner_product = Math->complexf(1, 0);
+    my $inner_product = Math->complexf(0, 0);
     for (my $data_index = 0; $data_index < $length; $data_index++) {
-      $inner_product = Math->caddf($inner_product, Math->cmulf($x_data->[$data_index], $y_data->[$data_index]));
+      $inner_product = Math->caddf($inner_product, Math->cmulf(Math->conjf($x_data->[$data_index]), $y_data->[$data_index]));
     }
     $ret_data->[0] = $inner_product;
     
