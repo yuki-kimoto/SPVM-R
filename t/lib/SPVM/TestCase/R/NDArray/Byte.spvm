@@ -8,6 +8,29 @@ class TestCase::R::NDArray::Byte {
     my $dim = [1, 3];
     my $ndarray = R::NDArray::Byte->new({data => $data, dim => [1, 3]});
     
+    my $got_data = $ndarray->data;
+    
+    unless ($got_data is_compile_type byte[]) {
+      return 0;
+    }
+    
+    unless ($got_data == $data) {
+      return 0;
+    }
+    
+    return 1;
+  }
+  
+  static method new : int () {
+    
+    my $data = [(byte)1, 2, 3];
+    my $dim = [1, 3];
+    my $ndarray = R::NDArray::Byte->new({data => $data, dim => [1, 3]});
+    
+    unless ($ndarray is_type R::NDArray::Byte) {
+      return 0;
+    }
+    
     unless ($ndarray->data == $data) {
       return 0;
     }
@@ -18,8 +41,6 @@ class TestCase::R::NDArray::Byte {
     
     return 1;
   }
-  
-  static method new : int () { return 1; }
   
   static method create_default_data : int () { return 1; }
   
