@@ -28,8 +28,8 @@ ok(SPVM::TestCase::R::NDArray::Double->clone);
 ok(SPVM::TestCase::R::NDArray::Double->slice);
 ok(SPVM::TestCase::R::NDArray::Double->to_int_ndarray);
 ok(SPVM::TestCase::R::NDArray::Double->to_long_ndarray);
-ok(SPVM::TestCase::R::NDArray::Double->to_double_ndarray);
-ok(SPVM::TestCase::R::NDArray::Double->to_float_complex_ndarray);
+ok(SPVM::TestCase::R::NDArray::Double->to_float_ndarray);
+ok(SPVM::TestCase::R::NDArray::Double->to_double_complex_ndarray);
 
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
