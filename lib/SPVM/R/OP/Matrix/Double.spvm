@@ -261,6 +261,10 @@ class R::OP::Matrix::Double {
       die "The n-dimensional array \$x_ndarray must be a squre matrix.";
     }
     
+    if (&det($x_ndarray)->data->[0] == 0) {
+      die "The determinant of the n-dimensional array(matrix) \$x_ndarray must not be equal to 0.";
+    }
+    
     my $x_data = (double[])$x_ndarray->data;
     
     my $x_row = $x_ndarray->nrow;
