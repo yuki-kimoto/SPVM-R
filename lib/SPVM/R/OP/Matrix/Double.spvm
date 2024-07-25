@@ -83,7 +83,7 @@ class R::OP::Matrix::Double {
     return $ret_ndarray;
   }
   
-  static method diag_identity : R::NDArray::Double ($nrow : int) {
+  static method identity : R::NDArray::Double ($nrow : int) {
     
     unless ($nrow > 0) {
       die "The row \$nrow must be greater than 0.";
