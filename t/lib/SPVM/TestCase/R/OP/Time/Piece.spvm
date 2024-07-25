@@ -495,11 +495,11 @@ class TestCase::R::OP::Time::Piece {
     return 1;
   }
   
-  static method rep_length : int () {
+  static method expand : int () {
     
     my $x_ndarray = TCOP->c([(string)"2000-01-01", "2000-01-02"]);
     
-    my $ret_ndarray = TCOP->rep_length($x_ndarray, 4);
+    my $ret_ndarray = TCOP->expand($x_ndarray, 4);
     
     unless (Array->equals_string(STROP->substr($ret_ndarray->to_string_ndarray, 0, 10)->data, [(string)"2000-01-01", "2000-01-02", "2000-01-01", "2000-01-02"])) {
       return 0;

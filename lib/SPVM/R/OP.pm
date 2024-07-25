@@ -37,9 +37,9 @@ C<static method equals_dropped_dim : int ($x_ndarray : L<R::NDArray|SPVM::R::NDA
 
 C<static method rep : R::NDArray ($x_ndarray : L<R::NDArray|SPVM::R::NDArray>, $times : int);>
 
-=head2 rep_length
+=head2 expand
 
-C<static method rep_length : R::NDArray ($x_ndarray : L<R::NDArray|SPVM::R::NDArray>, $length : int);>
+C<static method expand : R::NDArray ($x_ndarray : L<R::NDArray|SPVM::R::NDArray>, $length : int);>
 
 =head1 Related Modules
 

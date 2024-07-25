@@ -311,8 +311,8 @@ class R::OP::String {
     return (R::NDArray::String)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::String ($x_ndarray : R::NDArray::String, $length : int) {
-    return (R::NDArray::String)R::OP->rep_length($x_ndarray, $length);
+  static method expand : R::NDArray::String ($x_ndarray : R::NDArray::String, $length : int) {
+    return (R::NDArray::String)R::OP->expand($x_ndarray, $length);
   }
   
 }

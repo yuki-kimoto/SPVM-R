@@ -590,8 +590,8 @@ class R::OP::Int {
     return (R::NDArray::Int)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $length : int) {
-    return (R::NDArray::Int)R::OP->rep_length($x_ndarray, $length);
+  static method expand : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $length : int) {
+    return (R::NDArray::Int)R::OP->expand($x_ndarray, $length);
   }
   
   static method seq : R::NDArray::Int ($begin : int, $end : int, $by : int = 1) {

@@ -18,7 +18,7 @@ my $start_memory_blocks_count = $api->get_memory_blocks_count;
 
 ok(SPVM::TestCase::R::OP::Byte->c);
 ok(SPVM::TestCase::R::OP::Byte->rep);
-ok(SPVM::TestCase::R::OP::Byte->rep_length);
+ok(SPVM::TestCase::R::OP::Byte->expand);
 ok(SPVM::TestCase::R::OP::Byte->seq);
 
 my $end_memory_blocks_count = $api->get_memory_blocks_count;

@@ -495,8 +495,8 @@ class R::OP::Double {
     return (R::NDArray::Double)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $length : int) {
-    return (R::NDArray::Double)R::OP->rep_length($x_ndarray, $length);
+  static method expand : R::NDArray::Double ($x_ndarray : R::NDArray::Double, $length : int) {
+    return (R::NDArray::Double)R::OP->expand($x_ndarray, $length);
   }
   
   static method seq : R::NDArray::Double ($begin : double, $end : double, $by : double = 1) {

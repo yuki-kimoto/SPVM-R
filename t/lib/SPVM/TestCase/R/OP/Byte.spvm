@@ -116,11 +116,11 @@ class TestCase::R::OP::Byte {
     return 1;
   }
   
-  static method rep_length : int () {
+  static method expand : int () {
     
     my $x_ndarray = BOP->c([(byte)1, 2]);
     
-    my $ret_ndarray = BOP->rep_length($x_ndarray, 4);
+    my $ret_ndarray = BOP->expand($x_ndarray, 4);
     
     unless (Array->equals_byte($ret_ndarray->data, [(byte)1, 2, 1, 2])) {
       return 0;

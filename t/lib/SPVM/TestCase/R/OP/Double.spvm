@@ -970,11 +970,11 @@ class TestCase::R::OP::Double {
     return 1;
   }
   
-  static method rep_length : int () {
+  static method expand : int () {
     
     my $x_ndarray = DOP->c([(double)1, 2]);
     
-    my $ret_ndarray = DOP->rep_length($x_ndarray, 4);
+    my $ret_ndarray = DOP->expand($x_ndarray, 4);
     
     unless (Array->equals_double($ret_ndarray->data, [(double)1, 2, 1, 2])) {
       return 0;

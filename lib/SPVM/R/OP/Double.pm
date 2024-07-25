@@ -222,9 +222,9 @@ The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherw
 
 C<static method rep : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $times : int);>
 
-=head2 rep_length
+=head2 expand
 
-C<static method rep_length : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $length : int);>
+C<static method expand : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $length : int);>
 
 =head2 seq
 

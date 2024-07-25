@@ -360,7 +360,7 @@ class R::OP::StringBuffer {
     return (R::NDArray::StringBuffer)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::StringBuffer ($x_ndarray : R::NDArray::StringBuffer, $length : int) {
-    return (R::NDArray::StringBuffer)R::OP->rep_length($x_ndarray, $length);
+  static method expand : R::NDArray::StringBuffer ($x_ndarray : R::NDArray::StringBuffer, $length : int) {
+    return (R::NDArray::StringBuffer)R::OP->expand($x_ndarray, $length);
   }
 }

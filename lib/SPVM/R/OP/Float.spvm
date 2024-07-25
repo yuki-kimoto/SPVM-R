@@ -492,8 +492,8 @@ class R::OP::Float {
     return (R::NDArray::Float)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $length : int) {
-    return (R::NDArray::Float)R::OP->rep_length($x_ndarray, $length);
+  static method expand : R::NDArray::Float ($x_ndarray : R::NDArray::Float, $length : int) {
+    return (R::NDArray::Float)R::OP->expand($x_ndarray, $length);
   }
   
   static method seq : R::NDArray::Float ($begin : float, $end : float, $by : float = 1) {

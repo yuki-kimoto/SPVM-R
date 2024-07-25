@@ -32,7 +32,7 @@ ok(SPVM::TestCase::R::OP::FloatComplex->arg);
 ok(SPVM::TestCase::R::OP::FloatComplex->eq);
 ok(SPVM::TestCase::R::OP::FloatComplex->ne);
 ok(SPVM::TestCase::R::OP::FloatComplex->rep);
-ok(SPVM::TestCase::R::OP::FloatComplex->rep_length);
+ok(SPVM::TestCase::R::OP::FloatComplex->expand);
 ok(SPVM::TestCase::R::OP::FloatComplex->sin);
 ok(SPVM::TestCase::R::OP::FloatComplex->cos);
 ok(SPVM::TestCase::R::OP::FloatComplex->tan);

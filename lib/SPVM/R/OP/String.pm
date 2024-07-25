@@ -62,9 +62,9 @@ C<static method le : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R:
 
 C<static method rep : L<R::NDArray::String|SPVM::R::NDArray::String> ($x_ndarray : L<R::NDArray::String|SPVM::R::NDArray::String>, $times : int);>
 
-=head2 rep_length
+=head2 expand
 
-C<static method rep_length : L<R::NDArray::String|SPVM::R::NDArray::String> ($x_ndarray : L<R::NDArray::String|SPVM::R::NDArray::String>, $length : int);>
+C<static method expand : L<R::NDArray::String|SPVM::R::NDArray::String> ($x_ndarray : L<R::NDArray::String|SPVM::R::NDArray::String>, $length : int);>
 
 =head1 See Also
 

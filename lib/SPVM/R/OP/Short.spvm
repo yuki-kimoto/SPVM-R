@@ -37,8 +37,8 @@ class R::OP::Short {
     return (R::NDArray::Short)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::Short ($x_ndarray : R::NDArray::Short, $length : int) {
-    return (R::NDArray::Short)R::OP->rep_length($x_ndarray, $length);
+  static method expand : R::NDArray::Short ($x_ndarray : R::NDArray::Short, $length : int) {
+    return (R::NDArray::Short)R::OP->expand($x_ndarray, $length);
   }
   
   static method seq : R::NDArray::Short ($begin : short, $end : short, $by : short = 1) {

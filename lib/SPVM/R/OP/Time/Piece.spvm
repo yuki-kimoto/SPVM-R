@@ -309,8 +309,8 @@ class R::OP::Time::Piece {
     return (R::NDArray::Time::Piece)R::OP->rep($x_ndarray, $times);
   }
   
-  static method rep_length : R::NDArray::Time::Piece ($x_ndarray : R::NDArray::Time::Piece, $length : int) {
-    return (R::NDArray::Time::Piece)R::OP->rep_length($x_ndarray, $length);
+  static method expand : R::NDArray::Time::Piece ($x_ndarray : R::NDArray::Time::Piece, $length : int) {
+    return (R::NDArray::Time::Piece)R::OP->expand($x_ndarray, $length);
   }
 }
 

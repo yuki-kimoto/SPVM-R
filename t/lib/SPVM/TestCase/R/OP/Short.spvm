@@ -116,11 +116,11 @@ class TestCase::R::OP::Short {
     return 1;
   }
   
-  static method rep_length : int () {
+  static method expand : int () {
     
     my $x_ndarray = SOP->c([(short)1, 2]);
     
-    my $ret_ndarray = SOP->rep_length($x_ndarray, 4);
+    my $ret_ndarray = SOP->expand($x_ndarray, 4);
     
     unless (Array->equals_short($ret_ndarray->data, [(short)1, 2, 1, 2])) {
       return 0;

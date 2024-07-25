@@ -571,11 +571,11 @@ class TestCase::R::OP::String {
     return 1;
   }
   
-  static method rep_length : int () {
+  static method expand : int () {
     
     my $x_ndarray = STROP->c([(string)1, 2]);
     
-    my $ret_ndarray = STROP->rep_length($x_ndarray, 4);
+    my $ret_ndarray = STROP->expand($x_ndarray, 4);
     
     unless (Array->equals_string($ret_ndarray->data, [(string)1, 2, 1, 2])) {
       return 0;

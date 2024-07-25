@@ -35,7 +35,7 @@ ok(SPVM::TestCase::R::OP::Long->ge);
 ok(SPVM::TestCase::R::OP::Long->lt);
 ok(SPVM::TestCase::R::OP::Long->le);
 ok(SPVM::TestCase::R::OP::Long->rep);
-ok(SPVM::TestCase::R::OP::Long->rep_length);
+ok(SPVM::TestCase::R::OP::Long->expand);
 ok(SPVM::TestCase::R::OP::Long->seq);
 ok(SPVM::TestCase::R::OP::Long->sum);
 ok(SPVM::TestCase::R::OP::Long->cumsum);
