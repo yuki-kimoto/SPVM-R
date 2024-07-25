@@ -100,6 +100,7 @@ t/lib/SPVM/TestCase/R/NDArray/Int.spvm
 t/lib/SPVM/TestCase/R/NDArray/Long.spvm
 t/lib/SPVM/TestCase/R/NDArray/Short.spvm
 t/lib/SPVM/TestCase/R/NDArray/String.spvm
+t/lib/SPVM/TestCase/R/NDArray/StringBuffer.spvm
 t/lib/SPVM/TestCase/R/OP/Byte.spvm
 t/lib/SPVM/TestCase/R/OP/DataFrame.spvm
 t/lib/SPVM/TestCase/R/OP/Double.spvm
@@ -121,6 +122,7 @@ t/R-NDArray-Int.t
 t/R-NDArray-Long.t
 t/R-NDArray-Short.t
 t/R-NDArray-String.t
+t/R-NDArray-StringBuffer.t
 t/R-OP-Byte.t
 t/R-OP-DataFrame.t
 t/R-OP-Double.t
