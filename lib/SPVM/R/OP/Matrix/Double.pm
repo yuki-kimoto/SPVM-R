@@ -42,6 +42,10 @@ C<static method rbind : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarr
 
 C<static method diag : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
+=head2 slice_diag
+
+C<static method slice_diag : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : R::NDArray::Double);>
+
 =head2 identity
 
 C<static method identity : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($nrow : int);>
