@@ -684,12 +684,112 @@ class TestCase::R::NDArray {
   static method elem_clone : int () { return 1; }
   static method elem_cmp : int () { return 1; }
   static method to_string_ndarray : int () { return 1; }
-  static method elem_size : int () { return 1; }
-  static method elem_type_name : int () { return 1; }
-  static method is_numeric_ndarray : int () { return 1; }
-  static method is_mulnum_ndarray : int () { return 1; }
-  static method is_any_numeric_ndarray : int () { return 1; }
-  static method is_object_ndarray : int () { return 1; }
+  
+  static method elem_size : int () {
+    
+    {
+      unless (R::NDArray::String->new->elem_size == Fn->sizeof_native_pointer) {
+        return 0;
+      }
+      
+      unless (R::NDArray::Int->new->elem_size == 4) {
+        return 0;
+      }
+      
+      unless (R::NDArray::DoubleComplex->new->elem_size == 16) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method elem_type_name : int () {
+    
+    {
+      unless (R::NDArray::Int->new->elem_type_name eq "int") {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  static method is_numeric_ndarray : int () {
+    
+    {
+      unless (R::NDArray::String->new->is_numeric_ndarray == 0) {
+        return 0;
+      }
+      
+      unless (R::NDArray::Int->new->is_numeric_ndarray == 1) {
+        return 0;
+      }
+      
+      unless (R::NDArray::DoubleComplex->new->is_numeric_ndarray == 0) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method is_mulnum_ndarray : int () {
+    
+    {
+      unless (R::NDArray::String->new->is_mulnum_ndarray == 0) {
+        return 0;
+      }
+      
+      unless (R::NDArray::Int->new->is_mulnum_ndarray == 0) {
+        return 0;
+      }
+      
+      unless (R::NDArray::DoubleComplex->new->is_mulnum_ndarray == 1) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method is_any_numeric_ndarray : int () {
+    
+    {
+      unless (R::NDArray::String->new->is_any_numeric_ndarray == 0) {
+        return 0;
+      }
+      
+      unless (R::NDArray::Int->new->is_any_numeric_ndarray == 1) {
+        return 0;
+      }
+      
+      unless (R::NDArray::DoubleComplex->new->is_any_numeric_ndarray == 1) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method is_object_ndarray : int () {
+    
+    {
+      unless (R::NDArray::String->new->is_object_ndarray == 1) {
+        return 0;
+      }
+      
+      unless (R::NDArray::Int->new->is_object_ndarray == 0) {
+        return 0;
+      }
+      
+      unless (R::NDArray::DoubleComplex->new->is_object_ndarray == 0) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
   static method clone : int () {
     {
       my $dim = [2, 3];
