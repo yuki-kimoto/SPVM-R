@@ -1,0 +1,42 @@
+class TestCase::R::NDArray {
+  
+  use R::NDArray;
+  use R::OP::Int as IOP;
+  
+  static method data : int () { return 1; }
+  static method dim : int () { return 1; }
+  static method set_dim : int () { return 1; }
+  static method is_dim_read_only : int () { return 1; }
+  static method new : int () { return 1; }
+  static method make_dim_read_only : int () { return 1; }
+  static method nrow : int () { return 1; }
+  static method ncol : int () { return 1; }
+  static method length : int () { return 1; }
+  static method is_empty : int () { return 1; }
+  static method is_scalar : int () { return 1; }
+  static method is_vector : int () { return 1; }
+  static method is_matrix : int () { return 1; }
+  static method is_square_matrix : int () { return 1; }
+  static method drop_dim : int () { return 1; }
+  static method expand_dim : int () { return 1; }
+  static method create_default_data : int () { return 1; }
+  static method elem_to_string : int () { return 1; }
+  static method elem_assign : int () { return 1; }
+  static method elem_clone : int () { return 1; }
+  static method elem_cmp : int () { return 1; }
+  static method to_string_ndarray : int () { return 1; }
+  static method elem_size : int () { return 1; }
+  static method elem_type_name : int () { return 1; }
+  static method is_numeric_ndarray : int () { return 1; }
+  static method is_mulnum_ndarray : int () { return 1; }
+  static method is_any_numeric_ndarray : int () { return 1; }
+  static method is_object_ndarray : int () { return 1; }
+  static method clone : int () { return 1; }
+  static method slice : int () { return 1; }
+  static method slice_set : int () { return 1; }
+  static method to_string : int () { return 1; }
+  static method order : int () { return 1; }
+  static method set_order : int () { return 1; }
+  static method sort_asc : int () { return 1; }
+  static method sort_desc : int () { return 1; }
+}
