@@ -3,16 +3,276 @@ class TestCase::R::DataFrame {
   use R::OP::Int as IOP;
   use R::DataFrame;
   
-  static method new : int () { return 1; }
-  static method colnames : int () { return 1; }
-  static method exists_col : int () { return 1; }
-  static method colname : int () { return 1; }
-  static method colindex : int () { return 1; }
-  static method col_by_index : int () { return 1; }
-  static method first_col : int () { return 1; }
-  static method col : int () { return 1; }
-  static method set_col : int () { return 1; }
-  static method insert_col : int () { return 1; }
+  static method new : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      unless ($data_frame is_type R::DataFrame) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method colnames : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name0", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      
+      my $colnames = $data_frame->colnames;
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name0", "Name1"])) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method exists_col : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name0", IOP->c([1, 2, 3]));
+      
+      unless ($data_frame->exists_col("Name0")) {
+        return 0;
+      }
+      
+      if ($data_frame->exists_col("Name1")) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method colname : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name0", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      
+      my $colname = $data_frame->colname(1);
+      
+      unless ($colname eq "Name1") {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method colindex : int () { 
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name0", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      
+      my $colindex = $data_frame->colindex("Name1");
+      
+      unless ($colindex == 1) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  static method col_by_index : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name0", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name1", my $ndarray = IOP->c([1, 2, 3]));
+      
+      my $ret_ndarray = $data_frame->col_by_index(1);
+      
+      unless ($ret_ndarray == $ndarray) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method first_col : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name0", my $ndarray = IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      
+      my $ret_ndarray = $data_frame->first_col;
+      
+      unless ($ret_ndarray == $ndarray) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  static method col : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name0", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name1", my $ndarray = IOP->c([1, 2, 3]));
+      
+      my $ret_ndarray = $data_frame->col("Name1");
+      
+      unless ($ret_ndarray == $ndarray) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  static method set_col : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name3", IOP->c([1, 2, 3]));
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      unless ($data_frame->exists_col("Name1")) {
+        return 0;
+      }
+      
+      unless ($data_frame->exists_col("Name2")) {
+        return 0;
+      }
+      
+      unless ($data_frame->exists_col("Name3")) {
+        return 0;
+      }
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      $data_frame->insert_col("Name4", IOP->c([1, 2, 3]));
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->insert_col("Name0", IOP->c([1, 2, 3]), "Name1");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name0", "Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->remove_col("Name0");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->remove_col("Name4");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
+  static method insert_col : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name3", IOP->c([1, 2, 3]));
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      unless ($data_frame->exists_col("Name1")) {
+        return 0;
+      }
+      
+      unless ($data_frame->exists_col("Name2")) {
+        return 0;
+      }
+      
+      unless ($data_frame->exists_col("Name3")) {
+        return 0;
+      }
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      $data_frame->insert_col("Name4", IOP->c([1, 2, 3]));
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->insert_col("Name0", IOP->c([1, 2, 3]), "Name1");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name0", "Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->remove_col("Name0");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3", "Name4"])) {
+        return 0;
+      }
+      
+      $data_frame->remove_col("Name4");
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      $data_frame->set_col("Name2", IOP->c([1, 2, 3]));
+      
+      unless (Array->equals_string($data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
   
   static method remove_col : int () {
     {
