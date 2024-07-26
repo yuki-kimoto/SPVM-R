@@ -34,9 +34,9 @@ C<static method c : L<R::NDArray::Short|SPVM::R::NDArray::Short> ($data : object
 
 C<static method rep : L<R::NDArray::Short|SPVM::R::NDArray::Short> ($x_ndarray : L<R::NDArray::Short|SPVM::R::NDArray::Short>, $times : int);>
 
-=head2 expand
+=head2 rep_length
 
-C<static method expand : L<R::NDArray::Short|SPVM::R::NDArray::Short> ($x_ndarray : L<R::NDArray::Short|SPVM::R::NDArray::Short>, $length : int);>
+C<static method rep_length : L<R::NDArray::Short|SPVM::R::NDArray::Short> ($x_ndarray : L<R::NDArray::Short|SPVM::R::NDArray::Short>, $length : int);>
 
 =head2 seq
 

@@ -392,8 +392,8 @@ class R::OP::Long {
     return (R::NDArray::Long)R::OP->rep($x_ndarray, $times);
   }
   
-  static method expand : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $length : int) {
-    return (R::NDArray::Long)R::OP->expand($x_ndarray, $length);
+  static method rep_length : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $length : int) {
+    return (R::NDArray::Long)R::OP->rep_length($x_ndarray, $length);
   }
   
   static method seq : R::NDArray::Long ($begin : long, $end : long, $by : long = 1) {

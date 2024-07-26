@@ -1165,11 +1165,11 @@ class TestCase::R::OP::Long {
     return 1;
   }
   
-  static method expand : int () {
+  static method rep_length : int () {
     
     my $x_ndarray = LOP->c([(long)1, 2]);
     
-    my $ret_ndarray = LOP->expand($x_ndarray, 4);
+    my $ret_ndarray = LOP->rep_length($x_ndarray, 4);
     
     unless (Array->equals_long($ret_ndarray->data, [(long)1, 2, 1, 2])) {
       return 0;

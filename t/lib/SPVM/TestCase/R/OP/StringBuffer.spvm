@@ -560,11 +560,11 @@ class TestCase::R::OP::StringBuffer {
     return 1;
   }
   
-  static method expand : int () {
+  static method rep_length : int () {
     
     my $x_ndarray = BUFOP->c([(string)1, 2]);
     
-    my $ret_ndarray = BUFOP->expand($x_ndarray, 4);
+    my $ret_ndarray = BUFOP->rep_length($x_ndarray, 4);
     
     unless (Array->equals_string($ret_ndarray->to_string_ndarray->data, [(string)1, 2, 1, 2])) {
       return 0;

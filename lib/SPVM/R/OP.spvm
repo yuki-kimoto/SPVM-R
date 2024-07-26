@@ -85,7 +85,7 @@ class R::OP {
     return $ret_ndarray;
   }
   
-  precompile static method expand : R::NDArray ($x_ndarray : R::NDArray, $length : int) {
+  precompile static method rep_length : R::NDArray ($x_ndarray : R::NDArray, $length : int) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";

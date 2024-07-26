@@ -970,11 +970,11 @@ class TestCase::R::OP::Float {
     return 1;
   }
   
-  static method expand : int () {
+  static method rep_length : int () {
     
     my $x_ndarray = FOP->c([(float)1, 2]);
     
-    my $ret_ndarray = FOP->expand($x_ndarray, 4);
+    my $ret_ndarray = FOP->rep_length($x_ndarray, 4);
     
     unless (Array->equals_float($ret_ndarray->data, [(float)1, 2, 1, 2])) {
       return 0;

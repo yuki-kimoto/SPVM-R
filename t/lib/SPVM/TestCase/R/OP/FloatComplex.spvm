@@ -702,11 +702,11 @@ class TestCase::R::OP::FloatComplex {
     return 1;
   }
   
-  static method expand : int () {
+  static method rep_length : int () {
     
     my $x_ndarray = FCOP->c([Math->complexf(1f, -1f), Math->complexf(2f, -2f)]);
     
-    my $ret_ndarray = FCOP->expand($x_ndarray, 4);
+    my $ret_ndarray = FCOP->rep_length($x_ndarray, 4);
     
     unless (&equals_float_complex($ret_ndarray->data, [Math->complexf(1f, -1f), Math->complexf(2f, -2f), Math->complexf(1f, -1f), Math->complexf(2f, -2f)])) {
       return 0;

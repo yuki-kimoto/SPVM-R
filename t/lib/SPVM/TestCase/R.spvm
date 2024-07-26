@@ -333,14 +333,14 @@ class TestCase::R {
         }
       }
       
-      # R::OP::Int#expand
+      # R::OP::Int#rep_length
       {
         {
           my $x_ndarray = IOP->c([1, 2, 3]);
           
           my $length = 9;
           
-          my $ret_ndarray = IOP->expand($x_ndarray, $length);
+          my $ret_ndarray = IOP->rep_length($x_ndarray, $length);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -360,7 +360,7 @@ class TestCase::R {
           
           my $length = 9;
           
-          my $ret_ndarray = IOP->expand($x_ndarray, $length);
+          my $ret_ndarray = IOP->rep_length($x_ndarray, $length);
           
           unless ($ret_ndarray is_type R::NDArray::Int) {
             return 0;
@@ -1653,7 +1653,7 @@ class TestCase::R {
         {
           my $x_ndarray = IOP->c([1, 2, 3, 4]);
           
-          my $gt_ndarray = IOP->gt($x_ndarray, IOP->expand(IOP->c(2), $x_ndarray->length));
+          my $gt_ndarray = IOP->gt($x_ndarray, IOP->rep_length(IOP->c(2), $x_ndarray->length));
           
           my $indexes_ndarray = $gt_ndarray->to_indexes;
           

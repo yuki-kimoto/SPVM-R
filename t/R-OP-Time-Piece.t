@@ -24,7 +24,7 @@ ok(SPVM::TestCase::R::OP::Time::Piece->ge);
 ok(SPVM::TestCase::R::OP::Time::Piece->lt);
 ok(SPVM::TestCase::R::OP::Time::Piece->le);
 ok(SPVM::TestCase::R::OP::Time::Piece->rep);
-ok(SPVM::TestCase::R::OP::Time::Piece->expand);
+ok(SPVM::TestCase::R::OP::Time::Piece->rep_length);
 
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);

@@ -702,11 +702,11 @@ class TestCase::R::OP::DoubleComplex {
     return 1;
   }
   
-  static method expand : int () {
+  static method rep_length : int () {
     
     my $x_ndarray = DCOP->c([Math->complex(1, -1), Math->complex(2, -2)]);
     
-    my $ret_ndarray = DCOP->expand($x_ndarray, 4);
+    my $ret_ndarray = DCOP->rep_length($x_ndarray, 4);
     
     unless (&equals_double_complex($ret_ndarray->data, [Math->complex(1, -1), Math->complex(2, -2), Math->complex(1, -1), Math->complex(2, -2)])) {
       return 0;

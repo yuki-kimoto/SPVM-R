@@ -37,8 +37,8 @@ class R::OP::Byte {
     return (R::NDArray::Byte)R::OP->rep($x_ndarray, $times);
   }
   
-  static method expand : R::NDArray::Byte ($x_ndarray : R::NDArray::Byte, $length : int) {
-    return (R::NDArray::Byte)R::OP->expand($x_ndarray, $length);
+  static method rep_length : R::NDArray::Byte ($x_ndarray : R::NDArray::Byte, $length : int) {
+    return (R::NDArray::Byte)R::OP->rep_length($x_ndarray, $length);
   }
   
   static method seq : R::NDArray::Byte ($begin : byte, $end : byte, $by : byte = 1) {

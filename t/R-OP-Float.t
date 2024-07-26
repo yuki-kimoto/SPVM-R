@@ -32,7 +32,7 @@ ok(SPVM::TestCase::R::OP::Float->ge);
 ok(SPVM::TestCase::R::OP::Float->lt);
 ok(SPVM::TestCase::R::OP::Float->le);
 ok(SPVM::TestCase::R::OP::Float->rep);
-ok(SPVM::TestCase::R::OP::Float->expand);
+ok(SPVM::TestCase::R::OP::Float->rep_length);
 ok(SPVM::TestCase::R::OP::Float->seq);
 ok(SPVM::TestCase::R::OP::Float->seq_length);
 ok(SPVM::TestCase::R::OP::Float->sin);

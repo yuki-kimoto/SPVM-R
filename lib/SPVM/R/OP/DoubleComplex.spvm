@@ -467,8 +467,8 @@ class R::OP::DoubleComplex {
     return (R::NDArray::DoubleComplex)R::OP->rep($x_ndarray, $times);
   }
   
-  static method expand : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $length : int) {
-    return (R::NDArray::DoubleComplex)R::OP->expand($x_ndarray, $length);
+  static method rep_length : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $length : int) {
+    return (R::NDArray::DoubleComplex)R::OP->rep_length($x_ndarray, $length);
   }
   
   precompile static method sin : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex) {

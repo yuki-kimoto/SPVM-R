@@ -1165,11 +1165,11 @@ class TestCase::R::OP::Int {
     return 1;
   }
   
-  static method expand : int () {
+  static method rep_length : int () {
     
     my $x_ndarray = IOP->c([(int)1, 2]);
     
-    my $ret_ndarray = IOP->expand($x_ndarray, 4);
+    my $ret_ndarray = IOP->rep_length($x_ndarray, 4);
     
     unless (Array->equals_int($ret_ndarray->data, [(int)1, 2, 1, 2])) {
       return 0;

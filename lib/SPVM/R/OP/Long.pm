@@ -78,9 +78,9 @@ C<static method abs : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L
 
 C<static method rep : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $times : int);>
 
-=head2 expand
+=head2 rep_length
 
-C<static method expand : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $length : int);>
+C<static method rep_length : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $length : int);>
 
 =head2 seq
 

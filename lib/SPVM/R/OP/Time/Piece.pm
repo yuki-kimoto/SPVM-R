@@ -67,9 +67,9 @@ C<static method le : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R:
 
 C<static method rep : L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece> ($x_ndarray : L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece>, $times : int);>
 
-=head2 expand
+=head2 rep_length
 
-C<static method expand : L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece> ($x_ndarray : L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece>, $length : int);>
+C<static method rep_length : L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece> ($x_ndarray : L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece>, $length : int);>
 
 =head1 See Also
 
