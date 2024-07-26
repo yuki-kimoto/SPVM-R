@@ -76,6 +76,8 @@ class TestCase::R::NDArray {
       }
     }
     
+    $@ = undef;
+    
     return 1;
   }
   
@@ -117,8 +119,122 @@ class TestCase::R::NDArray {
     
     return 1;
   }
-  static method nrow : int () { return 1; }
-  static method ncol : int () { return 1; }
+  static method nrow : int () {
+    
+    {
+      {
+        my $dim = [1];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        unless ($ret_ndarray->nrow == 1) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->ncol == 1) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [2];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        unless ($ret_ndarray->nrow == 2) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->ncol == 1) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [3, 2];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        unless ($ret_ndarray->nrow == 3) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->ncol == 2) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [3, 2, 1];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        unless ($ret_ndarray->nrow == 3) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->ncol == 2) {
+          return 0;
+        }
+      }
+    }
+    
+    return 1;
+  }
+  static method ncol : int () {
+    
+    {
+      {
+        my $dim = [1];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        unless ($ret_ndarray->nrow == 1) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->ncol == 1) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [2];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        unless ($ret_ndarray->nrow == 2) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->ncol == 1) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [3, 2];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        unless ($ret_ndarray->nrow == 3) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->ncol == 2) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [3, 2, 1];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        unless ($ret_ndarray->nrow == 3) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->ncol == 2) {
+          return 0;
+        }
+      }
+    }
+    
+    return 1;
+  }
   
   static method length : int () {
     {
@@ -443,8 +559,125 @@ class TestCase::R::NDArray {
     
     return 1;
   }
-  static method drop_dim : int () { return 1; }
-  static method expand_dim : int () { return 1; }
+  
+  static method drop_dim : int () {
+    {
+      my $dim = [2, 1, 3, 5, 1];
+      my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+      
+      $ret_ndarray->drop_dim;
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2, 3, 5])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [2, 1, 3, 5, 1];
+      my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+      
+      my $dim_index = 1;
+      
+      $ret_ndarray->drop_dim($dim_index);
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2, 3, 5, 1])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $dim = [2, 1, 3, 5, 1];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        my $dim_index = 5;
+        
+        eval { $ret_ndarray->drop_dim($dim_index); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [2, 1, 3, 5, 1];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        my $dim_index = 0;
+        
+        eval { $ret_ndarray->drop_dim($dim_index); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
+  static method expand_dim : int () {
+    
+    {
+      my $dim = [2, 3, 5];
+      my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+      
+      $ret_ndarray->expand_dim;
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2, 3, 5, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [2, 3, 5];
+      my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+      
+      my $dim_index = 3;
+      
+      $ret_ndarray->expand_dim($dim_index);
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2, 3, 5, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [2, 3, 5];
+      my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+      
+      my $dim_index = 1;
+      
+      $ret_ndarray->expand_dim($dim_index);
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2, 1, 3, 5])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $dim = [2, 3, 5];
+        my $ret_ndarray = R::NDArray::Int->new({dim => $dim});
+        
+        my $dim_index = 4;
+        
+        eval { $ret_ndarray->expand_dim($dim_index); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
   static method create_default_data : int () { return 1; }
   static method elem_to_string : int () { return 1; }
   static method elem_assign : int () { return 1; }
@@ -457,8 +690,380 @@ class TestCase::R::NDArray {
   static method is_mulnum_ndarray : int () { return 1; }
   static method is_any_numeric_ndarray : int () { return 1; }
   static method is_object_ndarray : int () { return 1; }
-  static method clone : int () { return 1; }
-  static method slice : int () { return 1; }
+  static method clone : int () {
+    {
+      my $dim = [2, 3];
+      my $data = [1, 2, 3, 4, 5, 6];
+      my $ndarray = R::NDArray::Int->new({data => $data, dim => $dim});
+      
+      my $ret_ndarray = $ndarray->clone;
+      
+      unless (Array->equals_int($ret_ndarray->data, $data)){
+        return 0;
+      }
+      
+      if ($ret_ndarray->data == $data){
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, $dim)){
+        return 0;
+      }
+      
+    }
+    
+    {
+      my $dim = [2, 3];
+      my $data0 = "1";
+      my $data = [$data0, "2", "3", "4", "5", "6"];
+      my $ndarray = R::NDArray::String->new({data => $data, dim => $dim});
+      
+      my $ret_ndarray = $ndarray->clone;
+      
+      unless (Array->equals_string($ret_ndarray->data, $data)){
+        return 0;
+      }
+      
+      if ($ret_ndarray->data == $data){
+        return 0;
+      }
+      
+      if ($ret_ndarray->data->[0] == $data0){
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, $dim)){
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [2, 3];
+      my $data0 = "1";
+      my $data = [$data0, "2", "3", "4", "5", "6"];
+      my $ndarray = R::NDArray::String->new({data => $data, dim => $dim});
+      
+      my $shallow = 1;
+      my $ret_ndarray = $ndarray->clone($shallow);
+      
+      unless (Array->equals_string($ret_ndarray->data, $data)){
+        return 0;
+      }
+      
+      if ($ret_ndarray->data == $data){
+        return 0;
+      }
+      
+      unless ($ret_ndarray->data->[0] == $data0){
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, $dim)){
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  static method slice : int () {
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(0), IOP->c(0)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [1])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(1), IOP->c(0)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [2])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(2), IOP->c(0)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [3])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(0), IOP->c(1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [4])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(1), IOP->c(1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [5])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(2), IOP->c(1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [6])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c(IOP->seq(1, 24), [4, 3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(3), IOP->c(2), IOP->c(1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [24])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 1, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c(IOP->seq(1, 24), [4, 3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(1), IOP->c(1), IOP->c(1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [18])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 1, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->seq(0, 1), IOP->c(0)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [1, 2])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->seq(0, 2), IOP->c(0)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [1, 2, 3])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [3, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(0), IOP->seq(0, 1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [1, 4])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->seq(1, 2), IOP->seq(0, 1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [2, 3, 5, 6])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2, 2])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->seq(0, 2), IOP->seq(0, 1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [1, 2, 3, 4, 5, 6])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [3, 2])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->undef, IOP->c(1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [4, 5, 6])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [3, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+      
+      my $ret_ndarray = $ndarray->slice([IOP->c(1)]);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->data, [2, 5])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+        
+        eval { $ndarray->slice([IOP->c(3), IOP->c(0)]); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $ndarray = IOP->c([1, 2, 3, 4, 5, 6], [3, 2]);
+        
+        eval { $ndarray->slice([IOP->c(0), IOP->c(2)]); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method slice_set : int () { return 1; }
   static method to_string : int () { return 1; }
   static method order : int () { return 1; }
