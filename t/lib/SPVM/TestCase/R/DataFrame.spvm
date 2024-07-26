@@ -1,0 +1,22 @@
+class TestCase::R::DataFrame {
+  
+  static method new : int () { return 1; }
+  static method colnames : int () { return 1; }
+  static method exists_col : int () { return 1; }
+  static method colname : int () { return 1; }
+  static method colindex : int () { return 1; }
+  static method col_by_index : int () { return 1; }
+  static method first_col : int () { return 1; }
+  static method col : int () { return 1; }
+  static method set_col : int () { return 1; }
+  static method insert_col : int () { return 1; }
+  static method remove_col : int () { return 1; }
+  static method ncol : int () { return 1; }
+  static method nrow : int () { return 1; }
+  static method clone : int () { return 1; }
+  static method to_string : int () { return 1; }
+  static method slice : int () { return 1; }
+  static method set_order : int () { return 1; }
+  static method sort : int () { return 1; }
+  static method order : int () { return 1; }
+}

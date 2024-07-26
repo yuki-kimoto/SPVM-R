@@ -91,6 +91,7 @@ MANIFEST.SKIP
 README.md
 t/basic.t
 t/lib/SPVM/TestCase/R.spvm
+t/lib/SPVM/TestCase/R/DataFrame.spvm
 t/lib/SPVM/TestCase/R/NDArray.spvm
 t/lib/SPVM/TestCase/R/NDArray/AnyObject.spvm
 t/lib/SPVM/TestCase/R/NDArray/Byte.spvm
@@ -117,6 +118,7 @@ t/lib/SPVM/TestCase/R/OP/Short.spvm
 t/lib/SPVM/TestCase/R/OP/String.spvm
 t/lib/SPVM/TestCase/R/OP/StringBuffer.spvm
 t/lib/SPVM/TestCase/R/OP/Time/Piece.spvm
+t/R-DataFrame.t
 t/R-NDArray-AnyObject.t
 t/R-NDArray-Byte.t
 t/R-NDArray-Double.t
