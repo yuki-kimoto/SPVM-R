@@ -1,0 +1,18 @@
+class TestCase::R::NDArray::Hash {
+  
+  use R::NDArray::Hash;
+  
+  static method new : int () { return 1; }
+  static method set : int () { return 1; }
+  static method get : int () { return 1; }
+  static method get_byte : int () { return 1; }
+  static method get_short : int () { return 1; }
+  static method get_int : int () { return 1; }
+  static method get_long : int () { return 1; }
+  static method get_float : int () { return 1; }
+  static method get_float_complex : int () { return 1; }
+  static method get_double : int () { return 1; }
+  static method get_double_complex : int () { return 1; }
+  static method get_string : int () { return 1; }
+  
+}
