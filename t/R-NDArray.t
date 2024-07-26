@@ -20,7 +20,6 @@ ok(SPVM::TestCase::R::NDArray->data);
 ok(SPVM::TestCase::R::NDArray->dim);
 ok(SPVM::TestCase::R::NDArray->set_dim);
 ok(SPVM::TestCase::R::NDArray->is_dim_read_only);
-ok(SPVM::TestCase::R::NDArray->new);
 ok(SPVM::TestCase::R::NDArray->make_dim_read_only);
 ok(SPVM::TestCase::R::NDArray->nrow);
 ok(SPVM::TestCase::R::NDArray->ncol);

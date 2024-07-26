@@ -7,7 +7,6 @@ class TestCase::R::NDArray {
   static method dim : int () { return 1; }
   static method set_dim : int () { return 1; }
   static method is_dim_read_only : int () { return 1; }
-  static method new : int () { return 1; }
   static method make_dim_read_only : int () { return 1; }
   static method nrow : int () { return 1; }
   static method ncol : int () { return 1; }
