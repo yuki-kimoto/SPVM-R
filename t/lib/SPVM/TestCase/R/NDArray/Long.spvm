@@ -94,7 +94,7 @@ class TestCase::R::NDArray::Long {
   
   static method elem_to_string : int () {
     
-    my $ndarray = R::NDArray::Byte->new;
+    my $ndarray = R::NDArray::Long->new;
     
     my $data = [(long)1, 2];
     
@@ -111,7 +111,7 @@ class TestCase::R::NDArray::Long {
   
   static method elem_assign : int () {
     
-    my $ndarray = R::NDArray::Byte->new;
+    my $ndarray = R::NDArray::Long->new;
     
     my $dist_data = [(long)0, 0];
     
@@ -132,7 +132,7 @@ class TestCase::R::NDArray::Long {
   
   static method elem_clone : int () {
     
-    my $ndarray = R::NDArray::Byte->new;
+    my $ndarray = R::NDArray::Long->new;
     
     my $dist_data = [(long)0, 0];
     
@@ -153,7 +153,7 @@ class TestCase::R::NDArray::Long {
   
   static method elem_cmp : int () {
     
-    my $ndarray = R::NDArray::Byte->new;
+    my $ndarray = R::NDArray::Long->new;
     
     my $data = [(long)1, 2];
     
