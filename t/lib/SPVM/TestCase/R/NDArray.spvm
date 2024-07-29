@@ -678,11 +678,42 @@ class TestCase::R::NDArray {
     
     return 1;
   }
-  static method create_default_data : int () { return 1; }
-  static method elem_to_string : int () { return 1; }
-  static method elem_assign : int () { return 1; }
-  static method elem_clone : int () { return 1; }
-  static method elem_cmp : int () { return 1; }
+  
+  static method create_default_data : int () {
+    
+    # This method is tested in child classes.
+    
+    return 1;
+  }
+  
+  static method elem_to_string : int () {
+    
+    # This method is tested in child classes.
+    
+    return 1;
+  }
+  
+  static method elem_assign : int () {
+    
+    # This method is tested in child classes.
+    
+    return 1;
+  }
+  
+  static method elem_clone : int () {
+    
+    # This method is tested in child classes.
+    
+    return 1;
+  }
+  
+  static method elem_cmp : int () {
+    
+    # This method is tested in child classes.
+    
+    return 1;
+  }
+  
   static method to_string_ndarray : int () { return 1; }
   
   static method elem_size : int () {
