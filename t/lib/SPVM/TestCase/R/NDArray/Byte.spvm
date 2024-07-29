@@ -123,7 +123,7 @@ class TestCase::R::NDArray::Byte {
     
     $ndarray->elem_assign($dist_data, $dist_data_index, $src_data, $src_data_index);
     
-    unless ($dist_data->[$dist_data_index] = $src_data->[$src_data_index]) {
+    unless ($dist_data->[$dist_data_index] == $src_data->[$src_data_index]) {
       return 0;
     }
     
@@ -144,7 +144,7 @@ class TestCase::R::NDArray::Byte {
     
     $ndarray->elem_assign($dist_data, $dist_data_index, $src_data, $src_data_index);
     
-    unless ($dist_data->[$dist_data_index] = $src_data->[$src_data_index]) {
+    unless ($dist_data->[$dist_data_index] == $src_data->[$src_data_index]) {
       return 0;
     }
     
