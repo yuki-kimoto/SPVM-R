@@ -714,7 +714,20 @@ class TestCase::R::NDArray {
     return 1;
   }
   
-  static method to_string_ndarray : int () { return 1; }
+  static method to_string_ndarray : int () {
+    
+    {
+      my $ndarray = R::NDArray::Int->new({data => [1, 2]});
+      
+      my $ret_ndarray = $ndarray->to_string_ndarray;
+      
+      unless (Array->equals_string($ret_ndarray->data, [(string)1, 2])){
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
   
   static method elem_size : int () {
     
