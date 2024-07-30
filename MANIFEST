@@ -131,7 +131,7 @@ t/R-NDArray-Long.t
 t/R-NDArray-Short.t
 t/R-NDArray-String.t
 t/R-NDArray-StringBuffer.t
-t/R-NDArray-TimePiece.t
+t/R-NDArray-Time-Piece.t
 t/R-NDArray.t
 t/R-OP-Byte.t
 t/R-OP-DataFrame.t
