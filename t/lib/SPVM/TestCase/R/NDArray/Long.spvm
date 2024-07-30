@@ -142,7 +142,7 @@ class TestCase::R::NDArray::Long {
     
     my $src_data_index = 1;
     
-    $ndarray->elem_assign($dist_data, $dist_data_index, $src_data, $src_data_index);
+    $ndarray->elem_clone($dist_data, $dist_data_index, $src_data, $src_data_index);
     
     unless ($dist_data->[$dist_data_index] == $src_data->[$src_data_index]) {
       return 0;
