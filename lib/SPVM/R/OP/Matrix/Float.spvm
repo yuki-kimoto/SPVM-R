@@ -65,19 +65,17 @@ class R::OP::Matrix::Float {
     
     my $x_data = (float[])$x_ndarray->data;
     
-    my $x_nrow = $x_ndarray->nrow;
+    my $x_length = $x_ndarray->length;
     
-    my $x_ncol = $x_ndarray->ncol;
-    
-    my $ret_dim = [$x_nrow, $x_ncol];
+    my $ret_dim = [$x_length, $x_length];
     
     my $ret_ndarray = R::OP::Float->c(undef, $ret_dim);
     
     my $ret_data = $ret_ndarray->data;
     
     my $x_index = 0;
-    for (my $row = 0; $row < $x_nrow; $row++) {
-      $ret_data->[$x_ncol * $row + $row] = $x_data->[$row];
+    for (my $row = 0; $row < $x_length; $row++) {
+      $ret_data->[$x_length * $row + $row] = $x_data->[$row];
     }
     
     return $ret_ndarray;
