@@ -102,7 +102,31 @@ class TestCase::R::OP::Matrix::Double {
     return 1;
   }
   
-  static method slice_diag : int () { return 1; }
+  static method slice_diag : int () {
+    
+    {
+      my $seq_ndarray = DOP->seq(1, 9);
+      
+      my $x_ndarray = MDOP->matrix($seq_ndarray, 3, 3);
+      
+      my $ret_ndarray = MDOP->slice_diag($x_ndarray);
+      
+      unless ($ret_ndarray is_type R::NDArray::Double) {
+        return 0;
+      }
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)1, 5, 9])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [3])) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
   static method identity : int () { return 1; }
   
   static method mul : int () {
