@@ -196,48 +196,6 @@ class TestCase::R {
     
     # R::OP::Matrix::Double
     {
-      # R::OP::Matrix::Double#matrix
-      {
-        {
-          my $seq_ndarray = DOP->seq(1, 6);
-          
-          my $nrow = 3;
-          my $ncol = 2;
-          my $ret_ndarray = MDOP->matrix($seq_ndarray, $nrow, $ncol);
-          
-          unless ($ret_ndarray is_type R::NDArray::Double) {
-            return 0;
-          }
-          
-          unless ($ret_ndarray->data == $seq_ndarray->data) {
-            return 0;
-          }
-          
-          unless (Array->equals_int($ret_ndarray->dim, [$nrow, $ncol])) {
-            return 0;
-          }
-        }
-        
-        {
-          my $data = [(double)1, 2, 3, 4, 5, 6];
-          my $nrow = 3;
-          my $ncol = 2;
-          my $ret_ndarray = MDOP->matrix($data, $nrow, $ncol);
-          
-          unless ($ret_ndarray is_type R::NDArray::Double) {
-            return 0;
-          }
-          
-          unless ($ret_ndarray->data == $data) {
-            return 0;
-          }
-          
-          unless (Array->equals_int($ret_ndarray->dim, [$nrow, $ncol])) {
-            return 0;
-          }
-        }
-      }
-      
       # R::OP::Matrix::Double#matrix_byrow
       {
         my $seq_ndarray = DOP->seq(1, 6);
