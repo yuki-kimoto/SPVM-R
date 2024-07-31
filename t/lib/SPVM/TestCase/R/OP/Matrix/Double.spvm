@@ -83,26 +83,23 @@ class TestCase::R::OP::Matrix::Double {
   static method mul : int () {
     
     {
-      {
-        my $seq_ndarray = DOP->seq(1, 6);
-        
-        my $x_ndarray = MDOP->matrix(DOP->seq(1, 6), 2, 3);
-        my $y_ndarray = MDOP->matrix(DOP->seq(1, 6), 3, 2);
-        
-        my $ret_ndarray = MDOP->mul($x_ndarray, $y_ndarray);
-        
-        unless ($ret_ndarray is_type R::NDArray::Double) {
-          return 0;
-        }
-        
-        unless (Array->equals_double($ret_ndarray->data, [(double)22, 28, 49, 64])) {
-          return 0;
-        }
-        
-        unless (Array->equals_int($ret_ndarray->dim, [2, 2])) {
-          return 0;
-        }
-        
+      my $seq_ndarray = DOP->seq(1, 6);
+      
+      my $x_ndarray = MDOP->matrix(DOP->seq(1, 6), 2, 3);
+      my $y_ndarray = MDOP->matrix(DOP->seq(1, 6), 3, 2);
+      
+      my $ret_ndarray = MDOP->mul($x_ndarray, $y_ndarray);
+      
+      unless ($ret_ndarray is_type R::NDArray::Double) {
+        return 0;
+      }
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)22, 28, 49, 64])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2, 2])) {
+        return 0;
       }
     }
     
@@ -112,30 +109,28 @@ class TestCase::R::OP::Matrix::Double {
   static method t : int () {
     
     {
-      {
-        my $seq_ndarray = DOP->seq(1, 6);
-        
-        my $x_ndarray = MDOP->matrix(DOP->seq(1, 6), 2, 3);
-        
-        my $ret_ndarray = MDOP->t($x_ndarray);
-        
-        unless ($ret_ndarray is_type R::NDArray::Double) {
-          return 0;
-        }
-        
-        unless (Array->equals_double($ret_ndarray->data, [(double)1, 3, 5, 2, 4, 6])) {
-          return 0;
-        }
-        
-        unless (Array->equals_int($ret_ndarray->dim, [3, 2])) {
-          return 0;
-        }
-        
+      my $seq_ndarray = DOP->seq(1, 6);
+      
+      my $x_ndarray = MDOP->matrix(DOP->seq(1, 6), 2, 3);
+      
+      my $ret_ndarray = MDOP->t($x_ndarray);
+      
+      unless ($ret_ndarray is_type R::NDArray::Double) {
+        return 0;
+      }
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)1, 3, 5, 2, 4, 6])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [3, 2])) {
+        return 0;
       }
     }
     
     return 1;
   }
+  
   static method det : int () {
     
     {
