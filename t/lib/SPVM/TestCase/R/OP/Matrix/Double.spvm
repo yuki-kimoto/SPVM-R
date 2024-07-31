@@ -79,7 +79,37 @@ class TestCase::R::OP::Matrix::Double {
   static method diag : int () { return 1; }
   static method slice_diag : int () { return 1; }
   static method identity : int () { return 1; }
-  static method mul : int () { return 1; }
+  
+  static method mul : int () {
+    # R::OP::Matrix::Double
+    {
+      # R::OP::Matrix::Double#mul
+      {
+        my $seq_ndarray = DOP->seq(1, 6);
+        
+        my $x_ndarray = MDOP->matrix(DOP->seq(1, 6), 2, 3);
+        my $y_ndarray = MDOP->matrix(DOP->seq(1, 6), 3, 2);
+        
+        my $ret_ndarray = MDOP->mul($x_ndarray, $y_ndarray);
+        
+        unless ($ret_ndarray is_type R::NDArray::Double) {
+          return 0;
+        }
+        
+        unless (Array->equals_double($ret_ndarray->data, [(double)22, 28, 49, 64])) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($ret_ndarray->dim, [2, 2])) {
+          return 0;
+        }
+        
+      }
+    }
+    
+    return 1;
+  }
+  
   static method t : int () { return 1; }
   static method det : int () { return 1; }
   static method solve : int () { return 1; }
