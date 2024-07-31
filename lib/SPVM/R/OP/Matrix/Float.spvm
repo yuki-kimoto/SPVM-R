@@ -138,13 +138,13 @@ class R::OP::Matrix::Float {
     
     my $ret_data_ref = new float[][1];
     
-    my $ret_row = -1;
+    my $ret_nrow = -1;
     
-    my $ret_column = -1;
+    my $ret_ncol = -1;
     
-    &_mul($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol, $y_data, $y_nrow, $y_ncol);
+    &_mul($ret_data_ref, \$ret_nrow, \$ret_ncol, $x_data, $x_nrow, $x_ncol, $y_data, $y_nrow, $y_ncol);
     
-    my $ret_dim = [$ret_row, $ret_column];
+    my $ret_dim = [$ret_nrow, $ret_ncol];
     
     my $ret_data = $ret_data_ref->[0];
     
@@ -171,15 +171,15 @@ class R::OP::Matrix::Float {
     
     my $ret_data_ref = new float[][1];
     
-    my $ret_row = -1;
+    my $ret_nrow = -1;
     
-    my $ret_column = -1;
+    my $ret_ncol = -1;
     
-    &_t($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol);
+    &_t($ret_data_ref, \$ret_nrow, \$ret_ncol, $x_data, $x_nrow, $x_ncol);
     
     my $ret_data = $ret_data_ref->[0];
     
-    my $ret_dim = [$ret_row, $ret_column];
+    my $ret_dim = [$ret_nrow, $ret_ncol];
     
     my $ret_ndarray = R::OP::Float->c($ret_data, $ret_dim);
     
@@ -204,15 +204,15 @@ class R::OP::Matrix::Float {
     
     my $ret_data_ref = new float[][1];
     
-    my $ret_row = -1;
+    my $ret_nrow = -1;
     
-    my $ret_column = -1;
+    my $ret_ncol = -1;
     
-    &_det($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol);
+    &_det($ret_data_ref, \$ret_nrow, \$ret_ncol, $x_data, $x_nrow, $x_ncol);
     
     my $ret_data = $ret_data_ref->[0];
     
-    my $ret_dim = [$ret_row, $ret_column];
+    my $ret_dim = [$ret_nrow, $ret_ncol];
     
     my $ret_ndarray = R::OP::Float->c($ret_data, $ret_dim);
     
@@ -237,15 +237,15 @@ class R::OP::Matrix::Float {
     
     my $ret_data_ref = new float[][1];
     
-    my $ret_row = -1;
+    my $ret_nrow = -1;
     
-    my $ret_column = -1;
+    my $ret_ncol = -1;
     
-    &_solve($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol);
+    &_solve($ret_data_ref, \$ret_nrow, \$ret_ncol, $x_data, $x_nrow, $x_ncol);
     
     my $ret_data = $ret_data_ref->[0];
     
-    my $ret_dim = [$ret_row, $ret_column];
+    my $ret_dim = [$ret_nrow, $ret_ncol];
     
     my $ret_ndarray = R::OP::Float->c($ret_data, $ret_dim);
     
@@ -298,13 +298,13 @@ class R::OP::Matrix::Float {
   }
   
   # Private Class Methods
-  private native static method _mul : void ($ret_data_ref : float[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : float[], $x_nrow :int, $x_ncol : int, $y_data : float[], $y_nrow : int, $y_ncol : int);
+  private native static method _mul : void ($ret_data_ref : float[][], $ret_nrow_ref : int*, $ret_ncol_ref : int*, $x_data : float[], $x_nrow :int, $x_ncol : int, $y_data : float[], $y_nrow : int, $y_ncol : int);
   
-  private native static method _det : void ($ret_data_ref : float[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : float[], $x_nrow : int, $x_ncol : int);
+  private native static method _det : void ($ret_data_ref : float[][], $ret_nrow_ref : int*, $ret_ncol_ref : int*, $x_data : float[], $x_nrow : int, $x_ncol : int);
   
-  private native static method _t : void ($ret_data_ref : float[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : float[], $x_nrow : int, $x_ncol : int);
+  private native static method _t : void ($ret_data_ref : float[][], $ret_nrow_ref : int*, $ret_ncol_ref : int*, $x_data : float[], $x_nrow : int, $x_ncol : int);
   
-  private native static method _solve : void ($ret_data_ref : float[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : float[], $x_nrow :int, $x_ncol : int);
+  private native static method _solve : void ($ret_data_ref : float[][], $ret_nrow_ref : int*, $ret_ncol_ref : int*, $x_data : float[], $x_nrow :int, $x_ncol : int);
   
-  private native static method _eigen : void ($ret_data_ref : float[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : float[], $x_nrow : int, $x_ncol : int, $eigen_values_data_ref : float[][]);
+  private native static method _eigen : void ($ret_data_ref : float[][], $ret_nrow_ref : int*, $ret_ncol_ref : int*, $x_data : float[], $x_nrow : int, $x_ncol : int, $eigen_values_data_ref : float[][]);
 }

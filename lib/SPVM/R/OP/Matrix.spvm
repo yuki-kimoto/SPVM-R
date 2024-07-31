@@ -36,11 +36,11 @@ class R::OP::Matrix {
       die "The row of the n-dimention array \$x_ndarray must be equal to the row of the n-dimention array \$y_ndarray.";
     }
     
-    my $ret_row = $x_nrow;
+    my $ret_nrow = $x_nrow;
     
-    my $ret_column = $x_ncol + $y_ncol;
+    my $ret_ncol = $x_ncol + $y_ncol;
     
-    my $ret_ndarray = (R::NDArray)R::Util->new_proto($x_ndarray, {data => undef, dim => [$ret_row, $ret_column]});
+    my $ret_ndarray = (R::NDArray)R::Util->new_proto($x_ndarray, {data => undef, dim => [$ret_nrow, $ret_ncol]});
     
     my $ret_data = $ret_ndarray->data;
     
@@ -97,11 +97,11 @@ class R::OP::Matrix {
       die "The column of the n-dimention array \$x_ndarray must be equal to the column of the n-dimention array \$y_ndarray.";
     }
     
-    my $ret_row = $x_nrow + $y_nrow;
+    my $ret_nrow = $x_nrow + $y_nrow;
     
-    my $ret_column = $x_ncol;
+    my $ret_ncol = $x_ncol;
     
-    my $ret_ndarray = (R::NDArray)R::Util->new_proto($x_ndarray, {data => undef, dim => [$ret_row, $ret_column]});
+    my $ret_ndarray = (R::NDArray)R::Util->new_proto($x_ndarray, {data => undef, dim => [$ret_nrow, $ret_ncol]});
     
     my $ret_data = $ret_ndarray->data;
     
@@ -113,7 +113,7 @@ class R::OP::Matrix {
     
     my $elem_size = $x_ndarray->elem_size;
     
-    for (my $col = 0; $col < $ret_column; $col++) {
+    for (my $col = 0; $col < $ret_ncol; $col++) {
       if ($x_ndarray->is_any_numeric_ndarray) {
         Fn->memcpy($ret_data, $elem_size * $ret_data_index, $x_data, 0, $elem_size * $x_nrow);
         
@@ -125,7 +125,7 @@ class R::OP::Matrix {
         Array->memcpy_object_address((object[])$ret_data, ($ret_data_index + $x_nrow), (object[])$y_data, 0, $y_nrow);
       }
       
-      $ret_data_index += $ret_column;
+      $ret_data_index += $ret_ncol;
     }
     
     return $ret_ndarray;
