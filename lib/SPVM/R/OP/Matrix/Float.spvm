@@ -128,11 +128,11 @@ class R::OP::Matrix::Float {
     
     my $y_data = (float[])$y_ndarray->data;
     
-    my $y_row = $y_ndarray->nrow;
+    my $y_nrow = $y_ndarray->nrow;
     
-    my $y_column = $y_ndarray->ncol;
+    my $y_ncol = $y_ndarray->ncol;
     
-    unless ($x_ncol == $y_row) {
+    unless ($x_ncol == $y_nrow) {
       die "The column of the matrix \$x_ndarray must be equal to the row of the matrix \$y_ndarray.";
     }
     
@@ -142,7 +142,7 @@ class R::OP::Matrix::Float {
     
     my $ret_column = -1;
     
-    &_mul($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol, $y_data, $y_row, $y_column);
+    &_mul($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol, $y_data, $y_nrow, $y_ncol);
     
     my $ret_dim = [$ret_row, $ret_column];
     
@@ -298,7 +298,7 @@ class R::OP::Matrix::Float {
   }
   
   # Private Class Methods
-  private native static method _mul : void ($ret_data_ref : float[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : float[], $x_nrow :int, $x_ncol : int, $y_data : float[], $y_row : int, $y_column : int);
+  private native static method _mul : void ($ret_data_ref : float[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : float[], $x_nrow :int, $x_ncol : int, $y_data : float[], $y_nrow : int, $y_ncol : int);
   
   private native static method _det : void ($ret_data_ref : float[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : float[], $x_nrow : int, $x_ncol : int);
   
