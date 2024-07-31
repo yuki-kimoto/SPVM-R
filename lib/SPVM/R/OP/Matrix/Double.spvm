@@ -244,7 +244,7 @@ class R::OP::Matrix::Double {
     
     my $ret_data = $ret_data_ref->[0];
     
-    my $ret_dim = [$ret_row, $ret_column];
+    my $ret_dim = [$ret_row,];
     
     my $ret_ndarray = R::OP::Double->c($ret_data, $ret_dim);
     

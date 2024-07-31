@@ -136,7 +136,31 @@ class TestCase::R::OP::Matrix::Double {
     
     return 1;
   }
-  static method det : int () { return 1; }
+  static method det : int () {
+    
+    {
+      my $seq_ndarray = DOP->seq(1, 4);
+      
+      my $x_ndarray = MDOP->matrix(DOP->seq(1, 4), 2, 2);
+      
+      my $ret_ndarray = MDOP->det($x_ndarray);
+      
+      unless ($ret_ndarray is_type R::NDArray::Double) {
+        return 0;
+      }
+      
+      unless (Array->equals_double($ret_ndarray->data, [(double)-2])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1])) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
   static method solve : int () { return 1; }
   static method eigen : int () { return 1; }
 }
