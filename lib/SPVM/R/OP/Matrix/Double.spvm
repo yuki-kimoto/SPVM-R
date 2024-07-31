@@ -93,19 +93,19 @@ class R::OP::Matrix::Double {
     
     my $x_data = (double[])$x_ndarray->data;
     
-    my $x_row = $x_ndarray->nrow;
+    my $x_nrow = $x_ndarray->nrow;
     
-    my $x_column = $x_ndarray->ncol;
+    my $x_ncol = $x_ndarray->ncol;
     
-    my $ret_dim = [$x_row];
+    my $ret_dim = [$x_nrow];
     
     my $ret_ndarray = R::OP::Double->c(undef, $ret_dim);
     
     my $ret_data = $ret_ndarray->data;
     
     my $x_index = 0;
-    for (my $row = 0; $row < $x_row; $row++) {
-      $ret_data->[$row] = $x_data->[$x_column * $row + $row];
+    for (my $row = 0; $row < $x_nrow; $row++) {
+      $ret_data->[$row] = $x_data->[$x_ncol * $row + $row];
     }
     
     return $ret_ndarray;
@@ -152,9 +152,9 @@ class R::OP::Matrix::Double {
     
     my $x_data = (double[])$x_ndarray->data;
     
-    my $x_row = $x_ndarray->nrow;
+    my $x_nrow = $x_ndarray->nrow;
     
-    my $x_column = $x_ndarray->ncol;
+    my $x_ncol = $x_ndarray->ncol;
     
     my $y_data = (double[])$y_ndarray->data;
     
@@ -162,7 +162,7 @@ class R::OP::Matrix::Double {
     
     my $y_column = $y_ndarray->ncol;
     
-    unless ($x_column == $y_row) {
+    unless ($x_ncol == $y_row) {
       die "The column of the matrix \$x_ndarray must be equal to the row of the matrix \$y_ndarray.";
     }
     
@@ -172,7 +172,7 @@ class R::OP::Matrix::Double {
     
     my $ret_column = -1;
     
-    &_mul($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_row, $x_column, $y_data, $y_row, $y_column);
+    &_mul($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol, $y_data, $y_row, $y_column);
     
     my $ret_dim = [$ret_row, $ret_column];
     
@@ -195,9 +195,9 @@ class R::OP::Matrix::Double {
     
     my $x_data = (double[])$x_ndarray->data;
     
-    my $x_row = $x_ndarray->nrow;
+    my $x_nrow = $x_ndarray->nrow;
     
-    my $x_column = $x_ndarray->ncol;
+    my $x_ncol = $x_ndarray->ncol;
     
     my $ret_data_ref = new double[][1];
     
@@ -205,7 +205,7 @@ class R::OP::Matrix::Double {
     
     my $ret_column = -1;
     
-    &_t($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_row, $x_column);
+    &_t($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol);
     
     my $ret_data = $ret_data_ref->[0];
     
@@ -228,9 +228,9 @@ class R::OP::Matrix::Double {
     
     my $x_data = (double[])$x_ndarray->data;
     
-    my $x_row = $x_ndarray->nrow;
+    my $x_nrow = $x_ndarray->nrow;
     
-    my $x_column = $x_ndarray->ncol;
+    my $x_ncol = $x_ndarray->ncol;
     
     my $ret_data_ref = new double[][1];
     
@@ -238,7 +238,7 @@ class R::OP::Matrix::Double {
     
     my $ret_column = -1;
     
-    &_det($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_row, $x_column);
+    &_det($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol);
     
     my $ret_data = $ret_data_ref->[0];
     
@@ -265,9 +265,9 @@ class R::OP::Matrix::Double {
     
     my $x_data = (double[])$x_ndarray->data;
     
-    my $x_row = $x_ndarray->nrow;
+    my $x_nrow = $x_ndarray->nrow;
     
-    my $x_column = $x_ndarray->ncol;
+    my $x_ncol = $x_ndarray->ncol;
     
     my $ret_data_ref = new double[][1];
     
@@ -275,7 +275,7 @@ class R::OP::Matrix::Double {
     
     my $ret_column = -1;
     
-    &_solve($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_row, $x_column);
+    &_solve($ret_data_ref, \$ret_row, \$ret_column, $x_data, $x_nrow, $x_ncol);
     
     my $ret_data = $ret_data_ref->[0];
     
@@ -298,9 +298,9 @@ class R::OP::Matrix::Double {
     
     my $x_data = (double[])$x_ndarray->data;
     
-    my $x_row = $x_ndarray->nrow;
+    my $x_nrow = $x_ndarray->nrow;
     
-    my $x_column = $x_ndarray->ncol;
+    my $x_ncol = $x_ndarray->ncol;
     
     my $eigen_vectors_data_ref = new double[][1];
     
@@ -310,7 +310,7 @@ class R::OP::Matrix::Double {
     
     my $eigen_vectors_column = -1;
     
-    &_eigen($eigen_vectors_data_ref, \$eigen_vectors_row, \$eigen_vectors_column, $x_data, $x_row, $x_column, $eigen_values_data_ref);
+    &_eigen($eigen_vectors_data_ref, \$eigen_vectors_row, \$eigen_vectors_column, $x_data, $x_nrow, $x_ncol, $eigen_values_data_ref);
     
     my $eigen_vectors_data = $eigen_vectors_data_ref->[0];
     
@@ -332,13 +332,13 @@ class R::OP::Matrix::Double {
   }
   
   # Private Class Methods
-  private native static method _mul : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row :int, $x_column : int, $y_data : double[], $y_row : int, $y_column : int);
+  private native static method _mul : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_nrow :int, $x_ncol : int, $y_data : double[], $y_row : int, $y_column : int);
   
-  private native static method _det : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
+  private native static method _det : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_nrow : int, $x_ncol : int);
   
-  private native static method _t : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int);
+  private native static method _t : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_nrow : int, $x_ncol : int);
   
-  private native static method _solve : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row :int, $x_column : int);
+  private native static method _solve : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_nrow :int, $x_ncol : int);
   
-  private native static method _eigen : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_row : int, $x_column : int, $eigen_values_data_ref : double[][]);
+  private native static method _eigen : void ($ret_data_ref : double[][], $ret_row_ref : int*, $ret_column_ref : int*, $x_data : double[], $x_nrow : int, $x_ncol : int, $eigen_values_data_ref : double[][]);
 }
