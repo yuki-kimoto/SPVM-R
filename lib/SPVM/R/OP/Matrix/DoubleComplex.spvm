@@ -194,8 +194,8 @@ class R::OP::Matrix::DoubleComplex {
       die "The n-dimensional array \$x_ndarray must be defined.";
     }
     
-    unless ($x_ndarray->is_square_matrix) {
-      die "The n-dimensional array \$x_ndarray must be a squre matrix.";
+    unless ($x_ndarray->is_matrix) {
+      die "The n-dimensional array \$x_ndarray must be a matrix.";
     }
     
     my $x_data = (Complex_2d[])$x_ndarray->data;
