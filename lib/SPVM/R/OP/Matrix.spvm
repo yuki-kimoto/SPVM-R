@@ -115,17 +115,17 @@ class R::OP::Matrix {
     
     for (my $col = 0; $col < $ret_ncol; $col++) {
       if ($x_ndarray->is_any_numeric_ndarray) {
-        Fn->memcpy($ret_data, $elem_size * $ret_data_index, $x_data, 0, $elem_size * $x_nrow);
+        Fn->memcpy($ret_data, $elem_size * $ret_data_index, $x_data, $elem_size * $x_nrow * $col, $elem_size * $x_nrow);
         
-        Fn->memcpy($ret_data, $elem_size * ($ret_data_index + $x_nrow), $y_data, 0, $elem_size * $y_nrow);
+        Fn->memcpy($ret_data, $elem_size * ($ret_data_index + $x_nrow), $y_data, $elem_size * $y_nrow * $col, $elem_size * $y_nrow);
       }
       else {
-        Array->memcpy_object_address((object[])$ret_data, $ret_data_index, (object[])$x_data, 0, $x_nrow);
+        Array->memcpy_object_address((object[])$ret_data, $ret_data_index, (object[])$x_data, $x_nrow * $col, $x_nrow);
         
-        Array->memcpy_object_address((object[])$ret_data, ($ret_data_index + $x_nrow), (object[])$y_data, 0, $y_nrow);
+        Array->memcpy_object_address((object[])$ret_data, $ret_data_index + $x_nrow, (object[])$y_data, $y_nrow * $col, $y_nrow);
       }
       
-      $ret_data_index += $ret_ncol;
+      $ret_data_index += $x_nrow * $y_nrow;
     }
     
     return $ret_ndarray;
