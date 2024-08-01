@@ -212,7 +212,7 @@ class R::OP::Matrix::DoubleComplex {
     
     my $ret_data = $ret_data_ref->[0];
     
-    my $ret_dim = [$ret_nrow, $ret_ncol];
+    my $ret_dim = [$ret_nrow];
     
     my $ret_ndarray = R::OP::DoubleComplex->c($ret_data, $ret_dim);
     
