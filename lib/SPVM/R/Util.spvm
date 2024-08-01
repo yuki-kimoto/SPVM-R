@@ -411,4 +411,42 @@ class R::Util {
     return $equals;
   }
   
+  # This method will be inplemented as Complex_2d#to_string method
+  static method _double_complex_to_string : string ($z : Complex_2d) {
+    
+    my $re = $z->{re};
+    
+    my $im = $z->{im};
+    
+    my $string = (string)undef;
+    
+    if ($im < 0) {
+      $string = "$re${im}i";
+    }
+    else {
+      $string = "$re+${im}i";
+    }
+    
+    return $string;
+  }
+  
+  # This method will be inplemented as Complex_2f#to_string method
+  static method _float_complex_to_string : string ($z : Complex_2f) {
+    
+    my $re = $z->{re};
+    
+    my $im = $z->{im};
+    
+    my $string = (string)undef;
+    
+    if ($im < 0) {
+      $string = "$re${im}i";
+    }
+    else {
+      $string = "$re+${im}i";
+    }
+    
+    return $string;
+  }
+  
 }
