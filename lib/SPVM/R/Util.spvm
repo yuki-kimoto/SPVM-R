@@ -339,4 +339,40 @@ class R::Util {
     return $object;
   }
   
+  # This method will be inplemented as Array#equals_double_complex
+  static method _equals_double_complex : int ($x1_array : Complex_2d[], $x2_array : Complex_2d[]) {
+    
+    unless ($x1_array) {
+      die "The array \$x1_array must be defined.";
+    }
+    
+    unless ($x2_array) {
+      die "The array \$x2_array must be defined.";
+    }
+    
+    my $x1_array_length = @$x1_array;
+    
+    my $x2_array_length = @$x2_array;
+    
+    my $equals = 0;
+    
+    if ($x1_array_length == $x2_array_length) {
+      my $array_length = $x1_array_length;
+      
+      my $not_equals_elem = 0;
+      for (my $i = 0; $i < $array_length; $i++) {
+        unless ($x1_array->[$i]{re} == $x2_array->[$i]{re} && $x1_array->[$i]{im} == $x2_array->[$i]{im}) {
+          $not_equals_elem = 1;
+          last;
+        }
+      }
+      
+      unless ($not_equals_elem) {
+        $equals = 1;
+      }
+    }
+    
+    return $equals;
+  }
+  
 }
