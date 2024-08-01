@@ -81,6 +81,36 @@ class R::OP::Matrix::FloatComplex {
     return $ret_ndarray;
   }
   
+  static method slice_diag : R::NDArray::FloatComplex ($x_ndarray : R::NDArray::FloatComplex) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($x_ndarray->is_square_matrix) {
+      die "The n-dimensional array \$x_ndarray must be a matrix.";
+    }
+    
+    my $x_data = (Complex_2f[])$x_ndarray->data;
+    
+    my $x_nrow = $x_ndarray->nrow;
+    
+    my $x_ncol = $x_ndarray->ncol;
+    
+    my $ret_dim = [$x_nrow];
+    
+    my $ret_ndarray = R::OP::FloatComplex->c(undef, $ret_dim);
+    
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_index = 0;
+    for (my $row = 0; $row < $x_nrow; $row++) {
+      $ret_data->[$row] = $x_data->[$x_ncol * $row + $row];
+    }
+    
+    return $ret_ndarray;
+  }
+  
   static method identity : R::NDArray::FloatComplex ($nrow : int) {
     
     unless ($nrow > 0) {
