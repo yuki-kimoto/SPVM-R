@@ -196,18 +196,19 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> x_matrix = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(x_data, x_nrow, x_ncol);
   
-  Eigen::SelfAdjointEigenSolver<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>> eigen_solver(x_matrix);
+  Eigen::EigenSolver<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>> eigen_solver(x_matrix);
   
-  Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> eigen_vectors = eigen_solver.eigenvectors();
+  Eigen::Matrix<std::complex<double>, Eigen::Dynamic, Eigen::Dynamic> eigen_vectors = eigen_solver.eigenvectors();
   
-  Eigen::Matrix<double, Eigen::Dynamic, 1> eigen_values = eigen_solver.eigenvalues();
+  Eigen::Matrix<std::complex<double>, Eigen::Dynamic, 1> eigen_values = eigen_solver.eigenvalues();
   
   int32_t eigen_vectors_length = eigen_vectors.rows() * eigen_vectors.cols();
-  void* obj_eigen_vectors_data = env->new_double_array(env, stack, eigen_vectors_length);
+  void* obj_eigen_vectors_data = env->new_mulnum_array_by_name(env, stack, "Complex_2d", eigen_vectors_length, &e, __func__, FILE_NAME, __LINE__);
+  if (e) { return e; }
   
-  double* eigen_vectors_data = (double*)env->get_elems_double(env, stack, obj_eigen_vectors_data);
+  std::complex<double>* eigen_vectors_data = (std::complex<double>*)env->get_elems_double(env, stack, obj_eigen_vectors_data);
   
-  memcpy(eigen_vectors_data, eigen_vectors.data(), sizeof(double) * eigen_vectors_length);
+  memcpy(eigen_vectors_data, eigen_vectors.data(), sizeof(std::complex<double>) * eigen_vectors_length);
   
   env->set_elem_object(env, stack, obj_eigen_vectors_data_ref, 0, obj_eigen_vectors_data);
   
@@ -216,11 +217,12 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   *eigen_vectors_ncol_ref = eigen_vectors.cols();
   
   int32_t eigen_values_length = eigen_values.rows() * eigen_values.cols();
-  void* obj_eigen_values_data = env->new_double_array(env, stack, eigen_values_length);
+  void* obj_eigen_values_data = env->new_mulnum_array_by_name(env, stack, "Complex_2d", eigen_values_length, &e, __func__, FILE_NAME, __LINE__);
+  if (e) { return e; }
   
-  double* eigen_values_data = (double*)env->get_elems_double(env, stack, obj_eigen_values_data);
+  std::complex<double>* eigen_values_data = (std::complex<double>*)env->get_elems_double(env, stack, obj_eigen_values_data);
   
-  memcpy(eigen_values_data, eigen_values.data(), sizeof(double) * eigen_values_length);
+  memcpy(eigen_values_data, eigen_values.data(), sizeof(std::complex<double>) * eigen_values_length);
   
   env->set_elem_object(env, stack, obj_eigen_values_data_ref, 0, obj_eigen_values_data);
   

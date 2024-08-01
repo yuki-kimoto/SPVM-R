@@ -1,6 +1,7 @@
 class TestCase::R::OP::Matrix::Double {
   
   use R::OP::Double as DOP;
+  use R::OP::DoubleComplex as DCOP;
   use R::OP::Matrix::Double as MDOP;
   
   static method matrix : int () {
@@ -330,5 +331,128 @@ class TestCase::R::OP::Matrix::Double {
     
     return 1;
   }
-  static method eigen : int () { return 1; }
+  
+  static method eigen : int () {
+    
+    {
+      my $x_ndarray = MDOP->matrix([(double)3, 2, 1, 2], 2, 2);
+      
+      my $ret_ndarray_h = MDOP->eigen($x_ndarray);
+      
+      my $ret_ndarray_eigen_vectors = $ret_ndarray_h->get_double_complex("vectors");
+      
+      my $ret_ndarray_eigen_values = $ret_ndarray_h->get_double_complex("values");
+      
+      unless ($ret_ndarray_eigen_values is_type R::NDArray::DoubleComplex) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_values->data->[0]{re} < 4 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_values->data->[0]{re} > 4 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_values->data->[0]{im} < 0 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_values->data->[0]{im} > 0 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_values->data->[1]{re} < 1 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_values->data->[1]{re} > 1 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_values->data->[1]{im} < 0 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_values->data->[1]{im} > 0 - 1e-5) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray_eigen_values->dim, [2])) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[0]{re} < 0.7071068 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[0]{re} > 0.7071068 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[0]{im} < 0 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[0]{im} > 0 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[1]{re} < 0.7071068 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[1]{re} > 0.7071068 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[1]{im} < 0 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[1]{im} > 0 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[2]{re} < -0.4472136 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[2]{re} > -0.4472136 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[2]{im} < 0 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[2]{im} > 0 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[3]{re} < 0.8944272 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[3]{re} > 0.8944272 - 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[3]{im} < 0 + 1e-5) {
+        return 0;
+      }
+      
+      unless ($ret_ndarray_eigen_vectors->data->[3]{im} > 0 - 1e-5) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray_eigen_vectors->dim, [2, 2])) {
+        return 0;
+      }
+      
+    }
+    
+    return 1;
+  }
 }
