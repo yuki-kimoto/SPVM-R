@@ -10,14 +10,14 @@ class R::OP::Matrix::FloatComplex {
   use Hash;
   use R::NDArray::Hash;
   
-  static method matrix : R::NDArray::FloatComplex ($data : object of double[]|Complex_2f[]|R::NDArray::FloatComplex, $nrow : int, $ncol : int) {
+  static method matrix : R::NDArray::FloatComplex ($data : object of float[]|Complex_2f[]|R::NDArray::FloatComplex, $nrow : int, $ncol : int) {
     
     my $ndarray = R::OP::FloatComplex->c($data, [$nrow, $ncol]);
     
     return $ndarray;
   }
   
-  static method matrix_byrow : R::NDArray::FloatComplex ($data : object of double[]|Complex_2f[]|R::NDArray::FloatComplex, $nrow : int, $ncol : int) {
+  static method matrix_byrow : R::NDArray::FloatComplex ($data : object of float[]|Complex_2f[]|R::NDArray::FloatComplex, $nrow : int, $ncol : int) {
     
     my $ndarray = &matrix($data, $nrow, $ncol);
     
