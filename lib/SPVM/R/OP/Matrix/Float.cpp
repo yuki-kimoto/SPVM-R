@@ -8,9 +8,9 @@
 
 extern "C" {
 
-static const char* FILE_NAME = "R/OP/Matrix/Double.cpp";
+static const char* FILE_NAME = "R/OP/Matrix/Float.cpp";
 
-int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__Float___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
@@ -21,14 +21,14 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  float* x_data = (float*)env->get_elems_double(env, stack, obj_x_data);
+  float* x_data = (float*)env->get_elems_float(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
   int32_t x_ncol = stack[5].ival;
   
   void* obj_y_data = stack[6].oval;
-  float* y_data = (float*)env->get_elems_double(env, stack, obj_y_data);
+  float* y_data = (float*)env->get_elems_float(env, stack, obj_y_data);
   
   int32_t y_nrow = stack[7].ival;
   
@@ -43,7 +43,7 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
   void* obj_ret_data = env->new_float_array(env, stack, ret_length);
   
-  float* ret_data = (float*)env->get_elems_double(env, stack, obj_ret_data);
+  float* ret_data = (float*)env->get_elems_float(env, stack, obj_ret_data);
   
   memcpy(ret_data, ret_matrix.data(), sizeof(float) * ret_length);
   
@@ -56,7 +56,7 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   return 0;
 }
 
-int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__Float___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
@@ -67,7 +67,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  float* x_data = (float*)env->get_elems_double(env, stack, obj_x_data);
+  float* x_data = (float*)env->get_elems_float(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
@@ -82,7 +82,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
   void* obj_ret_data = env->new_float_array(env, stack, ret_length);
   
-  float* ret_data = (float*)env->get_elems_double(env, stack, obj_ret_data);
+  float* ret_data = (float*)env->get_elems_float(env, stack, obj_ret_data);
   
   memcpy(ret_data, ret_matrix.data(), sizeof(float) * ret_length);
   
@@ -95,7 +95,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   return 0;
 }
 
-int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__Float___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
@@ -106,7 +106,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  float* x_data = (float*)env->get_elems_double(env, stack, obj_x_data);
+  float* x_data = (float*)env->get_elems_float(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
@@ -119,7 +119,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = 1;
   void* obj_ret_data = env->new_float_array(env, stack, ret_length);
   
-  float* ret_data = (float*)env->get_elems_double(env, stack, obj_ret_data);
+  float* ret_data = (float*)env->get_elems_float(env, stack, obj_ret_data);
   
   memcpy(ret_data, &ret, sizeof(float) * ret_length);
   
@@ -132,7 +132,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   return 0;
 }
 
-int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__Float___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
@@ -143,7 +143,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t* ret_ncol_ref = stack[2].iref;
   
   void* obj_x_data = stack[3].oval;
-  float* x_data = (float*)env->get_elems_double(env, stack, obj_x_data);
+  float* x_data = (float*)env->get_elems_float(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
@@ -156,7 +156,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
   void* obj_ret_data = env->new_float_array(env, stack, ret_length);
   
-  float* ret_data = (float*)env->get_elems_double(env, stack, obj_ret_data);
+  float* ret_data = (float*)env->get_elems_float(env, stack, obj_ret_data);
   
   memcpy(ret_data, ret_matrix.data(), sizeof(float) * ret_length);
   
@@ -169,7 +169,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   return 0;
 }
 
-int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__Float___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
