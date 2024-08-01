@@ -2,9 +2,54 @@ class TestCase::R::OP::Matrix::DoubleComplex {
   
   use R::OP::Double as DOP;
   use R::OP::DoubleComplex as DCOP;
-  use R::OP::Matrix::Double as MDOP;
+  use R::OP::Matrix::DoubleComplex as MDCOP;
   
-  static method matrix : int () { return 1; }
+  static method matrix : int () {
+    
+    {
+      {
+        my $seq_ndarray = DOP->seq(1, 6)->to_double_complex_ndarray;
+        
+        my $nrow = 3;
+        my $ncol = 2;
+        my $ret_ndarray = MDCOP->matrix($seq_ndarray, $nrow, $ncol);
+        
+        unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
+          return 0;
+        }
+        
+        unless ($ret_ndarray->data == $seq_ndarray->data) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($ret_ndarray->dim, [$nrow, $ncol])) {
+          return 0;
+        }
+      }
+      
+      {
+        my $data = [(double)1,-1,  2,-2,  3,-3,  4,-4,  5,-5,  6,-6];
+        my $nrow = 3;
+        my $ncol = 2;
+        my $ret_ndarray = MDCOP->matrix($data, $nrow, $ncol);
+        
+        unless ($ret_ndarray is_type R::NDArray::DoubleComplex) {
+          return 0;
+        }
+        
+        unless (R::Util->_equals_double_complex($ret_ndarray->data, R::Util->_Complex_2d_new_array_from_pairs($data))) {
+          return 0;
+        }
+        
+        unless (Array->equals_int($ret_ndarray->dim, [$nrow, $ncol])) {
+          return 0;
+        }
+      }
+    }
+    
+    return 1;
+  }
+  
   static method matrix_byrow : int () { return 1; }
   static method cbind : int () { return 1; }
   static method rbind : int () { return 1; }
