@@ -1,0 +1,19 @@
+class TestCase::R::OP::Matrix::DoubleComplex {
+  
+  use R::OP::Double as DOP;
+  use R::OP::DoubleComplex as DCOP;
+  use R::OP::Matrix::Double as MDOP;
+  
+  static method matrix : int () { return 1; }
+  static method matrix_byrow : int () { return 1; }
+  static method cbind : int () { return 1; }
+  static method rbind : int () { return 1; }
+  static method diag : int () { return 1; }
+  static method slice_diag : int () { return 1; }
+  static method identity : int () { return 1; }
+  static method mul : int () { return 1; }
+  static method t : int () { return 1; }
+  static method det : int () { return 1; }
+  static method solve : int () { return 1; }
+  static method eigen : int () { return 1; }
+}
