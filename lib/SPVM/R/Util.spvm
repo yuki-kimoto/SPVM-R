@@ -20,7 +20,7 @@ class R::Util {
       for my $dim_elem (@$dim) {
         
         unless ($dim_elem > 0) {
-          die "The elem of the dimention \$dim must be greater than 0.";
+          die "The element of the dimention \$dim must be greater than 0.";
         }
         
         $length *= $dim_elem;
