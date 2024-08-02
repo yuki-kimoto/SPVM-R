@@ -1,4 +1,4 @@
-package SPVM::R;
+package::R;
 
 our $VERSION = "0.017";
 
@@ -12,7 +12,7 @@ SPVM::R - Porting R language Features
 
 R class in L<SPVM> is a port of the L<R language|https://www.r-project.org/> features.
 
-B<WARNINGS:Tests are not yet done. All of method and field definitions in all classes will be changed.>
+B<WARNINGS:This distribution is under beta release. Some methods and fields will be changed.>.
 
 =head1 Usage
 
