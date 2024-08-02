@@ -1,3 +1,10 @@
+0.018 2024-08-03
+  [Requirement Changes]
+    * Require -std=C++17 in gcc/clang compiler.
+  [Test Improvement]
+    * Add CIs.
+  [Test Bug Fix]
+    * Fix bugs that old R::NDArray::Object and R::OP::Object is loaded in test codes.
 0.017 2024-08-01
   [Test Improvement]
     * Add many tests.
