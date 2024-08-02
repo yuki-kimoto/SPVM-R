@@ -177,6 +177,10 @@ class R::Util {
     for (my $i = 0; $i < @$dim; $i++) {
       my $dim_elem = $dim->[$i];
       
+      unless ($dim_elem > 0) {
+        die "The element of the dimensions \$dim must be greater than 0.";
+      }
+      
       if ($i == $index) {
         $dropped_dim_list->push(1);
       }
@@ -195,6 +199,14 @@ class R::Util {
   
   static method equals_dim : int ($x_dim : int[], $y_dim : int[]) {
     
+    unless ($x_dim) {
+      die "The dimensions \$x_dim must be defined.";
+    }
+    
+    unless ($y_dim) {
+      die "The dimensions \$y_dim must be defined.";
+    }
+    
     my $equals_dim = 0;
     if ($x_dim && $y_dim) {
       my $x_dim_length = @$x_dim;
@@ -206,6 +218,14 @@ class R::Util {
         for (my $i = 0; $i < $x_dim_length; $i++) {
           my $x_dim_elem = $x_dim->[$i];
           my $y_dim_elem = $y_dim->[$i];
+          
+          unless ($x_dim_elem > 0) {
+            die "The element of the dimensions \$x_dim must be greater than 0.";
+          }
+          
+          unless ($y_dim_elem > 0) {
+            die "The element of the dimensions \$y_dim must be greater than 0.";
+          }
           
           unless ($x_dim_elem == $y_dim_elem) {
             $equals_dim_elems = 0;
