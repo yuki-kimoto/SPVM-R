@@ -340,6 +340,15 @@ class TestCase::R::Util {
   static method expand_dim : int () {
     
     {
+      my $dim = new int[0];
+      my $expandped_dim = R::Util->expand_dim($dim);
+      
+      unless (Array->equals_int($expandped_dim, [1])) {
+        return 0;
+      }
+    }
+    
+    {
       my $dim = [2];
       my $expandped_dim = R::Util->expand_dim($dim);
       

@@ -188,8 +188,8 @@ class R::Util {
     
     my $dim_length = @$dim;
     
-    unless (@$dim > 0) {
-      die "The length of the dimension \$dim must be greater than 0.";
+    unless (&is_normalized_dim($dim)) {
+      die "The dimensions \$dim must be normalized.";
     }
     
     unless ($index <= $dim_length) {
