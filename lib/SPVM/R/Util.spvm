@@ -94,13 +94,13 @@ class R::Util {
   static method drop_dim : int[] ($dim : int[], $index : int = -1) {
     
     unless ($dim) {
-      die "The definsion \$dim must be defined.";
+      die "The dimensions \$dim must be defined.";
     }
     
     my $dim_length = @$dim;
     
-    unless (@$dim > 0) {
-      die "The length of the dimension \$dim must be greater than 0.";
+    if (@$dim == 0) {
+      return new int[0];
     }
     
     unless ($index < $dim_length) {
@@ -116,6 +116,10 @@ class R::Util {
     
     for (my $i = 0; $i < @$dim; $i++) {
       my $dim_elem = $dim->[$i];
+      
+      unless ($dim_elem > 0) {
+        die "The element of the dimensions \$dim must be greater than 0.";
+      }
       
       if ($dim_elem == 1) {
         if ($drop_all) {
@@ -150,7 +154,7 @@ class R::Util {
   static method expand_dim : int[] ($dim : int[], $index : int = -1) {
     
     unless ($dim) {
-      die "The definsion \$dim must be defined.";
+      die "The dimensions \$dim must be defined.";
     }
     
     my $dim_length = @$dim;

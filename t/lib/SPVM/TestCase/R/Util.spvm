@@ -201,7 +201,92 @@ class TestCase::R::Util {
     return 1;
   }
   
-  static method drop_dim : int () { return 1; }
+  static method drop_dim : int () {
+    
+    {
+      my $dim = [1, 2, 1, 3, 1];
+      my $dropped_dim = R::Util->drop_dim($dim);
+      
+      unless (Array->equals_int($dropped_dim, [2, 3])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [1, 2, 1, 3, 1];
+      my $index = 2;
+      my $dropped_dim = R::Util->drop_dim($dim, $index);
+      
+      unless (Array->equals_int($dropped_dim, [1, 2, 3, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [1, 2, 1, 3, 1];
+      my $index = 2;
+      my $dropped_dim = R::Util->drop_dim($dim, $index);
+      
+      unless (Array->equals_int($dropped_dim, [1, 2, 3, 1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [1, 1];
+      my $dropped_dim = R::Util->drop_dim($dim);
+      
+      unless (Array->equals_int($dropped_dim, [1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = new int[0];
+      my $dropped_dim = R::Util->drop_dim($dim);
+      
+      unless (Array->equals_int($dropped_dim, new int[0])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $dim = [2, 1, 3, 4];
+        eval { R::Util->drop_dim(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [2];
+        my $index = 1;
+        eval { R::Util->drop_dim($dim, 1); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [2, 0, 3, 4];
+        eval { R::Util->drop_dim($dim); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method expand_dim : int () { return 1; }
   static method equals_dim : int () { return 1; }
   static method equals_dropped_dim : int () { return 1; }
