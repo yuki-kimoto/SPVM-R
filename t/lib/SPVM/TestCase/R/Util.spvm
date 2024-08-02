@@ -314,7 +314,17 @@ class TestCase::R::Util {
       {
         my $dim = [2];
         my $index = 1;
-        eval { R::Util->drop_dim($dim, 1); }
+        eval { R::Util->drop_dim($dim, $index); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $dim = [2];
+        my $index = 0;
+        eval { R::Util->drop_dim($dim, $index); }
         
         unless ($@) {
           return 0;

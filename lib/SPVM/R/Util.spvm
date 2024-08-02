@@ -128,6 +128,10 @@ class R::Util {
     
     my $dim_length = @$dim;
     
+    unless (&is_normalized_dim($dim)) {
+      die "The dimensions \$dim must be normalized.";
+    }
+    
     if (@$dim == 0) {
       return new int[0];
     }
@@ -145,10 +149,6 @@ class R::Util {
     
     for (my $i = 0; $i < @$dim; $i++) {
       my $dim_elem = $dim->[$i];
-      
-      unless ($dim_elem > 0) {
-        die "The element of the dimensions \$dim must be greater than 0.";
-      }
       
       if ($dim_elem == 1) {
         if ($drop_all) {
