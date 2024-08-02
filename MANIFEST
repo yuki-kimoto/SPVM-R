@@ -159,3 +159,4 @@ t/R-OP-String.t
 t/R-OP-StringBuffer.t
 t/R-OP-Time-Piece.t
 t/R-Util.t
+t/R.t
