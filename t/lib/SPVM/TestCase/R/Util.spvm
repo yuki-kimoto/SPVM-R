@@ -132,6 +132,56 @@ class TestCase::R::Util {
     return 1;
   }
   
+  static method is_normalized_dim : int () {
+    
+    {
+      my $dim = (int[])undef;
+      my $is_normalized_dim = R::Util->is_normalized_dim($dim);
+      
+      if ($is_normalized_dim) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = new int[0];
+      my $is_normalized_dim = R::Util->is_normalized_dim($dim);
+      
+      unless ($is_normalized_dim) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [1];
+      my $is_normalized_dim = R::Util->is_normalized_dim($dim);
+      
+      unless ($is_normalized_dim) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [2, 1];
+      my $is_normalized_dim = R::Util->is_normalized_dim($dim);
+      
+      unless ($is_normalized_dim) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [2, 1, 0];
+      my $is_normalized_dim = R::Util->is_normalized_dim($dim);
+      
+      if ($is_normalized_dim) {
+        return 0;
+      }
+    }
+    
+    return 1;
+  }
+  
   static method check_length : int () {
     
     {

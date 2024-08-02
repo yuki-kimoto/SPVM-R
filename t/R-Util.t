@@ -18,6 +18,7 @@ my $start_memory_blocks_count = $api->get_memory_blocks_count;
 
 ok(SPVM::TestCase::R::Util->calc_data_length);
 ok(SPVM::TestCase::R::Util->normalize_dim);
+ok(SPVM::TestCase::R::Util->is_normalized_dim);
 ok(SPVM::TestCase::R::Util->check_length);
 ok(SPVM::TestCase::R::Util->drop_dim);
 ok(SPVM::TestCase::R::Util->expand_dim);

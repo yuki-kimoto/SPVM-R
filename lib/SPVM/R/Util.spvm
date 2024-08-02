@@ -67,6 +67,35 @@ class R::Util {
     return $normalized_dim;
   }
   
+  static method is_normalized_dim : int ($dim : int[]) {
+    
+    my $is_normalized_dim = 0;
+    
+    if ($dim) {
+      my $dim_length = @$dim;
+      
+      if ($dim_length == 0) {
+        $is_normalized_dim = 1;
+      }
+      else {
+        my $found_invalid_dim = 0;
+        for (my $i = 0; $i < $dim_length; $i++) {
+          my $dim_elem = $dim->[$i];
+          unless ($dim_elem > 0) {
+            $found_invalid_dim = 1;
+            last;
+          }
+        }
+        
+        unless ($found_invalid_dim) {
+          $is_normalized_dim = 1;
+        }
+      }
+    }
+    
+    return $is_normalized_dim;
+  }
+  
   static method check_length : void ($data : object, $dim : int[]) {
     
     unless ($data) {
