@@ -538,7 +538,7 @@ class R::Util {
     
     my $array = new Complex_2f[$length];
     
-    Fn->memcpy($array, 0, $pairs, 0, 8 * 2 * $length);
+    Fn->memcpy($array, 0, $pairs, 0, 4 * 2 * $length);
     
     return $array;
   }
@@ -588,7 +588,7 @@ class R::Util {
     
     my $pairs = new float[$pairs_length];
     
-    Fn->memcpy($pairs, 0, $array, 0, 8 * 2 * $length);
+    Fn->memcpy($pairs, 0, $array, 0, 4 * 2 * $length);
     
     return $pairs;
   }

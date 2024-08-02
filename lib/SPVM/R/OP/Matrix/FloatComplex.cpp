@@ -10,9 +10,9 @@
 
 extern "C" {
 
-static const char* FILE_NAME = "R/OP/Matrix/floatComplex.cpp";
+static const char* FILE_NAME = "R/OP/Matrix/FloatComplex.cpp";
 
-int32_t SPVM__R__OP__Matrix__floatComplex___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__FloatComplex___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
@@ -59,7 +59,7 @@ int32_t SPVM__R__OP__Matrix__floatComplex___mul(SPVM_ENV* env, SPVM_VALUE* stack
   return 0;
 }
 
-int32_t SPVM__R__OP__Matrix__floatComplex___t(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__FloatComplex___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
@@ -99,7 +99,7 @@ int32_t SPVM__R__OP__Matrix__floatComplex___t(SPVM_ENV* env, SPVM_VALUE* stack) 
   return 0;
 }
 
-int32_t SPVM__R__OP__Matrix__floatComplex___det(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__FloatComplex___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
@@ -137,7 +137,7 @@ int32_t SPVM__R__OP__Matrix__floatComplex___det(SPVM_ENV* env, SPVM_VALUE* stack
   return 0;
 }
 
-int32_t SPVM__R__OP__Matrix__floatComplex___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__FloatComplex___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
@@ -175,7 +175,7 @@ int32_t SPVM__R__OP__Matrix__floatComplex___solve(SPVM_ENV* env, SPVM_VALUE* sta
   return 0;
 }
 
-int32_t SPVM__R__OP__Matrix__floatComplex___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
+int32_t SPVM__R__OP__Matrix__FloatComplex___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
