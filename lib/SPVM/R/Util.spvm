@@ -52,7 +52,7 @@ class R::Util {
         }
         
         unless ($dim_elem > 0) {
-          die "The elem of dim option or \$dim argument except for tail must be greater than 0.";
+          die "The dimensions \$dim except for tail elements must be greater than 0.";
         }
         
         $normalized_dim_list->unshift($dim_elem);

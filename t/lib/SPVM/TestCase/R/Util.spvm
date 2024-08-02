@@ -4,8 +4,6 @@ class TestCase::R::Util {
   
   static method calc_data_length : int () {
     
-    Fn->defer(method : void () { $@ = undef; });
-    
     {
       my $dim = new int[0];
       my $data_length = R::Util->calc_data_length($dim);
@@ -69,7 +67,71 @@ class TestCase::R::Util {
     return 1;
   }
   
-  static method normalize_dim : int () { return 1; }
+  static method normalize_dim : int () {
+    
+    {
+      my $dim = (int[])undef;
+      my $normalized_dim = R::Util->normalize_dim($dim);
+      
+      unless (Array->equals_int($normalized_dim, new int [0])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [0];
+      my $normalized_dim = R::Util->normalize_dim($dim);
+      
+      unless (Array->equals_int($normalized_dim, new int [0])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [1, 0];
+      my $normalized_dim = R::Util->normalize_dim($dim);
+      
+      unless (Array->equals_int($normalized_dim, [1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [1, 0, 0];
+      my $normalized_dim = R::Util->normalize_dim($dim);
+      
+      unless (Array->equals_int($normalized_dim, [1])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $dim = [2, 1, 0, 0];
+      my $normalized_dim = R::Util->normalize_dim($dim);
+      
+      unless (Array->equals_int($normalized_dim, [2, 1])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $dim = [1, 0, 1];
+        eval { R::Util->normalize_dim($dim); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method check_length : int () { return 1; }
   static method drop_dim : int () { return 1; }
   static method expand_dim : int () { return 1; }
