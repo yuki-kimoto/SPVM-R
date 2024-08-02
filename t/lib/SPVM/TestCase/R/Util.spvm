@@ -244,6 +244,16 @@ class TestCase::R::Util {
         }
       }
       
+      {
+        my $data = new int[0];
+        my $dim = [2, 0, 3, 4];
+        eval { R::Util->check_length($data, $dim); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
     }
     
     $@ = undef;

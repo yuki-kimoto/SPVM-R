@@ -15,14 +15,13 @@ class R::Util {
       die "The dimention \$dim must be defined.";
     }
     
+    unless (&is_normalized_dim($dim)) {
+      die "The dimensions \$dim must be normalized.";
+    }
+    
     my $length = 1;
     if (@$dim) {
       for my $dim_elem (@$dim) {
-        
-        unless ($dim_elem > 0) {
-          die "The element of the dimention \$dim must be greater than 0.";
-        }
-        
         $length *= $dim_elem;
       }
     }
@@ -108,6 +107,10 @@ class R::Util {
     
     unless ($dim) {
       die "The dimensions \$dim must be defined.";
+    }
+    
+    unless (&is_normalized_dim($dim)) {
+      die "The dimensions \$dim must be normalized.";
     }
     
     my $length_from_data = R::Util->_get_array_length($data);
