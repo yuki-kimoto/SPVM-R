@@ -122,6 +122,7 @@ t/lib/SPVM/TestCase/R/OP/Short.spvm
 t/lib/SPVM/TestCase/R/OP/String.spvm
 t/lib/SPVM/TestCase/R/OP/StringBuffer.spvm
 t/lib/SPVM/TestCase/R/OP/Time/Piece.spvm
+t/lib/SPVM/TestCase/R/Util.spvm
 t/R-DataFrame.t
 t/R-NDArray-AnyObject.t
 t/R-NDArray-Byte.t
@@ -153,3 +154,4 @@ t/R-OP-Short.t
 t/R-OP-String.t
 t/R-OP-StringBuffer.t
 t/R-OP-Time-Piece.t
+t/R-Util.t

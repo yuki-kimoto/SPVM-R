@@ -1,0 +1,12 @@
+class TestCase::R::Util {
+  
+  use R::Util;
+  
+  static method calc_data_length : int () { return 1; }
+  static method normalize_dim : int () { return 1; }
+  static method check_length : int () { return 1; }
+  static method drop_dim : int () { return 1; }
+  static method expand_dim : int () { return 1; }
+  static method equals_dim : int () { return 1; }
+  static method equals_dropped_dim : int () { return 1; }
+}

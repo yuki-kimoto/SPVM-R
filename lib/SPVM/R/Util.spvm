@@ -3,6 +3,11 @@
 
 class R::Util {
   
+  # Temporary loaded.
+  use Complex_2f;
+  use Complex_2d;
+  use R::NDArray;
+  
   # Class Methods
   static method calc_data_length : int ($dim : int[]) {
     
