@@ -132,7 +132,75 @@ class TestCase::R::Util {
     return 1;
   }
   
-  static method check_length : int () { return 1; }
+  static method check_length : int () {
+    
+    {
+      my $data = new int[24];
+      my $dim = [2, 1, 3, 4];
+      R::Util->check_length($data, $dim);
+    }
+    
+    {
+      my $data = new string[24];
+      my $dim = [2, 1, 3, 4];
+      R::Util->check_length($data, $dim);
+    }
+    
+    {
+      my $data = new Complex_2d[24];
+      my $dim = [2, 1, 3, 4];
+      R::Util->check_length($data, $dim);
+    }
+    
+    # Exceptions
+    {
+      {
+        my $data = new int[23];
+        my $dim = [2, 1, 3, 4];
+        eval { R::Util->check_length($data, $dim); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $data = new int[24];
+        my $dim = [2, 1, 3, 4];
+        eval { R::Util->check_length(undef, $dim); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $data = new int[24];
+        my $dim = [2, 1, 3, 4];
+        eval { R::Util->check_length($data, undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $data = Int->new(1);
+        my $dim = [1];
+        eval { R::Util->check_length($data, $dim); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method drop_dim : int () { return 1; }
   static method expand_dim : int () { return 1; }
   static method equals_dim : int () { return 1; }
