@@ -10,6 +10,7 @@
     * Add tests for R::OP::Matrix::Double#mul method.
     * Add tests for R::OP::Matrix::Double#t method.
     * Add tests for R::OP::Matrix::Double#det method.
+    * Add tests for R::OP::Matrix::Double#solve method.
   [Document Improvement]
     * Add docs for R::OP::Matrix class.
     
