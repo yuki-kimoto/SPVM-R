@@ -18,6 +18,14 @@
     * Add tests for R::OP::Matrix::Double#det method.
     * Add tests for R::OP::Matrix::Double#solve method.
     * Add tests for R::OP::Matrix::Double#eigen method.
+    * Add tests for R::OP::Matrix::Float#diag method.
+    * Add tests for R::OP::Matrix::Float#slice_diag method.
+    * Add tests for R::OP::Matrix::Float#identity method.
+    * Add tests for R::OP::Matrix::Float#mul method.
+    * Add tests for R::OP::Matrix::Float#t method.
+    * Add tests for R::OP::Matrix::Float#det method.
+    * Add tests for R::OP::Matrix::Float#solve method.
+    * Add tests for R::OP::Matrix::Float#eigen method.
   [Document Improvement]
     * Add docs for R::OP::Matrix class.
     
