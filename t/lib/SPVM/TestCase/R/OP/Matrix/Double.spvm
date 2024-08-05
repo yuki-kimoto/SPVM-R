@@ -419,8 +419,6 @@ class TestCase::R::OP::Matrix::Double {
   static method det : int () {
     
     {
-      my $seq_ndarray = DOP->seq(1, 4);
-      
       my $x_ndarray = MDOP->matrix(DOP->seq(1, 4), 2, 2);
       
       my $ret_ndarray = MDOP->det($x_ndarray);
@@ -437,6 +435,32 @@ class TestCase::R::OP::Matrix::Double {
         return 0;
       }
     }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = MDOP->matrix(DOP->seq(1, 4), 2, 2);
+        
+        eval { MDOP->det(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = MDOP->matrix(DOP->seq(1, 2), 2, 1);
+        
+        eval { MDOP->det($x_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
     
     return 1;
   }
