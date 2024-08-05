@@ -118,6 +118,7 @@ t/lib/SPVM/TestCase/R/OP/Float.spvm
 t/lib/SPVM/TestCase/R/OP/FloatComplex.spvm
 t/lib/SPVM/TestCase/R/OP/Int.spvm
 t/lib/SPVM/TestCase/R/OP/Long.spvm
+t/lib/SPVM/TestCase/R/OP/Matrix.spvm
 t/lib/SPVM/TestCase/R/OP/Matrix/Double.spvm
 t/lib/SPVM/TestCase/R/OP/Matrix/DoubleComplex.spvm
 t/lib/SPVM/TestCase/R/OP/Matrix/Float.spvm
@@ -154,6 +155,7 @@ t/R-OP-Matrix-Double.t
 t/R-OP-Matrix-DoubleComplex.t
 t/R-OP-Matrix-Float.t
 t/R-OP-Matrix-FloatComplex.t
+t/R-OP-Matrix.t
 t/R-OP-Short.t
 t/R-OP-String.t
 t/R-OP-StringBuffer.t
