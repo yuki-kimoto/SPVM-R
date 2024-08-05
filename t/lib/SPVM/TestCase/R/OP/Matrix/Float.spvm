@@ -166,9 +166,7 @@ class TestCase::R::OP::Matrix::Float {
     {
       my $seq_ndarray = FOP->seq(1, 3);
       
-      my $x_ndarray = MFOP->diag($seq_ndarray);
-      
-      my $ret_ndarray = MFOP->t($x_ndarray);
+      my $ret_ndarray = MFOP->diag($seq_ndarray);
       
       unless ($ret_ndarray is_type R::NDArray::Float) {
         return 0;
@@ -182,6 +180,31 @@ class TestCase::R::OP::Matrix::Float {
         return 0;
       }
     }
+    
+    # Exceptions
+    {
+      {
+        my $seq_ndarray = FOP->seq(1, 3);
+        
+        eval { MFOP->diag(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $seq_ndarray = FOP->c(FOP->seq(1, 4), [2, 2]);
+        
+        eval { MFOP->diag($seq_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+    }
+    
+    $@ = undef;
     
     return 1;
   }

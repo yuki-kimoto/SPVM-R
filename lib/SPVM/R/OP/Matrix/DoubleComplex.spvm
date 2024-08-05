@@ -59,8 +59,8 @@ class R::OP::Matrix::DoubleComplex {
       die "The n-dimensional array \$x_ndarray must be defined.";
     }
     
-    unless ($x_ndarray->is_matrix) {
-      die "The n-dimensional array \$x_ndarray must be a matrix.";
+    unless ($x_ndarray->is_vector) {
+      die "The n-dimensional array \$x_ndarray must be a vector.";
     }
     
     my $x_data = (Complex_2d[])$x_ndarray->data;
