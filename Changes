@@ -4,6 +4,9 @@
     * Fix a bug that R::OP::Matrix::Float#diag method allow only matrix argument.
     * Fix a bug that R::OP::Matrix::FloatComplex#diag method allow only matrix argument.
     * Fix a bug that R::OP::Matrix::DoubleComplex#diag method allow only matrix argument.
+    * Fix a bug that R::OP::Matrix::Float#solve method allow determinent 0 matrix argument.
+    * Fix a bug that R::OP::Matrix::FloatComplex#solve method allow determinent 0 matrix argument.
+    * Fix a bug that R::OP::Matrix::DoubleComplex#solve method allow determinent 0 matrix argument.
   [Test Improvement]
     * Add tests for R::OP::Matrix#cbind method.
     * Add tests for R::OP::Matrix#rbind method.
