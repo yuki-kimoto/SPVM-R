@@ -8,6 +8,7 @@
     * Add tests for R::OP::Matrix::Double#slice_diag method.
     * Add tests for R::OP::Matrix::Double#identity method.
     * Add tests for R::OP::Matrix::Double#mul method.
+    * Add tests for R::OP::Matrix::Double#t method.
   [Document Improvement]
     * Add docs for R::OP::Matrix class.
     

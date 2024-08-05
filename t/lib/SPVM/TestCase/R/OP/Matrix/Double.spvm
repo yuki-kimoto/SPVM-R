@@ -387,6 +387,32 @@ class TestCase::R::OP::Matrix::Double {
       }
     }
     
+    # Exceptions
+    {
+      {
+        my $x_ndarray = MDOP->matrix(DOP->seq(1, 6), 2, 3);
+        
+        eval { MDOP->t(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = DOP->c(DOP->seq(1, 24), [2, 3, 4]);
+        
+        eval { MDOP->t($x_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
     return 1;
   }
   
