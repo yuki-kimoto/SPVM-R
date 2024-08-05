@@ -28,6 +28,13 @@
     * Add tests for R::OP::Matrix::Float#det method.
     * Add tests for R::OP::Matrix::Float#solve method.
     * Add tests for R::OP::Matrix::Float#eigen method.
+    * Add tests for R::OP::Matrix::DoubleComplex#slice_diag method.
+    * Add tests for R::OP::Matrix::DoubleComplex#identity method.
+    * Add tests for R::OP::Matrix::DoubleComplex#mul method.
+    * Add tests for R::OP::Matrix::DoubleComplex#t method.
+    * Add tests for R::OP::Matrix::DoubleComplex#det method.
+    * Add tests for R::OP::Matrix::DoubleComplex#solve method.
+    * Add tests for R::OP::Matrix::DoubleComplex#eigen method.
   [Document Improvement]
     * Add docs for R::OP::Matrix class.
     
