@@ -11,6 +11,7 @@
     * Add tests for R::OP::Matrix::Double#t method.
     * Add tests for R::OP::Matrix::Double#det method.
     * Add tests for R::OP::Matrix::Double#solve method.
+    * Add tests for R::OP::Matrix::Double#eigen method.
   [Document Improvement]
     * Add docs for R::OP::Matrix class.
     
