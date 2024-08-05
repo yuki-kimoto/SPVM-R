@@ -1,3 +1,12 @@
+0.018 2024-08-05
+  [Bug Fix]
+    * Fix a bug that R::OP::Matrix#rbind method does not work well.
+  [Test Improvement]
+    * Add tests for R::OP::Matrix#cbind.
+    * Add tests for R::OP::Matrix#rbind.
+  [Document Improvement]
+    * Add docs for R::OP::Matrix class.
+    
 0.018 2024-08-03
   [Requirement Changes]
     * Require -std=C++17 in gcc/clang compiler.
