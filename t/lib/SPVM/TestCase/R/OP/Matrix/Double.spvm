@@ -193,6 +193,36 @@ class TestCase::R::OP::Matrix::Double {
       }
     }
     
+    # Exceptions
+    {
+      {
+        my $seq_ndarray = DOP->seq(1, 9);
+        
+        my $x_ndarray = MDOP->matrix($seq_ndarray, 3, 3);
+        
+        eval { MDOP->slice_diag(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $seq_ndarray = DOP->seq(1, 6);
+        
+        my $x_ndarray = MDOP->matrix($seq_ndarray, 3, 2);
+        
+        eval { MDOP->slice_diag($x_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
     return 1;
   }
   
@@ -214,6 +244,21 @@ class TestCase::R::OP::Matrix::Double {
         return 0;
       }
     }
+    
+    # Exceptions
+    {
+      {
+        my $nrow = 0;
+        eval { MDOP->identity($nrow); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
     
     return 1;
   }

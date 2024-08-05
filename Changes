@@ -4,7 +4,9 @@
   [Test Improvement]
     * Add tests for R::OP::Matrix#cbind method.
     * Add tests for R::OP::Matrix#rbind method.
-    * Add and cleanup tests for R::OP::Matrix::Double#diag method
+    * Add and cleanup tests for R::OP::Matrix::Double#diag method.
+    * Add tests for R::OP::Matrix::Double#slice_diag method.
+    * Add tests for R::OP::Matrix::Double#identity method.
   [Document Improvement]
     * Add docs for R::OP::Matrix class.
     
