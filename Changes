@@ -2,8 +2,9 @@
   [Bug Fix]
     * Fix a bug that R::OP::Matrix#rbind method does not work well.
   [Test Improvement]
-    * Add tests for R::OP::Matrix#cbind.
-    * Add tests for R::OP::Matrix#rbind.
+    * Add tests for R::OP::Matrix#cbind method.
+    * Add tests for R::OP::Matrix#rbind method.
+    * Add and cleanup tests for R::OP::Matrix::Double#diag method
   [Document Improvement]
     * Add docs for R::OP::Matrix class.
     
