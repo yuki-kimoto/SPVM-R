@@ -44,6 +44,10 @@
     * Add tests for R::OP::Matrix::FloatComplex#eigen method.
   [Document Improvement]
     * Add docs for R::OP::Matrix class.
+    * Add docs for R::OP::Matrix::Double class.
+    
+  [Exception Message Improvement]
+    * Improve exception messages in R::OP::Matrix::Double class.
     
 0.018 2024-08-03
   [Requirement Changes]
