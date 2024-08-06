@@ -178,13 +178,15 @@ The n-dimensional array $x_ndarray must be a square matrix. Otherwise, an except
 
 =over 2
 
-=item * L<R::NDArray::Matrix::Double|SPVM::R::NDArray::Matrix::Double>
+=item * L<Matrix Examples|https://github.com/yuki-kimoto/SPVM-R/wiki/SPVM%3A%3AR-Matrix-Examples>
+
+=item * L<R::OP::Double|SPVM::R::OP::Double>
+
+=item * L<R::NDArray::Double|SPVM::R::NDArray::Double>
 
 =item * L<R::NDArray|SPVM::R::NDArray>
 
 =item * L<R|SPVM::R>
-
-=item * L<Matrix Examples|https://github.com/yuki-kimoto/SPVM-R/wiki/SPVM%3A%3AR-Matrix-Examples>
 
 =back
 
