@@ -21,6 +21,8 @@ R::OP::Matrix::FloatComplex class in L<SPVM> has methods for matrix operations f
   my $ncol = 2;
   my $ndarray = MFCOP->matrix([(float)1,10,  2,20,  3,30,  4,40,  5,50,  6,60], $nrow, $ncol);
 
+See also L<Matrix Examples|https://github.com/yuki-kimoto/SPVM-R/wiki/SPVM%3A%3AR-Matrix-Examples>.
+
 =head1 Class Methods
 
 =head2 matrix
