@@ -32,7 +32,7 @@ R::NDArray::FloatComplex class in L<SPVM> represents n-dimensional array of floa
 
 L<R::NDArray|SPVM::R::NDArray>
 
-=head1 Field
+=head1 Fields
 
 =head2 data
 

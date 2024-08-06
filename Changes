@@ -3,6 +3,7 @@
     * Add docs for R::OP::Matrix::Double class.
     * Add docs for R::OP::Matrix::Float class.
     * Add docs for R::OP::Matrix::DoubleComplex class.
+    * Fix docs for R::NDArray::DoubleComplex class.
     
   [Exception Message Improvement]
     * Improve exception messages in R::OP::Matrix::Double class.
