@@ -15,6 +15,7 @@
   [New Features]
     * R::DataFrame#slice method sets $colnames arguemnt to all column names if this is not defined.
     * Add R::OP::DataFrame#subset method.
+    * Add R::OP::DataFrame#na_omit method.
     
 0.019 2024-08-05
   [Bug Fix]

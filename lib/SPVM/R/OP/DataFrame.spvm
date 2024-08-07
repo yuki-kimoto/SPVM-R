@@ -93,10 +93,20 @@ class R::OP::DataFrame {
     return $ret_data_frame;
   }
   
-  method subset : R::DataFrame ($x_data_frame : R::DataFrame, $indexes : R::NDArray::Int, $options : object[]) {
+  static method subset : R::DataFrame ($x_data_frame : R::DataFrame, $indexes : R::NDArray::Int, $options : object[] = undef) {
     
     unless ($x_data_frame) {
       die "The data frame \$x_data_frame must be defined.";
+    }
+    
+    if ($x_data_frame->ncol == 0) {
+      return R::DataFrame->new;
+    }
+    
+    my $first_ndarray = $x_data_frame->first_col;
+    
+    unless ($first_ndarray->is_vector) {
+      die "The first column must be a vector.";
     }
     
     Fn->check_option_names($options, ["select"]);
@@ -106,6 +116,33 @@ class R::OP::DataFrame {
     my $colnames = (string[])$options_h->get_or_default("select", undef);
     
     my $ret_ndarray = $x_data_frame->slice($colnames, [$indexes]);
+    
+    return $ret_ndarray;
+  }
+  
+  static method na_omit : R::DataFrame ($x_data_frame : R::DataFrame) {
+    
+    unless ($x_data_frame) {
+      die "The data frame \$x_data_frame must be defined.";
+    }
+    
+    my $colnames = $x_data_frame->colnames;
+    
+    my $nrow = $x_data_frame->nrow;
+    
+    my $is_na_or = R::OP::Int->rep(R::OP::Int->c(0), $nrow);
+    
+    for my $colname (@$colnames) {
+      my $ndarray = $x_data_frame->col($colname);
+      
+      my $is_na = R::OP->is_na($ndarray);
+      
+      $is_na_or = R::OP::Int->or($is_na_or, $is_na);
+    }
+    
+    my $is_not_na_or = R::OP::Int->not($is_na_or);
+    
+    my $ret_ndarray = &subset($x_data_frame, $is_not_na_or);
     
     return $ret_ndarray;
   }

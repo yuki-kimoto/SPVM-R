@@ -45,7 +45,11 @@ C<static method rbind : L<R::DataFrame|SPVM::R::DataFrame> ($x_data_frame : L<R:
 
 =head2 subset
 
-C<method subset : L<R::DataFrame|SPVM::R::DataFrame> ($x_data_frame : L<R::DataFrame|SPVM::R::DataFrame>, $indexes : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $options : object[]);>
+C<static method subset : L<R::DataFrame|SPVM::R::DataFrame> ($x_data_frame : L<R::DataFrame|SPVM::R::DataFrame>, $indexes : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $options : object[] = undef);>
+
+=head2 na_omit
+
+C<static method na_omit : L<R::DataFrame|SPVM::R::DataFrame> ($x_data_frame : L<R::DataFrame|SPVM::R::DataFrame>);>
 
 =head1 See Also
 
