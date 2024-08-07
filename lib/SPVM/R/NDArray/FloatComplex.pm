@@ -74,6 +74,14 @@ C<method elem_clone : void ($dist_data : L<Complex_2f|SPVM::Complex_2f>[], $dist
 
 Copies the element $src_data at index $src_data_indext to the element $dist_data at index $dist_data_index.
 
+=head2 elem_is_na
+
+C<method elem_is_na : int ($data : L<Complex_2f|SPVM::Complex_2f>[], $data_index : int);>
+
+Checks if an element represets NA.
+
+If the real number or the image number of the element $data at index $data_index is NaN, returns 1, otherwise returns 0.
+
 =head2 clone
 
 C<method clone : L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex> ($shallow : int = 0);>

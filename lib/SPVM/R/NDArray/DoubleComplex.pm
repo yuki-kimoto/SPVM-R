@@ -10,7 +10,7 @@ SPVM::R::NDArray::DoubleComplex - N-Dimensional Array of Double Complex Type.
 
 =head1 Description
 
-R::NDArray::DoubleComplex class in L<SPVM> represents n-dimensional array of float complex L<Complex_2f|SPVM::Complex_2f> type.
+R::NDArray::DoubleComplex class in L<SPVM> represents n-dimensional array of float complex L<Complex_2d|SPVM::Complex_2d> type.
 
 =head1 Usage
 
@@ -36,7 +36,7 @@ L<R::NDArray|SPVM::R::NDArray>
 
 =head2 data
 
-C<method data : L<Complex_2f|SPVM::Complex_2f>[] ();>
+C<method data : L<Complex_2d|SPVM::Complex_2d>[] ();>
 
 Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type is different.
 
@@ -52,27 +52,35 @@ This method calls L<R::NDArray#init|SPVM::R::NDArray/"init"> method given the op
 
 =head2 create_default_data
 
-C<method create_default_data : L<Complex_2f|SPVM::Complex_2f>[] ($length : int = 0);>
+C<method create_default_data : L<Complex_2d|SPVM::Complex_2d>[] ($length : int = 0);>
 
 Creates a default data given the length $length and returns it.
 
 =head2 elem_to_string
 
-C<method elem_to_string : string ($data : L<Complex_2f|SPVM::Complex_2f>[], $data_index : int);>
+C<method elem_to_string : string ($data : L<Complex_2d|SPVM::Complex_2d>[], $data_index : int);>
 
 Converts an element $data at index $data_index to a string and returns it.
 
 =head2 elem_assign
 
-C<method elem_assign : void ($dist_data : L<Complex_2f|SPVM::Complex_2f>[], $dist_data_index : int, $src_data : L<Complex_2f|SPVM::Complex_2f>[], $src_data_index : int);>
+C<method elem_assign : void ($dist_data : L<Complex_2d|SPVM::Complex_2d>[], $dist_data_index : int, $src_data : L<Complex_2d|SPVM::Complex_2d>[], $src_data_index : int);>
 
 Assigns the element $src_data at index $src_data_index to the element $dist_data at index $dist_data_index.
 
 =head2 elem_clone
 
-C<method elem_clone : void ($dist_data : L<Complex_2f|SPVM::Complex_2f>[], $dist_data_index : int, $src_data : L<Complex_2f|SPVM::Complex_2f>[], $src_data_index : int);>
+C<method elem_clone : void ($dist_data : L<Complex_2d|SPVM::Complex_2d>[], $dist_data_index : int, $src_data : L<Complex_2d|SPVM::Complex_2d>[], $src_data_index : int);>
 
 Copies the element $src_data at index $src_data_indext to the element $dist_data at index $dist_data_index.
+
+=head2 elem_is_na
+
+C<method elem_is_na : int ($data : L<Complex_2d|SPVM::Complex_2d>[], $data_index : int);>
+
+Checks if an element represets NA.
+
+If the real number or the image number of the element $data at index $data_index is NaN, returns 1, otherwise returns 0.
 
 =head2 clone
 
