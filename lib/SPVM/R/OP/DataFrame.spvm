@@ -142,7 +142,7 @@ class R::OP::DataFrame {
     
     my $is_not_na_or = R::OP::Int->not($is_na_or);
     
-    my $ret_ndarray = &subset($x_data_frame, $is_not_na_or);
+    my $ret_ndarray = &subset($x_data_frame, $is_not_na_or->to_indexes);
     
     return $ret_ndarray;
   }

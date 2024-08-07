@@ -34,6 +34,49 @@ class TestCase::R {
   use R::OP::DataFrame;
   use R::OP::Matrix::Double as MDOP;
   use R::OP::AnyObject;
+  use R::OP::DataFrame as DFOP;
+  use Math;
+  
+  static method extra : int () {
+    {
+      # Create a R::DataFrame object
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("name", STROP->c(["Ken", "Yuki", "Mike", undef]));
+      $data_frame->set_col("age", IOP->c([19, 43, 50, 0]));
+      $data_frame->set_col("weight", DOP->c([(double)50.6, 60.3, Math->NAN, 80.5]));
+      $data_frame->set_col("birth", TPOP->c(["1980-10-10", undef, "1985-12-10", "1970-02-16"]));
+      
+      my $ret_data_frame = DFOP->na_omit($data_frame);
+      
+      unless ($ret_data_frame->ncol == 4) {
+        return 0;
+      }
+      
+      unless ($ret_data_frame->nrow == 1) {
+        return 0;
+      }
+      
+      unless ($ret_data_frame->col("name")->(R::NDArray::String)->data->[0] eq "Ken") {
+        return 0;
+      }
+      
+      unless ($ret_data_frame->col("age")->(R::NDArray::Int)->data->[0] == 19) {
+        return 0;
+      }
+      
+      unless ($ret_data_frame->col("weight")->(R::NDArray::Double)->data->[0] == 50.6) {
+        return 0;
+      }
+      
+      unless ($ret_data_frame->col("birth")->(R::NDArray::Time::Piece)->to_string_ndarray->data->[0] eq "1980-10-10 00:00:00") {
+        return 0;
+      }
+      
+    }
+    
+    return 1;
+  }
   
   static method extra_old : int () {
     
