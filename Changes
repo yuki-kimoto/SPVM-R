@@ -1,3 +1,7 @@
+0.021 2024-08-08
+  [Test Improvement]
+    * Add tests for R::DataFrame.
+    
 0.020 2024-08-07
   [Document Improvement]
     * Add docs for R::OP::Matrix::Double class.

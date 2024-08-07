@@ -45,6 +45,16 @@ The R::DataFrame class in L<SPVM> represents a data frame.
 
 This class is a port of data frame features of L<R language|https://www.r-project.org/>.
 
+=head2 Complexity of Getting, Setting, Inserting and Removing a Column
+
+The complexity of getting a new column is O(1).
+
+The complexity of setting a column is O(1).
+
+The complexity of inserting a new column is O(n), but the complexity of inserting a new column to the end of columns is O(1).
+
+The complexity of removing a column is O(n), but the complexity of removing a column from the end of columns is O(1).
+
 =head1 Fields
 
 =head2 colobjs_list;

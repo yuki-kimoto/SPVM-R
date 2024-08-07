@@ -55,7 +55,7 @@ class R::DataFrame {
     my $colobjs_list = $self->{colobjs_list};
     
     unless ($col >= 0 && $col < $colobjs_list->length) {
-      die "The column at index $col is not found.";
+      die "The column at index $col dose not exist.";
     }
     
     my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
@@ -78,7 +78,7 @@ class R::DataFrame {
       }
     }
     
-    die "The column specified by the column name \"$colname\" does not found.";
+    die "The column named \"$colname\" does not exists.";
   }
   
   method col_by_index : R::NDArray ($col : int) {
@@ -86,7 +86,7 @@ class R::DataFrame {
     my $colobjs_list = $self->{colobjs_list};
     
     unless ($col >= 0 && $col < $colobjs_list->length) {
-      die "The column at index $col is not found.";
+      die "The column at index $col does not exists.";
     }
     
     my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
@@ -104,7 +104,7 @@ class R::DataFrame {
   method col : R::NDArray ($colname : string) {
     
     unless ($self->exists_col($colname)) {
-      die "The column which name is \"$colname\" is not found.";
+      die "The column named \"$colname\" dose not exist.";
     }
     
     my $col = $self->colindex($colname);
@@ -152,8 +152,8 @@ class R::DataFrame {
     if ($self->ncol > 0) {
       my $nrow = $self->nrow;
       
-      unless (R::OP->equals_dim($ndarray, $self->col_by_index(0))) {
-        die "The dimension of the n-dimensional array \$ndarray must be equal to the dimension of the n-dimensional array which is the invocant.";
+      unless (R::OP->equals_dim($ndarray, $self->first_col)) {
+        die "The dimensions of the n-dimensional array \$ndarray must be equal to the dimensions of the n-dimensional array of the first column.";
       }
     }
     
@@ -207,7 +207,7 @@ class R::DataFrame {
     
     my $nrow = 0;
     if ($ncol > 0) {
-      $nrow = $self->col_by_index(0)->length;
+      $nrow = $self->first_col->length;
     }
     
     return $nrow;
@@ -241,7 +241,7 @@ class R::DataFrame {
       $string_buffer->push("Empty");
     }
     else {
-      my $first_ndarray = $self->col_by_index(0);
+      my $first_ndarray = $self->first_col;
       
       my $first_dim = $first_ndarray->dim;
       
@@ -352,13 +352,13 @@ class R::DataFrame {
     my $ncol = $self->ncol;
     
     unless ($ncol > 0) {
-      die "The length of columns must be greater than 0.";
+      die "The column numbers of this data frame must be greater than 0.";
     }
     
-    my $first_ndarray = $self->col_by_index(0);
+    my $first_ndarray = $self->first_col;
     
     unless ($first_ndarray->is_vector) {
-      die "The n-dimensional array of the instance must be a vector.";
+      die "The n-dimensional array of the first column of this data frame must be a vector.";
     }
     
     my $nrow = $self->nrow;
@@ -389,7 +389,7 @@ class R::DataFrame {
       }
       
       unless ($self->exists_col($colname)) {
-        die "The column which name is \"$colname\" does not eixsts.";
+        die "The column named \"$colname\" does not exist.";
       }
       
       unless (@$ret >= 1 && @$ret <= 2 && ($order_by eq "asc" || $order_by eq "desc")) {
