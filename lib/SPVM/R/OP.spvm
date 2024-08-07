@@ -129,7 +129,7 @@ class R::OP {
     my $ret_data = $ret_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_ndarray->elem_is_na($x_data->[$i]);
+      $ret_data->[$i] = $x_ndarray->elem_is_na($x_data, $i);
     }
     
     return $ret_ndarray;
