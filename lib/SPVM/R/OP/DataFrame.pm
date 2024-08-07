@@ -43,6 +43,10 @@ C<static method cbind : L<R::DataFrame|SPVM::R::DataFrame> ($x_data_frame : L<R:
 
 C<static method rbind : L<R::DataFrame|SPVM::R::DataFrame> ($x_data_frame : L<R::DataFrame|SPVM::R::DataFrame>, $y_data_frame : L<R::DataFrame|SPVM::R::DataFrame>);>
 
+=head2 subset
+
+C<method subset : L<R::DataFrame|SPVM::R::DataFrame> ($x_data_frame : L<R::DataFrame|SPVM::R::DataFrame>, $indexes : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $options : object[]);>
+
 =head1 See Also
 
 =over 2

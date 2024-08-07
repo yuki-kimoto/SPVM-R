@@ -93,4 +93,21 @@ class R::OP::DataFrame {
     return $ret_data_frame;
   }
   
+  method subset : R::DataFrame ($x_data_frame : R::DataFrame, $indexes : R::NDArray::Int, $options : object[]) {
+    
+    unless ($x_data_frame) {
+      die "The data frame \$x_data_frame must be defined.";
+    }
+    
+    Fn->check_option_names($options, ["select"]);
+    
+    my $options_h = Hash->new($options);
+    
+    my $colnames = (string[])$options_h->get_or_default("select", undef);
+    
+    my $ret_ndarray = $x_data_frame->slice($colnames, [$indexes]);
+    
+    return $ret_ndarray;
+  }
+  
 }
