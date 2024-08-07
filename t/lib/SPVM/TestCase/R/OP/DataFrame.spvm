@@ -4,6 +4,7 @@ class TestCase::R::OP::DataFrame {
   
   use R::OP::Int as IOP;
   use R::OP::Double as DOP;
+  use R::OP::Matrix::Double as MDOP;
   use R::OP::DataFrame as DFOP;
   
   static method cbind : int () {
@@ -282,4 +283,110 @@ class TestCase::R::OP::DataFrame {
     
     return 1;
   }
+  
+  static method subset : int () {
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name2", my $col2 = IOP->c([4, 5, 6]));
+      $data_frame->set_col("Name3", my $col3 = IOP->c([7, 8, 9]));
+      
+      my $ret_col = $data_frame->col("Name2");
+      
+      unless ($ret_col == $col2) {
+        return 0;
+      }
+      
+      my $ret_data_frame = DFOP->subset($data_frame, IOP->c([1, 2]), {select => ["Name2", "Name3"]});
+      
+      unless ($ret_data_frame is_type R::DataFrame) {
+        return 0;
+      }
+      
+      unless (Array->equals_string($ret_data_frame->colnames, ["Name2", "Name3"])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_data_frame->col("Name2")->(R::NDArray::Int)->data, [5, 6])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_data_frame->col("Name3")->(R::NDArray::Int)->data, [8, 9])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $data_frame = R::DataFrame->new;
+      
+      $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+      $data_frame->set_col("Name2", my $col2 = IOP->c([4, 5, 6]));
+      $data_frame->set_col("Name3", my $col3 = IOP->c([7, 8, 9]));
+      
+      my $ret_col = $data_frame->col("Name2");
+      
+      unless ($ret_col == $col2) {
+        return 0;
+      }
+      
+      my $ret_data_frame = DFOP->subset($data_frame, IOP->c([1, 2]));
+      
+      unless ($ret_data_frame is_type R::DataFrame) {
+        return 0;
+      }
+      
+      unless (Array->equals_string($ret_data_frame->colnames, ["Name1", "Name2", "Name3"])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_data_frame->col("Name2")->(R::NDArray::Int)->data, [5, 6])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_data_frame->col("Name3")->(R::NDArray::Int)->data, [8, 9])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $data_frame = R::DataFrame->new;
+        
+        $data_frame->set_col("Name1", IOP->c([1, 2, 3]));
+        $data_frame->set_col("Name2", my $col2 = IOP->c([4, 5, 6]));
+        $data_frame->set_col("Name3", my $col3 = IOP->c([7, 8, 9]));
+        
+        eval { DFOP->subset(undef, IOP->c([1, 2]), {select => ["Name2", "Name3"]}); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $data_frame = R::DataFrame->new;
+        
+        $data_frame->set_col("Name1", MDOP->matrix([(double)1, 2, 3, 4], 2, 2));
+        
+        eval { DFOP->subset($data_frame, IOP->c([1, 2])); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
+  static method na_omit : int () {
+    
+    return 1;
+  }
+  
 }
