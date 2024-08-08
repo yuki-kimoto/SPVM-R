@@ -794,14 +794,6 @@ class R::NDArray {
       die "The indexes \$indexes_ndarray must be defined.";
     }
     
-    unless ($indexes_ndarray->is_vector) {
-      die "The indexes \$indexes_ndarray must be a vector.";
-    }
-    
-    unless ($self->is_vector) {
-      die "The invocant must be a vector.";
-    }
-    
     my $length = $self->length;
     
     my $indexes_length = $indexes_ndarray->length;

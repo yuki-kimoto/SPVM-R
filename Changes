@@ -1,7 +1,8 @@
 0.021 2024-08-08
   [Test Improvement]
     * Add tests for R::DataFrame.
-    
+  [Changes]
+    * Allow R::NDArray#order method to receive no vector n-dimentional array.
 0.020 2024-08-07
   [Document Improvement]
     * Add docs for R::OP::Matrix::Double class.
