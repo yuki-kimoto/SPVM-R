@@ -3,6 +3,9 @@
     * Add tests for R::DataFrame.
   [Changes]
     * Allow R::NDArray#order method to receive no vector n-dimentional array.
+  [Document Improvement]
+    * Add docs for R::DataFrame class.
+    * Add docs for R::OP::DataFrame class.
 0.020 2024-08-07
   [Document Improvement]
     * Add docs for R::OP::Matrix::Double class.
