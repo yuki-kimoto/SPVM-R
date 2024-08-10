@@ -3,7 +3,8 @@
     * Add tests for R::DataFrame.
     * Add tests for R::OP.
   [Changes]
-    * Allow R::NDArray#order method to receive no vector n-dimentional array.
+    * Allow R::NDArray#order method to receive non-vector n-dimentional array.
+    * Allow R::OP#rep method receive non-vector n-dimentional array.
   [Document Improvement]
     * Add docs for R::DataFrame class.
     * Add docs for R::OP::DataFrame class.

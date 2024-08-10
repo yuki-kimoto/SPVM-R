@@ -104,7 +104,217 @@ class TestCase::R::OP {
     return 1;
   }
   
-  static method rep : int () { return 1; }
-  static method rep_length : int () { return 1; }
+  static method rep : int () {
+    
+    {
+      my $x_ndarray = IOP->c([(int)1, 2]);
+      
+      my $times = 2;
+      my $ret_ndarray = IOP->rep($x_ndarray, $times);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+    }
+    
+    {
+      my $x_ndarray = IOP->c([(int)1, 2]);
+      
+      my $times = 2;
+      my $ret_ndarray = IOP->rep($x_ndarray, $times);
+      
+      unless (Array->equals_int($ret_ndarray->data, [(int)1, 2, 1, 2])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [4])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $x_ndarray = IOP->c([(int)1, 2]);
+      
+      my $times = 1;
+      my $ret_ndarray = IOP->rep($x_ndarray, $times);
+      
+      unless (Array->equals_int($ret_ndarray->data, [(int)1, 2])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [2])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $x_ndarray = IOP->c([(int)1, 2]);
+      
+      my $times = 0;
+      my $ret_ndarray = IOP->rep($x_ndarray, $times);
+      
+      unless (Array->equals_int($ret_ndarray->data, new int[0])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, new int[0])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $x_ndarray = IOP->c([(int)1, 2], [1, 2]);
+      
+      my $times = 2;
+      my $ret_ndarray = IOP->rep($x_ndarray, $times);
+      
+      unless (Array->equals_int($ret_ndarray->data, [(int)1, 2, 1, 2])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [4])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = IOP->c([(int)1, 2]);
+        
+        my $times = 2;
+        eval { IOP->rep($x_ndarray, $times); }
+        
+        
+      }
+      
+      {
+        my $x_ndarray = IOP->c([(int)1, 2]);
+        
+        my $times = 2;
+        eval { IOP->rep(undef, $times); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = IOP->c([(int)1, 2]);
+        
+        my $times = -1;
+        eval { IOP->rep($x_ndarray, $times); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
+  static method rep_length : int () {
+    
+    {
+      my $x_ndarray = IOP->c([(int)1, 2]);
+      
+      my $rep_length = 4;
+      my $ret_ndarray = IOP->rep_length($x_ndarray, $rep_length);
+      
+      unless ($ret_ndarray is_type R::NDArray::Int) {
+        return 0;
+      }
+      
+    }
+    
+    {
+      my $x_ndarray = IOP->c([(int)1, 2]);
+      
+      my $rep_length = 4;
+      my $ret_ndarray = IOP->rep_length($x_ndarray, $rep_length);
+      
+      unless (Array->equals_int($ret_ndarray->data, [(int)1, 2, 1, 2])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [4])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $x_ndarray = IOP->c([(int)1, 2]);
+      
+      my $rep_length = 0;
+      my $ret_ndarray = IOP->rep_length($x_ndarray, $rep_length);
+      
+      unless (Array->equals_int($ret_ndarray->data, new int[0])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, new int[0])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = IOP->c([(int)1, 2]);
+        
+        my $rep_length = 4;
+        my $ret_ndarray = IOP->rep_length($x_ndarray, $rep_length);
+        
+        eval { IOP->rep_length($x_ndarray, $rep_length); }
+        
+      }
+      
+      {
+        my $x_ndarray = IOP->c([(int)1, 2]);
+        
+        my $rep_length = 4;
+        
+        eval { IOP->rep_length(undef, $rep_length); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = IOP->c([(int)1, 2]);
+        
+        my $rep_length = -1;
+        
+        eval { IOP->rep_length($x_ndarray, $rep_length); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = IOP->c([(int)1, 2, 3]);
+        
+        my $rep_length = 4;
+        
+        eval { IOP->rep_length($x_ndarray, $rep_length); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
   static method is_na : int () { return 1; }
 }
