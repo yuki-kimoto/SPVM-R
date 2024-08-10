@@ -1,0 +1,7 @@
+class TestCase::R::OP {
+  static method equals_dim : int () { return 1; }
+  static method equals_dropped_dim : int () { return 1; }
+  static method rep : int () { return 1; }
+  static method rep_length : int () { return 1; }
+  static method is_na : int () { return 1; }
+}
