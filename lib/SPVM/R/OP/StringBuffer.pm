@@ -10,7 +10,7 @@ SPVM::R::OP::StringBuffer - N-Dimensional Array Operations for R::NDArray::Strin
 
 =head1 Description
 
-The R::OP::StringBuffer class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>.
+R::OP::StringBuffer class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>.
 
 =head1 Usage
 

@@ -10,7 +10,7 @@ SPVM::R::OP::Double - N-Dimensional Array Operations for R::NDArray::Double
 
 =head1 Description
 
-The R::OP::Double class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Double|SPVM::R::NDArray::Double>.
+R::OP::Double class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Double|SPVM::R::NDArray::Double>.
 
 =head1 Usage
 

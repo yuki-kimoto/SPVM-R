@@ -10,7 +10,7 @@ SPVM::R::OP::Short - N-Dimensional Array Operations for R::NDArray::Short
 
 =head1 Description
 
-The R::OP::Short class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Short|SPVM::R::NDArray::Short>.
+R::OP::Short class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Short|SPVM::R::NDArray::Short>.
 
 =head1 Usage
 

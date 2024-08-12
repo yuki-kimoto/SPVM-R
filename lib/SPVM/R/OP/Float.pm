@@ -10,7 +10,7 @@ SPVM::R::OP::Float - N-Dimensional Array Operations for R::NDArray::Float
 
 =head1 Description
 
-The R::OP::Float class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Float|SPVM::R::NDArray::Float>.
+R::OP::Float class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Float|SPVM::R::NDArray::Float>.
 
 =head1 Usage
 

@@ -10,7 +10,7 @@ SPVM::R::OP::DoubleComplex - N-Dimensional Array Operations for R::NDArray::Doub
 
 =head1 Description
 
-The R::OP::DoubleComplex class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>.
+R::OP::DoubleComplex class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>.
 
 =head1 Usage
 

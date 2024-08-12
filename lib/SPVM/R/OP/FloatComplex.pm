@@ -10,7 +10,7 @@ SPVM::R::OP::FloatComplex - N-Dimensional Array Operations for R::NDArray::Float
 
 =head1 Description
 
-The R::OP::FloatComplex class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex>.
+R::OP::FloatComplex class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::FloatComplex|SPVM::R::NDArray::FloatComplex>.
 
 =head1 Usage
 

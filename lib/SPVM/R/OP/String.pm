@@ -10,7 +10,7 @@ SPVM::R::OP::String - N-Dimensional Array Operations for R::NDArray::String
 
 =head1 Description
 
-The R::OP::String class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::String|SPVM::R::NDArray::String>.
+R::OP::String class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::String|SPVM::R::NDArray::String>.
 
 =head1 Usage
 

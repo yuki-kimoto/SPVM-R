@@ -10,7 +10,7 @@ SPVM::R::OP::AnyObject - Short Description
 
 =head1 Description
 
-The R::OP::AnyObject class in L<SPVM> has methods to do someting.
+R::OP::AnyObject class in L<SPVM> has methods to do someting.
 
 =head1 Usage
 
