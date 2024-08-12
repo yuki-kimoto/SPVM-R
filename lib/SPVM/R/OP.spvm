@@ -96,7 +96,7 @@ class R::OP {
     my $times = 0;
     if ($length > 0) {
       unless ($length % $x_length == 0) {
-        die "The length \$length must be devided by the length of n-dimensional array \$x_ndarray.";
+        die "The length \$length must be devided by the length of the n-dimensional array \$x_ndarray.";
       }
       
       $times = $length / $x_length;
