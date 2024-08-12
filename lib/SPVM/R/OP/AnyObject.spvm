@@ -28,7 +28,7 @@ class R::OP::AnyObject {
         
         warn type_name $data;
         
-        die "The type of the data \data must be an object array or R::NDArray::AnyObject.";
+        die "The type of the data \$data must be an object array or R::NDArray::AnyObject.";
       }
     }
     

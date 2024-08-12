@@ -50,7 +50,7 @@ class R::OP::DoubleComplex {
         $data = $data->(R::NDArray::DoubleComplex)->data;
       }
       else {
-        die "The type of the data \data must be Complex_2d[] or R::NDArray::DoubleComplex.";
+        die "The type of the data \$data must be Complex_2d[] or R::NDArray::DoubleComplex.";
       }
     }
     

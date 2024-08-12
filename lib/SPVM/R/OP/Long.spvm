@@ -40,7 +40,7 @@ class R::OP::Long {
         $data = $data->(R::NDArray::Long)->data;
       }
       else {
-        die "The type of the data \data must be Long, long[], or R::NDArray::Long.";
+        die "The type of the data \$data must be Long, long[], or R::NDArray::Long.";
       }
     }
     

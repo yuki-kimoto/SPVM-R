@@ -44,7 +44,7 @@ class R::OP::StringBuffer {
         $data = $data->(R::NDArray::String)->to_string_buffer_ndarray->data;
       }
       else {
-        die "The type of the data \data must be StringBuffer, StringBuffer[], or R::NDArray::StringBuffer.";
+        die "The type of the data \$data must be StringBuffer, StringBuffer[], or R::NDArray::StringBuffer.";
       }
     }
     

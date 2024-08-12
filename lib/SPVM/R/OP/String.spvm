@@ -25,7 +25,7 @@ class R::OP::String {
         $data = $data->(R::NDArray::String)->data;
       }
       else {
-        die "The type of the data \data must be string, string[], or R::NDArray::String.";
+        die "The type of the data \$data must be string, string[], or R::NDArray::String.";
       }
     }
     

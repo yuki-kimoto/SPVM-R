@@ -40,7 +40,7 @@ class R::OP::Int {
         $data = $data->(R::NDArray::Int)->data;
       }
       else {
-        die "The type of the data \data must be Int, int[], or R::NDArray::Int.";
+        die "The type of the data \$data must be Int, int[], or R::NDArray::Int.";
       }
     }
     

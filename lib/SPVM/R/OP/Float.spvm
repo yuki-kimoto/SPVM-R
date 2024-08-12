@@ -41,7 +41,7 @@ class R::OP::Float {
         $data = $data->(R::NDArray::Float)->data;
       }
       else {
-        die "The type of the data \data must be Float, float[], or R::NDArray::Float.";
+        die "The type of the data \$data must be Float, float[], or R::NDArray::Float.";
       }
     }
     

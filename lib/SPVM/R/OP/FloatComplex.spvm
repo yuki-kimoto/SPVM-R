@@ -51,7 +51,7 @@ class R::OP::FloatComplex {
         $data = $data->(R::NDArray::FloatComplex)->data;
       }
       else {
-        die "The type of the data \data must be Complex_2f[] or R::NDArray::FloatComplex.";
+        die "The type of the data \$data must be Complex_2f[] or R::NDArray::FloatComplex.";
       }
     }
     

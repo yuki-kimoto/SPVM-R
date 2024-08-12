@@ -38,7 +38,7 @@ class R::OP::Time::Piece {
         $data = $data->(R::NDArray::String)->to_time_piece_ndarray->data;
       }
       else {
-        die "The type of the data \data must be Time::Piece, Time::Piece[], or R::NDArray::Time::Piece.";
+        die "The type of the data \$data must be Time::Piece, Time::Piece[], or R::NDArray::Time::Piece.";
       }
     }
     

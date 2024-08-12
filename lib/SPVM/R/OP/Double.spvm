@@ -44,7 +44,7 @@ class R::OP::Double {
         $data = $data->(R::NDArray::Double)->data;
       }
       else {
-        die "The type of the data \data must be Double or double[].";
+        die "The type of the data \$data must be Double or double[].";
       }
     }
     
