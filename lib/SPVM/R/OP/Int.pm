@@ -10,7 +10,7 @@ SPVM::R::OP::Int - N-Dimensional Array Operations for R::NDArray::Int
 
 =head1 Description
 
-The R::OP::Int class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Int|SPVM::R::NDArray::Int>.
+R::OP::Int class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Int|SPVM::R::NDArray::Int>.
 
 =head1 Usage
 

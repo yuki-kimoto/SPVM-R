@@ -10,7 +10,7 @@ SPVM::R::OP::Time::Piece - N-Dimensional Array Operations for R::NDArray::Time::
 
 =head1 Description
 
-The R::OP::Time::Piece class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece>.
+R::OP::Time::Piece class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece>.
 
 =head1 Usage
 

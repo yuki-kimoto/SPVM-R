@@ -10,7 +10,7 @@ SPVM::R::OP::Long - N-Dimensional Array Operations for R::NDArray::Long
 
 =head1 Description
 
-The R::OP::Long class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Long|SPVM::R::NDArray::Long>.
+R::OP::Long class in L<SPVM> has methods for n-dimensional array operations for L<R::NDArray::Long|SPVM::R::NDArray::Long>.
 
 =head1 Usage
 

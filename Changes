@@ -1,3 +1,6 @@
+0.022 2024-08-13
+  [Document Improvement]
+    * Add docs for R::OP::Byte class.
 0.021 2024-08-12
   [Test Improvement]
     * Add tests for R::DataFrame.

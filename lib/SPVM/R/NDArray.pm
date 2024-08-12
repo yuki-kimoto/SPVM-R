@@ -10,7 +10,7 @@ SPVM::R::NDArray - N-Dimensional Array Base Class
 
 =head1 Description
 
-The R::NDArray class in L<SPVM> represetns n-dimensional array and it is the base class of classes that represents typed n-dimensional arrays.
+R::NDArray class in L<SPVM> represetns n-dimensional array and it is the base class of classes that represents typed n-dimensional arrays.
 
 =head1 Usage
 
