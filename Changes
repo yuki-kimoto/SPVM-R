@@ -3,6 +3,7 @@
     * Add docs for R::OP::Byte class.
     * Add docs for R::OP::Short class.
     * Add docs for R::OP::Int class.
+    * Add docs for R::OP::Long class.
 0.021 2024-08-12
   [Test Improvement]
     * Add tests for R::DataFrame.
