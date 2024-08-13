@@ -384,7 +384,7 @@ class R::NDArray {
     my $equals_dropped_dim = R::Util->equals_dropped_dim($ndarray->dim, $ret_dim);
     
     unless ($equals_dropped_dim) {
-      die "The dim field of \$ndarray must be compatible with dim created by \$asix_indexes_product.";
+      die "The dimensions of \$ndarray must be compatible with dim created by \$asix_indexes_product.";
     }
     
     $self->slice_set_data($data_indexes, $ndarray->data);

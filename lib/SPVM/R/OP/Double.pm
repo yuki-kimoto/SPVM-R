@@ -42,7 +42,7 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 sub
 
@@ -56,7 +56,7 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 mul
 
@@ -70,7 +70,7 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 scamul
 
@@ -98,7 +98,7 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 scadiv
 
@@ -146,13 +146,13 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 ne
 
 C<static method ne : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<!=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<!=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -160,13 +160,13 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 gt
 
 C<static method gt : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<gt>> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<E<gt>> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -174,13 +174,13 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 ge
 
 C<static method ge : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<gt>=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<E<gt>=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -188,13 +188,13 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 lt
 
 C<static method lt : R::NDArray::Int ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<lt>> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<E<lt>> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -202,13 +202,13 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 le
 
 C<static method le : R::NDArray::Int ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>, $y_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<lt>=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<E<lt>=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -216,7 +216,7 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dim field of $x_ndarray must be equal to the dim field of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
 
 =head2 rep
 

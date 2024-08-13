@@ -208,7 +208,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method ne : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<!=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<!=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -222,7 +222,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method gt : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<gt>> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<E<gt>> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -236,7 +236,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method ge : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<gt>=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<E<gt>=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -250,7 +250,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method lt : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<lt>> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<E<lt>> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -264,7 +264,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method le : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, performs numeric comparison C<E<lt>=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<E<lt>=> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -290,7 +290,7 @@ Same as L<R::OP#rep_length|SPVM::R::OP/"rep_length"> method, but the return type
 
 C<static method seq : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($begin : int, $end : int, $by : int = 1);>
 
-Creates a L<R::NDArray::Short|SPVM::R::NDArray::Short> object from $bigin to $end at intervals of $by.
+Creates a L<R::NDArray::Int|SPVM::R::NDArray::Int> object from $bigin to $end at intervals of $by.
 
 Exceptions:
 
