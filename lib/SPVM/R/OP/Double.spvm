@@ -1582,13 +1582,13 @@ class R::OP::Double {
     my $x_length = $x_ndarray->length;
     
     unless ($x_length == 3) {
-      die "The length of elems of n-dimensional array \$x_ndarray must be 3.";
+      die "The length of n-dimensional array \$x_ndarray must be 3.";
     }
     
     my $y_length = $y_ndarray->length;
     
     unless ($y_length == 3) {
-      die "The length of elems of n-dimensional array \$y_ndarray must be 3.";
+      die "The length of n-dimensional array \$y_ndarray must be 3.";
     }
     
     my $length = $x_length;
@@ -1651,6 +1651,8 @@ class R::OP::Double {
   }
   
   static method runif : R::NDArray::Double ($length : int, $options : object[]) {
+    
+    Fn->check_option_names($options, ["min", "max", "seed_ref"]);
     
     my $options_h = Hash->new($options);
     
