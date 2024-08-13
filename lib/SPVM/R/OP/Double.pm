@@ -287,7 +287,6 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 C<static method cos : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
 Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs L<Math#cos|SPVM::Math/"cos"> method on each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
@@ -297,7 +296,6 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 C<static method tan : L<R::NDArray::Double|SPVM::R::NDArray::Double> ($x_ndarray : L<R::NDArray::Double|SPVM::R::NDArray::Double>);>
 
 Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs L<Math#tan|SPVM::Math/"tan"> method on each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
