@@ -431,6 +431,10 @@ C<static method cumprod : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleCo
 
 Creates a new L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, calculates the cumulative product on each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
+Exceptions:
+
+The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
+
 =head2 diff
 
 C<static method diff : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex> ($x_ndarray : L<R::NDArray::DoubleComplex|SPVM::R::NDArray::DoubleComplex>);>
