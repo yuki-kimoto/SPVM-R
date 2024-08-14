@@ -6,6 +6,7 @@
     * Add docs for R::OP::Long class.
     * Add docs for R::OP::Double class.
     * Add docs for R::OP::Float class.
+    * Add docs for R::OP::DoubleComplex class.
 0.021 2024-08-12
   [Test Improvement]
     * Add tests for R::DataFrame.
