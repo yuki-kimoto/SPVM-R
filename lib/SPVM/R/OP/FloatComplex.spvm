@@ -32,7 +32,7 @@ class R::OP::FloatComplex {
         my $pairs_length = @$pairs;
         
         unless ($pairs_length % 2 == 0) {
-          die "The pairs \$data must be devided by even number.";
+          die "The length of pairs \$data must be an even number if the type of \$data is float[].";
         }
         
         my $length = $pairs_length / 2;
@@ -51,7 +51,7 @@ class R::OP::FloatComplex {
         $data = $data->(R::NDArray::FloatComplex)->data;
       }
       else {
-        die "The type of the data \$data must be Complex_2f[] or R::NDArray::FloatComplex.";
+        die "The type of the data \$data must be float[], Complex_2f[] or R::NDArray::FloatComplex.";
       }
     }
     
