@@ -83,9 +83,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method eq : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs string comparison C<eq> operation on the each stringified element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
-A stringified element means if an element is undef, it is undef, otherwise it is the return value of L<R::NDArray::StringBuffer#to_string|SPVM::StringBuffer/"to_string"> method.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) == 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -99,9 +97,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method ne : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs string comparison C<ne> operation on the each stringified element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
-A stringified element means if an element is undef, it is undef, otherwise it is the return value of L<R::NDArray::StringBuffer#to_string|SPVM::StringBuffer/"to_string"> method.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) != 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -115,9 +111,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method gt : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs string comparison C<gt> operation on the each stringified element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
-A stringified element means if an element is undef, it is undef, otherwise it is the return value of L<R::NDArray::StringBuffer#to_string|SPVM::StringBuffer/"to_string"> method.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<gt> 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -131,9 +125,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method ge : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs string comparison C<ge> operation on the each stringified element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
-A stringified element means if an element is undef, it is undef, otherwise it is the return value of L<R::NDArray::StringBuffer#to_string|SPVM::StringBuffer/"to_string"> method.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<gt>= 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -147,9 +139,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method lt : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs string comparison C<lt> operation on the each stringified element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
-A stringified element means if an element is undef, it is undef, otherwise it is the return value of L<R::NDArray::StringBuffer#to_string|SPVM::StringBuffer/"to_string"> method.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<lt> 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -163,9 +153,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method le : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs string comparison C<le> operation on the each stringified element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
-A stringified element means if an element is undef, it is undef, otherwise it is the return value of L<R::NDArray::StringBuffer#to_string|SPVM::StringBuffer/"to_string"> method.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<lt>= 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
