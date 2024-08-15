@@ -12,6 +12,7 @@
     * Add docs for R::OP::String class.
   [Incompatible Changes]
     * If concatnation C<.> operation throw an exceptions R::OP::String#concat method, the element is set to C<undef>.
+    * elem_to_string method in R::OP::String, R::OP::StringBuffer, R::OP::TimePiece, R::OP::AnyObject returns undef instead of "undef" if the input data is undef.
 0.021 2024-08-12
   [Test Improvement]
     * Add tests for R::DataFrame.

@@ -42,10 +42,6 @@ class R::NDArray::String extends R::NDArray {
     
     my $elem = $data->[$data_index];
     
-    unless ($elem) {
-      return "undef";
-    }
-    
     my $string = copy $elem;
     
     return $string;

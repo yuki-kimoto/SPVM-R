@@ -408,6 +408,9 @@ class R::NDArray {
       for (my $i = 0; $i < $data_length; $i++) {
         $string_buffer->push("[$i]\t");
         my $elem_string = $self->elem_to_string($data, $i);
+        unless ($elem_string) {
+          $elem_string = "undef";
+        }
         $string_buffer->push($elem_string);
         
         unless ($i == $data_length - 1) {
@@ -440,6 +443,9 @@ class R::NDArray {
           my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
           
           my $elem_string = $self->elem_to_string($data, $data_index);
+          unless ($elem_string) {
+            $elem_string = "undef";
+          }
           
           $string_buffer->push($elem_string);
           
@@ -703,7 +709,11 @@ class R::NDArray {
             
             my $data_index = &convert_coordinate_to_data_index($coordinate, $dim);
             
-            $elem_strings_list->push($self->elem_to_string($data, $data_index));
+            my $elem_string = $self->elem_to_string($data, $data_index);
+            unless ($elem_string) {
+              $elem_string = "undef";
+            }
+            $elem_strings_list->push($elem_string);
           }
           
           $string_buffer->push(Fn->join("\t", $elem_strings_list->to_array) . "\n");
