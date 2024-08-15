@@ -74,17 +74,8 @@ class R::OP::Time::Piece {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem_epoch = (long)Fn->LONG_MIN;
-      if ($x_data->[$i]) {
-        $x_elem_epoch = $x_data->[$i]->epoch;
-      }
-      
-      my $y_elem_epoch = (long)Fn->LONG_MIN;
-      if ($y_data->[$i]) {
-        $y_elem_epoch = $y_data->[$i]->epoch;
-      }
-      
-      $ret_data->[$i] = $x_elem_epoch == $y_elem_epoch;
+      my $cmp = $x_ndarray->elem_cmp($x_data, $i, $y_data, $i);
+      $ret_data->[$i] = $cmp == 0;
     }
     
     return $ret_ndarray;
@@ -117,17 +108,8 @@ class R::OP::Time::Piece {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem_epoch = (long)Fn->LONG_MIN;
-      if ($x_data->[$i]) {
-        $x_elem_epoch = $x_data->[$i]->epoch;
-      }
-      
-      my $y_elem_epoch = (long)Fn->LONG_MIN;
-      if ($y_data->[$i]) {
-        $y_elem_epoch = $y_data->[$i]->epoch;
-      }
-      
-      $ret_data->[$i] = $x_elem_epoch != $y_elem_epoch;
+      my $cmp = $x_ndarray->elem_cmp($x_data, $i, $y_data, $i);
+      $ret_data->[$i] = $cmp != 0;
     }
     
     return $ret_ndarray;
@@ -160,17 +142,8 @@ class R::OP::Time::Piece {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem_epoch = (long)Fn->LONG_MIN;
-      if ($x_data->[$i]) {
-        $x_elem_epoch = $x_data->[$i]->epoch;
-      }
-      
-      my $y_elem_epoch = (long)Fn->LONG_MIN;
-      if ($y_data->[$i]) {
-        $y_elem_epoch = $y_data->[$i]->epoch;
-      }
-      
-      $ret_data->[$i] = $x_elem_epoch > $y_elem_epoch;
+      my $cmp = $x_ndarray->elem_cmp($x_data, $i, $y_data, $i);
+      $ret_data->[$i] = $cmp > 0;
     }
     
     return $ret_ndarray;
@@ -203,17 +176,8 @@ class R::OP::Time::Piece {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem_epoch = (long)Fn->LONG_MIN;
-      if ($x_data->[$i]) {
-        $x_elem_epoch = $x_data->[$i]->epoch;
-      }
-      
-      my $y_elem_epoch = (long)Fn->LONG_MIN;
-      if ($y_data->[$i]) {
-        $y_elem_epoch = $y_data->[$i]->epoch;
-      }
-      
-      $ret_data->[$i] = $x_elem_epoch >= $y_elem_epoch;
+      my $cmp = $x_ndarray->elem_cmp($x_data, $i, $y_data, $i);
+      $ret_data->[$i] = $cmp >= 0;
     }
     
     return $ret_ndarray;
@@ -246,17 +210,8 @@ class R::OP::Time::Piece {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem_epoch = (long)Fn->LONG_MIN;
-      if ($x_data->[$i]) {
-        $x_elem_epoch = $x_data->[$i]->epoch;
-      }
-      
-      my $y_elem_epoch = (long)Fn->LONG_MIN;
-      if ($y_data->[$i]) {
-        $y_elem_epoch = $y_data->[$i]->epoch;
-      }
-      
-      $ret_data->[$i] = $x_elem_epoch < $y_elem_epoch;
+      my $cmp = $x_ndarray->elem_cmp($x_data, $i, $y_data, $i);
+      $ret_data->[$i] = $cmp < 0;
     }
     
     return $ret_ndarray;
@@ -289,17 +244,8 @@ class R::OP::Time::Piece {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      my $x_elem_epoch = (long)Fn->LONG_MIN;
-      if ($x_data->[$i]) {
-        $x_elem_epoch = $x_data->[$i]->epoch;
-      }
-      
-      my $y_elem_epoch = (long)Fn->LONG_MIN;
-      if ($y_data->[$i]) {
-        $y_elem_epoch = $y_data->[$i]->epoch;
-      }
-      
-      $ret_data->[$i] = $x_elem_epoch <= $y_elem_epoch;
+      my $cmp = $x_ndarray->elem_cmp($x_data, $i, $y_data, $i);
+      $ret_data->[$i] = $cmp <= 0;
     }
     
     return $ret_ndarray;
