@@ -293,7 +293,7 @@ C<method elem_clone : void ($dist_data : object, $dist_data_index : int, $src_da
 
 =head2 elem_cmp
 
-C<method elem_cmp : int ($data : object, $a_data_index : int, $b_data_index : int);>
+C<method elem_cmp : int ($a_data : object, $a_data_index : int, $b_data : object, $b_data_index : int);>
 
 =head2 elem_is_na
 
