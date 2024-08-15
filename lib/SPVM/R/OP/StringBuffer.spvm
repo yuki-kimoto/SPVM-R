@@ -103,18 +103,8 @@ class R::OP::StringBuffer {
     my $y_data = $y_ndarray->data;
     
     for (my $i = 0; $i < $length; $i++) {
-      eval { $x_data->[$i]->to_string eq $y_data->[$i]->to_string; }
-      my $x_elem_string = (string)undef;
-      if ($x_data->[$i]) {
-        $x_elem_string = $x_data->[$i]->to_string;
-      }
-      
-      my $y_elem_string = (string)undef;
-      if ($y_data->[$i]) {
-        $y_elem_string = $y_data->[$i]->to_string;
-      }
-      
-      $ret_data->[$i] = $x_elem_string eq $y_elem_string;
+      my $cmp = $x_ndarray->elem_cmp($x_data, $i, $y_data, $i);
+      $ret_data->[$i] = $cmp == 0;
     }
     
     return $ret_ndarray;
