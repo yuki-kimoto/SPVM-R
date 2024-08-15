@@ -65,11 +65,11 @@ class R::NDArray::Time::Piece extends R::NDArray {
     }
   }
   
-  method elem_cmp : int ($data : Time::Piece[], $a_data_index : int, $b_data_index : int) {
+  method elem_cmp : int ($a_data : Time::Piece[], $a_data_index : int, $b_data : Time::Piece[], $b_data_index : int) {
     
-    my $a_elem = $data->[$a_data_index];
+    my $a_elem = $a_data->[$a_data_index];
     
-    my $b_elem = $data->[$b_data_index];
+    my $b_elem = $b_data->[$b_data_index];
     
     my $cmp = 0;
     if ($a_elem && $b_elem) {
