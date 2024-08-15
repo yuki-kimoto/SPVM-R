@@ -69,18 +69,22 @@ class R::NDArray::Time::Piece extends R::NDArray {
     
     my $a_elem = $data->[$a_data_index];
     
-    my $a_epoch = Fn->LONG_MIN;
-    if ($a_elem) {
-      $a_epoch = $a_elem->epoch;
-    }
-    
     my $b_elem = $data->[$b_data_index];
-    my $b_epoch = Fn->LONG_MIN;
-    if ($b_elem) {
-      $b_epoch = $b_elem->epoch;
-    }
     
-    my $cmp = $a_epoch <=> $b_epoch;
+    my $cmp = 0;
+    if ($a_elem && $b_elem) {
+      my $a_epoch = $a_elem->epoch;
+      
+      my $b_epoch = $b_elem->epoch;
+      
+      $cmp = $a_epoch <=> $b_epoch;
+    }
+    elsif ($a_elem) {
+      $cmp = 1;
+    }
+    elsif ($b_elem) {
+      $cmp = 0;
+    }
     
     return $cmp;
   }
