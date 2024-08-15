@@ -151,7 +151,7 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 
 C<static method eq : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>, $y_ndarray : L<R::NDArray::Float|SPVM::R::NDArray::Float>);>
 
-Creates a new L<R::NDArray::Float|SPVM::R::NDArray::Float> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<==> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs numeric comparison C<==> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
