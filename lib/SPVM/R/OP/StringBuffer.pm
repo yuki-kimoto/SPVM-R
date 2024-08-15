@@ -43,11 +43,11 @@ R::OP::StringBuffer class in L<SPVM> has methods for n-dimensional array operati
 
 C<static method c : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer> ($data : object of StringBuffer|StringBuffer[]|L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>|string|string[]|L<R::NDArray::String|SPVM::R::NDArray::String>, $dim : int[] = undef);>
 
-Creates a new L<R::NDArray::Double|SPVM::R::NDArray::Double> object given the data $data and the dimensions $dim.
+Creates a new L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer> object given the data $data and the dimensions $dim.
 
 Implemetation:
 
-If $data is defined and the type of $data is L<StringBuffer|SPVM::StringBuffer>, $data is set to C<[(StringBuffer)$data->(StringBuffer)]>.
+If $data is defined and the type of $data is L<StringBuffer|SPVM::StringBuffer>, $data is set to C<[(StringBuffer)$data]>.
 
 If $data is defined and the type of $data is L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $dim is set to C<$data-E<gt>(R::NDArray::StringBuffer)-E<gt>dim> unless $dim is defined and $data is set to C<$data-E<gt>(R::NDArray::StringBuffer)-E<gt>data>.
 
@@ -67,7 +67,7 @@ The type of the data $data must be StringBuffer, StringBuffer[], R::NDArray::Str
 
 C<static method push : void ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::String|SPVM::R::NDArray::String>);>
 
-Creates a new L<R::NDArray::String|SPVM::R::NDArray::String> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs L<$x_elem->(StringBuffer)->push($y_elem)|StringBuffer/"push" method on each element(named $x_elem, $y_elem) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Performs C<$x_elem-E<gt>L<push|SPVM::StringBuffer/"push">($y_elem)> method on each element(named $x_elem, $y_elem) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 If C<push> method throw an exceptions, $x_elem is unchanged.
 
@@ -83,7 +83,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method eq : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) == 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) == 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -97,7 +97,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method ne : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) != 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) != 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -111,7 +111,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method gt : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<gt> 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<gt> 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -125,7 +125,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method ge : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<gt>= 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<gt>= 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -139,7 +139,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method lt : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<lt> 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<lt> 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
@@ -153,7 +153,7 @@ The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Othe
 
 C<static method le : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>, $y_ndarray : L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>);>
 
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>(L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>)-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<lt>= 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs the comparison logic C<$x_ndarray-E<gt>L<elem_cmp|SPVM::R::NDArray::StringBuffer/"elem_cmp">($x_ndarray-E<gt>data, $i, $y_ndarray-E<gt>data, $i) E<lt>= 0> on the each element(the index is $i) of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
 Exceptions:
 
