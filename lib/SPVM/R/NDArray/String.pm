@@ -32,6 +32,8 @@ Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type i
 
 =head1 Class Methods
 
+=head2 new
+
 C<static method new : L<R::NDArray::String|SPVM::R::NDArray::String> ($options : object[] = undef);>
 
 Creates a new L<R::NDArray::String|SPVM::R::NDArray::String> and returns it.

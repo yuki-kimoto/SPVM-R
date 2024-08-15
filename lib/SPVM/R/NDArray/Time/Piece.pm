@@ -41,6 +41,8 @@ Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type i
 
 =head1 Class Methods
 
+=head2 new
+
 C<static method new : L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece> ($options : object[] = undef);>
 
 Creates a new L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece> and returns it.
