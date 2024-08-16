@@ -7,6 +7,7 @@
     * Improve docs for R::NDArray::Float class.
     * Improve docs for R::NDArray::Double class.
     * Improve docs for R::NDArray::FloatComplex class.
+    * Improve docs for R::NDArray::DoubleComplex class.
 0.022 2024-08-13
   [Document Improvement]
     * Add docs for R::OP::Byte class.
