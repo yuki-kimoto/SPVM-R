@@ -33,9 +33,7 @@ class R::NDArray::Long extends R::NDArray {
   
   method elem_to_string : string ($data : long[], $data_index : int) {
     
-    my $elem = $data->[$data_index];
-    
-    my $string = (string)(long)$elem;
+    my $string = (string)$data->[$data_index];
     
     return $string;
   }
