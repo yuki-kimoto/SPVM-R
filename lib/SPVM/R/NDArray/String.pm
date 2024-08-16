@@ -86,7 +86,7 @@ The clone is created by the following code.
 
 C<method elem_cmp : int ($a_data : string[], $a_data_index : int, $b_data : string[], $b_data_index : int);>
 
-Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index and returns the result.
+Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index using the string comparison operator C<cmp> and returns the result.
 
 =head2 elem_is_na
 
@@ -139,6 +139,18 @@ Each element is converted to a L<Time::Piece|SPVM::Time::Piece> object by the fo
   }
 
 Every string format must be C<%Y-%m-%d %H:%M:%S> or C<%Y-%m-%d> if the element is defined.
+
+=head1 See Also
+
+=over 2
+
+=item * L<R::OP::String|SPVM::R::OP::String>
+
+=item * L<R::NDArray|SPVM::R::NDArray>
+
+=item * L<R|SPVM::R>
+
+=back
 
 =head1 Copyright & License
 

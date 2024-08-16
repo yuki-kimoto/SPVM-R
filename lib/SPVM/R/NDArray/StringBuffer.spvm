@@ -38,11 +38,10 @@ class R::NDArray::StringBuffer extends R::NDArray {
     
     my $elem = $data->[$data_index];
     
-    unless ($elem) {
-      return undef;
+    my $string = (string)undef;
+    if ($data->[$data_index]) {
+      $string = $data->[$data_index]->to_string;
     }
-    
-    my $string = $elem->to_string;
     
     return $string;
   }
@@ -54,13 +53,8 @@ class R::NDArray::StringBuffer extends R::NDArray {
   
   method elem_clone : void ($dist_data : StringBuffer[], $dist_data_index : int, $src_data : StringBuffer[], $src_data_index : int) {
     
-    my $src_elem = $src_data->[$src_data_index];
-    
-    if ($src_elem) {
-      $dist_data->[$dist_data_index] = StringBuffer->new($src_elem->to_string);
-    }
-    else {
-      $dist_data->[$dist_data_index] = undef;
+    if ($src_data->[$src_data_index]) {
+      $dist_data->[$dist_data_index] = StringBuffer->new($src_data->[$src_data_index]->to_string);
     }
   }
   
