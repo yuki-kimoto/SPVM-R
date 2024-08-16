@@ -86,8 +86,8 @@ class R::NDArray::Byte extends R::NDArray {
     my $data = $self->data;
     my $ret_data = $ret_ndarray->data;
     
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = (int)$data->[$i];
+    for (my $data_index = 0; $data_index < $length; $data_index++) {
+      $ret_data->[$data_index] = (int)$data->[$data_index];
     }
     
     return $ret_ndarray;

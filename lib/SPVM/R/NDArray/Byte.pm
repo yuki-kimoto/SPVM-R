@@ -110,6 +110,22 @@ C<method to_int_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int> ();>
 
 Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Int|SPVM::R::NDArray::Int> and returns it.
 
+Each element is converted by the following code.
+
+  my $ret_elem = (int)$elem;
+
+=head1 See Also
+
+=over 2
+
+=item * L<R::OP::Byte|SPVM::R::OP::Byte>
+
+=item * L<R::NDArray|SPVM::R::NDArray>
+
+=item * L<R|SPVM::R>
+
+=back
+
 =head1 Copyright & License
 
 Copyright (c) 2024 Yuki Kimoto

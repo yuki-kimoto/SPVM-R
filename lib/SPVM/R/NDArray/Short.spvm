@@ -35,9 +35,7 @@ class R::NDArray::Short extends R::NDArray {
   
   method elem_to_string : string ($data : short[], $data_index : int) {
     
-    my $elem = $data->[$data_index];
-    
-    my $string = (string)(short)$elem;
+    my $string = (string)(short)$data->[$data_index];
     
     return $string;
   }
