@@ -31,16 +31,14 @@ class R::NDArray::Byte extends R::NDArray {
       die "The length \$length must be more than or equal to 0.";
     }
     
-    my $data = new byte[$length];
+    my $default_data = new byte[$length];
     
-    return $data;
+    return $default_data;
   }
   
   method elem_to_string : string ($data : byte[], $data_index : int) {
     
-    my $elem = $data->[$data_index];
-    
-    my $string = (string)(byte)$elem;
+    my $string = (string)(byte)$data->[$data_index];
     
     return $string;
   }

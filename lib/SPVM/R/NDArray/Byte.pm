@@ -48,11 +48,23 @@ C<method create_default_data : byte[] ($length : int = 0);>
 
 Creates a default data given the length $length and returns it.
 
+The default data is created by the following code.
+
+  my $default_data = new byte[$length];
+
+Exceptions:
+
+The length $length must be more than or equal to 0. Otherwise an exception is thrown.
+
 =head2 elem_to_string
 
 C<method elem_to_string : string ($data : byte[], $data_index : int);>
 
 Converts an element $data at index $data_index to a string and returns it.
+
+The string is created by the following code.
+
+  my $string = (string)(byte)$data->[$data_index];
 
 =head2 elem_assign
 
@@ -64,13 +76,13 @@ Assigns the element $src_data at index $src_data_index to the element $dist_data
 
 C<method elem_clone : void ($dist_data : byte[], $dist_data_index : int, $src_data : byte[], $src_data_index : int);>
 
-Copies the element $src_data at index $src_data_indext to the element $dist_data at index $dist_data_index.
+Same as L</"elem_assign"> method.
 
 =head2 elem_cmp
 
 C<method elem_cmp : int ($a_data : byte[], $a_data_index : int, $b_data : byte[], $b_data_index : int);>
 
-Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index and returns the result.
+Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index using the comparison operator C<E<gt>=E<lt>> and returns the result.
 
 =head2 elem_is_na
 
@@ -78,7 +90,7 @@ C<method elem_is_na : int ($data : byte[], $data_index : int);>
 
 Checks if an element represets NA.
 
-Returns 0.
+Always returns 0.
 
 =head2 clone
 
