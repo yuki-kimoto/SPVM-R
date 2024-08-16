@@ -81,7 +81,7 @@ Clones the element $src_data at index $src_data_index to the element $dist_data 
 
 The clone is created by the following code:
 
-  $dist_elem = $src_elem->(Cloneable)->clone;
+  $dist_data->[$dist_data_index] = $src_data->[$src_data_index]->(Cloneable)->clone;
 
 =head2 elem_is_na
 
