@@ -90,9 +90,7 @@ C<method elem_is_na : int ($data : float[], $data_index : int);>
 
 Checks if an element represets NA.
 
-If the element $data at index $data_index is NaN, returns 1, otherwise returns 0.
-
-Always returns 0.
+If the element $data at index $data_index is C<NaN>, returns 1, otherwise returns 0.
 
 =head2 clone
 
