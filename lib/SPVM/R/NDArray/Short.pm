@@ -36,7 +36,7 @@ Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type i
 
 C<static method new : L<R::NDArray::Short|SPVM::R::NDArray::Short> ($options : object[] = undef);>
 
-Creates a new L<R::NDArray::Short|SPVM::R::NDArray::Short> and returns it.
+Creates a new L<R::NDArray::Short|SPVM::R::NDArray::Short> given the options $options and returns it.
 
 This method calls L<R::NDArray#init|SPVM::R::NDArray/"init"> method given the options $options.
 
@@ -64,7 +64,7 @@ Converts an element $data at index $data_index to a string and returns it.
 
 The string is created by the following code.
 
-  my $string = (string)(short)$data->[$data_index];
+  my $string = (string)$data->[$data_index];
 
 =head2 elem_assign
 
@@ -90,7 +90,7 @@ C<method elem_is_na : int ($data : byte[], $data_index : int);>
 
 Checks if an element represets NA.
 
-Returns 0.
+Always returns 0.
 
 =head2 clone
 

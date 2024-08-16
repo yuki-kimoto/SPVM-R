@@ -36,7 +36,7 @@ Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type i
 
 C<static method new : L<R::NDArray::Byte|SPVM::R::NDArray::Byte> ($options : object[] = undef);>
 
-Creates a new L<R::NDArray::Byte|SPVM::R::NDArray::Byte> and returns it.
+Creates a new L<R::NDArray::Byte|SPVM::R::NDArray::Byte> given the options $options and returns it.
 
 This method calls L<R::NDArray#init|SPVM::R::NDArray/"init"> method given the options $options.
 
@@ -64,7 +64,7 @@ Converts an element $data at index $data_index to a string and returns it.
 
 The string is created by the following code.
 
-  my $string = (string)(byte)$data->[$data_index];
+  my $string = (string)$data->[$data_index];
 
 =head2 elem_assign
 

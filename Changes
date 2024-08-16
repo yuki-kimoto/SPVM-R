@@ -2,6 +2,7 @@
   [Document Improvement]
     * Improve docs for R::NDArray::Byte class.
     * Improve docs for R::NDArray::Short class.
+    * Improve docs for R::NDArray::Int class.
 0.022 2024-08-13
   [Document Improvement]
     * Add docs for R::OP::Byte class.

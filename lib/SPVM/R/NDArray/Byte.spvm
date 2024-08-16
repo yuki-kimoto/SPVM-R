@@ -38,7 +38,7 @@ class R::NDArray::Byte extends R::NDArray {
   
   method elem_to_string : string ($data : byte[], $data_index : int) {
     
-    my $string = (string)(byte)$data->[$data_index];
+    my $string = (string)$data->[$data_index];
     
     return $string;
   }
