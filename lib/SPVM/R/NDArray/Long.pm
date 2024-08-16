@@ -36,7 +36,7 @@ Same as L<R::NDArray#data|SPVM::R::NDArray/"data"> method, but the return type i
 
 C<static method new : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($options : object[] = undef);>
 
-Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> given the options and returns it.
+Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> given the options $options and returns it.
 
 This method calls L<R::NDArray#init|SPVM::R::NDArray/"init"> method given the options $options.
 
@@ -82,7 +82,7 @@ Same as L</"elem_assign"> method.
 
 C<method elem_cmp : int ($a_data : long[], $a_data_index : int, $b_data : long[], $b_data_index : int);>
 
-Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index using the comparison operator C<E<gt>=E<lt>> and returns the result.
+Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index using the comparison operator C<E<lt>=E<gt>> and returns the result.
 
 =head2 elem_is_na
 

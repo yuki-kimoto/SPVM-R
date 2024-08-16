@@ -82,7 +82,7 @@ Same as L</"elem_assign"> method.
 
 C<method elem_cmp : int ($a_data : byte[], $a_data_index : int, $b_data : byte[], $b_data_index : int);>
 
-Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index using the comparison operator C<E<gt>=E<lt>> and returns the result.
+Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index using the comparison operator C<E<lt>=E<gt>> and returns the result.
 
 =head2 elem_is_na
 
