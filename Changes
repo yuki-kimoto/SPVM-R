@@ -11,6 +11,8 @@
     * Improve docs for R::NDArray::AnyObject class.
     * Improve docs for R::NDArray::Sring class.
     * Improve docs for R::NDArray::SringBuffer class.
+  [Incompatible Changes]
+    * Remove R::NDArray::Time::Piece#to_long_ndarray method.
 0.022 2024-08-13
   [Document Improvement]
     * Add docs for R::OP::Byte class.

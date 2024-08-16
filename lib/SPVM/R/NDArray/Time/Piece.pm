@@ -93,12 +93,6 @@ C<method slice : L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece> ($asix
 
 Same as L<R::NDArray#slice|SPVM::R::NDArray/"slice"> method, but the return type is different.
 
-=head2 to_long_ndarray
-
-C<method to_long_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long> ();>
-
-Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::Long|SPVM::R::NDArray::Long> using L<Time::Piece#epoch|SPVM::Time::Piece#/"epoch"> method and returns it.
-
 =head1 Copyright & License
 
 Copyright (c) 2024 Yuki Kimoto
