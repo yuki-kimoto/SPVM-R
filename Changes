@@ -12,6 +12,7 @@
     * Improve docs for R::NDArray::Sring class.
     * Improve docs for R::NDArray::SringBuffer class.
     * Improve docs for R::NDArray::Time::Piece class.
+    * Add docs for R::NDArray::Hash class.
   [Incompatible Changes]
     * Remove R::NDArray::Time::Piece#to_long_ndarray method.
 0.022 2024-08-13
