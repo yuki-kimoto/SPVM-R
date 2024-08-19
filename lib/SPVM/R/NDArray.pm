@@ -271,29 +271,85 @@ If this instance is a matrix L</"is_matrix"> method returns a true value and the
 
 C<method drop_dim : void ($index : int = -1);>
 
+Drops the dimensions of this n-dimensional array by calling L<R::Util#drop_dim|SPVM::R::Util/"drop_dim"> method given the index $index.
+
+Exceptions:
+
+Exceptions thrown by L<R::Util#drop_dim|SPVM::R::Util/"drop_dim"> method could be thrown.
+
 =head2 expand_dim
 
 C<method expand_dim : void ($index : int = -1);>
+
+Expands the dimensions of this n-dimensional array by calling L<R::Util#expand_dim|SPVM::R::Util/"expand_dim"> method given the index $index.
+
+Exceptions:
+
+Exceptions thrown by L<R::Util#drop_dim|SPVM::R::Util/"drop_dim"> method could be thrown.
 
 =head2 create_default_data
 
 C<method create_default_data : object ($length : int = 0);>
 
+Returns a default L<data|/"data"> of the length $length.
+
+This method is implemetned in child classes.
+
+Exceptions:
+
+Not implemented.
+
 =head2 elem_to_string
 
 C<method elem_to_string : string ($data : object, $data_index : int);>
+
+Converts the element at index $data_index of the array data $data to a string, and returns it.
+
+The returned string must be an element of L<R::NDArray::String|SPVM::R::NDArray::String>.
+
+This method is called when the L</"to_string_ndarray"> method converts each element to a string. So if an element is C<undef>, this method should return C<undef>.
+
+This method is implemetned in child classes.
+
+Exceptions:
+
+Not implemented.
 
 =head2 elem_assign
 
 C<method elem_assign : void ($dist_data : object, $dist_data_index : int, $src_data : object, $src_data_index : int);>
 
+Assigns the element $src_data at index $src_data_index to the element $dist_data at index $dist_data_index.
+
+This method will be implemetned in child classes.
+
+Exceptions:
+
+Not implemented.
+
 =head2 elem_clone
 
 C<method elem_clone : void ($dist_data : object, $dist_data_index : int, $src_data : object, $src_data_index : int);>
 
+Clones the element $src_data at index $src_data_index to the element $dist_data at index $dist_data_index.
+
+This method will be implemetned in child classes.
+
+Exceptions:
+
+Not implemented.
+
 =head2 elem_cmp
 
 C<method elem_cmp : int ($a_data : object, $a_data_index : int, $b_data : object, $b_data_index : int);>
+
+Compares the element $a_data at index $a_data_index and the element $b_data at index $b_data_index and returns the result.
+
+This method will be implemetned in child classes.
+
+Exceptions:
+
+Not implemented.
 
 =head2 elem_is_na
 
@@ -313,35 +369,53 @@ C<method to_string_ndarray : L<R::NDArray::String|SPVM::R::NDArray::String> ();>
 
 Converts this n-dimensional array to a n-dimensional array of L<R::NDArray::String|SPVM::R::NDArray::String> and returns it.
 
+This method calls L</"elem_to_string"> method to convert each element to a string.
+
 =head2 elem_size
 
 C<method elem_size : int ();>
+
+Returns the byte size of an element.
 
 =head2 elem_type_name
 
 C<method elem_type_name : string ();>
 
+Returns the type name of an element.
+
 =head2 is_numeric_ndarray
 
 C<method is_numeric_ndarray : int ();>
+
+If the type of the L<date|/"data"> of this n-dimensional array is a numeric array, returns 1, otherwise returns 0.
 
 =head2 is_mulnum_ndarray
 
 C<method is_mulnum_ndarray : int ();>
 
+If the type of the L<date|/"data"> of this n-dimensional array is a multi-numeric array, returns 1, otherwise returns 0.
+
 =head2 is_any_numeric_ndarray
 
 C<method is_any_numeric_ndarray : int ();>
 
+If the type of the L<date|/"data"> of this n-dimensional array is a numeric array or a multi-numeric array, returns 1, otherwise returns 0.
+
 =head2 is_object_ndarray
 
 C<method is_object_ndarray : int ();>
+
+If the type of the L<date|/"data"> of this n-dimensional array is an object array, returns 1, otherwise returns 0.
 
 =head2 clone
 
 C<method clone : R::NDArray ($shallow : int = 0);>
 
 Clones this n-dimensional array and returns it.
+
+Each element is copied by L<"elem_clone"> method.
+
+If $shallow is a positive value, each element is copied by L<"elem_assign"> method.
 
 =head2 slice
 
