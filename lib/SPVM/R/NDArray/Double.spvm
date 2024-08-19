@@ -75,8 +75,8 @@ class R::NDArray::Double extends R::NDArray {
     return (R::NDArray::Double)$self->SUPER::clone($shallow);
   }
   
-  method slice : R::NDArray::Double ($asix_indexes_product : R::NDArray::Int[]) {
-    return (R::NDArray::Double)$self->SUPER::slice($asix_indexes_product);
+  method slice : R::NDArray::Double ($indexes_product : R::NDArray::Int[]) {
+    return (R::NDArray::Double)$self->SUPER::slice($indexes_product);
   }
   
   precompile method to_int_ndarray : R::NDArray::Int () {

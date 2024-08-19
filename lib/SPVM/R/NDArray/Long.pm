@@ -100,7 +100,7 @@ Same as L<R::NDArray#clone|SPVM::R::NDArray/"clone"> method, but the return type
 
 =head2 slice
 
-C<method slice : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
+C<method slice : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
 
 Same as L<R::NDArray#slice|SPVM::R::NDArray/"slice"> method, but the return type is different.
 

@@ -72,8 +72,8 @@ class R::NDArray::Int extends R::NDArray {
     return (R::NDArray::Int)$self->SUPER::clone($shallow);
   }
   
-  method slice : R::NDArray::Int ($asix_indexes_product : R::NDArray::Int[]) {
-    return (R::NDArray::Int)$self->SUPER::slice($asix_indexes_product);
+  method slice : R::NDArray::Int ($indexes_product : R::NDArray::Int[]) {
+    return (R::NDArray::Int)$self->SUPER::slice($indexes_product);
   }
   
   precompile method to_byte_ndarray : R::NDArray::Byte () {

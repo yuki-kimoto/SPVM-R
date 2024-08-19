@@ -419,13 +419,13 @@ If $shallow is a positive value, each element is copied by L<"elem_assign"> meth
 
 =head2 slice
 
-C<method slice : R::NDArray ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
+C<method slice : R::NDArray ($indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
 
-Slices this n-dimensional array using the cartesian product of asix indexes $asix_indexes_product and returns it.
+Slices this n-dimensional array using the cartesian product of asix indexes $indexes_product and returns it.
 
 =head2 slice_set
 
-C<method slice_set : void ($asix_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[], $ndarray : R::NDArray);>
+C<method slice_set : void ($indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[], $ndarray : R::NDArray);>
 
 =head2 to_string
 

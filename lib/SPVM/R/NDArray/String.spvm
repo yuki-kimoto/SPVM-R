@@ -76,8 +76,8 @@ class R::NDArray::String extends R::NDArray {
     return (R::NDArray::String)$self->SUPER::clone($shallow);
   }
   
-  method slice : R::NDArray::String ($asix_indexes_product : R::NDArray::Int[]) {
-    return (R::NDArray::String)$self->SUPER::slice($asix_indexes_product);
+  method slice : R::NDArray::String ($indexes_product : R::NDArray::Int[]) {
+    return (R::NDArray::String)$self->SUPER::slice($indexes_product);
   }
   
   precompile method to_string_buffer_ndarray : R::NDArray::StringBuffer () {

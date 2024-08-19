@@ -91,8 +91,8 @@ class R::NDArray::Time::Piece extends R::NDArray {
     return (R::NDArray::Time::Piece)$self->SUPER::clone($shallow);
   }
   
-  method slice : R::NDArray::Time::Piece ($asix_indexes_product : R::NDArray::Int[]) {
-    return (R::NDArray::Time::Piece)$self->SUPER::slice($asix_indexes_product);
+  method slice : R::NDArray::Time::Piece ($indexes_product : R::NDArray::Int[]) {
+    return (R::NDArray::Time::Piece)$self->SUPER::slice($indexes_product);
   }
   
 }
