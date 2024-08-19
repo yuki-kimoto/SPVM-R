@@ -285,7 +285,7 @@ Expands the dimensions of this n-dimensional array by calling L<R::Util#expand_d
 
 Exceptions:
 
-Exceptions thrown by L<R::Util#drop_dim|SPVM::R::Util/"drop_dim"> method could be thrown.
+Exceptions thrown by L<R::Util#expand_dim|SPVM::R::Util/"expand_dim"> method could be thrown.
 
 =head2 create_default_data
 
@@ -415,37 +415,86 @@ Clones this n-dimensional array and returns it.
 
 Each element is copied by L<"elem_clone"> method.
 
-If $shallow is a positive value, each element is copied by L<"elem_assign"> method.
+If $shallow is a true value, each element is copied by L<"elem_assign"> method.
 
 =head2 slice
 
 C<method slice : R::NDArray ($indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[]);>
 
-Slices this n-dimensional array using the cartesian product of asix indexes $indexes_product and returns it.
+Slices this n-dimensional array using the cartesian product of the indexes $indexes_product and returns it.
 
 =head2 slice_set
 
 C<method slice_set : void ($indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[], $ndarray : R::NDArray);>
 
+Slices this n-dimensional array using the cartesian product of the indexes $indexes_product and sets the sliced data to the n-dimensional array $ndarray.
+
 =head2 to_string
 
 C<method to_string : string ();>
+
+Converts this n-dimensional array to a string representation.
 
 =head2 order
 
 C<method order : R::NDArray::Int ();>
 
+Creates a L<R::NDArray::Int|SPVM::R::NDArray::Int> object for a return value, which contains the corresponding data indexes of this n-dimensional array, which elements are sorted in ascending order. The rank of an element starts from 0.
+
+Examples are
+  
+  # data
+  [30, 10, 20]
+  
+  # Return data
+  [1, 2, 0]
+
 =head2 set_order
 
 C<method set_order : void ($data_indexes_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
+
+Sorts the data of this n-dimensional array by the order $data_indexes_ndarray.
+
+Each index in $data_indexes_ndarray specifies an index of the data of this n-dimentional array.
+
+Examples are
+
+  # data
+  [30, 10, 20]
+  
+  # $data_indexes_ndarray
+  [1, 2, 0]
+  
+  # Sorted data
+  [10, 20, 30]
 
 =head2 sort_asc
 
 C<method sort_asc : void ();>
 
+Sorts the L<data|/"data"> of this n-dimension array by ascendant order.
+
+Each two elements are compared by L</"elem_cmp"> method.
+
+This method calls L</"order"> method and L</"set_order"> method.
+
+Exceptions:
+
+Exceptions thrown by L</"order"> method and L</"set_order"> method could be thrown.
+
 =head2 sort_desc
 
 C<method sort_desc : void ();>
+
+Sorts the L<data|/"data"> of this n-dimension array by decendant order.
+
+Each two elements are compared by L</"elem_cmp"> method.
+
+This method calls L</"order"> method and L</"set_order"> method.
+
+Exceptions:
+
+Exceptions thrown by L</"order"> method and L</"set_order"> method could be thrown.
 
 =head1 Well Known Child Classes
 
@@ -474,6 +523,18 @@ C<method sort_desc : void ();>
 =item * L<R::NDArray::StringBuffer|SPVM::R::NDArray::StringBuffer>
 
 =item * L<R::NDArray::Time::Piece|SPVM::R::NDArray::Time::Piece>
+
+=back
+
+=head1 See Also
+
+=over 2
+
+=item * L<R::OP|SPVM::R::OP>
+
+=item * L<R::DataFrame|SPVM::R::DataFrame>
+
+=item * L<R|SPVM::R>
 
 =back
 
