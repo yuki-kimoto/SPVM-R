@@ -45,6 +45,65 @@ class R::NDArray {
   
   has is_dim_read_only : ro byte;
   
+  # Class Methods
+  static method normalize_indexes_product : R::NDArray::Int[] ($indexes_product : R::NDArray::Int[], $dim : int[]) {
+    
+    unless ($indexes_product) {
+      die "The cartesian product of the indexes \$indexes_product must be defined.";
+    }
+    
+    unless ($dim) {
+      die "The dimensions \$dim muest be defined.";
+    }
+    
+    my $indexes_product_length = @$indexes_product;
+    
+    my $dim_length = @$dim;
+    
+    unless ($indexes_product_length <= $dim_length) {
+      die "The length of the cartesian product of the indexes \$indexes_product must be less than or equal to the length of the dimensions \$dim.";
+    }
+    
+    my $normalized_indexes_product = new R::NDArray::Int[$dim_length];
+    
+    for (my $indexes_product_index = 0; $indexes_product_index < $dim_length; $indexes_product_index++) {
+      
+      my $indexes = (R::NDArray::Int)undef;
+      
+      if ($indexes_product_index < $indexes_product_length) {
+        $indexes = $indexes_product->[$indexes_product_index];
+      }
+      
+      unless (!$indexes || $indexes->is_vector) {
+        die "The ${indexes_product_index}th element of the cartesian product of the indexes \$indexes_product must be a vector or undef.";
+      }
+      
+      my $dim_elem = $dim->[$indexes_product_index];
+      
+      if ($indexes) {
+        my $indexes_data = $indexes->data;
+        for (my $i = 0; $i < @$indexes_data; $i++) {
+          unless ($indexes_data->[$i] < $dim_elem) {
+            die "The ${i}th element of the data of the ${indexes_product_index}th element of the cartesian product of the indexes \$indexes_product must be less than the ${dim_elem}th element of the dimensions \$dim.";
+          }
+        }
+      }
+      else {
+        my $indexes_data = new int[$dim->[$indexes_product_index]];
+        
+        for (my $i = 0; $i < $dim_elem; $i++) {
+          $indexes_data->[$i] = $i;
+        }
+        
+        $indexes = R::NDArray::Int->new({data => $indexes_data});
+      }
+      
+      $normalized_indexes_product->[$indexes_product_index] = $indexes;
+    }
+    
+    return $normalized_indexes_product;
+  }
+  
   # Instance Methods
   protected method init : void ($options : object[] = undef) {
     
@@ -544,50 +603,6 @@ class R::NDArray {
     }
   }
 
-  private static method normalize_indexes_product : R::NDArray::Int[] ($indexes_product : R::NDArray::Int[], $dim : int[]) {
-    
-    unless ($indexes_product) {
-      die "The indexes for n-dimensional array \$indexes_product must be defined.";
-    }
-    
-    my $indexes_product_length = @$indexes_product;
-    
-    my $dim_length = @$dim;
-    
-    unless ($indexes_product_length <= $dim_length) {
-      die "The length of indexes for n-dimensional array \$indexes_product must be less than or equal to the length of dim field.";
-    }
-    
-    my $normalized_indexes_product = new R::NDArray::Int[$dim_length];
-    
-    for (my $indexes_product_index = 0; $indexes_product_index < $dim_length; $indexes_product_index++) {
-      
-      my $indexes = (R::NDArray::Int)undef;
-      
-      if ($indexes_product_index < $indexes_product_length) {
-        $indexes = $indexes_product->[$indexes_product_index];
-      }
-      
-      unless (!$indexes || $indexes->is_vector) {
-        die "The elem of indexes for n-dimensional array \$indexes_product must be undef or vector.";
-      }
-      
-      unless ($indexes) {
-        my $indexes_data = new int[$dim->[$indexes_product_index]];
-        
-        for (my $i = 0; $i < $dim->[$indexes_product_index]; $i++) {
-          $indexes_data->[$i] = $i;
-        }
-        
-        $indexes = R::NDArray::Int->new({data => $indexes_data});
-      }
-      
-      $normalized_indexes_product->[$indexes_product_index] = $indexes;
-    }
-    
-    return $normalized_indexes_product;
-  }
-  
   private static method create_ret_dim : int[] ($indexes_product : R::NDArray::Int[]) {
     
     my $indexes_product_length = @$indexes_product;

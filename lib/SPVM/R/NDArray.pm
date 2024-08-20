@@ -34,6 +34,9 @@ A vector is a n-dimensional array that L</"is_vector"> method returns a true val
 
 A matrix is a n-dimensional array that L</"is_matrix"> method returns a true value.
 
+=head2 Slice of N-Dimensional Array
+
+
 =head1 Fields
 
 =head2 data
@@ -69,6 +72,34 @@ Exceptions thrown by L<R::Util#check_length|SPVM::R::Util/"check_length"> method
 C<has is_dim_read_only : ro byte;>
 
 If this field is a true value, it indicates L</"dim"> field is read only, otherwise writable.
+
+=head1 Class Methods
+
+=head2 normalize_indexes_product
+
+C<static method normalize_indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[] ($indexes_product : R::NDArray::Int[], $dim : int[]);>
+
+Checks and normalizes the cartesian product of the indexes \$indexes_product using the dimensions $dim, and returns it.
+
+If the check failed, an exception is thrown.
+
+Normalization means that
+
+If the length of $indexes_product is less than the length of $dim, $indexes_product is expanded to the length of $dim and expanded element is set to undef.
+
+The element of $indexes_product at index $i($i is an index of $indexes_product) which value is undef is set to a L<R::NDArray::Int|SPVM::R::NDArray::Int> object which data is the array of consecutive values from 0 to C<$dim-E<gt>[$i] - 1>.
+
+Exceptions:
+
+The cartesian product of the indexes $indexes_product must be defined.";
+
+The dimensions $dim muest be defined. Otherwise an exception is thrown.
+
+The nth element of the cartesian product of the indexes \$indexes_product must be a vector or undef.
+
+The n-th element of the data of the m-th element of the cartesian product of the indexes $indexes_product must be less than the k-th element of the dimensions $dim.
+
+The n-th element of the cartesian product of the indexes $indexes_product must be a vector or undef. Otherwise an exception is thrown.
 
 =head1 Instance Methods
 
@@ -423,11 +454,27 @@ C<method slice : R::NDArray ($indexes_product : L<R::NDArray::Int|SPVM::R::NDArr
 
 Slices this n-dimensional array using the cartesian product of the indexes $indexes_product and returns it.
 
+See L</"Slice of N-Dimensional Array"> about slice of n-dimensional array.
+
+This method calls L</"normalize_indexes_product"> method to check and normalize $indexes_product.
+
+Exceptions:
+
+Exceptions thrown by L</"normalize_indexes_product"> method could be thrown.
+
 =head2 slice_set
 
 C<method slice_set : void ($indexes_product : L<R::NDArray::Int|SPVM::R::NDArray::Int>[], $ndarray : R::NDArray);>
 
 Slices this n-dimensional array using the cartesian product of the indexes $indexes_product and sets the sliced data to the n-dimensional array $ndarray.
+
+See L</"Slice of N-Dimensional Array"> about slice of n-dimensional array.
+
+This method calls L</"normalize_indexes_product"> method to check and normalize $indexes_product.
+
+Exceptions:
+
+Exceptions thrown by L</"normalize_indexes_product"> method could be thrown.
 
 =head2 to_string
 
