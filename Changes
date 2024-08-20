@@ -1,4 +1,8 @@
-0.023 2024-08-16
+0.100 2024-08-20
+  [Major Release]
+    * All tests are finished.
+    * All documentations are finised.
+    * This release is major release. The features are more stable.
   [Document Improvement]
     * Improve docs for R::NDArray::Byte class.
     * Improve docs for R::NDArray::Short class.
