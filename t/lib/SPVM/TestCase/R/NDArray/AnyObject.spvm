@@ -36,6 +36,10 @@ class TestCase::R::NDArray::AnyObject {
       return 0;
     }
     
+    unless ($ndarray->data is_type object[]) {
+      return 0;
+    }
+    
     unless ($ndarray->data == $data) {
       return 0;
     }
