@@ -379,12 +379,12 @@ class R::NDArray {
     
     my $data = $self->{data};
     
-    my $is_mulnum = 0;
+    my $is_object_ndarray = 0;
     if (Fn->is_object_array($data)) {
-      $is_mulnum = 1;
+      $is_object_ndarray = 1;
     }
     
-    return $is_mulnum;
+    return $is_object_ndarray;
   }
   
   method clone : R::NDArray ($shallow : int = 0) {
