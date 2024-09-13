@@ -128,8 +128,6 @@ class TestCase::R::NDArray::AnyObject {
       
       my $data_tmp = [(object)Point->new(1, 1), Point->new(2, 2)];
       
-      warn dump $data_tmp;
-      
       my $data = AOP->c($data_tmp)->data;
       
       my $data_index = 1;

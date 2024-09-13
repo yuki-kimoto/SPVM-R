@@ -1,7 +1,8 @@
 0.101001 2024-08-28
   [Test Improvement]
     * Add tests for R::NDArray::AnyObject.
-    
+  [Bug Fix]
+    * Fix a bug that R::OP::AnyObject#c method was able to be receive an array object, not only object[].
 0.101 2024-08-21
   [Document Improvement]
     * Add "Features" section.
