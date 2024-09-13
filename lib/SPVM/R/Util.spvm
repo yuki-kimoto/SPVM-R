@@ -235,22 +235,6 @@ class R::Util {
   }
   
   # This method will be added to Fn class.
-  static method _get_elem_type_name : string ($array : object) {
-    
-    unless ($array) {
-      die "The array \$array must be defined.";
-    }
-    
-    my $type_name = type_name $array;
-    
-    my $type_name_length = length $type_name;
-    
-    my $elem_type_name = Fn->substr($type_name, 0, $type_name_length - 2);
-    
-    return $elem_type_name;
-  }
-  
-  # This method will be added to Fn class.
   static method new_proto : object ($proto : object, $options : object[]) {
     
     my $class_name = type_name $proto;
