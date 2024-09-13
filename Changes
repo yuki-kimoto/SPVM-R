@@ -3,6 +3,9 @@
     * Add tests for R::NDArray::AnyObject.
   [Bug Fix]
     * Fix a bug that R::OP::AnyObject#c method was able to be receive an array object, not only object[].
+  [Requirement Changes]
+    * Require SPVM 0.990009.
+    
 0.101 2024-08-21
   [Document Improvement]
     * Add "Features" section.
