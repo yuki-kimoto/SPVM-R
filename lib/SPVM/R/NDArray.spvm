@@ -330,7 +330,7 @@ class R::NDArray {
     
     my $data = $self->{data};
     
-    my $elem_size = R::Util->_get_elem_size($data);
+    my $elem_size = Fn->get_elem_size($data);
     
     return $elem_size;
   }
