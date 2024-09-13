@@ -408,7 +408,7 @@ class R::NDArray {
     
     my $clone_dim = $self->dim;
     
-    my $clone = (R::NDArray)R::Util->new_proto($self, {data => $clone_data, dim => $clone_dim});
+    my $clone = (R::NDArray)Native::MethodCall->new_proto($self, [(object){data => $clone_data, dim => $clone_dim}]);
     
     return $clone;
   }
@@ -425,7 +425,7 @@ class R::NDArray {
     
     my $ret_data = $self->slice_data($data_indexes);
     
-    my $ret_ndarray = (R::NDArray)R::Util->new_proto($self, {data => $ret_data, dim => $ret_dim});
+    my $ret_ndarray = (R::NDArray)Native::MethodCall->new_proto($self, [(object){data => $ret_data, dim => $ret_dim}]);
     
     return $ret_ndarray;
   }

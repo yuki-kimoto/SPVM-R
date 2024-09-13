@@ -8,7 +8,8 @@
   [Internal Changes]
     * Use Fn#array_length method.
     * Use Fn#get_elem_size method.
-    * Use Fn#Fn->get_elem_type_name.
+    * Use Fn#Fn->get_elem_type_name method.
+    * Use Native::MethodCall#new_proto method.
     
 0.101 2024-08-21
   [Document Improvement]

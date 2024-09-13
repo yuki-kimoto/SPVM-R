@@ -234,16 +234,6 @@ class R::Util {
     return $equals_dropped_dim;
   }
   
-  # This method will be added to Fn class.
-  static method new_proto : object ($proto : object, $options : object[]) {
-    
-    my $class_name = type_name $proto;
-    
-    my $object = (R::NDArray)Native::MethodCall->call_class_method($class_name, "new", [(object)$options]);
-    
-    return $object;
-  }
-  
   # This method will be inplemented as Array#equals_float_complex
   static method _equals_float_complex : int ($x1_array : Complex_2f[], $x2_array : Complex_2f[]) {
     
