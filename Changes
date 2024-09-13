@@ -10,6 +10,7 @@
     * Use Fn#get_elem_size method.
     * Use Fn#Fn->get_elem_type_name method.
     * Use Native::MethodCall#new_proto method.
+    * Use methods in Complex_2f multi-numeric type in tests.
     
 0.101 2024-08-21
   [Document Improvement]
