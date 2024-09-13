@@ -124,7 +124,7 @@ class R::NDArray {
     
     unless ($dim) {
       if ($data) {
-        my $data_length = R::Util->_get_array_length($data);
+        my $data_length = Fn->array_length($data);
         $dim = [$data_length];
       }
       else {
@@ -768,7 +768,7 @@ class R::NDArray {
       die "The data indexes \$data_indexes must be defined.";
     }
     
-    my $data_length = R::Util->_get_array_length($data);
+    my $data_length = Fn->array_length($data);
     
     for (my $i = 0; $i < $data_length; $i++) {
       my $data_index = $data_indexes->[$i];
