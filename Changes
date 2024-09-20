@@ -1,3 +1,7 @@
+0.101002 2024-09-21
+  [New Features]
+    * Add R::NDArray#set_data method.
+    
 0.101002 2024-09-16
   [Internal Changes]
     * Use StringBuffer#cmp method to compares two elements in R::NDArray::StringBuffer#elem_cmp method.
