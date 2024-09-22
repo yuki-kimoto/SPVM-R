@@ -10,6 +10,13 @@
       R::OP::Int#div_u
       R::OP::Int#mod
       R::OP::Int#mod_u
+      R::OP::Long#add
+      R::OP::Long#sub
+      R::OP::Long#mul
+      R::OP::Long#div
+      R::OP::Long#div_u
+      R::OP::Long#mod
+      R::OP::Long#mod_u
       
 0.101002 2024-09-16
   [Internal Changes]
