@@ -49,7 +49,7 @@ class R::OP::Long {
     return $ndarray;
   }
   
-  static method add : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
+  precompile static method add : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";
