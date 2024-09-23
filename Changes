@@ -42,6 +42,7 @@
       R::OP::DoubleComplex#div
       R::OP::DoubleComplex#pow
       R::OP::String#cancat
+      R::OP::StringBuffer#push
       
 0.101002 2024-09-16
   [Internal Changes]
