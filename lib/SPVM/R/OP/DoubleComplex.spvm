@@ -59,7 +59,7 @@ class R::OP::DoubleComplex {
     return $ndarray;
   }
   
-  static method add : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
+  precompile static method add : R::NDArray::DoubleComplex ($x_ndarray : R::NDArray::DoubleComplex, $y_ndarray : R::NDArray::DoubleComplex) {
     
     unless ($x_ndarray) {
       die "The n-dimensional array \$x_ndarray must be defined.";
