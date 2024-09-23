@@ -17,6 +17,12 @@
       R::OP::Long#div_u
       R::OP::Long#mod
       R::OP::Long#mod_u
+      R::OP::Float#add
+      R::OP::Float#sub
+      R::OP::Float#mul
+      R::OP::Float#div
+      R::OP::Float#reminder
+      R::OP::Float#fmod
       
 0.101002 2024-09-16
   [Internal Changes]
