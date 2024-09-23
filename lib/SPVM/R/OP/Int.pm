@@ -92,20 +92,6 @@ The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is t
 
 The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
 
-=head2 scamul
-
-C<static method scamul : R::NDArray::Int ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $scalar_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
-
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs multiplication C<*> operation on each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array and the n-dimensional array $scalar_ndarray at data index 0 to the each operation result, and returns the new n-dimensional array.
-
-Exceptions:
-
-The n-dimensional array $scalar_ndarray must be defined. Otherwise, an exception is thrown.
-
-The n-dmension array $scalar_ndarray must be a L<scalar|SPVM::R::NDArray/"Scalar">.
-
-The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
-
 =head2 div
 
 C<static method div : L<R::NDArray::Int|SPVM::R::NDArray::Int> ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $y_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
@@ -121,20 +107,6 @@ The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is t
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
 The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
-
-=head2 scadiv
-
-C<static method scadiv : R::NDArray::Int ($x_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>, $scalar_ndarray : L<R::NDArray::Int|SPVM::R::NDArray::Int>);>
-
-Creates a new L<R::NDArray::Int|SPVM::R::NDArray::Int> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs division C</> operations on the n-dimensional array $scalar_ndarray at data index 0 and each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
-
-Exceptions:
-
-The n-dimensional array $scalar_ndarray must be defined. Otherwise, an exception is thrown.
-
-The n-dmension array $scalar_ndarray must be a L<scalar|SPVM::R::NDArray/"Scalar">.
-
-The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
 =head2 div_u
 

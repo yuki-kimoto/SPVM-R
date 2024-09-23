@@ -43,7 +43,17 @@
       R::OP::DoubleComplex#pow
       R::OP::String#cancat
       R::OP::StringBuffer#push
-      
+  [Incompatible Changes]
+    * scamul and scadiv methods in the following classes are removed. Use mul and div method for scalar multiplication and scalar division.
+    
+      R::OP::Int
+      R::OP::Long
+      R::OP::Float
+      R::OP::Double
+      R::OP::Double
+      R::OP::FloatComplex
+      R::OP::DoubleComplex
+    
 0.101002 2024-09-16
   [Internal Changes]
     * Use StringBuffer#cmp method to compares two elements in R::NDArray::StringBuffer#elem_cmp method.

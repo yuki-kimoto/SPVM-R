@@ -175,38 +175,6 @@ class R::OP::Long {
     return $ret_ndarray;
   }
   
-  precompile static method scamul : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $scalar_ndarray : R::NDArray::Long) {
-    
-    unless ($scalar_ndarray) {
-      die "The n-dimensional array \$scalar_ndarray must be defined.";
-    }
-    
-    unless ($scalar_ndarray->is_scalar) {
-      die "The n-dmension array \$scalar_ndarray must be a scalar.";
-    }
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $scalar_data = $scalar_ndarray->data;
-    my $x_data = $x_ndarray->data;
-    
-    my $scalar = $scalar_data->[0];
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_data->[$i] * $scalar;
-    }
-    
-    return $ret_ndarray;
-  }
-  
   precompile static method div : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $y_ndarray : R::NDArray::Long) {
     
     unless ($x_ndarray) {
@@ -244,38 +212,6 @@ class R::OP::Long {
       for (my $i = 0; $i < $length; $i++) {
         $ret_data->[$i] = $x_data->[$i] / $y_data->[$i];
       }
-    }
-    
-    return $ret_ndarray;
-  }
-  
-  precompile static method scadiv : R::NDArray::Long ($x_ndarray : R::NDArray::Long, $scalar_ndarray : R::NDArray::Long) {
-    
-    unless ($scalar_ndarray) {
-      die "The n-dimensional array \$scalar_ndarray must be defined.";
-    }
-    
-    unless ($scalar_ndarray->is_scalar) {
-      die "The n-dmension array \$scalar_ndarray must be a scalar.";
-    }
-    
-    unless ($x_ndarray) {
-      die "The n-dimensional array \$x_ndarray must be defined.";
-    }
-    
-    my $length = $x_ndarray->length;
-    
-    my $x_dim = $x_ndarray->dim;
-    
-    my $ret_ndarray = &c(undef, $x_dim);
-    my $ret_data = $ret_ndarray->data;
-    
-    my $scalar_data = $scalar_ndarray->data;
-    my $x_data = $x_ndarray->data;
-    
-    my $scalar = $scalar_data->[0];
-    for (my $i = 0; $i < $length; $i++) {
-      $ret_data->[$i] = $x_data->[$i] / $scalar;
     }
     
     return $ret_ndarray;
