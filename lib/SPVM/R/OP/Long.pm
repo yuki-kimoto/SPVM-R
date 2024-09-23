@@ -50,13 +50,15 @@ C<static method add : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L
 
 Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs addition C<+> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
 
 =head2 sub
 
@@ -64,13 +66,15 @@ C<static method sub : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L
 
 Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs subtraction C<-> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
 
 =head2 mul
 
@@ -78,13 +82,15 @@ C<static method mul : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L
 
 Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs multiplication C<*> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
 
 =head2 scamul
 
@@ -106,13 +112,15 @@ C<static method div : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L
 
 Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs division C</> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
 
 =head2 scadiv
 
@@ -134,13 +142,15 @@ C<static method div_u : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray :
 
 Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs unsigned division C<div_ulong> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
 
 =head2 mod
 
@@ -148,13 +158,15 @@ C<static method mod : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray : L
 
 Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs modulo C<%> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
 
 =head2 mod_u
 
@@ -162,13 +174,15 @@ C<static method mod_u : L<R::NDArray::Long|SPVM::R::NDArray::Long> ($x_ndarray :
 
 Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs unsigned modulo C<mod_ulong> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
 
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
 Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
 The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
 
-The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray. Otherwise, an exception is thrown.
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
 
 =head2 neg
 
