@@ -36,6 +36,11 @@
       R::OP::FloatComplex#mul
       R::OP::FloatComplex#div
       R::OP::FloatComplex#pow
+      R::OP::DoubleComplex#add
+      R::OP::DoubleComplex#sub
+      R::OP::DoubleComplex#mul
+      R::OP::DoubleComplex#div
+      R::OP::DoubleComplex#pow
       
 0.101002 2024-09-16
   [Internal Changes]
