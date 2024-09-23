@@ -41,6 +41,7 @@
       R::OP::DoubleComplex#mul
       R::OP::DoubleComplex#div
       R::OP::DoubleComplex#pow
+      R::OP::String#cancat
       
 0.101002 2024-09-16
   [Internal Changes]
