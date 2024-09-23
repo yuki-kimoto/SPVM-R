@@ -1,5 +1,9 @@
 0.101002 2024-09-21
   [New Features]
+    * Add R::OP::Int#bit_and method.
+    * Add R::OP::Int#bit_or method.
+    * Add R::OP::Int#bit_not method.
+    
     * Add R::NDArray#set_data method.
     * In the following methods, $y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
       
