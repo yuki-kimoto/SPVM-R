@@ -21,14 +21,21 @@
       R::OP::Float#sub
       R::OP::Float#mul
       R::OP::Float#div
+      R::OP::Float#pow
       R::OP::Float#reminder
       R::OP::Float#fmod
       R::OP::Double#add
       R::OP::Double#sub
       R::OP::Double#mul
       R::OP::Double#div
+      R::OP::Double#pow
       R::OP::Double#reminder
       R::OP::Double#fmod
+      R::OP::FloatComplex#add
+      R::OP::FloatComplex#sub
+      R::OP::FloatComplex#mul
+      R::OP::FloatComplex#div
+      R::OP::FloatComplex#pow
       
 0.101002 2024-09-16
   [Internal Changes]
