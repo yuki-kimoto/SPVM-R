@@ -380,6 +380,48 @@ Exceptions:
 
 The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
 
+=head2 bit_and
+
+C<static method bit_and : R::NDArray::Long ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $y_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
+
+Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs bitwise AND operator C<&> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
+Exceptions:
+
+The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
+
+The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
+
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
+
+=head2 bit_or
+
+C<static method bit_or : R::NDArray::Long ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>, $y_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
+
+Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs bitwise OR operator C<|> operation on each element of the n-dimensional array $x_ndarray and $y_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+
+$y_ndarray allows to be a L<scalar|SPVM::R::NDArray/"Scalar">. In that case, each element used in the operation is the element at index 0.
+
+Exceptions:
+
+The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
+
+The n-dimensional array $y_ndarray must be defined. Otherwise, an exception is thrown.
+
+The dimensions of $x_ndarray must be equal to the dimensions of $y_ndarray if $y_ndarray is not a scalar. Otherwise, an exception is thrown.
+
+=head2 bit_not
+
+C<static method bit_not : R::NDArray::Long ($x_ndarray : L<R::NDArray::Long|SPVM::R::NDArray::Long>);>
+
+Creates a new L<R::NDArray::Long|SPVM::R::NDArray::Long> object of the same dimensions as the n-dimensional array $x_ndarray for a return value, performs bitwise NOT operator C<~> operation on each element of the n-dimensional array $x_ndarray, and sets each element of the new n-dimensional array to the each operation result, and returns the new n-dimensional array.
+
+Exceptions:
+
+The n-dimensional array $x_ndarray must be defined. Otherwise, an exception is thrown.
+
 =head1 See Also
 
 =over 2

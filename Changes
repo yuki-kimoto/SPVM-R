@@ -1,5 +1,8 @@
 0.101002 2024-09-21
   [New Features]
+    * Add R::OP::Long#bit_and method.
+    * Add R::OP::Long#bit_or method.
+    * Add R::OP::Long#bit_not method.
     * Add R::OP::Int#bit_and method.
     * Add R::OP::Int#bit_or method.
     * Add R::OP::Int#bit_not method.

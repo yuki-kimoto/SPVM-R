@@ -1896,7 +1896,7 @@ class TestCase::R::OP::Int {
         
         my $y_ndarray = IOP->c([(int)3, 4], [1, 2]);
         
-        eval { IOP->or(undef, $y_ndarray); }
+        eval { IOP->bit_or(undef, $y_ndarray); }
         
         unless ($@) {
           return 0;
@@ -1908,7 +1908,7 @@ class TestCase::R::OP::Int {
         
         my $y_ndarray = IOP->c([(int)3, 4], [1, 2]);
         
-        eval { IOP->or($x_ndarray, undef); }
+        eval { IOP->bit_or($x_ndarray, undef); }
         
         unless ($@) {
           return 0;
@@ -1920,7 +1920,7 @@ class TestCase::R::OP::Int {
         
         my $y_ndarray = IOP->c([(int)3, 4], [2, 1]);
         
-        eval { IOP->or($x_ndarray, $y_ndarray); }
+        eval { IOP->bit_or($x_ndarray, $y_ndarray); }
         
         unless ($@) {
           return 0;

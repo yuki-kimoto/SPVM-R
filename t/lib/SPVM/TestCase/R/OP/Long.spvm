@@ -1593,5 +1593,215 @@ class TestCase::R::OP::Long {
     return 1;
   }
   
-
+  static method bit_and : long () {
+    
+    {
+      my $x_ndarray = LOP->c([(long)0xF0000000_00000000L, 0xF0000000_00000000L], [1, 2]);
+      
+      my $y_ndarray = LOP->c([(long)0xF0000000_00000000L, 0x00000000_00000000L], [1, 2]);
+      
+      my $ret_ndarray = LOP->bit_and($x_ndarray, $y_ndarray);
+      
+      unless ($ret_ndarray is_type R::NDArray::Long) {
+        return 0;
+      }
+      
+      unless (Array->equals_long($ret_ndarray->data, [0xF0000000_00000000L, 0x00000000_00000000L])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $x_ndarray = LOP->c([(long)0xF0000000_00000000L, 0xF0000000_00000000L], [1, 2]);
+      
+      my $y_ndarray = LOP->c((long)0xF0000000_00000000L);
+      
+      my $ret_ndarray = LOP->bit_and($x_ndarray, $y_ndarray);
+      
+      unless ($ret_ndarray is_type R::NDArray::Long) {
+        return 0;
+      }
+      
+      unless (Array->equals_long($ret_ndarray->data, [0xF0000000_00000000L, 0xF0000000_00000000L])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = LOP->c([(long)1, 2], [1, 2]);
+        
+        my $y_ndarray = LOP->c([(long)3, 4], [1, 2]);
+        
+        eval { LOP->bit_and(undef, $y_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = LOP->c([(long)1, 2], [1, 2]);
+        
+        my $y_ndarray = LOP->c([(long)3, 4], [1, 2]);
+        
+        eval { LOP->bit_and($x_ndarray, undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = LOP->c([(long)1, 2], [1, 2]);
+        
+        my $y_ndarray = LOP->c([(long)3, 4], [2, 1]);
+        
+        eval { LOP->bit_and($x_ndarray, $y_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
+  static method bit_or : long () {
+    
+    {
+      my $x_ndarray = LOP->c([(long)0x00000000_00000000L, 0x00000000_00000000L], [1, 2]);
+      
+      my $y_ndarray = LOP->c([(long)0xF0000000_00000000L, 0x00000000_00000000L], [1, 2]);
+      
+      my $ret_ndarray = LOP->bit_or($x_ndarray, $y_ndarray);
+      
+      unless ($ret_ndarray is_type R::NDArray::Long) {
+        return 0;
+      }
+      
+      unless (Array->equals_long($ret_ndarray->data, [0xF0000000_00000000L, 0x00000000_00000000L])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+        return 0;
+      }
+    }
+    
+    {
+      my $x_ndarray = LOP->c([(long)0x00000000_00000000L, 0x00000000_00000000L], [1, 2]);
+      
+      my $y_ndarray = LOP->c((long)0xF0000000_00000000L);
+      
+      my $ret_ndarray = LOP->bit_or($x_ndarray, $y_ndarray);
+      
+      unless ($ret_ndarray is_type R::NDArray::Long) {
+        return 0;
+      }
+      
+      unless (Array->equals_long($ret_ndarray->data, [0xF0000000_00000000L, 0xF0000000_00000000L])) {
+        return 0;
+      }
+      
+      unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+        return 0;
+      }
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = LOP->c([(long)1, 2], [1, 2]);
+        
+        my $y_ndarray = LOP->c([(long)3, 4], [1, 2]);
+        
+        eval { LOP->bit_or(undef, $y_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = LOP->c([(long)1, 2], [1, 2]);
+        
+        my $y_ndarray = LOP->c([(long)3, 4], [1, 2]);
+        
+        eval { LOP->bit_or($x_ndarray, undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+      {
+        my $x_ndarray = LOP->c([(long)1, 2], [1, 2]);
+        
+        my $y_ndarray = LOP->c([(long)3, 4], [2, 1]);
+        
+        eval { LOP->bit_or($x_ndarray, $y_ndarray); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
+  static method bit_not : long () {
+    
+    my $x_ndarray = LOP->c([(long)0x0FFFFFF0_00000000L, 0xFFFFFFF0_00000000L], [1, 2]);
+    
+    my $ret_ndarray = LOP->bit_not($x_ndarray);
+    
+    unless ($ret_ndarray is_type R::NDArray::Long) {
+      return 0;
+    }
+    
+    unless (Array->equals_long($ret_ndarray->data, [0xF000000F_FFFFFFFFL, 0x0000000F_FFFFFFFFL])) {
+      return 0;
+    }
+    
+    unless (Array->equals_int($ret_ndarray->dim, [1, 2])) {
+      return 0;
+    }
+    
+    # Exceptions
+    {
+      {
+        my $x_ndarray = LOP->c([(long)1, 2], [1, 2]);
+        
+        eval { LOP->bit_not(undef); }
+        
+        unless ($@) {
+          return 0;
+        }
+      }
+      
+    }
+    
+    $@ = undef;
+    
+    return 1;
+  }
+  
 }

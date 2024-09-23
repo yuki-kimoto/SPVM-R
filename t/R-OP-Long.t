@@ -42,6 +42,9 @@ ok(SPVM::TestCase::R::OP::Long->cumprod);
 ok(SPVM::TestCase::R::OP::Long->diff);
 ok(SPVM::TestCase::R::OP::Long->max);
 ok(SPVM::TestCase::R::OP::Long->min);
+ok(SPVM::TestCase::R::OP::Long->bit_and);
+ok(SPVM::TestCase::R::OP::Long->bit_or);
+ok(SPVM::TestCase::R::OP::Long->bit_not);
 
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
