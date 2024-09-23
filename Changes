@@ -23,6 +23,12 @@
       R::OP::Float#div
       R::OP::Float#reminder
       R::OP::Float#fmod
+      R::OP::Double#add
+      R::OP::Double#sub
+      R::OP::Double#mul
+      R::OP::Double#div
+      R::OP::Double#reminder
+      R::OP::Double#fmod
       
 0.101002 2024-09-16
   [Internal Changes]
