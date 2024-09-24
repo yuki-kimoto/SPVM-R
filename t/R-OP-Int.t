@@ -48,6 +48,9 @@ ok(SPVM::TestCase::R::OP::Int->not);
 ok(SPVM::TestCase::R::OP::Int->bit_and);
 ok(SPVM::TestCase::R::OP::Int->bit_or);
 ok(SPVM::TestCase::R::OP::Int->bit_not);
+ok(SPVM::TestCase::R::OP::Int->left_shift);
+ok(SPVM::TestCase::R::OP::Int->arithmetic_right_shift);
+ok(SPVM::TestCase::R::OP::Int->logical_right_shift);
 
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);

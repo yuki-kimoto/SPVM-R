@@ -1029,5 +1029,131 @@ class R::OP::Int {
     return $ret_ndarray;
   }
   
+  precompile static method left_shift : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray->is_scalar) {
+      my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+      
+      unless ($equals_dim) {
+        die "The dimensions of \$x_ndarray must be the same as the dimensions of \$y_ndarray.";
+      }
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    if ($y_ndarray->is_scalar) {
+      for (my $i = 0; $i < $length; $i++) {
+        $ret_data->[$i] = $x_data->[$i] << $y_data->[0];
+      }
+    }
+    else {
+      for (my $i = 0; $i < $length; $i++) {
+        $ret_data->[$i] = $x_data->[$i] << $y_data->[$i];
+      }
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method arithmetic_right_shift : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray->is_scalar) {
+      my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+      
+      unless ($equals_dim) {
+        die "The dimensions of \$x_ndarray must be the same as the dimensions of \$y_ndarray.";
+      }
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    if ($y_ndarray->is_scalar) {
+      for (my $i = 0; $i < $length; $i++) {
+        $ret_data->[$i] = $x_data->[$i] >> $y_data->[0];
+      }
+    }
+    else {
+      for (my $i = 0; $i < $length; $i++) {
+        $ret_data->[$i] = $x_data->[$i] >> $y_data->[$i];
+      }
+    }
+    
+    return $ret_ndarray;
+  }
+  
+  precompile static method logical_right_shift : R::NDArray::Int ($x_ndarray : R::NDArray::Int, $y_ndarray : R::NDArray::Int) {
+    
+    unless ($x_ndarray) {
+      die "The n-dimensional array \$x_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray) {
+      die "The n-dimensional array \$y_ndarray must be defined.";
+    }
+    
+    unless ($y_ndarray->is_scalar) {
+      my $equals_dim = R::OP->equals_dim($x_ndarray, $y_ndarray);
+      
+      unless ($equals_dim) {
+        die "The dimensions of \$x_ndarray must be the same as the dimensions of \$y_ndarray.";
+      }
+    }
+    
+    my $length = $x_ndarray->length;
+    
+    my $x_dim = $x_ndarray->dim;
+    
+    my $ret_ndarray = R::OP::Int->c(undef, $x_dim);
+    my $ret_data = $ret_ndarray->data;
+    
+    my $x_data = $x_ndarray->data;
+    my $y_data = $y_ndarray->data;
+    
+    if ($y_ndarray->is_scalar) {
+      for (my $i = 0; $i < $length; $i++) {
+        $ret_data->[$i] = $x_data->[$i] >>> $y_data->[0];
+      }
+    }
+    else {
+      for (my $i = 0; $i < $length; $i++) {
+        $ret_data->[$i] = $x_data->[$i] >>> $y_data->[$i];
+      }
+    }
+    
+    return $ret_ndarray;
+  }
+  
 }
 
