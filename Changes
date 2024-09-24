@@ -1,5 +1,8 @@
 0.101002 2024-09-21
   [New Features]
+    * Add R::OP::Long#left_shift method.
+    * Add R::OP::Long#arithmetic_right_shift method.
+    * Add R::OP::Long#logical_right_shift method.
     * Add R::OP::Long#bit_and method.
     * Add R::OP::Long#bit_or method.
     * Add R::OP::Long#bit_not method.
