@@ -20,7 +20,7 @@ unless ($meta) {
 
 my %configure_and_runtime_requires = (
   'SPVM' => '0.990038',
-  'SPVM::Resource::Eigen' => '0.001'
+  'SPVM::Resource::Eigen' => '0.003'
 );
 WriteMakefile(
   NAME => 'SPVM::R',
