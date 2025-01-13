@@ -2,6 +2,7 @@
 # MIT License
 
 class R::OP::DoubleComplex {
+  version_from R;
   
   use R::NDArray::Int;
   use R::NDArray::Long;

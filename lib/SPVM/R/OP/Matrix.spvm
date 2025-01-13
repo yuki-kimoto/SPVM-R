@@ -2,6 +2,7 @@
 # MIT License
 
 class R::OP::Matrix {
+  version_from R;
   
   static method cbind : R::NDArray ($x_ndarray : R::NDArray, $y_ndarray : R::NDArray) {
     

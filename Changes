@@ -6,6 +6,7 @@
     * Call SPVM::Builder::Util::API::create_make_rule_precompile function in Makefile.PL on precompilation classes.
   [Changes]
     * Load Resource::Eigen.
+    * Add version_from R to all classes except for R.
     
 0.101003 2024-09-24
   [New Features]

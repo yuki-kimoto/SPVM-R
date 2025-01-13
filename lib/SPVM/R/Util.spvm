@@ -2,6 +2,7 @@
 # MIT License
 
 class R::Util {
+  version_from R;
   
   # Temporary loaded.
   use Complex_2f;
