@@ -83,6 +83,21 @@ sub MY::postamble {
     $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Matrix::FloatComplex');
     $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Matrix::Double');
     $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Matrix::DoubleComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::StringBuffer');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::String');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Time::Piece');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Byte');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Double');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::DoubleComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Float');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::FloatComplex');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Int');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Long');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Short');
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::String');
+    
   }
   
   return $make_rule;
