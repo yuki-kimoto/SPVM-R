@@ -3,6 +3,8 @@
 
 class R::OP::Matrix::FloatComplex {
   
+  use Resource::Eigen;
+  
   use R::NDArray::FloatComplex;
   use R::OP::FloatComplex;
   use R::OP::Matrix;

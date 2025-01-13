@@ -4,6 +4,9 @@
   [Bug Fix]
     * Fix a bug that latset linux does not compile Resource::Eigen.
     * Call SPVM::Builder::Util::API::create_make_rule_precompile function in Makefile.PL on precompilation classes.
+  [Changes]
+    * Load Resource::Eigen.
+    
 0.101003 2024-09-24
   [New Features]
     * Add R::OP::Int#left_shift method.

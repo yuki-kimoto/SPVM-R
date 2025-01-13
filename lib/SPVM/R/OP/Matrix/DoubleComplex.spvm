@@ -3,6 +3,8 @@
 
 class R::OP::Matrix::DoubleComplex {
   
+  use Resource::Eigen;
+  
   use R::NDArray::DoubleComplex;
   use R::OP::DoubleComplex;
   use R::OP::Matrix;

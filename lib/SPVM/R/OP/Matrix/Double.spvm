@@ -3,6 +3,8 @@
 
 class R::OP::Matrix::Double {
   
+  use Resource::Eigen;
+  
   use R::NDArray::Double;
   use R::OP::Double;
   use R::OP::Matrix;

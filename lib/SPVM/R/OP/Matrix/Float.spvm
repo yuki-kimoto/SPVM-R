@@ -3,6 +3,8 @@
 
 class R::OP::Matrix::Float {
   
+  use Resource::Eigen;
+  
   use R::NDArray::Float;
   use R::OP::Float;
   use R::OP::Matrix;
