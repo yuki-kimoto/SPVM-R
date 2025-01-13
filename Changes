@@ -1,3 +1,7 @@
+0.101004 2025-01-13
+  [Requirement Changes]
+    * Require SPVM 0.990038.
+  
 0.101003 2024-09-24
   [New Features]
     * Add R::OP::Int#left_shift method.
