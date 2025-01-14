@@ -8,6 +8,8 @@
   [Changes]
     * Load Resource::Eigen.
     * Add version_from R to all classes except for R.
+  [Internal Changes]
+    * Update .gitignore and MANIFEST.SKIP.
     
 0.101003 2024-09-24
   [New Features]
