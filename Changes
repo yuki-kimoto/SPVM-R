@@ -1,8 +1,8 @@
-0.101004 2025-01-14
+0.102 2025-01-14
   [Requirement Changes]
     * Require SPVM 0.990038.
     * Require SPVM::Resource::Eigen 0.003.
-    * Require SPVM::Time::Piece 0.004
+    * Require SPVM::Time::Piece 0.004.
   [Bug Fix]
     * Fix a bug that latset linux does not compile Resource::Eigen.
     * Call SPVM::Builder::Util::API::create_make_rule_precompile function in Makefile.PL on precompilation classes.
