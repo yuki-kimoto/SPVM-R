@@ -3,6 +3,8 @@
 
 #include "spvm_native.h"
 
+#include <assert.h>
+
 #include "Eigen/Core"
 #include "Eigen/Dense"
 
@@ -20,7 +22,11 @@ int32_t SPVM__R__OP__Matrix__FloatComplex___mul(SPVM_ENV* env, SPVM_VALUE* stack
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
+  assert(ret_nrow_ref);
+  
   int32_t* ret_ncol_ref = stack[2].iref;
+  
+  assert(ret_ncol_ref);
   
   void* obj_x_data = stack[3].oval;
   std::complex<float>* x_data = (std::complex<float>*)env->get_elems_float(env, stack, obj_x_data);
@@ -67,7 +73,11 @@ int32_t SPVM__R__OP__Matrix__FloatComplex___t(SPVM_ENV* env, SPVM_VALUE* stack) 
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
+  assert(ret_nrow_ref);
+  
   int32_t* ret_ncol_ref = stack[2].iref;
+  
+  assert(ret_ncol_ref);
   
   void* obj_x_data = stack[3].oval;
   std::complex<float>* x_data = (std::complex<float>*)env->get_elems_float(env, stack, obj_x_data);
@@ -107,7 +117,11 @@ int32_t SPVM__R__OP__Matrix__FloatComplex___det(SPVM_ENV* env, SPVM_VALUE* stack
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
+  assert(ret_nrow_ref);
+  
   int32_t* ret_ncol_ref = stack[2].iref;
+  
+  assert(ret_ncol_ref);
   
   void* obj_x_data = stack[3].oval;
   std::complex<float>* x_data = (std::complex<float>*)env->get_elems_float(env, stack, obj_x_data);
@@ -145,7 +159,11 @@ int32_t SPVM__R__OP__Matrix__FloatComplex___solve(SPVM_ENV* env, SPVM_VALUE* sta
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
+  assert(ret_nrow_ref);
+  
   int32_t* ret_ncol_ref = stack[2].iref;
+  
+  assert(ret_ncol_ref);
   
   void* obj_x_data = stack[3].oval;
   std::complex<float>* x_data = (std::complex<float>*)env->get_elems_float(env, stack, obj_x_data);
@@ -183,13 +201,21 @@ int32_t SPVM__R__OP__Matrix__FloatComplex___eigen(SPVM_ENV* env, SPVM_VALUE* sta
   
   int32_t* eigen_vectors_nrow_ref = stack[1].iref;
   
+  assert(eigen_vectors_nrow_ref);
+  
   int32_t* eigen_vectors_ncol_ref = stack[2].iref;
+  
+  assert(eigen_vectors_ncol_ref);
   
   void* obj_eigen_values_data_ref = stack[3].oval;
   
   int32_t* eigen_values_nrow_ref = stack[4].iref;
   
+  assert(eigen_values_nrow_ref);
+  
   int32_t* eigen_values_ncol_ref = stack[5].iref;
+  
+  assert(eigen_values_ncol_ref);
   
   void* obj_x_data = stack[6].oval;
   std::complex<float>* x_data = (std::complex<float>*)env->get_elems_float(env, stack, obj_x_data);
