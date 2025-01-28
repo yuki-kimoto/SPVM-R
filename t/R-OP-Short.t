@@ -21,6 +21,8 @@ ok(SPVM::TestCase::R::OP::Short->rep);
 ok(SPVM::TestCase::R::OP::Short->rep_length);
 ok(SPVM::TestCase::R::OP::Short->seq);
 
+SPVM::Fn->destroy_runtime_permanent_vars;
+
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
 

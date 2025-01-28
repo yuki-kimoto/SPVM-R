@@ -148,8 +148,6 @@ class TestCase::R::OP::Time::Piece {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -212,8 +210,6 @@ class TestCase::R::OP::Time::Piece {
       }
       
     }
-    
-    $@ = undef;
     
     return 1;
   }
@@ -278,8 +274,6 @@ class TestCase::R::OP::Time::Piece {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -342,8 +336,6 @@ class TestCase::R::OP::Time::Piece {
       }
       
     }
-    
-    $@ = undef;
     
     return 1;
   }
@@ -408,8 +400,6 @@ class TestCase::R::OP::Time::Piece {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -472,8 +462,6 @@ class TestCase::R::OP::Time::Piece {
       }
       
     }
-    
-    $@ = undef;
     
     return 1;
   }

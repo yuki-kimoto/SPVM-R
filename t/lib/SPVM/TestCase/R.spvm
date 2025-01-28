@@ -1419,7 +1419,7 @@ class TestCase::R {
       }
     }
     
-    $@ = undef;
+    
     
     return 1;
   }

@@ -223,8 +223,6 @@ class TestCase::R::OP::Byte {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   

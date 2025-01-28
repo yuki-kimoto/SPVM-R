@@ -223,7 +223,7 @@ class TestCase::R::OP::Short {
       
     }
     
-    $@ = undef;
+    
     
     return 1;
   }

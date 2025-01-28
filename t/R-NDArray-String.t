@@ -29,6 +29,8 @@ ok(SPVM::TestCase::R::NDArray::String->slice);
 ok(SPVM::TestCase::R::NDArray::String->to_string_buffer_ndarray);
 ok(SPVM::TestCase::R::NDArray::String->to_time_piece_ndarray);
 
+SPVM::Fn->destroy_runtime_permanent_vars;
+
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
 

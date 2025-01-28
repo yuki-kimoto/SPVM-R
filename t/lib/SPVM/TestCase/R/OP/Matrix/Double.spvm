@@ -166,8 +166,6 @@ class TestCase::R::OP::Matrix::Double {
       }
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -221,8 +219,6 @@ class TestCase::R::OP::Matrix::Double {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -257,8 +253,6 @@ class TestCase::R::OP::Matrix::Double {
       }
       
     }
-    
-    $@ = undef;
     
     return 1;
   }
@@ -362,8 +356,6 @@ class TestCase::R::OP::Matrix::Double {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -411,8 +403,6 @@ class TestCase::R::OP::Matrix::Double {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -459,8 +449,6 @@ class TestCase::R::OP::Matrix::Double {
       }
       
     }
-    
-    $@ = undef;
     
     return 1;
   }
@@ -518,8 +506,6 @@ class TestCase::R::OP::Matrix::Double {
       }
       
     }
-    
-    $@ = undef;
     
     return 1;
   }
@@ -668,8 +654,6 @@ class TestCase::R::OP::Matrix::Double {
       }
       
     }
-    
-    $@ = undef;
     
     return 1;
   }

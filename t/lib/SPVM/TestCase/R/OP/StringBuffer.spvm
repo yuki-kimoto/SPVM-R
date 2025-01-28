@@ -190,7 +190,7 @@ class TestCase::R::OP::StringBuffer {
       
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -297,7 +297,7 @@ class TestCase::R::OP::StringBuffer {
       
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -384,7 +384,7 @@ class TestCase::R::OP::StringBuffer {
       
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -471,7 +471,7 @@ class TestCase::R::OP::StringBuffer {
       
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -558,7 +558,7 @@ class TestCase::R::OP::StringBuffer {
       
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -645,7 +645,7 @@ class TestCase::R::OP::StringBuffer {
       
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -732,7 +732,7 @@ class TestCase::R::OP::StringBuffer {
       
     }
     
-    $@ = undef;
+    
     
     return 1;
   }

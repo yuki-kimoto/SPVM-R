@@ -167,7 +167,7 @@ class TestCase::R::NDArray {
       }
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -206,7 +206,7 @@ class TestCase::R::NDArray {
       }
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -705,7 +705,7 @@ class TestCase::R::NDArray {
       }
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -765,7 +765,7 @@ class TestCase::R::NDArray {
       }
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -1294,7 +1294,7 @@ class TestCase::R::NDArray {
       }
     }
     
-    $@ = undef;
+    
     
     return 1;
   }
@@ -1405,7 +1405,7 @@ class TestCase::R::NDArray {
       }
     }
     
-    $@ = undef;
+    
     
     return 1;
   }

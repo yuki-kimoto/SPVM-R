@@ -36,6 +36,8 @@ ok(SPVM::TestCase::R::DataFrame->set_order);
 ok(SPVM::TestCase::R::DataFrame->sort);
 ok(SPVM::TestCase::R::DataFrame->order);
 
+SPVM::Fn->destroy_runtime_permanent_vars;
+
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
 

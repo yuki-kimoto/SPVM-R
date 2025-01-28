@@ -29,6 +29,8 @@ ok(SPVM::TestCase::R::OP::Matrix::Double->det);
 ok(SPVM::TestCase::R::OP::Matrix::Double->solve);
 ok(SPVM::TestCase::R::OP::Matrix::Double->eigen);
 
+SPVM::Fn->destroy_runtime_permanent_vars;
+
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
 

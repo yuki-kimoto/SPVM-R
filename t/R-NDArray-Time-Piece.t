@@ -28,6 +28,8 @@ ok(SPVM::TestCase::R::NDArray::Time::Piece->clone);
 ok(SPVM::TestCase::R::NDArray::Time::Piece->slice);
 ok(SPVM::TestCase::R::NDArray::Time::Piece->to_string_ndarray);
 
+SPVM::Fn->destroy_runtime_permanent_vars;
+
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
 

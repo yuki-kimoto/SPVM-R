@@ -31,6 +31,8 @@ ok(SPVM::TestCase::R::NDArray::Double->to_long_ndarray);
 ok(SPVM::TestCase::R::NDArray::Double->to_float_ndarray);
 ok(SPVM::TestCase::R::NDArray::Double->to_double_complex_ndarray);
 
+SPVM::Fn->destroy_runtime_permanent_vars;
+
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
 

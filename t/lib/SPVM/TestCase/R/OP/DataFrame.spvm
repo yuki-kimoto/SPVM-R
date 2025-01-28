@@ -131,8 +131,6 @@ class TestCase::R::OP::DataFrame {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -281,8 +279,6 @@ class TestCase::R::OP::DataFrame {
       
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -381,8 +377,6 @@ class TestCase::R::OP::DataFrame {
       }
     }
     
-    $@ = undef;
-    
     return 1;
   }
   
@@ -443,8 +437,6 @@ class TestCase::R::OP::DataFrame {
         }
       }
     }
-    
-    $@ = undef;
     
     return 1;
   }

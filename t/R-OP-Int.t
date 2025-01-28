@@ -52,6 +52,8 @@ ok(SPVM::TestCase::R::OP::Int->left_shift);
 ok(SPVM::TestCase::R::OP::Int->arithmetic_right_shift);
 ok(SPVM::TestCase::R::OP::Int->logical_right_shift);
 
+SPVM::Fn->destroy_runtime_permanent_vars;
+
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
 
