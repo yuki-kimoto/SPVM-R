@@ -1656,9 +1656,9 @@ class R::OP::Double {
     
     my $options_h = Hash->new($options);
     
-    my $min = $options_h->get_or_default_int("min", 0);
+    my $min = $options_h->get_or_default("min", 0)->(int);
     
-    my $max = $options_h->get_or_default_int("max", 1);
+    my $max = $options_h->get_or_default("max", 1)->(int);
     
     my $seed_ref = (int[])$options_h->get_or_default("seed_ref", undef);
     
