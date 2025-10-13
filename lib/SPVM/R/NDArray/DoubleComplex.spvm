@@ -30,6 +30,8 @@ class R::NDArray::DoubleComplex extends R::NDArray {
     
     my $data = new Complex_2d[$length];
     
+    make_fixed_length $data;
+    
     return $data;
   }
   

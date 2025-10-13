@@ -33,6 +33,8 @@ class R::NDArray::AnyObject extends R::NDArray {
     
     my $data = new object[$length];
     
+    make_fixed_length $data;
+    
     return $data;
   }
   

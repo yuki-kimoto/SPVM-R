@@ -34,6 +34,8 @@ class R::NDArray::Double extends R::NDArray {
     
     my $data = new double[$length];
     
+    make_fixed_length $data;
+    
     return $data;
   }
   

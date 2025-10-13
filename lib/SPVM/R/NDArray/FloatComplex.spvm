@@ -30,6 +30,8 @@ class R::NDArray::FloatComplex extends R::NDArray {
     
     my $data = new Complex_2f[$length];
     
+    make_fixed_length $data;
+    
     return $data;
   }
   

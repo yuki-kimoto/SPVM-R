@@ -32,6 +32,8 @@ class R::NDArray::Time::Piece extends R::NDArray {
     
     my $data = new Time::Piece[$length];
     
+    make_fixed_length $data;
+    
     return $data;
   }
   

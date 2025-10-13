@@ -30,6 +30,8 @@ class R::NDArray::Short extends R::NDArray {
     
     my $data = new short[$length];
     
+    make_fixed_length $data;
+    
     return $data;
   }
   

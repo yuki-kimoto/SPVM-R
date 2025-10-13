@@ -28,6 +28,8 @@ class R::NDArray::Float extends R::NDArray {
     
     my $data = new float[$length];
     
+    make_fixed_length $data;
+    
     return $data;
   }
   

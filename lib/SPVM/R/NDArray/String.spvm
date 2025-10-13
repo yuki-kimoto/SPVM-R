@@ -35,6 +35,8 @@ class R::NDArray::String extends R::NDArray {
     
     my $data = new string[$length];
     
+    make_fixed_length $data;
+    
     return $data;
   }
   
