@@ -63,11 +63,11 @@ See L<R::OP::DataFrame|SPVM::R::OP::DataFrame> about data frame operations.
 
 =head1 Fields
 
-=head2 colobjs_list;
+=head2 colobjs;
 
-C<has colobjs_list : List of L<R::DataFrame::Column|SPVM::R::DataFrame::Column>;>
+C<has colobjs : L<R::DataFrame::Column|SPVM::R::DataFrame::Column>[];>
 
-A list of L<R::DataFrame::Column|SPVM::R::DataFrame::Column> objects that represents columns.
+L<R::DataFrame::Column|SPVM::R::DataFrame::Column> array that represents columns.
 
 =head2 colobjs_indexes_h
 

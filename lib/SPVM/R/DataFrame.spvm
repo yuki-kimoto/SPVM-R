@@ -10,7 +10,7 @@ class R::DataFrame {
   use R::DataFrame::Column;
   
   # Fields
-  has colobjs_list : List of R::DataFrame::Column;
+  has colobjs : R::DataFrame::Column[];
   
   has colobjs_indexes_h : Hash of Int;
   
@@ -19,8 +19,7 @@ class R::DataFrame {
     
     my $self = new R::DataFrame;
     
-    my $colobjs_list = List->new(new R::DataFrame::Column[0]);
-    $self->{colobjs_list} = $colobjs_list;
+    $self->{colobjs} = new R::DataFrame::Column[0];
     
     my $colobjs_indexes_h = Hash->new;
     $self->{colobjs_indexes_h} = $colobjs_indexes_h;
@@ -53,13 +52,13 @@ class R::DataFrame {
   
   method colname : string ($col : int) {
     
-    my $colobjs_list = $self->{colobjs_list};
+    my $colobjs = $self->{colobjs};
     
-    unless ($col >= 0 && $col < $colobjs_list->length) {
+    unless ($col >= 0 && $col < @$colobjs) {
       die "The column at index $col dose not exist.";
     }
     
-    my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
+    my $colobj = (R::DataFrame::Column)$colobjs->[$col];
     
     my $colname = $colobj->{name};
     
@@ -84,13 +83,13 @@ class R::DataFrame {
   
   method col_by_index : R::NDArray ($col : int) {
     
-    my $colobjs_list = $self->{colobjs_list};
+    my $colobjs = $self->{colobjs};
     
-    unless ($col >= 0 && $col < $colobjs_list->length) {
+    unless ($col >= 0 && $col < @$colobjs) {
       die "The column at index $col does not exists.";
     }
     
-    my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
+    my $colobj = $colobjs->[$col];
     
     my $ndarray = $colobj->{ndarray};
     
@@ -122,9 +121,9 @@ class R::DataFrame {
     if ($exists_col) {
       my $col = $self->colindex($colname);
       
-      my $colobjs_list = $self->{colobjs_list};
+      my $colobjs = $self->{colobjs};
       
-      my $colobj = (R::DataFrame::Column)$colobjs_list->get($col);
+      my $colobj = $colobjs->[$col];
       
       $colobj->{ndarray} = $ndarray;
       $ndarray->make_dim_read_only;
@@ -169,7 +168,7 @@ class R::DataFrame {
       $col = $self->ncol;
     }
     
-    my $colobjs_list = $self->{colobjs_list};
+    my $colobjs_list = List->new_ref($self->{colobjs});
     
     $colobjs_list->insert($col, $colobj);
     
@@ -178,9 +177,9 @@ class R::DataFrame {
   
   method ncol : int () {
     
-    my $colobjs_list = $self->{colobjs_list};
+    my $colobjs = $self->{colobjs};
     
-    my $ncol = $colobjs_list->length;
+    my $ncol = @$colobjs;
     
     return $ncol;
   }
@@ -206,7 +205,7 @@ class R::DataFrame {
     
     my $col = $self->colindex($colname);
     
-    my $colobjs_list = $self->{colobjs_list};
+    my $colobjs_list = List->new_ref($self->{colobjs});
     
     $colobjs_list->remove($col);
     
@@ -452,11 +451,11 @@ class R::DataFrame {
   # Private Static Methods
   private method update_colobjs_indexes_h : void ($begin_col : int) {
     
-    my $colobjs_list = $self->{colobjs_list};
+    my $colobjs = $self->{colobjs};
     
     my $colobjs_indexes_h = $self->{colobjs_indexes_h};
-    for (my $i = $begin_col; $i < $colobjs_list->length; $i++) {
-      my $colobj = (R::DataFrame::Column)$colobjs_list->get($i);
+    for (my $i = $begin_col; $i < @$colobjs; $i++) {
+      my $colobj = $colobjs->[$i];
       my $colname = $colobj->{name};
       $colobjs_indexes_h->set($colname, $i);
     }

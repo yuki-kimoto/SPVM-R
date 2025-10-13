@@ -1,3 +1,12 @@
+0.105 2025-10-13
+  [Internal Changes with Document Changes]
+    * Change the following fields
+      [Before]
+      has colobjs_list : List of R::DataFrame::Column;
+      
+      [After]
+      has colobjs : R::DataFrame::Column[];
+      
 0.104 2025-10-13
   [Internal Changes]
     * Do internal changes to catch up latest SPVM.
