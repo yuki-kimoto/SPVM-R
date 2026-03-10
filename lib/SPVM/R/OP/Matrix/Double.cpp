@@ -18,7 +18,7 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
-  void* obj_ret_data_ref = stack[0].oval;
+  SPVM_OBJ* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
@@ -28,14 +28,14 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   assert(ret_ncol_ref);
   
-  void* obj_x_data = stack[3].oval;
+  SPVM_OBJ* obj_x_data = stack[3].oval;
   double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
   
   int32_t x_ncol = stack[5].ival;
   
-  void* obj_y_data = stack[6].oval;
+  SPVM_OBJ* obj_y_data = stack[6].oval;
   double* y_data = (double*)env->get_elems_double(env, stack, obj_y_data);
   
   int32_t y_nrow = stack[7].ival;
@@ -49,7 +49,7 @@ int32_t SPVM__R__OP__Matrix__Double___mul(SPVM_ENV* env, SPVM_VALUE* stack) {
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> ret_matrix = x_matrix * y_matrix;
   
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
-  void* obj_ret_data = env->new_double_array(env, stack, ret_length);
+  SPVM_OBJ* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
   double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
@@ -68,7 +68,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
-  void* obj_ret_data_ref = stack[0].oval;
+  SPVM_OBJ* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
@@ -78,7 +78,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   assert(ret_ncol_ref);
   
-  void* obj_x_data = stack[3].oval;
+  SPVM_OBJ* obj_x_data = stack[3].oval;
   double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
@@ -92,7 +92,7 @@ int32_t SPVM__R__OP__Matrix__Double___t(SPVM_ENV* env, SPVM_VALUE* stack) {
   ret_matrix.transposeInPlace();
   
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
-  void* obj_ret_data = env->new_double_array(env, stack, ret_length);
+  SPVM_OBJ* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
   double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
@@ -111,7 +111,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
-  void* obj_ret_data_ref = stack[0].oval;
+  SPVM_OBJ* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
@@ -121,7 +121,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   assert(ret_ncol_ref);
   
-  void* obj_x_data = stack[3].oval;
+  SPVM_OBJ* obj_x_data = stack[3].oval;
   double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
@@ -133,7 +133,7 @@ int32_t SPVM__R__OP__Matrix__Double___det(SPVM_ENV* env, SPVM_VALUE* stack) {
   double ret = x_matrix.determinant();
   
   int32_t ret_length = 1;
-  void* obj_ret_data = env->new_double_array(env, stack, ret_length);
+  SPVM_OBJ* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
   double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
@@ -152,7 +152,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
-  void* obj_ret_data_ref = stack[0].oval;
+  SPVM_OBJ* obj_ret_data_ref = stack[0].oval;
   
   int32_t* ret_nrow_ref = stack[1].iref;
   
@@ -162,7 +162,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   assert(ret_ncol_ref);
   
-  void* obj_x_data = stack[3].oval;
+  SPVM_OBJ* obj_x_data = stack[3].oval;
   double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[4].ival;
@@ -174,7 +174,7 @@ int32_t SPVM__R__OP__Matrix__Double___solve(SPVM_ENV* env, SPVM_VALUE* stack) {
   Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> ret_matrix = x_matrix.inverse();
   
   int32_t ret_length = ret_matrix.rows() * ret_matrix.cols();
-  void* obj_ret_data = env->new_double_array(env, stack, ret_length);
+  SPVM_OBJ* obj_ret_data = env->new_double_array(env, stack, ret_length);
   
   double* ret_data = (double*)env->get_elems_double(env, stack, obj_ret_data);
   
@@ -193,7 +193,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   
-  void* obj_eigen_vectors_data_ref = stack[0].oval;
+  SPVM_OBJ* obj_eigen_vectors_data_ref = stack[0].oval;
   
   int32_t* eigen_vectors_nrow_ref = stack[1].iref;
   
@@ -203,7 +203,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   assert(eigen_vectors_ncol_ref);
   
-  void* obj_eigen_values_data_ref = stack[3].oval;
+  SPVM_OBJ* obj_eigen_values_data_ref = stack[3].oval;
   
   int32_t* eigen_values_nrow_ref = stack[4].iref;
   
@@ -213,7 +213,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   assert(eigen_values_ncol_ref);
   
-  void* obj_x_data = stack[6].oval;
+  SPVM_OBJ* obj_x_data = stack[6].oval;
   double* x_data = (double*)env->get_elems_double(env, stack, obj_x_data);
   
   int32_t x_nrow = stack[7].ival;
@@ -229,7 +229,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   Eigen::Matrix<std::complex<double>, Eigen::Dynamic, 1> eigen_values = eigen_solver.eigenvalues();
   
   int32_t eigen_vectors_length = eigen_vectors.rows() * eigen_vectors.cols();
-  void* obj_eigen_vectors_data = env->new_mulnum_array_by_name(env, stack, "Complex_2d", eigen_vectors_length, &e, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_eigen_vectors_data = env->new_mulnum_array_by_name(env, stack, "Complex_2d", eigen_vectors_length, &e, __func__, FILE_NAME, __LINE__);
   if (e) { return e; }
   
   std::complex<double>* eigen_vectors_data = (std::complex<double>*)env->get_elems_double(env, stack, obj_eigen_vectors_data);
@@ -243,7 +243,7 @@ int32_t SPVM__R__OP__Matrix__Double___eigen(SPVM_ENV* env, SPVM_VALUE* stack) {
   *eigen_vectors_ncol_ref = eigen_vectors.cols();
   
   int32_t eigen_values_length = eigen_values.rows() * eigen_values.cols();
-  void* obj_eigen_values_data = env->new_mulnum_array_by_name(env, stack, "Complex_2d", eigen_values_length, &e, __func__, FILE_NAME, __LINE__);
+  SPVM_OBJ* obj_eigen_values_data = env->new_mulnum_array_by_name(env, stack, "Complex_2d", eigen_values_length, &e, __func__, FILE_NAME, __LINE__);
   if (e) { return e; }
   
   std::complex<double>* eigen_values_data = (std::complex<double>*)env->get_elems_double(env, stack, obj_eigen_values_data);
