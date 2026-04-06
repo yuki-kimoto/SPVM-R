@@ -19,7 +19,7 @@ unless ($meta) {
 }
 
 my %configure_and_runtime_requires = (
-  'SPVM' => '0.990143',
+  'SPVM' => '0.990154',
   'SPVM::Resource::Eigen' => '0.003'
 );
 WriteMakefile(
@@ -68,35 +68,43 @@ sub MY::postamble {
     
     local @INC = ('lib', @INC);
     
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::OP::Matrix::Float');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::OP::Matrix::FloatComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::OP::Matrix::Double');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_native('R::OP::Matrix::DoubleComplex');
-    
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Int');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Long');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Float');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Double');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::FloatComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::DoubleComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Matrix::Float');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Matrix::FloatComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Matrix::Double');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Matrix::DoubleComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::StringBuffer');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::String');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::OP::Time::Piece');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Byte');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Double');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::DoubleComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Float');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::FloatComplex');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Int');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Long');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::Short');
-    $make_rule .= SPVM::Builder::Util::API::create_make_rule_precompile('R::NDArray::String');
+    # Native classes for R (Eigen-based)
+    my $native_classes = [
+      'R::OP::Matrix::Float',
+      'R::OP::Matrix::FloatComplex',
+      'R::OP::Matrix::Double',
+      'R::OP::Matrix::DoubleComplex',
+    ];
+
+    # Precompile classes for R
+    my $precompile_classes = [
+      'R::OP::Int',
+      'R::OP::Long',
+      'R::OP::Float',
+      'R::OP::Double',
+      'R::OP::FloatComplex',
+      'R::OP::DoubleComplex',
+      'R::OP',
+      'R::OP::StringBuffer',
+      'R::OP::String',
+      'R::OP::Time::Piece',
+      'R::NDArray',
+      'R::NDArray::Byte',
+      'R::NDArray::Double',
+      'R::NDArray::DoubleComplex',
+      'R::NDArray::Float',
+      'R::NDArray::FloatComplex',
+      'R::NDArray::Int',
+      'R::NDArray::Long',
+      'R::NDArray::Short',
+      'R::NDArray::String',
+    ];
+
+    # Generate a single parallel make rule for R
+    $make_rule .= SPVM::Builder::Util::API::create_make_rule_parallel({
+      native_classes => $native_classes,
+      precompile_classes => $precompile_classes,
+    });
     
   }
   
