@@ -1,3 +1,8 @@
+0.107 2026-04-07
+  [Build Process Changes]
+    * Parallelize native and precompile builds.
+  [Requirement Changes]
+    * Require SPVM 0.990154.  and update SPVM requirement to 0.990154.
 0.106 2026-03-10
   [Internal Changes]
     * Use native types in all places.
