@@ -1,3 +1,14 @@
+0.108 2026-06-25
+  [Requirement Changes]
+    * Require SPVM 0.990191.
+    * Require SPVM::Math 1.010.
+    * Require SPVM::Time::Piece 0.011.
+    * Require SPVM::Sys 0.572.
+    * Require SPVM::Resource::Eigen 0.005.
+  [Test Improvement]
+    * Add CIs for MSVC.
+  [Support Improvement]
+    * Support MSVC.
 0.107 2026-04-07
   [Build Process Changes]
     * Parallelize native and precompile builds.
