@@ -9,6 +9,8 @@
     * Add CIs for MSVC.
   [Support Improvement]
     * Support MSVC.
+  [Build Fix]
+    * Fix a bug that mac cannot build SPVM::R.
 0.107 2026-04-07
   [Build Process Changes]
     * Parallelize native and precompile builds.
