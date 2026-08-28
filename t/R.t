@@ -2,15 +2,12 @@ use Test::More;
 
 use strict;
 use warnings;
-use FindBin;
-use lib "$FindBin::Bin/lib";
-BEGIN { $ENV{SPVM_BUILD_DIR} = "$FindBin::Bin/.spvm_build"; }
+use lib "t/lib";
 
 use SPVM 'TestCase::R';
 
 use SPVM 'R';
 use SPVM::R;
-use SPVM 'Fn';
 
 my $api = SPVM::api();
 
@@ -18,11 +15,11 @@ my $start_memory_blocks_count = $api->get_memory_blocks_count;
 
 # Version check
 {
-  my $version_string = SPVM::Fn->get_version_string("R");
+  my $version_string = $api->get_version_string("R");
   is($SPVM::R::VERSION, $version_string);
 }
 
-SPVM::Fn->destroy_runtime_permanent_vars;
+$api->destroy_runtime_permanent_vars;
 
 my $end_memory_blocks_count = $api->get_memory_blocks_count;
 is($end_memory_blocks_count, $start_memory_blocks_count);
