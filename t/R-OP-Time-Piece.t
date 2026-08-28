@@ -2,7 +2,6 @@ use Test::More;
 
 use strict;
 use warnings;
-use lib "t/lib";
 
 use SPVM 'TestCase::R::OP::Time::Piece';
 
